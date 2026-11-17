@@ -260,10 +260,10 @@ const POSE3D = { "high-bar-squat": /heel|elevated|drops?\b|pause|safety|century/
   "hip-adduction": /$^/, "rear-delt-row": /lying|trx/i, "high-elbow-shrug": /machine/i, "cable-pullover": /incline|single/i, "kickback": /$^/,
   "lying-cable-curl": /$^/, "single-arm-pushdown": /internally|lateral head/i, "single-arm-overhead-extension": /pressed|bench/i,
   "bench-press": /$^/,
-  "bench-press": /$^/,
   "tibialis-raise": /plate/i, "glute-rdl": /stance|landmine|belt|split|twist/i, "incline-cable-pushdown": /$^/, "forearm-supination": /strap|cable/i,
   "one-arm-lat-row": /$^/, "landmine-rear-delt-raise": /$^/, "ball-hamstring-curl": /$^/,
-  "spanish-squat": /$^/, "somersault-squat": /barbell|smith/i, "scoop-fly": /$^/, "arnold-rotation": /lying|incline/i, "raise-to-press": /$^/ };
+  "spanish-squat": /$^/, "somersault-squat": /barbell|smith/i, "scoop-fly": /$^/, "arnold-rotation": /lying|incline/i, "raise-to-press": /$^/,
+  "barrel-press": /incline/i, "viking-press": /poor man/i, "rear-delt-around-the-world": /fixed elbow/i, "single-leg-rdl": /$^/, "lateral-lunge": /elevated/i };
 export const move3d = (e) => { const m = MOVE3D[e.family]; if (m) return !NOT_SAME.test(e.name) ? m : null;
   const not = POSE3D[e.family]; return not && !not.test(e.name) ? "p:" + e.family : null; };
 /** prop in the hands for the 3D motion, from the exercise's equipment */
