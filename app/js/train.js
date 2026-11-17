@@ -283,8 +283,8 @@ function entryHTML(en, ei) {
       return `<div class="setrow ${s.done ? "done" : ""} ${si === act ? "act" : ""}" data-si="${si}">
       <button class="n ${warm ? "w" : ""}" data-a="type" aria-label="Set type">${warm ? "W" : n}</button>
       ${pv ? `<button class="prev num" data-a="prev" data-w="${esc(pv.w)}" data-r="${esc(pv.r)}" aria-label="Same as last time: ${esc(wr(pv.w, pv.r, u))}">${esc(wr(pv.w, pv.r))}</button>` : `<span class="prev dim">—</span>`}
-      <div class="stepper"><input data-k="w" inputmode="decimal"${barb ? ' title="Hold for plates"' : ""} placeholder="${esc(tg.w || "—")}" value="${esc(s.w)}" aria-label="Weight"></div>
-      <div class="stepper"><input data-k="r" inputmode="numeric" placeholder="${esc(tg.r || "—")}" value="${esc(s.r)}" aria-label="Reps"></div>
+      <div class="stepper"><input data-k="w" inputmode="decimal" enterkeyhint="next"${barb ? ' title="Hold for plates"' : ""} placeholder="${esc(tg.w || "—")}" value="${esc(s.w)}" aria-label="Weight"></div>
+      <div class="stepper"><input data-k="r" inputmode="numeric" enterkeyhint="done" placeholder="${esc(tg.r || "—")}" value="${esc(s.r)}" aria-label="Reps"></div>
       <button class="check" data-a="done" aria-label="Set done">${ic("check")}</button>
       <div class="stepline"><div><button data-a="w-" aria-label="Less weight">−</button><span>${wStep(e)} ${u}</span><button data-a="w+" aria-label="More weight">+</button></div>
         <div><button data-a="r-" aria-label="Fewer reps">−</button><span>1 rep</span><button data-a="r+" aria-label="More reps">+</button></div></div></div>`; }).join("")}</div>
@@ -304,6 +304,19 @@ function wireSession() {
   };
   box.addEventListener("focusin", (e) => { const row = e.target.closest(".setrow"); if (!row || row.classList.contains("act")) return;
     row.parentElement.querySelectorAll(".setrow.act").forEach((x) => x.classList.remove("act")); row.classList.add("act"); });
+  // keyboard entry: ↑/↓ = ± one step (weight step / 1 rep), Enter in kg -> reps; Enter in reps (mouse/keyboard devices) = set done -> next set's kg
+  box.addEventListener("keydown", (e) => {
+    const inp = e.target.closest?.(".setrow input[data-k]"); if (!inp || e.altKey || e.ctrlKey || e.metaKey) return;
+    const row = inp.closest(".setrow"), k = inp.dataset.k;
+    if (e.key === "ArrowUp" || e.key === "ArrowDown") { e.preventDefault(); row.querySelector(`[data-a="${k}${e.key === "ArrowUp" ? "+" : "-"}"]`)?.click(); inp.select(); return; }
+    if (e.key !== "Enter") return; e.preventDefault();
+    if (k === "w") { const r = row.querySelector('[data-k="r"]'); r.focus(); r.select(); return; }
+    if (matchMedia("(pointer: coarse)").matches) { inp.blur(); return; }
+    const ei = +row.closest("[data-ei]").dataset.ei, wasDone = row.classList.contains("done");
+    if (!wasDone) row.querySelector('[data-a="done"]')?.click();
+    setTimeout(() => { const nx = box.querySelector(`[data-ei="${ei}"] .setrow:not(.done) input[data-k="w"]`) || box.querySelector('.setrow:not(.done) input[data-k="w"]');
+      if (nx) { nx.focus({ preventScroll: true }); nx.select(); nx.scrollIntoView({ block: "nearest", behavior: RM.matches ? "auto" : "smooth" }); } }, 60);
+  });
   let lp = null; // long-press the kg box on barbell/Smith lifts -> plate calculator
   const lpEnd = () => { if (lp) { clearTimeout(lp.t); lp = null; } };
   box.addEventListener("pointerdown", (e) => {
