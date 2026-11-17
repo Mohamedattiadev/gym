@@ -216,6 +216,15 @@ const musList = (e) => { const pri = e.primary || [], sec = e.secondary || [];
   return `<div class="mus-list hl"><div class="eyebrow">Main</div>${pri.map((m) => `<div><i style="background:var(--accent)"></i>${esc(MBY[m]?.name || m)}</div>`).join("") || `<div>${esc(e.group)}</div>`}
     ${sec.length ? `<div class="eyebrow">Helpers</div>${sec.map((m) => `<div><i style="background:var(--mus-2)"></i>${esc(MBY[m]?.name || m)}</div>`).join("")}` : ""}</div>`; };
 const backFirst = (e) => { const f = bodySVG("front"); return (e.primary || []).filter((m) => f.includes(`data-m="${m}"`)).length < (e.primary || []).length / 2; };
+/** 19a-fix: hero height = video aspect at full width (phone); remembered per exercise so Muscles/3D keep the same height. */
+const ASPECT = new Map();
+function fitHero(h, e) {
+  const set = (r) => { if (!(r > 0)) return; ASPECT.set(e.slug, r); if (h.isConnected) { h.style.setProperty("--ar", r.toFixed(4)); h.classList.add("fit"); } };
+  if (ASPECT.has(e.slug)) return set(ASPECT.get(e.slug));
+  h.classList.remove("fit"); h.style.removeProperty("--ar");
+  if (e.poster) { const im = new Image(); im.onload = () => set(im.naturalHeight / im.naturalWidth); im.src = e.poster; }
+  return set;
+}
 function hero(e) {
   const h = $("#hero"); const hasFig = !!e.figure; const paint = paintBody(e);
   if (v3d) { v3d.dispose(); v3d = null; }
@@ -230,7 +239,8 @@ function hero(e) {
     : mode === "video" ? `<video id="vid" src="${e.video}" poster="${e.poster}" autoplay muted loop playsinline preload="auto"></video><div class="ctl"><button id="spd" aria-label="Playback speed 1×">${ic("speed", "sm")}<b>1×</b></button><button id="fsb" class="sq" aria-label="Full screen">${ic("fs", "sm")}</button></div>`
       : `<div class="hmus${hasFig ? " withfig" : ""}">${hasFig ? `<img class="fig" src="${e.figure}" alt="Animated figure of this movement, worked muscles in red">` : ""}
           <div class="mini-body">${hasFig ? paint(bodySVG(backFirst(e) ? "back" : "front")) : paint(bodySVG("front")) + paint(bodySVG("back"))}</div>${musList(e)}</div>`}`;
-  const v = $("#vid", h);
+  const v = $("#vid", h); const setAR = fitHero(h, e);
+  if (v && setAR) v.addEventListener("loadedmetadata", () => v.videoWidth && setAR(v.videoHeight / v.videoWidth), { once: true });
   if (v) { const sp = [1, .5, .25]; let i = 0; const sb = $("#spd", h); sb.onclick = () => { i = (i + 1) % 3; v.playbackRate = sp[i]; $("b", sb).textContent = sp[i] + "×"; sb.setAttribute("aria-label", `Playback speed ${sp[i]}×`); haptic(); };
     const fb = $("#fsb", h), isFs = () => document.fullscreenElement === h || document.webkitFullscreenElement === h;
     const toggleFs = () => {

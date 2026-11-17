@@ -297,33 +297,38 @@ svg.ring circle { fill: none; stroke-width: 4; } svg.ring .bg { stroke: var(--s3
 .install img { width: 40px; height: 40px; border-radius: 11px; flex: none; }
 
 /* ============ exercise page ============ */
-.dhero { position: relative; margin: 0 calc(-1 * var(--gut)); background: #000; height: min(40dvh, 360px); overflow: hidden; } /* same height in every hero mode (19e) */
+.dhero { position: relative; margin: 0 calc(-1 * var(--gut)); background: #000; height: min(40dvh, 360px); overflow: hidden; }
+/* 19a-fix: on phone the hero takes the video's aspect at full width (square -> 390px tall), portrait capped; Muscles/3D keep that height */
+.dhero.fit { width: calc(100% + 2 * var(--gut)); height: auto; aspect-ratio: 1 / var(--ar); max-height: min(55dvh, 560px); min-height: 200px; }
 .dhero video, .dhero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; animation: fadeIn 260ms var(--ease) backwards; }
 .dhero img.fig { background: none; }
-/* hero controls: solid high-contrast pills, readable on any video (19a) */
-.dhero.isvid::before, .dhero.isvid::after { content: ""; position: absolute; inset-inline: 0; height: 64px; z-index: 1; pointer-events: none; }
-.dhero.isvid::before { top: 0; background: linear-gradient(#0008, #0000); }
-.dhero.isvid::after { bottom: 0; background: linear-gradient(#0000, #0008); }
-.dhero .seg { position: absolute; top: 10px; inset-inline-start: 10px; z-index: 2; background: #141414c4; border: 1px solid #ffffff47; box-shadow: 0 2px 12px #0006; backdrop-filter: blur(10px); }
-.dhero .seg button { color: #fff; height: 36px; font-size: 14px; font-weight: 600; padding: 0 14px; } .dhero .seg button.on { color: #111; }
-.dhero .seg .seg-ind { background: #fff; box-shadow: none; }
-.dhero .ctl { position: absolute; bottom: 10px; inset-inline-end: 10px; z-index: 2; display: flex; gap: 6px; }
-.dhero .ctl button { position: relative; height: 38px; min-width: 64px; padding: 0 12px; display: inline-flex; align-items: center; justify-content: center; gap: 5px; border-radius: var(--r-full); border: 1px solid #ffffff47; background: #141414c4; color: #fff; font-size: 14px; box-shadow: 0 2px 12px #0006; backdrop-filter: blur(10px); }
+/* scrims at the top/bottom edge only in video mode, so the compact pills stay readable without covering the frame centre */
+.dhero.isvid::before, .dhero.isvid::after { content: ""; position: absolute; inset-inline: 0; height: 52px; z-index: 1; pointer-events: none; }
+.dhero.isvid::before { top: 0; background: linear-gradient(#0009, #0000); }
+.dhero.isvid::after { bottom: 0; background: linear-gradient(#0000, #0009); }
+.dhero .seg { position: absolute; top: 8px; inset-inline-start: 8px; z-index: 2; padding: 2px; grid-auto-columns: auto; background: #141414c4; border: 1px solid #ffffff47; box-shadow: 0 2px 10px #0006; backdrop-filter: blur(10px); }
+.dhero .seg button { color: #fff; height: 26px; font-size: 13px; font-weight: 600; padding: 0 10px; } .dhero .seg button.on { color: #111; }
+.dhero .seg button::after { content: ""; position: absolute; inset: -9px 0; } /* 44px hit area, 32px visual */
+.dhero .seg .seg-ind { background: #fff; box-shadow: none; top: 2px; bottom: 2px; }
+.dhero .ctl { position: absolute; bottom: 8px; inset-inline-end: 8px; z-index: 2; display: flex; gap: 8px; }
+.dhero .ctl button { position: relative; height: 30px; min-width: 52px; padding: 0 9px; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border-radius: var(--r-full); border: 1px solid #ffffff47; background: #141414c4; color: #fff; font-size: 13px; box-shadow: 0 2px 10px #0006; backdrop-filter: blur(10px); }
+.dhero .ctl button .i { width: 16px; height: 16px; }
 .dhero .ctl button b { font-weight: 800; font-variant-numeric: tabular-nums; }
-.dhero .ctl button::after { content: ""; position: absolute; inset: -4px; } /* 46px hit area */
-.dhero .ctl button.sq { min-width: 38px; width: 38px; padding: 0; }
-.dhero.fs { height: 100%; margin: 0; border-radius: 0; }
+.dhero .ctl button::after { content: ""; position: absolute; inset: -7px -4px; } /* 44px hit area */
+.dhero .ctl button.sq { min-width: 30px; width: 30px; padding: 0; } .dhero .ctl button.sq::after { inset: -7px; }
+.dhero.fs { height: 100%; max-height: none; aspect-ratio: auto; margin: 0; border-radius: 0; }
 .dhero.fs .seg { display: none; }
 .dhero.fs .ctl { bottom: calc(14px + env(safe-area-inset-bottom)); inset-inline-end: calc(14px + env(safe-area-inset-right)); }
-.dhero.fs .ctl button { height: 44px; min-width: 44px; } .dhero.fs .ctl button.sq { width: 44px; }
+.dhero.fs .ctl button { height: 40px; min-width: 40px; } .dhero.fs .ctl button.sq { width: 40px; }
 .dhero .cap { position: absolute; bottom: 10px; inset-inline-start: 10px; z-index: 2; font-size: 11.5px; color: #333; background: #fffc; padding: 3px 8px; border-radius: 6px; }
 .dhero .v3d { position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 40%, var(--s2), var(--s3)); touch-action: pan-y; cursor: grab; }
 .dhero .v3d-cv { width: 100%; height: 100%; display: block; animation: fadeIn 260ms var(--ease) backwards; }
 .dhero .v3d-load { position: absolute; inset: 0; display: grid; place-items: center; }
-.dhero .v3d-bar { position: absolute; bottom: 38px; inset-inline-start: 10px; inset-inline-end: 10px; z-index: 2; display: flex; justify-content: space-between; align-items: center; pointer-events: none; }
+.dhero .v3d-bar { position: absolute; bottom: 36px; inset-inline-start: 8px; inset-inline-end: 8px; z-index: 2; display: flex; justify-content: space-between; align-items: center; pointer-events: none; }
 .dhero .v3d-bar > * { pointer-events: auto; }
+.dhero .v3d-play::after { content: ""; position: absolute; inset: -6px; }
 .dhero .v3d-bar .seg { position: static; }
-.dhero .v3d-play { height: 38px; width: 38px; display: grid; place-items: center; border-radius: var(--r-full); border: 1px solid #ffffff47; background: #141414c4; box-shadow: 0 2px 12px #0006; color: #fff; backdrop-filter: blur(8px); }
+.dhero .v3d-play { position: relative; height: 32px; width: 32px; display: grid; place-items: center; border-radius: var(--r-full); border: 1px solid #ffffff47; background: #141414c4; box-shadow: 0 2px 12px #0006; color: #fff; backdrop-filter: blur(8px); }
 .dhero .cap a { color: inherit; }
 .dhero .msg { position: absolute; inset: 0; display: grid; place-items: center; color: #fffa; font-size: 14px; text-align: center; padding: 20px; }
 .dtitle { margin: 12px 0 8px; font-size: 21px; font-weight: 740; letter-spacing: -.02em; line-height: 1.2; }
@@ -363,11 +368,11 @@ svg.ring circle { fill: none; stroke-width: 4; } svg.ring .bg { stroke: var(--s3
 .spark { width: 100%; height: 64px; display: block; margin-top: 8px; }
 @media (min-width: 1000px) {
   .dsplit { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 24px; align-items: start; }
-  .dsplit .dhero { margin: 8px 0 0; border-radius: var(--r-xl); height: 420px; position: sticky; top: calc(var(--top-h) + 8px); }
+  .dsplit .dhero, .dsplit .dhero.fit { width: auto; margin: 8px 0 0; border-radius: var(--r-xl); height: 420px; aspect-ratio: auto; max-height: none; position: sticky; top: calc(var(--top-h) + 8px); }
   .dsplit .dtitle { margin-top: 8px; }
 }
 .split .dsplit { display: block; }
-.split .dsplit .dhero { position: relative; top: 0; height: 340px; margin: 0; border-radius: var(--r-xl); }
+.split .dsplit .dhero, .split .dsplit .dhero.fit { width: auto; position: relative; top: 0; height: 340px; margin: 0; border-radius: var(--r-xl); }
 
 /* two-pane library (≥1000px) */
 @media (min-width: 1000px) {
