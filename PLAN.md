@@ -69,6 +69,7 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 - ✅ Replace hand-drawn SVG with a **realistic muscular open-source anatomy SVG** (license must allow public use; credit it)
 - ✅ Tap muscle → smooth **scale-up + zoom** → **Info tab first** (name, what it does, weekly sets vs target) → **Exercises tab** (tier-sorted)
 - ✅ Weekly heat-map mode kept; + Recovery mode
+- ⬜ **18b Zoom on the exercise Muscles hero** (owner, 2026-11-17, screenshot of TRX Y Raise > Muscles on desktop): the body is small; let me zoom in (pinch/wheel, +/− buttons, double-tap reset, drag to pan) and auto-frame the worked muscles — spec in NEXT_SESSION.md block 18b.
 - ✅ 18-fix: detail never covers the body (side panel on desktop/iPad, non-modal half sheet on phone) — session 13
 - ✅ **Sub-muscles / heads** (owner request): tapping a muscle (e.g. Chest) zooms in and shows its heads inside (Upper chest / Mid-lower chest, biceps long/short/brachialis, triceps long/lateral/medial, quads RF/VL/VM, glute max/med, calves gastro/soleus, traps upper/mid/lower…) highlighted on the zoomed SVG, each with name + short about; Exercises tab groups exercises under each head (tier-sorted). Data: `app/data/guide/heads.json` (regex classification), SVG `data-h` shapes
 
@@ -114,6 +115,7 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 - **Sound/vibration** cues on rest end, with settings (exists — verify on iOS)
 
 - ⬜ **Common mistakes shown, not just told** (owner, block 22): WRONG vs RIGHT clip / 3D per mistake, credited, exact movement only — spec in NEXT_SESSION.md
+- ⬜ **22c Mistakes sheet must MOVE** (owner, 2026-11-17, screenshot of Lateral Raise "Arching the back"): the WRONG | RIGHT sheet now falls back to a still body map; it must show something moving like a video for every mistake — spec in NEXT_SESSION.md block 22c.
 
 - ✅ **Exercise page declutter + equipment chips + Joint care sheet + 3 tabs** (owner, block 17, session 7)
 - ✅ **Human-looking body (18 ✅ session 5) + rotatable 3D muscle body for every exercise (19 ✅ session 6)** (owner: "looks like a stick man", "all angles")
