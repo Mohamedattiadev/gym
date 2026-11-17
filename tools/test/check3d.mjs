@@ -7,9 +7,9 @@ import { tmpdir } from "node:os";
 const dir = new URL("../../app/3d/poses/", import.meta.url).pathname;
 const cases = readdirSync(dir).filter((f) => f.endsWith(".json")).flatMap((f) => {
   const P = JSON.parse(readFileSync(dir + f, "utf8")), fam = f.slice(0, -5);
-  return (P.props?.length ? P.props : [null]).map((p) => [fam, p]);
+  return (P.props?.length ? P.props : [null]).flatMap((p) => [[fam, p, null], ...Object.keys(P.wrong || {}).map((w) => [fam, p, w])]); // 22c: wrong variants too
 });
-const js = `(async()=>{const m=await import('./js/view3d.js');const out=[];for(const [f,p] of ${JSON.stringify(cases)}){try{out.push(await m.qa3d('p:'+f,p))}catch(e){out.push({move:f,fails:['error '+e.message]})}}return out})()`;
+const js = `(async()=>{const m=await import('./js/view3d.js');const out=[];for(const [f,p,w] of ${JSON.stringify(cases)}){try{out.push(await m.qa3d('p:'+f,p,24,w))}catch(e){out.push({move:f+(w?' wrong#'+w:''),fails:['error '+e.message]})}}return out})()`;
 const tmp = mkdtempSync(tmpdir() + "/check3d-");
 writeFileSync(tmp + "/s.json", JSON.stringify([{ vp: "desktop" }, { go: "#/", wait: 2500 }, { waitFor: "#view" }, { eval: js, log: true, wait: 100 }]));
 const txt = execFileSync("node", [new URL("./shot.mjs", import.meta.url).pathname, tmp, tmp + "/s.json"], { encoding: "utf8", maxBuffer: 1 << 26 });

@@ -315,17 +315,39 @@ const loadMistakes = () => (MK ??= fetch("data/mistakes.json").then((r) => (r.ok
 /* 22c (2): motion for every mistake with a demo video = the exercise's own clip, looped + muted, marked RIGHT; no file (live site) -> body map */
 const mvid = (e) => `<div class="mvwrap"><div class="mvid"><video src="${e.video}" poster="${e.poster}" muted loop playsinline${RM.matches ? " controls" : " autoplay"} preload="metadata"></video>
     <span class="mtag">${ic("okc", "sm")}Right</span></div><p class="dim small mcred">This is the movement done right. Compare it with the mistake above.</p></div>`;
+/* 22c (3): body-position mistakes of the posed families = 3D WRONG | RIGHT loops ("wrong" variants in app/3d/poses/<family>.json) */
+const poseWrong = (e, i) => { const mv = move3d(e); if (!mv?.startsWith("p:")) return null;
+  return fetch(`3d/poses/${mv.slice(2)}.json`).then((r) => (r.ok ? r.json() : null)).then((P) => (P?.wrong?.[i] ? { mv, view: P.wrong[i].view || (P.yaw ? "front" : "side") } : null)).catch(() => null); };
+const m3cell = (w) => `<div class="m3c ${w ? "no" : "ok"}"><span class="mtag${w ? " no" : ""}">${ic(w ? "x" : "okc", "sm")}${w ? "Wrong" : "Right"}</span></div>`;
+/** wide sheet: both loops side by side, started together; narrow: one canvas + Wrong | Right switch (max 2 WebGL contexts, freed on close) */
+function mount3dPair(el, e, i, pw) {
+  const host = $(".m3d", el); if (!host) return;
+  const two = host.clientWidth >= 460, ctl = {}, row = $(".m3row", host);
+  row.innerHTML = two ? m3cell(1) + m3cell(0) : m3cell(1);
+  const mount = (w, cell) => import("./view3d.js").then((m) => m.mount3d(cell, { primary: e.primary || [], secondary: e.secondary || [], move: pw.mv, view: pw.view, prop: prop3d(e), wrong: w ? i : null, pad: [36, 10] }))
+    .then((c) => { if (!cell.isConnected) { c.dispose(); return null; } ctl[w] = c; return c; });
+  el.closest("dialog")?.addEventListener("close", () => Object.values(ctl).forEach((c) => c?.dispose()), { once: true });
+  const fail = () => { host.innerHTML = `<p class="dim small mcred">3D view is not available on this device.</p>`; };
+  if (two) { const [a, b] = $$(".m3c", row); Promise.all([mount(1, a), mount(0, b)]).then((cs) => cs.forEach((c) => c?.restart())).catch(fail); return; }
+  let cur = 1; mount(1, $(".m3c", row)).catch(fail);
+  const seg = $(".m3seg", host); seg.hidden = false;
+  seg.onclick = (ev) => { const b = ev.target.closest("button"); if (!b) return; const w = +b.dataset.w; if (w === cur) return; haptic(); cur = w;
+    $$("button", seg).forEach((x) => x.classList.toggle("on", x === b)); ctl[1 - w]?.dispose(); delete ctl[1 - w];
+    row.innerHTML = m3cell(w); mount(w, $(".m3c", row)).catch(fail); };
+}
 async function mistakeSheet(e, i) {
   const m = e.mistakes[i]; if (!m) return;
-  const c = ((await loadMistakes()).fam || {})[e.family]?.[i]?.clip, paint = paintBody(e);
+  const c = ((await loadMistakes()).fam || {})[e.family]?.[i]?.clip, paint = paintBody(e), pw = c ? null : await poseWrong(e, i);
   const bodyVis = `<div class="mini-body mbody">${paint(bodySVG("front"))}${paint(bodySVG("back"))}</div><p class="dim small mcred">Done right, the highlighted muscles do the work.</p>`;
   const vis = c ? `<div class="yt mclip"><iframe src="https://www.youtube-nocookie.com/embed/${esc(c.yt)}?start=${c.start | 0}&end=${c.end | 0}&autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1" title="Mistake demo" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
       <p class="dim small mcred">Clip: ${esc(c.credit || "")} · <a href="https://www.youtube.com/watch?v=${esc(c.yt)}&t=${c.start | 0}s" target="_blank" rel="noopener">Original at ${mmss(c.start)}</a></p>`
+    : pw ? `<div class="m3d"><div class="seg sm m3seg" hidden><button class="on" data-w="1">Wrong</button><button data-w="0">Right</button></div><div class="m3row"></div>
+      <p class="dim small mcred">3D: the mistake next to the right movement. Drag to turn.</p></div>`
     : e.video ? mvid(e) : bodyVis;
   openSheet(`<h3>Common mistake</h3>
     <div class="mwr"><div class="mw no"><div class="mwh">${ic("x", "sm")}Wrong</div><p>${esc(m.text)}</p></div>
       <div class="mw ok"><div class="mwh">${ic("okc", "sm")}Right</div><p>${esc(m.fix || "Follow the steps and cues above.")}</p></div></div>${vis}`,
-    (el) => { const v = $(".mvid video", el); if (v) v.onerror = () => { const b = v.closest(".mvwrap"); if (b) b.outerHTML = bodyVis; }; }, { half: true });
+    (el) => { if (pw) mount3dPair(el, e, i, pw); const v = $(".mvid video", el); if (v) v.onerror = () => { const b = v.closest(".mvwrap"); if (b) b.outerHTML = bodyVis; }; }, { half: !pw });
 }
 
 /* ---- tab panels ---- */

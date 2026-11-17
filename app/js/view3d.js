@@ -44,6 +44,15 @@ function resolve(spec) { // {uarm:[..]} -> {uarmL:[..], uarmR:[-x..]}; explicit 
   for (const [k, v] of Object.entries(spec)) if (/[LR]$/.test(k) && SEG[k.slice(0, -1)]) d[k] = v;
   return { d, tw, frame: spec.frame || 0, pos: spec.pos || [0, 0, 0] };
 }
+/* 22c: "wrong": {"<mistake index>": {all:{..}, keys:[{..}|null], base:{..}, range:[a,b], tempo:{ecc,con,bottom}, view}} in the same pose file.
+   all = merged into every key, keys[i] = merged into key i, insert:[i, key] = extra key before key i (filled from key i-1, e.g. hips rising first),
+   range = part of the start->end path used (half reps), tempo = seconds / bottom hold (bouncing, dropping fast). */
+export function withWrong(P, W) {
+  if (!W) return P;
+  const keys = P.keys.map((k, i) => ({ ...k, ...(W.all || {}), ...(W.keys?.[i] || {}) }));
+  if (W.insert) { const [i, k] = W.insert; keys.splice(i, 0, { ...keys[i - 1], ...k }); }
+  return { ...P, base: { ...P.base, ...(W.base || {}) }, keys, range: W.range, tempo: W.tempo };
+}
 function buildClip(model, P, eqProp = null) {
   if (P.bar === "back" && eqProp === "bar") P = { ...P, ik: P.ik || "backbar", props: (P.props || []).map((k) => (k === "bar" ? "backbar" : k)) };
   const bones = {}; model.traverse((o) => { if (o.isBone) bones[o.name] = o; });
@@ -104,8 +113,10 @@ function buildClip(model, P, eqProp = null) {
       d[k] = va.clone().applyQuaternion(Q().slerp(Q().setFromUnitVectors(va, vb), u)).toArray(); }
     const tw = {}; for (const k of new Set([...Object.keys(a.tw), ...Object.keys(b.tw)])) tw[k] = (a.tw[k] || 0) * (1 - u) + (b.tw[k] || 0) * u;
     return { d, tw, frame: a.frame + (b.frame - a.frame) * u, pos: a.pos.map((x, i) => x + (b.pos[i] - x) * u) }; };
-  const at = (u) => { const n = keys.length - 1, x = Math.min(n - 1e-6, u * n), i = Math.floor(x); return lerpR(keys[i], keys[i + 1], x - i); };
-  const ecc = P.ecc === "out", T1 = ecc ? 1.6 : 1.0, T2 = ecc ? 1.0 : 1.6, H0 = .35, H1 = .25, N = 18;
+  const [ra, rb] = P.range || [0, 1];
+  const at = (u) => { u = ra + (rb - ra) * u; const n = keys.length - 1, x = Math.min(n - 1e-6, u * n), i = Math.floor(x); return lerpR(keys[i], keys[i + 1], x - i); };
+  const tp = P.tempo || {}, E = tp.ecc ?? 1.6, C = tp.con ?? 1.0;
+  const ecc = P.ecc === "out", T1 = ecc ? E : C, T2 = ecc ? C : E, H0 = !ecc && tp.bottom != null ? tp.bottom : .35, H1 = ecc && tp.bottom != null ? tp.bottom : .25, N = 18;
   const times = [], samples = [];
   const push = (t, u) => { times.push(t); samples.push(u); };
   push(0, 0); push(H0, 0);
@@ -245,7 +256,7 @@ function getBodyMat() {
 export const VIEWS = { front: 0, side: -Math.PI / 2, back: Math.PI };
 
 /** Mount into `el`. opts: {primary, secondary, move (anim id or null), view}. Returns {setView, dispose}. */
-export async function mount3d(el, { primary = [], secondary = [], move = null, view = "front", at = null, prop: eqProp = null } = {}) {
+export async function mount3d(el, { primary = [], secondary = [], move = null, view = "front", at = null, prop: eqProp = null, wrong = null, pad = [44, 72] } = {}) {
   let [gltf, clip] = await Promise.all([getBody(), move ? getAnim(move).catch(() => null) : null]);
   if (!el.isConnected) return { setView() {}, dispose() {} };
   // each mount gets its own copy of the scene (shared geometry is repainted per exercise, so clone it)
@@ -255,7 +266,7 @@ export async function mount3d(el, { primary = [], secondary = [], move = null, v
   adjP ??= Promise.resolve(adjacency(mesh.geometry));
   paint(mesh.geometry, labels, await adjP, primary, secondary);
   mesh.material = getBodyMat();
-  if (clip && !clip.tracks) { const P = clip; clip = buildClip(model, P, eqProp); if (P.yaw) model.rotation.y = THREE.MathUtils.degToRad(P.yaw); }
+  if (clip && !clip.tracks) { const P = clip; clip = buildClip(model, withWrong(P, wrong != null ? P.wrong?.[wrong] : null), eqProp); if (P.yaw) model.rotation.y = THREE.MathUtils.degToRad(P.yaw); }
   const pivot = new THREE.Group(); pivot.add(model); scene3.add(pivot);
   scene3.add(new THREE.HemisphereLight(0xffffff, 0x8a7f78, 1.7));
   const key = new THREE.DirectionalLight(0xffffff, 1.9); key.position.set(1.2, 2.4, 3); scene3.add(key);
@@ -284,7 +295,7 @@ export async function mount3d(el, { primary = [], secondary = [], move = null, v
   const fit = () => {
     W = el.clientWidth; H = el.clientHeight || 300; renderer.setSize(W, H, false); cam.aspect = W / H;
     // keep the body inside the free band between the top toggle and the bottom controls
-    const pt = 44, pb = 72, band = Math.max(.4, (H - pt - pb) / H), tn = Math.tan(THREE.MathUtils.degToRad(cam.fov) / 2);
+    const [pt, pb] = pad, band = Math.max(.4, (H - pt - pb) / H), tn = Math.tan(THREE.MathUtils.degToRad(cam.fov) / 2);
     const need = (Math.max(size.y / 2 / tn / band, reach / 2 / tn / cam.aspect / .96) + reach / 9) / zoom;
     panY = Math.max(-halfH * (1 - 1 / zoom), Math.min(halfH * (1 - 1 / zoom), panY)); const ty = ctr.y + panY;
     cam.position.set(0, ty + Math.sin(pitch) * need, Math.cos(pitch) * need); cam.lookAt(0, ty, 0);
@@ -337,6 +348,8 @@ export async function mount3d(el, { primary = [], secondary = [], move = null, v
     togglePlay() { if (!act) return false; act.paused = !act.paused; last = performance.now(); loop(); return !act.paused; },
     setSpeed(r) { if (act) act.timeScale = r; },
     zoomBy(f) { setZoom(zoomT * f); }, reset,
+    snap() { pivot.rotation.y = yaw; renderer.render(scene3, cam); return cv.toDataURL("image/png"); }, // screenshots / QA
+    restart() { if (act) { act.time = 0; last = performance.now(); loop(); } },
     dispose,
   };
 }
@@ -352,8 +365,8 @@ function cloneSkinned(source) {
 
 /** 19b-QA: geometric check of an authored motion (no rendering). Samples the clip and returns the failures:
     prop away from the hands / back, prop through the head or torso, hands inside the torso, odd grip width. */
-export async function qa3d(move, eqProp = null, N = 24) {
-  const [gltf, P] = await Promise.all([getBody(), getAnim(move)]);
+export async function qa3d(move, eqProp = null, N = 24, wrong = null) {
+  const [gltf, P0] = await Promise.all([getBody(), getAnim(move)]), P = withWrong(P0, wrong != null ? P0.wrong?.[wrong] : null);
   const model = cloneSkinned(gltf.scene), clip = buildClip(model, P, eqProp); if (P.yaw) model.rotation.y = THREE.MathUtils.degToRad(P.yaw);
   const kinds = [...(clip.props || []), (clip.eqProps || []).includes(eqProp) ? eqProp : null].filter(Boolean);
   const prop = makeProp(kinds, model, false), mixer = new THREE.AnimationMixer(model), act = mixer.clipAction(clip); act.play();
@@ -391,5 +404,5 @@ export async function qa3d(move, eqProp = null, N = 24) {
   if (worst.barNeck > .17) fails.add(`bar not on the back (${worst.barNeck.toFixed(3)})`);
   if (worst.gripW != null && (worst.gripW > 1.05)) fails.add(`grip too wide (${worst.gripW.toFixed(3)})`);
   for (const k in worst) worst[k] = +worst[k].toFixed(3);
-  return { move, prop: kinds, fails: [...fails], worst };
+  return { move: wrong != null ? `${move} wrong#${wrong}` : move, prop: kinds, fails: [...fails], worst };
 }
