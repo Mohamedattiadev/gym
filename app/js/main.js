@@ -10,6 +10,15 @@ import { meView, settingsView } from "./me.js";
 import { timerView, initTimer, renderPill } from "./timer.js";
 import * as Sync from "./sync.js";
 
+/* Opening screen: let the dumbbell at least snap together (~0.9 s) before fading out. */
+const SPLASH_T0 = performance.now();
+function hideSplash() {
+  const el = document.getElementById("splash");
+  if (!el || el.classList.contains("out")) return;
+  const wait = Math.max(0, 900 - (performance.now() - SPLASH_T0));
+  setTimeout(() => { el.classList.add("out"); setTimeout(() => el.remove(), 280); }, wait);
+}
+
 const view = $("#view");
 export const MEDIA_CACHE = "gym-media-v1";
 
@@ -37,7 +46,7 @@ function route() {
   document.documentElement.classList.toggle("back-nav", back);
   if (!keep) { view.classList.remove("page"); void view.offsetWidth; view.classList.add("page"); }
   requestAnimationFrame(() => indicate(view));
-  $("#splash")?.remove();
+  hideSplash();
 }
 addEventListener("hashchange", () => { closeSheet(); route(); });
 export const rerender = () => route();
@@ -81,7 +90,16 @@ addEventListener("keydown", (e) => {
 });
 
 /* ================= shared bits ================= */
-export const tierBadge = (t, cls = "") => (t ? `<span class="tier ${t} ${cls}">${t}</span>` : "");
+export const tierBadge = (t, cls = "") => (t ? `<span class="tier ${t} ${cls}">${t}<small>tier</small></span>` : "");
+export const TIER_INFO = [["S", "Top pick", "One of the best choices for this muscle."], ["A", "Great", "Excellent, use it freely."],
+  ["B", "Good", "Solid, works fine."], ["C", "OK", "Works, but better options exist."]];
+/** One-tap explanation of Jeff Nippard's S/A/B/C tiers. */
+export function tierInfo() {
+  openSheet(`<h3>What do the tiers mean?</h3><p class="muted small" style="margin:-6px 0 12px">Jeff Nippard ranks exercises by how well they build muscle (S best, C weakest).</p>
+    <div class="list-sep">${TIER_INFO.map(([t, w, d]) => `<div class="lrow plain">${tierBadge(t)}<div class="grow"><div class="t">${w}</div><div class="s">${d}</div></div></div>`).join("")}</div>`);
+}
+const LVL = { beginner: [1, "Beginner"], intermediate: [2, "Intermediate"], advanced: [3, "Advanced"] };
+export const levelBars = (l) => { const [n, w] = LVL[l] || [0, ""]; return n ? `<span class="lvl l${n}" title="${w}"><i></i><i></i><i></i></span>${w}` : ""; };
 export const isFav = (s) => S.favorites.includes(s);
 export function toggleFav(s) { S.favorites = isFav(s) ? S.favorites.filter((x) => x !== s) : [...S.favorites, s]; save("favorites"); Sync.autoPush(); haptic(); }
 export const restText = (sec) => (sec >= 120 ? `${sec / 60} min` : `${sec}s`);
@@ -89,7 +107,8 @@ export function xcard(e, i = 0, sel = false, href = `#/ex/${e.slug}`) {
   return `<a class="xcard${sel ? " sel" : ""}" href="${href}" data-slug="${e.slug}">
     <div class="ph"><img data-fade loading="lazy" decoding="async" src="${e.poster}" alt="">${tierBadge(e.tier)}
       ${isFav(e.slug) ? `<span class="fav">${ic("heart")}</span>` : ""}</div>
-    <div class="meta"><div class="name">${esc(e.name)}</div><div class="sub">${esc(e.group)}${e.equipment[0] ? " · " + esc(e.equipment[0]) : ""}</div></div></a>`;
+    <div class="meta"><div class="name">${esc(e.name)}</div><div class="sub">${levelBars(e.level)}</div>
+      <div class="tags">${[e.group, e.equipment[0], e.machine && !e.machine.toLowerCase().includes((e.equipment[0] || "~").toLowerCase()) ? e.machine : ""].filter(Boolean).map((x) => `<span>${esc(x)}</span>`).join("")}</div></div></a>`;
 }
 export function onImg(root = document) {
   $$("img[data-fade]", root).forEach((im) => {
@@ -211,7 +230,7 @@ addEventListener("pointerdown", unlockAudio, { once: true });
   initSheet(); net();
   const exP = loadExercises(); // fetch data in parallel with IndexedDB
   await loadStore(); applyTheme(); try { Sync.initSync(); } catch (e) { console.warn(e); }
-  try { await exP; } catch (e) { view.innerHTML = `<div class="empty">Couldn't load exercises.<br><small>${esc(e.message)}</small></div>`; $("#splash")?.remove(); return; }
+  try { await exP; } catch (e) { view.innerHTML = `<div class="empty">Couldn't load exercises.<br><small>${esc(e.message)}</small></div>`; hideSplash(); return; }
   initTimer();
   route(); renderPill();
   if ("serviceWorker" in navigator) {

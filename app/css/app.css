@@ -542,3 +542,64 @@ dialog.sheet.dlg.closing { animation: fadeOut 160ms ease-in both; }
 }
 body:has(.tpill) .toast { bottom: calc(var(--tab-h) + var(--safe-b) + 70px); }
 @media (min-width: 768px) { body:has(.tpill) .toast { bottom: 76px; } }
+
+/* ============ Opening screen (animated logo) ============
+   The dumbbell assembles (bar, then plates snap on from four sides), does one strong rep, then repeats a
+   smaller rep while the app is still loading. Still logo with reduced motion. */
+#splash { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; background: var(--bg); transition: opacity 260ms ease; }
+#splash.out { opacity: 0; pointer-events: none; }
+#splash .sp-in { display: grid; justify-items: center; gap: 14px; }
+#splash .sp-db { width: 96px; height: 96px; overflow: visible; color: var(--accent); }
+#splash .sp-db rect { fill: currentColor; }
+#splash .sp-shadow { color: var(--t1); }
+#splash .sp-wm { font: 800 20px/1 var(--font); letter-spacing: .16em; color: var(--t1); }
+#splash .sp-p, #splash .sp-whole, #splash .sp-shadow, #splash .sp-wm { animation-duration: 2.6s; animation-fill-mode: both; animation-timing-function: linear; }
+#splash .sp-p { transform-box: fill-box; transform-origin: center; }
+#splash .sp-bar { animation-name: spBar; }
+#splash .sp-l { animation-name: spTop; } #splash .sp-r { animation-name: spBot; }
+#splash .sp-l2 { animation-name: spLeft; } #splash .sp-r2 { animation-name: spRight; }
+@keyframes spBar { 0% { transform: scaleX(.2); opacity: 0; animation-timing-function: cubic-bezier(.16,1,.3,1) } 16%,100% { transform: none; opacity: 1 } }
+@keyframes spTop { 0%,4.6% { transform: translateY(-150px) rotate(-40deg); opacity: 0; animation-timing-function: cubic-bezier(.16,1,.3,1) } 23.8%,100% { transform: none; opacity: 1 } }
+@keyframes spBot { 0%,7.3% { transform: translateY(150px) rotate(40deg); opacity: 0; animation-timing-function: cubic-bezier(.16,1,.3,1) } 26.5%,100% { transform: none; opacity: 1 } }
+@keyframes spLeft { 0%,10% { transform: translateX(-170px) rotate(-30deg); opacity: 0; animation-timing-function: cubic-bezier(.16,1,.3,1) } 29.2%,100% { transform: none; opacity: 1 } }
+@keyframes spRight { 0%,12.7% { transform: translateX(170px) rotate(30deg); opacity: 0; animation-timing-function: cubic-bezier(.16,1,.3,1) } 31.9%,100% { transform: none; opacity: 1 } }
+#splash .sp-whole { transform-origin: 256px 256px; animation-name: spRep; }
+@keyframes spRep {
+  0%,31.9% { transform: none; animation-timing-function: ease-out }
+  35% { transform: scale(1.035); animation-timing-function: ease-in-out }
+  38.8% { transform: none; animation-timing-function: ease-in-out }
+  43% { transform: translateY(10px) scale(1.04,.95); animation-timing-function: cubic-bezier(.3,0,.2,1) }
+  58% { transform: translateY(-78px) rotate(-4deg) scale(.98,1.03); animation-timing-function: ease-out }
+  62%,66% { transform: translateY(-84px) rotate(-2deg); animation-timing-function: cubic-bezier(.55,0,.75,.2) }
+  80% { transform: translateY(0) rotate(1deg); animation-timing-function: ease-out }
+  84% { transform: translateY(4px) scale(1.05,.93); animation-timing-function: ease-out }
+  90% { transform: translateY(-6px); animation-timing-function: ease-in }
+  95%,100% { transform: none } }
+#splash .sp-loop { transform-origin: 256px 256px; animation: spLoop 1.6s 2.9s cubic-bezier(.45,0,.25,1) infinite; }
+@keyframes spLoop { 0%,100% { transform: none } 12% { transform: translateY(5px) scale(1.02,.97) } 45%,55% { transform: translateY(-40px) rotate(-2deg) } 88% { transform: translateY(2px) scale(1.02,.98) } }
+#splash .sp-shadow { transform-box: fill-box; transform-origin: center; animation-name: spSh; }
+@keyframes spSh { 0%,20% { opacity: 0; transform: scaleX(.6) } 32%,42.3% { opacity: .3; transform: none; animation-timing-function: cubic-bezier(.65,0,.35,1) } 58%,66% { opacity: .08; transform: scaleX(.6); animation-timing-function: cubic-bezier(.55,0,.75,.2) } 80%,100% { opacity: .3; transform: none } }
+#splash .sp-wm { animation-name: spWm; }
+@keyframes spWm { 0%,38% { opacity: 0; transform: translateY(6px); animation-timing-function: cubic-bezier(.16,1,.3,1) } 55%,100% { opacity: 1; transform: none } }
+@media (prefers-reduced-motion: reduce) { #splash * { animation: none !important; opacity: 1; } #splash .sp-shadow { opacity: .3; } }
+
+/* tier word, level bars, card tags, tier help */
+.tier small { font-size: .78em; font-weight: 700; opacity: .85; }
+.tier:has(small) { display: inline-flex; align-items: center; gap: 3px; }
+.tierbtn { display: inline-flex; align-items: center; gap: 6px; border: 0; background: none; padding: 0; font: inherit; color: inherit; cursor: pointer; }
+.tierbtn svg.i { width: 15px; height: 15px; color: var(--t3); }
+.linkbtn { border: 0; background: none; color: var(--accent-text); font-weight: 650; display: inline-flex; align-items: center; gap: 4px; padding: 4px 0; cursor: pointer; }
+.linkbtn svg.i { width: 15px; height: 15px; }
+.lvl { display: inline-flex; align-items: flex-end; gap: 2px; height: 11px; margin-inline-end: 5px; vertical-align: -1px; }
+.lvl i { width: 3.5px; border-radius: 1px; background: var(--s3); } .lvl i:nth-child(1) { height: 5px; } .lvl i:nth-child(2) { height: 8px; } .lvl i:nth-child(3) { height: 11px; }
+.lvl.l1 i:nth-child(-n+1), .lvl.l2 i:nth-child(-n+2), .lvl.l3 i:nth-child(-n+3) { background: var(--accent); }
+.xcard .sub { display: flex; align-items: center; color: var(--t2); }
+.xcard .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; height: 19px; overflow: hidden; }
+.xcard .tags span { flex: none; font-size: 11px; font-weight: 600; color: var(--t2); background: var(--s2); border-radius: var(--r-full); padding: 2px 7px; white-space: nowrap; }
+.ptabs.fit { grid-auto-columns: auto; }
+@media (min-width: 1000px) { .split .lpane .xcard .ph .tier { position: absolute; top: auto; bottom: 3px; inset-inline-end: 3px; min-width: 20px; height: 20px; padding: 0 4px; font-size: 11px; } .split .lpane .xcard .ph .tier small { display: none; } }
+.hmus { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 4%; padding: 48px 6% 34px; background: var(--s1); }
+.hmus .fig { position: static; height: 100%; width: auto; max-width: 48%; object-fit: contain; }
+.hmus .mini-body { display: flex; gap: 6px; height: 100%; } .hmus .mini-body svg { height: 100%; width: auto; }
+.hmus.withfig .mini-body { max-width: 46%; }
+.dhero .cap i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin: 0 4px 0 8px; }

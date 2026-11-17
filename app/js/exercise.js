@@ -5,7 +5,7 @@ import { EX, BY, GROUPS, EQUIP, norm, hasEquip, byTier, swaps, history, bestOf, 
   JOINTS, JOINT_IDS, avoidFor, flaggedJoints, jointFriendly } from "./data.js";
 import { MBY, bodySVG } from "./body.js";
 import { e1rm } from "./calc.js";
-import { setTop, go, tierBadge, xcard, onImg, isFav, toggleFav, restText, JEFF_VID, fillIll, routeParts } from "./main.js";
+import { setTop, go, tierBadge, tierInfo, levelBars, xcard, onImg, isFav, toggleFav, restText, JEFF_VID, fillIll, routeParts } from "./main.js";
 import * as T from "./train.js";
 import { autoPush } from "./sync.js";
 
@@ -31,7 +31,7 @@ function libHTML(pick) {
         <select class="chip ${lib.equip ? "on" : ""}" id="equip" aria-label="Equipment"><option value="">Equipment</option>${EQUIP.map((q) => `<option ${q === lib.equip ? "selected" : ""}>${esc(q)}</option>`).join("")}</select>
         <select class="chip ${lib.level ? "on" : ""}" id="level" aria-label="Level"><option value="">Level</option>${["beginner", "intermediate", "advanced"].map((l) => `<option value="${l}" ${l === lib.level ? "selected" : ""}>${l[0].toUpperCase() + l.slice(1)}</option>`).join("")}</select></div>
       <div class="chips" id="groups" style="padding-top:0">${["All", ...GROUPS].map((g) => `<button class="chip ${lib.group === g ? "on" : ""}" data-g="${esc(g)}">${esc(g)}${g !== "All" ? ` <span class="n">${counts[g]}</span>` : ""}</button>`).join("")}</div></div>
-    <div class="count" id="count"></div>
+    <div class="row"><div class="count grow" id="count"></div><button class="linkbtn small" id="tierHelp">${ic("info", "xs")} Tiers</button></div>
     <div class="grid ${pick ? "pick" : ""}" id="grid"></div><div id="sentinel" style="height:1px"></div>`;
 }
 function wireLib(pick, cur) {
@@ -53,6 +53,7 @@ function wireLib(pick, cur) {
     $$("#tiers button.chip").forEach((c) => c.classList.toggle("on", tOn(c.dataset.t))); refresh();
   };
   $("#equip").onchange = (e) => { lib.equip = e.target.value; e.target.classList.toggle("on", !!lib.equip); refresh(); };
+  $("#tierHelp").onclick = () => { haptic(); tierInfo(); };
   $("#level").onchange = (e) => { lib.level = e.target.value; e.target.classList.toggle("on", !!lib.level); refresh(); };
   if (pick) {
     grid.onclick = (e) => {
@@ -124,13 +125,14 @@ function detail(slug, root) {
       <div class="dhero" id="hero"></div>
       <div>
         <div class="row top"><h1 class="dtitle grow">${esc(e.name)}</h1>${inPane ? `<div class="row" style="gap:0;margin-top:6px">${topRight(slug)}</div>` : ""}</div>
-        <div class="facts">${e.tier ? `<span title="Jeff Nippard tier: ${TIER_WORD[e.tier]}">${tierBadge(e.tier)}</span>` : `<span class="dim">Not ranked</span>`}
+        <div class="facts">${e.tier ? `<button class="tierbtn" id="tierInfo" aria-label="What tiers mean">Jeff: ${tierBadge(e.tier)}<span class="dim small">${TIER_WORD[e.tier]}</span>${ic("info", "xs")}</button>` : `<span class="dim">Not ranked</span>`}
+          ${e.level ? `<span>${levelBars(e.level)}</span>` : ""}
           <span>${ic("reps")}${e.repRange[0]}–${e.repRange[1]} reps</span><span>${ic("timer")}${restText(e.rest)} rest</span><span>${ic("layers")}${e.type === "compound" ? "Compound" : "Isolation"}</span></div>
         ${e.tierNote ? `<button class="jeff" id="jeff" aria-expanded="false"><div class="txt"><b>Jeff:</b> ${esc(e.tierNote)}
             <div class="more" hidden><a href="https://www.youtube.com/watch?v=${e.tierVideo}" target="_blank" rel="noopener">${ic("yt", "sm")} ${esc(JEFF_VID[e.tierVideo] || "Watch on YouTube")}</a></div></div>${ic("down", "sm")}</button>` : ""}
         ${pain.length ? `<div class="notice warn" style="margin-top:8px">${ic("bandage", "sm")}<div class="grow"><b>Hurts your ${pain.map(jName).join(" & ")}</b><div class="small muted">Hidden from plans and swaps. Joint-friendly options in the Muscles tab.</div></div></div>`
           : risky.length ? `<div class="notice warn" style="margin-top:8px">${ic("alert", "sm")}<div class="grow small">May bother your <b>${risky.map(jName).join(" & ")}</b> — see joint-friendly options in the Muscles tab.</div></div>` : ""}
-        <div class="ptabs" id="dtabs" style="margin-top:10px">${[["how", "How to"], ["mus", "Muscles"], ["stats", "Stats"], ["notes", "Notes"]].map(([k, l]) => `<button data-k="${k}" class="${dtab.cur === k ? "on" : ""}">${l}</button>`).join("")}</div>
+        <div class="ptabs fit" id="dtabs" style="margin-top:10px">${[["how", "How to"], ["mus", "Muscles"], ["stats", "Stats"], ["notes", "Notes & alternatives"]].map(([k, l]) => `<button data-k="${k}" class="${dtab.cur === k ? "on" : ""}">${l}</button>`).join("")}</div>
         <div class="tab-panel" id="dpanel"></div>
       </div></div>
     <div class="sticky-cta"><button class="btn primary" id="addTo">${ic("plus", "sm")} Add to workout</button>${S.active ? `<button class="btn" id="addNow">${ic("bolt", "sm")} Add now</button>` : ""}</div>`;
@@ -141,6 +143,7 @@ function detail(slug, root) {
   requestAnimationFrame(() => indicate(root));
   $("#dtabs").onclick = (ev) => { const b = ev.target.closest("button"); if (!b || b.classList.contains("on")) return; haptic(); dtab.cur = b.dataset.k; selectIn(b); panel(e); };
   const j = $("#jeff"); if (j) j.onclick = (ev) => { if (ev.target.closest("a")) return; const o = j.classList.toggle("open"); j.setAttribute("aria-expanded", o); $(".more", j).hidden = !o; };
+  const ti = $("#tierInfo", root); if (ti) ti.onclick = () => { haptic(); tierInfo(); };
   $("#addTo").onclick = () => T.addToWorkoutSheet(slug);
   const an = $("#addNow"); if (an) an.onclick = () => { T.addToSession(slug); toast("Added to current workout"); };
 }
@@ -148,12 +151,16 @@ const jName = (j) => (L(JOINTS[j]?.name) || j).toLowerCase();
 
 /* ---- hero: Video | Muscles (mannequin animation) ---- */
 let heroMode = "video";
+const paintBody = (e) => { const pri = e.primary || [], sec = e.secondary || [];
+  return (svg) => svg.replace(/<path class="m" data-m="([^"]+)"/g, (m0, id) => `<path class="m ${pri.includes(id) ? "sel" : sec.includes(id) ? "sec" : ""}" data-m="${id}"`); };
 function hero(e) {
-  const h = $("#hero"); const hasFig = !!e.figure;
-  const mode = heroMode === "fig" && hasFig ? "fig" : e.video ? "video" : hasFig ? "fig" : "poster";
-  h.innerHTML = `${(e.video && hasFig) ? `<div class="seg sm" id="hseg"><button data-m="video" class="${mode === "video" ? "on" : ""}">Video</button><button data-m="fig" class="${mode === "fig" ? "on" : ""}">Muscles</button></div>` : ""}
+  const h = $("#hero"); const hasFig = !!e.figure; const paint = paintBody(e);
+  const mode = heroMode === "fig" || !e.video ? "fig" : "video";
+  h.innerHTML = `${e.video ? `<div class="seg sm" id="hseg"><button data-m="video" class="${mode === "video" ? "on" : ""}">Video</button><button data-m="fig" class="${mode === "fig" ? "on" : ""}">Muscles</button></div>` : ""}
     ${mode === "video" ? `<video id="vid" src="${e.video}" poster="${e.poster}" autoplay muted loop playsinline preload="auto"></video><div class="ctl"><button id="spd" aria-label="Playback speed">1×</button></div>`
-      : mode === "fig" ? `<img class="fig" src="${e.figure}" alt="Animated figure, worked muscles in red"><span class="cap">Red = main muscle</span>` : `<img src="${e.poster}" alt="">`}`;
+      : `<div class="hmus${hasFig ? " withfig" : ""}">${hasFig ? `<img class="fig" src="${e.figure}" alt="Animated figure of this movement, worked muscles in red">` : ""}
+          <div class="mini-body">${paint(bodySVG("front"))}${paint(bodySVG("back"))}</div></div>
+        <span class="cap"><i style="background:var(--accent)"></i>Main <i style="background:var(--mus-2)"></i>Helpers</span>`}`;
   const v = $("#vid", h);
   if (v) { const sp = [1, .5, .25]; let i = 0; $("#spd", h).onclick = () => { i = (i + 1) % 3; v.playbackRate = sp[i]; $("#spd", h).textContent = sp[i] + "×"; haptic(); }; v.play().catch(() => {}); }
   const s = $("#hseg", h); if (s) s.onclick = (ev) => { const b = ev.target.closest("button"); if (!b || b.classList.contains("on")) return; heroMode = b.dataset.m; haptic(); hero(e); };
@@ -174,8 +181,7 @@ function panel(e) {
   else notesPanel(e, p);
 }
 async function musclesPanel(e, p) {
-  const pri = e.primary || [], sec = e.secondary || [];
-  const paint = (svg) => svg.replace(/<path class="m" data-m="([^"]+)"/g, (m0, id) => `<path class="m ${pri.includes(id) ? "sel" : sec.includes(id) ? "sec" : ""}" data-m="${id}"`);
+  const pri = e.primary || [], sec = e.secondary || []; const paint = paintBody(e);
   const pain = S.pain?.[e.slug] || []; const joints = [...new Set([...pain, ...flaggedJoints().filter((j) => avoidFor(e, j))])];
   p.innerHTML = `<div class="row top" style="gap:16px"><div class="mini-body" style="gap:4px">${paint(bodySVG("front"))}${paint(bodySVG("back"))}</div>
       <div class="grow mus-list"><div class="eyebrow">Main</div>${pri.map((m) => `<div><i style="background:var(--accent)"></i>${esc(MBY[m]?.name || m)}</div>`).join("") || `<div>${esc(e.group)}</div>`}
@@ -217,8 +223,9 @@ function statsPanel(e, p) {
 }
 function notesPanel(e, p) {
   const alt = swaps(e, 6);
-  p.innerHTML = `<textarea id="note" class="input" placeholder="Seat height, grip, cues…">${esc(S.notes[e.slug] || "")}</textarea>
-    ${alt.length ? `<div class="h4">Alternatives · same muscle, best tier first</div><div class="stack tight">${alt.map((x) => `<a class="lrow" href="#/ex/${x.slug}"><img src="${x.poster}" alt="" loading="lazy"><div class="grow"><div class="t">${esc(x.name)}</div><div class="s">${esc(x.equipment.join(" · ") || x.group)}</div></div>${tierBadge(x.tier)}</a>`).join("")}</div>` : ""}`;
+  p.innerHTML = `<div class="h4" style="margin-top:0">Alternatives <span class="dim small">same muscle, best tier first</span></div>
+    ${alt.length ? `<div class="stack tight">${alt.map((x) => `<a class="lrow" href="#/ex/${x.slug}"><img src="${x.poster}" alt="" loading="lazy"><div class="grow"><div class="t">${esc(x.name)}</div><div class="s">${esc(x.equipment.join(" · ") || x.group)}</div></div>${tierBadge(x.tier)}</a>`).join("")}</div>` : `<p class="dim">No alternatives with your equipment.</p>`}
+    <div class="h4">My notes</div><textarea id="note" class="input" placeholder="Seat height, grip, cues…">${esc(S.notes[e.slug] || "")}</textarea>`;
   let nt; $("#note", p).oninput = (ev) => { clearTimeout(nt); nt = setTimeout(() => { S.notes[e.slug] = ev.target.value; save("notes"); autoPush(); }, 400); };
 }
 function rerenderDetail(slug) { if (wide() && $("#rpane")) splitView(slug); else exerciseView(slug); }
