@@ -694,3 +694,50 @@ body:has(.tpill) .toast { bottom: calc(var(--tab-h) + var(--safe-b) + 70px); }
 .wvis iframe.wclip { border: 0; }
 .wvis .wdemo { position: absolute; bottom: 10px; inset-inline-start: 50%; transform: translateX(-50%); white-space: nowrap; }
 [dir="rtl"] .wvis .wdemo { transform: translateX(50%); }
+
+/* exercise page top (block 17) */
+.dmeta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; font-size: 14.5px; font-weight: 650; color: var(--t1); }
+.dmeta .lvl { margin-inline-end: 4px; }
+.dsub { margin-top: 4px; font-size: 14px; color: var(--t3); }
+.painchip { display: inline-flex; align-items: center; gap: 5px; height: 28px; padding: 0 10px; border: 0; border-radius: var(--r-full); font: inherit; font-size: 13px; font-weight: 650;
+  background: color-mix(in oklab, var(--warn) 16%, transparent); color: var(--warn); cursor: pointer; }
+.painchip svg.i { width: 14px; height: 14px; }
+.eqv { padding-top: 10px; padding-bottom: 2px; }
+.eqv .chip { height: 32px; font-size: 13.5px; }
+.hmus .mus-list.hl { align-self: center; gap: 3px; min-width: 0; max-width: 38%; }
+.hmus .mus-list.hl div { font-size: 12.5px; line-height: 1.25; color: var(--t1); }
+.hmus .mus-list.hl .eyebrow { font-size: 10.5px; margin-top: 4px; }
+.hmus .mus-list.hl i { width: 8px; height: 8px; }
+.hmus.withfig .fig { max-width: 34%; }
+.hmus.withfig .mini-body { max-width: 26%; }
+.tgt { margin-bottom: 12px; border-radius: var(--r-md); background: var(--s2); padding: 0 12px; }
+.tgt summary { list-style: none; display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14.5px; color: var(--t2); cursor: pointer; }
+.tgt summary::-webkit-details-marker { display: none; }
+.tgt summary b { color: var(--t1); font-weight: 650; }
+.tgt summary svg.i:first-child { color: var(--accent-text); }
+.tgt[open] summary svg.i:last-child { transform: rotate(180deg); }
+.tgt p { margin: 0 0 10px; font-size: 14px; color: var(--t2); }
+.rank { display: flex; align-items: center; gap: 10px; }
+.rank .tier { font-size: 17px; }
+.yt { position: relative; display: block; width: 100%; aspect-ratio: 16/9; border: 0; padding: 0; border-radius: var(--r-md); overflow: hidden; background: #000; cursor: pointer; }
+.yt img, .yt iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
+.yt .play { position: absolute; inset: 0; margin: auto; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--accent-ink); box-shadow: 0 6px 18px #0005; }
+.yt .at { position: absolute; bottom: 8px; inset-inline-end: 8px; font-size: 12px; font-weight: 700; color: #fff; background: #000a; padding: 2px 7px; border-radius: 6px; }
+.yt.off { cursor: default; background: var(--s2); }
+.yt .msg { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 6px; color: var(--t2); font-size: 14px; }
+.yt .msg a { color: var(--accent-text); font-weight: 650; }
+.ytcap { margin-top: 6px; }
+.hcards { display: flex; gap: 10px; overflow-x: auto; margin: 0 calc(-1 * var(--gut)); padding: 2px var(--gut) 8px; scroll-snap-type: x proximity; scrollbar-width: none; }
+.hcards::-webkit-scrollbar { display: none; }
+.hcard { flex: none; width: 132px; scroll-snap-align: start; color: inherit; text-decoration: none; }
+.hcard .ph { position: relative; aspect-ratio: 4/3; border-radius: var(--r-md); overflow: hidden; background: var(--s2); box-shadow: var(--raise-sm); }
+.hcard .ph img { width: 100%; height: 100%; object-fit: cover; }
+.hcard .ph .tier { position: absolute; top: 5px; inset-inline-start: 5px; }
+.hcard .t { margin-top: 6px; font-size: 13.5px; font-weight: 650; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.hcard .s { font-size: 12px; color: var(--t3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sheet .hcards, dialog .hcards { margin: 0; padding-inline: 0; }
+.hcards { scroll-padding-inline: var(--gut); }
+.h4 .dim { text-transform: none; letter-spacing: 0; font-weight: 500; }
+.jcdrills .s { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.jcdrills .lrow { min-height: 48px; padding-block: 6px; }
+@media (min-width: 1000px) { .yt { max-width: 560px; } }

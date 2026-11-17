@@ -43,6 +43,9 @@ export function buildFor(w, slugs, name) {
 }
 const buildList = (w, title, ids) => ({ title, items: ids.map((id) => item(w, id)).filter(Boolean) });
 
+/** Play a given list of drills (e.g. joint warm-up from the exercise page), then go back to `back`. */
+export async function playDrills(title, ids, back) { const w = await load(); play(buildList(w, title, ids), back); }
+
 /* ---------------- hub ---------------- */
 let Q = null; // current player queue {title, items, i, back, slugs, cool}
 export async function warmupView(arg) {

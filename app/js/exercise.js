@@ -2,7 +2,7 @@
 import { S, save } from "./store.js";
 import { $, $$, esc, ic, openSheet, closeSheet, toast, haptic, fmtDate, lineChart, indicate, selectIn } from "./ui.js";
 import { EX, BY, GROUPS, EQUIP, norm, hasEquip, byTier, swaps, history, bestOf, setsText, exerciseStats, weekStart, WEEK,
-  JOINTS, JOINT_IDS, avoidFor, flaggedJoints, jointFriendly } from "./data.js";
+  JOINTS, JOINT_IDS, avoidFor, flaggedJoints, jointFriendly, hurts, FAM } from "./data.js";
 import { MBY, bodySVG } from "./body.js";
 import { e1rm } from "./calc.js";
 import { setTop, go, tierBadge, tierInfo, levelBars, xcard, onImg, isFav, toggleFav, restText, JEFF_VID, fillIll, routeParts } from "./main.js";
@@ -119,20 +119,17 @@ function wireTop(slug, root = document) {
 
 function detail(slug, root) {
   const e = BY[slug]; const inPane = root.id === "rpane";
-  const pain = S.pain?.[slug] || [];
-  const risky = flaggedJoints().filter((j) => !pain.includes(j) && avoidFor(e, j));
+  const joints = jointsOf(e);
+  if (dtab.cur === "mus" || dtab.cur === "notes") dtab.cur = "how";
   root.innerHTML = `<div class="dsplit">
-      <div class="dhero" id="hero"></div>
+      <div><div class="dhero" id="hero"></div>${variantsHTML(e)}</div>
       <div>
         <div class="row top"><h1 class="dtitle grow">${esc(e.name)}</h1>${inPane ? `<div class="row" style="gap:0;margin-top:6px">${topRight(slug)}</div>` : ""}</div>
-        <div class="facts">${e.tier ? `<button class="tierbtn" id="tierInfo" aria-label="What tiers mean">Jeff: ${tierBadge(e.tier)}<span class="dim small">${TIER_WORD[e.tier]}</span>${ic("info", "xs")}</button>` : `<span class="dim">Not ranked</span>`}
-          ${e.level ? `<span>${levelBars(e.level)}</span>` : ""}
-          <span>${ic("reps")}${e.repRange[0]}–${e.repRange[1]} reps</span><span>${ic("timer")}${restText(e.rest)} rest</span><span>${ic("layers")}${e.type === "compound" ? "Compound" : "Isolation"}</span></div>
-        ${e.tierNote ? `<button class="jeff" id="jeff" aria-expanded="false"><div class="txt"><b>Jeff:</b> ${esc(e.tierNote)}
-            <div class="more" hidden><a href="https://www.youtube.com/watch?v=${e.tierVideo}" target="_blank" rel="noopener">${ic("yt", "sm")} ${esc(JEFF_VID[e.tierVideo] || "Watch on YouTube")}</a></div></div>${ic("down", "sm")}</button>` : ""}
-        ${pain.length ? `<div class="notice warn" style="margin-top:8px">${ic("bandage", "sm")}<div class="grow"><b>Hurts your ${pain.map(jName).join(" & ")}</b><div class="small muted">Hidden from plans and swaps. Joint-friendly options in the Muscles tab.</div></div></div>`
-          : risky.length ? `<div class="notice warn" style="margin-top:8px">${ic("alert", "sm")}<div class="grow small">May bother your <b>${risky.map(jName).join(" & ")}</b> — see joint-friendly options in the Muscles tab.</div></div>` : ""}
-        <div class="ptabs fit" id="dtabs" style="margin-top:10px">${[["how", "How to"], ["mus", "Muscles"], ["stats", "Stats"], ["notes", "Notes & alternatives"]].map(([k, l]) => `<button data-k="${k}" class="${dtab.cur === k ? "on" : ""}">${l}</button>`).join("")}</div>
+        <div class="dmeta">${e.tier ? `<button class="tierbtn" id="tierInfo" aria-label="Jeff's ranking">${tierBadge(e.tier)}<span class="dim small">${TIER_WORD[e.tier]}</span>${ic("info", "xs")}</button>` : `<span class="dim small">Not ranked</span>`}
+          ${e.level ? `<span class="small dim">${levelBars(e.level)}</span>` : ""}
+          ${joints.length ? `<button class="painchip" id="painChip">${ic("bandage", "xs")}${joints.map((j) => esc(L(JOINTS[j]?.name) || j)).join(" · ")}</button>` : ""}</div>
+        <div class="dsub">${e.repRange[0]}–${e.repRange[1]} reps · ${restText(e.rest)} rest · ${e.type === "compound" ? "Compound" : "Isolation"}</div>
+        <div class="ptabs fit" id="dtabs" style="margin-top:12px">${[["how", "How to"], ["stats", "Stats"], ["rank", "Ranking & alternatives"]].map(([k, l]) => `<button data-k="${k}" class="${dtab.cur === k ? "on" : ""}">${l}</button>`).join("")}</div>
         <div class="tab-panel" id="dpanel"></div>
       </div></div>
     <div class="sticky-cta"><button class="btn primary" id="addTo">${ic("plus", "sm")} Add to workout</button>${S.active ? `<button class="btn" id="addNow">${ic("bolt", "sm")} Add now</button>` : ""}</div>`;
@@ -141,13 +138,66 @@ function detail(slug, root) {
   panel(e);
   if (inPane) wireTop(slug, root);
   requestAnimationFrame(() => indicate(root));
-  $("#dtabs").onclick = (ev) => { const b = ev.target.closest("button"); if (!b || b.classList.contains("on")) return; haptic(); dtab.cur = b.dataset.k; selectIn(b); panel(e); };
-  const j = $("#jeff"); if (j) j.onclick = (ev) => { if (ev.target.closest("a")) return; const o = j.classList.toggle("open"); j.setAttribute("aria-expanded", o); $(".more", j).hidden = !o; };
-  const ti = $("#tierInfo", root); if (ti) ti.onclick = () => { haptic(); tierInfo(); };
+  const tabs = $("#dtabs");
+  const show = (k) => { const b = tabs.querySelector(`[data-k="${k}"]`); if (!b || b.classList.contains("on")) return; dtab.cur = k; selectIn(b); panel(e); };
+  tabs.onclick = (ev) => { const b = ev.target.closest("button"); if (!b) return; haptic(); show(b.dataset.k); };
+  const ti = $("#tierInfo", root); if (ti) ti.onclick = () => { haptic(); show("rank"); tabs.scrollIntoView({ behavior: "smooth", block: "start" }); };
+  const pc = $("#painChip", root); if (pc) pc.onclick = () => { haptic(); jointCare(e); };
+  const vq = $("#eqv", root); if (vq) vq.onclick = (ev) => { const b = ev.target.closest("[data-s]"); if (!b || b.classList.contains("on")) return; haptic();
+    history.replaceState(null, "", `#/ex/${b.dataset.s}`); rerenderDetail(b.dataset.s); };
   $("#addTo").onclick = () => T.addToWorkoutSheet(slug);
   const an = $("#addNow"); if (an) an.onclick = () => { T.addToSession(slug); toast("Added to current workout"); };
 }
 const jName = (j) => (L(JOINTS[j]?.name) || j).toLowerCase();
+/** Joints that matter on this page: flagged for this exercise, or flagged elsewhere and risky here. */
+const jointsOf = (e) => { const pain = S.pain?.[e.slug] || []; return [...new Set([...pain, ...flaggedJoints().filter((j) => avoidFor(e, j))])]; };
+
+/* ---- equipment variants: same family first, else same pattern + main muscle ("similar") ---- */
+const KINDS = ["Machine", "Smith", "Cable", "Barbell", "EZ Bar", "Dumbbell", "Bodyweight"];
+const KIND_NAME = { Smith: "Smith", "EZ Bar": "EZ bar" };
+const kindOf = (x) => KINDS.find((k) => x.equipment.includes(k)) || null;
+function variants(e) {
+  const own = kindOf(e); if (!own) return [];
+  const ok = (x) => x.slug !== e.slug && x.video && hasEquip(x) && !hurts(x);
+  const fam = EX.filter((x) => x.family === e.family && ok(x)).sort(byTier);
+  const sim = EX.filter((x) => x.family !== e.family && ok(x) && x.group === e.group && x.pattern === e.pattern && x.primary?.[0] && x.primary[0] === e.primary?.[0]).sort(byTier);
+  const out = [];
+  for (const k of KINDS) {
+    if (k === own) { out.push({ k, x: e, on: true }); continue; }
+    const f = fam.find((x) => kindOf(x) === k); if (f) { out.push({ k, x: f }); continue; }
+    const s = sim.find((x) => kindOf(x) === k); if (s) out.push({ k, x: s, sim: true });
+  }
+  return out.length > 1 ? out : [];
+}
+function variantsHTML(e) {
+  const v = variants(e); if (!v.length) return "";
+  return `<div class="chips eqv" id="eqv">${v.map(({ k, x, on, sim }) => `<button class="chip ${on ? "on" : ""}" data-s="${x.slug}" title="${esc(x.name)}">${esc(KIND_NAME[k] || k)}${sim ? `<span class="n">similar</span>` : ""}</button>`).join("")}</div>`;
+}
+
+/* ---- Joint care sheet (opened from the pain chip) ---- */
+const JOINT_AREA = { shoulder: "shoulders", knee: "knees", elbow: "elbows", wrist: "elbows", "lower-back": "back", hip: "hips" };
+let WU = null;
+const loadWU = () => (WU ??= fetch("data/guide/warmups.json").then((r) => (r.ok ? r.json() : {})).catch(() => ({})));
+const hcards = (list) => `<div class="hcards">${list.map((x) => `<a class="hcard" href="#/ex/${x.slug}"><div class="ph"><img src="${x.poster}" alt="" loading="lazy">${tierBadge(x.tier)}</div><div class="t">${esc(x.name)}</div><div class="s">${esc(x.equipment.join(" · ") || x.group)}</div></a>`).join("")}</div>`;
+async function jointCare(e) {
+  const joints = jointsOf(e); const pain = S.pain?.[e.slug] || [];
+  const J = joints.map((j) => JOINTS[j]).filter(Boolean); const w = await loadWU();
+  const area = JOINT_AREA[joints[0]]; const drills = (w.areas?.[area]?.drills || []).map((id) => ({ id, ...w.drills?.[id] })).filter((d) => d.name).slice(0, 3);
+  const secs = drills.reduce((a, d) => a + (d.secs || 30), 0);
+  const alts = jointFriendly(e, joints, 6);
+  openSheet(`<h3>Joint care · ${esc(joints.map((j) => L(JOINTS[j]?.name) || j).join(" & "))}</h3>
+    <p class="muted small" style="margin:-4px 0 10px">${pain.length ? "You flagged this exercise. It is hidden from plans and swaps." : `You flagged your ${esc(joints.map(jName).join(" & "))}. This exercise may bother it.`}</p>
+    <div class="h4" style="margin-top:4px">Joint-friendly options</div>${alts.length ? hcards(alts) : `<p class="dim small">No safe alternative found for this muscle.</p>`}
+    ${drills.length ? `<div class="h4">Do these first</div><div class="list-sep jcdrills">${drills.map((d) => `<div class="lrow plain"><span class="ico">${ic("flame", "sm")}</span><div class="grow"><div class="t">${esc(L(d.name))}</div><div class="s">${esc(L(d.how))}</div></div><span class="dim tiny num">${d.secs || 30}s</span></div>`).join("")}</div>
+      <button class="btn sm" id="jcGo" style="margin-top:8px">${ic("play", "sm")} Start · ${Math.max(1, Math.round(secs / 60))} min</button>` : ""}
+    ${J.map((j) => `<div class="h4">Go easy on your ${esc(L(j.name).toLowerCase())}</div><ul class="bul ok">${(L(j.tips) || []).slice(0, 3).map((t) => `<li>${ic("okc", "sm")}<span>${esc(t)}</span></li>`).join("")}</ul>`).join("")}
+    <p class="dim small" style="margin-top:12px">${ic("alert", "xs")} ${esc(L(J[0]?.physio) || "If pain persists or is sharp, stop and see a physiotherapist.")}</p>
+    ${pain.length ? `<button class="btn sm ghost" id="rmPain" style="margin-top:4px">Remove pain flag</button>` : ""}`, (el) => {
+    const g = $("#jcGo", el); if (g) g.onclick = () => { closeSheet(); import("./warmup.js").then((m) => m.playDrills(`Joint warm-up · ${L(JOINTS[joints[0]]?.name)}`, drills.map((d) => d.id), location.hash)); };
+    const rm = $("#rmPain", el); if (rm) rm.onclick = () => { delete S.pain[e.slug]; save("pain"); autoPush(); toast("Flag removed"); closeSheet(); rerenderDetail(e.slug); };
+    el.querySelectorAll(".hcard").forEach((a) => a.addEventListener("click", () => closeSheet()));
+  });
+}
 
 /* ---- hero: Video | Muscles (mannequin animation) ---- */
 let heroMode = "video";
@@ -161,6 +211,11 @@ const MOVE3D = { "barbell-row": "bent_over_row", "dumbbell-curl": "bicep_curl", 
 const NOT_SAME = /twist|reverse grip|partial|pause|drops?\b|holds?|incline|decline|seated|elevated|single arm|one arm|1 arm|lying|kneeling|smith|cable|landmine|machine|3 way|deficit|spider|preacher|high elbow|lateral lunge|static|split|band|plate|lean/i;
 export const move3d = (e) => { const m = MOVE3D[e.family]; return m && !NOT_SAME.test(e.name) ? m : null; };
 let v3d = null, v3dView = "front";
+/** Main / Helpers muscle names; doubles as the colour legend of the hero body. */
+const musList = (e) => { const pri = e.primary || [], sec = e.secondary || [];
+  return `<div class="mus-list hl"><div class="eyebrow">Main</div>${pri.map((m) => `<div><i style="background:var(--accent)"></i>${esc(MBY[m]?.name || m)}</div>`).join("") || `<div>${esc(e.group)}</div>`}
+    ${sec.length ? `<div class="eyebrow">Helpers</div>${sec.map((m) => `<div><i style="background:var(--mus-2)"></i>${esc(MBY[m]?.name || m)}</div>`).join("")}` : ""}</div>`; };
+const backFirst = (e) => { const f = bodySVG("front"); return (e.primary || []).filter((m) => f.includes(`data-m="${m}"`)).length < (e.primary || []).length / 2; };
 function hero(e) {
   const h = $("#hero"); const hasFig = !!e.figure; const paint = paintBody(e);
   if (v3d) { v3d.dispose(); v3d = null; }
@@ -174,8 +229,7 @@ function hero(e) {
         <span class="cap"><i style="background:var(--accent)"></i>Main <i style="background:color-mix(in oklab, var(--accent) 50%, #b8b0a9)"></i>Helpers${mv ? "" : ` · <span class="dim">still pose</span>`} · <a class="dim" href="https://github.com/AssiamahS/opengym3d" target="_blank" rel="noopener">OpenGym3D</a></span>`
     : mode === "video" ? `<video id="vid" src="${e.video}" poster="${e.poster}" autoplay muted loop playsinline preload="auto"></video><div class="ctl"><button id="spd" aria-label="Playback speed">1×</button></div>`
       : `<div class="hmus${hasFig ? " withfig" : ""}">${hasFig ? `<img class="fig" src="${e.figure}" alt="Animated figure of this movement, worked muscles in red">` : ""}
-          <div class="mini-body">${paint(bodySVG("front"))}${paint(bodySVG("back"))}</div></div>
-        <span class="cap"><i style="background:var(--accent)"></i>Main <i style="background:var(--mus-2)"></i>Helpers</span>`}`;
+          <div class="mini-body">${hasFig ? paint(bodySVG(backFirst(e) ? "back" : "front")) : paint(bodySVG("front")) + paint(bodySVG("back"))}</div>${musList(e)}</div>`}`;
   const v = $("#vid", h);
   if (v) { const sp = [1, .5, .25]; let i = 0; $("#spd", h).onclick = () => { i = (i + 1) % 3; v.playbackRate = sp[i]; $("#spd", h).textContent = sp[i] + "×"; haptic(); }; v.play().catch(() => {}); }
   if (mode === "3d") {
@@ -194,41 +248,57 @@ function hero(e) {
 function panel(e) {
   const p = $("#dpanel"); p.style.animation = "none"; void p.offsetWidth; p.style.animation = "";
   if (dtab.cur === "how") {
-    p.innerHTML = `${e.about ? `<p class="muted" style="margin-bottom:12px">${esc(e.about)}</p>` : ""}
+    p.innerHTML = `<div id="tgt"></div>${e.about ? `<p class="muted" style="margin-bottom:12px">${esc(e.about)}</p>` : ""}
       ${e.steps.length ? `<ol class="steps">${e.steps.map((s) => `<li><span>${esc(s)}</span></li>`).join("")}</ol>` : `<p class="dim">No written steps yet — follow the video.</p>`}
       ${e.cues.length ? `<div class="h4">Cues</div><ul class="bul ok">${e.cues.map((s) => `<li>${ic("okc", "sm")}<span>${esc(s)}</span></li>`).join("")}</ul>` : ""}
       ${e.mistakes.length ? `<div class="h4">Common mistakes</div><ul class="bul no">${e.mistakes.map((s) => `<li>${ic("x", "sm")}<span>${esc(s)}</span></li>`).join("")}</ul>` : ""}
       ${e.vnote ? `<div class="h4">This variation</div><p class="muted">${esc(e.vnote)}</p>` : ""}`;
-  } else if (dtab.cur === "mus") musclesPanel(e, p);
-  else if (dtab.cur === "stats") statsPanel(e, p);
-  else notesPanel(e, p);
+    targets(e, p);
+  } else if (dtab.cur === "stats") statsPanel(e, p);
+  else rankPanel(e, p);
 }
-async function musclesPanel(e, p) {
-  const pri = e.primary || [], sec = e.secondary || []; const paint = paintBody(e);
-  const pain = S.pain?.[e.slug] || []; const joints = [...new Set([...pain, ...flaggedJoints().filter((j) => avoidFor(e, j))])];
-  p.innerHTML = `<div class="row top" style="gap:16px"><div class="mini-body" style="gap:4px">${paint(bodySVG("front"))}${paint(bodySVG("back"))}</div>
-      <div class="grow mus-list"><div class="eyebrow">Main</div>${pri.map((m) => `<div><i style="background:var(--accent)"></i>${esc(MBY[m]?.name || m)}</div>`).join("") || `<div>${esc(e.group)}</div>`}
-        ${sec.length ? `<div class="eyebrow" style="margin-top:8px">Helpers</div>${sec.map((m) => `<div><i style="background:var(--mus-2)"></i>${esc(MBY[m]?.name || m)}</div>`).join("")}` : ""}</div></div>
-    <div id="heads"></div>${joints.length ? painBlock(e, joints) : ""}`;
-  p.querySelectorAll(".mini-body svg").forEach((s) => (s.style.width = "78px"));
-  const H = await loadHeads(); const out = [];
-  for (const m of pri) {
+/** "Targets: Mid chest (sternal head)" — one expandable line at the top of How to. */
+async function targets(e, p) {
+  const H = await loadHeads(); const hits = [];
+  for (const m of e.primary || []) {
     const hs = H.muscles?.[m]?.heads; if (!hs?.length) continue;
-    const hit = hs.find((h) => h.match && new RegExp(h.match, "i").test(e.name)) || hs.find((h) => h.default) || null;
-    if (hit) out.push(`<div class="lrow plain" style="align-items:flex-start"><span class="ico">${ic("target", "sm")}</span><div class="grow"><div class="t">${esc(L(hit.name))} <span class="dim tiny">${esc(hit.latin || "")}</span></div><div class="s" style="color:var(--t2)">${esc(L(hit.about))}</div></div></div>`);
+    const hit = hs.find((h) => h.match && new RegExp(h.match, "i").test(e.name)) || hs.find((h) => h.default); if (hit) hits.push(hit);
   }
-  const hd = $("#heads", p); if (hd && out.length) hd.innerHTML = `<div class="h4">Where it hits most</div><div class="list-sep">${out.join("")}</div>`;
-  const rm = $("#rmPain", p); if (rm) rm.onclick = () => { delete S.pain[e.slug]; save("pain"); autoPush(); toast("Flag removed"); rerenderDetail(e.slug); };
+  const box = $("#tgt", p); if (!box || !hits.length) return;
+  box.innerHTML = `<details class="tgt"><summary>${ic("target", "sm")}<span class="grow">Targets: <b>${hits.map((h) => esc(L(h.name))).join(", ")}</b></span>${ic("down", "sm")}</summary>
+    ${hits.map((h) => `<p><b>${esc(L(h.name))}</b> <span class="dim tiny">${esc(h.latin || "")}</span><br>${esc(L(h.about))}</p>`).join("")}</details>`;
 }
-function painBlock(e, joints) {
-  const alts = jointFriendly(e, joints, 5);
-  const J = joints.map((j) => JOINTS[j]).filter(Boolean);
-  return `<div class="h4">${ic("bandage", "xs")} Joint-friendly options</div>
-    <div class="stack tight">${alts.map((x) => `<a class="lrow" href="#/ex/${x.slug}"><img src="${x.poster}" alt="" loading="lazy"><div class="grow"><div class="t">${esc(x.name)}</div><div class="s">${esc(x.equipment.join(" · ") || x.group)}</div></div>${tierBadge(x.tier)}</a>`).join("") || `<p class="dim">No safe alternative found for this muscle.</p>`}</div>
-    ${J.map((j) => `<div class="h4">Go easy on your ${esc(L(j.name).toLowerCase())}</div><ul class="bul ok">${(L(j.tips) || []).slice(0, 3).map((t) => `<li>${ic("okc", "sm")}<span>${esc(t)}</span></li>`).join("")}</ul>
-      <div class="list-sep" style="margin-top:8px">${(j.drills || []).map((d) => `<div class="lrow plain"><span class="ico">${ic("flame", "sm")}</span><div class="grow"><div class="t">${esc(L(d.name))} <span class="dim tiny">${esc(d.dose || "")}</span></div><div class="s" style="color:var(--t2)">${esc(L(d.how))}</div></div></div>`).join("")}</div>`).join("")}
-    <div class="notice warn" style="margin-top:12px">${ic("alert", "sm")}<span class="small">${esc(L(J[0]?.physio) || "If pain persists or is sharp, stop and see a physiotherapist.")}</span></div>
-    ${S.pain?.[e.slug]?.length ? `<button class="btn sm ghost" id="rmPain" style="margin-top:6px">Remove pain flag</button>` : ""}`;
+/* Jeff's ranking moment (data/jeff.json: fam[family][video] = sec, ex[slug] = backup video) */
+let JF = null;
+const loadJeff = () => (JF ??= fetch("data/jeff.json").then((r) => (r.ok ? r.json() : {})).catch(() => ({})));
+const mmss = (t) => `${Math.floor(t / 60)}:${String(t % 60).padStart(2, "0")}`;
+function ytBox(id, t, title) {
+  const url = `https://www.youtube.com/watch?v=${id}${t ? `&t=${t}s` : ""}`;
+  if (!navigator.onLine) return `<div class="yt off"><div class="msg">${ic("alert", "sm")}<span>Needs internet</span><a href="${url}" target="_blank" rel="noopener">Open on YouTube</a></div></div>`;
+  return `<button class="yt" data-yt="${id}" data-t="${t || 0}" aria-label="Play ${esc(title)}"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy"><span class="play">${ic("play")}</span>${t ? `<span class="at">${mmss(t)}</span>` : ""}</button>`;
+}
+async function rankPanel(e, p) {
+  const J = await loadJeff(); const fam = FAM.families?.[e.family]?.title;
+  let top = "";
+  if (e.tierVideo) {
+    const t = J.fam?.[e.family]?.[e.tierVideo] || 0; const title = JEFF_VID[e.tierVideo] || "Jeff Nippard";
+    const group = EX.filter((x) => x.group === e.group && x.tier).sort(byTier); const k = group.indexOf(e) + 1;
+    top = `<div class="rank">${tierBadge(e.tier)}<div class="grow"><b>${TIER_WORD[e.tier]}</b> <span class="dim small">· Jeff Nippard</span>${k ? `<div class="dim small">#${k} of ${group.length} ${esc(e.group.toLowerCase())} exercises</div>` : ""}</div><button class="linkbtn small" id="tierHelp">${ic("info", "xs")} Tiers</button></div>
+      ${e.tierNote ? `<p class="muted" style="margin:8px 0 10px">${esc(e.tierNote)}</p>` : ""}
+      ${ytBox(e.tierVideo, t, title)}<div class="dim small ytcap">${esc(title)}${t && fam && !e.canonical ? ` · Jeff ranks the ${esc(fam)} version` : ""}</div>`;
+  } else if (J.ex?.[e.slug]) {
+    const b = J.ex[e.slug];
+    top = `<div class="rank"><div class="grow"><b>Not ranked by Jeff</b><div class="dim small">Technique from ${esc(b.by)}</div></div></div>${ytBox(b.yt, b.t, b.title)}<div class="dim small ytcap">${esc(b.title)} · ${esc(b.by)}</div>`;
+  } else top = `<p class="dim small" style="margin-top:4px">Not ranked by Jeff Nippard.</p>`;
+  const alt = swaps(e, 8);
+  p.innerHTML = `${top}
+    <div class="h4">Alternatives <span class="dim small">same muscle, best tier first</span></div>
+    ${alt.length ? hcards(alt) : `<p class="dim">No alternatives with your equipment.</p>`}
+    <div class="h4">My notes</div><textarea id="note" class="input" placeholder="Seat height, grip, cues…">${esc(S.notes[e.slug] || "")}</textarea>`;
+  const th = $("#tierHelp", p); if (th) th.onclick = () => { haptic(); tierInfo(); };
+  const y = $(".yt[data-yt]", p); if (y) y.onclick = () => { haptic();
+    y.outerHTML = `<div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/${y.dataset.yt}?start=${y.dataset.t}&autoplay=1&playsinline=1&rel=0&modestbranding=1" title="YouTube video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`; };
+  let nt; $("#note", p).oninput = (ev) => { clearTimeout(nt); nt = setTimeout(() => { S.notes[e.slug] = ev.target.value; save("notes"); autoPush(); }, 400); };
 }
 function statsPanel(e, p) {
   const best = bestOf(e.slug), hist = history(e.slug), u = S.settings.unit;
@@ -243,13 +313,6 @@ function statsPanel(e, p) {
       <tr><td>Last week</td><td>${cell(prev)}</td><td class="n">${prev ? Math.round(prev.kg) + u : "—"}</td></tr>
       <tr><td><b>This week</b></td><td>${cell(cur)}</td><td class="n">${cur ? Math.round(cur.kg) + u : "—"}</td></tr></table>
     <div class="dim small" style="margin-top:10px">Last session: ${esc(setsText(hist.at(-1).sets))}</div>`;
-}
-function notesPanel(e, p) {
-  const alt = swaps(e, 6);
-  p.innerHTML = `<div class="h4" style="margin-top:0">Alternatives <span class="dim small">same muscle, best tier first</span></div>
-    ${alt.length ? `<div class="stack tight">${alt.map((x) => `<a class="lrow" href="#/ex/${x.slug}"><img src="${x.poster}" alt="" loading="lazy"><div class="grow"><div class="t">${esc(x.name)}</div><div class="s">${esc(x.equipment.join(" · ") || x.group)}</div></div>${tierBadge(x.tier)}</a>`).join("")}</div>` : `<p class="dim">No alternatives with your equipment.</p>`}
-    <div class="h4">My notes</div><textarea id="note" class="input" placeholder="Seat height, grip, cues…">${esc(S.notes[e.slug] || "")}</textarea>`;
-  let nt; $("#note", p).oninput = (ev) => { clearTimeout(nt); nt = setTimeout(() => { S.notes[e.slug] = ev.target.value; save("notes"); autoPush(); }, 400); };
 }
 function rerenderDetail(slug) { if (wide() && $("#rpane")) splitView(slug); else exerciseView(slug); }
 
@@ -268,6 +331,6 @@ function moreMenu(slug) {
       save("pain"); autoPush(); b.classList.toggle("on", cur.has(j)); b.querySelector("svg").outerHTML = ic(cur.has(j) ? "check" : "bandage", "sm ck");
     };
     $("#mAdd", el).onclick = () => { closeSheet(); setTimeout(() => T.addToWorkoutSheet(slug), 220); };
-    $("#sheet").addEventListener("close", () => { if (BY[slug] && location.hash.includes(slug)) { if (cur.size) dtab.cur = "mus"; rerenderDetail(slug); } }, { once: true });
+    $("#sheet").addEventListener("close", () => { if (BY[slug] && location.hash.includes(slug)) { rerenderDetail(slug); } }, { once: true });
   });
 }
