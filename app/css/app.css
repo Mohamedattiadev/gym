@@ -398,6 +398,7 @@ svg.ring circle { fill: none; stroke-width: 4; } svg.ring .bg { stroke: var(--s3
 .body-svg .m { fill: var(--hm, var(--mus)); stroke: var(--mus-line); stroke-width: .7; cursor: pointer; transition: fill 320ms var(--ease), opacity 320ms var(--ease); }
 @media (hover: hover) { .body-svg .m:hover { fill: color-mix(in oklab, var(--accent) 45%, var(--hm, var(--mus))); } }
 .body-svg.focus .m:not(.sel) { opacity: .25; }
+.body-svg.focus { overflow: hidden; }
 .body-svg .m.sel { fill: var(--accent); }
 .body-svg .m.sec { fill: var(--mus-2); }
 .body-svg.hpick .m.sel:not(.hsel) { fill: color-mix(in oklab, var(--accent) 35%, var(--mus)); }
@@ -420,7 +421,30 @@ svg.ring circle { fill: none; stroke-width: 4; } svg.ring .bg { stroke: var(--s3
 .mgrid button i { width: 10px; height: 10px; border-radius: 50%; background: var(--hm, var(--s4)); flex: none; }
 .heat-legend { display: flex; align-items: center; gap: 4px; font-size: 12.5px; color: var(--t2); }
 .heat-legend i { width: 18px; height: 8px; border-radius: 3px; }
-@media (min-width: 1000px) { .bm-split { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 24px; align-items: start; } }
+@media (min-width: 820px) { .bm-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 380px); gap: 24px; align-items: start; } }
+.body-svg { transition: height 300ms var(--ease); }
+.mgrid button.on { box-shadow: 0 0 0 2px var(--accent), var(--raise-sm); }
+/* muscle detail: side panel (>= 820px) or non-modal bottom sheet (phone) — the body stays visible */
+.mdet[hidden] { display: none; }
+.mdet .mhd { display: flex; align-items: center; gap: 4px; margin: 0 0 8px -8px; }
+.mdet .mhd h3 { margin: 0; font-size: 19px; font-weight: 720; letter-spacing: -.015em; }
+.mdet .mgrab { display: none; }
+.hd-row.on .hdot, .hd-row:hover .hdot { background: var(--accent); }
+.mdet { overflow-x: hidden; scrollbar-width: thin; } .mdet .chips { margin: 0 -4px; padding-inline: 4px; }
+@media (min-width: 820px) {
+  .bm-side { position: sticky; top: calc(var(--top-h) + 8px); }
+  .mdet { background: var(--s1); border-radius: var(--r-xl); box-shadow: var(--raise); padding: 12px 16px 16px; max-height: calc(100dvh - var(--top-h) - 32px); overflow-y: auto; overscroll-behavior: contain; animation: fadeIn 220ms var(--ease) both; }
+}
+@media (max-width: 819.98px) {
+  .mdet { position: fixed; z-index: 35; inset-inline: 0; bottom: calc(var(--tab-h) + var(--safe-b)); height: 45dvh; display: flex; flex-direction: column;
+    background: var(--s1); border-radius: var(--r-xl) var(--r-xl) 0 0; box-shadow: var(--shadow-lg); transition: height 280ms var(--ease); animation: sheetUp 340ms var(--spring) both; }
+  .mdet .mgrab { display: block; flex: none; width: 100%; height: 22px; border: 0; background: transparent; touch-action: none; cursor: grab; position: relative; }
+  .mdet .mgrab::after { content: ""; position: absolute; left: 50%; top: 8px; width: 38px; height: 5px; margin-left: -19px; border-radius: 3px; background: var(--line-2); }
+  .mdet .mhd { margin: -4px 16px 6px 8px; touch-action: none; flex: none; }
+  .mdet .mbd { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0 16px 16px; }
+  body.bm-open .main { padding-bottom: 46dvh; }
+}
+@media (min-width: 768px) and (max-width: 819.98px) { .mdet { inset-inline-start: var(--nav-w); bottom: 0; } }
 
 /* ============ train / session ============ */
 .plan-card { padding: 14px; border-radius: var(--r-lg); background: var(--s1); box-shadow: var(--raise-sm); display: grid; gap: 6px; text-align: start; width: 100%; color: inherit; position: relative; overflow: hidden; }
