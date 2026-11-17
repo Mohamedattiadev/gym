@@ -77,19 +77,19 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 - ✅ **Plans explained** (Jeff-based): for every plan show *what it is, who it's for, why it works, weekly schedule, sets per muscle, how to progress*, categorized (Beginner / Intermediate / Advanced; Full Body / Upper-Lower / PPL / Specialization)
 - ✅ **Timer page** `#/timer`: stopwatch (start/pause/lap/reset), countdown (set mm:ss, presets, start/pause/stop, ring), intervals (editable work/rest/rounds, Tabata/EMOM); keeps running across pages with a floating pill
 - ✅ Strength standards by bodyweight ("you weigh X → aim for at least Y" per main lift and level)
-- 🟡 Warm-up section + warm-up player (block 20); ✅ onboarding quiz (level, days, equipment, goal, sex, bodyweight → plan)
+- ✅ Warm-up section + warm-up player (block 20); ✅ onboarding quiz (level, days, equipment, goal, sex, bodyweight → plan)
 - ✅ Nutrition: calorie & protein calculator + diet guidance from Jeff Nippard's nutrition videos (paraphrased, linked)
 
 ## 6b. WARM-UPS — major section (user: very important)
-- ⬜ Own entry point (Home card + tab inside Train + auto-offer before every workout)
-- ⬜ **General warm-up** (5–8 min): light cardio → dynamic mobility for the day's joints; no long static stretching before lifting
-- ⬜ **Ramp-up sets** calculator per first exercise of each muscle (Jeff style: e.g. 50%×8, 75%×4; heavy compounds bar×10 → 40/60/75/85%)
-- ⬜ **Muscle-specific primers** (shoulders/chest, back, knees/quads, hips/hamstrings/glutes, elbows/arms, ankles/calves, core) 2–3 drills each
-- ⬜ **Warm-up player**: step-by-step with per-drill timer, mannequin animation (open-exercise-figures has many mobility/stretch moves), Next button
-- ⬜ Auto-built warm-up for the selected workout ("Push day → 6-min warm-up")
-- ⬜ Cool-down / stretching after workout (optional)
-- ⬜ Content based on Jeff Nippard first, then credible experts (Stronger by Science/Nuckols, RP/Israetel, Eric Helms, physios like Squat University for joint prep) — paraphrased with links
-- ⬜ Visuals per drill, in this priority: (1) mannequin animation from open-exercise-figures (CC0, offline); (2) opengym3d/openlift 3D; (3) **YouTube embed of Jeff's (or the expert's) video with start/end timestamps** so only that segment plays.
+- ✅ Own entry point (Home card + tab inside Train + auto-offer before every workout)
+- ✅ **General warm-up** (5–8 min): light cardio → dynamic mobility for the day's joints; no long static stretching before lifting
+- ✅ **Ramp-up sets** calculator per first exercise of each muscle (Jeff style: e.g. 50%×8, 75%×4; heavy compounds bar×10 → 40/60/75/85%)
+- ✅ **Muscle-specific primers** (shoulders/chest, back, knees/quads, hips/hamstrings/glutes, elbows/arms, ankles/calves, core) 2–3 drills each
+- ✅ **Warm-up player**: step-by-step with per-drill timer, mannequin animation (open-exercise-figures has many mobility/stretch moves), Next button
+- ✅ Auto-built warm-up for the selected workout ("Push day → 6-min warm-up")
+- ✅ Cool-down / stretching after workout (optional)
+- ✅ Content based on Jeff Nippard first, then credible experts (Stronger by Science/Nuckols, RP/Israetel, Eric Helms, physios like Squat University for joint prep) — paraphrased with links
+- ✅ Visuals per drill, in this priority: (1) mannequin animation from open-exercise-figures (CC0, offline); (2) opengym3d/openlift 3D; (3) **YouTube embed of Jeff's (or the expert's) video with start/end timestamps** so only that segment plays.
   Owner's decision: **download the relevant segment of Jeff's/the expert's video, cut it (ffmpeg, yt-dlp `--download-sections`), and host it in the app** so it also works offline; credit + link to the original on every clip.
   ⚠️ Risk noted to owner: re-hosting creators' video publicly can get the clip/repo taken down — keep clips short, credited, and fall back to the timestamp embed if a takedown happens.
 
@@ -170,6 +170,13 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 - Body map (block 18): `app/js/anatomy.js` (VIEWBOX 216×424, `path.m[data-m][data-h]`, `.base`) from react-native-body-highlighter v3.2.0 (MIT, HichamELBSI), polygonised, grown, heads split by us (chest 3 bands, biceps long/short, delts, lats, traps mid/lower, rhomboids synthesized). Generator + source in tools/anatomy/ (build.py src.json out.js 4.5 2). body.js now only MUSCLES + helpers; mirror shapes gone.
 - Body map modes Muscles | This week | Recovery; sheet tabs Info (fn, week sets, recovery text, Parts list → tap highlights head `hsel`) | Exercises (grouped by head via `headOf()` in main.js, equipment chips). On <1000px the sheet is `half` (54dvh) and the zoom keeps the muscle in the top part. Credit link under the map.
 - Content fix: 2-part-high-elbow-row → family chest-supported-high-elbow-row, equipment Dumbbell (also in build_data.py). sw v12.
+
+## Notes (warm-ups session, block 20 — branch `warmups`)
+- New lazy module `app/js/warmup.js` (via `G(fn, mod)` in main.js): `#/warmup` hub (auto card for the live/next workout, area chips, ramp-up calculator using `warmupSets`, General, Cool-down, Sources), `#/warmup/play` player (figure/demo, cue, ring timer, Prev/Start/Next, auto-advance with beep), `#/warmup/w/<id>`, `#/warmup/s` (live session; finish screen shows ramp-up for the first exercise from last weight + "Add these to the workout"), `#/warmup/cool`.
+- Auto warm-up: 2 min cardio + 4 mobility drills for the day type (push/pull/legs/full from muscles) + 1 primer for the 2 most used areas (~6 min).
+- Entry points: Home "Up next" → Warm up button; Train → Tools "Warm-up"; session banner "Warm up first" until the first set is done (S.active.warmed / noWarm); finish sheet → "Cool-down stretches (optional)".
+- Content `app/data/guide/warmups.json` (35 drills en/tr/ar, 7 areas, muscleArea map, sources Jeff/SBS/RP/3DMJ/Squat University). 19 drills have an exact oef figure (copied to media/figures); 13 have `clip` {q,start,end,by}.
+- Clips: yt-dlp download was blocked (YouTube 403 and the auto-mode permission check), so clips use the fallback: tap "Watch demo" → youtube-nocookie embed of only start–end + credit link. To host offline later: put `media/clips/<file>.mp4` and set `clip.file` — the player already prefers it.
 
 ## Real-phone lessons (from the owner's Fluent365 Pocket test on Android) — apply to Gym
 - ✅ **System bars match the theme**: Android nav bar/status bar stayed white under a dark app. Set `<meta name="theme-color">` at runtime from the theme (done in `applyTheme`), add `media`-specific theme-color metas for light/dark, and pick manifest `theme_color`/`background_color` that don't flash; note installed WebAPK may need reinstall to update.
