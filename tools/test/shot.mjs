@@ -6,7 +6,7 @@ import { mkdirSync, writeFileSync, readFileSync, rmSync } from "node:fs";
 const [out = "shots", scriptArg = "-", base = "http://localhost:8765/"] = process.argv.slice(2);
 mkdirSync(out, { recursive: true });
 const steps = JSON.parse(scriptArg === "-" ? readFileSync(0, "utf8") : readFileSync(scriptArg, "utf8"));
-const VP = { phone: [390, 844, 3, true], ipad: [820, 1180, 2, true], desktop: [1440, 900, 1, false], laptop: [1366, 768, 1, false] };
+const VP = { phone: [390, 844, 3, true], small: [360, 740, 3, true], ipad: [820, 1180, 2, true], desktop: [1440, 900, 1, false], laptop: [1366, 768, 1, false] };
 const port = 9300 + Math.floor(Math.random() * 500);
 const prof = `/tmp/gymshot-${port}`;
 const chrome = spawn("chromium", ["--headless=new", `--remote-debugging-port=${port}`, `--user-data-dir=${prof}`, "--no-first-run",

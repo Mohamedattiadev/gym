@@ -243,28 +243,51 @@ export function sessionView() {
   const wx = $("#warmX"); if (wx) wx.onclick = () => { a.noWarm = true; save("active"); $("#warmN")?.remove(); };
   wireSession();
 }
+/* per-set plan: previous value (same working-set index last time) + today's target (double progression, deload = ~60%) */
+const wStep = (ex) => (ex && (ex.equipment.includes("Barbell") || ex.equipment.includes("Smith")) ? 2.5 : ex?.equipment.includes("Dumbbell") ? 2 : 2.5);
+function planOf(en) {
+  const e = BY[en.slug], last = lastSets(en.slug), tr = parseRange(en.target) || e?.repRange || null;
+  const sug = e && last ? suggest({ ...e, repRange: tr || e.repRange }, last.sets) : null;
+  const top = last ? last.sets.reduce((a, x) => (+x.w > +a.w ? x : a), last.sets[0]) : null, st = wStep(e);
+  const prev = (n) => last?.sets[n - 1] || null;
+  const tgt = (n) => { // n = working-set number (1-based)
+    const p = prev(n) || last?.sets.at(-1);
+    if (!p) return { w: "", r: tr ? String(tr[1]) : "" };
+    if (en.deload) return { w: +p.w ? String(Math.round(+p.w * 0.6 / st) * st) : "", r: String(p.r || "") };
+    if (sug?.up) return { w: String(sug.w || ""), r: String(tr ? tr[0] : p.r) };
+    return { w: String(p.w || ""), r: String(Math.min(tr ? tr[1] : 99, (+p.r || 0) + 1)) };
+  };
+  return { e, last, sug, top, tr, prev, tgt };
+}
+const wr = (w, r, u = "") => `${+w ? `${w}${u ? " " + u : ""} × ` : ""}${r}`;
+export const restOf = (en) => S.settings.restEx?.[en.slug] ?? BY[en.slug]?.rest ?? S.settings.restDefault;
+const restLbl = (sec) => (sec ? restText(sec) : "off");
 function entryHTML(en, ei) {
-  const e = BY[en.slug]; const last = lastSets(en.slug); const sug = e && last ? suggest({ ...e, repRange: parseRange(en.target) || e.repRange }, last.sets) : null; const u = S.settings.unit;
+  const P = planOf(en), e = P.e, last = P.last, u = S.settings.unit;
   const allDone = en.sets.length && en.sets.every((s) => s.done);
   const barb = e && (e.equipment.includes("Barbell") || e.equipment.includes("Smith"));
-  const lastW = (si) => last?.sets[si]?.w ?? last?.sets.at(-1)?.w ?? "", lastR = (si) => last?.sets[si]?.r ?? last?.sets.at(-1)?.r ?? "";
-  const tr = parseRange(en.target);
+  const act = en.sets.findIndex((s) => !s.done);
+  const t1 = P.tgt(1);
   let n = 0;
   const ssIn = S.active.entries[ei - 1]?.ss, ssOut = en.ss && S.active.entries[ei + 1];
   return `<div class="xblock ${allDone ? "done-all" : ""} ${S.settings.gym && ei === gi ? "cur" : ""} ${ssOut ? "ss-out" : ""} ${ssIn ? "ss-in" : ""}" data-ei="${ei}">
     ${ssOut ? `<div class="ss-tag">${ic("swap", "xs")} Superset with next — no rest between</div>` : ""}
     <div class="xhead"><a href="#/ex/${en.slug}"><img src="${e?.poster || ""}" alt=""></a>
       <div class="grow"><div class="t">${esc(e?.name || en.slug)}</div>
-        <div class="hint">${tierBadge(e?.tier)}<span>${esc(en.target || "")} reps · rest ${e ? restText(e.rest) : ""}</span></div>
-        ${sug ? `<div class="hint"><span class="beat">${ic("target")}Beat: ${sug.w ? sug.w + u + " × " : ""}${sug.r}</span><span class="dim">last ${esc(setsText(last.sets.slice(0, 3)))}</span></div>` : `<div class="hint">First time — pick a weight you can do ${tr ? tr[1] : 10} times with good form.</div>`}
+        <div class="hint">${tierBadge(e?.tier)}<span>${esc(en.target || "")} reps ·</span><button class="restb" data-a="rest" aria-label="Change rest time">rest ${restLbl(restOf(en))}</button></div>
+        ${last ? `<div class="hint"><span class="beat">${ic("target")}Today: ${wr(t1.w, t1.r, u)}</span><span class="dim">(last: ${wr(P.top.w, P.top.r)})</span></div>` : `<div class="hint">First time — pick a weight you can do ${P.tr ? P.tr[1] : 10} times with good form.</div>`}
         ${en.deload ? `<div class="hint" style="color:var(--warn)">${ic("alert", "xs")}<span class="grow">Stalled 5+ weeks — deload: ~60% weight today, then build back up.</span></div>` : ""}</div>
       <button class="iconbtn sm" data-a="menu" aria-label="Options">${ic("more")}</button></div>
-    <div class="set-hdr"><span>Set</span><span>${u}</span><span>Reps</span><span></span></div>
-    <div class="sets">${en.sets.map((s, si) => { if (s.type !== "w") n++; return `<div class="setrow ${s.done ? "done" : ""}" data-si="${si}">
-      <button class="n ${s.type === "w" ? "w" : ""}" data-a="type" aria-label="Set type">${s.type === "w" ? "W" : n}</button>
-      <div class="stepper"><button data-a="w-" aria-label="Less weight">−</button><input data-k="w" inputmode="decimal" placeholder="${esc(s.type === "w" ? "—" : lastW(si) || "—")}" value="${esc(s.w)}" aria-label="Weight"><button data-a="w+" aria-label="More weight">+</button></div>
-      <div class="stepper"><button data-a="r-" aria-label="Fewer reps">−</button><input data-k="r" inputmode="numeric" placeholder="${esc(s.type === "w" ? "—" : lastR(si) || (tr ? tr[1] : "—"))}" value="${esc(s.r)}" aria-label="Reps"><button data-a="r+" aria-label="More reps">+</button></div>
-      <button class="check" data-a="done" aria-label="Set done">${ic("check")}</button></div>`; }).join("")}</div>
+    <div class="set-hdr"><span>Set</span><span>Previous</span><span>${u}</span><span>Reps</span><span></span></div>
+    <div class="sets">${en.sets.map((s, si) => { const warm = s.type === "w"; if (!warm) n++; const pv = warm ? null : P.prev(n), tg = warm ? { w: "", r: "" } : P.tgt(n);
+      return `<div class="setrow ${s.done ? "done" : ""} ${si === act ? "act" : ""}" data-si="${si}">
+      <button class="n ${warm ? "w" : ""}" data-a="type" aria-label="Set type">${warm ? "W" : n}</button>
+      ${pv ? `<button class="prev num" data-a="prev" data-w="${esc(pv.w)}" data-r="${esc(pv.r)}" aria-label="Same as last time: ${esc(wr(pv.w, pv.r, u))}">${esc(wr(pv.w, pv.r))}</button>` : `<span class="prev dim">—</span>`}
+      <div class="stepper"><input data-k="w" inputmode="decimal" placeholder="${esc(tg.w || "—")}" value="${esc(s.w)}" aria-label="Weight"></div>
+      <div class="stepper"><input data-k="r" inputmode="numeric" placeholder="${esc(tg.r || "—")}" value="${esc(s.r)}" aria-label="Reps"></div>
+      <button class="check" data-a="done" aria-label="Set done">${ic("check")}</button>
+      <div class="stepline"><div><button data-a="w-" aria-label="Less weight">−</button><span>${wStep(e)} ${u}</span><button data-a="w+" aria-label="More weight">+</button></div>
+        <div><button data-a="r-" aria-label="Fewer reps">−</button><span>1 rep</span><button data-a="r+" aria-label="More reps">+</button></div></div></div>`; }).join("")}</div>
     <div class="xtools"><button class="btn sm" data-a="add">${ic("plus", "sm")} Set</button><button class="btn sm" data-a="warm">${ic("flame", "sm")} Warm-up</button>
       ${barb ? `<button class="btn sm" data-a="plates">${ic("calc", "sm")} Plates</button>` : ""}<button class="btn sm" data-a="swap">${ic("swap", "sm")} Swap</button></div>
     ${S.settings.gym && allDone && ei < S.active.entries.length - 1 ? `<button class="btn primary block big" data-a="next">Next exercise ${ic("chev", "sm")}</button>` : ""}</div>`;
@@ -278,17 +301,21 @@ function wireSession() {
     const en = a.entries[+inp.closest("[data-ei]").dataset.ei]; en.sets[+inp.closest("[data-si]").dataset.si][inp.dataset.k] = inp.value.replace(",", ".");
     save("active");
   };
+  box.addEventListener("focusin", (e) => { const row = e.target.closest(".setrow"); if (!row || row.classList.contains("act")) return;
+    row.parentElement.querySelectorAll(".setrow.act").forEach((x) => x.classList.remove("act")); row.classList.add("act"); });
   const ph = (row, k) => { const v = row.querySelector(`[data-k="${k}"]`).placeholder; return /^\d+([.,]\d+)?$/.test(v) ? v : ""; };
   box.onclick = async (e) => {
     const b = e.target.closest("button[data-a]"); if (!b) return;
     const blk = b.closest("[data-ei]"); const ei = +blk.dataset.ei; const en = a.entries[ei]; const ex = BY[en.slug];
     const row = b.closest("[data-si]"); const si = row ? +row.dataset.si : -1; const s = row ? en.sets[si] : null;
     const act = b.dataset.a; haptic();
-    if (act === "w+" || act === "w-") { const step = ex && (ex.equipment.includes("Barbell") || ex.equipment.includes("Smith")) ? 2.5 : ex?.equipment.includes("Dumbbell") ? 2 : 2.5;
+    if (act === "w+" || act === "w-") { const step = wStep(ex);
       s.w = String(Math.max(0, Math.round(((+s.w || +ph(row, "w") || 0) + (act === "w+" ? step : -step)) * 100) / 100)); row.querySelector('[data-k="w"]').value = s.w; save("active"); return; }
     if (act === "r+" || act === "r-") { s.r = String(Math.max(0, (+s.r || +ph(row, "r") || 0) + (act === "r+" ? 1 : -1))); row.querySelector('[data-k="r"]').value = s.r; save("active"); return; }
     if (act === "type") { s.type = s.type === "w" ? "n" : "w"; save("active"); rerender(ei); return; }
-    if (act === "done") {
+    if (act === "rest") return restSheet(ei);
+    if (act === "prev" || act === "done") {
+      if (act === "prev") { s.w = b.dataset.w || ""; s.r = b.dataset.r || ""; if (s.done) { save("active"); rerender(ei); refreshStats(); return; } }
       if (!s.w) s.w = ph(row, "w"); if (!s.r) s.r = ph(row, "r");
       s.done = !s.done; save("active");
       if (s.done) {
@@ -297,7 +324,7 @@ function wireSession() {
         if (s.type !== "w" && isPR(en.slug, s)) { confetti(); toast(`New PR: ${s.w}${S.settings.unit} × ${s.r}`); beep([[660, .1], [880, .1], [1175, .2]]); }
         const ssNext = en.ss && a.entries[ei + 1];
         if (s.type !== "w" && ssNext) toast(`Superset: now ${BY[ssNext.slug]?.name || "next exercise"}`);
-        else if (S.settings.autoRest && s.type !== "w") startRest(ex?.rest || S.settings.restDefault, a.entries[ei - 1]?.ss ? ssBackLabel(ei - 1) : nextLabel(ei, si));
+        else if (S.settings.autoRest && s.type !== "w" && restOf(en)) startRest(restOf(en), a.entries[ei - 1]?.ss ? ssBackLabel(ei - 1) : nextLabel(ei, si));
         else if (s.type === "w") startRest(45, nextLabel(ei, si));
       }
       rerender(ei); refreshStats();
@@ -341,9 +368,9 @@ function nextInfo(ei, from) {
   const a = S.active;
   for (let i = ei; i < a.entries.length; i++) {
     const en = a.entries[i], k = en.sets.findIndex((x, j) => j >= (i === ei ? from : 0) && !x.done); if (k < 0) continue;
-    const s = en.sets[k], warm = s.type === "w", work = en.sets.filter((x) => x.type !== "w"), last = lastSets(en.slug), tr = parseRange(en.target);
-    const n = warm ? 0 : en.sets.slice(0, k + 1).filter((x) => x.type !== "w").length;
-    const w = warm ? s.w : s.w || (last?.sets[n - 1]?.w ?? last?.sets.at(-1)?.w ?? ""), r = warm ? s.r : s.r || (last?.sets[n - 1]?.r ?? last?.sets.at(-1)?.r ?? (tr ? tr[1] : ""));
+    const s = en.sets[k], warm = s.type === "w", work = en.sets.filter((x) => x.type !== "w");
+    const n = warm ? 0 : en.sets.slice(0, k + 1).filter((x) => x.type !== "w").length, tg = warm ? null : planOf(en).tgt(n);
+    const w = warm ? s.w : s.w || tg.w, r = warm ? s.r : s.r || tg.r;
     const name = BY[en.slug]?.name || en.slug, u = S.settings.unit;
     const text = `Next: ${i === ei ? "" : `${name} · `}${warm ? "warm-up set" : `set ${n} of ${work.length}`}${r ? ` · ${w ? `${w} ${u} × ` : ""}${r}` : ""}`;
     return { text, slug: en.slug, name, set: warm ? "" : n, of: work.length, w: String(w || ""), r: String(r || "") };
@@ -352,6 +379,16 @@ function nextInfo(ei, from) {
 }
 const nextLabel = (ei, si) => nextInfo(ei, si + 1), ssBackLabel = (pi) => nextInfo(pi, 0);
 function isPR(slug, s) { const b = bestOf(slug); const v = e1rm(s.w, s.r); return v > 0 && b && v > b.e1rm; }
+function restSheet(ei) {
+  const en = S.active.entries[ei], cur = restOf(en), def = BY[en.slug]?.rest ?? S.settings.restDefault;
+  const opts = [0, 45, 60, 90, 120, 150, 180, 240, 300];
+  openSheet(`<h3>Rest time</h3><p class="muted small" style="margin:-6px 0 12px">${esc(BY[en.slug]?.name || "")} · saved for next time. Suggested: ${restText(def)}</p>
+    <div class="restgrid">${opts.map((o) => `<button class="btn ${o === cur ? "primary" : ""}" data-r="${o}">${o ? fmtDur(o * 1000) : "Off"}</button>`).join("")}</div>`, (el) => {
+    el.onclick = (e) => { const b = e.target.closest("[data-r]"); if (!b) return; const v = +b.dataset.r;
+      S.settings.restEx = { ...(S.settings.restEx || {}) }; if (v === def) delete S.settings.restEx[en.slug]; else S.settings.restEx[en.slug] = v;
+      store("settings"); closeSheet(); sessionView(); haptic(); };
+  }, { half: true });
+}
 function swapSheet(ei) {
   const en = S.active.entries[ei]; const ex = BY[en.slug]; const alts = swaps(ex, 10);
   openSheet(`<h3>Swap exercise</h3><p class="muted small" style="margin:-6px 0 12px">Machine taken? Same muscle, best tier first.</p><div class="stack tight">

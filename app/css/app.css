@@ -474,16 +474,27 @@ svg.ring circle { fill: none; stroke-width: 4; } svg.ring .bg { stroke: var(--s3
 .hint > svg.i { margin-top: 2px; }
 .beat { display: inline-flex; align-items: center; gap: 4px; font-weight: 700; color: var(--accent-text); }
 .beat svg { width: 15px; height: 15px; }
-.set-hdr, .setrow { display: grid; grid-template-columns: 30px 1fr 1fr 46px; gap: 8px; align-items: center; }
+.set-hdr, .setrow { display: grid; grid-template-columns: 30px minmax(44px, .9fr) 1fr 1fr 46px; gap: 6px; align-items: center; }
 .set-hdr { font-size: 11.5px; color: var(--t3); font-weight: 650; text-transform: uppercase; letter-spacing: .05em; margin: 10px 0 4px; text-align: center; }
 .sets { display: grid; gap: 6px; }
 .setrow .n { width: 30px; height: 30px; border-radius: 8px; border: 0; background: var(--s3); font-weight: 750; font-size: 13px; color: var(--t2); }
 .setrow .n.w { color: var(--warn); }
-.stepper { display: flex; align-items: center; height: 42px; border-radius: 10px; border: 1px solid var(--ctl); background: var(--s2); box-shadow: var(--inset); overflow: hidden; }
+.restb { border: 0; background: none; padding: 0; font: inherit; color: inherit; text-decoration: underline dotted; text-underline-offset: 3px; cursor: pointer; min-height: 24px; margin-top: -3px; }
+.restgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; } .restgrid .btn { min-height: 48px; }
+.setrow .prev { height: 44px; border: 0; background: none; padding: 0 2px; font-size: 13px; font-weight: 600; color: var(--t3); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: grid; place-items: center; border-radius: 8px; }
+button.prev:active { background: var(--s3); color: var(--t1); }
+.setrow .stepline { grid-column: 1 / -1; display: none; grid-template-columns: 1fr 1fr; gap: 8px; margin: 2px 0 6px; }
+.setrow.act .stepline { display: grid; }
+.stepper:focus-within { border-color: var(--accent); }
+.stepline > div { display: flex; align-items: center; border-radius: 12px; background: var(--s2); box-shadow: var(--inset); border: 1px solid var(--ctl); }
+.stepline span { flex: 1; text-align: center; font-size: 12.5px; color: var(--t3); font-weight: 600; white-space: nowrap; }
+.stepline button { width: 48px; height: 44px; border: 0; background: none; font-size: 22px; color: var(--t1); flex: none; border-radius: 11px; }
+.stepline button:active { background: var(--s3); }
+.stepper { display: flex; align-items: center; height: 44px; border-radius: 10px; border: 1px solid var(--ctl); background: var(--s2); box-shadow: var(--inset); overflow: hidden; }
 .stepper button { width: 32px; height: 100%; border: 0; background: none; font-size: 18px; color: var(--t2); flex: none; }
 .stepper input { flex: 1; min-width: 0; width: 100%; height: 100%; border: 0; background: none; text-align: center; font-weight: 720; font-size: 16.5px; outline: 0; }
 .stepper input::placeholder { color: var(--t3); font-weight: 600; opacity: .8; }
-.check { width: 46px; height: 42px; border-radius: 10px; border: 1.5px solid var(--ctl); background: none; color: var(--t2); display: grid; place-items: center; transition: background var(--dur), color var(--dur), transform 120ms; }
+.check { width: 46px; height: 44px; border-radius: 10px; border: 1.5px solid var(--ctl); background: none; color: var(--t2); display: grid; place-items: center; transition: background var(--dur), color var(--dur), transform 120ms; }
 .check:active { transform: scale(.92); }
 .setrow.done .check { background: var(--ok); border-color: var(--ok); color: #fff; animation: popIn 300ms var(--ease); }
 .setrow.done .stepper { background: color-mix(in oklab, var(--ok) 12%, var(--s2)); }
@@ -710,7 +721,8 @@ body:has(.tpill) .toast { bottom: calc(var(--tab-h) + var(--safe-b) + 70px); }
 .gym #entries { touch-action: pan-y; }
 .gym .xhead img { width: 72px; height: 72px; }
 .gym .xhead .t { font-size: 19px; }
-.gym .set-hdr, .gym .setrow { grid-template-columns: 34px 1fr 1fr 56px; gap: 6px; }
+.gym .set-hdr, .gym .setrow { grid-template-columns: 34px minmax(48px, .9fr) 1fr 1fr 56px; gap: 6px; }
+.gym .setrow .prev { height: 54px; font-size: 14.5px; } .gym .stepline button { width: 56px; height: 52px; font-size: 26px; }
 .gym .stepper { height: 54px; } .gym .stepper button { width: 34px; font-size: 24px; } .gym .stepper input { font-size: 20px; }
 .gym .setrow .check { width: 56px; height: 54px; }
 .gym .setrow .n { width: 34px; height: 38px; font-size: 15px; }
@@ -818,3 +830,6 @@ body:has(#rov) .toast { bottom: auto; top: calc(var(--safe-t) + 16px); }
 .mw p { margin: 0; font-size: 15px; line-height: 1.4; color: var(--t1); }
 .mbody { gap: 18px; padding: 6px 0 2px; } .mbody .body-svg { width: 92px; }
 .mcred { margin-top: 8px; text-align: center; } .mcred a { color: var(--accent-text); font-weight: 650; }
+@media (min-width: 900px) { /* session logger: fixed column widths instead of stretched steppers (2-column layout comes in 22b part 4) */
+  .set-hdr, .setrow, .gym .set-hdr, .gym .setrow { grid-template-columns: 34px 110px 150px 150px 52px; justify-content: start; }
+  .setrow .stepline { max-width: 520px; } }
