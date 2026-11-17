@@ -139,7 +139,7 @@
       "secs": 30,
       "reps": {"en": "10-12 each way", "tr": "Her yöne 10-12", "ar": "10-12 في كل اتجاه"},
       "fig": null,
-      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "7:15", "end": "7:22", "by": "Jeff Nippard"},
+      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "7:22", "end": "7:27", "by": "Jeff Nippard", "file": "arm-circles.mp4"},
       "src": "jeff"
     },
     "arm-swings": {
@@ -169,7 +169,7 @@
       "secs": 40,
       "reps": {"en": "10-12 reps", "tr": "10-12 tekrar", "ar": "10-12 تكرارًا"},
       "fig": null,
-      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "7:30", "end": "7:37", "by": "Jeff Nippard"},
+      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "7:39", "end": "7:44", "by": "Jeff Nippard", "file": "band-face-pull.mp4"},
       "src": "jeff"
     },
     "wall-slides": {
@@ -179,7 +179,7 @@
       "secs": 40,
       "reps": {"en": "8-10 reps", "tr": "8-10 tekrar", "ar": "8-10 تكرارات"},
       "fig": null,
-      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "7:37", "end": "7:46", "by": "Jeff Nippard"},
+      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "7:45", "end": "7:51", "by": "Jeff Nippard", "file": "wall-slides.mp4"},
       "src": "jeff"
     },
     "scap-push-up": {
@@ -219,7 +219,7 @@
       "secs": 30,
       "reps": {"en": "8-10 reps", "tr": "8-10 tekrar", "ar": "8-10 تكرارات"},
       "fig": null,
-      "clip": {"q": "https://www.youtube.com/watch?v=4CvjRT5LMgI", "start": "0:30", "end": "0:46", "by": "Squat University"},
+      "clip": {"q": "https://www.youtube.com/watch?v=4CvjRT5LMgI", "start": "0:31", "end": "0:46", "by": "Squat University", "file": "cat-camel.mp4"},
       "src": "squatu"
     },
     "worlds-greatest-stretch": {
@@ -249,7 +249,7 @@
       "secs": 60,
       "reps": {"en": "10-12 each way, each leg", "tr": "Her bacak, her yöne 10-12", "ar": "10-12 في كل اتجاه لكل ساق"},
       "fig": null,
-      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "4:14", "end": "4:25", "by": "Jeff Nippard"},
+      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "4:14", "end": "4:25", "by": "Jeff Nippard", "file": "leg-swings.mp4"},
       "src": "jeff"
     },
     "bodyweight-squat": {
@@ -269,7 +269,7 @@
       "secs": 45,
       "reps": {"en": "4 each side", "tr": "Her taraf 4", "ar": "4 لكل جهة"},
       "fig": null,
-      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "4:47", "end": "5:03", "by": "Jeff Nippard"},
+      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "4:54", "end": "5:10", "by": "Jeff Nippard", "file": "squat-and-reach.mp4"},
       "src": "jeff"
     },
     "walking-lunge": {
@@ -289,7 +289,7 @@
       "secs": 30,
       "reps": null,
       "fig": null,
-      "clip": {"q": "https://www.youtube.com/watch?v=pCEpcIo-O4I", "start": "1:30", "end": "1:55", "by": "Squat University"},
+      "clip": {"q": "https://www.youtube.com/watch?v=pCEpcIo-O4I", "start": "1:30", "end": "1:55", "by": "Squat University", "file": "goblet-squat-hold.mp4"},
       "src": "squatu"
     },
     "hip-airplane": {
@@ -299,7 +299,7 @@
       "secs": 60,
       "reps": {"en": "5 each side", "tr": "Her taraf 5", "ar": "5 لكل جهة"},
       "fig": null,
-      "clip": {"q": "https://www.youtube.com/watch?v=9V8oGt2hfCI", "start": "1:15", "end": "1:40", "by": "Squat University"},
+      "clip": {"q": "https://www.youtube.com/watch?v=9V8oGt2hfCI", "start": "1:15", "end": "1:40", "by": "Squat University", "file": "hip-airplane.mp4"},
       "src": "squatu"
     },
     "cossack-squat": {
@@ -309,7 +309,7 @@
       "secs": 45,
       "reps": {"en": "5 each side", "tr": "Her taraf 5", "ar": "5 لكل جهة"},
       "fig": null,
-      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "5:08", "end": "5:20", "by": "Jeff Nippard"},
+      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "5:10", "end": "5:23", "by": "Jeff Nippard", "file": "cossack-squat.mp4"},
       "src": "jeff"
     },
     "glute-bridge": {
@@ -329,7 +329,7 @@
       "secs": 45,
       "reps": {"en": "10 each side", "tr": "Her taraf 10", "ar": "10 لكل جهة"},
       "fig": null,
-      "clip": {"q": "https://www.youtube.com/watch?v=IikP_teeLkI", "start": "1:08", "end": "1:26", "by": "Squat University"},
+      "clip": {"q": "https://www.youtube.com/watch?v=IikP_teeLkI", "start": "1:08", "end": "1:26", "by": "Squat University", "file": "knee-to-wall.mp4"},
       "src": "squatu"
     },
     "ankle-circles": {
@@ -349,7 +349,7 @@
       "secs": 40,
       "reps": {"en": "10-12 reps", "tr": "10-12 tekrar", "ar": "10-12 تكرارًا"},
       "fig": null,
-      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "5:23", "end": "5:33", "by": "Jeff Nippard"},
+      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "5:30", "end": "5:36", "by": "Jeff Nippard", "file": "slow-calf-raises.mp4"},
       "src": "jeff"
     },
     "dead-bug": {
@@ -369,7 +369,7 @@
       "secs": 45,
       "reps": {"en": "5 each side", "tr": "Her taraf 5", "ar": "5 لكل جهة"},
       "fig": null,
-      "clip": {"q": "https://www.youtube.com/watch?v=2_e4I-brfqs", "start": "5:03", "end": "5:27", "by": "Squat University"},
+      "clip": {"q": "https://www.youtube.com/watch?v=2_e4I-brfqs", "start": "5:05", "end": "5:27", "by": "Squat University", "file": "bird-dog.mp4"},
       "src": "squatu"
     },
     "doorway-chest-stretch": {
@@ -399,7 +399,7 @@
       "secs": 30,
       "reps": {"en": "30 s each side", "tr": "Her taraf 30 sn", "ar": "30 ثانية لكل جهة"},
       "fig": null,
-      "clip": {"q": "https://www.youtube.com/watch?v=9V8oGt2hfCI", "start": "3:38", "end": "3:56", "by": "Squat University"},
+      "clip": {"q": "https://www.youtube.com/watch?v=9V8oGt2hfCI", "start": "3:38", "end": "3:56", "by": "Squat University", "file": "hip-flexor-stretch.mp4"},
       "src": "squatu"
     },
     "hamstring-stretch": {
