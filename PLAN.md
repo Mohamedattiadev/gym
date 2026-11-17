@@ -122,6 +122,8 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 - ⬜ **22b** quality polish + UX benchmark fixes (docs/ux_benchmark.md) — owner
 - ⬜ **25** printable PDF guide per level (en/tr/ar), generated from our data — owner
 
+- ⬜ **26 Plans 2.0**: ~10 splits + filters + visual week scenario on the body (owner) — spec in NEXT_SESSION.md
+
 ## 9b. Voice guidance (later phase — yes, possible)
 - ⬜ **Narrate the movement explanations** too: about, numbered how-to steps, cues, common mistakes, warm-up drills, plan explanations (a play button on every explanation + hands-free mode during a session)
 - ⬜ Read steps & cues aloud, announce "set 2 of 3", rep count, rest countdown "10 seconds… 3, 2, 1, go"
