@@ -226,6 +226,10 @@ function makeProp(kinds, model, dark) {
     } else if (kind === "stepbox") { // step-up: box (.42 m) under the front (left) foot, which stays planted
       const o = new THREE.Mesh(new THREE.BoxGeometry(.75, .42, .4), pad); g.add(o);
       ups.push(() => { const an = loc(bones.footL, a).clone(), toe = loc(bones["toe3-1L"] || bones.toe31L, b).clone(), p = an.lerp(toe, .45); o.position.set(p.x - .15, Math.min(an.y, toe.y) - .035 - .21, p.z); });
+    } else if (kind === "heelbench") { // bench-assisted pull-up: bench under both heels, running away from the body
+      const o = new THREE.Mesh(new THREE.BoxGeometry(.36, .45, .62), pad); g.add(o);
+      ups.push(() => { const h = loc(bones.footL, a).clone().add(loc(bones.footR, b)).multiplyScalar(.5), hip = loc(bones.upperleg01L, c).clone().add(loc(bones.upperleg01R, b)).multiplyScalar(.5);
+        const dx = h.x - hip.x, dz = h.z - hip.z, n = Math.hypot(dx, dz) || 1; o.rotation.y = Math.atan2(dx, dz); o.position.set(h.x + dx / n * .16, h.y - .07 - .225, h.z + dz / n * .16); });
     } else if (kind === "dipbench") { // bench dips: bench behind the hips under both hands
       const o = new THREE.Mesh(new THREE.BoxGeometry(.9, 1, .32), pad); g.add(o);
       ups.push(() => { const p = grip(hand[0], .3).add(grip(hand[1], .3)).multiplyScalar(.5), fl = Math.min(loc(bones.footL, c).y, loc(bones.footR, c).y) - .05, top = p.y - .03, h = Math.max(.1, top - fl);
