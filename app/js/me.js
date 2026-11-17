@@ -167,7 +167,7 @@ export async function settingsView() {
       <div class="card pad"><b>Backup file</b><p class="muted small" style="margin:4px 0 10px">Your data stays on this phone. Save a backup now and then.</p>
         <div class="row"><button class="btn sm grow" id="exp">${ic("share", "sm")} Export</button><label class="btn sm grow">${ic("download", "sm")} Import<input type="file" id="imp" accept=".json,application/json" hidden></label></div>
         <div class="dim tiny" style="margin-top:8px" id="pst"></div></div>
-      ${standalone() ? "" : `<button class="btn block" id="inst">${ic("phone", "sm")} Install on this phone</button>`}
+      ${standalone() ? "" : `<button class="btn block" id="inst">${ic("phone", "sm")} Install app</button>`}
     </div></div>
     <div class="credits card soft pad" style="margin-top:16px">
       <p>© Mohamed Attia — all rights reserved. ${EX.length} exercises.</p>

@@ -146,15 +146,24 @@ export function wireInstall() {
 }
 export function installNow() {
   if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((c) => { if (c.outcome === "accepted") { toast("Installed"); persist(); } deferredPrompt = null; route(); });
+    const dp = deferredPrompt; deferredPrompt = null;
+    const fail = () => installNow(); // stale/used prompt -> show the menu steps instead
+    try { Promise.resolve(dp.prompt()).then(() => dp.userChoice).then((c) => { if (c.outcome === "accepted") { toast("Installed"); persist(); } route(); }, fail); } catch { fail(); }
   } else if (isIOS()) {
     openSheet(`<h3>Add to Home Screen</h3><ol class="steps">
         <li><span>Tap the <b>Share</b> button at the bottom of Safari</span></li>
         <li><span>Choose <b>Add to Home Screen</b></span></li><li><span>Tap <b>Add</b>, then open Gym from your home screen</span></li></ol>
       <button class="btn primary block" style="margin-top:18px" id="gotIt">Got it</button>`, (el) => ($("#gotIt", el).onclick = closeSheet));
-  } else toast("Use your browser menu → Install app");
+  } else {
+    const desk = !matchMedia("(pointer: coarse)").matches;
+    openSheet(`<h3>Install Gym</h3><ol class="steps">
+        ${desk ? `<li><span>Click the <b>install icon</b> at the right of the address bar (Chrome / Edge)</span></li><li><span>Or open the browser menu <b>⋮</b> → <b>Install Gym</b></span></li>`
+          : `<li><span>Open the Chrome menu <b>⋮</b> (top right)</span></li><li><span>Tap <b>Install app</b> or <b>Add to Home screen</b></span></li><li><span>Open Gym from your home screen</span></li>`}</ol>
+      <p class="muted small" style="margin:14px 0 0">Just uninstalled it? Reload this page once, then try again. iPhone: Safari → <b>Share</b> → <b>Add to Home Screen</b>.</p>
+      <button class="btn primary block" style="margin-top:18px" id="gotIt">Got it</button>`, (el) => ($("#gotIt", el).onclick = closeSheet));
+  }
 }
+addEventListener("appinstalled", () => { deferredPrompt = null; S.settings.installDismissed = 0; save("settings"); if (location.hash.length < 3) route(); });
 
 /* ================= BODY MAP ================= */
 const bm = { view: "front", mode: "muscles" }; // mode: muscles | week | rec
