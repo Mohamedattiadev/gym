@@ -143,6 +143,11 @@ Low-clutter additions (no new screens):
 - **Recovery on the Body map** (approved): after each finished workout, worked muscles are colored by remaining recovery time — **red** (fresh damage, <24h), **yellow** (recovering), **green** (ready). Recovery window 48–72h by muscle size & sets done. Tapping a muscle's Info shows "needs ~X more hours before training again". Also a small recovery body on Home
 Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 
+## 11. Expert review + quality audit (block 27 — owner, 2026-11-17)
+- ⬜ Persona reviews (25-year frontend, backend/data, architect, performance, accessibility/UX, security) + normal testers (beginner, mid-workout lifter, 55+ weak eyesight, TR/AR speaker, iPhone Safari, desktop keyboard user). Full brief in NEXT_SESSION.md block 27.
+- ⬜ Concept checklist, measured: dead code, caching/SW, performance, availability/resilience, reliability, testing (tools/test/all.sh), maintainability, SEO/manifest, legal.
+- ⬜ Review backlog (merged, P0/P1/P2) goes here after the review; fix P0 + cheap P1 first.
+
 ## Notes (2026-11-17 session)
 - Steps 1-8 of the cheap-first order done (also: equipment profile, balance warning, timer.js + floating pill, rest timer uses it) (rename, git+Pages workflow, theme+settings, emoji/dialogs, machine filter + TR/AR search). No commit yet.
 - New CSS design system in app.css (tokens, Fluent365 motion, rail/sidebar). Legacy markup still uses compat classes at the end of app.css — remove when views are rewritten.
