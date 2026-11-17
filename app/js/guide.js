@@ -199,7 +199,8 @@ export async function profileView() {
       <div class="card pad"><div class="field"><label>Level</label>${seg("prLv", LEVELS.map(([v, t]) => [v, t]), p.level || "", "block")}</div>
         <div class="field"><label>Days a week</label>${seg("prDays", DAYS.map((d) => [d, String(d)]), p.days || 3, "block")}</div>
         <div class="field" style="margin-bottom:0"><label>Equipment</label>${seg("prEq", [["gym", "Full gym"], ["dumbbells", "Dumbbells"], ["home", "Home"]], S.settings.equip || "gym", "block")}</div></div>
-      <a class="btn block" href="#/start">${ic("user", "sm")} Find my plan again</a></div>
+      ${(() => { const cp = T.currentPlan(); return `<a class="card pad row" href="#/plans" style="gap:12px"><span class="grow"><span class="dim small">Your plan</span><b style="display:block">${cp ? `${esc(cp.name)} · ${cp.days} days` : "No plan yet"}</b></span><span class="btn sm">${cp ? "Change" : "Pick a plan"}</span></a>`; })()}
+      <a class="btn block ghost" href="#/start">${ic("user", "sm")} Find my plan again</a></div>
     <div class="stack"><div class="card pad" id="prBody">${bodyFields(b)}</div>
       <div class="row small" style="gap:14px;padding:0 4px"><a href="#/standards" class="lnk">Strength goals</a><a href="#/nutrition" class="lnk">Nutrition</a></div></div></div>`;
   segVal($("#prLv"), (v) => setProf({ level: v, onboarded: true }));

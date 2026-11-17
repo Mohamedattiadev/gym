@@ -8,7 +8,6 @@ import { installBanner, wireInstall } from "./install.js";
 import { xcard, onImg } from "./components.js";
 import * as T from "./train.js";
 import { planById, recommendedId, freqOf, planSlots, planOpts, minutesOf } from "./plans.js";
-import * as Tm from "./timer.js";
 
 const view = () => $("#view");
 const greeting = () => { const h = new Date().getHours(); return h < 5 ? "Late session" : h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening"; };
@@ -27,7 +26,8 @@ function heroCard() {
       <div class="muted small">${fmtDur(Date.now() - S.active.startedAt)} · ${n} sets done · tap to resume</div></a>`;
   }
   const next = T.nextWorkout();
-  if (next) return `<div class="hero-card"><div class="eyebrow">Up next</div><h3>${esc(next.name)}</h3>
+  const pl = T.currentPlan();
+  if (next) return `<div class="hero-card"><div class="eyebrow">Up next${pl ? ` · ${esc(pl.name)} plan` : ""}</div><h3>${esc(next.name)}</h3>
       <div class="muted small">${next.items.length} exercises · about ${Math.max(10, Math.round(next.items.reduce((a, it) => a + +it.sets * 2.6, 0) / 5) * 5)} min</div>
       <div class="thumbs">${next.items.slice(0, 6).map((it) => `<img src="${BY[it.slug]?.poster || ""}" alt="" data-hide-broken>`).join("")}</div>
       <div class="row"><button class="btn primary grow" id="startNext">${ic("play", "sm")} Start workout</button><a class="btn" href="#/warmup/w/${next.id}" aria-label="Warm up">${ic("flame", "sm")}<span class="wl"> Warm up</span></a><a class="btn" href="#/workout/${next.id}" aria-label="Edit">${ic("edit", "sm")}</a></div></div>`;
@@ -35,10 +35,6 @@ function heroCard() {
   return `<div class="hero-card has-ill rec"><div class="txt"><div class="eyebrow">Recommended for ${S.profile?.level ? "you" : "beginners"}</div><h3>${esc(p.name)} · ${p.days} days</h3>
       <div class="muted small" style="margin-bottom:14px">Each muscle ${freqOf(p)}× a week, about ${Math.max(...planSlots(p, planOpts()).map(minutesOf))} min a session. ${S.profile?.level ? "" : "Not a beginner? "}<a href="#/start" style="color:var(--accent-text);font-weight:600">${S.profile?.level ? "Find another plan" : "Find my plan"}</a></div>
       </div><div class="row"><button class="btn primary grow" id="useRec">${ic("plus", "sm")} Use this plan</button><a class="btn grow" href="#/plan/${p.id}">How it works</a></div><div class="ill" data-ill="hero-start"></div></div>`;
-}
-function timerCard() {
-  return `<div class="card pad"><div class="row" style="margin-bottom:10px"><span class="ico-t">${ic("timer", "sm")}</span><b class="grow">Rest timer</b><a class="link small" href="#/timer" style="color:var(--accent-text);font-weight:600">Open timer</a></div>
-    <div class="presets" id="presets">${[60, 90, 120, 180].map((s) => `<button data-s="${s}">${fmtDur(s * 1000)}</button>`).join("")}</div></div>`;
 }
 function weekCard() {
   const w0 = weekStart(), now = Date.now();
@@ -67,8 +63,9 @@ export function homeView() {
   view().innerHTML = `
     <div class="hello"><div class="grow"><div class="eyebrow">${fmtDate(Date.now(), { weekday: "long", month: "long", day: "numeric" })}</div><h1>${greeting()}${S.profile?.name ? ", " + esc(S.profile.name) : ""}</h1></div>
       <a class="iconbtn filled" href="#/settings" aria-label="Settings">${ic("settings", "sm")}</a></div>
+    ${installBanner()}
     <div class="cols stagger">
-      <div class="stack">${heroCard()}${timerCard()}</div>
+      <div class="stack">${heroCard()}</div>
       <div class="stack">${S.sessions.length ? weekCard() : ""}
         ${low.length ? `<a class="notice warn" href="#/body">${ic("alert", "sm")}<div class="grow"><b>Low volume this week</b><div class="small muted">${low.slice(0, 4).map(([m, n]) => `${MBY[m]?.name || m} ${n}/10`).join(" · ")} sets</div></div>${ic("chev", "sm")}</a>` : ""}
         ${recoveryCard()}
@@ -76,12 +73,10 @@ export function homeView() {
           <a class="itile" href="#/videos" style="--c:var(--tier-S)"><span class="ico">${ic("yt")}</span><div><b>Jeff's tier lists</b><span>Watch rankings</span></div></a></div>`}
       </div></div>
     <div class="sec"><h2>Top S-tier picks</h2><a href="#/lib" id="seeS">See all</a></div>
-    <div class="grid">${top.map((e) => xcard(e)).join("")}</div>
-    ${installBanner()}`;
+    <div class="grid">${top.map((e) => xcard(e)).join("")}</div>`;
   onImg(view());
   const ur = $("#useRec"); if (ur) ur.onclick = async () => { haptic(); if (await T.usePlan(planById(recommendedId()), false)) homeView(); };
   const sn = $("#startNext"); if (sn) sn.onclick = () => T.startSession(T.nextWorkout());
-  $("#presets").onclick = (e) => { const b = e.target.closest("[data-s]"); if (!b) return; haptic(); Tm.startCountdown(+b.dataset.s, { kind: "rest", label: "Rest" }); };
   $("#seeS").onclick = async (e) => { e.preventDefault(); const L = await import("./exercise.js"); Object.assign(L.lib, { tier: "S", group: "All", q: "" }); go("#/lib"); };
   wireInstall();
 }

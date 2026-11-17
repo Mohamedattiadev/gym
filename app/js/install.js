@@ -8,8 +8,9 @@ addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); deferredPro
 export const standalone = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone;
 const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 export function installBanner() {
-  if (standalone() || !S.sessions.length || Date.now() - (S.settings.installDismissed || 0) < 3 * 864e5) return "";
-  if (!deferredPrompt && !isIOS()) return "";
+  // shown from the first visit (was: only after a finished workout, and Chrome's own bar is suppressed above -> new users saw nothing)
+  if (standalone() || Date.now() - (S.settings.installDismissed || 0) < 3 * 864e5) return "";
+  if (!deferredPrompt && !isIOS() && !matchMedia("(pointer: coarse)").matches) return ""; // phones without a prompt get the menu steps
   return `<div class="install" id="install"><img src="icons/icon-192.png" alt="">
     <div class="grow"><b>Install Gym</b><div class="dim small">Full screen, works offline.</div></div>
     <button class="btn primary sm" id="doInstall">Install</button><button class="iconbtn sm" id="noInstall" aria-label="Dismiss">${ic("close", "sm")}</button></div>`;

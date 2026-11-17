@@ -995,3 +995,8 @@ body:has(#rov) .toast { bottom: auto; top: calc(var(--safe-t) + 16px); }
   .sess-stats { flex-wrap: wrap; gap: 4px 12px; }
   .notice { flex-wrap: wrap; }
 }
+/* Train: your plan + workouts first, tools as one compact row */
+.myplan { margin-bottom: 4px; } .myplan h3 { margin: 2px 0 4px; font-size: 1.25rem; }
+.tchips { display: flex; flex-wrap: wrap; gap: 8px; } .tchips .chip { height: 40px; text-decoration: none; color: var(--t1); }
+.wrow.next { box-shadow: 0 0 0 1.5px var(--accent); } .wrow .nx { color: var(--accent-text); font-weight: 700; }
+.cur-b { pointer-events: none; color: var(--ok); }

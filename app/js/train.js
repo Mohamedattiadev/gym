@@ -23,26 +23,33 @@ export function nextWorkout() {
   const i = last ? S.workouts.findIndex((w) => w.id === last.workoutId) : -1;
   return S.workouts[(i + 1) % S.workouts.length];
 }
+/** the plan the user's workouts came from (null = no plan) */
+export function currentPlan() { const id = S.workouts.find((w) => w.plan)?.plan; return id ? planById(id) : null; }
 export function trainView() {
   setTop({ title: "Train" });
+  const cur = currentPlan(), next = nextWorkout();
+  const wrow = (w) => `<div class="wrow${next && w.id === next.id ? " next" : ""}"><a class="grow" href="#/workout/${esc(w.id)}">
+          <img src="${BY[w.items[0]?.slug]?.poster || ""}" alt="" data-hide-broken><div class="grow"><div class="b ellip">${esc(w.name)}</div><div class="dim small">${next && w.id === next.id ? `<b class="nx">Next</b> · ` : ""}${w.items.length} exercises · ${w.items.reduce((a, it) => a + +it.sets, 0)} sets</div></div></a>
+          <button class="go-btn" data-start="${esc(w.id)}" aria-label="Start ${esc(w.name)}">${ic("play")}</button></div>`;
+  const planBox = cur ? `<div class="card pad myplan"><div class="eyebrow">Your plan</div><div class="row" style="gap:8px;align-items:baseline"><h3 class="grow">${esc(cur.name)}</h3><span class="dim small num">${cur.days} days a week</span></div>
+      <div class="muted small">Do the workouts below in order, one per training day. Each muscle ${freqOf(cur)}× a week.</div>
+      <div class="row" style="margin-top:10px"><a class="btn sm grow" href="#/plans">${ic("swap", "sm")} Change plan</a><a class="btn sm grow" href="#/plan/${cur.id}">How it works</a></div></div>`
+    : `<div class="card pad myplan"><div class="eyebrow">Step 1</div><h3>Pick a plan</h3><div class="muted small">A plan gives you ready workouts for each training day. You can change it any time.</div></div>`;
+  const plans = `<div class="stack tight stagger" id="planCards">${pickPlans({ level: S.profile?.level || "beginner", days: S.profile?.days || 3 }).map(({ p }) => planCard(p)).join("")}</div>
+      <div class="row" style="margin-top:6px"><a class="btn ghost grow" href="#/plans">All ${PLANS.length} plans</a><a class="btn ghost grow" href="#/start">${ic("layers", "sm")} Find my plan</a></div>`;
+  const tools = `<div class="sec"><h2>Tools</h2></div><div class="tchips">
+      <button class="chip" id="tPlates">${ic("calc", "sm")} Plates</button><button class="chip" id="t1rm">${ic("trophy", "sm")} 1RM</button>
+      <a class="chip" href="#/timer/countdown">${ic("timer", "sm")} Rest timer</a><a class="chip" href="#/timer/interval">${ic("bolt", "sm")} Intervals</a><a class="chip" href="#/warmup">${ic("flame", "sm")} Warm-up</a></div>`;
   view().innerHTML = `${S.active ? `<a class="hero-card live" href="#/session" style="display:block;margin-bottom:4px"><div class="eyebrow">In progress</div><h3>${esc(S.active.name)}</h3><div class="muted small">Tap to resume</div></a>` : ""}
     <div class="cols"><div>
-      <div class="sec"><h2>My workouts</h2><button class="btn sm" id="newW">${ic("plus", "sm")} New</button></div>
-      <div class="stack tight stagger">${S.workouts.map((w) => `<div class="wrow"><a class="grow" href="#/workout/${esc(w.id)}">
-          <img src="${BY[w.items[0]?.slug]?.poster || ""}" alt="" data-hide-broken><div class="grow"><div class="b ellip">${esc(w.name)}</div><div class="dim small">${w.items.length} exercises · ${w.items.reduce((a, it) => a + +it.sets, 0)} sets</div></div></a>
-          <button class="go-btn" data-start="${esc(w.id)}" aria-label="Start ${esc(w.name)}">${ic("play")}</button></div>`).join("") ||
-        `<div class="card pad row" style="gap:14px;text-align:start"><div class="ill" data-ill="empty-workouts" style="width:84px;margin:0;flex:none"></div><div class="grow"><b>No workouts yet</b><div class="muted small">Use a plan for your level or create your own.</div></div></div>`}</div>
+      ${planBox}
+      ${cur ? "" : plans}
+      <div class="sec"><h2>${cur ? "Workouts" : "My workouts"}</h2><button class="btn sm" id="newW">${ic("plus", "sm")} New</button></div>
+      <div class="stack tight stagger">${S.workouts.map(wrow).join("") ||
+        `<div class="card pad row" style="gap:14px;text-align:start"><div class="ill" data-ill="empty-workouts" style="width:84px;margin:0;flex:none"></div><div class="grow"><b>No workouts yet</b><div class="muted small">Pick a plan above, or tap New to build your own.</div></div></div>`}</div>
       ${S.active ? "" : `<button class="btn ghost block" id="quick" style="margin-top:6px">${ic("bolt", "sm")} Quick start — empty workout</button>`}
-      <div class="sec"><h2>Tools</h2></div>
-      <div class="itiles"><button class="itile" id="tPlates"><span class="ico">${ic("calc")}</span><div><b>Plates</b><span>What to load</span></div></button>
-        <button class="itile" id="t1rm" style="--c:var(--tier-S)"><span class="ico">${ic("trophy")}</span><div><b>1RM</b><span>Estimate your max</span></div></button>
-        <a class="itile" href="#/timer/countdown" style="--c:var(--info)"><span class="ico">${ic("timer")}</span><div><b>Timer</b><span>Rest countdown</span></div></a>
-        <a class="itile" href="#/timer/interval" style="--c:var(--tier-A)"><span class="ico">${ic("bolt")}</span><div><b>Intervals</b><span>Tabata / EMOM</span></div></a>
-        <a class="itile" href="#/warmup" style="--c:var(--accent)"><span class="ico">${ic("flame")}</span><div><b>Warm-up</b><span>Ramp-up, primers</span></div></a></div>
     </div><div>
-      <div class="sec"><h2>Plans for you</h2><a href="#/plans">All ${PLANS.length} plans</a></div>
-      <div class="stack tight stagger" id="planCards">${pickPlans({ level: S.profile?.level || "beginner", days: S.profile?.days || 3 }).map(({ p }) => planCard(p)).join("")}</div>
-      <a class="btn ghost block" href="#/start" style="margin-top:6px">${ic("layers", "sm")} Find my plan — 3 questions</a>
+      ${tools}
     </div></div>`;
   view().onclick = (e) => {
     const st = e.target.closest("[data-start]"); if (st) return startSession(S.workouts.find((w) => w.id === st.dataset.start));
@@ -57,11 +64,11 @@ async function newWorkout() { const n = await askText("New workout", { value: "P
 const LEVEL_T = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
 /** plan card: level tag, Recommended badge, name, days · minutes · frequency, one line (filled from plans.json) */
 export function planCard(p, { why = "" } = {}) {
-  const rec = p.id === recommendedId(), f = freqOf(p), mins = Math.max(...planSlots(p, planOpts()).map(minutesOf));
+  const cur = p.id === currentPlan()?.id, rec = p.id === recommendedId(), f = freqOf(p), mins = Math.max(...planSlots(p, planOpts()).map(minutesOf));
   return `<div class="plan-card${rec ? " rec" : ""}"><div class="row"><span class="tag" style="color:${LEVEL_C[p.level]};background:color-mix(in oklab, ${LEVEL_C[p.level]} 14%, transparent)">${LEVEL_T[p.level]}</span>${rec ? `<span class="tag rec-b">${ic("check", "sm")} Recommended</span>` : ""}<span class="grow"></span><a class="link small" href="#/plan/${p.id}" style="color:var(--accent-text);font-weight:600">How it works</a></div>
     <b>${esc(p.name)}</b><div class="dim small num">${p.days} days a week · ~${mins} min · each muscle ${f}× a week</div>
     <div class="muted small" data-pline="${p.id}">${why ? esc(why) : ""}</div>
-    <div class="row" style="margin-top:6px"><button class="btn sm grow" data-preview="${p.id}">Preview</button><button class="btn sm primary grow" data-use="${p.id}">Use plan</button></div></div>`;
+    <div class="row" style="margin-top:6px"><button class="btn sm grow" data-preview="${p.id}">Preview</button>${cur ? `<span class="btn sm grow cur-b" aria-disabled="true">${ic("check", "sm")} Your plan</span>` : `<button class="btn sm primary grow" data-use="${p.id}">Use plan</button>`}</div></div>`;
 }
 /** fill the one-line texts after plans.json arrives */
 export async function fillPlanLines(root) {
@@ -71,7 +78,7 @@ export async function fillPlanLines(root) {
 /** wire Preview / Use plan buttons inside root */
 export function planClicks(e) {
   const pv = e.target.closest("[data-preview]"); if (pv) { previewPlan(planById(pv.dataset.preview)); return true; }
-  const us = e.target.closest("[data-use]"); if (us) { usePlan(planById(us.dataset.use)); return true; }
+  const us = e.target.closest("[data-use]"); if (us) { usePlan(planById(us.dataset.use)).then((ok) => { if (ok && !location.hash.startsWith("#/train")) go("#/train"); }); return true; }
   return false;
 }
 export function previewPlan(p) {
@@ -87,7 +94,7 @@ export function previewPlan(p) {
       <button class="btn primary block" style="margin-top:16px" id="usePv">Use this plan</button>`;
     $("#pvMin", el).onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b) return; haptic(); o.min = +b.dataset.v; draw(el); };
     $("#pvFocus", el).onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b) return; haptic(); o.focus = b.dataset.v; draw(el); };
-    $("#usePv", el).onclick = () => { closeSheet(); usePlan(p, true, o); };
+    $("#usePv", el).onclick = () => { closeSheet(); usePlan(p, true, o).then((ok) => { if (ok && !location.hash.startsWith("#/train")) go("#/train"); }); };
   };
   openSheet(`<div id="pvBody"></div>`, (el) => draw($("#pvBody", el)));
 }
