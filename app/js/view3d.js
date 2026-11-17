@@ -217,6 +217,13 @@ function makeProp(kinds, model, dark) {
       const o = new THREE.Mesh(new THREE.BoxGeometry(.36, 1, .4), pad); g.add(o);
       ups.push(() => { const an = loc(bones.footR, a).clone(), toe = loc(bones["toe3-1R"] || bones.toe31R, b).clone(), fl = loc(bones.footL, c).y - .07, top = Math.min(an.y, toe.y) - .035, p = an.lerp(toe, .5), h = Math.max(.1, top - fl);
         o.scale.y = h; o.position.set(p.x, top - h / 2, p.z); });
+    } else if (kind === "stepbox") { // step-up: box (.42 m) under the front (left) foot, which stays planted
+      const o = new THREE.Mesh(new THREE.BoxGeometry(.75, .42, .4), pad); g.add(o);
+      ups.push(() => { const an = loc(bones.footL, a).clone(), toe = loc(bones["toe3-1L"] || bones.toe31L, b).clone(), p = an.lerp(toe, .45); o.position.set(p.x - .15, Math.min(an.y, toe.y) - .035 - .21, p.z); });
+    } else if (kind === "dipbench") { // bench dips: bench behind the hips under both hands
+      const o = new THREE.Mesh(new THREE.BoxGeometry(.9, 1, .32), pad); g.add(o);
+      ups.push(() => { const p = grip(hand[0], .3).add(grip(hand[1], .3)).multiplyScalar(.5), fl = Math.min(loc(bones.footL, c).y, loc(bones.footR, c).y) - .05, top = p.y - .03, h = Math.max(.1, top - fl);
+        o.scale.y = h; o.position.set(p.x, top - h / 2, p.z - .1); });
     } else if (kind === "dipbars") for (let i = 0; i < 2; i++) { const o = new THREE.Mesh(new THREE.CylinderGeometry(.02, .02, .6, 16), mat); o.rotation.x = Math.PI / 2; g.add(o);
       ups.push(() => { o.position.copy(grip(hand[i], .3)); o.position.y -= .02; });
     }
