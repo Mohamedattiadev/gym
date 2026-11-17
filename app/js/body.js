@@ -51,9 +51,90 @@ export function zoomTo(svg, target, ms = 520) {
   const step = (now) => {
     const t = Math.min(1, (now - t0) / ms), k = ease(t);
     svg.setAttribute("viewBox", from.map((v, i) => (v + (target[i] - v) * k).toFixed(2)).join(" "));
-    if (t < 1) svg._raf = requestAnimationFrame(step);
+    if (t < 1) svg._raf = requestAnimationFrame(step); else svg._pz?.();
   };
   svg._raf = requestAnimationFrame(step);
 }
 export const FULL = VIEWBOX;
+
+/** 18b: zoom + pan on anatomy SVGs that share one viewBox (front + back move together).
+ *  pinch / wheel / drag (when zoomed) / double-tap (zoomed -> whole body, else 2x there); a tap that did not move still clicks. */
+export function panZoom(host, svgs, { minW = FULL[2] / 5, signal } = {}) {
+  const on = { signal }, s0 = svgs[0];
+  const vb = () => s0.getAttribute("viewBox").split(" ").map(Number);
+  const asp = () => { const r = s0.getBoundingClientRect(); return r.width > 0 && r.height > 0 ? r.width / r.height : FULL[2] / FULL[3]; };
+  const maxH = (a) => Math.max(FULL[3], FULL[2] / a);
+  /* fill the svg box (no letterbox), clamp size and keep the view on the body */
+  const fit = ([x, y, w, h]) => {
+    const a = asp(), cx = x + w / 2, cy = y + h / 2;
+    if (w / h < a) w = h * a; else h = w / a;
+    if (h > maxH(a)) { h = maxH(a); w = h * a; }
+    if (w < minW) { w = minW; h = w / a; }
+    const cl = (c, s, o, S) => (s >= S ? o + S / 2 : Math.min(o + S - s / 2, Math.max(o + s / 2, c)));
+    return [cl(cx, w, FULL[0], FULL[2]) - w / 2, cl(cy, h, FULL[1], FULL[3]) - h / 2, w, h];
+  };
+  const zoomed = (v = vb()) => v[3] < maxH(asp()) * .97;
+  const mark = () => host.classList.toggle("zoomed", zoomed());
+  svgs.forEach((s) => (s._pz = mark));
+  const apply = (v) => { svgs.forEach((s) => { cancelAnimationFrame(s._raf); s.setAttribute("viewBox", v.map((n) => n.toFixed(2)).join(" ")); }); mark(); };
+  const go = (v, ms = 320) => { v = fit(v); if (matchMedia("(prefers-reduced-motion: reduce)").matches) return apply(v); svgs.forEach((s) => zoomTo(s, v, ms)); };
+  const svgAt = (x, y) => svgs.find((s) => { const r = s.getBoundingClientRect(); return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom; }) || s0;
+  const toUser = (x, y) => { const s = svgAt(x, y), p = s.createSVGPoint(); p.x = x; p.y = y; return p.matrixTransform(s.getScreenCTM().inverse()); };
+  const around = (v, f, u) => [u.x - (u.x - v[0]) / f, u.y - (u.y - v[1]) / f, v[2] / f, v[3] / f];
+  const center = (v) => ({ x: v[0] + v[2] / 2, y: v[1] + v[3] / 2 });
+  const zoomAt = (f, x, y) => { const v = vb(); apply(fit(around(v, f, toUser(x, y)))); };
+  const panBy = (dx, dy) => { const v = vb(), k = s0.getScreenCTM()?.a || 1; apply(fit([v[0] - dx / k, v[1] - dy / k, v[2], v[3]])); };
+  const full = () => go(FULL);
+  const pts = new Map(); let start = null, moved = false, lastTap = 0, framed = null;
+  /* the box can change size later (figure image loads, rotation): keep the framing, else keep filling the box */
+  let lastA = 0; const ro = new ResizeObserver(() => requestAnimationFrame(() => {
+    if (!s0.isConnected) return ro.disconnect(); const a = asp(); if (Math.abs(a - lastA) < .01) return; lastA = a;
+    if (framed) api.frame(framed, 0); else if (zoomed()) apply(fit(vb())); }));
+  ro.observe(s0); signal?.addEventListener("abort", () => ro.disconnect());
+  host.addEventListener("pointerdown", (e) => { framed = null;
+    if (e.button > 0 || e.target.closest("button, a")) return;
+    pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pts.size === 1) { start = { x: e.clientX, y: e.clientY }; moved = false; } else moved = true;
+  }, on);
+  host.addEventListener("pointermove", (e) => {
+    const p = pts.get(e.pointerId); if (!p) return; const q = { x: e.clientX, y: e.clientY };
+    if (pts.size >= 2) {
+      const [a, b] = [...pts.values()], d0 = Math.hypot(a.x - b.x, a.y - b.y), m0 = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+      pts.set(e.pointerId, q); const [c, d] = [...pts.values()], d1 = Math.hypot(c.x - d.x, c.y - d.y), m1 = { x: (c.x + d.x) / 2, y: (c.y + d.y) / 2 };
+      if (d0 > 0) zoomAt(d1 / d0, m1.x, m1.y); panBy(m1.x - m0.x, m1.y - m0.y); return;
+    }
+    pts.set(e.pointerId, q);
+    if (!moved && Math.hypot(q.x - start.x, q.y - start.y) < 6) return;
+    if (!zoomed()) return; // whole body: let the page scroll
+    if (!moved) { moved = true; try { host.setPointerCapture(e.pointerId); } catch {} }
+    panBy(q.x - p.x, q.y - p.y);
+  }, on);
+  const up = (e) => {
+    if (!pts.delete(e.pointerId)) return;
+    if (e.type === "pointerup" && !pts.size && !moved) { // double-tap
+      const t = e.timeStamp; if (t - lastTap < 320) { lastTap = 0; zoomed() ? full() : go(around(vb(), 2.2, toUser(e.clientX, e.clientY))); } else lastTap = t;
+    }
+  };
+  host.addEventListener("pointerup", up, on); host.addEventListener("pointercancel", up, on);
+  host.addEventListener("click", (e) => { if (moved) { moved = false; e.stopPropagation(); e.preventDefault(); } }, { capture: true, signal });
+  host.addEventListener("wheel", (e) => {
+    const f = Math.exp(-e.deltaY * .0015); if (f < 1 && !zoomed()) return; // zooming out at whole body = normal page scroll
+    e.preventDefault(); zoomAt(f, e.clientX, e.clientY);
+  }, { passive: false, signal });
+  const api = {
+    zoomBy: (f) => { framed = null; go(around(vb(), f, center(vb()))); },
+    full: () => { framed = null; full(); }, zoomed,
+    /** open framed on these muscles (padded); whole body when they cover most of it */
+    frame(ids, ms = 560) {
+      framed = ids; lastA = asp();
+      let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+      for (const s of svgs) for (const id of ids) { if (!s.querySelector(`path.m[data-m="${id}"]`)) continue;
+        const [x, y, w, h] = muscleBox(s, id); if (!(w > 0)) continue; x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x + w); y1 = Math.max(y1, y + h); }
+      if (!(x1 > x0)) return;
+      const pad = Math.max(x1 - x0, y1 - y0) * .12 + 6, v = fit([x0 - pad, y0 - pad, x1 - x0 + pad * 2, y1 - y0 + pad * 2]);
+      if (v[3] < maxH(asp()) * .85) ms ? go(v, ms) : apply(v); else apply(fit(FULL));
+    },
+  };
+  return api;
+}
 export const HEAT = ["var(--mus)", "color-mix(in oklab, var(--accent) 22%, var(--mus))", "color-mix(in oklab, var(--accent) 45%, var(--mus))", "color-mix(in oklab, var(--accent) 70%, var(--mus))", "var(--accent)"];

@@ -3,7 +3,7 @@ import "./log.js"; // FE-6: first, so boot errors are caught too
 import { S, save, tomb, loadStore, persist, flush, degraded } from "./store.js";
 import { $, $$, esc, ic, openSheet, closeSheet, initSheet, toast, haptic, unlockAudio, indicate, selectIn, RM } from "./ui.js";
 import { EX, searchEx, byTier, weeklyVolume, loadExercises, hasEquip, hurts, recovery } from "./data.js";
-import { MUSCLES, MBY, bodySVG, muscleBox, zoomTo, FULL, HEAT, CREDIT } from "./body.js";
+import { MUSCLES, MBY, bodySVG, muscleBox, zoomTo, panZoom, FULL, HEAT, CREDIT } from "./body.js";
 import { nextRoute, routeId, live, go, routeParts, onRoute, setTop } from "./nav.js";
 import { MEDIA_CACHE, fillIll, applyTheme, tierBadge, onImg } from "./components.js";
 import "./install.js";
@@ -160,7 +160,7 @@ function bodyMap() {
       <div class="bm-top" id="bmtop"><div class="seg" id="side"><button data-v="front" class="${bm.view === "front" ? "on" : ""}">Front</button><button data-v="back" class="${bm.view === "back" ? "on" : ""}">Back</button></div>
         <div class="seg" id="mode">${[["muscles", "Muscles"], ["week", "This week"], ["rec", "Recovery"]].map(([k, l]) => `<button data-k="${k}" class="${M === k ? "on" : ""}">${l}</button>`).join("")}</div></div>
       ${hint}
-      <div class="body-wrap" id="bwrap">${bodySVG(bm.view)}</div>
+      <div class="body-wrap" id="bwrap">${bodySVG(bm.view)}<div class="zctl"><button class="iconbtn" data-z="1.4" aria-label="Zoom in">${ic("plus", "sm")}</button><button class="iconbtn" data-z="0.7" aria-label="Zoom out">${ic("minus", "sm")}</button></div></div>
       <div class="dim tiny bm-credit"><button class="linkbtn" id="credit">Anatomy art credit</button></div></div>
     <div class="bm-side"><div id="bmlist"><div class="sec"><h2>Muscles</h2></div>
       <div class="mgrid stagger" id="legend">${list.map((m) => `<button data-m="${m.id}" style="--hm:${dot(m)}"><i></i>${m.name}<span class="c">${cnt(m)}</span></button>`).join("")}</div></div>
@@ -234,6 +234,8 @@ function bodyMap() {
   });
   svg.onclick = (e) => { const p = e.target.closest("path.m"); if (p) select(p.dataset.m); else if (ctl.open) ctl.close(); };
   $("#bwrap").onclick = (e) => { if (e.target.id === "bwrap" && ctl.open) ctl.close(); };
+  const pz = panZoom($("#bwrap"), [svg]); // 18b
+  $("#bwrap .zctl").onclick = (e) => { const z = e.target.closest("[data-z]"); if (z) { haptic(); pz.zoomBy(+z.dataset.z); } };
   $("#legend").onclick = (e) => { const b = e.target.closest("button"); if (b) select(b.dataset.m); };
   $("#credit").onclick = () => openSheet(`<h3>Anatomy art</h3><p class="muted small">${esc(CREDIT.title)} by ${esc(CREDIT.author)}.<br>License: <a href="${esc(CREDIT.licenseUrl)}" target="_blank" rel="noopener">${esc(CREDIT.license)}</a>. ${esc(CREDIT.note || "")}</p><p class="small"><a href="${esc(CREDIT.url)}" target="_blank" rel="noopener">Original source</a></p>`);
   $("#side").onclick = (e) => { const b = e.target.closest("button"); if (!b || b.dataset.v === bm.view) return; bm.view = b.dataset.v; haptic(); selectIn(b); setTimeout(() => { bodyMap(); $("#bwrap").classList.add("flip"); indicate(view); }, 160); };
