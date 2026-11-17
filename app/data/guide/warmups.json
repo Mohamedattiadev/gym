@@ -1,0 +1,436 @@
+{
+  "sources": [
+    {"id": "jeff", "name": "Jeff Nippard", "url": "https://www.youtube.com/watch?v=E81GN-3A8XM"},
+    {"id": "sbs", "name": "Stronger By Science", "url": "https://www.youtube.com/watch?v=pUfTC-UGLjs"},
+    {"id": "rp", "name": "Mike Israetel (Renaissance Periodization)", "url": "https://www.youtube.com/watch?v=HDq-68SlPgQ"},
+    {"id": "helms", "name": "Eric Helms (3DMJ)", "url": "https://www.youtube.com/watch?v=h1PsQgCUp5w"},
+    {"id": "squatu", "name": "Squat University (Dr. Aaron Horschig)", "url": "https://www.youtube.com/watch?v=dBYjU7iBpck"}
+  ],
+  "intro": {"en": "Warming up raises your body heat, loosens the joints you are about to use and helps you lift more with less risk. Plan 5-8 minutes, then a few light sets.", "tr": "Isınma vücut ısını yükseltir, kullanacağın eklemleri açar ve daha az riskle daha fazla kaldırmanı sağlar. 5-8 dakika ayır, ardından birkaç hafif set yap.", "ar": "الإحماء يرفع حرارة جسمك ويهيّئ المفاصل التي ستستخدمها ويساعدك على رفع أكثر بمخاطرة أقل. خصّص له 5-8 دقائق ثم بضع مجموعات خفيفة."},
+  "general": {
+    "note": {"en": "2-4 minutes of easy cardio until you feel warm, then a few moving drills for today's joints. Skip long static stretches before lifting; a short hold is fine if a spot feels tight.", "tr": "Isınana kadar 2-4 dakika hafif kardiyo, ardından bugünkü eklemler için birkaç hareketli egzersiz. Antrenmandan önce uzun statik esnemeyi atla; bir bölge gergin hissediyorsa kısa bir bekleme yeterli.", "ar": "دقيقتان إلى أربع من الكارديو السهل حتى تشعر بالدفء، ثم بعض التمارين الحركية لمفاصل اليوم. تجنّب الإطالة الثابتة الطويلة قبل الرفع، ولا بأس بثبات قصير إن شعرت بشدّ في موضع ما."},
+    "cardio": ["easy-bike", "incline-walk", "easy-row", "jumping-jacks", "jump-rope"],
+    "mobility": {
+      "push": ["arm-circles", "arm-swings", "band-pull-apart", "scap-push-up", "cat-camel"],
+      "pull": ["arm-circles", "band-pull-apart", "cat-camel", "wall-slides", "inchworm"],
+      "legs": ["leg-swings", "worlds-greatest-stretch", "bodyweight-squat", "knee-to-wall", "squat-and-reach"],
+      "full": ["inchworm", "worlds-greatest-stretch", "arm-circles", "leg-swings", "bodyweight-squat"]
+    }
+  },
+  "ramp": {
+    "note": {"en": "Ramp-up sets are light practice sets that build up to your working weight. They should wake you up, not tire you.", "tr": "Isınma setleri, çalışma ağırlığına kadar kademeli çıkan hafif deneme setleridir. Seni yormamalı, hazırlamalı.", "ar": "مجموعات التدرج هي مجموعات تمرين خفيفة تصعد بك إلى وزن العمل. هدفها تهيئتك لا إتعابك."},
+    "rules": [
+      {"en": "First exercise for a muscle: 2-3 light sets, e.g. 50% x 8, then 75% x 4, then start.", "tr": "Bir kasın ilk egzersizi: 2-3 hafif set, örneğin %50 x 8, sonra %75 x 4, ardından başla.", "ar": "أول تمرين للعضلة: 2-3 مجموعات خفيفة، مثل 50% × 8 ثم 75% × 4، ثم ابدأ."},
+      {"en": "Heavy squat, deadlift or bench: empty bar x 10, then about 40, 60, 75 and 85% with fewer reps each step.", "tr": "Ağır squat, deadlift veya bench: boş bar x 10, sonra her adımda daha az tekrarla yaklaşık %40, 60, 75 ve 85.", "ar": "للسكوات أو الرفعة الميتة أو البنش الثقيل: البار فارغًا × 10، ثم نحو 40 و60 و75 و85% مع تكرارات أقل في كل خطوة."},
+      {"en": "Keep every warm-up set far from failure and rest about a minute between them.", "tr": "Her ısınma setini tükenişten çok uzak tut ve aralarda yaklaşık bir dakika dinlen.", "ar": "اجعل كل مجموعة إحماء بعيدة جدًا عن الإنهاك، واسترح نحو دقيقة بينها."},
+      {"en": "Later exercises for the same muscle need 0-1 warm-up sets.", "tr": "Aynı kas için sonraki egzersizlerde 0-1 ısınma seti yeterli.", "ar": "التمارين اللاحقة للعضلة نفسها تحتاج 0-1 مجموعة إحماء فقط."}
+    ]
+  },
+  "areas": {
+    "shoulders": {
+      "name": {"en": "Shoulders and chest", "tr": "Omuz ve göğüs", "ar": "الكتفان والصدر"},
+      "drills": ["arm-circles", "band-pull-apart", "band-face-pull"]
+    },
+    "back": {
+      "name": {"en": "Back", "tr": "Sırt", "ar": "الظهر"},
+      "drills": ["cat-camel", "wall-slides", "inchworm"]
+    },
+    "knees": {
+      "name": {"en": "Knees and quads", "tr": "Diz ve ön bacak", "ar": "الركبتان والفخذ الأمامي"},
+      "drills": ["bodyweight-squat", "goblet-squat-hold", "walking-lunge"]
+    },
+    "hips": {
+      "name": {"en": "Hips and glutes", "tr": "Kalça", "ar": "الوركان والألوية"},
+      "drills": ["hip-airplane", "cossack-squat", "glute-bridge"]
+    },
+    "elbows": {
+      "name": {"en": "Elbows and wrists", "tr": "Dirsek ve bilek", "ar": "المرفقان والرسغان"},
+      "drills": ["wrist-circles", "easy-arm-pump"]
+    },
+    "ankles": {
+      "name": {"en": "Ankles and calves", "tr": "Ayak bileği ve baldır", "ar": "الكاحلان والسمانة"},
+      "drills": ["knee-to-wall", "ankle-circles", "slow-calf-raises"]
+    },
+    "core": {
+      "name": {"en": "Core", "tr": "Karın ve gövde", "ar": "عضلات الجذع"},
+      "drills": ["dead-bug", "bird-dog"]
+    }
+  },
+  "muscleArea": {
+    "chest": "shoulders",
+    "delt-front": "shoulders",
+    "delt-side": "shoulders",
+    "delt-rear": "shoulders",
+    "triceps": "elbows",
+    "biceps": "elbows",
+    "forearms": "elbows",
+    "lats": "back",
+    "upper-back": "back",
+    "traps": "back",
+    "lower-back": "back",
+    "abs": "core",
+    "obliques": "core",
+    "quads": "knees",
+    "glutes": "hips",
+    "hamstrings": "hips",
+    "adductors": "hips",
+    "calves": "ankles",
+    "shins": "ankles"
+  },
+  "cooldown": {
+    "note": {"en": "Optional. Hold each stretch about 30 seconds, breathe slowly and don't bounce.", "tr": "İsteğe bağlı. Her esnemeyi yaklaşık 30 saniye tut, yavaş nefes al ve yaylanma.", "ar": "اختياري. اثبت في كل إطالة نحو 30 ثانية، وتنفّس ببطء دون ارتداد."},
+    "drills": ["doorway-chest-stretch", "kneeling-lat-stretch", "hip-flexor-stretch", "hamstring-stretch", "seated-glute-stretch", "calf-stretch-wall"]
+  },
+  "drills": {
+    "easy-bike": {
+      "name": {"en": "Easy bike", "tr": "Hafif bisiklet", "ar": "دراجة ثابتة بخفة"},
+      "how": {"en": "Pedal at an easy, steady pace until you feel warm and start a light sweat.", "tr": "Isındığını hissedip hafif terleyene kadar rahat ve sabit tempoda pedal çevir.", "ar": "دوّس بإيقاع سهل وثابت حتى تشعر بالدفء ويبدأ عرق خفيف."},
+      "cue": {"en": "Easy pace, light sweat", "tr": "Rahat tempo, hafif ter", "ar": "إيقاع سهل وعرق خفيف"},
+      "secs": 180,
+      "reps": null,
+      "fig": "0798",
+      "clip": null,
+      "src": "jeff"
+    },
+    "incline-walk": {
+      "name": {"en": "Incline walk", "tr": "Eğimli yürüyüş", "ar": "مشي على مرتفع"},
+      "how": {"en": "Walk briskly on an inclined treadmill or stair machine. Stop once you feel warm.", "tr": "Eğimli koşu bandında ya da merdiven makinesinde tempolu yürü. Isınınca bırak.", "ar": "امشِ بسرعة على جهاز مشي مائل أو جهاز الدرج، وتوقف حين تشعر بالدفء."},
+      "cue": {"en": "Brisk, not hard", "tr": "Tempolu ama zorlamadan", "ar": "سريع دون إجهاد"},
+      "secs": 180,
+      "reps": null,
+      "fig": null,
+      "clip": null,
+      "src": "jeff"
+    },
+    "easy-row": {
+      "name": {"en": "Easy rowing", "tr": "Hafif kürek", "ar": "تجديف خفيف"},
+      "how": {"en": "Row smoothly at low effort: legs, then body, then arms.", "tr": "Düşük eforla akıcı kürek çek: önce bacaklar, sonra gövde, sonra kollar.", "ar": "جدّف بسلاسة وبجهد منخفض: الساقان أولًا ثم الجذع ثم الذراعان."},
+      "cue": {"en": "Legs, body, arms", "tr": "Bacak, gövde, kol", "ar": "ساقان، جذع، ذراعان"},
+      "secs": 180,
+      "reps": null,
+      "fig": "pulse-0011",
+      "clip": null,
+      "src": "jeff"
+    },
+    "jumping-jacks": {
+      "name": {"en": "Jumping jacks", "tr": "Jumping jack", "ar": "القفز مع فتح الذراعين"},
+      "how": {"en": "Jump your feet out as your arms go overhead, then back together. Keep it light and bouncy.", "tr": "Kolların başının üstüne çıkarken ayaklarını açarak zıpla, sonra kapat. Hafif ve yaylanarak yap.", "ar": "اقفز فاتحًا قدميك بينما ترفع ذراعيك فوق رأسك، ثم أعدهما معًا. اجعل الحركة خفيفة ومرنة."},
+      "cue": {"en": "Light on your feet", "tr": "Ayaklarında hafif ol", "ar": "خفيف على قدميك"},
+      "secs": 60,
+      "reps": null,
+      "fig": "3224",
+      "clip": null,
+      "src": "jeff"
+    },
+    "jump-rope": {
+      "name": {"en": "Jump rope", "tr": "İp atlama", "ar": "نط الحبل"},
+      "how": {"en": "Skip with small, quick hops on the balls of your feet.", "tr": "Ayak ön tarafında küçük ve hızlı sıçramalarla ip atla.", "ar": "اقفز قفزات صغيرة وسريعة على مقدمة القدمين."},
+      "cue": {"en": "Small hops", "tr": "Küçük sıçramalar", "ar": "قفزات صغيرة"},
+      "secs": 60,
+      "reps": null,
+      "fig": "2612",
+      "clip": null,
+      "src": "jeff"
+    },
+    "arm-circles": {
+      "name": {"en": "Arm circles", "tr": "Kol çevirme", "ar": "دوائر الذراعين"},
+      "how": {"en": "Arms out to the sides. Start with small circles and grow them big, then switch direction.", "tr": "Kolların yanlara açık. Küçük dairelerle başla, giderek büyüt, sonra yönü değiştir.", "ar": "افتح ذراعيك جانبًا. ابدأ بدوائر صغيرة وكبّرها تدريجيًا، ثم غيّر الاتجاه."},
+      "cue": {"en": "Small to big", "tr": "Küçükten büyüğe", "ar": "من الصغير إلى الكبير"},
+      "secs": 30,
+      "reps": {"en": "10-12 each way", "tr": "Her yöne 10-12", "ar": "10-12 في كل اتجاه"},
+      "fig": null,
+      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "7:15", "end": "7:22", "by": "Jeff Nippard"},
+      "src": "jeff"
+    },
+    "arm-swings": {
+      "name": {"en": "Arm swings", "tr": "Kol savurma", "ar": "أرجحة الذراعين"},
+      "how": {"en": "Open your arms wide, then swing them across your chest in a hug. Keep it relaxed.", "tr": "Kollarını iki yana açıp göğsünün önünde sarılır gibi kapat. Gevşek kal.", "ar": "افتح ذراعيك على اتساعهما، ثم أرجحهما أمام صدرك كأنك تعانق. ابقَ مسترخيًا."},
+      "cue": {"en": "Open wide, hug", "tr": "Aç ve sarıl", "ar": "افتح ثم عانق"},
+      "secs": 30,
+      "reps": {"en": "10-12 reps", "tr": "10-12 tekrar", "ar": "10-12 تكرارًا"},
+      "fig": "1167",
+      "clip": null,
+      "src": "jeff"
+    },
+    "band-pull-apart": {
+      "name": {"en": "Band pull-apart", "tr": "Bant açma", "ar": "شد الشريط للجانبين"},
+      "how": {"en": "Hold a light band at chest height with straight arms and pull it apart until it touches your chest.", "tr": "Hafif bir bandı göğüs hizasında düz kollarla tut, göğsüne değene kadar iki yana aç.", "ar": "أمسك شريطًا خفيفًا بذراعين مستقيمتين أمام صدرك، واسحبه للجانبين حتى يلمس صدرك."},
+      "cue": {"en": "Squeeze shoulder blades", "tr": "Kürek kemiklerini sık", "ar": "اضمم لوحي الكتف"},
+      "secs": 40,
+      "reps": {"en": "12-15 reps", "tr": "12-15 tekrar", "ar": "12-15 تكرارًا"},
+      "fig": "0993",
+      "clip": null,
+      "src": "jeff"
+    },
+    "band-face-pull": {
+      "name": {"en": "Band face pull", "tr": "Bantla face pull", "ar": "سحب الشريط نحو الوجه"},
+      "how": {"en": "Pull a band anchored at face height toward your eyes, elbows high, and turn your hands back.", "tr": "Yüz hizasına bağlı bandı dirsekler yukarıda gözlerine doğru çek, elleri geriye çevir.", "ar": "اسحب شريطًا مثبتًا بمستوى الوجه نحو عينيك مع رفع المرفقين، وأدِر يديك للخلف."},
+      "cue": {"en": "Elbows high, hands back", "tr": "Dirsek yukarı, eller geri", "ar": "مرفقان عاليان ويدان للخلف"},
+      "secs": 40,
+      "reps": {"en": "10-12 reps", "tr": "10-12 tekrar", "ar": "10-12 تكرارًا"},
+      "fig": null,
+      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "7:30", "end": "7:37", "by": "Jeff Nippard"},
+      "src": "jeff"
+    },
+    "wall-slides": {
+      "name": {"en": "Wall slides", "tr": "Duvar kaydırma", "ar": "انزلاق الذراعين على الحائط"},
+      "how": {"en": "Back and arms against a wall, elbows bent. Slide your arms up overhead and back down without losing contact.", "tr": "Sırtın ve kolların duvarda, dirsekler bükülü. Kollarını temas kesmeden yukarı kaydır ve indir.", "ar": "ظهرك وذراعاك على الحائط والمرفقان مثنيان. مرّر ذراعيك للأعلى ثم للأسفل دون أن تفقد التلامس."},
+      "cue": {"en": "Stay on the wall", "tr": "Duvardan ayrılma", "ar": "ابقَ ملاصقًا للحائط"},
+      "secs": 40,
+      "reps": {"en": "8-10 reps", "tr": "8-10 tekrar", "ar": "8-10 تكرارات"},
+      "fig": null,
+      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "7:37", "end": "7:46", "by": "Jeff Nippard"},
+      "src": "jeff"
+    },
+    "scap-push-up": {
+      "name": {"en": "Scap push-up", "tr": "Kürek kemiği şınavı", "ar": "ضغط لوحي الكتف"},
+      "how": {"en": "In a push-up position with straight arms, let your chest sink between your shoulder blades, then push the floor away.", "tr": "Kollar düz şınav pozisyonunda göğsünü kürek kemiklerinin arasına bırak, sonra yeri iterek yüksel.", "ar": "في وضع الضغط والذراعان مستقيمتان، اترك صدرك ينزل بين لوحي الكتف، ثم ادفع الأرض بعيدًا."},
+      "cue": {"en": "Arms stay straight", "tr": "Kollar düz kalır", "ar": "الذراعان مستقيمتان"},
+      "secs": 30,
+      "reps": {"en": "10-12 reps", "tr": "10-12 tekrar", "ar": "10-12 تكرارًا"},
+      "fig": "3021",
+      "clip": null,
+      "src": "jeff"
+    },
+    "wrist-circles": {
+      "name": {"en": "Wrist circles", "tr": "Bilek çevirme", "ar": "دوائر الرسغين"},
+      "how": {"en": "Arms forward, make slow circles with your fists in both directions.", "tr": "Kolların önde, yumruklarınla iki yöne yavaş daireler çiz.", "ar": "مدّ ذراعيك للأمام وارسم بقبضتيك دوائر بطيئة في الاتجاهين."},
+      "cue": {"en": "Slow and full", "tr": "Yavaş ve tam tur", "ar": "ببطء ودوائر كاملة"},
+      "secs": 30,
+      "reps": {"en": "10 each way", "tr": "Her yöne 10", "ar": "10 في كل اتجاه"},
+      "fig": "1428",
+      "clip": null,
+      "src": "jeff"
+    },
+    "easy-arm-pump": {
+      "name": {"en": "Light curls and pushdowns", "tr": "Hafif curl ve pushdown", "ar": "ثني ودفع خفيف للذراعين"},
+      "how": {"en": "Do one easy set each of very light curls and cable or band pushdowns to warm the elbows.", "tr": "Dirsekleri ısıtmak için çok hafif curl ve kablo ya da bant pushdown ile birer kolay set yap.", "ar": "نفّذ مجموعة سهلة من ثني الذراعين ومجموعة من دفع الكابل أو الشريط بوزن خفيف جدًا لتدفئة المرفقين."},
+      "cue": {"en": "Very light, smooth", "tr": "Çok hafif, akıcı", "ar": "خفيف جدًا وسلس"},
+      "secs": 45,
+      "reps": {"en": "15-20 each", "tr": "Her biri 15-20", "ar": "15-20 لكل تمرين"},
+      "fig": null,
+      "clip": null,
+      "src": "jeff"
+    },
+    "cat-camel": {
+      "name": {"en": "Cat-camel", "tr": "Kedi-deve", "ar": "القطة والجمل"},
+      "how": {"en": "On hands and knees, slowly round your back up, then let it dip down. Move gently, no forcing.", "tr": "Eller ve dizler üzerinde sırtını yavaşça yukarı yuvarla, sonra aşağı bırak. Zorlamadan, nazikçe.", "ar": "على اليدين والركبتين، قوّس ظهرك للأعلى ببطء ثم اتركه ينخفض. تحرك بلطف دون ضغط."},
+      "cue": {"en": "Round, then arch", "tr": "Yuvarla, sonra çukurlaştır", "ar": "قوّس ثم اخفض"},
+      "secs": 30,
+      "reps": {"en": "8-10 reps", "tr": "8-10 tekrar", "ar": "8-10 تكرارات"},
+      "fig": null,
+      "clip": {"q": "https://www.youtube.com/watch?v=4CvjRT5LMgI", "start": "0:30", "end": "0:46", "by": "Squat University"},
+      "src": "squatu"
+    },
+    "worlds-greatest-stretch": {
+      "name": {"en": "World's greatest stretch", "tr": "Dünyanın en iyi esneme hareketi", "ar": "أعظم تمرين إطالة"},
+      "how": {"en": "Step into a long lunge, put the same-side hand down, then rotate and reach the other arm to the ceiling.", "tr": "Uzun bir hamle adımı at, aynı taraftaki elini yere koy, sonra dönüp diğer kolunu tavana uzat.", "ar": "خذ خطوة طعن طويلة، وضع اليد في الجهة نفسها على الأرض، ثم استدر ومدّ الذراع الأخرى نحو السقف."},
+      "cue": {"en": "Rotate and reach", "tr": "Dön ve uzan", "ar": "استدر وامتد"},
+      "secs": 60,
+      "reps": {"en": "5 each side", "tr": "Her taraf 5", "ar": "5 لكل جهة"},
+      "fig": "1604",
+      "clip": null,
+      "src": "squatu"
+    },
+    "inchworm": {
+      "name": {"en": "Inchworm", "tr": "Tırtıl yürüyüşü", "ar": "دودة القياس"},
+      "how": {"en": "Bend over, walk your hands out to a push-up position, then walk your feet up to your hands.", "tr": "Öne eğil, ellerinle şınav pozisyonuna yürü, sonra ayaklarını ellerine doğru yürüt.", "ar": "انحنِ وامشِ بيديك حتى وضع الضغط، ثم امشِ بقدميك نحو يديك."},
+      "cue": {"en": "Hands out, feet in", "tr": "Eller ileri, ayaklar yaklaş", "ar": "اليدان للأمام والقدمان تلحقان"},
+      "secs": 45,
+      "reps": {"en": "5 reps", "tr": "5 tekrar", "ar": "5 تكرارات"},
+      "fig": "1471",
+      "clip": null,
+      "src": "jeff"
+    },
+    "leg-swings": {
+      "name": {"en": "Leg swings", "tr": "Bacak savurma", "ar": "أرجحة الساق"},
+      "how": {"en": "Hold a wall for balance. Swing one leg front to back, then side to side, growing the range.", "tr": "Denge için duvara tutun. Bir bacağını önden arkaya, sonra yandan yana savur, açıyı giderek artır.", "ar": "استند إلى الحائط للتوازن. أرجح ساقًا للأمام والخلف ثم من جانب لآخر، ووسّع المدى تدريجيًا."},
+      "cue": {"en": "Relaxed, grow the swing", "tr": "Gevşek, açıyı büyüt", "ar": "مسترخٍ ووسّع الأرجحة"},
+      "secs": 60,
+      "reps": {"en": "10-12 each way, each leg", "tr": "Her bacak, her yöne 10-12", "ar": "10-12 في كل اتجاه لكل ساق"},
+      "fig": null,
+      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "4:14", "end": "4:25", "by": "Jeff Nippard"},
+      "src": "jeff"
+    },
+    "bodyweight-squat": {
+      "name": {"en": "Bodyweight squat", "tr": "Vücut ağırlığıyla squat", "ar": "سكوات بوزن الجسم"},
+      "how": {"en": "Sit down between your heels as deep as is comfortable, then stand up tall.", "tr": "Rahat olduğun kadar derine, topukların arasına otur, sonra dik kalk.", "ar": "انزل بين كعبيك إلى أعمق نقطة مريحة، ثم قف منتصبًا."},
+      "cue": {"en": "Chest up, knees out", "tr": "Göğüs dik, dizler dışa", "ar": "الصدر مرفوع والركبتان للخارج"},
+      "secs": 40,
+      "reps": {"en": "10-15 reps", "tr": "10-15 tekrar", "ar": "10-15 تكرارًا"},
+      "fig": "3533",
+      "clip": null,
+      "src": "jeff"
+    },
+    "squat-and-reach": {
+      "name": {"en": "Squat and reach", "tr": "Squat ve uzanma", "ar": "سكوات مع مدّ الذراع"},
+      "how": {"en": "Grab your toes with soft knees, sink into a squat with your chest up, then lift one arm to the ceiling.", "tr": "Dizler hafif bükük ayak parmaklarını tut, göğüs dik squata in, sonra bir kolunu tavana kaldır.", "ar": "أمسك أصابع قدميك والركبتان مثنيتان قليلًا، انزل إلى السكوات والصدر مرفوع، ثم ارفع ذراعًا نحو السقف."},
+      "cue": {"en": "Chest up, open the hips", "tr": "Göğüs dik, kalçayı aç", "ar": "الصدر مرفوع وافتح الوركين"},
+      "secs": 45,
+      "reps": {"en": "4 each side", "tr": "Her taraf 4", "ar": "4 لكل جهة"},
+      "fig": null,
+      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "4:47", "end": "5:03", "by": "Jeff Nippard"},
+      "src": "jeff"
+    },
+    "walking-lunge": {
+      "name": {"en": "Walking lunges", "tr": "Yürüyen lunge", "ar": "الطعن مع المشي"},
+      "how": {"en": "Take long steps forward, lowering the back knee toward the floor each time.", "tr": "Uzun adımlarla ilerle, her adımda arka dizini yere doğru indir.", "ar": "خذ خطوات طويلة للأمام، وأنزل الركبة الخلفية نحو الأرض في كل خطوة."},
+      "cue": {"en": "Long, slow steps", "tr": "Uzun, yavaş adımlar", "ar": "خطوات طويلة وبطيئة"},
+      "secs": 45,
+      "reps": {"en": "5 each side", "tr": "Her taraf 5", "ar": "5 لكل جهة"},
+      "fig": "1460",
+      "clip": null,
+      "src": "jeff"
+    },
+    "goblet-squat-hold": {
+      "name": {"en": "Goblet squat hold", "tr": "Goblet squat bekleme", "ar": "ثبات في سكوات الكأس"},
+      "how": {"en": "Hold a light weight at your chest and sink into a deep squat. Rock gently side to side and push your knees forward over your toes.", "tr": "Göğsünde hafif bir ağırlık tutup derin squata in. Hafifçe yana yana sallan, dizlerini ayak parmaklarının üzerine doğru it.", "ar": "أمسك وزنًا خفيفًا عند صدرك وانزل إلى سكوات عميق. تمايل بلطف يمينًا ويسارًا وادفع ركبتيك للأمام فوق أصابع قدميك."},
+      "cue": {"en": "Heels down, knees out", "tr": "Topuklar yerde, dizler dışa", "ar": "الكعبان على الأرض والركبتان للخارج"},
+      "secs": 30,
+      "reps": null,
+      "fig": null,
+      "clip": {"q": "https://www.youtube.com/watch?v=pCEpcIo-O4I", "start": "1:30", "end": "1:55", "by": "Squat University"},
+      "src": "squatu"
+    },
+    "hip-airplane": {
+      "name": {"en": "Hip airplane", "tr": "Kalça uçağı", "ar": "طائرة الورك"},
+      "how": {"en": "Hold a rack lightly, hinge forward on one leg with the other leg back, then slowly turn your hips open and closed.", "tr": "Bir rafa hafifçe tutun, tek bacak üzerinde öne eğil, diğer bacak geride; kalçanı yavaşça açıp kapat.", "ar": "أمسك الحامل بخفة وانحنِ للأمام على ساق واحدة والأخرى للخلف، ثم افتح وركك وأغلقه ببطء."},
+      "cue": {"en": "Standing knee stays still", "tr": "Destek dizi sabit", "ar": "ركبة الارتكاز ثابتة"},
+      "secs": 60,
+      "reps": {"en": "5 each side", "tr": "Her taraf 5", "ar": "5 لكل جهة"},
+      "fig": null,
+      "clip": {"q": "https://www.youtube.com/watch?v=9V8oGt2hfCI", "start": "1:15", "end": "1:40", "by": "Squat University"},
+      "src": "squatu"
+    },
+    "cossack-squat": {
+      "name": {"en": "Cossack squat", "tr": "Kazak squat", "ar": "سكوات القوزاق"},
+      "how": {"en": "From a wide stance, shift down onto one leg while the other stays straight, then switch sides. Hold something if needed.", "tr": "Geniş duruştan bir bacağının üstüne in, diğeri düz kalsın, sonra taraf değiştir. Gerekirse bir yere tutun.", "ar": "من وقفة واسعة، انزل على ساق واحدة والأخرى مستقيمة، ثم بدّل الجهة. أمسك شيئًا إن احتجت."},
+      "cue": {"en": "Sit into one hip", "tr": "Bir kalçaya otur", "ar": "اجلس على ورك واحد"},
+      "secs": 45,
+      "reps": {"en": "5 each side", "tr": "Her taraf 5", "ar": "5 لكل جهة"},
+      "fig": null,
+      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "5:08", "end": "5:20", "by": "Jeff Nippard"},
+      "src": "jeff"
+    },
+    "glute-bridge": {
+      "name": {"en": "Glute bridge", "tr": "Glute köprü", "ar": "جسر الألوية"},
+      "how": {"en": "Lie on your back, knees bent, and drive your hips up until your body is straight from knees to shoulders.", "tr": "Sırtüstü yat, dizler bükülü; kalçanı dizlerinden omuzlarına düz bir çizgi olana kadar yukarı it.", "ar": "استلقِ على ظهرك والركبتان مثنيتان، وادفع وركيك للأعلى حتى يستقيم جسمك من الركبتين إلى الكتفين."},
+      "cue": {"en": "Squeeze at the top", "tr": "Tepede sık", "ar": "اعصر في الأعلى"},
+      "secs": 40,
+      "reps": {"en": "10-12 reps", "tr": "10-12 tekrar", "ar": "10-12 تكرارًا"},
+      "fig": "3013",
+      "clip": null,
+      "src": "jeff"
+    },
+    "knee-to-wall": {
+      "name": {"en": "Knee to wall", "tr": "Diz duvara", "ar": "الركبة إلى الحائط"},
+      "how": {"en": "Half-kneel facing a wall, front foot a few cm away. Push the knee forward over the toes to tap the wall, heel stays down.", "tr": "Duvara dönük yarım diz çök, ön ayak birkaç cm uzakta. Topuk yerdeyken dizini parmakların üzerinden duvara değdir.", "ar": "اجثُ على ركبة واحدة مواجهًا الحائط وقدمك الأمامية على بعد سنتيمترات منه. ادفع الركبة فوق الأصابع لتلمس الحائط والكعب على الأرض."},
+      "cue": {"en": "Heel stays down", "tr": "Topuk yerde", "ar": "الكعب على الأرض"},
+      "secs": 45,
+      "reps": {"en": "10 each side", "tr": "Her taraf 10", "ar": "10 لكل جهة"},
+      "fig": null,
+      "clip": {"q": "https://www.youtube.com/watch?v=IikP_teeLkI", "start": "1:08", "end": "1:26", "by": "Squat University"},
+      "src": "squatu"
+    },
+    "ankle-circles": {
+      "name": {"en": "Ankle circles", "tr": "Ayak bileği çevirme", "ar": "دوائر الكاحل"},
+      "how": {"en": "Lift one foot and draw slow, full circles with your toes in both directions.", "tr": "Bir ayağını kaldır, parmaklarınla iki yöne yavaş ve tam daireler çiz.", "ar": "ارفع قدمًا وارسم بأصابعها دوائر بطيئة وكاملة في الاتجاهين."},
+      "cue": {"en": "Big, slow circles", "tr": "Büyük, yavaş daireler", "ar": "دوائر كبيرة وبطيئة"},
+      "secs": 30,
+      "reps": {"en": "10 each way, each foot", "tr": "Her ayak, her yöne 10", "ar": "10 في كل اتجاه لكل قدم"},
+      "fig": "1368",
+      "clip": null,
+      "src": "jeff"
+    },
+    "slow-calf-raises": {
+      "name": {"en": "Slow calf raises", "tr": "Yavaş baldır kaldırma", "ar": "رفع السمانة ببطء"},
+      "how": {"en": "On a step, rise up on your toes, then lower slowly and let your heels sink into a stretch.", "tr": "Bir basamakta parmak ucuna yüksel, sonra yavaşça in ve topuklarını esneme hissine kadar bırak.", "ar": "على درجة، ارتفع على أطراف أصابعك ثم انزل ببطء واترك كعبيك ينخفضان حتى تشعر بالإطالة."},
+      "cue": {"en": "Slow down, feel the stretch", "tr": "Yavaş in, esnemeyi hisset", "ar": "انزل ببطء واشعر بالإطالة"},
+      "secs": 40,
+      "reps": {"en": "10-12 reps", "tr": "10-12 tekrar", "ar": "10-12 تكرارًا"},
+      "fig": null,
+      "clip": {"q": "https://www.youtube.com/watch?v=E81GN-3A8XM", "start": "5:23", "end": "5:33", "by": "Jeff Nippard"},
+      "src": "jeff"
+    },
+    "dead-bug": {
+      "name": {"en": "Dead bug", "tr": "Dead bug", "ar": "الحشرة الميتة"},
+      "how": {"en": "Lie on your back, arms up and knees over hips. Lower the opposite arm and leg, keeping your lower back on the floor.", "tr": "Sırtüstü yat, kollar yukarıda, dizler kalçanın üstünde. Bel yerde kalacak şekilde çapraz kol ve bacağı indir.", "ar": "استلقِ على ظهرك والذراعان للأعلى والركبتان فوق الوركين. أنزل ذراعًا وساقًا متقابلتين مع إبقاء أسفل ظهرك على الأرض."},
+      "cue": {"en": "Low back stays down", "tr": "Bel yerde kalır", "ar": "أسفل الظهر ملتصق بالأرض"},
+      "secs": 40,
+      "reps": {"en": "6 each side", "tr": "Her taraf 6", "ar": "6 لكل جهة"},
+      "fig": "0276",
+      "clip": null,
+      "src": "squatu"
+    },
+    "bird-dog": {
+      "name": {"en": "Bird dog", "tr": "Bird dog", "ar": "الطائر والكلب"},
+      "how": {"en": "On hands and knees, brace and reach one arm forward and the opposite leg back. Hold briefly, then switch.", "tr": "Eller ve dizler üzerinde karnını sık, bir kolunu öne, karşı bacağını arkaya uzat. Kısa tut, sonra değiştir.", "ar": "على اليدين والركبتين، شدّ بطنك ومدّ ذراعًا للأمام والساق المقابلة للخلف. اثبت لحظة ثم بدّل."},
+      "cue": {"en": "Back stays still", "tr": "Sırt sabit kalır", "ar": "الظهر ثابت"},
+      "secs": 45,
+      "reps": {"en": "5 each side", "tr": "Her taraf 5", "ar": "5 لكل جهة"},
+      "fig": null,
+      "clip": {"q": "https://www.youtube.com/watch?v=2_e4I-brfqs", "start": "5:03", "end": "5:27", "by": "Squat University"},
+      "src": "squatu"
+    },
+    "doorway-chest-stretch": {
+      "name": {"en": "Doorway chest stretch", "tr": "Kapı aralığında göğüs esnemesi", "ar": "إطالة الصدر عند الباب"},
+      "how": {"en": "Forearm on a door frame at shoulder height, then step through until you feel the chest stretch.", "tr": "Ön kolunu omuz hizasında kapı kasasına koy, göğsünde esneme hissedene kadar öne adım at.", "ar": "ضع ساعدك على إطار الباب بمستوى الكتف، ثم تقدّم خطوة حتى تشعر بإطالة في الصدر."},
+      "cue": {"en": "Breathe, relax into it", "tr": "Nefes al, gevşe", "ar": "تنفّس واسترخِ"},
+      "secs": 30,
+      "reps": null,
+      "fig": null,
+      "clip": null,
+      "src": "rp"
+    },
+    "kneeling-lat-stretch": {
+      "name": {"en": "Kneeling side stretch", "tr": "Dizüstü yan esneme", "ar": "إطالة جانبية على الركبتين"},
+      "how": {"en": "Kneel tall, reach both arms overhead and lean to one side until you feel it along your side and back.", "tr": "Dik diz çök, iki kolunu yukarı uzat ve yanında ve sırtında hissedene kadar bir yana eğil.", "ar": "اجثُ منتصبًا، ومدّ ذراعيك فوق رأسك ومِل إلى جانب حتى تشعر بالإطالة على طول جنبك وظهرك."},
+      "cue": {"en": "Long and slow", "tr": "Uzun ve yavaş", "ar": "امتداد طويل وبطيء"},
+      "secs": 30,
+      "reps": null,
+      "fig": "1346",
+      "clip": null,
+      "src": "rp"
+    },
+    "hip-flexor-stretch": {
+      "name": {"en": "Kneeling hip flexor stretch", "tr": "Dizüstü kalça fleksör esnemesi", "ar": "إطالة مثنيات الورك على الركبة"},
+      "how": {"en": "Half-kneel, squeeze the back glute and shift forward. Reach the same arm up and lean away.", "tr": "Yarım diz çök, arka kalçanı sık ve öne kay. Aynı taraftaki kolunu yukarı uzatıp diğer yana eğil.", "ar": "اجثُ على ركبة واحدة، واعصر الألية الخلفية وتقدّم بوركك. ارفع ذراع الجهة نفسها ومِل بعيدًا."},
+      "cue": {"en": "Squeeze the glute", "tr": "Kalçanı sık", "ar": "اعصر الألية"},
+      "secs": 30,
+      "reps": {"en": "30 s each side", "tr": "Her taraf 30 sn", "ar": "30 ثانية لكل جهة"},
+      "fig": null,
+      "clip": {"q": "https://www.youtube.com/watch?v=9V8oGt2hfCI", "start": "3:38", "end": "3:56", "by": "Squat University"},
+      "src": "squatu"
+    },
+    "hamstring-stretch": {
+      "name": {"en": "Standing hamstring stretch", "tr": "Ayakta arka bacak esnemesi", "ar": "إطالة أوتار الركبة واقفًا"},
+      "how": {"en": "Put one leg forward and straight, then hinge at the hips with a flat back until you feel the back of the thigh.", "tr": "Bir bacağını öne düz koy, sırtın düz şekilde kalçadan eğil; uyluğun arkasında hissedene kadar.", "ar": "ضع ساقًا للأمام مستقيمة، ثم انحنِ من الوركين بظهر مستقيم حتى تشعر بخلف الفخذ."},
+      "cue": {"en": "Flat back, hips back", "tr": "Sırt düz, kalça geri", "ar": "ظهر مستقيم ووركان للخلف"},
+      "secs": 30,
+      "reps": {"en": "30 s each side", "tr": "Her taraf 30 sn", "ar": "30 ثانية لكل جهة"},
+      "fig": "1511",
+      "clip": null,
+      "src": "rp"
+    },
+    "seated-glute-stretch": {
+      "name": {"en": "Seated glute stretch", "tr": "Oturarak kalça esnemesi", "ar": "إطالة الألوية جلوسًا"},
+      "how": {"en": "Sit with legs out, cross one foot over the other knee and hug that knee toward your chest.", "tr": "Bacaklar önde otur, bir ayağını diğer dizinin üzerinden geçir ve o dizi göğsüne doğru sarıl.", "ar": "اجلس وساقاك ممدودتان، ضع قدمًا فوق الركبة الأخرى واحتضن تلك الركبة نحو صدرك."},
+      "cue": {"en": "Sit tall, hug the knee", "tr": "Dik otur, dize sarıl", "ar": "اجلس منتصبًا واحتضن الركبة"},
+      "secs": 30,
+      "reps": {"en": "30 s each side", "tr": "Her taraf 30 sn", "ar": "30 ثانية لكل جهة"},
+      "fig": "1424",
+      "clip": null,
+      "src": "rp"
+    },
+    "calf-stretch-wall": {
+      "name": {"en": "Wall calf stretch", "tr": "Duvarda baldır esnemesi", "ar": "إطالة السمانة على الحائط"},
+      "how": {"en": "Hands on a wall, one leg back with the heel down. Lean in until you feel the calf.", "tr": "Ellerin duvarda, bir bacak geride ve topuk yerde. Baldırında hissedene kadar öne yaslan.", "ar": "ضع يديك على الحائط وساقًا للخلف والكعب على الأرض. مِل للأمام حتى تشعر بالسمانة."},
+      "cue": {"en": "Back heel down", "tr": "Arka topuk yerde", "ar": "الكعب الخلفي على الأرض"},
+      "secs": 30,
+      "reps": {"en": "30 s each side", "tr": "Her taraf 30 sn", "ar": "30 ثانية لكل جهة"},
+      "fig": "1377",
+      "clip": null,
+      "src": "rp"
+    }
+  }
+}

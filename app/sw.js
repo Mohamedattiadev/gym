@@ -4,9 +4,9 @@ const VERSION = "v12";
 const SHELL = `gym-shell-${VERSION}`;
 const MEDIA = "gym-media-v1"; // keep name stable so downloaded media survives app updates
 const SHELL_FILES = ["./", "index.html", "css/app.css", "fonts/Inter.woff2", "manifest.webmanifest",
-  ...["main", "ui", "store", "data", "calc", "body", "anatomy", "train", "timer", "sync", "home", "exercise", "me", "guide", "share"].map((m) => `js/${m}.js`),
+  ...["main", "ui", "store", "data", "calc", "body", "anatomy", "train", "timer", "sync", "home", "exercise", "me", "guide", "share", "warmup"].map((m) => `js/${m}.js`),
   "data/exercises.json", "data/families.en.json", "data/figures.json", "data/guide/heads.json", "data/guide/joints.json",
-  ...["plans", "nutrition", "standards", "onboarding", "equipment"].map((n) => `data/guide/${n}.json`),
+  ...["plans", "nutrition", "standards", "onboarding", "equipment", "warmups"].map((n) => `data/guide/${n}.json`),
   ...["empty-history", "empty-workouts", "hero-start", "plan", "pr", "rest-recovery", "timer", "warmup"].map((n) => `illustrations/${n}.svg`),
   "icons/icon.svg", "icons/icon-192.png", "icons/icon-512.png"];
 

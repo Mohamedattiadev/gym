@@ -66,7 +66,8 @@ export function trainView() {
       <div class="itiles"><button class="itile" id="tPlates"><span class="ico">${ic("calc")}</span><div><b>Plates</b><span>What to load</span></div></button>
         <button class="itile" id="t1rm" style="--c:var(--tier-S)"><span class="ico">${ic("trophy")}</span><div><b>1RM</b><span>Estimate your max</span></div></button>
         <a class="itile" href="#/timer/countdown" style="--c:var(--info)"><span class="ico">${ic("timer")}</span><div><b>Timer</b><span>Rest countdown</span></div></a>
-        <a class="itile" href="#/timer/interval" style="--c:var(--tier-A)"><span class="ico">${ic("flame")}</span><div><b>Intervals</b><span>Tabata / EMOM</span></div></a></div>
+        <a class="itile" href="#/timer/interval" style="--c:var(--tier-A)"><span class="ico">${ic("bolt")}</span><div><b>Intervals</b><span>Tabata / EMOM</span></div></a>
+        <a class="itile" href="#/warmup" style="--c:var(--accent)"><span class="ico">${ic("flame")}</span><div><b>Warm-up</b><span>Ramp-up, primers</span></div></a></div>
     </div><div>
       <div class="sec"><h2>Plans by level</h2><a href="#/start">Find my plan</a></div>
       <div class="stack tight stagger">${PLANS.map((p) => `<div class="plan-card"><div class="row"><span class="tag" style="color:${LEVEL_C[p.level]};background:color-mix(in oklab, ${LEVEL_C[p.level]} 14%, transparent)">${p.level}</span><span class="dim small grow">${p.workouts.length} workouts</span><a class="link small" href="#/plan/${p.id}" style="color:var(--accent-text);font-weight:600">How it works</a></div>
@@ -231,6 +232,7 @@ export function sessionView() {
     <div class="sess-head"><div><div class="eyebrow">Time</div><div class="sess-clock num" id="clock">0:00</div></div>
       <div class="sess-stats"><div><b class="num" id="stSets">${st.sets}</b>sets</div><div><b class="num" id="stVol">${st.vol}</b>${u}</div></div>
       <button class="btn sm ${gym ? "primary" : ""}" id="gymT" aria-pressed="${gym}">${ic("phone", "sm")} Gym mode</button></div>
+    ${!a.warmed && !a.noWarm && a.entries.length && !a.entries.some((en) => en.sets.some((x) => x.done)) ? `<div class="notice acc" id="warmN" style="margin-bottom:12px">${ic("flame", "sm")}<div class="grow"><b>Warm up first</b><div class="small muted">About 6 min, made for this workout</div></div><a class="btn sm primary" href="#/warmup/s">Start</a><button class="iconbtn sm" id="warmX" aria-label="Skip warm-up">${ic("close", "sm")}</button></div>` : ""}
     ${gym ? `<div class="gnav"><button class="iconbtn filled" id="gPrev" aria-label="Previous exercise" ${gi ? "" : "disabled"}>${ic("back")}</button><b class="num">Exercise ${gi + 1} of ${a.entries.length}</b><button class="iconbtn filled fwd" id="gNext" aria-label="Next exercise" ${gi < a.entries.length - 1 ? "" : "disabled"}>${ic("back")}</button></div>` : ""}
     <div class="stack" id="entries">${a.entries.map((en, ei) => entryHTML(en, ei)).join("") || `<div class="card pad" style="text-align:center"><div class="ill" data-ill="hero-start" style="max-width:140px"></div><b>Empty workout</b><div class="muted small">Add your first exercise.</div></div>`}</div>
     <button class="btn block" id="addEx" style="margin-top:12px">${ic("plus", "sm")} Add exercise</button>
@@ -238,6 +240,7 @@ export function sessionView() {
   clearInterval(clockT);
   const tick = () => { const c = $("#clock"); if (!c || !S.active) return clearInterval(clockT); c.textContent = fmtDur(Date.now() - S.active.startedAt); };
   tick(); clockT = setInterval(tick, 1000);
+  const wx = $("#warmX"); if (wx) wx.onclick = () => { a.noWarm = true; save("active"); $("#warmN")?.remove(); };
   wireSession();
 }
 function entryHTML(en, ei) {
@@ -380,7 +383,8 @@ async function finishSession() {
   setTimeout(() => openSheet(`<div style="text-align:center"><div class="ill" data-ill="${prs.length ? "pr" : "rest-recovery"}" style="max-width:150px"></div><h3 style="margin:4px 0 2px">Workout complete</h3><div class="muted small">${esc(a.name)} · ${fmtDur(a.endedAt - a.startedAt)}</div></div>
     <div class="kpis" style="margin:16px 0"><div class="kpi"><b class="num">${st.sets}</b><span>Sets</span></div><div class="kpi"><b class="num">${st.vol}</b><span>${S.settings.unit} volume</span></div><div class="kpi"><b class="num">${prs.length}</b><span>New PRs</span></div></div>
     ${prs.length ? `<div class="stack tight">${prs.map((p) => `<div class="lrow"><img src="${BY[p.slug]?.poster}" alt=""><div class="grow"><div class="t">${esc(BY[p.slug]?.name)}</div><div class="s">${p.w}${S.settings.unit} × ${p.r}</div></div>${ic("trophy")}</div>`).join("")}</div>` : ""}
-    <div class="row" style="margin-top:16px"><button class="btn grow" id="shareW">${ic("share", "sm")} Share</button><button class="btn primary grow" id="done">Done</button></div>`, (el) => {
+    <div class="row" style="margin-top:16px"><button class="btn grow" id="shareW">${ic("share", "sm")} Share</button><button class="btn primary grow" id="done">Done</button></div>
+    <a class="btn ghost block" href="#/warmup/cool" id="coolW" style="margin-top:6px">${ic("timer", "sm")} Cool-down stretches (optional)</a>`, (el) => {
       fillIll(el); $("#done", el).onclick = closeSheet;
       $("#shareW", el).onclick = () => import("./share.js").then((m) => m.shareSession(a, st, prs)).catch((e) => { console.error(e); toast("Could not share"); });
     }), 120);
