@@ -312,15 +312,20 @@ function hero(e) {
 /* ---- block 22: "Show" a common mistake — wrong vs right; visual = credited clip (data/mistakes.json) or the body map, never an unrelated picture ---- */
 let MK = null;
 const loadMistakes = () => (MK ??= fetch("data/mistakes.json").then((r) => (r.ok ? r.json() : {})).catch(() => ({})));
+/* 22c (2): motion for every mistake with a demo video = the exercise's own clip, looped + muted, marked RIGHT; no file (live site) -> body map */
+const mvid = (e) => `<div class="mvwrap"><div class="mvid"><video src="${e.video}" poster="${e.poster}" muted loop playsinline${RM.matches ? " controls" : " autoplay"} preload="metadata"></video>
+    <span class="mtag">${ic("okc", "sm")}Right</span></div><p class="dim small mcred">This is the movement done right. Compare it with the mistake above.</p></div>`;
 async function mistakeSheet(e, i) {
   const m = e.mistakes[i]; if (!m) return;
   const c = ((await loadMistakes()).fam || {})[e.family]?.[i]?.clip, paint = paintBody(e);
+  const bodyVis = `<div class="mini-body mbody">${paint(bodySVG("front"))}${paint(bodySVG("back"))}</div><p class="dim small mcred">Done right, the highlighted muscles do the work.</p>`;
   const vis = c ? `<div class="yt mclip"><iframe src="https://www.youtube-nocookie.com/embed/${esc(c.yt)}?start=${c.start | 0}&end=${c.end | 0}&autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1" title="Mistake demo" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
       <p class="dim small mcred">Clip: ${esc(c.credit || "")} · <a href="https://www.youtube.com/watch?v=${esc(c.yt)}&t=${c.start | 0}s" target="_blank" rel="noopener">Original at ${mmss(c.start)}</a></p>`
-    : `<div class="mini-body mbody">${paint(bodySVG("front"))}${paint(bodySVG("back"))}</div><p class="dim small mcred">Done right, the highlighted muscles do the work.</p>`;
+    : e.video ? mvid(e) : bodyVis;
   openSheet(`<h3>Common mistake</h3>
     <div class="mwr"><div class="mw no"><div class="mwh">${ic("x", "sm")}Wrong</div><p>${esc(m.text)}</p></div>
-      <div class="mw ok"><div class="mwh">${ic("okc", "sm")}Right</div><p>${esc(m.fix || "Follow the steps and cues above.")}</p></div></div>${vis}`, null, { half: true });
+      <div class="mw ok"><div class="mwh">${ic("okc", "sm")}Right</div><p>${esc(m.fix || "Follow the steps and cues above.")}</p></div></div>${vis}`,
+    (el) => { const v = $(".mvid video", el); if (v) v.onerror = () => { const b = v.closest(".mvwrap"); if (b) b.outerHTML = bodyVis; }; }, { half: true });
 }
 
 /* ---- tab panels ---- */

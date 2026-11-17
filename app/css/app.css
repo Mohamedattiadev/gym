@@ -869,6 +869,9 @@ body:has(#rov) .toast { bottom: auto; top: calc(var(--safe-t) + 16px); }
 .mw p { margin: 0; font-size: 15px; line-height: 1.4; color: var(--t1); }
 .mbody { gap: 18px; padding: 6px 0 2px; } .mbody .body-svg { width: 92px; }
 .mcred { margin-top: 8px; text-align: center; } .mcred a { color: var(--accent-text); font-weight: 650; }
+.mvid { position: relative; border-radius: var(--r-md); overflow: hidden; background: #000; display: grid; place-items: center; }
+.mvid video { width: 100%; max-height: 36dvh; display: block; object-fit: contain; }
+.mvid .mtag { position: absolute; top: 8px; inset-inline-start: 8px; display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px 4px 7px; border-radius: var(--r-full); background: #17704A; color: #fff; font-size: 12.5px; font-weight: 700; }
 @media (min-width: 900px) { /* session logger: fixed column widths instead of stretched steppers (2-column layout comes in 22b part 4) */
   .set-hdr, .setrow, .gym .set-hdr, .gym .setrow { grid-template-columns: 34px 110px 150px 150px 52px; justify-content: start; }
   .setrow .stepline { max-width: 520px; } }
