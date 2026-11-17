@@ -1,0 +1,419 @@
+{
+  "joints": {
+    "shoulder": {
+      "name": {"en": "Shoulder", "tr": "Omuz", "ar": "الكتف"},
+      "avoid": {
+        "patterns": ["v-push"],
+        "nameRegex": "behind[- ]the[- ]neck|upright row|\\bdips\\b|(fly|flys|dips?|press|push-?ups?)\\W.*(extreme|exaggerated) (stretch|rom)|wide grip (bench press|push-?ups?|twist)|wide push-?ups?|partials at bottom"
+      },
+      "prefer": {
+        "nameRegex": "neutral|hammer|landmine|machine|cable|scapular plane|floor press|incline push-?ups?|close to body|supported",
+        "equipment": ["Machine", "Cable"]
+      },
+      "tips": {
+        "en": [
+          "Use a neutral or slightly turned-in grip on presses.",
+          "Stop the stretch a few centimeters short of where it pinches.",
+          "Press in the scapular plane, about 30 degrees in front of your body.",
+          "Lower the load for 2-3 seconds and drop the weight before you drop the form."
+        ],
+        "tr": [
+          "Preslerde nötr veya hafif içe dönük tutuş kullan.",
+          "Esneme noktasını, sıkışma hissettiğin yerin birkaç santim önünde bitir.",
+          "Skapular düzlemde, vücudunun yaklaşık 30 derece önünde presle.",
+          "Ağırlığı 2-3 saniyede indir; formu bozmaktansa yükü azalt."
+        ],
+        "ar": [
+          "استخدم قبضة محايدة أو مائلة قليلًا للداخل في تمارين الضغط.",
+          "أوقف الإطالة قبل نقطة الانضغاط ببضعة سنتيمترات.",
+          "اضغط في مستوى لوح الكتف، أي نحو 30 درجة أمام جسمك.",
+          "أنزل الوزن خلال 2-3 ثوانٍ، وخفف الحمل بدل أن تفسد الأداء."
+        ]
+      },
+      "drills": [
+        {
+          "name": {"en": "Band pull-apart", "tr": "Bant açma (pull-apart)", "ar": "فتح المطاط للخارج"},
+          "dose": "2×15",
+          "how": {
+            "en": "Hold a light band at shoulder height and pull it apart by squeezing your shoulder blades together.",
+            "tr": "Hafif bir bandı omuz hizasında tut ve kürek kemiklerini sıkarak bandı iki yana aç.",
+            "ar": "أمسك مطاطًا خفيفًا بمستوى الكتفين واسحبه للجانبين وأنت تضم لوحي الكتف."
+          }
+        },
+        {
+          "name": {"en": "Side-lying external rotation", "tr": "Yan yatarak dış rotasyon", "ar": "التدوير الخارجي مستلقيًا على الجانب"},
+          "dose": "2×12",
+          "how": {
+            "en": "Lie on your side with the elbow tucked and slowly rotate a light dumbbell up and down.",
+            "tr": "Yan yat, dirseğini gövdene yapıştır ve hafif bir dambılı yavaşça yukarı ve aşağı döndür.",
+            "ar": "استلقِ على جانبك والمرفق ملاصق للجسم، ثم دوّر دمبلًا خفيفًا للأعلى والأسفل ببطء."
+          }
+        },
+        {
+          "name": {"en": "Wall slide", "tr": "Duvar kaydırma", "ar": "انزلاق الذراعين على الحائط"},
+          "dose": "2×10",
+          "how": {
+            "en": "Stand with forearms on a wall and slide them up overhead while keeping your ribs down.",
+            "tr": "Ön kollarını duvara daya ve kaburgalarını aşağıda tutarak kollarını yukarı kaydır.",
+            "ar": "ضع ساعديك على الحائط وحرّكهما للأعلى فوق رأسك مع إبقاء الأضلاع للأسفل."
+          }
+        }
+      ],
+      "physio": {
+        "en": "If pain persists or is sharp, stop and see a physiotherapist.",
+        "tr": "Ağrı devam ederse veya keskinse, dur ve bir fizyoterapiste görün.",
+        "ar": "إذا استمر الألم أو كان حادًا، توقف وراجع أخصائي علاج طبيعي."
+      },
+      "src": [
+        {"t": "Squat University", "u": "https://squatuniversity.com/"},
+        {"t": "Jeff Nippard (YouTube)", "u": "https://www.youtube.com/@JeffNippard"}
+      ]
+    },
+    "knee": {
+      "name": {"en": "Knee", "tr": "Diz", "ar": "الركبة"},
+      "avoid": {
+        "patterns": [],
+        "nameRegex": "sissy|pistol|jump|walking lunges?|lunges? \"long stride|leg extension|extreme depth|\\bdeep\\b|heel elevated|toes low|cossack"
+      },
+      "prefer": {
+        "nameRegex": "reverse (barbell |dumbbell |smith )?lunges?|(barbell|dumbbell|landmine|smith) reverse lunges?|box squat|^leg press (?!.*calf)|single leg leg press|step-?ups?|hip thrust|belt squat|leg curl|safety stop",
+        "equipment": ["Machine"]
+      },
+      "tips": {
+        "en": [
+          "Pick a depth you can control without pain and build from there.",
+          "Keep the knee tracking over the middle toes.",
+          "Use a slow 3-second lowering phase and avoid bouncing at the bottom.",
+          "Reverse lunges and box squats are usually easier on the knee than forward lunges."
+        ],
+        "tr": [
+          "Ağrısız kontrol edebildiğin bir derinlik seç ve oradan ilerle.",
+          "Dizin orta parmakların hizasında hareket etsin.",
+          "3 saniyelik yavaş bir iniş yap, altta sekme yapma.",
+          "Geri lunge ve kutuya squat genelde öne lunge'dan daha diz dostudur."
+        ],
+        "ar": [
+          "اختر عمقًا تتحكم فيه دون ألم ثم زِد تدريجيًا.",
+          "اجعل الركبة تتحرك في خط أصابع القدم الوسطى.",
+          "انزل ببطء خلال 3 ثوانٍ ولا ترتد في الأسفل.",
+          "الطعن الخلفي والسكوات على صندوق أخف على الركبة عادةً من الطعن الأمامي."
+        ]
+      },
+      "drills": [
+        {
+          "name": {"en": "Spanish squat hold", "tr": "İspanyol squat tutuşu", "ar": "ثبات السكوات الإسباني"},
+          "dose": "3×30s",
+          "how": {
+            "en": "Loop a heavy band behind both knees, anchor it, and sit back into a shin-vertical squat hold.",
+            "tr": "Ağır bir bandı sabit bir yere bağlayıp iki dizinin arkasından geçir ve kaval kemiği dik kalacak şekilde squat pozisyonunda bekle.",
+            "ar": "ثبّت مطاطًا قويًا خلف الركبتين واجلس للخلف في وضعية سكوات مع إبقاء الساق عمودية."
+          }
+        },
+        {
+          "name": {"en": "Terminal knee extension", "tr": "Terminal diz ekstansiyonu", "ar": "مد الركبة النهائي بالمطاط"},
+          "dose": "2×15",
+          "how": {
+            "en": "With a band behind one knee, straighten the leg fully against the band and squeeze the quad.",
+            "tr": "Bant bir dizinin arkasındayken bacağını banda karşı tamamen düzleştir ve ön bacağı sık.",
+            "ar": "ضع مطاطًا خلف ركبة واحدة وافرد الساق بالكامل ضده مع شد عضلة الفخذ الأمامية."
+          }
+        },
+        {
+          "name": {"en": "Slow step-down", "tr": "Yavaş basamaktan iniş", "ar": "النزول البطيء من الدرجة"},
+          "dose": "2×8",
+          "how": {
+            "en": "Stand on a low step and lower the other heel to the floor over 3 seconds.",
+            "tr": "Alçak bir basamakta dur ve diğer topuğunu 3 saniyede yere indir.",
+            "ar": "قف على درجة منخفضة وأنزل كعب القدم الأخرى إلى الأرض خلال 3 ثوانٍ."
+          }
+        }
+      ],
+      "physio": {
+        "en": "If pain persists or is sharp, stop and see a physiotherapist.",
+        "tr": "Ağrı devam ederse veya keskinse, dur ve bir fizyoterapiste görün.",
+        "ar": "إذا استمر الألم أو كان حادًا، توقف وراجع أخصائي علاج طبيعي."
+      },
+      "src": [
+        {"t": "Squat University", "u": "https://squatuniversity.com/"},
+        {"t": "Stronger by Science", "u": "https://www.strongerbyscience.com/"}
+      ]
+    },
+    "elbow": {
+      "name": {"en": "Elbow", "tr": "Dirsek", "ar": "المرفق"},
+      "avoid": {
+        "patterns": [],
+        "nameRegex": "skull|crushers?|\\bjm\\b|close grip (bench|press)|tri-fecta close grip|straight bar (cable )?curls?|straight bar drag|tricep dips|dips\\W+triceps|close grip (assisted )?pull-?ups|chin-?ups?|(barbell|ez bar) (standing )?french"
+      },
+      "prefer": {
+        "nameRegex": "rope|cable|neutral|hammer|v-?handle|machine|single arm|ez bar (cable )?curl",
+        "equipment": ["Cable", "Machine"]
+      },
+      "tips": {
+        "en": [
+          "Swap straight bars for an EZ bar, rope or dumbbells.",
+          "Do not slam into lockout; stop just short of full extension.",
+          "Warm up with 2-3 light sets before heavy arm work.",
+          "Use higher reps (12-20) and lighter loads while the elbow settles."
+        ],
+        "tr": [
+          "Düz barı EZ bar, halat veya dambılla değiştir.",
+          "Kilitlenmeye sertçe girme; tam açılmanın biraz önünde dur.",
+          "Ağır kol çalışmasından önce 2-3 hafif ısınma seti yap.",
+          "Dirsek sakinleşene kadar yüksek tekrar (12-20) ve hafif yükle çalış."
+        ],
+        "ar": [
+          "استبدل البار المستقيم ببار EZ أو حبل أو دمبلز.",
+          "لا تفرد المرفق بعنف؛ توقف قبل الفرد الكامل بقليل.",
+          "قم بـ 2-3 مجموعات إحماء خفيفة قبل تمارين الذراع الثقيلة.",
+          "استخدم تكرارات أعلى (12-20) وأوزانًا أخف حتى يهدأ المرفق."
+        ]
+      },
+      "drills": [
+        {
+          "name": {"en": "Reverse wrist curl (slow lowering)", "tr": "Ters bilek bükme (yavaş iniş)", "ar": "ثني الرسغ العكسي (إنزال بطيء)"},
+          "dose": "2×15",
+          "how": {
+            "en": "Rest the forearm on your thigh, palm down, and lower a light dumbbell over 3-4 seconds.",
+            "tr": "Ön kolunu avuç aşağı bakacak şekilde uyluğuna koy ve hafif bir dambılı 3-4 saniyede indir.",
+            "ar": "ضع ساعدك على فخذك وراحة اليد للأسفل، وأنزل دمبلًا خفيفًا خلال 3-4 ثوانٍ."
+          }
+        },
+        {
+          "name": {"en": "Band triceps pushdown", "tr": "Bantla triceps pushdown", "ar": "دفع الترايسبس للأسفل بالمطاط"},
+          "dose": "2×20",
+          "how": {
+            "en": "Anchor a light band overhead and push down with smooth, pain-free reps to pump blood into the joint.",
+            "tr": "Hafif bir bandı yukarı sabitle ve eklemi ısıtmak için akıcı, ağrısız tekrarlarla aşağı it.",
+            "ar": "ثبّت مطاطًا خفيفًا في الأعلى وادفعه للأسفل بتكرارات سلسة بلا ألم لتدفئة المفصل."
+          }
+        },
+        {
+          "name": {"en": "Forearm rotations with a hammer", "tr": "Çekiçle ön kol rotasyonu", "ar": "تدوير الساعد بالمطرقة"},
+          "dose": "2×12",
+          "how": {
+            "en": "Hold a light hammer or dumbbell at one end and slowly turn the palm up and down.",
+            "tr": "Hafif bir çekici veya dambılı bir ucundan tut ve avucunu yavaşça yukarı ve aşağı çevir.",
+            "ar": "أمسك مطرقة خفيفة أو دمبلًا من طرف واحد ودوّر راحة اليد للأعلى والأسفل ببطء."
+          }
+        }
+      ],
+      "physio": {
+        "en": "If pain persists or is sharp, stop and see a physiotherapist.",
+        "tr": "Ağrı devam ederse veya keskinse, dur ve bir fizyoterapiste görün.",
+        "ar": "إذا استمر الألم أو كان حادًا، توقف وراجع أخصائي علاج طبيعي."
+      },
+      "src": [
+        {"t": "Jeff Nippard (YouTube)", "u": "https://www.youtube.com/@JeffNippard"},
+        {"t": "Squat University", "u": "https://squatuniversity.com/"}
+      ]
+    },
+    "lower-back": {
+      "name": {"en": "Lower back", "tr": "Bel", "ar": "أسفل الظهر"},
+      "avoid": {
+        "patterns": [],
+        "nameRegex": "good morning|^(partial |pause )?deadlifts?\\b|deadlift drops|sumo dead|barbell rows?\\b|bent over[^|]*rows?|pendlay|t bar row|meadows|sit-?ups|elbows to knees|hyper ?extensions? \\(heavy\\)|flexion \\+ extension"
+      },
+      "prefer": {
+        "nameRegex": "chest supported|seal|incline[^|]*row|machine|seated|supported|hip thrust|bridge|leg press|belt squat|lying|cable crunch|dead bug|plank|pallof",
+        "equipment": ["Machine", "Cable"]
+      },
+      "tips": {
+        "en": [
+          "Brace your core before each rep and keep the spine neutral.",
+          "Choose chest-supported rows and machines over bent-over barbell work.",
+          "Hinge only as deep as your back stays flat.",
+          "Leave 2-3 reps in reserve on heavy hinges and squats."
+        ],
+        "tr": [
+          "Her tekrardan önce karnını sıkı tut ve omurganı nötr pozisyonda koru.",
+          "Eğilerek yapılan barbell çalışması yerine göğüs destekli row ve makineleri seç.",
+          "Kalçadan eğilmeyi sırtın düz kaldığı derinliğe kadar yap.",
+          "Ağır hinge ve squat hareketlerinde 2-3 tekrar rezerv bırak."
+        ],
+        "ar": [
+          "شد عضلات البطن قبل كل تكرار وأبقِ العمود الفقري محايدًا.",
+          "اختر التجديف بدعم الصدر والأجهزة بدل التمارين بالبار وأنت منحنٍ.",
+          "انحنِ من الورك فقط بالقدر الذي يبقى فيه ظهرك مستقيمًا.",
+          "اترك 2-3 تكرارات احتياطية في تمارين الانحناء والسكوات الثقيلة."
+        ]
+      },
+      "drills": [
+        {
+          "name": {"en": "McGill curl-up", "tr": "McGill curl-up", "ar": "تمرين ماكغيل للبطن (Curl-up)"},
+          "dose": "3×5 (10s)",
+          "how": {
+            "en": "Lie with one knee bent and hands under your lower back, lift head and shoulders slightly, and hold.",
+            "tr": "Bir dizin bükülü, ellerin belinin altında sırtüstü yat; başını ve omuzlarını hafifçe kaldırıp bekle.",
+            "ar": "استلقِ مع ثني ركبة واحدة ويديك تحت أسفل ظهرك، ثم ارفع رأسك وكتفيك قليلًا واثبت."
+          }
+        },
+        {
+          "name": {"en": "Side plank", "tr": "Yan plank", "ar": "البلانك الجانبي"},
+          "dose": "3×10s",
+          "how": {
+            "en": "Prop up on one elbow with knees or feet stacked and keep a straight line from head to knees.",
+            "tr": "Bir dirseğinin üzerinde, dizlerin veya ayakların üst üste olacak şekilde yüksel ve baştan dizlere düz bir çizgi koru.",
+            "ar": "ارتكز على مرفق واحد والركبتان أو القدمان فوق بعضهما، وحافظ على خط مستقيم من الرأس إلى الركبتين."
+          }
+        },
+        {
+          "name": {"en": "Bird dog", "tr": "Bird dog (kuş-köpek)", "ar": "تمرين الطائر والكلب"},
+          "dose": "2×8/side",
+          "how": {
+            "en": "On hands and knees, reach the opposite arm and leg long without letting the hips rotate.",
+            "tr": "Dört ayak üzerinde, kalçanı döndürmeden karşı kol ve bacağını uzat.",
+            "ar": "على اليدين والركبتين، مدّ الذراع والساق المتقابلتين دون أن يدور الحوض."
+          }
+        }
+      ],
+      "physio": {
+        "en": "If pain persists or is sharp, stop and see a physiotherapist.",
+        "tr": "Ağrı devam ederse veya keskinse, dur ve bir fizyoterapiste görün.",
+        "ar": "إذا استمر الألم أو كان حادًا، توقف وراجع أخصائي علاج طبيعي."
+      },
+      "src": [
+        {"t": "Backfitpro (Stuart McGill)", "u": "https://www.backfitpro.com/"},
+        {"t": "Squat University", "u": "https://squatuniversity.com/"},
+        {"t": "Stronger by Science", "u": "https://www.strongerbyscience.com/"}
+      ]
+    },
+    "wrist": {
+      "name": {"en": "Wrist", "tr": "Bilek", "ar": "الرسغ"},
+      "avoid": {
+        "patterns": [],
+        "nameRegex": "straight bar[^|]*curls?|barbell curls?|front squat|(?<!dumbbell )(?<!elevated )(?<!elevate )push-?ups?|(barbell|straight bar) wrist|reverse grip (straight bar|barbell)"
+      },
+      "prefer": {
+        "nameRegex": "hammer|neutral|rope|ez bar|machine|strap|v-?handle|dumbbell push-?ups?|elevated? push-?ups?",
+        "equipment": ["Dumbbell", "Cable", "Machine"]
+      },
+      "tips": {
+        "en": [
+          "Keep the wrist stacked over the forearm instead of bent back.",
+          "Use an EZ bar or dumbbells so the hands can turn naturally.",
+          "Do push-ups on dumbbells or handles to keep the wrist straight.",
+          "Use straps or wraps on heavy pulls to take load off the grip."
+        ],
+        "tr": [
+          "Bileğini geriye bükmek yerine ön kolunla aynı hizada tut.",
+          "Ellerin doğal dönebilsin diye EZ bar veya dambıl kullan.",
+          "Bileği düz tutmak için şınavı dambıl veya tutamak üzerinde yap.",
+          "Ağır çekişlerde tutuşu rahatlatmak için kayış veya bileklik kullan."
+        ],
+        "ar": [
+          "أبقِ الرسغ على استقامة الساعد بدل ثنيه للخلف.",
+          "استخدم بار EZ أو دمبلز لتدور اليدان بشكل طبيعي.",
+          "أدِّ تمرين الضغط على دمبلز أو مقابض ليبقى الرسغ مستقيمًا.",
+          "استخدم أحزمة السحب أو أربطة الرسغ في السحب الثقيل لتخفيف الحمل عن القبضة."
+        ]
+      },
+      "drills": [
+        {
+          "name": {"en": "Wrist circles", "tr": "Bilek çevirme", "ar": "تدوير الرسغين"},
+          "dose": "2×10/dir",
+          "how": {
+            "en": "Interlace your fingers and roll the wrists slowly in big circles both ways.",
+            "tr": "Parmaklarını birbirine geçir ve bileklerini iki yöne doğru yavaşça geniş daireler çizerek çevir.",
+            "ar": "شبّك أصابعك ودوّر الرسغين ببطء في دوائر كبيرة في الاتجاهين."
+          }
+        },
+        {
+          "name": {"en": "Quadruped wrist rocks", "tr": "Dört ayakta bilek salınımı", "ar": "تأرجح الرسغ على اليدين والركبتين"},
+          "dose": "2×10",
+          "how": {
+            "en": "On hands and knees, gently shift your weight forward and back over the palms within a comfortable range.",
+            "tr": "Dört ayak pozisyonunda, ağırlığını rahat bir aralıkta avuçların üzerinde öne ve geriye kaydır.",
+            "ar": "على اليدين والركبتين، انقل وزنك برفق للأمام والخلف فوق راحتي اليد في مدى مريح."
+          }
+        },
+        {
+          "name": {"en": "Band finger extensions", "tr": "Bantla parmak açma", "ar": "فتح الأصابع ضد المطاط"},
+          "dose": "2×20",
+          "how": {
+            "en": "Place a small band around your fingertips and open the hand fully against it.",
+            "tr": "Parmak uçlarına küçük bir bant geçir ve elini banda karşı tamamen aç.",
+            "ar": "ضع مطاطًا صغيرًا حول أطراف أصابعك وافتح يدك بالكامل ضده."
+          }
+        }
+      ],
+      "physio": {
+        "en": "If pain persists or is sharp, stop and see a physiotherapist.",
+        "tr": "Ağrı devam ederse veya keskinse, dur ve bir fizyoterapiste görün.",
+        "ar": "إذا استمر الألم أو كان حادًا، توقف وراجع أخصائي علاج طبيعي."
+      },
+      "src": [
+        {"t": "Squat University", "u": "https://squatuniversity.com/"},
+        {"t": "Jeff Nippard (YouTube)", "u": "https://www.youtube.com/@JeffNippard"}
+      ]
+    },
+    "hip": {
+      "name": {"en": "Hip", "tr": "Kalça eklemi", "ar": "الورك"},
+      "avoid": {
+        "patterns": [],
+        "nameRegex": "sumo|wide stance|leg press \\(wide|hack squat \\(wide|adduct|cossack|pistol|extreme depth|\\bdeep\\b"
+      },
+      "prefer": {
+        "nameRegex": "hip thrust|glute bridge|step-?ups?|box squat|belt squat|kickbacks?|leg curl|hyper ?extensions?|reverse[^|]*lunges?|leg press \\(toes low\\)|single leg leg press",
+        "equipment": ["Machine"]
+      },
+      "tips": {
+        "en": [
+          "Find a stance width and toe angle that feels smooth, not pinchy.",
+          "Squat to a box or a depth you can own without pain.",
+          "Keep a slight posterior pelvic tilt at the bottom of squats and presses.",
+          "Build up adductor and sumo work slowly with light loads."
+        ],
+        "tr": [
+          "Sıkışma değil akıcılık hissettiren bir duruş genişliği ve ayak açısı bul.",
+          "Kutuya veya ağrısız kontrol edebildiğin bir derinliğe kadar squat yap.",
+          "Squat ve preslerin alt noktasında leğenini hafifçe geriye devir.",
+          "Adduktor ve sumo çalışmalarını hafif yükle yavaşça artır."
+        ],
+        "ar": [
+          "ابحث عن عرض وقفة وزاوية للقدمين تشعرك بالسلاسة دون انضغاط.",
+          "انزل في السكوات إلى صندوق أو إلى عمق تتحكم فيه دون ألم.",
+          "أمِل الحوض قليلًا للخلف في أسفل السكوات والضغط بالأرجل.",
+          "زِد تمارين المقربات والسومو تدريجيًا وبأوزان خفيفة."
+        ]
+      },
+      "drills": [
+        {
+          "name": {"en": "90/90 hip switch", "tr": "90/90 kalça geçişi", "ar": "تبديل الورك 90/90"},
+          "dose": "2×8/side",
+          "how": {
+            "en": "Sit with both knees bent at 90 degrees and rotate them side to side while staying tall.",
+            "tr": "İki dizin 90 derece bükülü otur ve dik kalarak dizlerini bir yandan diğer yana çevir.",
+            "ar": "اجلس والركبتان مثنيتان بزاوية 90 درجة، ودوّرهما من جانب لآخر مع إبقاء الجذع مستقيمًا."
+          }
+        },
+        {
+          "name": {"en": "Glute bridge", "tr": "Glute bridge (kalça köprüsü)", "ar": "جسر الأرداف"},
+          "dose": "2×15",
+          "how": {
+            "en": "Lie on your back with knees bent and drive the hips up by squeezing the glutes.",
+            "tr": "Dizlerin bükülü sırtüstü yat ve kalça kaslarını sıkarak kalçanı yukarı it.",
+            "ar": "استلقِ على ظهرك والركبتان مثنيتان، وادفع الورك للأعلى بشد عضلات الأرداف."
+          }
+        },
+        {
+          "name": {"en": "Half-kneeling hip flexor stretch", "tr": "Yarım diz çökme kalça fleksör esnetmesi", "ar": "إطالة ثانيات الورك نصف جاثٍ"},
+          "dose": "2×30s/side",
+          "how": {
+            "en": "Kneel on one knee, tuck the pelvis under and shift forward until you feel a stretch in the front of the hip.",
+            "tr": "Tek dizinin üzerine çök, leğenini içe devir ve kalçanın önünde esneme hissedene kadar öne kay.",
+            "ar": "اجثُ على ركبة واحدة، وأمِل الحوض للداخل وتقدّم للأمام حتى تشعر بإطالة في مقدمة الورك."
+          }
+        }
+      ],
+      "physio": {
+        "en": "If pain persists or is sharp, stop and see a physiotherapist.",
+        "tr": "Ağrı devam ederse veya keskinse, dur ve bir fizyoterapiste görün.",
+        "ar": "إذا استمر الألم أو كان حادًا، توقف وراجع أخصائي علاج طبيعي."
+      },
+      "src": [
+        {"t": "Squat University", "u": "https://squatuniversity.com/"},
+        {"t": "Stronger by Science", "u": "https://www.strongerbyscience.com/"}
+      ]
+    }
+  }
+}

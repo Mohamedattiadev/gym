@@ -1,0 +1,37 @@
+Illustrations in app/illustrations/
+
+Source: ORIGINAL artwork made for this project (hand-written / script-generated
+flat vector SVG). No third-party artwork is included. Free to use and modify as
+part of this app; no attribution required.
+
+Files:
+  hero-start.svg      overhead barbell press (onboarding hero)
+  empty-workouts.svg  holding dumbbells, ready to start (no workouts yet)
+  empty-history.svg   person ticking off a training calendar (no history yet)
+  rest-recovery.svg   seated on bench, towel + water bottle (rest / recovery)
+  timer.svg           runner + stopwatch (timer)
+  warmup.svg          standing side stretch on a mat (warm-up / mobility)
+  pr.svg              celebrating, arms up, next to a barbell (personal record)
+  plan.svg            clipboard checklist + dumbbell (workout plan)
+
+Theming: accent fills/strokes use `currentColor` (set CSS `color`, e.g. #D93A31);
+dark ink (hair, shorts, shoes, equipment, outlines) uses
+`var(--ill-ink, #1E1B1A)` (set to a light value such as #F4F0EC in dark mode).
+Skin tones (#F2C6A7 / #DDA684), white paper/towel (#FFFFFF) and the text marks
+inside white cards (#1E1B1A) are fixed so they stay readable in both themes.
+Inline the SVG markup (fetch + innerHTML) so currentColor and var(--ill-ink)
+follow the theme; via <img> the accent falls back to black.
+
+Previous set (replaced): Open Doodles by Pablo Stanley, CC0 1.0.
+
+Third-party sets checked and NOT used (2026-11):
+  Humaaans (CC0) / Open Peeps (CC0) - licence fine, but no gym/fitness poses.
+  IRA Design (MIT) - no sport/fitness content.
+  Manypixels gallery - licence forbids distributing assets "in packs" and
+    advises against using them when central to an app.
+  absurd.design free licence - non-commercial only, mandatory linked credit,
+    no redistribution.
+  Blush - "End Product" not defined, SVG export tied to plans; not relied on.
+  Icons8 Ouch - licence page not retrievable (403); free tier needs a link and
+    SVG is paid, so excluded.
+  unDraw, DrawKit, Freepik, Storyset - licences don't fit (excluded upfront).

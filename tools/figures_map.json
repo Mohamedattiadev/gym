@@ -1,0 +1,1306 @@
+{
+ "families": {
+  "ab-rollout": {
+   "oef": "0857",
+   "file": "animations/0857.webp",
+   "conf": "high"
+  },
+  "around-the-worlds": {
+   "oef": "2143",
+   "file": "animations/2143.webp",
+   "conf": "low"
+  },
+  "assisted-pull-up": {
+   "oef": "0017",
+   "file": "animations/0017.webp",
+   "conf": "high"
+  },
+  "back-extension": {
+   "oef": "0489",
+   "file": "animations/0489.webp",
+   "conf": "high"
+  },
+  "bar-pushdown": {
+   "oef": "0201",
+   "file": "animations/0201.webp",
+   "conf": "high"
+  },
+  "barbell-curl": {
+   "oef": "0031",
+   "file": "animations/0031.webp",
+   "conf": "high"
+  },
+  "barbell-incline-press": {
+   "oef": "0047",
+   "file": "animations/0047.webp",
+   "conf": "high"
+  },
+  "barbell-overhead-press": {
+   "oef": "pulse-0002",
+   "file": "animations/pulse-0002.webp",
+   "conf": "high"
+  },
+  "barbell-pullover": {
+   "oef": "0073",
+   "file": "animations/0073.webp",
+   "conf": "high"
+  },
+  "barbell-row": {
+   "oef": "0027",
+   "file": "animations/0027.webp",
+   "conf": "high"
+  },
+  "behind-back-barbell-raise": {
+   "oef": "0075",
+   "file": "animations/0075.webp",
+   "conf": "high"
+  },
+  "bench-dips": {
+   "oef": "0129",
+   "file": "animations/0129.webp",
+   "conf": "high"
+  },
+  "bodyweight-row": {
+   "oef": "0499",
+   "file": "animations/0499.webp",
+   "conf": "high"
+  },
+  "bodyweight-triceps-extension": {
+   "oef": "1771",
+   "file": "animations/1771.webp",
+   "conf": "low"
+  },
+  "bulgarian-split-squat": {
+   "oef": "0768",
+   "file": "animations/0768.webp",
+   "conf": "high"
+  },
+  "cable-crunch": {
+   "oef": "0175",
+   "file": "animations/0175.webp",
+   "conf": "high"
+  },
+  "cable-curl": {
+   "oef": "0868",
+   "file": "animations/0868.webp",
+   "conf": "high"
+  },
+  "cable-fly": {
+   "oef": "0227",
+   "file": "animations/0227.webp",
+   "conf": "high"
+  },
+  "cable-kickback": {
+   "oef": "0228",
+   "file": "animations/0228.webp",
+   "conf": "high"
+  },
+  "cable-lateral-raise": {
+   "oef": "0192",
+   "file": "animations/0192.webp",
+   "conf": "high"
+  },
+  "cable-overhead-extension": {
+   "oef": "0194",
+   "file": "animations/0194.webp",
+   "conf": "high"
+  },
+  "cable-pullover": {
+   "oef": "0238",
+   "file": "animations/0238.webp",
+   "conf": "high"
+  },
+  "cable-rotation": {
+   "oef": "0243",
+   "file": "animations/0243.webp",
+   "conf": "high"
+  },
+  "chest-stretch": {
+   "oef": "1271",
+   "file": "animations/1271.webp",
+   "conf": "med"
+  },
+  "chest-supported-high-elbow-row": {
+   "oef": "1328",
+   "file": "animations/1328.webp",
+   "conf": "high"
+  },
+  "chest-supported-row": {
+   "oef": "0327",
+   "file": "animations/0327.webp",
+   "conf": "high"
+  },
+  "close-grip-press": {
+   "oef": "0751",
+   "file": "animations/0751.webp",
+   "conf": "high"
+  },
+  "close-grip-pulldown": {
+   "oef": "2616",
+   "file": "animations/2616.webp",
+   "conf": "high"
+  },
+  "concentration-curl": {
+   "oef": "0297",
+   "file": "animations/0297.webp",
+   "conf": "high"
+  },
+  "crunch": {
+   "oef": "0274",
+   "file": "animations/0274.webp",
+   "conf": "high"
+  },
+  "dead-skulls": {
+   "oef": "0060",
+   "file": "animations/0060.webp",
+   "conf": "low"
+  },
+  "deadlift": {
+   "oef": "0032",
+   "file": "animations/0032.webp",
+   "conf": "high"
+  },
+  "decline-crunch": {
+   "oef": "0277",
+   "file": "animations/0277.webp",
+   "conf": "high"
+  },
+  "decline-press": {
+   "oef": "0301",
+   "file": "animations/0301.webp",
+   "conf": "high"
+  },
+  "deficit-push-ups": {
+   "oef": "1274",
+   "file": "animations/1274.webp",
+   "conf": "high"
+  },
+  "dips-chest": {
+   "oef": "0251",
+   "file": "animations/0251.webp",
+   "conf": "high"
+  },
+  "drag-curl": {
+   "oef": "0038",
+   "file": "animations/0038.webp",
+   "conf": "high"
+  },
+  "dumbbell-curl": {
+   "oef": "0294",
+   "file": "animations/0294.webp",
+   "conf": "high"
+  },
+  "dumbbell-fly": {
+   "oef": "0308",
+   "file": "animations/0308.webp",
+   "conf": "high"
+  },
+  "dumbbell-lateral-raise": {
+   "oef": "0334",
+   "file": "animations/0334.webp",
+   "conf": "high"
+  },
+  "dumbbell-pullover": {
+   "oef": "0375",
+   "file": "animations/0375.webp",
+   "conf": "high"
+  },
+  "dumbbell-row-bent-over": {
+   "oef": "0293",
+   "file": "animations/0293.webp",
+   "conf": "high"
+  },
+  "dumbbell-shoulder-press": {
+   "oef": "0405",
+   "file": "animations/0405.webp",
+   "conf": "high"
+  },
+  "dumbbell-skull-crushers": {
+   "oef": "0351",
+   "file": "animations/0351.webp",
+   "conf": "high"
+  },
+  "face-pull": {
+   "oef": "0233",
+   "file": "animations/0233.webp",
+   "conf": "med"
+  },
+  "finger-flexor-curl": {
+   "oef": "0455",
+   "file": "animations/0455.webp",
+   "conf": "high"
+  },
+  "flat-dumbbell-press": {
+   "oef": "0289",
+   "file": "animations/0289.webp",
+   "conf": "high"
+  },
+  "forearm-pronation": {
+   "oef": "0347",
+   "file": "animations/0347.webp",
+   "conf": "high"
+  },
+  "forearm-supination": {
+   "oef": "0349",
+   "file": "animations/0349.webp",
+   "conf": "high"
+  },
+  "french-press": {
+   "oef": "1749",
+   "file": "animations/1749.webp",
+   "conf": "high"
+  },
+  "front-raise": {
+   "oef": "0834",
+   "file": "animations/0834.webp",
+   "conf": "high"
+  },
+  "front-squat": {
+   "oef": "0042",
+   "file": "animations/0042.webp",
+   "conf": "high"
+  },
+  "glute-hyper": {
+   "oef": "0489",
+   "file": "animations/0489.webp",
+   "conf": "med"
+  },
+  "glute-rdl": {
+   "oef": "0085",
+   "file": "animations/0085.webp",
+   "conf": "med"
+  },
+  "good-morning": {
+   "oef": "0044",
+   "file": "animations/0044.webp",
+   "conf": "high"
+  },
+  "hack-squat": {
+   "oef": "0743",
+   "file": "animations/0743.webp",
+   "conf": "high"
+  },
+  "hammer-curl": {
+   "oef": "0313",
+   "file": "animations/0313.webp",
+   "conf": "high"
+  },
+  "hamstring-hyper": {
+   "oef": "0489",
+   "file": "animations/0489.webp",
+   "conf": "med"
+  },
+  "hanging-knee-raise": {
+   "oef": "0011",
+   "file": "animations/0011.webp",
+   "conf": "high"
+  },
+  "hanging-leg-raise": {
+   "oef": "0472",
+   "file": "animations/0472.webp",
+   "conf": "high"
+  },
+  "hanging-scapular-shrug": {
+   "oef": "0688",
+   "file": "animations/0688.webp",
+   "conf": "high"
+  },
+  "high-bar-squat": {
+   "oef": "1436",
+   "file": "animations/1436.webp",
+   "conf": "high"
+  },
+  "high-elbow-dumbbell-row": {
+   "oef": "0377",
+   "file": "animations/0377.webp",
+   "conf": "high"
+  },
+  "hip-abduction": {
+   "oef": "0597",
+   "file": "animations/0597.webp",
+   "conf": "high"
+  },
+  "hip-adduction": {
+   "oef": "0598",
+   "file": "animations/0598.webp",
+   "conf": "high"
+  },
+  "hip-thrust": {
+   "oef": "0756",
+   "file": "animations/0756.webp",
+   "conf": "med"
+  },
+  "incline-cable-extension": {
+   "oef": "0173",
+   "file": "animations/0173.webp",
+   "conf": "high"
+  },
+  "incline-cable-fly": {
+   "oef": "0171",
+   "file": "animations/0171.webp",
+   "conf": "high"
+  },
+  "incline-cable-pushdown": {
+   "oef": "0172",
+   "file": "animations/0172.webp",
+   "conf": "high"
+  },
+  "incline-dumbbell-curl": {
+   "oef": "0318",
+   "file": "animations/0318.webp",
+   "conf": "high"
+  },
+  "incline-dumbbell-fly": {
+   "oef": "0319",
+   "file": "animations/0319.webp",
+   "conf": "high"
+  },
+  "incline-dumbbell-press": {
+   "oef": "0314",
+   "file": "animations/0314.webp",
+   "conf": "high"
+  },
+  "incline-lateral-raise": {
+   "oef": "0323",
+   "file": "animations/0323.webp",
+   "conf": "high"
+  },
+  "incline-shrug": {
+   "oef": "0329",
+   "file": "animations/0329.webp",
+   "conf": "high"
+  },
+  "jm-press": {
+   "oef": "0052",
+   "file": "animations/0052.webp",
+   "conf": "med"
+  },
+  "kickback": {
+   "oef": "0333",
+   "file": "animations/0333.webp",
+   "conf": "high"
+  },
+  "lat-pulldown": {
+   "oef": "0198",
+   "file": "animations/0198.webp",
+   "conf": "high"
+  },
+  "lateral-lunge": {
+   "oef": "1410",
+   "file": "animations/1410.webp",
+   "conf": "med"
+  },
+  "leg-extension": {
+   "oef": "0585",
+   "file": "animations/0585.webp",
+   "conf": "high"
+  },
+  "leg-press": {
+   "oef": "0739",
+   "file": "animations/0739.webp",
+   "conf": "high"
+  },
+  "leg-press-calf-raise": {
+   "oef": "1391",
+   "file": "animations/1391.webp",
+   "conf": "high"
+  },
+  "low-bar-squat": {
+   "oef": "1435",
+   "file": "animations/1435.webp",
+   "conf": "high"
+  },
+  "lying-cable-curl": {
+   "oef": "1634",
+   "file": "animations/1634.webp",
+   "conf": "high"
+  },
+  "lying-leg-curl": {
+   "oef": "0586",
+   "file": "animations/0586.webp",
+   "conf": "high"
+  },
+  "machine-chest-press": {
+   "oef": "0576",
+   "file": "animations/0576.webp",
+   "conf": "high"
+  },
+  "machine-curl": {
+   "oef": "0575",
+   "file": "animations/0575.webp",
+   "conf": "high"
+  },
+  "machine-dips": {
+   "oef": "1451",
+   "file": "animations/1451.webp",
+   "conf": "high"
+  },
+  "machine-fly": {
+   "oef": "0596",
+   "file": "animations/0596.webp",
+   "conf": "high"
+  },
+  "machine-incline-press": {
+   "oef": "1299",
+   "file": "animations/1299.webp",
+   "conf": "high"
+  },
+  "machine-lateral-raise": {
+   "oef": "0584",
+   "file": "animations/0584.webp",
+   "conf": "high"
+  },
+  "machine-rear-delt-fly": {
+   "oef": "0602",
+   "file": "animations/0602.webp",
+   "conf": "high"
+  },
+  "machine-row": {
+   "oef": "1350",
+   "file": "animations/1350.webp",
+   "conf": "high"
+  },
+  "machine-shoulder-press": {
+   "oef": "0603",
+   "file": "animations/0603.webp",
+   "conf": "high"
+  },
+  "meadows-row": {
+   "oef": "0589",
+   "file": "animations/0589.webp",
+   "conf": "med"
+  },
+  "neutral-dumbbell-press": {
+   "oef": "0404",
+   "file": "animations/0404.webp",
+   "conf": "high"
+  },
+  "nordic-curl": {
+   "oef": "0496",
+   "file": "animations/0496.webp",
+   "conf": "high"
+  },
+  "one-arm-dumbbell-row": {
+   "oef": "0292",
+   "file": "animations/0292.webp",
+   "conf": "high"
+  },
+  "one-arm-lat-row": {
+   "oef": "0988",
+   "file": "animations/0988.webp",
+   "conf": "med"
+  },
+  "pendlay-row": {
+   "oef": "3017",
+   "file": "animations/3017.webp",
+   "conf": "high"
+  },
+  "preacher-curl": {
+   "oef": "0070",
+   "file": "animations/0070.webp",
+   "conf": "high"
+  },
+  "pull-up": {
+   "oef": "0652",
+   "file": "animations/0652.webp",
+   "conf": "high"
+  },
+  "push-ups": {
+   "oef": "0662",
+   "file": "animations/0662.webp",
+   "conf": "high"
+  },
+  "quad-stretch": {
+   "oef": "0613",
+   "file": "animations/0613.webp",
+   "conf": "med"
+  },
+  "rear-delt-cable-fly": {
+   "oef": "0154",
+   "file": "animations/0154.webp",
+   "conf": "high"
+  },
+  "rear-delt-fly": {
+   "oef": "0602",
+   "file": "animations/0602.webp",
+   "conf": "high"
+  },
+  "rear-delt-raise": {
+   "oef": "0380",
+   "file": "animations/0380.webp",
+   "conf": "high"
+  },
+  "rear-delt-row": {
+   "oef": "0203",
+   "file": "animations/0203.webp",
+   "conf": "high"
+  },
+  "reverse-crunch": {
+   "oef": "0872",
+   "file": "animations/0872.webp",
+   "conf": "med"
+  },
+  "reverse-curl": {
+   "oef": "0080",
+   "file": "animations/0080.webp",
+   "conf": "high"
+  },
+  "reverse-grip-press": {
+   "oef": "0764",
+   "file": "animations/0764.webp",
+   "conf": "high"
+  },
+  "reverse-hyper": {
+   "oef": "0130",
+   "file": "animations/0130.webp",
+   "conf": "med"
+  },
+  "reverse-lunge": {
+   "oef": "0381",
+   "file": "animations/0381.webp",
+   "conf": "high"
+  },
+  "romanian-deadlift": {
+   "oef": "0085",
+   "file": "animations/0085.webp",
+   "conf": "high"
+  },
+  "rope-pushdown": {
+   "oef": "0200",
+   "file": "animations/0200.webp",
+   "conf": "high"
+  },
+  "seated-barbell-press": {
+   "oef": "0091",
+   "file": "animations/0091.webp",
+   "conf": "high"
+  },
+  "seated-bicycle": {
+   "oef": "0003",
+   "file": "animations/0003.webp",
+   "conf": "low"
+  },
+  "seated-cable-high-elbow-row": {
+   "oef": "0218",
+   "file": "animations/0218.webp",
+   "conf": "med"
+  },
+  "seated-cable-row": {
+   "oef": "0861",
+   "file": "animations/0861.webp",
+   "conf": "high"
+  },
+  "seated-calf-raise": {
+   "oef": "0594",
+   "file": "animations/0594.webp",
+   "conf": "high"
+  },
+  "seated-leg-curl": {
+   "oef": "0599",
+   "file": "animations/0599.webp",
+   "conf": "high"
+  },
+  "shrug": {
+   "oef": "0406",
+   "file": "animations/0406.webp",
+   "conf": "high"
+  },
+  "single-arm-cable-row": {
+   "oef": "0214",
+   "file": "animations/0214.webp",
+   "conf": "med"
+  },
+  "single-arm-overhead-extension": {
+   "oef": "0362",
+   "file": "animations/0362.webp",
+   "conf": "high"
+  },
+  "single-arm-pushdown": {
+   "oef": "1723",
+   "file": "animations/1723.webp",
+   "conf": "high"
+  },
+  "single-leg-rdl": {
+   "oef": "1756",
+   "file": "animations/1756.webp",
+   "conf": "med"
+  },
+  "single-leg-squat": {
+   "oef": "1759",
+   "file": "animations/1759.webp",
+   "conf": "med"
+  },
+  "sissy-squat": {
+   "oef": "1489",
+   "file": "animations/1489.webp",
+   "conf": "high"
+  },
+  "skull-crushers": {
+   "oef": "0060",
+   "file": "animations/0060.webp",
+   "conf": "high"
+  },
+  "smith-incline-press": {
+   "oef": "0757",
+   "file": "animations/0757.webp",
+   "conf": "high"
+  },
+  "smith-shoulder-press": {
+   "oef": "0766",
+   "file": "animations/0766.webp",
+   "conf": "high"
+  },
+  "smith-squat": {
+   "oef": "0770",
+   "file": "animations/0770.webp",
+   "conf": "high"
+  },
+  "spider-curl": {
+   "oef": "0454",
+   "file": "animations/0454.webp",
+   "conf": "high"
+  },
+  "spinal-flexion-extension-hyper": {
+   "oef": "0489",
+   "file": "animations/0489.webp",
+   "conf": "med"
+  },
+  "split-squat": {
+   "oef": "2368",
+   "file": "animations/2368.webp",
+   "conf": "high"
+  },
+  "standing-calf-raise": {
+   "oef": "0605",
+   "file": "animations/0605.webp",
+   "conf": "high"
+  },
+  "step-up": {
+   "oef": "0431",
+   "file": "animations/0431.webp",
+   "conf": "high"
+  },
+  "sumo-deadlift": {
+   "oef": "0117",
+   "file": "animations/0117.webp",
+   "conf": "high"
+  },
+  "sumo-squat": {
+   "oef": "3142",
+   "file": "animations/3142.webp",
+   "conf": "med"
+  },
+  "supinated-dumbbell-press": {
+   "oef": "0405",
+   "file": "animations/0405.webp",
+   "conf": "med"
+  },
+  "t-bar-row": {
+   "oef": "0606",
+   "file": "animations/0606.webp",
+   "conf": "med"
+  },
+  "triceps-dips": {
+   "oef": "0814",
+   "file": "animations/0814.webp",
+   "conf": "high"
+  },
+  "triceps-push-ups": {
+   "oef": "0259",
+   "file": "animations/0259.webp",
+   "conf": "high"
+  },
+  "upright-row": {
+   "oef": "0123",
+   "file": "animations/0123.webp",
+   "conf": "high"
+  },
+  "v-up": {
+   "oef": "0507",
+   "file": "animations/0507.webp",
+   "conf": "high"
+  },
+  "walking-lunge": {
+   "oef": "1460",
+   "file": "animations/1460.webp",
+   "conf": "high"
+  },
+  "wrist-curl": {
+   "oef": "0126",
+   "file": "animations/0126.webp",
+   "conf": "high"
+  },
+  "wrist-extension": {
+   "oef": "0082",
+   "file": "animations/0082.webp",
+   "conf": "high"
+  },
+  "y-raise": {
+   "oef": "3541",
+   "file": "animations/3541.webp",
+   "conf": "high"
+  }
+ },
+ "slugs": {
+  "3-way-push-up-decline-garage-program": {
+   "oef": "0279",
+   "file": "animations/0279.webp",
+   "conf": "high"
+  },
+  "3-way-push-up-incline-garage-program": {
+   "oef": "0493",
+   "file": "animations/0493.webp",
+   "conf": "high"
+  },
+  "3-way-tricep-dumbbell-push-ups-decline-garage-program": {
+   "oef": "0660",
+   "file": "animations/0660.webp",
+   "conf": "high"
+  },
+  "3-way-tricep-dumbbell-push-ups-flat-garage-program": {
+   "oef": "0660",
+   "file": "animations/0660.webp",
+   "conf": "high"
+  },
+  "3-way-tricep-dumbbell-push-ups-incline-garage-program": {
+   "oef": "0660",
+   "file": "animations/0660.webp",
+   "conf": "high"
+  },
+  "alternating-curls-giant-set-garage-program": {
+   "oef": "0285",
+   "file": "animations/0285.webp",
+   "conf": "high"
+  },
+  "barbell-calf-raise-extreme-stretch": {
+   "oef": "1372",
+   "file": "animations/1372.webp",
+   "conf": "high"
+  },
+  "barbell-calf-raise-ryan_humis514743": {
+   "oef": "1372",
+   "file": "animations/1372.webp",
+   "conf": "high"
+  },
+  "barbell-curl-copy-53446e13-a84b-4219-a553-a7ddfc805de9": {
+   "oef": "0447",
+   "file": "animations/0447.webp",
+   "conf": "high"
+  },
+  "barbell-shrug-drops-garage-program": {
+   "oef": "0095",
+   "file": "animations/0095.webp",
+   "conf": "high"
+  },
+  "barbell-shrugs-wide-grip-garage-2-0": {
+   "oef": "0095",
+   "file": "animations/0095.webp",
+   "conf": "high"
+  },
+  "barbell-split-squat-heel-elevated-quad-dominant": {
+   "oef": "2810",
+   "file": "animations/2810.webp",
+   "conf": "high"
+  },
+  "barbell-static-lunges": {
+   "oef": "2810",
+   "file": "animations/2810.webp",
+   "conf": "high"
+  },
+  "cable-fly-copy": {
+   "oef": "0773",
+   "file": "animations/0773.webp",
+   "conf": "high"
+  },
+  "cable-one-arm-row-kneeling": {
+   "oef": "0189",
+   "file": "animations/0189.webp",
+   "conf": "high"
+  },
+  "cable-rear-delt-close-to-body-copy": {
+   "oef": "0326",
+   "file": "animations/0326.webp",
+   "conf": "high"
+  },
+  "cable-straight-bar-reverse-curls": {
+   "oef": "0206",
+   "file": "animations/0206.webp",
+   "conf": "high"
+  },
+  "cable-straight-bar-wrist-curls": {
+   "oef": "0247",
+   "file": "animations/0247.webp",
+   "conf": "high"
+  },
+  "cable-straight-bar-wrist-extensions": {
+   "oef": "0210",
+   "file": "animations/0210.webp",
+   "conf": "high"
+  },
+  "close-grip-bench-garage-2-0": {
+   "oef": "0030",
+   "file": "animations/0030.webp",
+   "conf": "high"
+  },
+  "concentration-curl-copy-c194449e-62e6-468b-a38f-a293416ca6d7": {
+   "oef": "0372",
+   "file": "animations/0372.webp",
+   "conf": "high"
+  },
+  "concentration-curl-copy-copy": {
+   "oef": "1645",
+   "file": "animations/1645.webp",
+   "conf": "med"
+  },
+  "decline-sit-ups-ryan_humis514743": {
+   "oef": "0282",
+   "file": "animations/0282.webp",
+   "conf": "high"
+  },
+  "dip-bar-leg-raises-ryan_humis514743": {
+   "oef": "0826",
+   "file": "animations/0826.webp",
+   "conf": "high"
+  },
+  "dual-cable-side-laterals": {
+   "oef": "0178",
+   "file": "animations/0178.webp",
+   "conf": "high"
+  },
+  "dual-cable-side-laterals-pronated-to-palm-down": {
+   "oef": "0178",
+   "file": "animations/0178.webp",
+   "conf": "high"
+  },
+  "dual-single-handle-lat-pulldown-elbows-close-eccentric": {
+   "oef": "0818",
+   "file": "animations/0818.webp",
+   "conf": "high"
+  },
+  "dumbbell-finger-flexor-curl": {
+   "oef": "1437",
+   "file": "animations/1437.webp",
+   "conf": "high"
+  },
+  "dumbbell-french-press-ryan_humis514743": {
+   "oef": "0430",
+   "file": "animations/0430.webp",
+   "conf": "high"
+  },
+  "dumbbell-hamstring-curls-copy-fe1f775b-1e2f-4662-9a68-2e5657cd287a": {
+   "oef": "1459",
+   "file": "animations/1459.webp",
+   "conf": "high"
+  },
+  "dumbbell-preacher-curl-flat-side-copy": {
+   "oef": "0372",
+   "file": "animations/0372.webp",
+   "conf": "high"
+  },
+  "dumbbell-shrugs-copy": {
+   "oef": "0095",
+   "file": "animations/0095.webp",
+   "conf": "high"
+  },
+  "dumbbell-side-lateral-copy": {
+   "oef": "0355",
+   "file": "animations/0355.webp",
+   "conf": "high"
+  },
+  "dumbbell-side-lateral-incline-copy": {
+   "oef": "0396",
+   "file": "animations/0396.webp",
+   "conf": "high"
+  },
+  "dumbbell-stiff-leg-deadlifts": {
+   "oef": "1459",
+   "file": "animations/1459.webp",
+   "conf": "high"
+  },
+  "dumbbell-stiffs-barbell-assisted-garage-2-0": {
+   "oef": "1459",
+   "file": "animations/1459.webp",
+   "conf": "high"
+  },
+  "dumbbell-stiffs-extreme-stretch-garage-program": {
+   "oef": "1459",
+   "file": "animations/1459.webp",
+   "conf": "high"
+  },
+  "dumbbell-stiffs-smith-assisted": {
+   "oef": "1459",
+   "file": "animations/1459.webp",
+   "conf": "high"
+  },
+  "dumbbell-wrist-curl-ryan_humis514743": {
+   "oef": "0364",
+   "file": "animations/0364.webp",
+   "conf": "high"
+  },
+  "ez-bar-cable-drag-curls-wide-grip": {
+   "oef": "1632",
+   "file": "animations/1632.webp",
+   "conf": "high"
+  },
+  "ez-bar-curl-close-grip": {
+   "oef": "0447",
+   "file": "animations/0447.webp",
+   "conf": "high"
+  },
+  "ez-bar-curl-close-grip-elbows-tucked": {
+   "oef": "0447",
+   "file": "animations/0447.webp",
+   "conf": "high"
+  },
+  "ez-bar-curl-wide-grip": {
+   "oef": "0447",
+   "file": "animations/0447.webp",
+   "conf": "high"
+  },
+  "ez-bar-curl-wide-grip-elbows-back": {
+   "oef": "0447",
+   "file": "animations/0447.webp",
+   "conf": "high"
+  },
+  "ez-bar-curl-wide-grip-ryan_humis514743": {
+   "oef": "0447",
+   "file": "animations/0447.webp",
+   "conf": "high"
+  },
+  "ez-bar-reverse-grip-curls-ryan_humis514743": {
+   "oef": "0451",
+   "file": "animations/0451.webp",
+   "conf": "high"
+  },
+  "hammer-preacher-curl-flat-side": {
+   "oef": "0370",
+   "file": "animations/0370.webp",
+   "conf": "high"
+  },
+  "high-incline-dumbbell-french-press": {
+   "oef": "0330",
+   "file": "animations/0330.webp",
+   "conf": "med"
+  },
+  "incline-barbell-press-copy-ryan_humis514743": {
+   "oef": "0033",
+   "file": "animations/0033.webp",
+   "conf": "high"
+  },
+  "incline-cable-curl-copy-ryan_humis514743": {
+   "oef": "0206",
+   "file": "animations/0206.webp",
+   "conf": "high"
+  },
+  "incline-dumbbell-curls-garage-program-copy": {
+   "oef": "0447",
+   "file": "animations/0447.webp",
+   "conf": "high"
+  },
+  "incline-dumbbell-high-elbow-row-copy": {
+   "oef": "0767",
+   "file": "animations/0767.webp",
+   "conf": "high"
+  },
+  "incline-dumbbell-rear-delt-raise-garage-2-0": {
+   "oef": "0326",
+   "file": "animations/0326.webp",
+   "conf": "high"
+  },
+  "incline-dumbbell-skulls-garage-2-0": {
+   "oef": "0330",
+   "file": "animations/0330.webp",
+   "conf": "med"
+  },
+  "incline-partial-rear-delt-raises-garage-program": {
+   "oef": "0326",
+   "file": "animations/0326.webp",
+   "conf": "high"
+  },
+  "incline-push-ups-ryan_humis514743": {
+   "oef": "0493",
+   "file": "animations/0493.webp",
+   "conf": "high"
+  },
+  "incline-straight-arm-rear-delt-partials": {
+   "oef": "0326",
+   "file": "animations/0326.webp",
+   "conf": "high"
+  },
+  "iso-lat-row": {
+   "oef": "1313",
+   "file": "animations/1313.webp",
+   "conf": "high"
+  },
+  "lying-rear-delt-flys-pronated-garage-program": {
+   "oef": "0348",
+   "file": "animations/0348.webp",
+   "conf": "high"
+  },
+  "machine-ab-crunch-ryan_humis514743": {
+   "oef": "1452",
+   "file": "animations/1452.webp",
+   "conf": "high"
+  },
+  "machine-chest-press-modified-decline": {
+   "oef": "1300",
+   "file": "animations/1300.webp",
+   "conf": "high"
+  },
+  "machine-decline-press-ryan_humis514743": {
+   "oef": "1300",
+   "file": "animations/1300.webp",
+   "conf": "high"
+  },
+  "machine-shrug-drops-last-drop-is-a-row": {
+   "oef": "0604",
+   "file": "animations/0604.webp",
+   "conf": "high"
+  },
+  "modified-arnold-press-ryan_humis514743": {
+   "oef": "2137",
+   "file": "animations/2137.webp",
+   "conf": "high"
+  },
+  "reverse-barbell-lunges-garage-program": {
+   "oef": "0078",
+   "file": "animations/0078.webp",
+   "conf": "high"
+  },
+  "reverse-grip-cable-curls-ryan_humis514743": {
+   "oef": "0206",
+   "file": "animations/0206.webp",
+   "conf": "high"
+  },
+  "reverse-grip-ez-bar-cable-curl-copy": {
+   "oef": "0206",
+   "file": "animations/0206.webp",
+   "conf": "high"
+  },
+  "reverse-grip-incline-smith-press": {
+   "oef": "0758",
+   "file": "animations/0758.webp",
+   "conf": "high"
+  },
+  "reverse-grip-push-ups-garage-program-copy": {
+   "oef": "1721",
+   "file": "animations/1721.webp",
+   "conf": "high"
+  },
+  "rocking-ez-bar-curl": {
+   "oef": "0447",
+   "file": "animations/0447.webp",
+   "conf": "high"
+  },
+  "roman-chair-ryan_humis514743": {
+   "oef": "0826",
+   "file": "animations/0826.webp",
+   "conf": "high"
+  },
+  "roman-chair-weighted-knees-to-chest": {
+   "oef": "0826",
+   "file": "animations/0826.webp",
+   "conf": "high"
+  },
+  "seated-angled-barbell-wrist-curls": {
+   "oef": "0401",
+   "file": "animations/0401.webp",
+   "conf": "high"
+  },
+  "seated-cable-reverse-grip-wrist-extension": {
+   "oef": "0210",
+   "file": "animations/0210.webp",
+   "conf": "high"
+  },
+  "seated-cable-shrugs": {
+   "oef": "0220",
+   "file": "animations/0220.webp",
+   "conf": "high"
+  },
+  "seated-calf-toes-out-copy": {
+   "oef": "1392",
+   "file": "animations/1392.webp",
+   "conf": "high"
+  },
+  "seated-concentration-curl-copy": {
+   "oef": "0403",
+   "file": "animations/0403.webp",
+   "conf": "med"
+  },
+  "seated-dumbbell-wrist-curls": {
+   "oef": "0401",
+   "file": "animations/0401.webp",
+   "conf": "high"
+  },
+  "seated-dumbbell-wrist-extensions": {
+   "oef": "0385",
+   "file": "animations/0385.webp",
+   "conf": "high"
+  },
+  "seated-one-arm-shrug": {
+   "oef": "0220",
+   "file": "animations/0220.webp",
+   "conf": "high"
+  },
+  "seated-supinated-dumbbell-curls": {
+   "oef": "0391",
+   "file": "animations/0391.webp",
+   "conf": "high"
+  },
+  "single-arm-cable-curl-ryan_humis514743": {
+   "oef": "0190",
+   "file": "animations/0190.webp",
+   "conf": "high"
+  },
+  "single-arm-dumbbell-preacher-curl-tilt-back": {
+   "oef": "0372",
+   "file": "animations/0372.webp",
+   "conf": "high"
+  },
+  "single-arm-dumbbell-reverse-grip-brachialis-curls-tilt-back": {
+   "oef": "0425",
+   "file": "animations/0425.webp",
+   "conf": "high"
+  },
+  "single-arm-dumbbell-side-lateral-controlled": {
+   "oef": "0355",
+   "file": "animations/0355.webp",
+   "conf": "high"
+  },
+  "single-arm-french-pressed-to-bench-copy": {
+   "oef": "0826",
+   "file": "animations/0826.webp",
+   "conf": "high"
+  },
+  "single-arm-lat-pulldown-ryan_humis514743": {
+   "oef": "3563",
+   "file": "animations/3563.webp",
+   "conf": "high"
+  },
+  "single-arm-machine-lat-focused-row-rest-pause": {
+   "oef": "1313",
+   "file": "animations/1313.webp",
+   "conf": "high"
+  },
+  "single-leg-donkey-calf-raise-garage-program": {
+   "oef": "1386",
+   "file": "animations/1386.webp",
+   "conf": "high"
+  },
+  "single-leg-dumbbell-calf-raise-neutral": {
+   "oef": "0409",
+   "file": "animations/0409.webp",
+   "conf": "high"
+  },
+  "single-leg-dumbbell-calf-raise-ryan_humis514743": {
+   "oef": "0409",
+   "file": "animations/0409.webp",
+   "conf": "high"
+  },
+  "single-leg-dumbbell-calf-raise-toe-in": {
+   "oef": "0409",
+   "file": "animations/0409.webp",
+   "conf": "high"
+  },
+  "single-leg-dumbbell-calf-raise-toe-in-ryan_humis514743": {
+   "oef": "0409",
+   "file": "animations/0409.webp",
+   "conf": "high"
+  },
+  "single-leg-dumbbell-calf-raise-toe-out": {
+   "oef": "0409",
+   "file": "animations/0409.webp",
+   "conf": "high"
+  },
+  "single-leg-dumbbell-calf-raise-toe-out-ryan_humis514743": {
+   "oef": "0409",
+   "file": "animations/0409.webp",
+   "conf": "high"
+  },
+  "single-leg-dumbbell-calf-raise-toes-straight": {
+   "oef": "0409",
+   "file": "animations/0409.webp",
+   "conf": "high"
+  },
+  "single-leg-extension-copy-ryan_humis514743": {
+   "oef": "1425",
+   "file": "animations/1425.webp",
+   "conf": "high"
+  },
+  "skull-crushers-copy": {
+   "oef": "0449",
+   "file": "animations/0449.webp",
+   "conf": "med"
+  },
+  "slight-incline-cable-straight-bar-reverse-curls": {
+   "oef": "0206",
+   "file": "animations/0206.webp",
+   "conf": "high"
+  },
+  "slight-incline-dumbbell-skulls": {
+   "oef": "0330",
+   "file": "animations/0330.webp",
+   "conf": "med"
+  },
+  "slight-incline-rear-delt-raise": {
+   "oef": "0326",
+   "file": "animations/0326.webp",
+   "conf": "high"
+  },
+  "smith-front-squat-heel-elevated": {
+   "oef": "1433",
+   "file": "animations/1433.webp",
+   "conf": "high"
+  },
+  "smith-wide-grip-upright-row": {
+   "oef": "0775",
+   "file": "animations/0775.webp",
+   "conf": "high"
+  },
+  "split-stance-dumbbell-glute-stiff-copy": {
+   "oef": "0078",
+   "file": "animations/0078.webp",
+   "conf": "high"
+  },
+  "standing-barbell-shoulder-press-copy-ryan_humis514743": {
+   "oef": "1671",
+   "file": "animations/1671.webp",
+   "conf": "high"
+  },
+  "standing-dc-style-calf-raise-copy": {
+   "oef": "1392",
+   "file": "animations/1392.webp",
+   "conf": "high"
+  },
+  "standing-hyper-barbell-copy": {
+   "oef": "1359",
+   "file": "animations/1359.webp",
+   "conf": "high"
+  },
+  "v-handle-tricep-extensions-elbows-tucked": {
+   "oef": "0241",
+   "file": "animations/0241.webp",
+   "conf": "high"
+  },
+  "v-handle-tricep-push-downs": {
+   "oef": "0241",
+   "file": "animations/0241.webp",
+   "conf": "high"
+  },
+  "weight-crunch-garage-program": {
+   "oef": "0832",
+   "file": "animations/0832.webp",
+   "conf": "high"
+  },
+  "wide-grip-smith-upright-row": {
+   "oef": "0775",
+   "file": "animations/0775.webp",
+   "conf": "high"
+  },
+  "wide-push-ups-garage-program": {
+   "oef": "1311",
+   "file": "animations/1311.webp",
+   "conf": "high"
+  }
+ }
+}

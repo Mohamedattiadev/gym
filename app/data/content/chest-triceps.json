@@ -1,0 +1,3715 @@
+{
+ "families": {
+  "barbell-incline-press": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "delt-front",
+    "triceps"
+   ],
+   "en": {
+    "title": "Incline Barbell Press",
+    "about": "A heavy compound press on an incline bench that biases the upper (clavicular) chest.",
+    "steps": [
+     "Set the bench to about 15–30 degrees and lie with eyes under the bar.",
+     "Grip slightly wider than shoulders and pull your shoulder blades back and down.",
+     "Lower the bar under control to your upper chest.",
+     "Press up and slightly back until your arms are straight."
+    ],
+    "cues": [
+     "Keep elbows about 45–60 degrees from your torso.",
+     "Touch the chest lightly every rep for full range.",
+     "Take 2–3 seconds on the way down."
+    ],
+    "mistakes": [
+     "Bouncing the bar off the chest.",
+     "Setting the bench so steep that shoulders take over."
+    ]
+   },
+   "tr": {
+    "title": "Incline Barbell Press",
+    "about": "Üst göğsü (klaviküler bölüm) öne çıkaran, ağır yüklenebilen temel bir press hareketi.",
+    "steps": [
+     "Sehpayı 15–30 dereceye ayarla, gözlerin barın altında olacak şekilde uzan.",
+     "Barı omuz genişliğinden biraz geniş tut, kürek kemiklerini geri ve aşağı çek.",
+     "Barı kontrollü şekilde üst göğsüne indir.",
+     "Kollar düzleşene kadar barı yukarı ve hafif geriye it."
+    ],
+    "cues": [
+     "Dirsekleri gövdeden yaklaşık 45–60 derece açık tut.",
+     "Tam hareket açıklığı için her tekrarda göğse hafifçe değ.",
+     "İnişi 2–3 saniyede yap."
+    ],
+    "mistakes": [
+     "Barı göğüsten sektirmek.",
+     "Sehpayı çok dik ayarlayıp yükü omuzlara bindirmek."
+    ]
+   },
+   "ar": {
+    "title": "Incline Barbell Press",
+    "about": "تمرين ضغط مركب على مقعد مائل يركز على الجزء العلوي من الصدر ويسمح بأوزان ثقيلة.",
+    "steps": [
+     "اضبط المقعد على 15–30 درجة واستلقِ وعيناك تحت البار.",
+     "أمسك البار أعرض قليلًا من الكتفين واسحب لوحي الكتف للخلف والأسفل.",
+     "أنزل البار ببطء وتحكم إلى أعلى الصدر.",
+     "ادفع البار للأعلى ونحو الخلف قليلًا حتى تستقيم الذراعان."
+    ],
+    "cues": [
+     "أبقِ المرفقين بزاوية 45–60 درجة تقريبًا عن الجذع.",
+     "المس الصدر برفق في كل تكرار لمدى حركة كامل.",
+     "خذ 2–3 ثوانٍ في مرحلة النزول."
+    ],
+    "mistakes": [
+     "ارتداد البار عن الصدر.",
+     "رفع زاوية المقعد كثيرًا فتتولى الأكتاف العمل."
+    ]
+   }
+  },
+  "barrel-press": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "delt-front",
+    "triceps"
+   ],
+   "en": {
+    "title": "Barrel Press",
+    "about": "A dumbbell press with a wide, hugging arc that stretches the pecs and adds adduction at the top.",
+    "steps": [
+     "Lie on the bench with dumbbells held wide at chest level, elbows flared.",
+     "Lower the weights out and down until you feel a deep chest stretch.",
+     "Press up in an arc, as if hugging a large barrel.",
+     "Bring the dumbbells close together over your chest and squeeze."
+    ],
+    "cues": [
+     "Think of pulling your upper arms across your body, not just pushing up.",
+     "Keep a slight bend at the top so tension stays on the chest."
+    ],
+    "mistakes": [
+     "Turning it into a straight-up press with no arc.",
+     "Cutting the bottom short and losing the stretch."
+    ]
+   },
+   "tr": {
+    "title": "Barrel Press",
+    "about": "Geniş, sarılır gibi bir yay çizen dambıl press; göğsü iyi esnetir ve tepede sıkıştırır.",
+    "steps": [
+     "Sehpaya uzan, dambılları göğüs hizasında geniş tut, dirsekler açık olsun.",
+     "Göğüste derin bir gerilme hissedene kadar ağırlıkları dışa ve aşağı indir.",
+     "Büyük bir fıçıya sarılıyormuş gibi yay çizerek yukarı it.",
+     "Dambılları göğsün üzerinde birbirine yaklaştır ve sık."
+    ],
+    "cues": [
+     "Sadece yukarı itme; üst kollarını vücudunun önüne doğru çektiğini düşün.",
+     "Tepede kolları hafif bükülü tut ki gerilim göğüste kalsın."
+    ],
+    "mistakes": [
+     "Hareketi yaysız, düz bir press'e çevirmek.",
+     "Alt kısmı kısa kesip gerilmeyi kaybetmek."
+    ]
+   },
+   "ar": {
+    "title": "Barrel Press",
+    "about": "ضغط بالدمبل بمسار قوسي واسع كأنك تعانق برميلًا، يمدد الصدر ويضيف انقباضًا في الأعلى.",
+    "steps": [
+     "استلقِ على المقعد والدمبل عريضان بمستوى الصدر والمرفقان مفتوحان.",
+     "أنزل الأوزان للخارج والأسفل حتى تشعر بتمدد عميق في الصدر.",
+     "ادفع للأعلى في قوس كأنك تعانق برميلًا كبيرًا.",
+     "قرّب الدمبلين فوق الصدر واعصر العضلة."
+    ],
+    "cues": [
+     "فكّر في سحب العضدين أمام جسمك لا مجرد الدفع للأعلى.",
+     "أبقِ ثنيًا خفيفًا في الأعلى ليبقى الشد على الصدر."
+    ],
+    "mistakes": [
+     "تحويله إلى ضغط مستقيم بلا قوس.",
+     "تقصير النزول وفقدان التمدد."
+    ]
+   }
+  },
+  "decline-press": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "triceps",
+    "delt-front"
+   ],
+   "en": {
+    "title": "Decline Press",
+    "about": "A press on a slight decline that emphasizes the lower (sternal) chest with less shoulder stress.",
+    "steps": [
+     "Set a slight decline and lock your legs or feet in place.",
+     "Retract your shoulder blades and unrack the weight over your lower chest.",
+     "Lower slowly to the lower chest with elbows about 45 degrees.",
+     "Press back up to straight arms."
+    ],
+    "cues": [
+     "Keep the shoulder blades pinned throughout.",
+     "Control the descent; feel the lower pecs stretch."
+    ],
+    "mistakes": [
+     "Using a steep decline that shortens the range.",
+     "Letting the dumbbells or bar drift toward the neck."
+    ]
+   },
+   "tr": {
+    "title": "Decline Press",
+    "about": "Hafif decline açıda yapılan, alt göğsü (sternal bölüm) vurgulayan ve omzu daha az zorlayan press.",
+    "steps": [
+     "Sehpayı hafif decline ayarla, bacaklarını sabitle.",
+     "Kürek kemiklerini sıkıştır, ağırlığı alt göğsünün üzerine al.",
+     "Dirsekler yaklaşık 45 derecede, yavaşça alt göğse indir.",
+     "Kollar düzleşene kadar geri it."
+    ],
+    "cues": [
+     "Kürek kemiklerini hareket boyunca sabit tut.",
+     "İnişi kontrol et, alt göğsün gerildiğini hisset."
+    ],
+    "mistakes": [
+     "Hareket açıklığını kısaltan çok dik bir açı kullanmak.",
+     "Barın ya da dambılların boyna doğru kaymasına izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "Decline Press",
+    "about": "ضغط على مقعد منحدر قليلًا يركز على الجزء السفلي من الصدر مع ضغط أقل على الكتف.",
+    "steps": [
+     "اضبط المقعد على انحدار خفيف وثبّت ساقيك.",
+     "اسحب لوحي الكتف للخلف وارفع الوزن فوق أسفل الصدر.",
+     "أنزل ببطء إلى أسفل الصدر والمرفقان بزاوية 45 درجة تقريبًا.",
+     "ادفع حتى تستقيم الذراعان."
+    ],
+    "cues": [
+     "أبقِ لوحي الكتف مثبتين طوال الحركة.",
+     "تحكم في النزول واشعر بتمدد أسفل الصدر."
+    ],
+    "mistakes": [
+     "استخدام انحدار حاد يقصّر مدى الحركة.",
+     "ترك البار أو الدمبل ينجرف نحو الرقبة."
+    ]
+   }
+  },
+  "reverse-grip-press": {
+   "primary": [
+    "chest",
+    "triceps"
+   ],
+   "secondary": [
+    "delt-front"
+   ],
+   "en": {
+    "title": "Reverse Grip Press",
+    "about": "An underhand bench press that keeps elbows tucked, biasing the upper chest and triceps.",
+    "steps": [
+     "Grip the bar palms facing you, slightly wider than shoulder width.",
+     "Retract your shoulder blades and unrack with a spotter or Smith machine.",
+     "Lower the bar to your lower chest with elbows tucked close.",
+     "Press up and slightly back toward your face."
+    ],
+    "cues": [
+     "Wrap the thumbs fully around the bar for safety.",
+     "Start light; the bar path feels different from a normal press."
+    ],
+    "mistakes": [
+     "Using a thumbless grip with an underhand bar.",
+     "Flaring elbows wide, which strains the wrists."
+    ]
+   },
+   "tr": {
+    "title": "Reverse Grip Press",
+    "about": "Avuç içi sana bakan tutuşla bench press; dirsekleri içeride tutar, üst göğüs ve tricepsi çalıştırır.",
+    "steps": [
+     "Barı avuç içleri sana bakacak şekilde, omuzdan biraz geniş tut.",
+     "Kürek kemiklerini sıkıştır, partnerle ya da Smith'te barı al.",
+     "Dirsekler gövdeye yakın, barı alt göğse indir.",
+     "Barı yukarı ve hafifçe yüzüne doğru it."
+    ],
+    "cues": [
+     "Güvenlik için başparmağını barın etrafına tamamen sar.",
+     "Hafif başla; bar yolu normal press'ten farklıdır."
+    ],
+    "mistakes": [
+     "Ters tutuşta başparmaksız (false) grip kullanmak.",
+     "Dirsekleri açıp bilekleri zorlamak."
+    ]
+   },
+   "ar": {
+    "title": "Reverse Grip Press",
+    "about": "ضغط بقبضة معكوسة يُبقي المرفقين قريبين من الجسم، فيستهدف أعلى الصدر والترايسبس.",
+    "steps": [
+     "أمسك البار وراحتا اليدين نحوك، أعرض قليلًا من الكتفين.",
+     "اسحب لوحي الكتف للخلف وارفع البار بمساعدة شريك أو جهاز Smith.",
+     "أنزل البار إلى أسفل الصدر والمرفقان قريبان من الجسم.",
+     "ادفع للأعلى ونحو الوجه قليلًا."
+    ],
+    "cues": [
+     "لُفّ الإبهامين حول البار تمامًا للأمان.",
+     "ابدأ بوزن خفيف لأن مسار البار مختلف."
+    ],
+    "mistakes": [
+     "استخدام قبضة بلا إبهام مع القبضة المعكوسة.",
+     "فتح المرفقين كثيرًا مما يُجهد الرسغين."
+    ]
+   }
+  },
+  "floor-press": {
+   "primary": [
+    "chest",
+    "triceps"
+   ],
+   "secondary": [
+    "delt-front"
+   ],
+   "en": {
+    "title": "Floor Press",
+    "about": "A press from the floor that limits depth, building lockout strength while sparing the shoulders.",
+    "steps": [
+     "Lie on the floor with knees bent and weights over your chest.",
+     "Lower until your upper arms gently touch the floor.",
+     "Pause briefly without relaxing.",
+     "Press back up to straight arms."
+    ],
+    "cues": [
+     "Keep elbows around 45 degrees from your body.",
+     "Let arms touch the floor softly, never slam."
+    ],
+    "mistakes": [
+     "Bouncing elbows off the floor.",
+     "Letting the wrists bend far back."
+    ]
+   },
+   "tr": {
+    "title": "Floor Press",
+    "about": "Yerde yapılan, inişi sınırlayan press; omuzları koruyarak kilitleme gücünü geliştirir.",
+    "steps": [
+     "Dizler bükülü yere uzan, ağırlıkları göğsünün üzerinde tut.",
+     "Üst kolların yere hafifçe değene kadar indir.",
+     "Gevşemeden kısa bir an dur.",
+     "Kollar düzleşene kadar geri it."
+    ],
+    "cues": [
+     "Dirsekleri gövdeden yaklaşık 45 derece açık tut.",
+     "Kolları yere yumuşakça değdir, çarpma."
+    ],
+    "mistakes": [
+     "Dirsekleri yerden sektirmek.",
+     "Bileklerin geriye fazla bükülmesine izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "Floor Press",
+    "about": "ضغط من على الأرض يحدّ من النزول، يبني قوة القفل مع حماية الكتفين.",
+    "steps": [
+     "استلقِ على الأرض والركبتان مثنيتان والأوزان فوق صدرك.",
+     "أنزل حتى يلمس العضدان الأرض برفق.",
+     "توقف لحظة دون أن ترتخي.",
+     "ادفع حتى تستقيم الذراعان."
+    ],
+    "cues": [
+     "أبقِ المرفقين بزاوية 45 درجة تقريبًا عن الجسم.",
+     "دع الذراعين تلمسان الأرض بلطف دون ارتطام."
+    ],
+    "mistakes": [
+     "ارتداد المرفقين عن الأرض.",
+     "ترك الرسغين ينثنيان كثيرًا للخلف."
+    ]
+   }
+  },
+  "flat-dumbbell-press": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "delt-front",
+    "triceps"
+   ],
+   "en": {
+    "title": "Flat Dumbbell Press",
+    "about": "A flat-bench press with dumbbells that allows a deeper stretch than a barbell.",
+    "steps": [
+     "Sit with dumbbells on your thighs, then kick them up as you lie back.",
+     "Retract your shoulder blades and plant your feet.",
+     "Lower the dumbbells beside your chest until you feel a full stretch.",
+     "Press up and slightly in until arms are nearly straight."
+    ],
+    "cues": [
+     "Elbows about 45–60 degrees, forearms vertical.",
+     "Spend 2–3 seconds lowering; drive up with intent."
+    ],
+    "mistakes": [
+     "Stopping short of a full stretch at the bottom.",
+     "Clanging dumbbells together and losing tension."
+    ]
+   },
+   "tr": {
+    "title": "Flat Dumbbell Press",
+    "about": "Düz sehpada dambıl press; barbell'e göre daha derin gerilme sağlar.",
+    "steps": [
+     "Dambılları dizlerine koy, geriye uzanırken dizinle yukarı it.",
+     "Kürek kemiklerini sıkıştır, ayaklarını yere bas.",
+     "Tam gerilme hissedene kadar dambılları göğsünün yanına indir.",
+     "Kollar neredeyse düzleşene kadar yukarı ve hafif içe it."
+    ],
+    "cues": [
+     "Dirsekler 45–60 derece, ön kollar dik.",
+     "İnişte 2–3 saniye harca, yukarı güçlü it."
+    ],
+    "mistakes": [
+     "Altta tam gerilmeye inmeden durmak.",
+     "Dambılları tepede çarpıştırıp gerilimi kaybetmek."
+    ]
+   },
+   "ar": {
+    "title": "Flat Dumbbell Press",
+    "about": "ضغط بالدمبل على مقعد مستوٍ يتيح تمددًا أعمق من البار.",
+    "steps": [
+     "اجلس والدمبل على فخذيك، ثم ادفعهما بركبتيك وأنت تستلقي.",
+     "اسحب لوحي الكتف للخلف وثبّت قدميك على الأرض.",
+     "أنزل الدمبل بجانب الصدر حتى تشعر بتمدد كامل.",
+     "ادفع للأعلى وللداخل قليلًا حتى تكاد تستقيم الذراعان."
+    ],
+    "cues": [
+     "المرفقان بزاوية 45–60 درجة والساعدان عموديان.",
+     "انزل في 2–3 ثوانٍ وادفع بقوة."
+    ],
+    "mistakes": [
+     "التوقف قبل الوصول إلى التمدد الكامل.",
+     "ضرب الدمبلين ببعضهما وفقدان الشد."
+    ]
+   }
+  },
+  "incline-dumbbell-press": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "delt-front",
+    "triceps"
+   ],
+   "en": {
+    "title": "Incline Dumbbell Press",
+    "about": "An incline dumbbell press that targets the upper chest through a long, deep range of motion.",
+    "steps": [
+     "Set the bench to about 15–45 degrees and kick the dumbbells up.",
+     "Pin your shoulder blades back and down against the bench.",
+     "Lower the dumbbells to upper-chest level until you feel a deep stretch.",
+     "Press up and slightly together over your upper chest."
+    ],
+    "cues": [
+     "A lower incline (15–30°) keeps more work on the chest.",
+     "Keep forearms stacked under the dumbbells.",
+     "Control the eccentric for 2–3 seconds."
+    ],
+    "mistakes": [
+     "Shrugging the shoulders up off the bench.",
+     "Half reps that skip the stretched position."
+    ]
+   },
+   "tr": {
+    "title": "Incline Dumbbell Press",
+    "about": "Uzun ve derin bir hareket açıklığıyla üst göğsü hedefleyen incline dambıl press.",
+    "steps": [
+     "Sehpayı 15–45 dereceye ayarla, dambılları dizinle yukarı al.",
+     "Kürek kemiklerini geri ve aşağı, sehpaya sabitle.",
+     "Derin gerilme hissedene kadar dambılları üst göğüs hizasına indir.",
+     "Üst göğsün üzerinde hafifçe birleştirerek yukarı it."
+    ],
+    "cues": [
+     "Düşük açı (15–30°) yükü daha çok göğüste tutar.",
+     "Ön kolları dambılların tam altında tut.",
+     "Negatif kısmı 2–3 saniyede kontrol et."
+    ],
+    "mistakes": [
+     "Omuzları sehpadan yukarı kaldırmak.",
+     "Gerilme pozisyonunu atlayan yarım tekrarlar."
+    ]
+   },
+   "ar": {
+    "title": "Incline Dumbbell Press",
+    "about": "ضغط بالدمبل على مقعد مائل يستهدف أعلى الصدر عبر مدى حركة طويل وعميق.",
+    "steps": [
+     "اضبط المقعد على 15–45 درجة وارفع الدمبل بمساعدة الركبتين.",
+     "ثبّت لوحي الكتف للخلف والأسفل على المقعد.",
+     "أنزل الدمبل إلى مستوى أعلى الصدر حتى تشعر بتمدد عميق.",
+     "ادفع للأعلى مع تقريب الدمبلين فوق أعلى الصدر."
+    ],
+    "cues": [
+     "الميل المنخفض (15–30°) يُبقي العمل أكثر على الصدر.",
+     "أبقِ الساعدين تحت الدمبل مباشرة.",
+     "تحكم في النزول لمدة 2–3 ثوانٍ."
+    ],
+    "mistakes": [
+     "رفع الكتفين عن المقعد.",
+     "تكرارات نصفية تتجاهل وضعية التمدد."
+    ]
+   }
+  },
+  "supinated-dumbbell-press": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "delt-front",
+    "triceps"
+   ],
+   "en": {
+    "title": "Slightly Supinated Dumbbell Press",
+    "about": "A dumbbell press with palms turned slightly toward you, tucking elbows to bias the upper chest.",
+    "steps": [
+     "Sit on a bench set to a slight or moderate incline.",
+     "Hold the dumbbells with pinkies turned slightly inward toward each other.",
+     "Lower with elbows tucked about 30–45 degrees to a deep stretch.",
+     "Press up toward your upper chest line, keeping the grip angle."
+    ],
+    "cues": [
+     "Keep the slight supinated angle the whole set.",
+     "Drive the upper arm up and in toward your face."
+    ],
+    "mistakes": [
+     "Flaring elbows and losing the tucked path.",
+     "Rushing the descent and bouncing out of the bottom."
+    ]
+   },
+   "tr": {
+    "title": "Slightly Supinated Dumbbell Press",
+    "about": "Avuç içleri hafifçe sana dönük dambıl press; dirsekleri içeride tutarak üst göğsü vurgular.",
+    "steps": [
+     "Hafif ya da orta incline sehpaya otur.",
+     "Dambılları serçe parmaklar hafifçe içe dönük olacak şekilde tut.",
+     "Dirsekler 30–45 derece içeride, derin gerilmeye kadar indir.",
+     "Tutuş açısını koruyarak üst göğüs hattına doğru it."
+    ],
+    "cues": [
+     "Hafif supine açıyı set boyunca koru.",
+     "Üst kolu yukarı ve yüzüne doğru sür."
+    ],
+    "mistakes": [
+     "Dirsekleri açıp içeride kalan yolu kaybetmek.",
+     "İnişi aceleye getirip alttan sekmek."
+    ]
+   },
+   "ar": {
+    "title": "Slightly Supinated Dumbbell Press",
+    "about": "ضغط بالدمبل مع تدوير الراحتين قليلًا نحوك، يضم المرفقين ليركز على أعلى الصدر.",
+    "steps": [
+     "اجلس على مقعد بميل خفيف أو متوسط.",
+     "أمسك الدمبل مع تدوير الخنصرين قليلًا نحو الداخل.",
+     "انزل والمرفقان مضمومان 30–45 درجة حتى تمدد عميق.",
+     "ادفع نحو خط أعلى الصدر مع الحفاظ على زاوية القبضة."
+    ],
+    "cues": [
+     "حافظ على زاوية الدوران الخفيفة طوال المجموعة.",
+     "ادفع العضد للأعلى ونحو الوجه."
+    ],
+    "mistakes": [
+     "فتح المرفقين وفقدان المسار المضموم.",
+     "التسرع في النزول والارتداد من الأسفل."
+    ]
+   }
+  },
+  "seated-barbell-press": {
+   "primary": [
+    "delt-front"
+   ],
+   "secondary": [
+    "chest",
+    "triceps",
+    "delt-side"
+   ],
+   "en": {
+    "title": "Seated Barbell Press",
+    "about": "A seated overhead press that builds the front delts with upper-chest and triceps assistance.",
+    "steps": [
+     "Sit upright on a bench with back support and grip just outside shoulders.",
+     "Start with the bar at upper-chest or chin level.",
+     "Press straight overhead, moving your head back slightly to clear the bar.",
+     "Lower under control to the start."
+    ],
+    "cues": [
+     "Brace your abs and avoid arching your lower back.",
+     "Keep forearms vertical under the bar."
+    ],
+    "mistakes": [
+     "Leaning far back and turning it into an incline press.",
+     "Cutting the bottom short of chin level."
+    ]
+   },
+   "tr": {
+    "title": "Seated Barbell Press",
+    "about": "Oturarak yapılan overhead press; ön omzu geliştirir, üst göğüs ve triceps destek verir.",
+    "steps": [
+     "Sırt destekli sehpaya dik otur, barı omuzların hemen dışından tut.",
+     "Barı üst göğüs ya da çene hizasında başlat.",
+     "Başını hafif geri alarak barı dümdüz yukarı it.",
+     "Kontrollü şekilde başlangıca indir."
+    ],
+    "cues": [
+     "Karnını sık, belini aşırı kavislendirme.",
+     "Ön kolları barın altında dik tut."
+    ],
+    "mistakes": [
+     "Fazla geriye yaslanıp hareketi incline press'e çevirmek.",
+     "Çene hizasına inmeden tekrarı kesmek."
+    ]
+   },
+   "ar": {
+    "title": "Seated Barbell Press",
+    "about": "ضغط علوي جالسًا يبني الكتف الأمامي بمساعدة أعلى الصدر والترايسبس.",
+    "steps": [
+     "اجلس مستقيمًا على مقعد بمسند وأمسك البار خارج الكتفين مباشرة.",
+     "ابدأ والبار بمستوى أعلى الصدر أو الذقن.",
+     "ادفع للأعلى مباشرة مع إرجاع الرأس قليلًا لإفساح الطريق.",
+     "أنزل بتحكم إلى البداية."
+    ],
+    "cues": [
+     "شدّ عضلات البطن وتجنب تقويس أسفل الظهر.",
+     "أبقِ الساعدين عموديين تحت البار."
+    ],
+    "mistakes": [
+     "الميل للخلف كثيرًا وتحويله إلى ضغط مائل.",
+     "التوقف قبل مستوى الذقن."
+    ]
+   }
+  },
+  "raise-to-press": {
+   "primary": [
+    "delt-front",
+    "chest"
+   ],
+   "secondary": [
+    "delt-side",
+    "triceps"
+   ],
+   "en": {
+    "title": "Raise To Press",
+    "about": "A combo of a front raise into a press that hammers the front delts and upper chest.",
+    "steps": [
+     "Sit upright holding dumbbells at your thighs, palms facing in.",
+     "Raise the dumbbells in front to shoulder height, touching them together.",
+     "Bend the elbows and bring them to your shoulders.",
+     "Press overhead, then reverse the sequence slowly."
+    ],
+    "cues": [
+     "Keep the torso still; no swinging.",
+     "Use light weights and smooth transitions."
+    ],
+    "mistakes": [
+     "Using momentum to lift the dumbbells.",
+     "Shrugging the shoulders toward the ears."
+    ]
+   },
+   "tr": {
+    "title": "Raise To Press",
+    "about": "Front raise ile press'i birleştiren, ön omuz ve üst göğsü yoğun çalıştıran kombinasyon.",
+    "steps": [
+     "Dik otur, dambılları uyluklarında avuçlar içe bakacak şekilde tut.",
+     "Dambılları önden omuz hizasına kaldır ve birbirine değdir.",
+     "Dirsekleri bük ve dambılları omuzlarına getir.",
+     "Yukarı it, sonra sırayı yavaşça tersine çevir."
+    ],
+    "cues": [
+     "Gövdeyi sabit tut, sallanma.",
+     "Hafif ağırlık kullan, geçişleri akıcı yap."
+    ],
+    "mistakes": [
+     "Dambılları momentumla kaldırmak.",
+     "Omuzları kulaklara doğru kaldırmak."
+    ]
+   },
+   "ar": {
+    "title": "Raise To Press",
+    "about": "مزيج من الرفع الأمامي ثم الضغط العلوي يرهق الكتف الأمامي وأعلى الصدر.",
+    "steps": [
+     "اجلس مستقيمًا والدمبل عند الفخذين والراحتان للداخل.",
+     "ارفع الدمبل أمامك إلى مستوى الكتف ودعهما يتلامسان.",
+     "اثنِ المرفقين وأحضر الدمبل إلى الكتفين.",
+     "ادفع للأعلى ثم اعكس التسلسل ببطء."
+    ],
+    "cues": [
+     "أبقِ الجذع ثابتًا دون تأرجح.",
+     "استخدم أوزانًا خفيفة وانتقالات سلسة."
+    ],
+    "mistakes": [
+     "رفع الدمبل بالاندفاع.",
+     "رفع الكتفين نحو الأذنين."
+    ]
+   }
+  },
+  "smith-incline-press": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "delt-front",
+    "triceps"
+   ],
+   "en": {
+    "title": "Smith Incline Press",
+    "about": "A Smith machine incline press; the fixed path lets you push hard and safely for the upper chest.",
+    "steps": [
+     "Set the bench at 15–45 degrees so the bar lands on your upper chest.",
+     "Grip slightly wider than shoulders and retract your shoulder blades.",
+     "Unrack and lower slowly until the bar touches your upper chest.",
+     "Press up to near lockout."
+    ],
+    "cues": [
+     "Check bench position first so the bar path matches your chest.",
+     "Keep elbows 45–60 degrees; tuck more for upper chest focus."
+    ],
+    "mistakes": [
+     "Bench too far forward or back, so the bar hits your neck or belly.",
+     "Bouncing the bar off the chest."
+    ]
+   },
+   "tr": {
+    "title": "Smith Incline Press",
+    "about": "Smith makinede incline press; sabit yol sayesinde üst göğsü güvenle ve sert çalıştırırsın.",
+    "steps": [
+     "Sehpayı 15–45 dereceye, bar üst göğsüne inecek şekilde yerleştir.",
+     "Omuzdan biraz geniş tut, kürek kemiklerini sıkıştır.",
+     "Barı kancadan al, üst göğsüne değene kadar yavaşça indir.",
+     "Neredeyse kilitlenene kadar yukarı it."
+    ],
+    "cues": [
+     "Önce sehpa konumunu kontrol et, bar yolu göğsüne uysun.",
+     "Dirsekler 45–60 derece; üst göğüs için biraz daha içeride tut."
+    ],
+    "mistakes": [
+     "Sehpayı yanlış konumlayıp barı boyna ya da karna indirmek.",
+     "Barı göğüsten sektirmek."
+    ]
+   },
+   "ar": {
+    "title": "Smith Incline Press",
+    "about": "ضغط مائل على جهاز Smith؛ المسار الثابت يتيح لك الدفع بقوة وأمان لأعلى الصدر.",
+    "steps": [
+     "اضبط المقعد على 15–45 درجة بحيث ينزل البار على أعلى الصدر.",
+     "أمسك أعرض قليلًا من الكتفين واسحب لوحي الكتف للخلف.",
+     "حرر البار وأنزله ببطء حتى يلمس أعلى صدرك.",
+     "ادفع حتى قرب الاستقامة الكاملة."
+    ],
+    "cues": [
+     "تحقق من موضع المقعد أولًا ليتوافق المسار مع صدرك.",
+     "المرفقان 45–60 درجة؛ اضممهما أكثر للتركيز على أعلى الصدر."
+    ],
+    "mistakes": [
+     "وضع المقعد خطأً فينزل البار على الرقبة أو البطن.",
+     "ارتداد البار عن الصدر."
+    ]
+   }
+  },
+  "machine-chest-press": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "delt-front",
+    "triceps"
+   ],
+   "en": {
+    "title": "Machine Chest Press",
+    "about": "A stable machine press that lets you train the chest close to failure with low skill demand.",
+    "steps": [
+     "Adjust the seat so the handles line up with mid-to-lower chest.",
+     "Sit tall, chest up, shoulder blades pulled back into the pad.",
+     "Press the handles forward until your arms are nearly straight.",
+     "Return slowly until you feel a strong chest stretch."
+    ],
+    "cues": [
+     "Keep your back and head on the pad.",
+     "Let the handles come back far for a full stretch.",
+     "Lower in 2–3 seconds every rep."
+    ],
+    "mistakes": [
+     "Seat too low or high, shifting work to the shoulders.",
+     "Letting the weight stack slam between reps."
+    ]
+   },
+   "tr": {
+    "title": "Machine Chest Press",
+    "about": "Az teknik gerektiren, göğsü tükenişe yakın çalıştırmayı sağlayan sabit makine press.",
+    "steps": [
+     "Koltuğu tutacaklar orta-alt göğüs hizasına gelecek şekilde ayarla.",
+     "Dik otur, göğüs yukarıda, kürek kemikleri pede doğru geride.",
+     "Kollar neredeyse düzleşene kadar tutacakları ileri it.",
+     "Göğüste güçlü gerilme hissedene kadar yavaşça geri gel."
+    ],
+    "cues": [
+     "Sırtını ve başını pedde tut.",
+     "Tam gerilme için tutacakların iyice geri gelmesine izin ver.",
+     "Her tekrarda 2–3 saniyede indir."
+    ],
+    "mistakes": [
+     "Koltuğu yanlış ayarlayıp yükü omuzlara kaydırmak.",
+     "Ağırlık bloklarını tekrarlar arasında çarptırmak."
+    ]
+   },
+   "ar": {
+    "title": "Machine Chest Press",
+    "about": "ضغط ثابت على الجهاز يتيح تمرين الصدر قرب الفشل العضلي بمهارة تقنية قليلة.",
+    "steps": [
+     "اضبط المقعد ليكون المقبضان بمستوى منتصف إلى أسفل الصدر.",
+     "اجلس مستقيمًا والصدر مرفوع ولوحا الكتف مسحوبان نحو المسند.",
+     "ادفع المقبضين للأمام حتى تكاد تستقيم الذراعان.",
+     "ارجع ببطء حتى تشعر بتمدد قوي في الصدر."
+    ],
+    "cues": [
+     "أبقِ ظهرك ورأسك على المسند.",
+     "دع المقبضين يرجعان بعيدًا لتمدد كامل.",
+     "انزل في 2–3 ثوانٍ في كل تكرار."
+    ],
+    "mistakes": [
+     "ضبط المقعد عاليًا أو منخفضًا فينتقل العمل للأكتاف.",
+     "ترك الأوزان ترتطم بين التكرارات."
+    ]
+   }
+  },
+  "machine-incline-press": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "delt-front",
+    "triceps"
+   ],
+   "en": {
+    "title": "Machine Incline Press",
+    "about": "An incline press machine for the upper chest that's easy to push safely to failure.",
+    "steps": [
+     "Set the seat so handles start around upper-chest height.",
+     "Sit back with shoulder blades retracted and feet planted.",
+     "Press up and forward until arms are nearly straight.",
+     "Lower slowly into a deep upper-chest stretch."
+    ],
+    "cues": [
+     "Keep elbows slightly below shoulder height.",
+     "Pause briefly in the stretch without relaxing."
+    ],
+    "mistakes": [
+     "Lifting the hips or chest off the pad to grind reps.",
+     "Short, fast reps that skip the stretch."
+    ]
+   },
+   "tr": {
+    "title": "Machine Incline Press",
+    "about": "Üst göğüs için incline press makinesi; tükenişe kadar güvenle zorlamak kolaydır.",
+    "steps": [
+     "Koltuğu tutacaklar üst göğüs hizasında başlayacak şekilde ayarla.",
+     "Kürek kemikleri geride, ayaklar yerde, arkana yaslan.",
+     "Kollar neredeyse düzleşene kadar yukarı ve ileri it.",
+     "Üst göğüste derin gerilmeye kadar yavaşça indir."
+    ],
+    "cues": [
+     "Dirsekleri omuz hizasının biraz altında tut.",
+     "Gerilmede gevşemeden kısa bir an dur."
+    ],
+    "mistakes": [
+     "Tekrar sıkıştırmak için kalçayı ya da göğsü pedden kaldırmak.",
+     "Gerilmeyi atlayan kısa, hızlı tekrarlar."
+    ]
+   },
+   "ar": {
+    "title": "Machine Incline Press",
+    "about": "جهاز ضغط مائل لأعلى الصدر يسهل دفعه بأمان حتى الفشل العضلي.",
+    "steps": [
+     "اضبط المقعد ليبدأ المقبضان بمستوى أعلى الصدر تقريبًا.",
+     "اجلس للخلف ولوحا الكتف مسحوبان والقدمان ثابتتان.",
+     "ادفع للأعلى والأمام حتى تكاد تستقيم الذراعان.",
+     "أنزل ببطء إلى تمدد عميق في أعلى الصدر."
+    ],
+    "cues": [
+     "أبقِ المرفقين أدنى قليلًا من مستوى الكتف.",
+     "توقف لحظة في التمدد دون أن ترتخي."
+    ],
+    "mistakes": [
+     "رفع الورك أو الصدر عن المسند لإكمال التكرار.",
+     "تكرارات قصيرة وسريعة تتجاهل التمدد."
+    ]
+   }
+  },
+  "dumbbell-fly": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "delt-front",
+    "biceps"
+   ],
+   "en": {
+    "title": "Dumbbell Fly",
+    "about": "A flat-bench fly that loads the chest hard in the stretched position, a strong growth stimulus.",
+    "steps": [
+     "Lie flat holding dumbbells over your chest, palms facing each other.",
+     "Keep a soft, fixed bend in the elbows.",
+     "Open your arms in a wide arc until you feel a deep chest stretch.",
+     "Bring the dumbbells back up along the same arc."
+    ],
+    "cues": [
+     "Move only at the shoulders; the elbow angle stays locked.",
+     "Spend most effort in the bottom half where tension is highest."
+    ],
+    "mistakes": [
+     "Bending and straightening the elbows, turning it into a press.",
+     "Going too heavy and dropping below a safe stretch."
+    ]
+   },
+   "tr": {
+    "title": "Dumbbell Fly",
+    "about": "Göğsü gerilmiş pozisyonda yoğun yükleyen düz sehpa fly; güçlü bir büyüme uyarısı.",
+    "steps": [
+     "Düz sehpaya uzan, dambılları göğsünün üzerinde avuçlar karşılıklı tut.",
+     "Dirseklerde hafif ve sabit bir büküm koru.",
+     "Göğüste derin gerilme hissedene kadar kolları geniş bir yayla aç.",
+     "Dambılları aynı yayı izleyerek yukarı getir."
+    ],
+    "cues": [
+     "Hareket sadece omuzdan; dirsek açısı sabit kalır.",
+     "Gerilimin en yüksek olduğu alt yarıya odaklan."
+    ],
+    "mistakes": [
+     "Dirsekleri büküp açarak hareketi press'e çevirmek.",
+     "Fazla ağır alıp güvenli gerilmenin altına inmek."
+    ]
+   },
+   "ar": {
+    "title": "Dumbbell Fly",
+    "about": "تمرين فتح على مقعد مستوٍ يحمّل الصدر بقوة في وضعية التمدد، وهو محفز قوي للنمو.",
+    "steps": [
+     "استلقِ والدمبل فوق صدرك والراحتان متقابلتان.",
+     "حافظ على ثني خفيف وثابت في المرفقين.",
+     "افتح ذراعيك في قوس واسع حتى تشعر بتمدد عميق في الصدر.",
+     "أعد الدمبل للأعلى في القوس نفسه."
+    ],
+    "cues": [
+     "الحركة من الكتف فقط وزاوية المرفق ثابتة.",
+     "ركّز جهدك في النصف السفلي حيث الشد أعلى."
+    ],
+    "mistakes": [
+     "ثني المرفقين ومدهما فيتحول إلى ضغط.",
+     "استخدام وزن ثقيل والنزول أبعد من التمدد الآمن."
+    ]
+   }
+  },
+  "incline-dumbbell-fly": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "delt-front",
+    "biceps"
+   ],
+   "en": {
+    "title": "Incline Dumbbell Fly",
+    "about": "A fly on an incline bench that targets the upper chest in a deep stretch.",
+    "steps": [
+     "Set the bench to about 15–45 degrees and lie back with dumbbells up.",
+     "Keep a slight bend in the elbows, palms facing each other.",
+     "Lower in a wide arc until the upper chest is fully stretched.",
+     "Sweep the dumbbells up and in toward your upper chest."
+    ],
+    "cues": [
+     "Think of bringing your biceps toward your chin.",
+     "Control the bottom; don't let the weights drop."
+    ],
+    "mistakes": [
+     "Pressing the weights instead of hugging them up.",
+     "Using a bench angle so steep the shoulders take over."
+    ]
+   },
+   "tr": {
+    "title": "Incline Dumbbell Fly",
+    "about": "Incline sehpada fly; üst göğsü derin gerilmede hedefler.",
+    "steps": [
+     "Sehpayı 15–45 dereceye ayarla, dambıllar yukarıda arkaya uzan.",
+     "Dirsekleri hafif bükülü, avuçları karşılıklı tut.",
+     "Üst göğüs tamamen gerilene kadar geniş bir yayla indir.",
+     "Dambılları üst göğsüne doğru yukarı ve içe süpür."
+    ],
+    "cues": [
+     "Pazılarını çenene doğru getirdiğini düşün.",
+     "Alt kısmı kontrol et, ağırlığı düşürme."
+    ],
+    "mistakes": [
+     "Ağırlığa sarılmak yerine press yapmak.",
+     "Omuzların devreye girdiği çok dik bir açı kullanmak."
+    ]
+   },
+   "ar": {
+    "title": "Incline Dumbbell Fly",
+    "about": "تمرين فتح على مقعد مائل يستهدف أعلى الصدر في تمدد عميق.",
+    "steps": [
+     "اضبط المقعد على 15–45 درجة واستلقِ والدمبل للأعلى.",
+     "أبقِ المرفقين مثنيين قليلًا والراحتين متقابلتين.",
+     "أنزل في قوس واسع حتى يتمدد أعلى الصدر تمامًا.",
+     "اسحب الدمبل للأعلى وللداخل نحو أعلى الصدر."
+    ],
+    "cues": [
+     "تخيّل أنك تقرّب العضدين نحو ذقنك.",
+     "تحكم في الأسفل ولا تدع الأوزان تسقط."
+    ],
+    "mistakes": [
+     "ضغط الأوزان بدل ضمّها في قوس.",
+     "استخدام ميل حاد يجعل الأكتاف تتولى العمل."
+    ]
+   }
+  },
+  "scoop-fly": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "delt-front",
+    "biceps"
+   ],
+   "en": {
+    "title": "Seated Dumbbell Scoop Fly",
+    "about": "A low-to-high fly that scoops the dumbbells up and in to bias the upper chest.",
+    "steps": [
+     "Sit on an upright or high-incline bench, dumbbells at your sides.",
+     "Turn palms forward with a slight bend in the elbows.",
+     "Sweep the arms forward and up in an arc to eye level.",
+     "Lower slowly back to your sides with a chest stretch."
+    ],
+    "cues": [
+     "Lead with the inner arm and squeeze the upper chest at the top.",
+     "Keep the shoulders down, away from the ears."
+    ],
+    "mistakes": [
+     "Turning it into a front raise with no inward path.",
+     "Swinging the torso to lift the weight."
+    ]
+   },
+   "tr": {
+    "title": "Seated Dumbbell Scoop Fly",
+    "about": "Dambılları aşağıdan yukarı ve içe kepçeler gibi taşıyan, üst göğsü vurgulayan fly.",
+    "steps": [
+     "Dik ya da yüksek incline sehpaya otur, dambıllar yanlarda.",
+     "Avuçlar öne baksın, dirsekler hafif bükülü olsun.",
+     "Kolları yay çizerek öne ve yukarı, göz hizasına süpür.",
+     "Göğüste gerilmeyle yavaşça yanlara indir."
+    ],
+    "cues": [
+     "Kolun iç tarafıyla öncülük et, tepede üst göğsü sık.",
+     "Omuzları aşağıda, kulaklardan uzak tut."
+    ],
+    "mistakes": [
+     "İçe yönelmeyen bir front raise'e çevirmek.",
+     "Ağırlığı kaldırmak için gövdeyi sallamak."
+    ]
+   },
+   "ar": {
+    "title": "Seated Dumbbell Scoop Fly",
+    "about": "تمرين فتح من الأسفل للأعلى يغرف الدمبل للأعلى والداخل للتركيز على أعلى الصدر.",
+    "steps": [
+     "اجلس على مقعد عمودي أو مائل بشدة والدمبل بجانبيك.",
+     "وجّه الراحتين للأمام مع ثني خفيف في المرفقين.",
+     "حرّك الذراعين للأمام والأعلى في قوس حتى مستوى العين.",
+     "أنزل ببطء إلى الجانبين مع تمدد الصدر."
+    ],
+    "cues": [
+     "قُد الحركة بالجهة الداخلية للذراع واعصر أعلى الصدر في الأعلى.",
+     "أبقِ الكتفين منخفضين بعيدًا عن الأذنين."
+    ],
+    "mistakes": [
+     "تحويله إلى رفع أمامي بلا مسار داخلي.",
+     "أرجحة الجذع لرفع الوزن."
+    ]
+   }
+  },
+  "cable-fly": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "delt-front",
+    "biceps"
+   ],
+   "en": {
+    "title": "Cable Fly",
+    "about": "A cable fly that keeps constant tension on the chest from full stretch to full squeeze.",
+    "steps": [
+     "Set the pulleys at the height you want and grab a handle in each hand.",
+     "Stand in a staggered stance or sit with your back supported.",
+     "With soft elbows, let the arms open until the chest is stretched.",
+     "Bring the handles together in front of you and squeeze."
+    ],
+    "cues": [
+     "Pull from the upper arm, not the hands.",
+     "Keep the chest up and shoulders back throughout.",
+     "Pause in the stretch, then move smoothly."
+    ],
+    "mistakes": [
+     "Leaning forward too far and pressing with the arms.",
+     "Letting the cables yank the arms back uncontrolled."
+    ]
+   },
+   "tr": {
+    "title": "Cable Fly",
+    "about": "Tam gerilmeden tam sıkışmaya kadar göğüste sürekli gerilim sağlayan cable fly.",
+    "steps": [
+     "Makaraları istediğin yüksekliğe ayarla, her elinle bir tutacak al.",
+     "Ayaklar önlü arkalı dur ya da sırtın destekli otur.",
+     "Dirsekler hafif bükülü, göğüs gerilene kadar kolların açılmasına izin ver.",
+     "Tutacakları önünde birleştir ve sık."
+    ],
+    "cues": [
+     "Hareketi ellerle değil üst kolla çek.",
+     "Göğüs yukarıda, omuzlar geride kalsın.",
+     "Gerilmede kısa dur, sonra akıcı hareket et."
+    ],
+    "mistakes": [
+     "Çok öne eğilip kollarla press yapmak.",
+     "Kabloların kolları kontrolsüzce geri çekmesine izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "Cable Fly",
+    "about": "تمرين فتح بالكابل يحافظ على شد مستمر على الصدر من التمدد الكامل حتى الانقباض الكامل.",
+    "steps": [
+     "اضبط البكرات على الارتفاع المطلوب وأمسك مقبضًا بكل يد.",
+     "قف بوضعية متقدمة أو اجلس مع إسناد ظهرك.",
+     "مع ثني خفيف في المرفقين، دع الذراعين تنفتحان حتى يتمدد الصدر.",
+     "اجمع المقبضين أمامك واعصر الصدر."
+    ],
+    "cues": [
+     "اسحب من العضد لا من اليدين.",
+     "أبقِ الصدر مرفوعًا والكتفين للخلف.",
+     "توقف لحظة في التمدد ثم تحرك بسلاسة."
+    ],
+    "mistakes": [
+     "الانحناء للأمام كثيرًا والضغط بالذراعين.",
+     "ترك الكابلات تشد الذراعين للخلف دون تحكم."
+    ]
+   }
+  },
+  "incline-cable-fly": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "delt-front",
+    "biceps"
+   ],
+   "en": {
+    "title": "Incline Cable Fly",
+    "about": "A cable fly on an incline bench that loads the upper chest through a deep stretch.",
+    "steps": [
+     "Place an incline bench between low pulleys at about 15–45 degrees.",
+     "Lie back holding the handles above your upper chest.",
+     "Open the arms in a wide arc until the upper chest stretches.",
+     "Bring the handles up and together over your upper chest."
+    ],
+    "cues": [
+     "Keep a soft, fixed elbow bend.",
+     "Lower in 2–3 seconds and pause in the stretch."
+    ],
+    "mistakes": [
+     "Bending the elbows more and more as you tire.",
+     "Lifting the shoulders off the bench at the top."
+    ]
+   },
+   "tr": {
+    "title": "Incline Cable Fly",
+    "about": "Incline sehpada cable fly; üst göğsü derin gerilme boyunca yükler.",
+    "steps": [
+     "Incline sehpayı 15–45 derecede alt makaraların arasına koy.",
+     "Tutacaklar üst göğsünün üzerinde, arkaya uzan.",
+     "Üst göğüs gerilene kadar kolları geniş bir yayla aç.",
+     "Tutacakları üst göğsünün üzerinde yukarı ve birlikte getir."
+    ],
+    "cues": [
+     "Dirseklerde hafif ve sabit büküm koru.",
+     "2–3 saniyede indir, gerilmede dur."
+    ],
+    "mistakes": [
+     "Yoruldukça dirsekleri giderek daha fazla bükmek.",
+     "Tepede omuzları sehpadan kaldırmak."
+    ]
+   },
+   "ar": {
+    "title": "Incline Cable Fly",
+    "about": "تمرين فتح بالكابل على مقعد مائل يحمّل أعلى الصدر عبر تمدد عميق.",
+    "steps": [
+     "ضع مقعدًا مائلًا 15–45 درجة بين بكرتين منخفضتين.",
+     "استلقِ والمقبضان فوق أعلى صدرك.",
+     "افتح الذراعين في قوس واسع حتى يتمدد أعلى الصدر.",
+     "اجمع المقبضين للأعلى فوق أعلى الصدر."
+    ],
+    "cues": [
+     "حافظ على ثني خفيف وثابت في المرفقين.",
+     "انزل في 2–3 ثوانٍ وتوقف في التمدد."
+    ],
+    "mistakes": [
+     "زيادة ثني المرفقين مع التعب.",
+     "رفع الكتفين عن المقعد في الأعلى."
+    ]
+   }
+  },
+  "machine-fly": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "delt-front"
+   ],
+   "en": {
+    "title": "Machine Fly",
+    "about": "A pec-deck fly that safely loads the chest in a big stretch with steady tension.",
+    "steps": [
+     "Set the seat so handles are at mid-chest height.",
+     "Sit with back on the pad and grab the handles with soft elbows.",
+     "Bring the handles together in front of your chest and squeeze.",
+     "Return slowly until you feel a strong chest stretch."
+    ],
+    "cues": [
+     "Keep the chest proud and shoulder blades back.",
+     "Set the start position for the deepest stretch you can control."
+    ],
+    "mistakes": [
+     "Rolling the shoulders forward at the squeeze.",
+     "Letting the weight stack drop at the stretch."
+    ]
+   },
+   "tr": {
+    "title": "Machine Fly",
+    "about": "Pec-deck fly; göğsü büyük bir gerilmede ve sabit gerilimle güvenle yükler.",
+    "steps": [
+     "Koltuğu tutacaklar orta göğüs hizasında olacak şekilde ayarla.",
+     "Sırtın pedde, dirsekler hafif bükülü tutacakları kavra.",
+     "Tutacakları göğsünün önünde birleştir ve sık.",
+     "Göğüste güçlü gerilme hissedene kadar yavaşça geri dön."
+    ],
+    "cues": [
+     "Göğüs dik, kürek kemikleri geride.",
+     "Başlangıcı kontrol edebileceğin en derin gerilmeye ayarla."
+    ],
+    "mistakes": [
+     "Sıkıştırırken omuzları öne yuvarlamak.",
+     "Gerilmede ağırlığın düşmesine izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "Machine Fly",
+    "about": "تمرين فتح على جهاز Pec Deck يحمّل الصدر بأمان في تمدد كبير وبشد ثابت.",
+    "steps": [
+     "اضبط المقعد ليكون المقبضان بمستوى منتصف الصدر.",
+     "اجلس وظهرك على المسند وأمسك المقبضين بمرفقين مثنيين قليلًا.",
+     "اجمع المقبضين أمام صدرك واعصر.",
+     "ارجع ببطء حتى تشعر بتمدد قوي في الصدر."
+    ],
+    "cues": [
+     "أبقِ الصدر مرفوعًا ولوحي الكتف للخلف.",
+     "اضبط نقطة البداية لأعمق تمدد تستطيع التحكم فيه."
+    ],
+    "mistakes": [
+     "تدوير الكتفين للأمام عند العصر.",
+     "ترك الأوزان تسقط في وضعية التمدد."
+    ]
+   }
+  },
+  "rear-cable-fly-protraction": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "delt-front"
+   ],
+   "en": {
+    "title": "Cable Fly With Protraction",
+    "about": "A cable fly from pulleys behind you that finishes with a forward reach to fully shorten the chest.",
+    "steps": [
+     "Set the pulleys around chest height and face away from the machine.",
+     "Hold the handles with a slight elbow bend and arms open wide.",
+     "Sweep the arms together in front, rotating the upper arms slightly outward.",
+     "At the end, reach forward by spreading the shoulder blades, then return slowly."
+    ],
+    "cues": [
+     "Let the shoulder blades pull back in the stretch, forward at the finish.",
+     "Keep the ribcage down and torso still."
+    ],
+    "mistakes": [
+     "Shrugging the shoulders up during the reach.",
+     "Rushing back so the cables yank the arms open."
+    ]
+   },
+   "tr": {
+    "title": "Cable Fly With Protraction",
+    "about": "Arkadaki makaralardan yapılan, sonda öne uzanarak göğsü tamamen kısaltan cable fly.",
+    "steps": [
+     "Makaraları göğüs hizasına ayarla, makineye sırtını dön.",
+     "Tutacakları dirsekler hafif bükülü ve kollar geniş açık tut.",
+     "Kolları önde birleştir, üst kolları hafifçe dışa döndür.",
+     "Sonda kürek kemiklerini açarak öne uzan, sonra yavaşça dön."
+    ],
+    "cues": [
+     "Gerilmede kürek kemikleri geriye, bitişte öne gitsin.",
+     "Göğüs kafesi aşağıda, gövde sabit kalsın."
+    ],
+    "mistakes": [
+     "Uzanırken omuzları yukarı kaldırmak.",
+     "Hızlı dönüp kabloların kolları açmasına izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "Cable Fly With Protraction",
+    "about": "تمرين فتح بالكابل من بكرات خلفك ينتهي بمدّ الذراعين للأمام لتقصير الصدر بالكامل.",
+    "steps": [
+     "اضبط البكرات بمستوى الصدر وأدر ظهرك للجهاز.",
+     "أمسك المقبضين بمرفقين مثنيين قليلًا والذراعان مفتوحتان.",
+     "اجمع الذراعين أمامك مع تدوير العضدين قليلًا للخارج.",
+     "في النهاية امدد للأمام بإبعاد لوحي الكتف، ثم ارجع ببطء."
+    ],
+    "cues": [
+     "دع لوحي الكتف يرجعان في التمدد ويتقدمان في النهاية.",
+     "أبقِ القفص الصدري منخفضًا والجذع ثابتًا."
+    ],
+    "mistakes": [
+     "رفع الكتفين للأعلى أثناء المدّ.",
+     "الرجوع بسرعة فتشد الكابلات الذراعين."
+    ]
+   }
+  },
+  "around-the-worlds": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "delt-front",
+    "delt-side"
+   ],
+   "en": {
+    "title": "Around The Worlds",
+    "about": "A light dumbbell arc from hips to overhead that stretches the chest and works shoulder mobility.",
+    "steps": [
+     "Lie flat holding light dumbbells at your thighs, palms up.",
+     "Keep elbows slightly bent and arms just off the floor line.",
+     "Sweep the dumbbells out and around in a wide half-circle overhead.",
+     "Reverse the arc slowly back to your hips."
+    ],
+    "cues": [
+     "Use light weight; this is a control and stretch movement.",
+     "Keep the arms roughly parallel to the floor."
+    ],
+    "mistakes": [
+     "Going heavy and straining the shoulders.",
+     "Arching the lower back as the arms go overhead."
+    ]
+   },
+   "tr": {
+    "title": "Around The Worlds",
+    "about": "Hafif dambılla kalçadan baş üstüne yay çizen hareket; göğsü esnetir, omuz mobilitesini çalıştırır.",
+    "steps": [
+     "Düz uzan, hafif dambılları avuçlar yukarı uyluklarında tut.",
+     "Dirsekler hafif bükülü, kollar yere paralel kalsın.",
+     "Dambılları geniş bir yarım daireyle baş üstüne taşı.",
+     "Yayı yavaşça tersine izleyerek kalçana dön."
+    ],
+    "cues": [
+     "Hafif ağırlık kullan; bu bir kontrol ve gerilme hareketi.",
+     "Kolları yere yaklaşık paralel tut."
+    ],
+    "mistakes": [
+     "Ağır alıp omuzları zorlamak.",
+     "Kollar baş üstüne giderken beli kavislendirmek."
+    ]
+   },
+   "ar": {
+    "title": "Around The Worlds",
+    "about": "قوس بدمبل خفيف من الورك إلى فوق الرأس يمدد الصدر ويحسن حركة الكتف.",
+    "steps": [
+     "استلقِ والدمبل الخفيف عند الفخذين والراحتان للأعلى.",
+     "أبقِ المرفقين مثنيين قليلًا والذراعين موازيتين للأرض.",
+     "حرّك الدمبل للخارج في نصف دائرة واسعة حتى فوق الرأس.",
+     "اعكس القوس ببطء حتى الورك."
+    ],
+    "cues": [
+     "استخدم وزنًا خفيفًا فهذا تمرين تحكم وتمدد.",
+     "أبقِ الذراعين موازيتين للأرض تقريبًا."
+    ],
+    "mistakes": [
+     "استخدام وزن ثقيل وإجهاد الكتفين.",
+     "تقويس أسفل الظهر عند وصول الذراعين فوق الرأس."
+    ]
+   }
+  },
+  "dips-chest": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "triceps",
+    "delt-front"
+   ],
+   "en": {
+    "title": "Chest Dips",
+    "about": "A bodyweight press on parallel bars that deeply stretches the lower chest under load.",
+    "steps": [
+     "Support yourself on parallel bars with arms straight.",
+     "Lean your torso forward and let elbows flare slightly.",
+     "Lower slowly until you feel a deep chest stretch.",
+     "Press back up to straight arms."
+    ],
+    "cues": [
+     "Keep shoulders down and away from your ears.",
+     "Go only as deep as your shoulders tolerate comfortably.",
+     "Lower in 2–3 seconds."
+    ],
+    "mistakes": [
+     "Staying upright, which shifts work to the triceps.",
+     "Dropping fast and bouncing at the bottom."
+    ]
+   },
+   "tr": {
+    "title": "Chest Dips",
+    "about": "Paralel barlarda vücut ağırlığıyla press; alt göğsü yük altında derin şekilde gerer.",
+    "steps": [
+     "Paralel barlarda kollar düz, vücudunu taşı.",
+     "Gövdeni öne eğ, dirseklerin hafifçe açılmasına izin ver.",
+     "Göğüste derin gerilme hissedene kadar yavaşça in.",
+     "Kollar düzleşene kadar geri it."
+    ],
+    "cues": [
+     "Omuzları aşağıda, kulaklardan uzak tut.",
+     "Sadece omuzlarının rahat izin verdiği kadar derine in.",
+     "2–3 saniyede in."
+    ],
+    "mistakes": [
+     "Dik kalmak; bu yükü tricepse kaydırır.",
+     "Hızlı düşüp altta sekmek."
+    ]
+   },
+   "ar": {
+    "title": "Chest Dips",
+    "about": "ضغط بوزن الجسم على متوازيين يمدد أسفل الصدر بعمق تحت الحمل.",
+    "steps": [
+     "ارفع جسمك على المتوازيين والذراعان مستقيمتان.",
+     "أمِل جذعك للأمام ودع المرفقين ينفتحان قليلًا.",
+     "انزل ببطء حتى تشعر بتمدد عميق في الصدر.",
+     "ادفع حتى تستقيم الذراعان."
+    ],
+    "cues": [
+     "أبقِ الكتفين منخفضين بعيدًا عن الأذنين.",
+     "انزل فقط بالعمق الذي يتحمله كتفاك براحة.",
+     "انزل في 2–3 ثوانٍ."
+    ],
+    "mistakes": [
+     "البقاء منتصبًا مما ينقل العمل إلى الترايسبس.",
+     "السقوط بسرعة والارتداد في الأسفل."
+    ]
+   }
+  },
+  "machine-dips": {
+   "primary": [
+    "chest",
+    "triceps"
+   ],
+   "secondary": [
+    "delt-front"
+   ],
+   "en": {
+    "title": "Machine Dips",
+    "about": "A seated or assisted dip machine that trains chest and triceps with adjustable, stable loading.",
+    "steps": [
+     "Adjust the seat so handles start around lower-chest height.",
+     "Grip the handles and sit tall with chest up.",
+     "Press the handles down until arms are straight.",
+     "Let them rise slowly into a deep stretch."
+    ],
+    "cues": [
+     "Lean slightly forward for more chest, upright for triceps.",
+     "Keep shoulders depressed throughout."
+    ],
+    "mistakes": [
+     "Shrugging up as the handles rise.",
+     "Using only the bottom half of the range."
+    ]
+   },
+   "tr": {
+    "title": "Machine Dips",
+    "about": "Oturarak ya da destekli dips makinesi; göğüs ve tricepsi ayarlanabilir, sabit yükle çalıştırır.",
+    "steps": [
+     "Koltuğu tutacaklar alt göğüs hizasında başlayacak şekilde ayarla.",
+     "Tutacakları kavra, göğüs yukarıda dik otur.",
+     "Kollar düzleşene kadar tutacakları aşağı it.",
+     "Derin gerilmeye kadar yavaşça yükselmelerine izin ver."
+    ],
+    "cues": [
+     "Göğüs için hafif öne, triceps için dik dur.",
+     "Omuzları hareket boyunca aşağıda tut."
+    ],
+    "mistakes": [
+     "Tutacaklar yükselirken omuzları kaldırmak.",
+     "Hareket açıklığının sadece alt yarısını kullanmak."
+    ]
+   },
+   "ar": {
+    "title": "Machine Dips",
+    "about": "جهاز ديبس جالس أو مساعد يمرّن الصدر والترايسبس بحمل ثابت قابل للتعديل.",
+    "steps": [
+     "اضبط المقعد ليبدأ المقبضان بمستوى أسفل الصدر تقريبًا.",
+     "أمسك المقبضين واجلس مستقيمًا والصدر مرفوع.",
+     "ادفع المقبضين للأسفل حتى تستقيم الذراعان.",
+     "دعهما يرتفعان ببطء إلى تمدد عميق."
+    ],
+    "cues": [
+     "مِل قليلًا للأمام للصدر، واستقم للترايسبس.",
+     "أبقِ الكتفين منخفضين طوال الحركة."
+    ],
+    "mistakes": [
+     "رفع الكتفين عندما يرتفع المقبضان.",
+     "استخدام النصف السفلي فقط من المدى."
+    ]
+   }
+  },
+  "push-ups": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "triceps",
+    "delt-front",
+    "abs"
+   ],
+   "en": {
+    "title": "Push-Ups",
+    "about": "The classic bodyweight press for chest, front delts and triceps, with core stability built in.",
+    "steps": [
+     "Place hands slightly wider than shoulders, body straight from head to heels.",
+     "Brace your abs and squeeze your glutes.",
+     "Lower until your chest nearly touches the floor.",
+     "Push the floor away back to straight arms."
+    ],
+    "cues": [
+     "Elbows about 45 degrees from your body.",
+     "Move as one rigid plank.",
+     "Use full range; slow the descent."
+    ],
+    "mistakes": [
+     "Sagging hips or piking the butt up.",
+     "Half reps that never reach the bottom."
+    ]
+   },
+   "tr": {
+    "title": "Push-Ups",
+    "about": "Göğüs, ön omuz ve triceps için klasik vücut ağırlığı hareketi; core dengesi de çalışır.",
+    "steps": [
+     "Elleri omuzdan biraz geniş koy, vücut baştan topuğa düz olsun.",
+     "Karnını sık, kalçanı sık.",
+     "Göğsün neredeyse yere değene kadar in.",
+     "Yeri iterek kolları düzleştir."
+    ],
+    "cues": [
+     "Dirsekler gövdeden yaklaşık 45 derece açık.",
+     "Tek parça bir plank gibi hareket et.",
+     "Tam açıklık kullan, inişi yavaşlat."
+    ],
+    "mistakes": [
+     "Kalçanın sarkması ya da yukarı kalkması.",
+     "Hiç alta inmeyen yarım tekrarlar."
+    ]
+   },
+   "ar": {
+    "title": "Push-Ups",
+    "about": "تمرين الضغط الكلاسيكي بوزن الجسم للصدر والكتف الأمامي والترايسبس مع تقوية الجذع.",
+    "steps": [
+     "ضع اليدين أعرض قليلًا من الكتفين والجسم مستقيم من الرأس للكعبين.",
+     "شدّ البطن والمؤخرة.",
+     "انزل حتى يكاد صدرك يلمس الأرض.",
+     "ادفع الأرض بعيدًا حتى تستقيم الذراعان."
+    ],
+    "cues": [
+     "المرفقان بزاوية 45 درجة تقريبًا عن الجسم.",
+     "تحرك كلوح واحد صلب.",
+     "استخدم المدى الكامل وأبطئ النزول."
+    ],
+    "mistakes": [
+     "هبوط الورك أو رفع المؤخرة للأعلى.",
+     "تكرارات نصفية لا تصل إلى الأسفل."
+    ]
+   }
+  },
+  "deficit-push-ups": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "triceps",
+    "delt-front",
+    "abs"
+   ],
+   "en": {
+    "title": "Deficit Push-Ups",
+    "about": "Push-ups with hands on dumbbells so the chest drops below hand level for an extra-deep stretch.",
+    "steps": [
+     "Place two dumbbells or handles slightly wider than shoulders.",
+     "Grip them and set a straight plank.",
+     "Lower slowly past your hands until the chest is deeply stretched.",
+     "Pause briefly, then press back up."
+    ],
+    "cues": [
+     "Use stable hex dumbbells that won't roll.",
+     "Keep the core tight so hips stay level."
+    ],
+    "mistakes": [
+     "Going deeper than your shoulders can control.",
+     "Losing the plank as you tire."
+    ]
+   },
+   "tr": {
+    "title": "Deficit Push-Ups",
+    "about": "Ellerin dambıllar üzerinde olduğu şınav; göğüs el hizasının altına inerek ekstra derin gerilir.",
+    "steps": [
+     "İki dambılı omuzdan biraz geniş yerleştir.",
+     "Onları kavra ve düz bir plank pozisyonu al.",
+     "Göğüs derin gerilene kadar ellerinin altına doğru yavaşça in.",
+     "Kısa bir an dur, sonra yukarı it."
+    ],
+    "cues": [
+     "Yuvarlanmayan, sabit altıgen dambıllar kullan.",
+     "Core'u sıkı tut ki kalça düz kalsın."
+    ],
+    "mistakes": [
+     "Omuzlarının kontrol edebileceğinden daha derine inmek.",
+     "Yoruldukça plank'i bozmak."
+    ]
+   },
+   "ar": {
+    "title": "Deficit Push-Ups",
+    "about": "ضغط واليدان على دمبلين فينزل الصدر أدنى من مستوى اليدين لتمدد أعمق.",
+    "steps": [
+     "ضع دمبلين أو مقبضين أعرض قليلًا من الكتفين.",
+     "أمسكهما واتخذ وضعية لوح مستقيمة.",
+     "انزل ببطء أسفل مستوى اليدين حتى يتمدد الصدر بعمق.",
+     "توقف لحظة ثم ادفع للأعلى."
+    ],
+    "cues": [
+     "استخدم دمبلًا سداسيًا ثابتًا لا يتدحرج.",
+     "شدّ الجذع ليبقى الورك مستويًا."
+    ],
+    "mistakes": [
+     "النزول أعمق مما يستطيع كتفاك التحكم فيه.",
+     "فقدان وضعية اللوح مع التعب."
+    ]
+   }
+  },
+  "chest-stretch": {
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "delt-front",
+    "biceps"
+   ],
+   "en": {
+    "title": "Chest Stretch",
+    "about": "A static stretch held for about 60 seconds to lengthen the pecs and front shoulders.",
+    "steps": [
+     "Place your forearm on a doorframe or post, elbow at shoulder height.",
+     "Step through gently until you feel a stretch across the chest.",
+     "Breathe slowly and hold for about 60 seconds.",
+     "Switch sides."
+    ],
+    "cues": [
+     "Keep the stretch mild to moderate, never painful.",
+     "Keep the ribcage down and torso tall."
+    ],
+    "mistakes": [
+     "Forcing the stretch and straining the shoulder.",
+     "Holding your breath."
+    ]
+   },
+   "tr": {
+    "title": "Chest Stretch",
+    "about": "Göğüs ve ön omzu uzatmak için yaklaşık 60 saniye tutulan statik esneme.",
+    "steps": [
+     "Ön kolunu kapı kasasına ya da direğe koy, dirsek omuz hizasında.",
+     "Göğüste gerilme hissedene kadar yavaşça öne adım at.",
+     "Yavaş nefes al ve yaklaşık 60 saniye tut.",
+     "Taraf değiştir."
+    ],
+    "cues": [
+     "Gerilme hafif-orta olsun, asla ağrılı değil.",
+     "Göğüs kafesi aşağıda, gövde dik kalsın."
+    ],
+    "mistakes": [
+     "Gerilmeyi zorlayıp omzu incitmek.",
+     "Nefesini tutmak."
+    ]
+   },
+   "ar": {
+    "title": "Chest Stretch",
+    "about": "إطالة ثابتة لمدة 60 ثانية تقريبًا لإطالة عضلات الصدر ومقدمة الكتف.",
+    "steps": [
+     "ضع ساعدك على إطار باب أو عمود والمرفق بمستوى الكتف.",
+     "تقدّم بلطف حتى تشعر بإطالة عبر الصدر.",
+     "تنفس ببطء واثبت نحو 60 ثانية.",
+     "بدّل الجانب."
+    ],
+    "cues": [
+     "اجعل الإطالة خفيفة إلى متوسطة وليست مؤلمة أبدًا.",
+     "أبقِ القفص الصدري منخفضًا والجذع مستقيمًا."
+    ],
+    "mistakes": [
+     "إجبار الإطالة وإجهاد الكتف.",
+     "حبس النفس."
+    ]
+   }
+  },
+  "ball-knee-tuck": {
+   "primary": [
+    "abs"
+   ],
+   "secondary": [
+    "delt-front",
+    "chest",
+    "triceps"
+   ],
+   "en": {
+    "title": "Exercise Ball Knees To Chest",
+    "about": "A plank-based tuck on a stability ball that trains the abs while the chest and shoulders stabilize.",
+    "steps": [
+     "Start in a push-up position with your shins on the ball.",
+     "Brace your core and keep arms straight under your shoulders.",
+     "Pull your knees toward your chest, rolling the ball forward.",
+     "Extend your legs slowly back to the plank."
+    ],
+    "cues": [
+     "Round the lower back slightly as the knees come in.",
+     "Keep shoulders stacked over your wrists."
+    ],
+    "mistakes": [
+     "Letting the hips sag at the start position.",
+     "Rushing and losing control of the ball."
+    ]
+   },
+   "tr": {
+    "title": "Exercise Ball Knees To Chest",
+    "about": "Pilates topunda plank tabanlı diz çekme; göğüs ve omuz sabitlerken karın kaslarını çalıştırır.",
+    "steps": [
+     "Kaval kemiklerin topun üzerinde şınav pozisyonu al.",
+     "Core'u sık, kolları omuzların altında düz tut.",
+     "Topu öne yuvarlayarak dizlerini göğsüne çek.",
+     "Bacaklarını yavaşça plank'e geri uzat."
+    ],
+    "cues": [
+     "Dizler gelirken belini hafifçe yuvarla.",
+     "Omuzları bileklerin üzerinde tut."
+    ],
+    "mistakes": [
+     "Başlangıçta kalçanın sarkması.",
+     "Acele edip topun kontrolünü kaybetmek."
+    ]
+   },
+   "ar": {
+    "title": "Exercise Ball Knees To Chest",
+    "about": "سحب الركبتين على كرة التمرين من وضعية اللوح، يمرّن البطن بينما يثبّت الصدر والكتفان.",
+    "steps": [
+     "ابدأ بوضعية الضغط والساقان على الكرة.",
+     "شدّ الجذع وأبقِ الذراعين مستقيمتين تحت الكتفين.",
+     "اسحب ركبتيك نحو صدرك مع دحرجة الكرة للأمام.",
+     "امدد ساقيك ببطء عائدًا إلى اللوح."
+    ],
+    "cues": [
+     "قوّس أسفل الظهر قليلًا عند سحب الركبتين.",
+     "أبقِ الكتفين فوق الرسغين."
+    ],
+    "mistakes": [
+     "هبوط الورك في وضعية البداية.",
+     "التسرع وفقدان التحكم بالكرة."
+    ]
+   }
+  },
+  "skull-crushers": {
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [
+    "forearms"
+   ],
+   "en": {
+    "title": "Skull Crushers",
+    "about": "A lying barbell or EZ-bar extension that loads all three triceps heads, especially the long head.",
+    "steps": [
+     "Lie on a flat or incline bench holding the bar over your chest.",
+     "Tilt your arms slightly back toward your head.",
+     "Bend only at the elbows, lowering the bar behind your head.",
+     "Extend the elbows to press the bar back up."
+    ],
+    "cues": [
+     "Keep the upper arms angled back for long-head stretch.",
+     "Elbows stay roughly shoulder-width; don't flare.",
+     "Lower in 2–3 seconds."
+    ],
+    "mistakes": [
+     "Turning it into a press by moving the upper arms.",
+     "Stopping short of a deep stretch at the bottom."
+    ]
+   },
+   "tr": {
+    "title": "Skull Crushers",
+    "about": "Yatarak barbell ya da EZ bar ile triceps ekstansiyonu; üç başı, özellikle uzun başı yükler.",
+    "steps": [
+     "Düz ya da incline sehpaya uzan, barı göğsünün üzerinde tut.",
+     "Kollarını hafifçe başına doğru geri eğ.",
+     "Sadece dirseklerden bükerek barı başının arkasına indir.",
+     "Dirsekleri açarak barı geri yukarı it."
+    ],
+    "cues": [
+     "Uzun baş gerilmesi için üst kolları geriye açılı tut.",
+     "Dirsekler omuz genişliğinde kalsın, açılmasın.",
+     "2–3 saniyede indir."
+    ],
+    "mistakes": [
+     "Üst kolları hareket ettirip press'e çevirmek.",
+     "Altta derin gerilmeye inmeden durmak."
+    ]
+   },
+   "ar": {
+    "title": "Skull Crushers",
+    "about": "تمديد بالبار أو EZ مستلقيًا يحمّل رؤوس الترايسبس الثلاثة، خاصة الرأس الطويل.",
+    "steps": [
+     "استلقِ على مقعد مستوٍ أو مائل والبار فوق صدرك.",
+     "أمِل ذراعيك قليلًا للخلف نحو رأسك.",
+     "اثنِ المرفقين فقط وأنزل البار خلف رأسك.",
+     "امدد المرفقين لدفع البار للأعلى."
+    ],
+    "cues": [
+     "أبقِ العضدين مائلين للخلف لتمديد الرأس الطويل.",
+     "المرفقان بعرض الكتفين تقريبًا دون انفتاح.",
+     "انزل في 2–3 ثوانٍ."
+    ],
+    "mistakes": [
+     "تحويله إلى ضغط بتحريك العضدين.",
+     "التوقف قبل التمدد العميق في الأسفل."
+    ]
+   }
+  },
+  "dumbbell-skull-crushers": {
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [
+    "forearms"
+   ],
+   "en": {
+    "title": "Dumbbell Skull Crushers",
+    "about": "A lying dumbbell triceps extension; independent arms allow a deep, joint-friendly stretch.",
+    "steps": [
+     "Lie on a bench holding dumbbells over your chest, palms facing in.",
+     "Angle the upper arms slightly back toward your head.",
+     "Bend the elbows and lower the dumbbells beside your head.",
+     "Extend the elbows back to the start."
+    ],
+    "cues": [
+     "Keep the upper arms still; only the forearms move.",
+     "Reach a full stretch, then lock out under control."
+    ],
+    "mistakes": [
+     "Letting elbows drift wide apart.",
+     "Dropping the weights fast into the bottom."
+    ]
+   },
+   "tr": {
+    "title": "Dumbbell Skull Crushers",
+    "about": "Yatarak dambıl triceps ekstansiyonu; bağımsız kollar derin ve eklem dostu bir gerilme sağlar.",
+    "steps": [
+     "Sehpaya uzan, dambılları göğsünün üzerinde avuçlar içe bakacak şekilde tut.",
+     "Üst kolları hafifçe başına doğru geri açıla.",
+     "Dirsekleri bük, dambılları başının yanına indir.",
+     "Dirsekleri açarak başlangıca dön."
+    ],
+    "cues": [
+     "Üst kollar sabit, sadece ön kollar hareket etsin.",
+     "Tam gerilmeye in, sonra kontrollü kilitle."
+    ],
+    "mistakes": [
+     "Dirseklerin dışa açılmasına izin vermek.",
+     "Ağırlıkları hızla aşağı düşürmek."
+    ]
+   },
+   "ar": {
+    "title": "Dumbbell Skull Crushers",
+    "about": "تمديد ترايسبس بالدمبل مستلقيًا؛ الذراعان المستقلتان تتيحان تمددًا عميقًا مريحًا للمفصل.",
+    "steps": [
+     "استلقِ على المقعد والدمبل فوق صدرك والراحتان للداخل.",
+     "أمِل العضدين قليلًا للخلف نحو رأسك.",
+     "اثنِ المرفقين وأنزل الدمبل بجانب رأسك.",
+     "امدد المرفقين عائدًا إلى البداية."
+    ],
+    "cues": [
+     "أبقِ العضدين ثابتين ويتحرك الساعدان فقط.",
+     "صل إلى تمدد كامل ثم امدد بتحكم."
+    ],
+    "mistakes": [
+     "ترك المرفقين يتباعدان للخارج.",
+     "إسقاط الأوزان بسرعة في الأسفل."
+    ]
+   }
+  },
+  "dead-skulls": {
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [
+    "forearms"
+   ],
+   "en": {
+    "title": "Dead Skulls",
+    "about": "A skull crusher where the weight rests behind your head each rep, removing momentum.",
+    "steps": [
+     "Lie on a bench with the bar or dumbbells resting on the bench behind your head.",
+     "Grip the weight with upper arms angled back.",
+     "Extend the elbows to lift the weight from a dead stop to straight arms.",
+     "Lower slowly and let the weight settle fully before the next rep."
+    ],
+    "cues": [
+     "Start each rep with no bounce or stretch reflex.",
+     "Keep elbows narrow and pointing up."
+    ],
+    "mistakes": [
+     "Bouncing the weight off the bench.",
+     "Pulling with the lats instead of extending the elbows."
+    ]
+   },
+   "tr": {
+    "title": "Dead Skulls",
+    "about": "Her tekrarda ağırlığın başının arkasında durduğu skull crusher; momentumu ortadan kaldırır.",
+    "steps": [
+     "Sehpaya uzan, bar ya da dambıllar başının arkasında sehpada dursun.",
+     "Üst kollar geriye açılı, ağırlığı kavra.",
+     "Dirsekleri açarak ağırlığı tam durmadan düz kollara kaldır.",
+     "Yavaşça indir, sonraki tekrardan önce ağırlık tamamen otursun."
+    ],
+    "cues": [
+     "Her tekrara sekme olmadan başla.",
+     "Dirsekler dar ve yukarı baksın."
+    ],
+    "mistakes": [
+     "Ağırlığı sehpadan sektirmek.",
+     "Dirsek açmak yerine sırt kaslarıyla çekmek."
+    ]
+   },
+   "ar": {
+    "title": "Dead Skulls",
+    "about": "سكَل كراشر يستقر فيه الوزن خلف رأسك في كل تكرار، فيلغي الاندفاع.",
+    "steps": [
+     "استلقِ والبار أو الدمبل مستقر على المقعد خلف رأسك.",
+     "أمسك الوزن والعضدان مائلان للخلف.",
+     "امدد المرفقين لرفع الوزن من الثبات حتى استقامة الذراعين.",
+     "أنزل ببطء ودع الوزن يستقر تمامًا قبل التكرار التالي."
+    ],
+    "cues": [
+     "ابدأ كل تكرار بلا ارتداد.",
+     "أبقِ المرفقين ضيقين ومتجهين للأعلى."
+    ],
+    "mistakes": [
+     "ارتداد الوزن عن المقعد.",
+     "السحب بعضلات الظهر بدل مدّ المرفقين."
+    ]
+   }
+  },
+  "french-press": {
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [
+    "forearms"
+   ],
+   "en": {
+    "title": "French Press",
+    "about": "An overhead triceps extension that trains the long head in its most stretched position.",
+    "steps": [
+     "Sit or stand tall holding the bar or dumbbell overhead.",
+     "Keep the upper arms close to your head, elbows pointing forward.",
+     "Lower the weight behind your head until the triceps fully stretch.",
+     "Extend the elbows to press it back overhead."
+    ],
+    "cues": [
+     "Brace your abs to keep the lower back neutral.",
+     "Prioritize the deep stretch at the bottom.",
+     "Control a 2–3 second eccentric."
+    ],
+    "mistakes": [
+     "Flaring the elbows wide.",
+     "Arching the lower back to push the weight."
+    ]
+   },
+   "tr": {
+    "title": "French Press",
+    "about": "Tricepsin uzun başını en gerilmiş pozisyonda çalıştıran overhead ekstansiyon.",
+    "steps": [
+     "Dik otur ya da dur, barı veya dambılı baş üstünde tut.",
+     "Üst kollar başına yakın, dirsekler öne baksın.",
+     "Triceps tamamen gerilene kadar ağırlığı başının arkasına indir.",
+     "Dirsekleri açarak tekrar baş üstüne it."
+    ],
+    "cues": [
+     "Belini nötr tutmak için karnını sık.",
+     "Alttaki derin gerilmeye öncelik ver.",
+     "Negatifi 2–3 saniyede kontrol et."
+    ],
+    "mistakes": [
+     "Dirsekleri dışa açmak.",
+     "Ağırlığı itmek için beli kavislendirmek."
+    ]
+   },
+   "ar": {
+    "title": "French Press",
+    "about": "تمديد ترايسبس فوق الرأس يمرّن الرأس الطويل في أكثر وضعياته تمددًا.",
+    "steps": [
+     "اجلس أو قف مستقيمًا والبار أو الدمبل فوق رأسك.",
+     "أبقِ العضدين قريبين من رأسك والمرفقين للأمام.",
+     "أنزل الوزن خلف رأسك حتى يتمدد الترايسبس تمامًا.",
+     "امدد المرفقين لدفعه فوق الرأس مجددًا."
+    ],
+    "cues": [
+     "شدّ البطن ليبقى أسفل الظهر محايدًا.",
+     "أعطِ الأولوية للتمدد العميق في الأسفل.",
+     "تحكم في نزول لمدة 2–3 ثوانٍ."
+    ],
+    "mistakes": [
+     "فتح المرفقين للخارج.",
+     "تقويس أسفل الظهر لدفع الوزن."
+    ]
+   }
+  },
+  "single-arm-overhead-extension": {
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [
+    "forearms"
+   ],
+   "en": {
+    "title": "Single Arm Overhead Extension",
+    "about": "A one-arm overhead extension that stretches the long head and fixes left-right imbalances.",
+    "steps": [
+     "Hold a dumbbell overhead in one hand, upper arm by your ear.",
+     "Support your elbow or brace with the free hand if needed.",
+     "Lower the weight behind your head into a deep stretch.",
+     "Extend the elbow fully, then repeat and switch arms."
+    ],
+    "cues": [
+     "Keep the upper arm vertical and still.",
+     "Squeeze the triceps at the top without slamming."
+    ],
+    "mistakes": [
+     "Letting the elbow drift out to the side.",
+     "Leaning the torso to help the rep."
+    ]
+   },
+   "tr": {
+    "title": "Single Arm Overhead Extension",
+    "about": "Tek kolla overhead ekstansiyon; uzun başı gerer, sağ-sol dengesizliklerini düzeltir.",
+    "steps": [
+     "Dambılı tek elle baş üstünde tut, üst kol kulağının yanında.",
+     "Gerekirse boştaki elinle dirseği destekle.",
+     "Ağırlığı derin gerilmeye kadar başının arkasına indir.",
+     "Dirseği tamamen aç, tekrarla ve kol değiştir."
+    ],
+    "cues": [
+     "Üst kolu dik ve sabit tut.",
+     "Tepede tricepsi sık ama kilitlemeyi sertleştirme."
+    ],
+    "mistakes": [
+     "Dirseğin yana kaymasına izin vermek.",
+     "Tekrara yardım için gövdeyi eğmek."
+    ]
+   },
+   "ar": {
+    "title": "Single Arm Overhead Extension",
+    "about": "تمديد فوق الرأس بذراع واحدة يمدد الرأس الطويل ويعالج عدم التوازن بين الجانبين.",
+    "steps": [
+     "أمسك دمبلًا فوق رأسك بيد واحدة والعضد بجانب أذنك.",
+     "اسند مرفقك باليد الأخرى إذا لزم.",
+     "أنزل الوزن خلف رأسك إلى تمدد عميق.",
+     "امدد المرفق بالكامل، كرر ثم بدّل الذراع."
+    ],
+    "cues": [
+     "أبقِ العضد عموديًا وثابتًا.",
+     "اعصر الترايسبس في الأعلى دون ارتطام."
+    ],
+    "mistakes": [
+     "ترك المرفق ينجرف للجانب.",
+     "إمالة الجذع للمساعدة في التكرار."
+    ]
+   }
+  },
+  "cable-overhead-extension": {
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [
+    "forearms"
+   ],
+   "en": {
+    "title": "Cable Overhead Extension",
+    "about": "An overhead cable extension that keeps tension on the long head through a deep stretch.",
+    "steps": [
+     "Attach a rope or bar to a low or mid pulley and face away.",
+     "Bring the handle behind your head with elbows pointing forward.",
+     "Step forward into a split stance and lean slightly.",
+     "Extend the elbows forward and up, then return slowly to a full stretch."
+    ],
+    "cues": [
+     "Keep the upper arms fixed beside your head.",
+     "Let the cable pull you into a deep stretch each rep."
+    ],
+    "mistakes": [
+     "Moving the shoulders and turning it into a pullover.",
+     "Cutting the stretch short at the back."
+    ]
+   },
+   "tr": {
+    "title": "Cable Overhead Extension",
+    "about": "Kabloyla overhead ekstansiyon; uzun başta derin gerilme boyunca gerilimi korur.",
+    "steps": [
+     "Alt ya da orta makaraya halat veya bar tak, makineye sırtını dön.",
+     "Tutacağı başının arkasına al, dirsekler öne baksın.",
+     "Önlü arkalı adım al ve hafifçe öne eğil.",
+     "Dirsekleri ileri ve yukarı aç, sonra tam gerilmeye yavaşça dön."
+    ],
+    "cues": [
+     "Üst kolları başının yanında sabit tut.",
+     "Her tekrarda kablonun seni derin gerilmeye çekmesine izin ver."
+    ],
+    "mistakes": [
+     "Omuzları oynatıp hareketi pullover'a çevirmek.",
+     "Arkadaki gerilmeyi kısa kesmek."
+    ]
+   },
+   "ar": {
+    "title": "Cable Overhead Extension",
+    "about": "تمديد فوق الرأس بالكابل يحافظ على الشد على الرأس الطويل عبر تمدد عميق.",
+    "steps": [
+     "ثبّت حبلًا أو بارًا على بكرة منخفضة أو متوسطة وأدر ظهرك.",
+     "أحضر المقبض خلف رأسك والمرفقان للأمام.",
+     "تقدّم بخطوة واحدة وأمِل جسمك قليلًا.",
+     "امدد المرفقين للأمام والأعلى ثم ارجع ببطء إلى تمدد كامل."
+    ],
+    "cues": [
+     "أبقِ العضدين ثابتين بجانب رأسك.",
+     "دع الكابل يسحبك إلى تمدد عميق في كل تكرار."
+    ],
+    "mistakes": [
+     "تحريك الكتفين وتحويله إلى Pullover.",
+     "تقصير التمدد في الخلف."
+    ]
+   }
+  },
+  "incline-cable-extension": {
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [
+    "forearms"
+   ],
+   "en": {
+    "title": "Incline Cable Extension",
+    "about": "A cable skull crusher on an incline bench; the cable keeps the long head loaded at full stretch.",
+    "steps": [
+     "Place an incline bench in front of a low pulley, head toward the cable.",
+     "Lie back holding the attachment with arms pointing up and slightly back.",
+     "Bend the elbows and let the cable pull your hands behind your head.",
+     "Extend the elbows until arms are straight."
+    ],
+    "cues": [
+     "Hold the upper arm angle fixed; only the elbows move.",
+     "Pause in the stretch for a moment."
+    ],
+    "mistakes": [
+     "Letting the elbows drift forward as you extend.",
+     "Using a weight so heavy you shorten the stretch."
+    ]
+   },
+   "tr": {
+    "title": "Incline Cable Extension",
+    "about": "Incline sehpada cable skull crusher; kablo uzun başı tam gerilmede yüklü tutar.",
+    "steps": [
+     "Incline sehpayı alt makaranın önüne, başın kabloya bakacak şekilde koy.",
+     "Kollar yukarı ve hafif geride, tutacağı kavrayarak uzan.",
+     "Dirsekleri bük, kablonun ellerini başının arkasına çekmesine izin ver.",
+     "Kollar düzleşene kadar dirsekleri aç."
+    ],
+    "cues": [
+     "Üst kol açısını sabit tut; sadece dirsekler hareket etsin.",
+     "Gerilmede bir an dur."
+    ],
+    "mistakes": [
+     "Açarken dirseklerin öne kaymasına izin vermek.",
+     "Gerilmeyi kısaltacak kadar ağır kilo kullanmak."
+    ]
+   },
+   "ar": {
+    "title": "Incline Cable Extension",
+    "about": "سكَل كراشر بالكابل على مقعد مائل؛ الكابل يُبقي الرأس الطويل محمّلًا في التمدد الكامل.",
+    "steps": [
+     "ضع مقعدًا مائلًا أمام بكرة منخفضة ورأسك نحو الكابل.",
+     "استلقِ ممسكًا المقبض والذراعان للأعلى وللخلف قليلًا.",
+     "اثنِ المرفقين ودع الكابل يسحب يديك خلف رأسك.",
+     "امدد المرفقين حتى تستقيم الذراعان."
+    ],
+    "cues": [
+     "ثبّت زاوية العضد ويتحرك المرفقان فقط.",
+     "توقف لحظة في التمدد."
+    ],
+    "mistakes": [
+     "ترك المرفقين ينجرفان للأمام أثناء المد.",
+     "استخدام وزن ثقيل يقصّر التمدد."
+    ]
+   }
+  },
+  "bar-pushdown": {
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [
+    "forearms"
+   ],
+   "en": {
+    "title": "Straight Bar Pushdown",
+    "about": "A cable pushdown with a straight, EZ or V-bar that targets the lateral and medial triceps heads.",
+    "steps": [
+     "Attach a bar to a high pulley and grip it about shoulder width.",
+     "Pin your elbows to your sides with a slight forward lean.",
+     "Push the bar down until your arms are fully straight.",
+     "Let it rise slowly until forearms pass parallel to the floor."
+    ],
+    "cues": [
+     "Keep the elbows still; only the forearms move.",
+     "Fully lock out and squeeze at the bottom."
+    ],
+    "mistakes": [
+     "Leaning over the bar and pushing with bodyweight.",
+     "Letting elbows flare or drift forward."
+    ]
+   },
+   "tr": {
+    "title": "Straight Bar Pushdown",
+    "about": "Düz, EZ ya da V-bar ile cable pushdown; tricepsin lateral ve medial başlarını hedefler.",
+    "steps": [
+     "Üst makaraya bar tak, omuz genişliğinde kavra.",
+     "Dirsekleri yanlarına sabitle, hafifçe öne eğil.",
+     "Kollar tamamen düzleşene kadar barı aşağı it.",
+     "Ön kollar yere paraleli geçene kadar yavaşça yükselmesine izin ver."
+    ],
+    "cues": [
+     "Dirsekler sabit, sadece ön kollar hareket etsin.",
+     "Altta tamamen kilitle ve sık."
+    ],
+    "mistakes": [
+     "Barın üzerine eğilip vücut ağırlığıyla itmek.",
+     "Dirseklerin açılmasına ya da öne kaymasına izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "Straight Bar Pushdown",
+    "about": "دفع للأسفل بالكابل ببار مستقيم أو EZ أو V يستهدف الرأسين الجانبي والإنسي للترايسبس.",
+    "steps": [
+     "ثبّت بارًا على بكرة عالية وأمسكه بعرض الكتفين تقريبًا.",
+     "ثبّت مرفقيك بجانبيك مع ميل خفيف للأمام.",
+     "ادفع البار للأسفل حتى تستقيم الذراعان تمامًا.",
+     "دعه يرتفع ببطء حتى يتجاوز الساعدان الوضع الأفقي."
+    ],
+    "cues": [
+     "أبقِ المرفقين ثابتين ويتحرك الساعدان فقط.",
+     "امدد بالكامل واعصر في الأسفل."
+    ],
+    "mistakes": [
+     "الانحناء فوق البار والدفع بوزن الجسم.",
+     "ترك المرفقين ينفتحان أو يتقدمان."
+    ]
+   }
+  },
+  "rope-pushdown": {
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [
+    "forearms"
+   ],
+   "en": {
+    "title": "Rope Pushdown",
+    "about": "A rope cable pushdown; spreading the rope at the bottom gives a strong lateral-head squeeze.",
+    "steps": [
+     "Attach a rope to a high pulley and grip the ends, thumbs up.",
+     "Tuck the elbows by your sides and stand tall.",
+     "Push down and spread the rope apart at the bottom.",
+     "Return slowly until the forearms rise past parallel."
+    ],
+    "cues": [
+     "Lock out fully and pull the rope ends outward.",
+     "Keep the upper arms pinned throughout."
+    ],
+    "mistakes": [
+     "Swinging the torso to move the weight.",
+     "Short reps that never reach lockout."
+    ]
+   },
+   "tr": {
+    "title": "Rope Pushdown",
+    "about": "Halatla cable pushdown; altta halatı açmak lateral başı güçlü şekilde sıkıştırır.",
+    "steps": [
+     "Üst makaraya halat tak, uçlarını başparmaklar yukarı bakacak şekilde kavra.",
+     "Dirsekleri yanlara yapıştır, dik dur.",
+     "Aşağı it ve altta halatı iki yana aç.",
+     "Ön kollar paraleli geçene kadar yavaşça geri dön."
+    ],
+    "cues": [
+     "Tamamen kilitle, halat uçlarını dışa çek.",
+     "Üst kolları hareket boyunca sabit tut."
+    ],
+    "mistakes": [
+     "Ağırlığı kaldırmak için gövdeyi sallamak.",
+     "Kilitlemeye hiç ulaşmayan kısa tekrarlar."
+    ]
+   },
+   "ar": {
+    "title": "Rope Pushdown",
+    "about": "دفع للأسفل بالحبل؛ فتح الحبل في الأسفل يعطي انقباضًا قويًا للرأس الجانبي.",
+    "steps": [
+     "ثبّت حبلًا على بكرة عالية وأمسك طرفيه والإبهامان للأعلى.",
+     "ضم المرفقين بجانبيك وقف مستقيمًا.",
+     "ادفع للأسفل وافتح طرفي الحبل في الأسفل.",
+     "ارجع ببطء حتى يتجاوز الساعدان الوضع الأفقي."
+    ],
+    "cues": [
+     "امدد بالكامل واسحب طرفي الحبل للخارج.",
+     "أبقِ العضدين مثبتين طوال الحركة."
+    ],
+    "mistakes": [
+     "أرجحة الجذع لتحريك الوزن.",
+     "تكرارات قصيرة لا تصل إلى المد الكامل."
+    ]
+   }
+  },
+  "single-arm-pushdown": {
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [
+    "forearms"
+   ],
+   "en": {
+    "title": "Single Arm Cable Pushdown",
+    "about": "A one-arm cable pushdown that lets you groove the elbow path and balance both sides.",
+    "steps": [
+     "Grab a single handle on a high pulley with one hand.",
+     "Pin the elbow to your side and brace with the free hand.",
+     "Extend the elbow until the arm is fully straight.",
+     "Return slowly until the forearm is above parallel."
+    ],
+    "cues": [
+     "Keep the shoulder down and torso square.",
+     "Squeeze hard at full lockout."
+    ],
+    "mistakes": [
+     "Rotating the torso to help the arm.",
+     "Letting the elbow travel forward."
+    ]
+   },
+   "tr": {
+    "title": "Single Arm Cable Pushdown",
+    "about": "Tek kolla cable pushdown; dirsek yolunu oturtmana ve iki tarafı dengelemene yardım eder.",
+    "steps": [
+     "Üst makaradaki tekli tutacağı bir elinle kavra.",
+     "Dirseği yanına sabitle, diğer elinle destek al.",
+     "Kol tamamen düzleşene kadar dirseği aç.",
+     "Ön kol paralelin üstüne çıkana kadar yavaşça dön."
+    ],
+    "cues": [
+     "Omzu aşağıda, gövdeyi düz tut.",
+     "Tam kilitlemede sertçe sık."
+    ],
+    "mistakes": [
+     "Kola yardım için gövdeyi döndürmek.",
+     "Dirseğin öne kaymasına izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "Single Arm Cable Pushdown",
+    "about": "دفع للأسفل بالكابل بذراع واحدة يساعد على ضبط مسار المرفق وموازنة الجانبين.",
+    "steps": [
+     "أمسك مقبضًا مفردًا على بكرة عالية بيد واحدة.",
+     "ثبّت المرفق بجانبك واستند باليد الأخرى.",
+     "امدد المرفق حتى تستقيم الذراع تمامًا.",
+     "ارجع ببطء حتى يرتفع الساعد فوق الوضع الأفقي."
+    ],
+    "cues": [
+     "أبقِ الكتف منخفضًا والجذع مستقيمًا.",
+     "اعصر بقوة عند المد الكامل."
+    ],
+    "mistakes": [
+     "تدوير الجذع لمساعدة الذراع.",
+     "ترك المرفق يتحرك للأمام."
+    ]
+   }
+  },
+  "incline-cable-pushdown": {
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [
+    "forearms",
+    "lats"
+   ],
+   "en": {
+    "title": "Incline Cable Pushdown",
+    "about": "A pushdown done lying on an incline bench, changing the arm angle to load the triceps differently.",
+    "steps": [
+     "Set an incline bench facing away from a high pulley.",
+     "Lie back and grab the attachment above your head with elbows bent.",
+     "Keep the upper arms fixed and extend the elbows toward your hips.",
+     "Return slowly until the forearms fold back fully."
+    ],
+    "cues": [
+     "Lock the upper arms in place; only the elbows bend.",
+     "Pause at full extension and squeeze."
+    ],
+    "mistakes": [
+     "Pulling with the lats so the upper arms move.",
+     "Rushing the return and losing tension."
+    ]
+   },
+   "tr": {
+    "title": "Incline Cable Pushdown",
+    "about": "Incline sehpada yatarak yapılan pushdown; kol açısını değiştirerek tricepsi farklı yükler.",
+    "steps": [
+     "Incline sehpayı üst makaraya sırtı dönük yerleştir.",
+     "Uzan, dirsekler bükülü şekilde başının üstündeki tutacağı kavra.",
+     "Üst kolları sabit tutarak dirsekleri kalçana doğru aç.",
+     "Ön kollar tamamen geri katlanana kadar yavaşça dön."
+    ],
+    "cues": [
+     "Üst kolları sabitle; sadece dirsekler bükülsün.",
+     "Tam ekstansiyonda dur ve sık."
+    ],
+    "mistakes": [
+     "Sırt kaslarıyla çekip üst kolları oynatmak.",
+     "Dönüşü aceleye getirip gerilimi kaybetmek."
+    ]
+   },
+   "ar": {
+    "title": "Incline Cable Pushdown",
+    "about": "دفع للأسفل مستلقيًا على مقعد مائل يغيّر زاوية الذراع ليحمّل الترايسبس بشكل مختلف.",
+    "steps": [
+     "ضع مقعدًا مائلًا وظهره نحو بكرة عالية.",
+     "استلقِ وأمسك المقبض فوق رأسك والمرفقان مثنيان.",
+     "ثبّت العضدين وامدد المرفقين نحو وركيك.",
+     "ارجع ببطء حتى ينثني الساعدان بالكامل."
+    ],
+    "cues": [
+     "ثبّت العضدين وينثني المرفقان فقط.",
+     "توقف عند المد الكامل واعصر."
+    ],
+    "mistakes": [
+     "السحب بعضلات الظهر فيتحرك العضدان.",
+     "التسرع في الرجوع وفقدان الشد."
+    ]
+   }
+  },
+  "close-grip-press": {
+   "primary": [
+    "triceps",
+    "chest"
+   ],
+   "secondary": [
+    "delt-front"
+   ],
+   "en": {
+    "title": "Close Grip Bench Press",
+    "about": "A narrow-grip bench press that shifts load to the triceps while still training the chest heavy.",
+    "steps": [
+     "Lie on a flat bench and grip the bar about shoulder width.",
+     "Retract the shoulder blades and unrack over your chest.",
+     "Lower the bar to your lower chest, elbows close to your sides.",
+     "Press up by driving through the triceps to lockout."
+    ],
+    "cues": [
+     "Shoulder-width is enough; too narrow strains the wrists.",
+     "Keep the wrists stacked over the elbows.",
+     "Lower in 2–3 seconds."
+    ],
+    "mistakes": [
+     "Gripping so narrow the wrists bend painfully.",
+     "Flaring the elbows and losing triceps focus."
+    ]
+   },
+   "tr": {
+    "title": "Close Grip Bench Press",
+    "about": "Dar tutuşlu bench press; ağır yüklenirken yükü tricepse kaydırır, göğsü de çalıştırır.",
+    "steps": [
+     "Düz sehpaya uzan, barı yaklaşık omuz genişliğinde kavra.",
+     "Kürek kemiklerini sıkıştır, barı göğsünün üzerine al.",
+     "Dirsekler yanlara yakın, barı alt göğsüne indir.",
+     "Tricepsle iterek kilitlenene kadar yukarı it."
+    ],
+    "cues": [
+     "Omuz genişliği yeterli; daha dar bilekleri zorlar.",
+     "Bilekler dirseklerin tam üzerinde olsun.",
+     "2–3 saniyede indir."
+    ],
+    "mistakes": [
+     "Bilekleri ağrıtacak kadar dar tutmak.",
+     "Dirsekleri açıp triceps odağını kaybetmek."
+    ]
+   },
+   "ar": {
+    "title": "Close Grip Bench Press",
+    "about": "ضغط بقبضة ضيقة ينقل الحمل إلى الترايسبس مع تمرين الصدر بأوزان ثقيلة.",
+    "steps": [
+     "استلقِ على مقعد مستوٍ وأمسك البار بعرض الكتفين تقريبًا.",
+     "اسحب لوحي الكتف للخلف وارفع البار فوق صدرك.",
+     "أنزل البار إلى أسفل الصدر والمرفقان قريبان من الجسم.",
+     "ادفع بالترايسبس حتى الاستقامة الكاملة."
+    ],
+    "cues": [
+     "عرض الكتفين يكفي؛ الأضيق يُجهد الرسغين.",
+     "أبقِ الرسغين فوق المرفقين مباشرة.",
+     "انزل في 2–3 ثوانٍ."
+    ],
+    "mistakes": [
+     "قبضة ضيقة جدًا تثني الرسغين بشكل مؤلم.",
+     "فتح المرفقين وفقدان التركيز على الترايسبس."
+    ]
+   }
+  },
+  "jm-press": {
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [
+    "chest",
+    "delt-front"
+   ],
+   "en": {
+    "title": "JM Press",
+    "about": "A hybrid of a close-grip press and skull crusher that overloads the triceps with heavy weight.",
+    "steps": [
+     "Lie on a bench holding the bar or dumbbells over your chest, close grip.",
+     "Lower by bending the elbows and letting them drift forward slightly.",
+     "Bring the weight toward your chin or upper chest, forearms angled back.",
+     "Extend the elbows to press back to lockout."
+    ],
+    "cues": [
+     "Elbows stay tucked and point toward your feet.",
+     "Lower slowly; the stretch is where it works."
+    ],
+    "mistakes": [
+     "Turning it into a regular bench press.",
+     "Letting the weight crash toward your face."
+    ]
+   },
+   "tr": {
+    "title": "JM Press",
+    "about": "Close grip press ile skull crusher karışımı; tricepsi ağır kiloyla aşırı yükler.",
+    "steps": [
+     "Sehpaya uzan, barı ya da dambılları dar tutuşla göğsünün üzerinde tut.",
+     "Dirsekleri bükerek ve hafifçe öne kaydırarak indir.",
+     "Ağırlığı çenene ya da üst göğsüne getir, ön kollar geriye açılı.",
+     "Dirsekleri açarak kilitlenene kadar it."
+    ],
+    "cues": [
+     "Dirsekler içeride kalsın ve ayaklarına baksın.",
+     "Yavaş indir; işi yapan kısım gerilmedir."
+    ],
+    "mistakes": [
+     "Normal bench press'e çevirmek.",
+     "Ağırlığın yüzüne doğru çarpmasına izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "JM Press",
+    "about": "مزيج بين الضغط بقبضة ضيقة والسكَل كراشر يحمّل الترايسبس بأوزان ثقيلة.",
+    "steps": [
+     "استلقِ على المقعد والبار أو الدمبل فوق صدرك بقبضة ضيقة.",
+     "انزل بثني المرفقين مع تقدمهما للأمام قليلًا.",
+     "أحضر الوزن نحو الذقن أو أعلى الصدر والساعدان مائلان للخلف.",
+     "امدد المرفقين للدفع حتى الاستقامة."
+    ],
+    "cues": [
+     "يبقى المرفقان مضمومين ومتجهين نحو القدمين.",
+     "انزل ببطء؛ فالتمدد هو ما يصنع الفرق."
+    ],
+    "mistakes": [
+     "تحويله إلى ضغط بنش عادي.",
+     "ترك الوزن يرتطم نحو الوجه."
+    ]
+   }
+  },
+  "triceps-dips": {
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [
+    "chest",
+    "delt-front"
+   ],
+   "en": {
+    "title": "Triceps Dips",
+    "about": "An upright dip that loads the triceps heavily with bodyweight or added weight.",
+    "steps": [
+     "Support yourself on parallel bars or a straight bar with arms locked.",
+     "Keep the torso upright and elbows pointing back.",
+     "Lower until the upper arms are about parallel or slightly below.",
+     "Press back up to full lockout."
+    ],
+    "cues": [
+     "Stay vertical to keep the work on the triceps.",
+     "Keep shoulders down and chest up."
+    ],
+    "mistakes": [
+     "Leaning far forward, which turns it into a chest dip.",
+     "Dropping too deep with the shoulders rolling forward."
+    ]
+   },
+   "tr": {
+    "title": "Triceps Dips",
+    "about": "Dik gövdeyle yapılan dips; vücut ağırlığı ya da ek yükle tricepsi yoğun çalıştırır.",
+    "steps": [
+     "Paralel ya da düz barda kollar kilitli, vücudunu taşı.",
+     "Gövdeyi dik, dirsekleri geriye dönük tut.",
+     "Üst kollar yaklaşık paralel ya da biraz altına inene kadar in.",
+     "Tamamen kilitlenene kadar geri it."
+    ],
+    "cues": [
+     "Yük tricepste kalsın diye dik dur.",
+     "Omuzlar aşağıda, göğüs yukarıda."
+    ],
+    "mistakes": [
+     "Çok öne eğilip göğüs dips'ine çevirmek.",
+     "Omuzlar öne yuvarlanarak fazla derine inmek."
+    ]
+   },
+   "ar": {
+    "title": "Triceps Dips",
+    "about": "ديبس بجذع منتصب يحمّل الترايسبس بقوة بوزن الجسم أو بوزن إضافي.",
+    "steps": [
+     "ارفع جسمك على المتوازيين أو بار مستقيم والذراعان مستقيمتان.",
+     "أبقِ الجذع منتصبًا والمرفقين متجهين للخلف.",
+     "انزل حتى يصبح العضدان موازيين تقريبًا أو أدنى قليلًا.",
+     "ادفع حتى الاستقامة الكاملة."
+    ],
+    "cues": [
+     "ابقَ عموديًا ليبقى العمل على الترايسبس.",
+     "أبقِ الكتفين منخفضين والصدر مرفوعًا."
+    ],
+    "mistakes": [
+     "الميل للأمام كثيرًا فيتحول إلى ديبس للصدر.",
+     "النزول عميقًا جدًا مع تدوير الكتفين للأمام."
+    ]
+   }
+  },
+  "bench-dips": {
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [
+    "chest",
+    "delt-front"
+   ],
+   "en": {
+    "title": "Bench Dips",
+    "about": "A bodyweight triceps exercise using a bench behind you; easy to scale by moving the feet.",
+    "steps": [
+     "Place your hands on a bench behind you, fingers forward.",
+     "Extend your legs in front; bend knees to make it easier.",
+     "Lower your hips by bending the elbows to about 90 degrees.",
+     "Press through your palms back to straight arms."
+    ],
+    "cues": [
+     "Keep your hips close to the bench.",
+     "Point the elbows straight back, not out."
+    ],
+    "mistakes": [
+     "Going so deep the shoulders roll forward painfully.",
+     "Pushing with the legs instead of the arms."
+    ]
+   },
+   "tr": {
+    "title": "Bench Dips",
+    "about": "Arkadaki sehpayla yapılan vücut ağırlığı triceps hareketi; ayakları oynatarak zorluk ayarlanır.",
+    "steps": [
+     "Ellerini arkandaki sehpaya koy, parmaklar öne baksın.",
+     "Bacaklarını öne uzat; kolaylaştırmak için dizleri bük.",
+     "Dirsekleri yaklaşık 90 dereceye bükerek kalçanı indir.",
+     "Avuç içlerinden iterek kolları düzleştir."
+    ],
+    "cues": [
+     "Kalçanı sehpaya yakın tut.",
+     "Dirsekler yana değil, düz geriye baksın."
+    ],
+    "mistakes": [
+     "Omuzları ağrıtacak kadar derine inmek.",
+     "Kollar yerine bacaklarla itmek."
+    ]
+   },
+   "ar": {
+    "title": "Bench Dips",
+    "about": "تمرين ترايسبس بوزن الجسم باستخدام مقعد خلفك، تسهل صعوبته بتحريك القدمين.",
+    "steps": [
+     "ضع يديك على مقعد خلفك والأصابع للأمام.",
+     "امدد ساقيك أمامك، واثنِ الركبتين لتسهيله.",
+     "أنزل وركك بثني المرفقين إلى 90 درجة تقريبًا.",
+     "ادفع براحتيك حتى تستقيم الذراعان."
+    ],
+    "cues": [
+     "أبقِ وركك قريبًا من المقعد.",
+     "وجّه المرفقين للخلف مباشرة لا للخارج."
+    ],
+    "mistakes": [
+     "النزول عميقًا حتى يتدور الكتفان للأمام بألم.",
+     "الدفع بالساقين بدل الذراعين."
+    ]
+   }
+  },
+  "triceps-push-ups": {
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [
+    "chest",
+    "delt-front",
+    "abs"
+   ],
+   "en": {
+    "title": "Triceps Push-Ups",
+    "about": "A close-hand push-up with tucked elbows that shifts work from the chest to the triceps.",
+    "steps": [
+     "Set hands shoulder width or slightly narrower, body in a straight plank.",
+     "Brace your core and glutes.",
+     "Lower with elbows tight to your ribs until the chest nears the floor.",
+     "Press back up to full lockout."
+    ],
+    "cues": [
+     "Elbows brush your sides and point back.",
+     "Squeeze the triceps at the top."
+    ],
+    "mistakes": [
+     "Flaring the elbows out like a normal push-up.",
+     "Placing hands so narrow the wrists hurt."
+    ]
+   },
+   "tr": {
+    "title": "Triceps Push-Ups",
+    "about": "Eller yakın, dirsekler içeride şınav; yükü göğüsten tricepse kaydırır.",
+    "steps": [
+     "Ellerini omuz genişliğinde ya da biraz dar koy, vücut düz plank.",
+     "Core'u ve kalçanı sık.",
+     "Dirsekler kaburgalara yakın, göğüs yere yaklaşana kadar in.",
+     "Tamamen kilitlenene kadar geri it."
+    ],
+    "cues": [
+     "Dirsekler yanlarını sıyırsın ve geriye baksın.",
+     "Tepede tricepsi sık."
+    ],
+    "mistakes": [
+     "Normal şınavdaki gibi dirsekleri açmak.",
+     "Elleri bilekleri ağrıtacak kadar dar koymak."
+    ]
+   },
+   "ar": {
+    "title": "Triceps Push-Ups",
+    "about": "ضغط بيدين متقاربتين ومرفقين مضمومين ينقل العمل من الصدر إلى الترايسبس.",
+    "steps": [
+     "ضع اليدين بعرض الكتفين أو أضيق قليلًا والجسم لوح مستقيم.",
+     "شدّ الجذع والمؤخرة.",
+     "انزل والمرفقان ملاصقان للأضلاع حتى يقترب الصدر من الأرض.",
+     "ادفع حتى الاستقامة الكاملة."
+    ],
+    "cues": [
+     "المرفقان يلامسان جانبيك ومتجهان للخلف.",
+     "اعصر الترايسبس في الأعلى."
+    ],
+    "mistakes": [
+     "فتح المرفقين كالضغط العادي.",
+     "تقريب اليدين كثيرًا فيتألم الرسغان."
+    ]
+   }
+  },
+  "kickback": {
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Dumbbell Kickback",
+    "about": "A dumbbell extension with the upper arm behind the body, peaking tension at full lockout.",
+    "steps": [
+     "Lie chest-down on a slight incline bench, or hinge forward, dumbbells in hand.",
+     "Raise the upper arms to your sides, parallel to your torso.",
+     "Extend the elbows until the arms are fully straight behind you.",
+     "Lower the forearms slowly to vertical."
+    ],
+    "cues": [
+     "Keep the upper arms still and high.",
+     "Squeeze at lockout for a moment."
+    ],
+    "mistakes": [
+     "Swinging the weight with the shoulder.",
+     "Letting the upper arm drop as you tire."
+    ]
+   },
+   "tr": {
+    "title": "Dumbbell Kickback",
+    "about": "Üst kol vücudun arkasında, dambılla ekstansiyon; gerilim tam kilitlemede zirve yapar.",
+    "steps": [
+     "Hafif incline sehpaya yüzüstü uzan ya da öne eğil, dambıllar elinde.",
+     "Üst kolları gövdene paralel olacak şekilde yanlara kaldır.",
+     "Kollar arkanda tamamen düzleşene kadar dirsekleri aç.",
+     "Ön kolları yavaşça dik konuma indir."
+    ],
+    "cues": [
+     "Üst kolları sabit ve yukarıda tut.",
+     "Kilitlemede bir an sık."
+    ],
+    "mistakes": [
+     "Ağırlığı omuzdan sallamak.",
+     "Yoruldukça üst kolun düşmesine izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "Dumbbell Kickback",
+    "about": "تمديد بالدمبل والعضد خلف الجسم، يبلغ فيه الشد ذروته عند المد الكامل.",
+    "steps": [
+     "استلقِ على بطنك على مقعد مائل قليلًا أو انحنِ للأمام والدمبل بيديك.",
+     "ارفع العضدين بجانبك موازيين للجذع.",
+     "امدد المرفقين حتى تستقيم الذراعان خلفك تمامًا.",
+     "أنزل الساعدين ببطء إلى الوضع العمودي."
+    ],
+    "cues": [
+     "أبقِ العضدين ثابتين ومرتفعين.",
+     "اعصر لحظة عند المد الكامل."
+    ],
+    "mistakes": [
+     "أرجحة الوزن من الكتف.",
+     "ترك العضد يهبط مع التعب."
+    ]
+   }
+  },
+  "bodyweight-triceps-extension": {
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [
+    "abs",
+    "chest"
+   ],
+   "en": {
+    "title": "Bodyweight French Press",
+    "about": "A bodyweight skull crusher on a bar or bench that strongly loads the triceps with no equipment.",
+    "steps": [
+     "Grip a bar or bench edge at about hip height, hands shoulder width.",
+     "Walk your feet back into a straight, leaning plank.",
+     "Bend only the elbows, lowering your head under the bar.",
+     "Extend the elbows to push back to straight arms."
+    ],
+    "cues": [
+     "Keep the body rigid from head to heels.",
+     "Move feet back to make it harder, forward to make it easier."
+    ],
+    "mistakes": [
+     "Bending at the hips instead of the elbows.",
+     "Letting the elbows flare wide."
+    ]
+   },
+   "tr": {
+    "title": "Bodyweight French Press",
+    "about": "Bar ya da sehpa ile vücut ağırlığı skull crusher; ekipmansız tricepsi güçlü yükler.",
+    "steps": [
+     "Kalça hizasındaki bir barı ya da sehpa kenarını omuz genişliğinde kavra.",
+     "Ayaklarını geri götürüp düz, eğik bir plank al.",
+     "Sadece dirsekleri bükerek başını barın altına indir.",
+     "Dirsekleri açarak kollar düzleşene kadar geri it."
+    ],
+    "cues": [
+     "Vücudu baştan topuğa sert tut.",
+     "Zorlaştırmak için ayakları geri, kolaylaştırmak için ileri al."
+    ],
+    "mistakes": [
+     "Dirsek yerine kalçadan bükülmek.",
+     "Dirseklerin dışa açılmasına izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "Bodyweight French Press",
+    "about": "سكَل كراشر بوزن الجسم على بار أو مقعد يحمّل الترايسبس بقوة دون معدات.",
+    "steps": [
+     "أمسك بارًا أو حافة مقعد بمستوى الورك تقريبًا بعرض الكتفين.",
+     "أرجع قدميك لتتخذ وضعية لوح مائل ومستقيم.",
+     "اثنِ المرفقين فقط وأنزل رأسك تحت البار.",
+     "امدد المرفقين للعودة إلى استقامة الذراعين."
+    ],
+    "cues": [
+     "أبقِ الجسم صلبًا من الرأس للكعبين.",
+     "أرجع القدمين لزيادة الصعوبة وقدّمهما لتسهيلها."
+    ],
+    "mistakes": [
+     "الانثناء من الورك بدل المرفقين.",
+     "ترك المرفقين ينفتحان للخارج."
+    ]
+   }
+  }
+ },
+ "map": {
+  "incline-barbell-press-garage-2-0": "barbell-incline-press",
+  "dips-copy-ryan_humis514743": "barbell-incline-press",
+  "slight-incline-barbell-press-garage-2-0": "barbell-incline-press",
+  "slight-incline-barbell-press": "barbell-incline-press",
+  "flat-barrel-press-garage-2-0": "barrel-press",
+  "slight-incline-barrel-press": "barrel-press",
+  "incline-barrel": "barrel-press",
+  "incline-dumbbell-press-copy-ryan_humis514743": "barrel-press",
+  "incline-barbell-press-copy-ryan_humis514743": "decline-press",
+  "single-arm-cable-press-down-copy": "decline-press",
+  "slight-decline-dumbbell-press": "decline-press",
+  "reverse-grip-bench-garage-2-0": "reverse-grip-press",
+  "reverse-grip-incline-smith-press": "reverse-grip-press",
+  "reverse-grip-smith-press": "reverse-grip-press",
+  "smith-reverse-grip-bench-press": "reverse-grip-press",
+  "close-grip-smith-copy-ryan_humis514743": "reverse-grip-press",
+  "floor-press-garage-program": "floor-press",
+  "flat-dumbbell-press-garage-2-0": "flat-dumbbell-press",
+  "incline-dumbbell-press-copy-edeb7f96-0ec5-48eb-9420-a832d633c3ff": "flat-dumbbell-press",
+  "flat-dumbbell-press-rotating-garage-program": "flat-dumbbell-press",
+  "seated-dumbbell-shrug-drops-copy-b3296a64-f8ab-444d-bb54-137cfa4f0833": "flat-dumbbell-press",
+  "incline-dumbbell-press-garage-2-0": "incline-dumbbell-press",
+  "lying-rear-delt-cable-row-copy": "incline-dumbbell-press",
+  "incline-dumbbell-press-super-slow-garage-program": "incline-dumbbell-press",
+  "slight-incline-dumbbell-press": "incline-dumbbell-press",
+  "flat-dumbbell-press-clusterfuck-copy": "incline-dumbbell-press",
+  "slight-incline-db": "incline-dumbbell-press",
+  "slight-incline-db-20-second-hold": "incline-dumbbell-press",
+  "high-incline-dumbbell-press-ryan_humis514743": "incline-dumbbell-press",
+  "incline-dumbbell-clavicular-head-press-elbows-tucked": "incline-dumbbell-press",
+  "incline-dumbbell-hammer-shoulder-press-garage-2-0": "incline-dumbbell-press",
+  "seated-single-arm-dumbbell-press-copy": "supinated-dumbbell-press",
+  "single-arm-dumbbell-side-lateral-copy": "supinated-dumbbell-press",
+  "single-arm-slightly-supinated-db-press": "supinated-dumbbell-press",
+  "straight-bar-curl-clusterfuck-copy-ryan_humis514743": "supinated-dumbbell-press",
+  "seated-barbell-press-ryan_humis514743": "seated-barbell-press",
+  "seated-dumbbell-touching-raise-to-press": "raise-to-press",
+  "incline-smith": "smith-incline-press",
+  "smith-slight-incline-press-copy-ryan_humis514743": "smith-incline-press",
+  "smith-incline-elbows-tucked-clavicular-head": "smith-incline-press",
+  "smith-slight-incline-press-copy": "smith-incline-press",
+  "slight-incline-dumbbell-barrel-press-copy": "smith-incline-press",
+  "smith-incline-press-copy": "smith-incline-press",
+  "machine-chest-press-ryan_humis514743": "machine-chest-press",
+  "machine-chest-press-flat": "machine-chest-press",
+  "machine-chest-press-modified-decline": "machine-chest-press",
+  "machine-decline-press-ryan_humis514743": "machine-chest-press",
+  "converging-machine-chest-press": "machine-chest-press",
+  "hammer-strength-flat-press": "machine-chest-press",
+  "machine-incline-press-ryan_humis514743": "machine-incline-press",
+  "machine-incline-press-06e1b56f-d3a5-4231-b02f-c36f5abf8d99": "machine-incline-press",
+  "single-arm-incline-machine-press": "machine-incline-press",
+  "dumbbell-fly-ryan_humis514743": "dumbbell-fly",
+  "dumbbell-fly-partials-full-rom-garage-program": "dumbbell-fly",
+  "dumbbell-flys-partials-at-bottom-garage-program": "dumbbell-fly",
+  "flat-dumbbell-fly-ryan_humis514743": "dumbbell-fly",
+  "low-dumbbell-fly-giant-set-garage-program": "dumbbell-fly",
+  "slight-decline-dumbbell-fly": "dumbbell-fly",
+  "clavicular-head-incline-dumbbell-fly": "incline-dumbbell-fly",
+  "high-incline-dumbbell-fly": "incline-dumbbell-fly",
+  "incline-dumbbell-clavicular-head-fly": "incline-dumbbell-fly",
+  "incline-dumbbell-fly-ryan_humis514743": "incline-dumbbell-fly",
+  "incline-fly-triset-garage-program": "incline-dumbbell-fly",
+  "slight-incline-dumbbell-fly": "incline-dumbbell-fly",
+  "seated-dumbbell-scoop-fly-garage-program": "scoop-fly",
+  "incline-cable-press-copy": "cable-fly",
+  "straight-bar-cable-extensions-full-copy": "cable-fly",
+  "standing-cable-fly-cross-midline-pronated-grip": "cable-fly",
+  "seated-cable-fly-ryan_humis514743": "cable-fly",
+  "seated-cable-high-to-low": "cable-fly",
+  "incline-cable-fly-ryan_humis514743": "incline-cable-fly",
+  "incline-cable-fly-clavicular-head": "incline-cable-fly",
+  "slight-incline-cable-extreme-stretch": "incline-cable-fly",
+  "machine-fly-extreme-stretch": "machine-fly",
+  "smith-incline-pause-press-copy": "machine-fly",
+  "slight-incline-dumbbell-press-clusterfuck-copy": "machine-fly",
+  "smith-incline-pause-press-copy-ryan_humis514743": "machine-fly",
+  "incline-bench-rear-cable-fly-protraction-external-rotation": "rear-cable-fly-protraction",
+  "standing-rear-cable-fly-protraction-external-rotation": "rear-cable-fly-protraction",
+  "around-the-worlds-ryan_humis514743": "around-the-worlds",
+  "machine-flys-copy": "dips-chest",
+  "dips-giant-set-garage-program": "dips-chest",
+  "dips-3-second-hold-at-bottom": "dips-chest",
+  "dips-chest-focused": "dips-chest",
+  "dips-extreme-stretch": "dips-chest",
+  "dips-negatives-garage-2-0": "dips-chest",
+  "dips-tilted-forward-copy": "dips-chest",
+  "seated-dumbbell-shrug-drops-copy-921b67db-f988-49b7-9310-24584067fddf": "dips-chest",
+  "dips-weighted-ryan_humis514743": "dips-chest",
+  "dips-weighted-dumbbell-between-knees": "dips-chest",
+  "hs-drop-dips-garage-program": "dips-chest",
+  "machine-dips-ryan_humis514743": "machine-dips",
+  "single-arm-machine-dips": "machine-dips",
+  "push-ups-garage-2-0": "push-ups",
+  "standard-push-ups-garage-program": "push-ups",
+  "wide-push-ups-garage-program": "push-ups",
+  "3-way-push-up-decline-garage-program": "push-ups",
+  "3-way-push-up-flat-garage-program": "push-ups",
+  "3-way-push-up-incline-garage-program": "push-ups",
+  "incline-push-ups-ryan_humis514743": "push-ups",
+  "dumbbell-push-ups-garage-program": "push-ups",
+  "dumbbell-push-ups-with-twist-garage-program": "push-ups",
+  "wide-grip-twist-push-ups-garage-program": "push-ups",
+  "ez-bar-drag-curls-garage-program-copy": "push-ups",
+  "dumbbell-elevate-push-ups-extreme-stretch": "deficit-push-ups",
+  "dumbbell-elevated-push-ups-extreme-rom": "deficit-push-ups",
+  "dead-hang-copy-ryan_humis514743": "chest-stretch",
+  "exercise-ball-knees-to-chest": "ball-knee-tuck",
+  "skull-crushers-ryan_humis514743": "skull-crushers",
+  "skull-crushers-45-degree-garage-2-0": "skull-crushers",
+  "barbell-skull-crushers-extreme-stretched-position": "skull-crushers",
+  "skull-crushers-copy": "skull-crushers",
+  "tri-fucta-skull-crushers-garage-program": "skull-crushers",
+  "reverse-grip-push-ups-garage-program-copy": "skull-crushers",
+  "dumbbell-skull-crushers-garage-program": "dumbbell-skull-crushers",
+  "dumbbell-skulls-45-degrees": "dumbbell-skull-crushers",
+  "dumbbell-skulls-full-stretch-extension-to-parallel": "dumbbell-skull-crushers",
+  "incline-dumbbell-skulls-garage-2-0": "dumbbell-skull-crushers",
+  "slight-incline-dumbbell-skulls": "dumbbell-skull-crushers",
+  "high-incline-dumbbell-french-press": "dumbbell-skull-crushers",
+  "skull-crusher-trifucta-neutral-grip-garage-program": "dumbbell-skull-crushers",
+  "skull-crusher-trifucta-reverse-grip-garage-program": "dumbbell-skull-crushers",
+  "skull-crusher-trifucta-rotating-garage-program": "dumbbell-skull-crushers",
+  "barbell-dead-skulls": "dead-skulls",
+  "reverse-skull-crushers-garage-program-copy": "dead-skulls",
+  "barbell-french-press-ryan_humis514743": "french-press",
+  "barbell-standing-french-press": "french-press",
+  "dumbbell-french-press-ryan_humis514743": "french-press",
+  "incline-skull-crushers-copy": "french-press",
+  "incline-ez-bar-french-press": "french-press",
+  "tri-fucta-french-press-garage-program": "french-press",
+  "machine-flys-tilted-back-copy-ryan_humis514743": "french-press",
+  "3-way-incline-french-3-4-reps-copy": "french-press",
+  "3-way-incline-french-partials-copy": "french-press",
+  "ez-bar-french-press-copy": "single-arm-overhead-extension",
+  "cable-fly-high-to-low-clusterfuck-copy": "single-arm-overhead-extension",
+  "cable-straight-bar-curl-copy-ryan_humis514743": "cable-overhead-extension",
+  "3-way-incline-french-press-copy-ryan_humis514743": "cable-overhead-extension",
+  "cable-straight-bar-french-press-don-t-lock-out": "cable-overhead-extension",
+  "single-arm-cable-overhead-extension-ryan_humis514743": "cable-overhead-extension",
+  "cable-french-press-copy-ryan_humis514743": "incline-cable-extension",
+  "incline-cable-extensions-elbows-back": "incline-cable-extension",
+  "incline-cable-extensions-elbows-high": "incline-cable-extension",
+  "incline-cable-extensions-elbows-mid": "incline-cable-extension",
+  "incline-cable-rope-extensions": "incline-cable-extension",
+  "incline-cable-tricep-extensions-ez-bar": "incline-cable-extension",
+  "slight-incline-cable-skulls-exaggerated-stretch": "incline-cable-extension",
+  "straight-bar-cable-extensions": "bar-pushdown",
+  "straight-bar-cable-extensions-partials-copy": "bar-pushdown",
+  "internally-rotated-cable-extension-single-arm-copy": "bar-pushdown",
+  "rope-extensions-copy": "bar-pushdown",
+  "cable-straight-bar-over-top-of-elbow": "bar-pushdown",
+  "cable-straight-bar-partials-initial-range": "bar-pushdown",
+  "ez-bar-cable-extensions": "bar-pushdown",
+  "v-handle-tricep-push-downs": "bar-pushdown",
+  "v-handle-tricep-extensions-elbows-tucked": "bar-pushdown",
+  "cable-kickbacks-copy": "rope-pushdown",
+  "rope-extensions-elbows-flared-frontal-plane": "rope-pushdown",
+  "rope-extensions-elbows-tucked-sagittal-plane": "rope-pushdown",
+  "cable-rope-french-press-copy": "rope-pushdown",
+  "cable-fly-high-to-low-clusterfuck-copy-ryan_humis514743": "single-arm-pushdown",
+  "3-way-incline-french-press-copy": "single-arm-pushdown",
+  "incline-cable-extension-copy": "single-arm-pushdown",
+  "incline-cable-push-downs-pre-exhaust": "incline-cable-pushdown",
+  "incline-cable-press-downs": "incline-cable-pushdown",
+  "close-grip-bench-garage-2-0": "close-grip-press",
+  "close-grip-smith-copy": "close-grip-press",
+  "cable-straight-bar-curl-copy": "close-grip-press",
+  "close-grip-smith-elbows-out": "close-grip-press",
+  "close-grip-tricep-press": "close-grip-press",
+  "close-grip-tricep-press-elbows-flared": "close-grip-press",
+  "close-grip-tricep-press-elbows-tucked": "close-grip-press",
+  "close-grip-tricep-smith-press-elbows-flared": "close-grip-press",
+  "close-grip-tricep-smith-press-elbows-tucked": "close-grip-press",
+  "tri-fucta-close-grip-press-garage-program": "close-grip-press",
+  "coffin-press-garage-program-ryan_humis514743": "close-grip-press",
+  "coffin-press-triset-garage-program": "close-grip-press",
+  "dumbbell-jm-tricep-press": "jm-press",
+  "high-incline-dumbbell-jm-press": "jm-press",
+  "incline-dumbbell-jm-tricep-press": "jm-press",
+  "jm-smith-tricep-press": "jm-press",
+  "smith-tricep-neck-crushers": "jm-press",
+  "close-grip-press-copy": "triceps-dips",
+  "dips-triceps-weighted": "triceps-dips",
+  "bar-tricep-dips-garage-program": "triceps-dips",
+  "cable-rope-extensions-copy": "triceps-dips",
+  "smith-tricep-dips": "triceps-dips",
+  "dead-skulls-garage-program-copy": "bench-dips",
+  "bench-dips-chest-garage-program": "bench-dips",
+  "bench-dips-compound-garage-program": "bench-dips",
+  "tricep-push-ups-ryan_humis514743": "triceps-push-ups",
+  "3-way-tricep-push-ups-neutral-garage-program": "triceps-push-ups",
+  "3-way-tricep-push-ups-slightly-pronated-garage-program": "triceps-push-ups",
+  "3-way-tricep-push-ups-slightly-supinated-garage-program": "triceps-push-ups",
+  "3-way-tricep-dumbbell-push-ups-decline-garage-program": "triceps-push-ups",
+  "3-way-tricep-dumbbell-push-ups-flat-garage-program": "triceps-push-ups",
+  "3-way-tricep-dumbbell-push-ups-incline-garage-program": "triceps-push-ups",
+  "slight-incline-dumbbell-kickbacks": "kickback",
+  "straight-bar-tricep-dips-copy": "bodyweight-triceps-extension"
+ },
+ "variantNotes": {
+  "slight-incline-barbell-press-garage-2-0": {
+   "en": "Use a low incline of about 15–30 degrees for upper chest without much shoulder takeover.",
+   "tr": "Omuzlar fazla devreye girmeden üst göğüs için 15–30 derece düşük açı kullan.",
+   "ar": "استخدم ميلًا منخفضًا 15–30 درجة لأعلى الصدر دون سيطرة الأكتاف."
+  },
+  "slight-incline-barbell-press": {
+   "en": "Use a low incline of about 15–30 degrees for upper chest without much shoulder takeover.",
+   "tr": "Omuzlar fazla devreye girmeden üst göğüs için 15–30 derece düşük açı kullan.",
+   "ar": "استخدم ميلًا منخفضًا 15–30 درجة لأعلى الصدر دون سيطرة الأكتاف."
+  },
+  "flat-barrel-press-garage-2-0": {
+   "en": "Done on a flat bench; the hugging arc targets the mid chest.",
+   "tr": "Düz sehpada yapılır; sarılma yayı orta göğsü hedefler.",
+   "ar": "يُنفَّذ على مقعد مستوٍ؛ القوس يستهدف منتصف الصدر."
+  },
+  "slight-incline-barrel-press": {
+   "en": "Use a low incline of about 15–30 degrees for upper chest without much shoulder takeover.",
+   "tr": "Omuzlar fazla devreye girmeden üst göğüs için 15–30 derece düşük açı kullan.",
+   "ar": "استخدم ميلًا منخفضًا 15–30 درجة لأعلى الصدر دون سيطرة الأكتاف."
+  },
+  "incline-barrel": {
+   "en": "Done on an incline bench to bias the upper chest.",
+   "tr": "Üst göğsü vurgulamak için incline sehpada yapılır.",
+   "ar": "يُنفَّذ على مقعد مائل للتركيز على أعلى الصدر."
+  },
+  "slight-decline-dumbbell-press": {
+   "en": "Use a slight decline angle to bias the lower chest.",
+   "tr": "Alt göğsü vurgulamak için hafif decline açı kullan.",
+   "ar": "استخدم انحدارًا خفيفًا للتركيز على أسفل الصدر."
+  },
+  "reverse-grip-incline-smith-press": {
+   "en": "Done on an incline Smith bench for extra upper-chest emphasis.",
+   "tr": "Ekstra üst göğüs vurgusu için incline sehpada Smith'te yapılır.",
+   "ar": "يُنفَّذ على مقعد مائل في جهاز Smith لتركيز إضافي على أعلى الصدر."
+  },
+  "close-grip-smith-copy-ryan_humis514743": {
+   "en": "Triceps-focused version: keep elbows very tight and the grip about shoulder width.",
+   "tr": "Triceps odaklı versiyon: dirsekleri çok içeride, tutuşu omuz genişliğinde tut.",
+   "ar": "نسخة مركزة على الترايسبس: المرفقان مضمومان جدًا والقبضة بعرض الكتفين."
+  },
+  "flat-dumbbell-press-rotating-garage-program": {
+   "en": "Rotate from neutral palms at the bottom to palms forward at the top.",
+   "tr": "Altta avuçlar karşılıklı, tepede öne bakacak şekilde döndür.",
+   "ar": "دوّر الراحتين من وضع متقابل في الأسفل إلى الأمام في الأعلى."
+  },
+  "seated-dumbbell-shrug-drops-copy-b3296a64-f8ab-444d-bb54-137cfa4f0833": {
+   "en": "Cluster set: do mini-sets of a few reps with 10–20 seconds rest between them.",
+   "tr": "Cluster set: aralarında 10–20 saniye dinlenerek birkaç tekrarlık mini setler yap.",
+   "ar": "مجموعة عنقودية: نفّذ مجموعات صغيرة من بضع تكرارات مع راحة 10–20 ثانية بينها."
+  },
+  "incline-dumbbell-press-super-slow-garage-program": {
+   "en": "Use a very slow tempo, about 4–5 seconds down and 2–3 seconds up.",
+   "tr": "Çok yavaş tempo kullan: yaklaşık 4–5 saniye iniş, 2–3 saniye çıkış.",
+   "ar": "استخدم إيقاعًا بطيئًا جدًا: نحو 4–5 ثوانٍ نزولًا و2–3 صعودًا."
+  },
+  "slight-incline-dumbbell-press": {
+   "en": "Use a low incline of about 15–30 degrees for upper chest without much shoulder takeover.",
+   "tr": "Omuzlar fazla devreye girmeden üst göğüs için 15–30 derece düşük açı kullan.",
+   "ar": "استخدم ميلًا منخفضًا 15–30 درجة لأعلى الصدر دون سيطرة الأكتاف."
+  },
+  "slight-incline-db": {
+   "en": "Use a low incline of about 15–30 degrees for upper chest without much shoulder takeover.",
+   "tr": "Omuzlar fazla devreye girmeden üst göğüs için 15–30 derece düşük açı kullan.",
+   "ar": "استخدم ميلًا منخفضًا 15–30 درجة لأعلى الصدر دون سيطرة الأكتاف."
+  },
+  "flat-dumbbell-press-clusterfuck-copy": {
+   "en": "Cluster set: do mini-sets of a few reps with 10–20 seconds rest between them.",
+   "tr": "Cluster set: aralarında 10–20 saniye dinlenerek birkaç tekrarlık mini setler yap.",
+   "ar": "مجموعة عنقودية: نفّذ مجموعات صغيرة من بضع تكرارات مع راحة 10–20 ثانية بينها."
+  },
+  "slight-incline-db-20-second-hold": {
+   "en": "Finish by holding the dumbbells in the stretched bottom position for 20 seconds.",
+   "tr": "Sonda dambılları gerilmiş alt pozisyonda 20 saniye tut.",
+   "ar": "اختم بتثبيت الدمبل في وضعية التمدد السفلية لمدة 20 ثانية."
+  },
+  "high-incline-dumbbell-press-ryan_humis514743": {
+   "en": "Set a high incline of about 45 degrees or more; front delts contribute more.",
+   "tr": "Sehpayı 45 derece ya da daha dik ayarla; ön omuz daha fazla çalışır.",
+   "ar": "اضبط ميلًا عاليًا بنحو 45 درجة أو أكثر؛ يزداد عمل الكتف الأمامي."
+  },
+  "incline-dumbbell-clavicular-head-press-elbows-tucked": {
+   "en": "Keep elbows tucked close to the body to bias the upper chest and triceps.",
+   "tr": "Üst göğüs ve tricepsi vurgulamak için dirsekleri gövdeye yakın tut.",
+   "ar": "أبقِ المرفقين قريبين من الجسم للتركيز على أعلى الصدر والترايسبس."
+  },
+  "incline-dumbbell-hammer-shoulder-press-garage-2-0": {
+   "en": "Use a neutral (palms-facing) grip on a high incline; more front-delt focus.",
+   "tr": "Yüksek incline'da nötr (avuçlar karşılıklı) tutuş kullan; ön omuz daha çok çalışır.",
+   "ar": "استخدم قبضة محايدة على ميل عالٍ؛ تركيز أكبر على الكتف الأمامي."
+  },
+  "single-arm-dumbbell-side-lateral-copy": {
+   "en": "Train one arm at a time to fix imbalances and focus on each side.",
+   "tr": "Dengesizlikleri gidermek ve her tarafa odaklanmak için tek kolla çalış.",
+   "ar": "مرّن ذراعًا واحدة في كل مرة لمعالجة عدم التوازن والتركيز على كل جانب."
+  },
+  "single-arm-slightly-supinated-db-press": {
+   "en": "Train one arm at a time to fix imbalances and focus on each side.",
+   "tr": "Dengesizlikleri gidermek ve her tarafa odaklanmak için tek kolla çalış.",
+   "ar": "مرّن ذراعًا واحدة في كل مرة لمعالجة عدم التوازن والتركيز على كل جانب."
+  },
+  "straight-bar-curl-clusterfuck-copy-ryan_humis514743": {
+   "en": "Cluster set: do mini-sets of a few reps with 10–20 seconds rest between them.",
+   "tr": "Cluster set: aralarında 10–20 saniye dinlenerek birkaç tekrarlık mini setler yap.",
+   "ar": "مجموعة عنقودية: نفّذ مجموعات صغيرة من بضع تكرارات مع راحة 10–20 ثانية بينها."
+  },
+  "smith-slight-incline-press-copy-ryan_humis514743": {
+   "en": "Set a high incline of about 45 degrees or more; front delts contribute more.",
+   "tr": "Sehpayı 45 derece ya da daha dik ayarla; ön omuz daha fazla çalışır.",
+   "ar": "اضبط ميلًا عاليًا بنحو 45 درجة أو أكثر؛ يزداد عمل الكتف الأمامي."
+  },
+  "smith-incline-press-copy": {
+   "en": "Use a low incline of about 15–30 degrees for upper chest without much shoulder takeover.",
+   "tr": "Omuzlar fazla devreye girmeden üst göğüs için 15–30 derece düşük açı kullan.",
+   "ar": "استخدم ميلًا منخفضًا 15–30 درجة لأعلى الصدر دون سيطرة الأكتاف."
+  },
+  "smith-incline-elbows-tucked-clavicular-head": {
+   "en": "Keep elbows tucked close to the body to bias the upper chest and triceps.",
+   "tr": "Üst göğüs ve tricepsi vurgulamak için dirsekleri gövdeye yakın tut.",
+   "ar": "أبقِ المرفقين قريبين من الجسم للتركيز على أعلى الصدر والترايسبس."
+  },
+  "smith-slight-incline-press-copy": {
+   "en": "Pause 1–2 seconds with the bar just above the chest before pressing.",
+   "tr": "İtmeden önce bar göğsün hemen üstündeyken 1–2 saniye dur.",
+   "ar": "توقف 1–2 ثانية والبار فوق الصدر مباشرة قبل الدفع."
+  },
+  "machine-chest-press-modified-decline": {
+   "en": "Set the seat higher so you press slightly downward, biasing the lower chest.",
+   "tr": "Koltuğu yükselt ki hafif aşağı doğru itesin; alt göğüs vurgulanır.",
+   "ar": "ارفع المقعد لتدفع للأسفل قليلًا فيتركز العمل على أسفل الصدر."
+  },
+  "machine-decline-press-ryan_humis514743": {
+   "en": "Use a slight decline angle to bias the lower chest.",
+   "tr": "Alt göğsü vurgulamak için hafif decline açı kullan.",
+   "ar": "استخدم انحدارًا خفيفًا للتركيز على أسفل الصدر."
+  },
+  "converging-machine-chest-press": {
+   "en": "Handles move inward as you press, adding a chest squeeze at the end.",
+   "tr": "Tutacaklar iterken içe yaklaşır, sonda göğüs sıkışması ekler.",
+   "ar": "يتقارب المقبضان أثناء الدفع فيضيفان عصرًا للصدر في النهاية."
+  },
+  "single-arm-incline-machine-press": {
+   "en": "Train one arm at a time to fix imbalances and focus on each side.",
+   "tr": "Dengesizlikleri gidermek ve her tarafa odaklanmak için tek kolla çalış.",
+   "ar": "مرّن ذراعًا واحدة في كل مرة لمعالجة عدم التوازن والتركيز على كل جانب."
+  },
+  "dumbbell-fly-partials-full-rom-garage-program": {
+   "en": "Do full-range reps, then finish with bottom-half partials to failure.",
+   "tr": "Tam açıklıkta tekrar yap, sonra tükenişe kadar alt yarı kısmi tekrarlarla bitir.",
+   "ar": "نفّذ تكرارات كاملة ثم اختم بتكرارات جزئية سفلية حتى الفشل."
+  },
+  "dumbbell-flys-partials-at-bottom-garage-program": {
+   "en": "Only move through the bottom, stretched half of the range.",
+   "tr": "Sadece hareketin alt, gerilmiş yarısında çalış.",
+   "ar": "تحرك فقط في النصف السفلي الممدد من المدى."
+  },
+  "low-dumbbell-fly-giant-set-garage-program": {
+   "en": "Giant set: chain several variations or drops back to back with minimal rest.",
+   "tr": "Giant set: birkaç varyasyonu ya da drop'u minimum dinlenmeyle art arda bağla.",
+   "ar": "مجموعة عملاقة: اربط عدة أشكال أو تخفيضات متتالية بأقل راحة ممكنة."
+  },
+  "slight-decline-dumbbell-fly": {
+   "en": "Use a slight decline angle to bias the lower chest.",
+   "tr": "Alt göğsü vurgulamak için hafif decline açı kullan.",
+   "ar": "استخدم انحدارًا خفيفًا للتركيز على أسفل الصدر."
+  },
+  "high-incline-dumbbell-fly": {
+   "en": "Set a high incline of about 45 degrees or more; front delts contribute more.",
+   "tr": "Sehpayı 45 derece ya da daha dik ayarla; ön omuz daha fazla çalışır.",
+   "ar": "اضبط ميلًا عاليًا بنحو 45 درجة أو أكثر؛ يزداد عمل الكتف الأمامي."
+  },
+  "slight-incline-dumbbell-fly": {
+   "en": "Use a low incline of about 15–30 degrees for upper chest without much shoulder takeover.",
+   "tr": "Omuzlar fazla devreye girmeden üst göğüs için 15–30 derece düşük açı kullan.",
+   "ar": "استخدم ميلًا منخفضًا 15–30 درجة لأعلى الصدر دون سيطرة الأكتاف."
+  },
+  "incline-fly-triset-garage-program": {
+   "en": "Tri-set: perform three variations back to back with no rest between them.",
+   "tr": "Tri-set: üç varyasyonu aralarında dinlenmeden art arda yap.",
+   "ar": "مجموعة ثلاثية: نفّذ ثلاثة أشكال متتالية دون راحة بينها."
+  },
+  "straight-bar-cable-extensions-full-copy": {
+   "en": "Pulleys high, sweep down and in for the lower chest, using cluster sets.",
+   "tr": "Makaralar yüksekte, alt göğüs için aşağı ve içe süpür; cluster set olarak yap.",
+   "ar": "البكرات عالية والسحب للأسفل والداخل لأسفل الصدر، بأسلوب المجموعات العنقودية."
+  },
+  "standing-cable-fly-cross-midline-pronated-grip": {
+   "en": "Cross the hands past the midline with palms down for a fuller contraction.",
+   "tr": "Daha tam bir kasılma için avuçlar aşağı, elleri orta hattın ötesine geçir.",
+   "ar": "اعبر باليدين خط المنتصف والراحتان للأسفل لانقباض أكمل."
+  },
+  "seated-cable-fly-ryan_humis514743": {
+   "en": "Sit with back supported to remove body sway and isolate the chest.",
+   "tr": "Vücut sallanmasını önlemek ve göğsü izole etmek için sırt destekli otur.",
+   "ar": "اجلس مع إسناد الظهر لمنع التأرجح وعزل الصدر."
+  },
+  "seated-cable-high-to-low": {
+   "en": "Seated with pulleys high, pull down and in to target the lower chest.",
+   "tr": "Oturarak, makaralar yüksekte; alt göğüs için aşağı ve içe çek.",
+   "ar": "جالسًا والبكرات عالية، اسحب للأسفل والداخل لاستهداف أسفل الصدر."
+  },
+  "slight-incline-cable-extreme-stretch": {
+   "en": "Use a low incline and let the hands travel deep for a maximal stretch.",
+   "tr": "Düşük açı kullan, maksimum gerilme için ellerin derine gitmesine izin ver.",
+   "ar": "استخدم ميلًا منخفضًا ودع اليدين تنزلان عميقًا لأقصى تمدد."
+  },
+  "machine-fly-extreme-stretch": {
+   "en": "Emphasize the deepest stretch you can control, pausing briefly at the bottom.",
+   "tr": "Kontrol edebileceğin en derin gerilmeyi vurgula, altta kısa bir an dur.",
+   "ar": "ركّز على أعمق تمدد تستطيع التحكم فيه مع توقف قصير في الأسفل."
+  },
+  "slight-incline-dumbbell-press-clusterfuck-copy": {
+   "en": "Lean the torso back against the pad to shift the line of pull toward the upper chest.",
+   "tr": "Çekiş hattını üst göğse kaydırmak için gövdeyi pede doğru geriye yasla.",
+   "ar": "أمِل جذعك للخلف على المسند لتحويل خط السحب نحو أعلى الصدر."
+  },
+  "smith-incline-pause-press-copy-ryan_humis514743": {
+   "en": "Train one arm at a time to fix imbalances and focus on each side.",
+   "tr": "Dengesizlikleri gidermek ve her tarafa odaklanmak için tek kolla çalış.",
+   "ar": "مرّن ذراعًا واحدة في كل مرة لمعالجة عدم التوازن والتركيز على كل جانب."
+  },
+  "incline-bench-rear-cable-fly-protraction-external-rotation": {
+   "en": "Done lying on an incline bench between the pulleys to bias the upper chest.",
+   "tr": "Üst göğsü vurgulamak için makaralar arasında incline sehpaya uzanarak yapılır.",
+   "ar": "يُنفَّذ مستلقيًا على مقعد مائل بين البكرتين للتركيز على أعلى الصدر."
+  },
+  "dips-giant-set-garage-program": {
+   "en": "Giant set: chain several variations or drops back to back with minimal rest.",
+   "tr": "Giant set: birkaç varyasyonu ya da drop'u minimum dinlenmeyle art arda bağla.",
+   "ar": "مجموعة عملاقة: اربط عدة أشكال أو تخفيضات متتالية بأقل راحة ممكنة."
+  },
+  "dips-3-second-hold-at-bottom": {
+   "en": "Hold the bottom stretched position for 3 seconds every rep.",
+   "tr": "Her tekrarda alttaki gerilmiş pozisyonu 3 saniye tut.",
+   "ar": "اثبت في وضعية التمدد السفلية 3 ثوانٍ في كل تكرار."
+  },
+  "dips-extreme-stretch": {
+   "en": "Emphasize the deepest stretch you can control, pausing briefly at the bottom.",
+   "tr": "Kontrol edebileceğin en derin gerilmeyi vurgula, altta kısa bir an dur.",
+   "ar": "ركّز على أعمق تمدد تستطيع التحكم فيه مع توقف قصير في الأسفل."
+  },
+  "dips-negatives-garage-2-0": {
+   "en": "Jump or step to the top, then lower yourself over 4–5 seconds.",
+   "tr": "Tepeye zıpla ya da bas, sonra 4–5 saniyede kendini indir.",
+   "ar": "اقفز أو اصعد إلى الأعلى ثم انزل خلال 4–5 ثوانٍ."
+  },
+  "dips-tilted-forward-copy": {
+   "en": "Rock the torso forward and back between reps to hit the chest and triceps.",
+   "tr": "Göğüs ve tricepse vurmak için tekrarlar arasında gövdeyi öne arkaya salla.",
+   "ar": "أرجح الجذع للأمام والخلف بين التكرارات لاستهداف الصدر والترايسبس."
+  },
+  "seated-dumbbell-shrug-drops-copy-921b67db-f988-49b7-9310-24584067fddf": {
+   "en": "Exaggerate the forward lean to maximize chest involvement.",
+   "tr": "Göğüs katılımını artırmak için öne eğilmeyi abart.",
+   "ar": "بالِغ في الميل للأمام لزيادة مشاركة الصدر."
+  },
+  "dips-weighted-ryan_humis514743": {
+   "en": "Add load with a dip belt or a dumbbell held between the knees once bodyweight is easy.",
+   "tr": "Vücut ağırlığı kolaylaşınca dips kemeri ya da dizler arasında dambılla yük ekle.",
+   "ar": "أضف وزنًا بحزام ديبس أو دمبل بين الركبتين عندما يصبح وزن الجسم سهلًا."
+  },
+  "dips-weighted-dumbbell-between-knees": {
+   "en": "Add load with a dip belt or a dumbbell held between the knees once bodyweight is easy.",
+   "tr": "Vücut ağırlığı kolaylaşınca dips kemeri ya da dizler arasında dambılla yük ekle.",
+   "ar": "أضف وزنًا بحزام ديبس أو دمبل بين الركبتين عندما يصبح وزن الجسم سهلًا."
+  },
+  "hs-drop-dips-garage-program": {
+   "en": "Drop set: start weighted or harder, then strip load and continue without rest.",
+   "tr": "Drop set: ağır ya da zor başla, sonra yükü azaltıp dinlenmeden devam et.",
+   "ar": "مجموعة تنازلية: ابدأ بوزن أو صعوبة أعلى ثم خفّف واستمر دون راحة."
+  },
+  "single-arm-machine-dips": {
+   "en": "Train one arm at a time to fix imbalances and focus on each side.",
+   "tr": "Dengesizlikleri gidermek ve her tarafa odaklanmak için tek kolla çalış.",
+   "ar": "مرّن ذراعًا واحدة في كل مرة لمعالجة عدم التوازن والتركيز على كل جانب."
+  },
+  "wide-push-ups-garage-program": {
+   "en": "Place hands wider than usual to increase chest stretch and involvement.",
+   "tr": "Göğüs gerilmesini ve katılımını artırmak için elleri normalden geniş koy.",
+   "ar": "ضع اليدين أعرض من المعتاد لزيادة تمدد الصدر ومشاركته."
+  },
+  "3-way-push-up-decline-garage-program": {
+   "en": "3-way set: do decline, flat, then incline push-ups back to back as you fatigue.",
+   "tr": "3-way set: yoruldukça decline, düz ve incline şınavı art arda yap.",
+   "ar": "مجموعة ثلاثية: نفّذ الضغط المنحدر ثم المستوي ثم المائل متتاليًا مع التعب."
+  },
+  "3-way-push-up-flat-garage-program": {
+   "en": "3-way set: do decline, flat, then incline push-ups back to back as you fatigue.",
+   "tr": "3-way set: yoruldukça decline, düz ve incline şınavı art arda yap.",
+   "ar": "مجموعة ثلاثية: نفّذ الضغط المنحدر ثم المستوي ثم المائل متتاليًا مع التعب."
+  },
+  "3-way-push-up-incline-garage-program": {
+   "en": "3-way set: do decline, flat, then incline push-ups back to back as you fatigue.",
+   "tr": "3-way set: yoruldukça decline, düz ve incline şınavı art arda yap.",
+   "ar": "مجموعة ثلاثية: نفّذ الضغط المنحدر ثم المستوي ثم المائل متتاليًا مع التعب."
+  },
+  "incline-push-ups-ryan_humis514743": {
+   "en": "Hands on a raised surface make it easier and shift focus to the lower chest.",
+   "tr": "Ellerin yüksek bir yüzeyde olması hareketi kolaylaştırır, alt göğse odaklar.",
+   "ar": "وضع اليدين على سطح مرتفع يسهّل التمرين ويركز على أسفل الصدر."
+  },
+  "dumbbell-push-ups-garage-program": {
+   "en": "Grip hex dumbbells on the floor for a neutral wrist and a slightly deeper range.",
+   "tr": "Nötr bilek ve biraz daha derin açıklık için yerdeki altıgen dambılları kavra.",
+   "ar": "أمسك دمبلًا سداسيًا على الأرض لرسغ محايد ومدى أعمق قليلًا."
+  },
+  "dumbbell-push-ups-with-twist-garage-program": {
+   "en": "At the top, rotate into a side plank raising one dumbbell; this adds obliques.",
+   "tr": "Tepede bir dambılı kaldırarak yan plank'e dön; oblikleri de çalıştırır.",
+   "ar": "في الأعلى، استدر إلى لوح جانبي رافعًا دمبلًا؛ يضيف عمل العضلات المائلة."
+  },
+  "wide-grip-twist-push-ups-garage-program": {
+   "en": "Use a wide grip and rotate into a side plank at the top to add obliques.",
+   "tr": "Geniş tutuş kullan, tepede yan plank'e dönerek oblikleri ekle.",
+   "ar": "استخدم قبضة عريضة واستدر إلى لوح جانبي في الأعلى لإشراك العضلات المائلة."
+  },
+  "ez-bar-drag-curls-garage-program-copy": {
+   "en": "Turn fingers to point toward your feet; elbows stay tucked and triceps work more.",
+   "tr": "Parmaklar ayaklarına baksın; dirsekler içeride kalır, triceps daha çok çalışır.",
+   "ar": "وجّه الأصابع نحو القدمين؛ يبقى المرفقان مضمومين ويزداد عمل الترايسبس."
+  },
+  "dumbbell-elevated-push-ups-extreme-rom": {
+   "en": "Emphasize the deepest stretch you can control, pausing briefly at the bottom.",
+   "tr": "Kontrol edebileceğin en derin gerilmeyi vurgula, altta kısa bir an dur.",
+   "ar": "ركّز على أعمق تمدد تستطيع التحكم فيه مع توقف قصير في الأسفل."
+  },
+  "dumbbell-elevate-push-ups-extreme-stretch": {
+   "en": "Emphasize the deepest stretch you can control, pausing briefly at the bottom.",
+   "tr": "Kontrol edebileceğin en derin gerilmeyi vurgula, altta kısa bir an dur.",
+   "ar": "ركّز على أعمق تمدد تستطيع التحكم فيه مع توقف قصير في الأسفل."
+  },
+  "skull-crushers-45-degree-garage-2-0": {
+   "en": "Done on a 45-degree incline bench to keep the long head under stretch.",
+   "tr": "Uzun başı gerili tutmak için 45 derece incline sehpada yapılır.",
+   "ar": "يُنفَّذ على مقعد مائل 45 درجة لإبقاء الرأس الطويل تحت التمدد."
+  },
+  "barbell-skull-crushers-extreme-stretched-position": {
+   "en": "Emphasize the deepest stretch you can control, pausing briefly at the bottom.",
+   "tr": "Kontrol edebileceğin en derin gerilmeyi vurgula, altta kısa bir an dur.",
+   "ar": "ركّز على أعمق تمدد تستطيع التحكم فيه مع توقف قصير في الأسفل."
+  },
+  "skull-crushers-copy": {
+   "en": "Done on an incline bench, increasing long-head stretch at the bottom.",
+   "tr": "Incline sehpada yapılır; altta uzun baş gerilmesini artırır.",
+   "ar": "يُنفَّذ على مقعد مائل فيزيد تمدد الرأس الطويل في الأسفل."
+  },
+  "tri-fucta-skull-crushers-garage-program": {
+   "en": "Tri-set: perform three variations back to back with no rest between them.",
+   "tr": "Tri-set: üç varyasyonu aralarında dinlenmeden art arda yap.",
+   "ar": "مجموعة ثلاثية: نفّذ ثلاثة أشكال متتالية دون راحة بينها."
+  },
+  "reverse-grip-push-ups-garage-program-copy": {
+   "en": "Use an underhand grip; it shifts stress slightly and spares some elbows.",
+   "tr": "Ters (avuç yukarı) tutuş kullan; yükü hafifçe kaydırır, bazı dirsekleri rahatlatır.",
+   "ar": "استخدم قبضة معكوسة؛ تغيّر الضغط قليلًا وتريح بعض المرافق."
+  },
+  "dumbbell-skulls-45-degrees": {
+   "en": "Angle the upper arms back about 45 degrees for more long-head stretch.",
+   "tr": "Daha fazla uzun baş gerilmesi için üst kolları yaklaşık 45 derece geriye açıla.",
+   "ar": "أمِل العضدين للخلف نحو 45 درجة لتمدد أكبر للرأس الطويل."
+  },
+  "dumbbell-skulls-full-stretch-extension-to-parallel": {
+   "en": "Lower to a full stretch, then extend only until forearms reach parallel.",
+   "tr": "Tam gerilmeye in, sonra sadece ön kollar paralele gelene kadar aç.",
+   "ar": "انزل إلى تمدد كامل ثم امدد فقط حتى يصبح الساعدان أفقيين."
+  },
+  "incline-dumbbell-skulls-garage-2-0": {
+   "en": "Done on an incline bench to increase long-head stretch.",
+   "tr": "Uzun baş gerilmesini artırmak için incline sehpada yapılır.",
+   "ar": "يُنفَّذ على مقعد مائل لزيادة تمدد الرأس الطويل."
+  },
+  "slight-incline-dumbbell-skulls": {
+   "en": "Done on a slight incline for a deeper stretch than flat.",
+   "tr": "Düz sehpaya göre daha derin gerilme için hafif incline'da yapılır.",
+   "ar": "يُنفَّذ على ميل خفيف لتمدد أعمق من المقعد المستوي."
+  },
+  "high-incline-dumbbell-french-press": {
+   "en": "A high incline puts the arms nearly overhead for maximal long-head stretch.",
+   "tr": "Yüksek açı kolları neredeyse baş üstüne alır, uzun baş maksimum gerilir.",
+   "ar": "الميل العالي يضع الذراعين فوق الرأس تقريبًا لأقصى تمدد للرأس الطويل."
+  },
+  "skull-crusher-trifucta-neutral-grip-garage-program": {
+   "en": "Tri-set part: palms facing each other throughout.",
+   "tr": "Tri-set bölümü: avuçlar hareket boyunca karşılıklı.",
+   "ar": "جزء من مجموعة ثلاثية: الراحتان متقابلتان طوال الحركة."
+  },
+  "skull-crusher-trifucta-reverse-grip-garage-program": {
+   "en": "Tri-set part: palms facing your head (supinated).",
+   "tr": "Tri-set bölümü: avuçlar başına dönük (supine).",
+   "ar": "جزء من مجموعة ثلاثية: الراحتان نحو الرأس (قبضة معكوسة)."
+  },
+  "skull-crusher-trifucta-rotating-garage-program": {
+   "en": "Tri-set part: rotate from neutral at the bottom to pronated at the top.",
+   "tr": "Tri-set bölümü: altta nötrden tepede pronasyona döndür.",
+   "ar": "جزء من مجموعة ثلاثية: دوّر من محايد في الأسفل إلى مكبوب في الأعلى."
+  },
+  "barbell-standing-french-press": {
+   "en": "Done standing; brace hard so the lower back does not arch.",
+   "tr": "Ayakta yapılır; belin kavislenmemesi için karnını sıkıca sık.",
+   "ar": "يُنفَّذ واقفًا؛ شدّ الجذع جيدًا لئلا يتقوس أسفل الظهر."
+  },
+  "incline-ez-bar-french-press": {
+   "en": "Done with your back on an incline bench for support and a deep stretch.",
+   "tr": "Destek ve derin gerilme için sırtın incline sehpada yapılır.",
+   "ar": "يُنفَّذ وظهرك على مقعد مائل للإسناد ولتمدد عميق."
+  },
+  "tri-fucta-french-press-garage-program": {
+   "en": "Tri-set: perform three variations back to back with no rest between them.",
+   "tr": "Tri-set: üç varyasyonu aralarında dinlenmeden art arda yap.",
+   "ar": "مجموعة ثلاثية: نفّذ ثلاثة أشكال متتالية دون راحة بينها."
+  },
+  "machine-flys-tilted-back-copy-ryan_humis514743": {
+   "en": "3-way set: full reps, then partials, then presses, back to back on one weight.",
+   "tr": "3-way set: aynı ağırlıkla önce tam tekrar, sonra kısmi, sonra press, art arda.",
+   "ar": "مجموعة ثلاثية: تكرارات كاملة ثم جزئية ثم ضغط، متتالية بالوزن نفسه."
+  },
+  "3-way-incline-french-3-4-reps-copy": {
+   "en": "3-way set: full reps, then partials, then presses, back to back on one weight.",
+   "tr": "3-way set: aynı ağırlıkla önce tam tekrar, sonra kısmi, sonra press, art arda.",
+   "ar": "مجموعة ثلاثية: تكرارات كاملة ثم جزئية ثم ضغط، متتالية بالوزن نفسه."
+  },
+  "3-way-incline-french-partials-copy": {
+   "en": "3-way set: full reps, then partials, then presses, back to back on one weight.",
+   "tr": "3-way set: aynı ağırlıkla önce tam tekrar, sonra kısmi, sonra press, art arda.",
+   "ar": "مجموعة ثلاثية: تكرارات كاملة ثم جزئية ثم ضغط، متتالية بالوزن نفسه."
+  },
+  "cable-fly-high-to-low-clusterfuck-copy": {
+   "en": "Press your upper arm against the bench back to lock it in place.",
+   "tr": "Üst kolu sabitlemek için sehpanın sırtlığına bastır.",
+   "ar": "اضغط العضد على مسند المقعد لتثبيته في مكانه."
+  },
+  "cable-straight-bar-french-press-don-t-lock-out": {
+   "en": "Stop just short of lockout to keep continuous tension on the triceps.",
+   "tr": "Tricepste sürekli gerilim için kilitlemeden hemen önce dur.",
+   "ar": "توقف قبل الاستقامة الكاملة بقليل لإبقاء الشد المستمر على الترايسبس."
+  },
+  "single-arm-cable-overhead-extension-ryan_humis514743": {
+   "en": "Train one arm at a time to fix imbalances and focus on each side.",
+   "tr": "Dengesizlikleri gidermek ve her tarafa odaklanmak için tek kolla çalış.",
+   "ar": "مرّن ذراعًا واحدة في كل مرة لمعالجة عدم التوازن والتركيز على كل جانب."
+  },
+  "3-way-incline-french-press-copy-ryan_humis514743": {
+   "en": "A rope lets the hands split at the top for a fuller contraction.",
+   "tr": "Halat, tepede ellerin ayrılmasını sağlayarak daha tam kasılma verir.",
+   "ar": "يتيح الحبل تباعد اليدين في الأعلى لانقباض أكمل."
+  },
+  "incline-cable-extensions-elbows-back": {
+   "en": "Angle the upper arms further back for the most long-head stretch.",
+   "tr": "En fazla uzun baş gerilmesi için üst kolları daha geriye açıla.",
+   "ar": "أمِل العضدين أكثر للخلف لأقصى تمدد للرأس الطويل."
+  },
+  "incline-cable-extensions-elbows-high": {
+   "en": "Point the upper arms straight up toward the ceiling.",
+   "tr": "Üst kolları dümdüz tavana doğru tut.",
+   "ar": "وجّه العضدين مباشرة نحو السقف."
+  },
+  "incline-cable-extensions-elbows-mid": {
+   "en": "Hold the upper arms between vertical and fully back.",
+   "tr": "Üst kolları dik ile tamamen geri arasında tut.",
+   "ar": "أبقِ العضدين بين الوضع العمودي والخلفي الكامل."
+  },
+  "incline-cable-rope-extensions": {
+   "en": "Use a rope and split it at lockout.",
+   "tr": "Halat kullan ve kilitlemede iki yana aç.",
+   "ar": "استخدم حبلًا وافتحه عند المد الكامل."
+  },
+  "incline-cable-tricep-extensions-ez-bar": {
+   "en": "Use an EZ bar for a wrist-friendly angled grip.",
+   "tr": "Bilek dostu açılı tutuş için EZ bar kullan.",
+   "ar": "استخدم بار EZ لقبضة مائلة مريحة للرسغ."
+  },
+  "slight-incline-cable-skulls-exaggerated-stretch": {
+   "en": "Emphasize the deepest stretch you can control, pausing briefly at the bottom.",
+   "tr": "Kontrol edebileceğin en derin gerilmeyi vurgula, altta kısa bir an dur.",
+   "ar": "ركّز على أعمق تمدد تستطيع التحكم فيه مع توقف قصير في الأسفل."
+  },
+  "straight-bar-cable-extensions-partials-copy": {
+   "en": "Use the full range from forearms high to complete lockout.",
+   "tr": "Ön kollar yukarıdan tam kilitlemeye kadar tüm açıklığı kullan.",
+   "ar": "استخدم المدى الكامل من ارتفاع الساعدين حتى المد الكامل."
+  },
+  "internally-rotated-cable-extension-single-arm-copy": {
+   "en": "Partial reps in one portion of the range, often after full reps.",
+   "tr": "Genelde tam tekrarlardan sonra, açıklığın bir bölümünde kısmi tekrarlar.",
+   "ar": "تكرارات جزئية في جزء من المدى، غالبًا بعد التكرارات الكاملة."
+  },
+  "cable-straight-bar-partials-initial-range": {
+   "en": "Only move through the top, stretched portion where the forearms are high.",
+   "tr": "Sadece ön kolların yukarıda olduğu, gerilmiş üst bölümde çalış.",
+   "ar": "تحرك فقط في الجزء العلوي الممدد حيث الساعدان مرتفعان."
+  },
+  "cable-straight-bar-over-top-of-elbow": {
+   "en": "Let the bar rise above elbow height for a deeper stretch.",
+   "tr": "Daha derin gerilme için barın dirsek hizasının üstüne çıkmasına izin ver.",
+   "ar": "دع البار يرتفع فوق مستوى المرفق لتمدد أعمق."
+  },
+  "ez-bar-cable-extensions": {
+   "en": "An EZ bar lets the wrists sit at a more comfortable angle.",
+   "tr": "EZ bar bileklerin daha rahat bir açıda durmasını sağlar.",
+   "ar": "يتيح بار EZ وضع الرسغين بزاوية أكثر راحة."
+  },
+  "v-handle-tricep-push-downs": {
+   "en": "A V-handle gives a semi-neutral grip that many find elbow-friendly.",
+   "tr": "V-handle, çoğu kişinin dirsek dostu bulduğu yarı nötr tutuş sağlar.",
+   "ar": "يعطي مقبض V قبضة شبه محايدة يجدها الكثيرون مريحة للمرفق."
+  },
+  "v-handle-tricep-extensions-elbows-tucked": {
+   "en": "Keep elbows tucked close to your sides to maximize triceps work.",
+   "tr": "Triceps çalışmasını artırmak için dirsekleri yanlarına yakın tut.",
+   "ar": "أبقِ المرفقين قريبين من جانبيك لزيادة عمل الترايسبس."
+  },
+  "rope-extensions-elbows-flared-frontal-plane": {
+   "en": "Let elbows flare out to the sides, pushing down in the frontal plane.",
+   "tr": "Dirsekleri yanlara aç, frontal düzlemde aşağı it.",
+   "ar": "افتح المرفقين للجانبين وادفع للأسفل في المستوى الجبهي."
+  },
+  "rope-extensions-elbows-tucked-sagittal-plane": {
+   "en": "Keep elbows tight to the ribs, pushing straight down in front.",
+   "tr": "Dirsekleri kaburgalara yapıştır, önde düz aşağı it.",
+   "ar": "أبقِ المرفقين ملاصقين للأضلاع وادفع للأسفل مباشرة أمامك."
+  },
+  "3-way-incline-french-press-copy": {
+   "en": "Turn the palm down and slightly inward, which many feel more in the lateral head.",
+   "tr": "Avucu aşağı ve hafif içe çevir; çoğu kişi dış başta daha çok hisseder.",
+   "ar": "أدر الراحة للأسفل وللداخل قليلًا؛ يشعر بها الكثيرون أكثر في الرأس الجانبي."
+  },
+  "incline-cable-extension-copy": {
+   "en": "Pull slightly across the body, elbow a bit out, to emphasize the lateral head.",
+   "tr": "Dış başı vurgulamak için dirsek hafif dışarıda, vücudun önünden çapraz çek.",
+   "ar": "اسحب عبر الجسم قليلًا والمرفق للخارج قليلًا للتركيز على الرأس الجانبي."
+  },
+  "incline-cable-push-downs-pre-exhaust": {
+   "en": "Pre-exhaust: do these first to tire the triceps before a compound press.",
+   "tr": "Pre-exhaust: bileşik press'ten önce tricepsi yormak için önce bunu yap.",
+   "ar": "إرهاق مسبق: نفّذه أولًا لإتعاب الترايسبس قبل تمرين ضغط مركب."
+  },
+  "cable-straight-bar-curl-copy": {
+   "en": "Done on a Smith machine for a fixed, stable bar path.",
+   "tr": "Sabit ve dengeli bar yolu için Smith makinede yapılır.",
+   "ar": "يُنفَّذ على جهاز Smith لمسار بار ثابت ومستقر."
+  },
+  "close-grip-smith-elbows-out": {
+   "en": "Let elbows flare out wider, shifting more work to the chest and lateral triceps.",
+   "tr": "Dirsekleri daha geniş aç; yük göğse ve tricepsin dış başına kayar.",
+   "ar": "افتح المرفقين أكثر لينتقل العمل أكثر إلى الصدر والرأس الجانبي للترايسبس."
+  },
+  "close-grip-tricep-press-elbows-flared": {
+   "en": "Let elbows flare out wider, shifting more work to the chest and lateral triceps.",
+   "tr": "Dirsekleri daha geniş aç; yük göğse ve tricepsin dış başına kayar.",
+   "ar": "افتح المرفقين أكثر لينتقل العمل أكثر إلى الصدر والرأس الجانبي للترايسبس."
+  },
+  "close-grip-tricep-smith-press-elbows-flared": {
+   "en": "Let elbows flare out wider, shifting more work to the chest and lateral triceps.",
+   "tr": "Dirsekleri daha geniş aç; yük göğse ve tricepsin dış başına kayar.",
+   "ar": "افتح المرفقين أكثر لينتقل العمل أكثر إلى الصدر والرأس الجانبي للترايسبس."
+  },
+  "close-grip-tricep-press-elbows-tucked": {
+   "en": "Keep elbows tucked close to your sides to maximize triceps work.",
+   "tr": "Triceps çalışmasını artırmak için dirsekleri yanlarına yakın tut.",
+   "ar": "أبقِ المرفقين قريبين من جانبيك لزيادة عمل الترايسبس."
+  },
+  "close-grip-tricep-smith-press-elbows-tucked": {
+   "en": "Keep elbows tucked close to your sides to maximize triceps work.",
+   "tr": "Triceps çalışmasını artırmak için dirsekleri yanlarına yakın tut.",
+   "ar": "أبقِ المرفقين قريبين من جانبيك لزيادة عمل الترايسبس."
+  },
+  "tri-fucta-close-grip-press-garage-program": {
+   "en": "Tri-set: perform three variations back to back with no rest between them.",
+   "tr": "Tri-set: üç varyasyonu aralarında dinlenmeden art arda yap.",
+   "ar": "مجموعة ثلاثية: نفّذ ثلاثة أشكال متتالية دون راحة بينها."
+  },
+  "coffin-press-garage-program-ryan_humis514743": {
+   "en": "Lower to the chest and fully pause there, then press from a dead stop.",
+   "tr": "Göğse indir ve tamamen dur, sonra durağan pozisyondan it.",
+   "ar": "أنزل إلى الصدر وتوقف تمامًا ثم ادفع من الثبات."
+  },
+  "coffin-press-triset-garage-program": {
+   "en": "Tri-set: perform three variations back to back with no rest between them.",
+   "tr": "Tri-set: üç varyasyonu aralarında dinlenmeden art arda yap.",
+   "ar": "مجموعة ثلاثية: نفّذ ثلاثة أشكال متتالية دون راحة بينها."
+  },
+  "high-incline-dumbbell-jm-press": {
+   "en": "Set a high incline of about 45 degrees or more; front delts contribute more.",
+   "tr": "Sehpayı 45 derece ya da daha dik ayarla; ön omuz daha fazla çalışır.",
+   "ar": "اضبط ميلًا عاليًا بنحو 45 درجة أو أكثر؛ يزداد عمل الكتف الأمامي."
+  },
+  "incline-dumbbell-jm-tricep-press": {
+   "en": "Done on an incline bench for a longer triceps stretch.",
+   "tr": "Daha uzun triceps gerilmesi için incline sehpada yapılır.",
+   "ar": "يُنفَّذ على مقعد مائل لتمدد أطول للترايسبس."
+  },
+  "smith-tricep-neck-crushers": {
+   "en": "Lower the Smith bar toward your neck with elbows forward; go light and controlled.",
+   "tr": "Smith barını dirsekler önde boynuna doğru indir; hafif ve kontrollü çalış.",
+   "ar": "أنزل بار Smith نحو الرقبة والمرفقان للأمام؛ بوزن خفيف وتحكم تام."
+  },
+  "dips-triceps-weighted": {
+   "en": "Add load with a dip belt or a dumbbell held between the knees once bodyweight is easy.",
+   "tr": "Vücut ağırlığı kolaylaşınca dips kemeri ya da dizler arasında dambılla yük ekle.",
+   "ar": "أضف وزنًا بحزام ديبس أو دمبل بين الركبتين عندما يصبح وزن الجسم سهلًا."
+  },
+  "bar-tricep-dips-garage-program": {
+   "en": "Done on a single straight bar in front of you, keeping the torso upright.",
+   "tr": "Önündeki tek düz barda, gövde dik yapılır.",
+   "ar": "يُنفَّذ على بار مستقيم واحد أمامك مع إبقاء الجذع منتصبًا."
+  },
+  "cable-rope-extensions-copy": {
+   "en": "Done on a single straight bar in front of you, keeping the torso upright.",
+   "tr": "Önündeki tek düz barda, gövde dik yapılır.",
+   "ar": "يُنفَّذ على بار مستقيم واحد أمامك مع إبقاء الجذع منتصبًا."
+  },
+  "smith-tricep-dips": {
+   "en": "Use a Smith bar as the dip handle; set its height so you can fully lock out.",
+   "tr": "Smith barını dips tutacağı olarak kullan; tam kilitleyebileceğin yüksekliğe ayarla.",
+   "ar": "استخدم بار Smith مقبضًا للديبس واضبط ارتفاعه لتصل إلى المد الكامل."
+  },
+  "bench-dips-chest-garage-program": {
+   "en": "Lean the torso forward slightly to bring more chest into the movement.",
+   "tr": "Göğsü daha çok katmak için gövdeyi hafifçe öne eğ.",
+   "ar": "أمِل الجذع للأمام قليلًا لإشراك الصدر أكثر."
+  },
+  "bench-dips-compound-garage-program": {
+   "en": "Feet on a second bench raise the load for a harder variation.",
+   "tr": "Ayakları ikinci bir sehpaya koymak yükü artırır, daha zor bir varyasyondur.",
+   "ar": "وضع القدمين على مقعد ثانٍ يزيد الحمل لنسخة أصعب."
+  },
+  "3-way-tricep-push-ups-neutral-garage-program": {
+   "en": "3-way set: rotate through the three versions back to back with no rest.",
+   "tr": "3-way set: üç versiyonu dinlenmeden art arda dönüşümlü yap.",
+   "ar": "مجموعة ثلاثية: تنقّل بين الأشكال الثلاثة متتاليًا دون راحة."
+  },
+  "3-way-tricep-push-ups-slightly-pronated-garage-program": {
+   "en": "3-way set: rotate through the three versions back to back with no rest.",
+   "tr": "3-way set: üç versiyonu dinlenmeden art arda dönüşümlü yap.",
+   "ar": "مجموعة ثلاثية: تنقّل بين الأشكال الثلاثة متتاليًا دون راحة."
+  },
+  "3-way-tricep-push-ups-slightly-supinated-garage-program": {
+   "en": "3-way set: rotate through the three versions back to back with no rest.",
+   "tr": "3-way set: üç versiyonu dinlenmeden art arda dönüşümlü yap.",
+   "ar": "مجموعة ثلاثية: تنقّل بين الأشكال الثلاثة متتاليًا دون راحة."
+  },
+  "3-way-tricep-dumbbell-push-ups-decline-garage-program": {
+   "en": "3-way set: rotate through the three versions back to back with no rest.",
+   "tr": "3-way set: üç versiyonu dinlenmeden art arda dönüşümlü yap.",
+   "ar": "مجموعة ثلاثية: تنقّل بين الأشكال الثلاثة متتاليًا دون راحة."
+  },
+  "3-way-tricep-dumbbell-push-ups-flat-garage-program": {
+   "en": "3-way set: rotate through the three versions back to back with no rest.",
+   "tr": "3-way set: üç versiyonu dinlenmeden art arda dönüşümlü yap.",
+   "ar": "مجموعة ثلاثية: تنقّل بين الأشكال الثلاثة متتاليًا دون راحة."
+  },
+  "3-way-tricep-dumbbell-push-ups-incline-garage-program": {
+   "en": "3-way set: rotate through the three versions back to back with no rest.",
+   "tr": "3-way set: üç versiyonu dinlenmeden art arda dönüşümlü yap.",
+   "ar": "مجموعة ثلاثية: تنقّل بين الأشكال الثلاثة متتاليًا دون راحة."
+  }
+ }
+}

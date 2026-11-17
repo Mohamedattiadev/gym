@@ -1,0 +1,4389 @@
+{
+ "families": {
+  "hack-squat": {
+   "primary": [
+    "quads"
+   ],
+   "secondary": [
+    "glutes",
+    "adductors"
+   ],
+   "en": {
+    "title": "Hack Squat",
+    "about": "A machine squat that loads the quads deeply with a stable back, so you can push close to failure safely.",
+    "steps": [
+     "Set your back flat on the pad and shoulders under the pads.",
+     "Place feet shoulder-width, low enough on the platform for knees to travel forward.",
+     "Release the safeties and lower slowly until your thighs pass parallel.",
+     "Drive through the whole foot back to just short of lockout."
+    ],
+    "cues": [
+     "Let the knees travel well past the toes for a deep quad stretch.",
+     "Control a 2–3 second descent and keep your hips on the pad."
+    ],
+    "mistakes": [
+     "Cutting depth short to lift more weight.",
+     "Letting the heels or lower back lift off as you bottom out."
+    ]
+   },
+   "tr": {
+    "title": "Hack Squat",
+    "about": "Sırt sabit kalırken quadricepsi derin açıda yükleyen makine squat; tükenişe güvenle yaklaşmanı sağlar.",
+    "steps": [
+     "Sırtını pede yasla, omuzlarını pedlerin altına yerleştir.",
+     "Ayaklarını omuz genişliğinde, dizler öne gidebilecek kadar platformun alt kısmına koy.",
+     "Emniyeti aç ve uyluklar paraleli geçene kadar yavaşça in.",
+     "Tüm ayakla iterek kilitlemenin hemen öncesine kadar kalk."
+    ],
+    "cues": [
+     "Derin quad gerilmesi için dizlerin parmak uçlarını geçmesine izin ver.",
+     "İnişi 2–3 saniyede kontrol et, kalçanı pedden ayırma."
+    ],
+    "mistakes": [
+     "Daha çok ağırlık için hareketi yarım bırakmak.",
+     "Dipte topukların ya da belin pedden kalkması."
+    ]
+   },
+   "ar": {
+    "title": "Hack Squat",
+    "about": "سكوات على جهاز يحمّل عضلات الفخذ الأمامية بعمق مع ثبات الظهر، فيتيح الاقتراب من الفشل بأمان.",
+    "steps": [
+     "ألصق ظهرك بالوسادة وضع كتفيك تحت المساند.",
+     "ضع قدميك بعرض الكتفين في أسفل المنصة ليتقدم الركبتان للأمام.",
+     "حرّر أقفال الأمان وانزل ببطء حتى يتجاوز الفخذان الوضع الموازي.",
+     "ادفع بكامل القدم وارتفع إلى ما قبل القفل الكامل بقليل."
+    ],
+    "cues": [
+     "اسمح للركبتين بتجاوز أصابع القدم لتمدد أعمق للفخذ.",
+     "تحكّم بنزول مدته 2–3 ثوانٍ وأبقِ الحوض ملتصقاً بالوسادة."
+    ],
+    "mistakes": [
+     "تقصير المدى الحركي لرفع وزن أكبر.",
+     "ارتفاع الكعبين أو أسفل الظهر عن الوسادة في القاع."
+    ]
+   }
+  },
+  "leg-press": {
+   "primary": [
+    "quads"
+   ],
+   "secondary": [
+    "glutes",
+    "adductors"
+   ],
+   "en": {
+    "title": "Leg Press",
+    "about": "A stable, heavily loadable press that builds the quads and glutes with low demand on the lower back.",
+    "steps": [
+     "Sit with your back and hips pressed into the seat.",
+     "Place feet hip- to shoulder-width in the middle of the platform.",
+     "Unlock the sled and lower until knees are deeply bent without your hips rolling up.",
+     "Press through mid-foot and heel to just before lockout."
+    ],
+    "cues": [
+     "Go as deep as you can while your tailbone stays on the pad.",
+     "Keep knees tracking in line with your toes."
+    ],
+    "mistakes": [
+     "Bouncing out of the bottom instead of controlling the turnaround.",
+     "Snapping the knees into hard lockout at the top."
+    ]
+   },
+   "tr": {
+    "title": "Leg Press",
+    "about": "Belin az yorulduğu, çok yüklenebilen stabil bir press; quadriceps ve kalçayı geliştirir.",
+    "steps": [
+     "Sırtını ve kalçanı koltuğa tam yasla.",
+     "Ayaklarını kalça–omuz genişliğinde platformun ortasına koy.",
+     "Kızağı aç ve kalçan kalkmadan dizler derince bükülene kadar in.",
+     "Orta ayak ve topuktan iterek kilitlemenin hemen öncesine kadar it."
+    ],
+    "cues": [
+     "Kuyruk sokumun pedde kaldığı sürece olabildiğince derin in.",
+     "Dizlerin ayak parmaklarınla aynı hizada ilerlesin."
+    ],
+    "mistakes": [
+     "Dipten kontrolsüzce sekerek kalkmak.",
+     "Üstte dizleri sertçe kilitlemek."
+    ]
+   },
+   "ar": {
+    "title": "Leg Press",
+    "about": "تمرين ضغط ثابت يتحمّل أوزاناً كبيرة، يبني الفخذين والألوية بإجهاد قليل لأسفل الظهر.",
+    "steps": [
+     "اجلس مع إلصاق الظهر والحوض بالمقعد.",
+     "ضع قدميك بعرض الورك إلى الكتفين في منتصف المنصة.",
+     "افتح القفل وانزل حتى تنثني الركبتان بعمق دون أن يرتفع الحوض.",
+     "ادفع من منتصف القدم والكعب إلى ما قبل القفل الكامل."
+    ],
+    "cues": [
+     "انزل لأعمق نقطة ما دامت عظمة العصعص على الوسادة.",
+     "حافظ على اتجاه الركبتين مع أصابع القدمين."
+    ],
+    "mistakes": [
+     "الارتداد من القاع بدل التحكم في لحظة التحول.",
+     "قفل الركبتين بقوة في الأعلى."
+    ]
+   }
+  },
+  "leg-extension": {
+   "primary": [
+    "quads"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Leg Extension",
+    "about": "The best isolation for the quads, including the rectus femoris, which squats train poorly.",
+    "steps": [
+     "Adjust the seat so your knees line up with the machine's pivot.",
+     "Set the pad on your lower shin, just above the ankle.",
+     "Hold the handles and extend your knees until the legs are straight.",
+     "Squeeze briefly, then lower slowly until the knees are fully bent."
+    ],
+    "cues": [
+     "Lean back slightly to stretch the rectus femoris more.",
+     "Control the lowering phase for 2–3 seconds."
+    ],
+    "mistakes": [
+     "Swinging the weight up with momentum.",
+     "Stopping short of the deep, bent-knee bottom position."
+    ]
+   },
+   "tr": {
+    "title": "Leg Extension",
+    "about": "Squat'ın yeterince çalıştırmadığı rectus femoris dahil quadriceps için en iyi izolasyon hareketi.",
+    "steps": [
+     "Koltuğu dizlerin makinenin dönme noktasıyla hizalanacağı şekilde ayarla.",
+     "Pedi ayak bileğinin hemen üstüne, alt kaval kemiğine yerleştir.",
+     "Tutamaçları kavra ve bacakların düzleşene kadar dizlerini aç.",
+     "Kısa bir an sık, sonra dizler tam bükülene kadar yavaşça indir."
+    ],
+    "cues": [
+     "Rectus femorisi daha çok germek için hafifçe geriye yaslan.",
+     "İndirme fazını 2–3 saniyede kontrol et."
+    ],
+    "mistakes": [
+     "Ağırlığı momentumla savurmak.",
+     "Dizlerin tam büküldüğü alt pozisyona inmemek."
+    ]
+   },
+   "ar": {
+    "title": "Leg Extension",
+    "about": "أفضل تمرين عزل لعضلات الفخذ الأمامية، بما فيها المستقيمة الفخذية التي لا يعمل عليها السكوات جيداً.",
+    "steps": [
+     "اضبط المقعد لتكون الركبتان على محاذاة محور الجهاز.",
+     "ضع الوسادة على أسفل الساق فوق الكاحل مباشرة.",
+     "أمسك المقابض ومدّ ركبتيك حتى تستقيم الساقان.",
+     "اعصر لحظة ثم انزل ببطء حتى تنثني الركبتان تماماً."
+    ],
+    "cues": [
+     "مِل للخلف قليلاً لزيادة تمدد العضلة المستقيمة الفخذية.",
+     "تحكّم في مرحلة النزول لمدة 2–3 ثوانٍ."
+    ],
+    "mistakes": [
+     "رفع الوزن بالتأرجح والزخم.",
+     "عدم النزول إلى وضع ثني الركبة الكامل."
+    ]
+   }
+  },
+  "high-bar-squat": {
+   "primary": [
+    "quads"
+   ],
+   "secondary": [
+    "glutes",
+    "adductors",
+    "lower-back"
+   ],
+   "en": {
+    "title": "High Bar Squat",
+    "about": "A free-weight squat with an upright torso that builds the quads, glutes and adductors through a long range.",
+    "steps": [
+     "Rest the bar on your upper traps and brace your core.",
+     "Stand with feet about shoulder-width, toes slightly out.",
+     "Sit straight down between your heels, knees pushing forward and out.",
+     "Descend below parallel, then drive up keeping your chest tall."
+    ],
+    "cues": [
+     "Take a big breath and brace before each rep.",
+     "Keep the bar over mid-foot throughout."
+    ],
+    "mistakes": [
+     "Letting the knees cave inward on the way up.",
+     "Hips shooting up first so the squat turns into a good morning."
+    ]
+   },
+   "tr": {
+    "title": "High Bar Squat",
+    "about": "Dik gövdeyle yapılan serbest ağırlık squat; quadriceps, kalça ve adductorları geniş hareket açıklığında geliştirir.",
+    "steps": [
+     "Barı üst trapezlerine yerleştir ve karnını sık.",
+     "Ayaklar yaklaşık omuz genişliğinde, parmak uçları hafif dışa dönük dur.",
+     "Dizleri öne ve dışa iterek topuklarının arasına dik otur.",
+     "Paralelin altına in, göğsünü dik tutarak kalk."
+    ],
+    "cues": [
+     "Her tekrardan önce derin nefes al ve karnını kilitle.",
+     "Bar hareket boyunca orta ayağın üzerinde kalsın."
+    ],
+    "mistakes": [
+     "Kalkarken dizlerin içe çökmesi.",
+     "Kalçanın önce fırlayıp squat'ın good morning'e dönmesi."
+    ]
+   },
+   "ar": {
+    "title": "High Bar Squat",
+    "about": "سكوات بالوزن الحر مع جذع مستقيم، يبني الفخذين والألوية والعضلات المقرّبة عبر مدى حركي طويل.",
+    "steps": [
+     "ضع البار على أعلى عضلات الترابيس وشدّ عضلات البطن.",
+     "قف بقدمين بعرض الكتفين تقريباً وأصابع مائلة قليلاً للخارج.",
+     "اجلس للأسفل بين كعبيك مع دفع الركبتين للأمام والخارج.",
+     "انزل تحت الوضع الموازي ثم اصعد مع إبقاء الصدر مرفوعاً."
+    ],
+    "cues": [
+     "خذ نفساً عميقاً وشدّ الجذع قبل كل تكرار.",
+     "أبقِ البار فوق منتصف القدم طوال الحركة."
+    ],
+    "mistakes": [
+     "انهيار الركبتين للداخل أثناء الصعود.",
+     "ارتفاع الحوض أولاً فيتحول السكوات إلى Good Morning."
+    ]
+   }
+  },
+  "low-bar-squat": {
+   "primary": [
+    "quads",
+    "glutes"
+   ],
+   "secondary": [
+    "adductors",
+    "hamstrings",
+    "lower-back"
+   ],
+   "en": {
+    "title": "Low Bar Squat",
+    "about": "A squat with the bar lower on the back and more forward lean, shifting load toward glutes and adductors.",
+    "steps": [
+     "Place the bar across your rear delts, below the top of the traps.",
+     "Grip firmly and pull elbows back to lock the bar in.",
+     "Push hips back and down while leaning your torso forward.",
+     "Reach at least parallel, then drive hips and chest up together."
+    ],
+    "cues": [
+     "Keep the bar over mid-foot as you lean.",
+     "Brace hard and keep a neutral spine."
+    ],
+    "mistakes": [
+     "Rounding the lower back at the bottom.",
+     "Letting the bar slide down the back during the rep."
+    ]
+   },
+   "tr": {
+    "title": "Low Bar Squat",
+    "about": "Barın sırtta daha aşağıda ve gövdenin daha öne eğik olduğu squat; yükü kalça ve adductorlara kaydırır.",
+    "steps": [
+     "Barı trapezin üstünün altına, arka omuzların üzerine yerleştir.",
+     "Barı sıkıca kavra, dirsekleri geriye çekerek sabitle.",
+     "Gövdeni öne eğerken kalçanı geriye ve aşağı gönder.",
+     "En az paralele in, kalça ve göğsü birlikte yukarı it."
+    ],
+    "cues": [
+     "Eğilirken bar orta ayağın üzerinde kalsın.",
+     "Karnını sertçe sık ve omurganı nötr tut."
+    ],
+    "mistakes": [
+     "Dipte belin yuvarlanması.",
+     "Tekrar sırasında barın sırttan aşağı kayması."
+    ]
+   },
+   "ar": {
+    "title": "Low Bar Squat",
+    "about": "سكوات مع وضع البار أسفل الظهر وميل أكبر للأمام، ينقل الحمل نحو الألوية والعضلات المقرّبة.",
+    "steps": [
+     "ضع البار على الكتف الخلفي أسفل قمة الترابيس.",
+     "أمسك البار بقوة واسحب المرفقين للخلف لتثبيته.",
+     "ادفع الحوض للخلف والأسفل مع إمالة الجذع للأمام.",
+     "انزل إلى الوضع الموازي على الأقل ثم ارفع الحوض والصدر معاً."
+    ],
+    "cues": [
+     "أبقِ البار فوق منتصف القدم أثناء الميل.",
+     "شدّ الجذع بقوة وحافظ على استقامة العمود الفقري."
+    ],
+    "mistakes": [
+     "تقوّس أسفل الظهر في القاع.",
+     "انزلاق البار على الظهر أثناء التكرار."
+    ]
+   }
+  },
+  "front-squat": {
+   "primary": [
+    "quads"
+   ],
+   "secondary": [
+    "glutes",
+    "abs",
+    "upper-back"
+   ],
+   "en": {
+    "title": "Front Squat",
+    "about": "Holding the load in front keeps you very upright, making this a highly quad-focused squat.",
+    "steps": [
+     "Rest the weight on your front delts with elbows high.",
+     "Set feet shoulder-width; elevate heels if ankles are stiff.",
+     "Sit straight down, letting knees travel far forward.",
+     "Go as deep as you can, then stand up keeping elbows high."
+    ],
+    "cues": [
+     "Think elbows up to stop the torso folding forward.",
+     "Stay tall and brace your core throughout."
+    ],
+    "mistakes": [
+     "Dropping the elbows so the weight rolls forward.",
+     "Shortening depth instead of using heel elevation."
+    ]
+   },
+   "tr": {
+    "title": "Front Squat",
+    "about": "Yükü önde tutmak gövdeyi çok dik tutar; bu yüzden quadricepse en çok odaklanan squat çeşitlerinden biridir.",
+    "steps": [
+     "Ağırlığı dirsekler yüksekte olacak şekilde ön omuzlarına yerleştir.",
+     "Ayaklar omuz genişliğinde; bilekler sertse topukları yükselt.",
+     "Dizlerin öne gitmesine izin vererek dik otur.",
+     "İnebildiğin kadar derin in, dirsekleri yüksek tutarak kalk."
+    ],
+    "cues": [
+     "Gövdenin öne katlanmaması için dirsekleri yukarı düşün.",
+     "Hareket boyunca dik dur ve karnını sık."
+    ],
+    "mistakes": [
+     "Dirsekleri düşürüp ağırlığın öne kaymasına izin vermek.",
+     "Topuk yükseltmek yerine derinliği kısaltmak."
+    ]
+   },
+   "ar": {
+    "title": "Front Squat",
+    "about": "حمل الوزن من الأمام يبقي الجذع مستقيماً جداً، فيصبح سكوات مركزاً بشدة على الفخذ الأمامي.",
+    "steps": [
+     "ضع الوزن على الكتفين الأماميين مع رفع المرفقين.",
+     "قف بقدمين بعرض الكتفين، وارفع الكعبين إن كان الكاحل متيبساً.",
+     "اجلس للأسفل مباشرة مع ترك الركبتين تتقدمان للأمام.",
+     "انزل لأعمق نقطة ممكنة ثم قف مع إبقاء المرفقين مرتفعين."
+    ],
+    "cues": [
+     "فكّر في رفع المرفقين لتمنع انحناء الجذع للأمام.",
+     "ابقَ مستقيماً واشدد الجذع طوال الحركة."
+    ],
+    "mistakes": [
+     "خفض المرفقين فيتدحرج الوزن للأمام.",
+     "تقصير العمق بدل رفع الكعبين."
+    ]
+   }
+  },
+  "smith-squat": {
+   "primary": [
+    "quads"
+   ],
+   "secondary": [
+    "glutes",
+    "adductors"
+   ],
+   "en": {
+    "title": "Smith Squat",
+    "about": "The fixed bar path lets you place your feet freely and focus on pushing the quads hard with less balance demand.",
+    "steps": [
+     "Set the bar on your upper back and unrack it.",
+     "Place feet slightly forward or under the bar to suit your target.",
+     "Lower under control until thighs pass parallel.",
+     "Drive up through the whole foot without locking out hard."
+    ],
+    "cues": [
+     "Feet under the bar bias quads; feet forward bias glutes.",
+     "Keep a steady 2–3 second lowering phase."
+    ],
+    "mistakes": [
+     "Placing feet so far forward that the lower back rounds.",
+     "Dropping fast and bouncing off the bottom."
+    ]
+   },
+   "tr": {
+    "title": "Smith Squat",
+    "about": "Sabit bar yolu, dengeyle uğraşmadan ayak pozisyonunu serbestçe seçip quadricepse yüklenmeni sağlar.",
+    "steps": [
+     "Barı üst sırtına yerleştir ve raftan çıkar.",
+     "Hedefe göre ayaklarını barın altına ya da biraz önüne koy.",
+     "Uyluklar paraleli geçene kadar kontrollü in.",
+     "Tüm ayakla iterek sertçe kilitlemeden kalk."
+    ],
+    "cues": [
+     "Ayaklar bar altındaysa quad, öndeyse kalça daha çok çalışır.",
+     "İnişi düzenli olarak 2–3 saniyede yap."
+    ],
+    "mistakes": [
+     "Ayakları belin yuvarlanacağı kadar öne koymak.",
+     "Hızla düşüp dipten sekmek."
+    ]
+   },
+   "ar": {
+    "title": "Smith Squat",
+    "about": "مسار البار الثابت يتيح لك اختيار موضع القدمين بحرية والتركيز على الفخذين دون عبء التوازن.",
+    "steps": [
+     "ضع البار على أعلى ظهرك وحرّره من الحامل.",
+     "ضع القدمين تحت البار أو أمامه قليلاً حسب الهدف.",
+     "انزل بتحكم حتى يتجاوز الفخذان الوضع الموازي.",
+     "ادفع بكامل القدم للصعود دون قفل الركبتين بقوة."
+    ],
+    "cues": [
+     "القدمان تحت البار تركز على الفخذ، وللأمام تركز على الألوية.",
+     "حافظ على نزول ثابت مدته 2–3 ثوانٍ."
+    ],
+    "mistakes": [
+     "وضع القدمين للأمام كثيراً حتى يتقوس أسفل الظهر.",
+     "النزول السريع والارتداد من القاع."
+    ]
+   }
+  },
+  "belt-squat": {
+   "primary": [
+    "quads",
+    "glutes"
+   ],
+   "secondary": [
+    "adductors"
+   ],
+   "en": {
+    "title": "Belt Squat",
+    "about": "Loads the legs through a hip belt, training deep squats with no load on the spine.",
+    "steps": [
+     "Attach the belt around your hips and stand on the platform.",
+     "Set feet shoulder-width, toes slightly out.",
+     "Hold the rails lightly and squat down as deep as is comfortable.",
+     "Drive up through mid-foot to standing."
+    ],
+    "cues": [
+     "Stay upright and let the knees travel forward.",
+     "Use full depth since your back is not limiting you."
+    ],
+    "mistakes": [
+     "Pulling hard on the handles to assist the lift.",
+     "Rushing the descent and losing tension at the bottom."
+    ]
+   },
+   "tr": {
+    "title": "Belt Squat",
+    "about": "Yükü kalça kemeriyle bacaklara verir; omurgaya yük bindirmeden derin squat çalıştırır.",
+    "steps": [
+     "Kemeri kalçana bağla ve platforma çık.",
+     "Ayaklar omuz genişliğinde, parmak uçları hafif dışa dönük olsun.",
+     "Tutamaçlara hafifçe tutun ve rahat olduğun kadar derin çök.",
+     "Orta ayaktan iterek ayağa kalk."
+    ],
+    "cues": [
+     "Dik kal ve dizlerin öne gitmesine izin ver.",
+     "Sırtın sınırlamadığı için tam derinliği kullan."
+    ],
+    "mistakes": [
+     "Kalkmak için tutamaçlardan güçlü çekmek.",
+     "İnişi aceleye getirip dipte gerilimi kaybetmek."
+    ]
+   },
+   "ar": {
+    "title": "Belt Squat",
+    "about": "يحمّل الساقين عبر حزام على الورك، فيتيح سكوات عميقاً دون أي حمل على العمود الفقري.",
+    "steps": [
+     "اربط الحزام حول وركيك وقف على المنصة.",
+     "ضع القدمين بعرض الكتفين مع أصابع مائلة قليلاً للخارج.",
+     "أمسك المقابض بخفة وانزل بأعمق ما يريحك.",
+     "ادفع من منتصف القدم حتى الوقوف."
+    ],
+    "cues": [
+     "ابقَ مستقيماً واترك الركبتين تتقدمان للأمام.",
+     "استخدم العمق الكامل لأن ظهرك ليس عاملاً مقيداً."
+    ],
+    "mistakes": [
+     "سحب المقابض بقوة للمساعدة في الرفع.",
+     "التسرع في النزول وفقدان الشد في القاع."
+    ]
+   }
+  },
+  "sissy-squat": {
+   "primary": [
+    "quads"
+   ],
+   "secondary": [
+    "abs"
+   ],
+   "en": {
+    "title": "Sissy Squat",
+    "about": "Knees travel far forward while hips stay extended, giving a huge stretch on all four quad heads.",
+    "steps": [
+     "Hold a support or the load and rise onto the balls of your feet.",
+     "Push your knees forward and lean back, keeping hips straight.",
+     "Lower until your knees are deeply bent and the quads are fully stretched.",
+     "Drive the knees back to return to standing."
+    ],
+    "cues": [
+     "Keep a straight line from knees to shoulders.",
+     "Lower slowly; the stretched bottom is where the growth is."
+    ],
+    "mistakes": [
+     "Bending at the hips, which turns it into a normal squat.",
+     "Adding load before you own the bodyweight range."
+    ]
+   },
+   "tr": {
+    "title": "Sissy Squat",
+    "about": "Kalça açık kalırken dizler çok öne gider; quadricepsin dört başında da büyük bir gerilme yaratır.",
+    "steps": [
+     "Bir desteğe tutun ya da ağırlığı al, ayak parmak uçlarına yüksel.",
+     "Dizlerini öne it ve kalçanı düz tutarak geriye yaslan.",
+     "Dizler derin bükülüp quadlar tam gerilene kadar in.",
+     "Dizleri geri iterek ayağa dön."
+    ],
+    "cues": [
+     "Dizlerden omuzlara kadar düz bir çizgi koru.",
+     "Yavaş in; asıl gelişim gerilmiş alt pozisyondadır."
+    ],
+    "mistakes": [
+     "Kalçadan kırılıp hareketi normal squat'a çevirmek.",
+     "Vücut ağırlığıyla tam açıklığa hakim olmadan yük eklemek."
+    ]
+   },
+   "ar": {
+    "title": "Sissy Squat",
+    "about": "تتقدم الركبتان كثيراً مع بقاء الورك مفروداً، فيحدث تمدد كبير لرؤوس الفخذ الأربعة.",
+    "steps": [
+     "أمسك داعماً أو الوزن وارتفع على مقدمة القدمين.",
+     "ادفع ركبتيك للأمام ومِل للخلف مع إبقاء الورك مستقيماً.",
+     "انزل حتى تنثني الركبتان بعمق وتتمدد عضلات الفخذ تماماً.",
+     "ادفع الركبتين للخلف للعودة إلى الوقوف."
+    ],
+    "cues": [
+     "حافظ على خط مستقيم من الركبتين إلى الكتفين.",
+     "انزل ببطء، فالنمو يحدث في وضع التمدد السفلي."
+    ],
+    "mistakes": [
+     "الانثناء من الورك فيتحول إلى سكوات عادي.",
+     "إضافة الوزن قبل إتقان المدى الكامل بوزن الجسم."
+    ]
+   }
+  },
+  "somersault-squat": {
+   "primary": [
+    "quads"
+   ],
+   "secondary": [
+    "abs"
+   ],
+   "en": {
+    "title": "Somersault Squat",
+    "about": "A hybrid of sissy and regular squat: knees drive far forward on the toes for a deep quad stretch.",
+    "steps": [
+     "Stand tall holding the load or a support.",
+     "Rise onto your toes and drive your knees forward.",
+     "Let hips drop slightly behind as you sink deep, torso upright.",
+     "Push through the balls of your feet back to standing."
+    ],
+    "cues": [
+     "Keep weight on the forefoot and knees forward.",
+     "Use a slow, controlled lowering phase."
+    ],
+    "mistakes": [
+     "Sitting the hips straight back like a box squat.",
+     "Bouncing at the bottom with no control."
+    ]
+   },
+   "tr": {
+    "title": "Somersault Squat",
+    "about": "Sissy ve klasik squat karışımı: parmak uçlarında dizler çok öne giderek derin quad gerilmesi sağlar.",
+    "steps": [
+     "Ağırlığı ya da desteği tutarak dik dur.",
+     "Parmak uçlarına yüksel ve dizlerini öne sür.",
+     "Gövde dik, derine çökerken kalçanın hafifçe geride düşmesine izin ver.",
+     "Ayak tabanının ön kısmından iterek ayağa kalk."
+    ],
+    "cues": [
+     "Ağırlık ön ayakta, dizler önde kalsın.",
+     "İnişi yavaş ve kontrollü yap."
+    ],
+    "mistakes": [
+     "Box squat gibi kalçayı doğrudan geriye oturtmak.",
+     "Dipte kontrolsüzce sekmek."
+    ]
+   },
+   "ar": {
+    "title": "Somersault Squat",
+    "about": "مزيج بين Sissy والسكوات العادي: تندفع الركبتان للأمام على أطراف الأصابع لتمدد عميق للفخذ.",
+    "steps": [
+     "قف مستقيماً ممسكاً بالوزن أو بداعم.",
+     "ارتفع على أصابع قدميك وادفع الركبتين للأمام.",
+     "دع الحوض ينزل قليلاً للخلف أثناء النزول العميق مع جذع مستقيم.",
+     "ادفع من مقدمة القدمين للعودة إلى الوقوف."
+    ],
+    "cues": [
+     "أبقِ الوزن على مقدمة القدم والركبتين للأمام.",
+     "استخدم نزولاً بطيئاً ومتحكماً."
+    ],
+    "mistakes": [
+     "دفع الحوض للخلف مباشرة كأنه Box Squat.",
+     "الارتداد في القاع دون تحكم."
+    ]
+   }
+  },
+  "spanish-squat": {
+   "primary": [
+    "quads"
+   ],
+   "secondary": [
+    "glutes"
+   ],
+   "en": {
+    "title": "Spanish Squat",
+    "about": "A band behind the knees lets you sit back with a vertical shin, loading the quads with little knee stress.",
+    "steps": [
+     "Loop a heavy band around a rack and behind both knees.",
+     "Step back until the band is taut and stand tall.",
+     "Sit back and down, keeping shins vertical against the band.",
+     "Lower to about parallel, then drive back up."
+    ],
+    "cues": [
+     "Lean into the band and keep the torso upright.",
+     "Hold the bottom briefly to build quad tension."
+    ],
+    "mistakes": [
+     "Letting the band slacken so knees drift forward.",
+     "Rounding the back as you sit down."
+    ]
+   },
+   "tr": {
+    "title": "Spanish Squat",
+    "about": "Dizlerin arkasındaki bant, kaval kemiği dik kalırken geriye oturmanı sağlar; diz stresini azaltıp quadı yükler.",
+    "steps": [
+     "Kalın bir bandı kafese ve iki dizinin arkasına geçir.",
+     "Bant gerilene kadar geri çekil ve dik dur.",
+     "Kaval kemikleri bantla dik kalacak şekilde geriye ve aşağı otur.",
+     "Yaklaşık paralele in, sonra geri kalk."
+    ],
+    "cues": [
+     "Banda yaslan ve gövdeyi dik tut.",
+     "Quad gerilimi için dipte kısa bir an bekle."
+    ],
+    "mistakes": [
+     "Bandın gevşeyip dizlerin öne kaymasına izin vermek.",
+     "Otururken sırtı yuvarlamak."
+    ]
+   },
+   "ar": {
+    "title": "Spanish Squat",
+    "about": "حزام مطاطي خلف الركبتين يتيح الجلوس للخلف مع ساق عمودية، فيحمّل الفخذ بضغط قليل على الركبة.",
+    "steps": [
+     "لفّ حزاماً قوياً حول الحامل وخلف الركبتين.",
+     "تراجع حتى يشتد الحزام وقف مستقيماً.",
+     "اجلس للخلف والأسفل مع إبقاء الساقين عموديتين على الحزام.",
+     "انزل حتى الوضع الموازي تقريباً ثم اصعد."
+    ],
+    "cues": [
+     "اتكئ على الحزام وأبقِ الجذع مستقيماً.",
+     "توقف لحظة في القاع لزيادة شد الفخذ."
+    ],
+    "mistakes": [
+     "ترك الحزام يرتخي فتتقدم الركبتان.",
+     "تقوس الظهر أثناء الجلوس."
+    ]
+   }
+  },
+  "split-squat": {
+   "primary": [
+    "quads",
+    "glutes"
+   ],
+   "secondary": [
+    "adductors"
+   ],
+   "en": {
+    "title": "Split Squat",
+    "about": "A stationary lunge that trains each leg alone, building quads and glutes and fixing side-to-side gaps.",
+    "steps": [
+     "Stand in a long split stance, feet hip-width apart.",
+     "Hold the load and keep your torso tall.",
+     "Drop the back knee straight down toward the floor.",
+     "Push through the front foot to rise, then repeat."
+    ],
+    "cues": [
+     "Let the front knee travel forward for more quad work.",
+     "Keep most of your weight on the front leg."
+    ],
+    "mistakes": [
+     "Standing with feet on one line, which ruins balance.",
+     "Pushing off the back foot instead of the front."
+    ]
+   },
+   "tr": {
+    "title": "Split Squat",
+    "about": "Her bacağı ayrı çalıştıran sabit lunge; quad ve kalçayı geliştirir, sağ–sol farkını giderir.",
+    "steps": [
+     "Ayaklar kalça genişliğinde, uzun bir bölünmüş duruş al.",
+     "Ağırlığı tut ve gövdeni dik tut.",
+     "Arka dizini yere doğru dümdüz indir.",
+     "Ön ayaktan iterek kalk ve tekrarla."
+    ],
+    "cues": [
+     "Daha çok quad için ön dizin öne gitmesine izin ver.",
+     "Ağırlığın büyük kısmı ön bacakta kalsın."
+    ],
+    "mistakes": [
+     "Ayakları tek çizgiye koyup dengeyi bozmak.",
+     "Ön ayak yerine arka ayaktan itmek."
+    ]
+   },
+   "ar": {
+    "title": "Split Squat",
+    "about": "طعن ثابت يمرّن كل ساق على حدة، يبني الفخذ والألوية ويصحح الفروق بين الجانبين.",
+    "steps": [
+     "قف بوضع منفرج طويل والقدمان بعرض الورك.",
+     "أمسك الوزن وأبقِ الجذع مستقيماً.",
+     "أنزل الركبة الخلفية مباشرة نحو الأرض.",
+     "ادفع بالقدم الأمامية للصعود ثم كرر."
+    ],
+    "cues": [
+     "اترك الركبة الأمامية تتقدم لعمل أكبر على الفخذ.",
+     "أبقِ معظم الوزن على الساق الأمامية."
+    ],
+    "mistakes": [
+     "وضع القدمين على خط واحد فيختل التوازن.",
+     "الدفع بالقدم الخلفية بدل الأمامية."
+    ]
+   }
+  },
+  "bulgarian-split-squat": {
+   "primary": [
+    "quads",
+    "glutes"
+   ],
+   "secondary": [
+    "adductors",
+    "hamstrings"
+   ],
+   "en": {
+    "title": "Bulgarian Split Squat",
+    "about": "Rear foot elevated split squat that gives a deep stretch on the front leg's glutes and quads.",
+    "steps": [
+     "Place your back foot on a bench behind you.",
+     "Set the front foot far enough forward to sink deep.",
+     "Lower until the back knee nearly touches the floor.",
+     "Drive through the front foot to stand back up."
+    ],
+    "cues": [
+     "Lean forward to bias glutes; stay upright to bias quads.",
+     "Control the descent and pause briefly in the stretch."
+    ],
+    "mistakes": [
+     "Front foot too close, causing the heel to lift.",
+     "Pushing mostly with the back leg."
+    ]
+   },
+   "tr": {
+    "title": "Bulgarian Split Squat",
+    "about": "Arka ayağın yükseltildiği split squat; ön bacağın kalça ve quadlarında derin gerilme sağlar.",
+    "steps": [
+     "Arka ayağını arkandaki sehpaya koy.",
+     "Ön ayağını derine inebileceğin kadar öne yerleştir.",
+     "Arka diz yere neredeyse değene kadar in.",
+     "Ön ayaktan iterek geri kalk."
+    ],
+    "cues": [
+     "Kalça için öne eğil, quad için dik kal.",
+     "İnişi kontrol et ve gerilmede kısa bir an bekle."
+    ],
+    "mistakes": [
+     "Ön ayağı çok yakın koyup topuğun kalkması.",
+     "Ağırlıklı olarak arka bacakla itmek."
+    ]
+   },
+   "ar": {
+    "title": "Bulgarian Split Squat",
+    "about": "سكوات منفرج مع رفع القدم الخلفية، يمنح تمدداً عميقاً للألوية والفخذ في الساق الأمامية.",
+    "steps": [
+     "ضع قدمك الخلفية على مقعد خلفك.",
+     "ضع القدم الأمامية للأمام بما يكفي للنزول العميق.",
+     "انزل حتى تكاد الركبة الخلفية تلمس الأرض.",
+     "ادفع بالقدم الأمامية للعودة إلى الوقوف."
+    ],
+    "cues": [
+     "مِل للأمام للتركيز على الألوية، وابقَ مستقيماً للفخذ.",
+     "تحكّم بالنزول وتوقف لحظة في وضع التمدد."
+    ],
+    "mistakes": [
+     "وضع القدم الأمامية قريبة جداً فيرتفع الكعب.",
+     "الدفع غالباً بالساق الخلفية."
+    ]
+   }
+  },
+  "reverse-lunge": {
+   "primary": [
+    "quads",
+    "glutes"
+   ],
+   "secondary": [
+    "adductors",
+    "hamstrings"
+   ],
+   "en": {
+    "title": "Reverse Lunge",
+    "about": "Stepping backward keeps the front shin stable and knee-friendly while hitting quads and glutes hard.",
+    "steps": [
+     "Stand tall holding the load.",
+     "Step one foot back and lower the back knee toward the floor.",
+     "Sink until the front thigh is about parallel or lower.",
+     "Drive through the front foot to return to standing."
+    ],
+    "cues": [
+     "Keep the front heel planted throughout.",
+     "Short torso lean forward adds glute work."
+    ],
+    "mistakes": [
+     "Stepping too short so the front knee jams forward.",
+     "Slamming the back knee into the floor."
+    ]
+   },
+   "tr": {
+    "title": "Reverse Lunge",
+    "about": "Geriye adım atmak ön kaval kemiğini stabil ve dize dost tutarken quad ve kalçayı güçlü çalıştırır.",
+    "steps": [
+     "Ağırlığı tutarak dik dur.",
+     "Bir ayağını geri at ve arka dizini yere doğru indir.",
+     "Ön uyluk paralele ya da altına gelene kadar çök.",
+     "Ön ayaktan iterek başlangıca dön."
+    ],
+    "cues": [
+     "Ön topuk hareket boyunca yerde kalsın.",
+     "Hafifçe öne eğilmek kalçayı daha çok çalıştırır."
+    ],
+    "mistakes": [
+     "Adımı çok kısa atıp ön dizi sıkıştırmak.",
+     "Arka dizi yere vurmak."
+    ]
+   },
+   "ar": {
+    "title": "Reverse Lunge",
+    "about": "الخطوة للخلف تبقي الساق الأمامية ثابتة ومريحة للركبة مع عمل قوي للفخذ والألوية.",
+    "steps": [
+     "قف مستقيماً ممسكاً بالوزن.",
+     "أرجع قدماً للخلف وأنزل الركبة الخلفية نحو الأرض.",
+     "انزل حتى يصبح الفخذ الأمامي موازياً أو أدنى.",
+     "ادفع بالقدم الأمامية للعودة إلى الوقوف."
+    ],
+    "cues": [
+     "أبقِ الكعب الأمامي ثابتاً على الأرض.",
+     "ميل خفيف للجذع للأمام يزيد عمل الألوية."
+    ],
+    "mistakes": [
+     "خطوة قصيرة جداً فتنضغط الركبة الأمامية للأمام.",
+     "ضرب الركبة الخلفية بالأرض."
+    ]
+   }
+  },
+  "walking-lunge": {
+   "primary": [
+    "quads",
+    "glutes"
+   ],
+   "secondary": [
+    "adductors",
+    "hamstrings",
+    "calves"
+   ],
+   "en": {
+    "title": "Walking Lunge",
+    "about": "Continuous forward lunges that build leg size, single-leg strength and conditioning at once.",
+    "steps": [
+     "Stand tall, holding weights at your sides if used.",
+     "Step forward and lower the back knee toward the floor.",
+     "Drive through the front foot and bring the back leg through.",
+     "Step straight into the next lunge and keep walking."
+    ],
+    "cues": [
+     "Short steps bias quads; long steps bias glutes.",
+     "Keep hips square and core braced."
+    ],
+    "mistakes": [
+     "Letting the front knee cave inward.",
+     "Rushing reps and cutting the depth."
+    ]
+   },
+   "tr": {
+    "title": "Walking Lunge",
+    "about": "Ardışık ileri lunge'lar; bacak hacmini, tek bacak gücünü ve kondisyonu aynı anda geliştirir.",
+    "steps": [
+     "Dik dur, kullanıyorsan ağırlıkları yanlarında tut.",
+     "Öne adım at ve arka dizini yere doğru indir.",
+     "Ön ayaktan iterek arka bacağı öne getir.",
+     "Doğrudan bir sonraki lunge'a geç ve yürümeye devam et."
+    ],
+    "cues": [
+     "Kısa adım quadı, uzun adım kalçayı vurgular.",
+     "Kalçanı düz tut ve karnını sık."
+    ],
+    "mistakes": [
+     "Ön dizin içe çökmesine izin vermek.",
+     "Tekrarları aceleye getirip derinliği kısaltmak."
+    ]
+   },
+   "ar": {
+    "title": "Walking Lunge",
+    "about": "طعنات متتالية للأمام تبني حجم الساقين وقوة الساق الواحدة واللياقة معاً.",
+    "steps": [
+     "قف مستقيماً ممسكاً بالأوزان بجانبيك إن وُجدت.",
+     "اخطُ للأمام وأنزل الركبة الخلفية نحو الأرض.",
+     "ادفع بالقدم الأمامية واجلب الساق الخلفية للأمام.",
+     "انتقل مباشرة إلى الطعنة التالية واستمر بالمشي."
+    ],
+    "cues": [
+     "الخطوة القصيرة تركز على الفخذ، والطويلة على الألوية.",
+     "أبقِ الحوض مستوياً والجذع مشدوداً."
+    ],
+    "mistakes": [
+     "ترك الركبة الأمامية تنهار للداخل.",
+     "التسرع في التكرارات وتقصير العمق."
+    ]
+   }
+  },
+  "lateral-lunge": {
+   "primary": [
+    "adductors",
+    "glutes"
+   ],
+   "secondary": [
+    "quads"
+   ],
+   "en": {
+    "title": "Lateral Lunge",
+    "about": "A side-to-side lunge that stretches and strengthens the adductors while working glutes and quads.",
+    "steps": [
+     "Stand with feet together, holding the weight at your chest.",
+     "Step or slide one leg out wide to the side.",
+     "Sit back into the working hip, keeping the other leg straight.",
+     "Push through the bent leg to return to the start."
+    ],
+    "cues": [
+     "Keep your chest up and the heel of the bent leg down.",
+     "Feel the stretch along the inner thigh of the straight leg."
+    ],
+    "mistakes": [
+     "Letting the bent knee cave inward.",
+     "Rounding the back to reach lower."
+    ]
+   },
+   "tr": {
+    "title": "Lateral Lunge",
+    "about": "Yana yapılan lunge; adductorları gerip güçlendirirken kalça ve quadı da çalıştırır.",
+    "steps": [
+     "Ayaklar bitişik, ağırlığı göğsünde tutarak dur.",
+     "Bir bacağını yana geniş adımla ya da kaydırarak aç.",
+     "Diğer bacak düz kalırken çalışan kalçaya geriye otur.",
+     "Bükülü bacaktan iterek başlangıca dön."
+    ],
+    "cues": [
+     "Göğsünü dik, bükülü bacağın topuğunu yerde tut.",
+     "Düz bacağın iç uyluğunda gerilmeyi hisset."
+    ],
+    "mistakes": [
+     "Bükülü dizin içe çökmesi.",
+     "Daha aşağı inmek için sırtı yuvarlamak."
+    ]
+   },
+   "ar": {
+    "title": "Lateral Lunge",
+    "about": "طعن جانبي يمدد العضلات المقرّبة ويقويها مع عمل الألوية والفخذ.",
+    "steps": [
+     "قف بقدمين متلاصقتين ممسكاً بالوزن عند صدرك.",
+     "اخطُ أو انزلق بساق واحدة واسعاً إلى الجانب.",
+     "اجلس للخلف على الورك العامل مع إبقاء الساق الأخرى مستقيمة.",
+     "ادفع بالساق المثنية للعودة إلى البداية."
+    ],
+    "cues": [
+     "أبقِ الصدر مرفوعاً وكعب الساق المثنية على الأرض.",
+     "اشعر بالتمدد على باطن فخذ الساق المستقيمة."
+    ],
+    "mistakes": [
+     "انهيار الركبة المثنية للداخل.",
+     "تقوس الظهر للنزول أكثر."
+    ]
+   }
+  },
+  "step-up": {
+   "primary": [
+    "quads",
+    "glutes"
+   ],
+   "secondary": [
+    "adductors",
+    "calves"
+   ],
+   "en": {
+    "title": "Step-Up",
+    "about": "A single-leg move onto a box that builds quads and glutes with very little lower-back load.",
+    "steps": [
+     "Stand facing a box or bench at about knee height.",
+     "Place one whole foot firmly on top.",
+     "Drive through that foot to stand up on the box.",
+     "Lower slowly with control back to the floor."
+    ],
+    "cues": [
+     "Minimize push-off from the bottom foot.",
+     "Lower slowly; the eccentric matters as much as the lift."
+    ],
+    "mistakes": [
+     "Bouncing off the floor leg to cheat the rep.",
+     "Letting the working knee collapse inward."
+    ]
+   },
+   "tr": {
+    "title": "Step-Up",
+    "about": "Kutuya tek bacakla çıkış; bele çok az yük bindirerek quad ve kalçayı geliştirir.",
+    "steps": [
+     "Diz yüksekliğindeki bir kutu ya da sehpaya dön.",
+     "Bir ayağını tamamen üste sağlamca koy.",
+     "O ayaktan iterek kutunun üstünde dikil.",
+     "Kontrollü ve yavaşça yere geri in."
+    ],
+    "cues": [
+     "Alttaki ayaktan itmeyi en aza indir.",
+     "Yavaş in; eksantrik faz kalkış kadar önemlidir."
+    ],
+    "mistakes": [
+     "Yerdeki bacaktan sekerek tekrarı kolaylaştırmak.",
+     "Çalışan dizin içe çökmesi."
+    ]
+   },
+   "ar": {
+    "title": "Step-Up",
+    "about": "صعود بساق واحدة على صندوق، يبني الفخذ والألوية بحمل ضئيل على أسفل الظهر.",
+    "steps": [
+     "قف مواجهاً صندوقاً أو مقعداً بارتفاع الركبة تقريباً.",
+     "ضع قدماً كاملة بثبات فوقه.",
+     "ادفع بتلك القدم للوقوف فوق الصندوق.",
+     "انزل ببطء وتحكم إلى الأرض."
+    ],
+    "cues": [
+     "قلّل الدفع من القدم السفلية.",
+     "انزل ببطء، فالمرحلة السلبية مهمة كالصعود."
+    ],
+    "mistakes": [
+     "الارتداد بالساق الأرضية للغش في التكرار.",
+     "انهيار الركبة العاملة للداخل."
+    ]
+   }
+  },
+  "sumo-squat": {
+   "primary": [
+    "adductors",
+    "glutes",
+    "quads"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Sumo Squat",
+    "about": "A wide-stance squat that shifts work toward the adductors and glutes.",
+    "steps": [
+     "Stand wide with toes turned out about 30–45 degrees.",
+     "Hold one dumbbell vertically between your legs.",
+     "Sit straight down, pushing knees out over the toes.",
+     "Reach a deep stretch, then stand by squeezing glutes."
+    ],
+    "cues": [
+     "Keep the torso upright and chest proud.",
+     "Stand on a step to let the weight go deeper."
+    ],
+    "mistakes": [
+     "Knees collapsing inward past the toes.",
+     "Turning it into a hip hinge with a rounded back."
+    ]
+   },
+   "tr": {
+    "title": "Sumo Squat",
+    "about": "Geniş duruşlu squat; yükü adductor ve kalçaya kaydırır.",
+    "steps": [
+     "Geniş dur, parmak uçlarını 30–45 derece dışa çevir.",
+     "Tek dambılı bacaklarının arasında dikey tut.",
+     "Dizleri parmak uçları üzerinden dışa iterek dik otur.",
+     "Derin gerilmeye ulaş, kalçanı sıkarak kalk."
+    ],
+    "cues": [
+     "Gövdeyi dik, göğsü açık tut.",
+     "Dambılın daha derine inmesi için bir basamağa çık."
+    ],
+    "mistakes": [
+     "Dizlerin parmak uçlarının içine çökmesi.",
+     "Sırtı yuvarlayıp hareketi hinge'e çevirmek."
+    ]
+   },
+   "ar": {
+    "title": "Sumo Squat",
+    "about": "سكوات بوقفة واسعة ينقل العمل نحو العضلات المقرّبة والألوية.",
+    "steps": [
+     "قف بوقفة واسعة وأصابع مائلة للخارج 30–45 درجة.",
+     "أمسك دمبل واحداً عمودياً بين ساقيك.",
+     "اجلس للأسفل مع دفع الركبتين للخارج فوق الأصابع.",
+     "صل إلى تمدد عميق ثم قف بعصر الألوية."
+    ],
+    "cues": [
+     "أبقِ الجذع مستقيماً والصدر مرفوعاً.",
+     "قف على درجة ليتمكن الوزن من النزول أعمق."
+    ],
+    "mistakes": [
+     "انهيار الركبتين للداخل.",
+     "تحويله إلى انحناء من الورك مع تقوس الظهر."
+    ]
+   }
+  },
+  "single-leg-squat": {
+   "primary": [
+    "quads",
+    "glutes"
+   ],
+   "secondary": [
+    "adductors",
+    "abs"
+   ],
+   "en": {
+    "title": "Single Leg Squat",
+    "about": "Squatting on one leg builds quad and glute strength, balance and knee control with light loads.",
+    "steps": [
+     "Stand on one leg, holding a support if needed.",
+     "Extend or tuck the free leg out of the way.",
+     "Sit down slowly on the working leg as deep as you control.",
+     "Drive through the whole foot to stand back up."
+    ],
+    "cues": [
+     "Keep the working knee tracking over the toes.",
+     "Use support only as much as you need."
+    ],
+    "mistakes": [
+     "Dropping into the bottom without control.",
+     "Twisting the hips to escape the hard part."
+    ]
+   },
+   "tr": {
+    "title": "Single Leg Squat",
+    "about": "Tek bacak üzerinde squat; hafif yükle quad–kalça gücü, denge ve diz kontrolü kazandırır.",
+    "steps": [
+     "Gerekirse bir desteğe tutunarak tek bacak üzerinde dur.",
+     "Boştaki bacağı öne uzat ya da yoldan çek.",
+     "Çalışan bacakta kontrol edebildiğin kadar derine yavaşça otur.",
+     "Tüm ayakla iterek geri kalk."
+    ],
+    "cues": [
+     "Çalışan diz parmak uçlarıyla aynı hizada kalsın.",
+     "Desteği yalnızca ihtiyacın kadar kullan."
+    ],
+    "mistakes": [
+     "Dibe kontrolsüzce düşmek.",
+     "Zor kısımdan kaçmak için kalçayı döndürmek."
+    ]
+   },
+   "ar": {
+    "title": "Single Leg Squat",
+    "about": "السكوات على ساق واحدة يبني قوة الفخذ والألوية والتوازن والتحكم بالركبة بأوزان خفيفة.",
+    "steps": [
+     "قف على ساق واحدة مع الإمساك بداعم إن لزم.",
+     "مدّ الساق الحرة للأمام أو أبعدها عن الطريق.",
+     "اجلس ببطء على الساق العاملة بأعمق ما تتحكم به.",
+     "ادفع بكامل القدم للعودة إلى الوقوف."
+    ],
+    "cues": [
+     "أبقِ الركبة العاملة في اتجاه أصابع القدم.",
+     "استخدم الداعم بقدر حاجتك فقط."
+    ],
+    "mistakes": [
+     "السقوط إلى القاع دون تحكم.",
+     "تدوير الحوض للهروب من الجزء الصعب."
+    ]
+   }
+  },
+  "quad-stretch": {
+   "primary": [
+    "quads"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Quad Stretch",
+    "about": "A mobility drill that lengthens the quads and hip flexors to improve recovery and range of motion.",
+    "steps": [
+     "Stand tall and hold a support for balance.",
+     "Bend one knee and grab the ankle behind you.",
+     "Pull the heel toward your glutes and hold 2 seconds.",
+     "Release, repeat for the set reps, then switch legs."
+    ],
+    "cues": [
+     "Tuck your pelvis under to feel the stretch higher on the thigh.",
+     "Keep knees close together."
+    ],
+    "mistakes": [
+     "Arching the lower back instead of stretching the quad.",
+     "Yanking the foot hard into pain."
+    ]
+   },
+   "tr": {
+    "title": "Quad Esneme",
+    "about": "Quadriceps ve kalça fleksörlerini uzatan mobilite çalışması; toparlanmayı ve hareket açıklığını iyileştirir.",
+    "steps": [
+     "Dik dur ve denge için bir desteğe tutun.",
+     "Bir dizini bük ve ayak bileğini arkadan kavra.",
+     "Topuğu kalçana doğru çek ve 2 saniye tut.",
+     "Bırak, tekrar sayısını tamamla ve bacak değiştir."
+    ],
+    "cues": [
+     "Uyluğun üst kısmında hissetmek için leğeni içe devir.",
+     "Dizlerini birbirine yakın tut."
+    ],
+    "mistakes": [
+     "Quad yerine beli kavislendirmek.",
+     "Ayağı acıtacak kadar sertçe çekmek."
+    ]
+   },
+   "ar": {
+    "title": "تمدد الفخذ الأمامي",
+    "about": "تمرين مرونة يطيل عضلات الفخذ الأمامية وثانيات الورك لتحسين التعافي والمدى الحركي.",
+    "steps": [
+     "قف مستقيماً وأمسك داعماً للتوازن.",
+     "اثنِ ركبة واحدة وأمسك الكاحل خلفك.",
+     "اسحب الكعب نحو الألوية وثبّت ثانيتين.",
+     "حرّر، وكرر العدد المطلوب ثم بدّل الساق."
+    ],
+    "cues": [
+     "اقلب الحوض للداخل لتشعر بالتمدد أعلى الفخذ.",
+     "أبقِ الركبتين قريبتين من بعضهما."
+    ],
+    "mistakes": [
+     "تقوس أسفل الظهر بدل تمدد الفخذ.",
+     "شد القدم بعنف حتى الألم."
+    ]
+   }
+  },
+  "cardio": {
+   "primary": [
+    "quads"
+   ],
+   "secondary": [
+    "calves",
+    "hamstrings",
+    "glutes"
+   ],
+   "en": {
+    "title": "Cardio",
+    "about": "Steady movement that raises heart rate to build aerobic fitness and help recovery between sessions.",
+    "steps": [
+     "Pick a mode such as walking, cycling, rowing or a sport.",
+     "Warm up for a few minutes at an easy pace.",
+     "Keep moving at the target effort for the set time or distance.",
+     "Cool down gradually before stopping."
+    ],
+    "cues": [
+     "Most sessions should allow you to hold a conversation.",
+     "Breathe steadily and stay relaxed."
+    ],
+    "mistakes": [
+     "Going all-out every session and hurting leg recovery.",
+     "Skipping the warm-up."
+    ]
+   },
+   "tr": {
+    "title": "Kardiyo",
+    "about": "Nabzı yükselten sürekli hareket; aerobik kondisyonu geliştirir ve antrenmanlar arası toparlanmaya yardım eder.",
+    "steps": [
+     "Yürüyüş, bisiklet, kürek ya da bir spor gibi bir yöntem seç.",
+     "Birkaç dakika rahat tempoda ısın.",
+     "Belirlenen süre ya da mesafe boyunca hedef eforda devam et.",
+     "Durmadan önce yavaş yavaş soğu."
+    ],
+    "cues": [
+     "Çoğu seansta konuşabilecek tempoda kal.",
+     "Düzenli nefes al ve rahat kal."
+    ],
+    "mistakes": [
+     "Her seansta tüm gücünle gidip bacak toparlanmasını bozmak.",
+     "Isınmayı atlamak."
+    ]
+   },
+   "ar": {
+    "title": "كارديو",
+    "about": "حركة مستمرة ترفع نبض القلب لبناء اللياقة الهوائية ودعم التعافي بين الحصص.",
+    "steps": [
+     "اختر نشاطاً كالمشي أو الدراجة أو التجديف أو رياضة ما.",
+     "أحمِ جسمك بضع دقائق بوتيرة سهلة.",
+     "استمر بالجهد المستهدف للمدة أو المسافة المحددة.",
+     "خفّف الوتيرة تدريجياً قبل التوقف."
+    ],
+    "cues": [
+     "معظم الحصص يجب أن تسمح لك بالتحدث.",
+     "تنفس بانتظام وابقَ مسترخياً."
+    ],
+    "mistakes": [
+     "بذل أقصى جهد في كل حصة فيتضرر تعافي الساقين.",
+     "إهمال الإحماء."
+    ]
+   }
+  },
+  "tuck-jump": {
+   "primary": [
+    "quads",
+    "abs"
+   ],
+   "secondary": [
+    "glutes",
+    "calves"
+   ],
+   "en": {
+    "title": "Tuck Jump",
+    "about": "An explosive jump bringing knees to chest, building power, hip-flexor and core strength and conditioning.",
+    "steps": [
+     "Stand on a cushioned surface, feet hip-width apart.",
+     "Dip into a half squat and swing your arms.",
+     "Explode up and pull your knees toward your chest.",
+     "Land softly on the balls of your feet and jump again."
+    ],
+    "cues": [
+     "Land quietly with bent knees.",
+     "Exhale as you jump, inhale on the way down."
+    ],
+    "mistakes": [
+     "Landing stiff-legged on your heels.",
+     "Losing height as you fatigue instead of resting."
+    ]
+   },
+   "tr": {
+    "title": "Tuck Jump",
+    "about": "Dizleri göğse çekerek yapılan patlayıcı sıçrama; güç, kalça fleksörü, core ve kondisyon geliştirir.",
+    "steps": [
+     "Yumuşak bir zeminde, ayaklar kalça genişliğinde dur.",
+     "Yarım squat'a çök ve kollarını salla.",
+     "Patlayarak sıçra ve dizlerini göğsüne çek.",
+     "Ayak uçlarına yumuşakça in ve hemen tekrar sıçra."
+    ],
+    "cues": [
+     "Dizler bükülü, sessizce yere in.",
+     "Sıçrarken nefes ver, inerken nefes al."
+    ],
+    "mistakes": [
+     "Topuklar üzerine düz bacakla inmek.",
+     "Yoruldukça dinlenmek yerine yüksekliği kaybetmek."
+    ]
+   },
+   "ar": {
+    "title": "Tuck Jump",
+    "about": "قفزة انفجارية مع سحب الركبتين للصدر، تبني القوة الانفجارية وعضلات الجذع واللياقة.",
+    "steps": [
+     "قف على سطح مبطّن والقدمان بعرض الورك.",
+     "انزل إلى نصف سكوات وأرجح ذراعيك.",
+     "انفجر للأعلى واسحب ركبتيك نحو صدرك.",
+     "اهبط بلطف على مقدمة القدمين واقفز مجدداً."
+    ],
+    "cues": [
+     "اهبط بهدوء مع ثني الركبتين.",
+     "ازفر عند القفز وخذ شهيقاً عند النزول."
+    ],
+    "mistakes": [
+     "الهبوط بساقين متصلبتين على الكعبين.",
+     "فقدان الارتفاع مع التعب بدل الراحة."
+    ]
+   }
+  },
+  "nordic-curl": {
+   "primary": [
+    "hamstrings"
+   ],
+   "secondary": [
+    "calves",
+    "glutes"
+   ],
+   "en": {
+    "title": "Nordic Curl",
+    "about": "A bodyweight eccentric that overloads the hamstrings at long lengths; strong evidence for growth and injury prevention.",
+    "steps": [
+     "Kneel on a pad with your ankles anchored.",
+     "Keep a straight line from knees to head, hips extended.",
+     "Lower your body forward as slowly as you can.",
+     "Catch yourself with your hands, then pull or push back up."
+    ],
+    "cues": [
+     "Squeeze glutes so you hinge at the knee, not the hip.",
+     "Fight gravity all the way down."
+    ],
+    "mistakes": [
+     "Bending at the hips to shorten the lever.",
+     "Dropping quickly through the hardest range."
+    ]
+   },
+   "tr": {
+    "title": "Nordic Curl",
+    "about": "Hamstringleri uzun boyda aşırı yükleyen vücut ağırlığı eksantriği; gelişim ve sakatlık önlemede güçlü kanıta sahiptir.",
+    "steps": [
+     "Ayak bileklerin sabitlenmiş halde bir pedin üzerine diz çök.",
+     "Kalça açık, dizlerden başa düz bir çizgi koru.",
+     "Gövdeni olabildiğince yavaş öne indir.",
+     "Ellerinle yakala, sonra çekerek ya da iterek geri dön."
+    ],
+    "cues": [
+     "Kalçadan değil dizden kırılmak için kalçanı sık.",
+     "Yere kadar yerçekimine direnmeye devam et."
+    ],
+    "mistakes": [
+     "Kolu kısaltmak için kalçadan bükülmek.",
+     "En zor bölümde hızla düşmek."
+    ]
+   },
+   "ar": {
+    "title": "Nordic Curl",
+    "about": "تمرين سلبي بوزن الجسم يحمّل أوتار الركبة في وضع التمدد؛ مدعوم بأدلة قوية للنمو والوقاية من الإصابة.",
+    "steps": [
+     "اركع على وسادة مع تثبيت الكاحلين.",
+     "حافظ على خط مستقيم من الركبتين إلى الرأس مع فرد الورك.",
+     "أنزل جسمك للأمام بأبطأ ما يمكن.",
+     "التقط نفسك بيديك ثم اسحب أو ادفع للعودة."
+    ],
+    "cues": [
+     "اعصر الألوية لتنثني من الركبة لا من الورك.",
+     "قاوم الجاذبية حتى النهاية."
+    ],
+    "mistakes": [
+     "الانثناء من الورك لتقصير الذراع.",
+     "السقوط بسرعة في أصعب جزء."
+    ]
+   }
+  },
+  "lying-leg-curl": {
+   "primary": [
+    "hamstrings"
+   ],
+   "secondary": [
+    "calves"
+   ],
+   "en": {
+    "title": "Lying Leg Curl",
+    "about": "Isolates the hamstrings through knee flexion, covering the muscle that hinges train less.",
+    "steps": [
+     "Lie face down with knees just off the bench edge.",
+     "Set the pad just above your heels.",
+     "Curl your heels toward your glutes as far as possible.",
+     "Lower slowly until your legs are almost straight."
+    ],
+    "cues": [
+     "Press hips into the pad so they don't lift.",
+     "Control a 2–3 second eccentric."
+    ],
+    "mistakes": [
+     "Hips rising off the bench to swing the weight.",
+     "Cutting the stretched, straight-leg part of the rep."
+    ]
+   },
+   "tr": {
+    "title": "Lying Leg Curl",
+    "about": "Diz fleksiyonuyla hamstringleri izole eder; hinge hareketlerinin az çalıştırdığı bölümü kapsar.",
+    "steps": [
+     "Dizler sehpanın kenarından hafif dışarıda, yüz üstü uzan.",
+     "Pedi topuklarının hemen üstüne ayarla.",
+     "Topuklarını olabildiğince kalçana doğru bük.",
+     "Bacakların neredeyse düzleşene kadar yavaşça indir."
+    ],
+    "cues": [
+     "Kalkmaması için kalçanı pede bastır.",
+     "Eksantriği 2–3 saniyede kontrol et."
+    ],
+    "mistakes": [
+     "Ağırlığı savurmak için kalçayı kaldırmak.",
+     "Bacağın düz ve gerildiği kısmı kesmek."
+    ]
+   },
+   "ar": {
+    "title": "Lying Leg Curl",
+    "about": "يعزل أوتار الركبة عبر ثني الركبة، ويغطي ما لا تعمل عليه تمارين الانحناء جيداً.",
+    "steps": [
+     "استلقِ على بطنك والركبتان خارج حافة المقعد قليلاً.",
+     "اضبط الوسادة فوق الكعبين مباشرة.",
+     "اثنِ كعبيك نحو الألوية بأقصى ما يمكن.",
+     "انزل ببطء حتى تكاد الساقان تستقيمان."
+    ],
+    "cues": [
+     "اضغط الحوض على الوسادة كي لا يرتفع.",
+     "تحكّم في نزول مدته 2–3 ثوانٍ."
+    ],
+    "mistakes": [
+     "رفع الحوض عن المقعد لتأرجح الوزن.",
+     "قطع جزء التمدد حين تكون الساق مستقيمة."
+    ]
+   }
+  },
+  "seated-leg-curl": {
+   "primary": [
+    "hamstrings"
+   ],
+   "secondary": [
+    "calves"
+   ],
+   "en": {
+    "title": "Seated Leg Curl",
+    "about": "Flexed hips put the hamstrings on stretch, making this among the best leg curls for growth.",
+    "steps": [
+     "Sit with knees aligned to the machine's pivot.",
+     "Lock the thigh pad down firmly above your knees.",
+     "Curl your heels down and back as far as possible.",
+     "Return slowly until your legs are fully extended."
+    ],
+    "cues": [
+     "Lean your torso forward for a bigger hamstring stretch.",
+     "Squeeze hard at full flexion."
+    ],
+    "mistakes": [
+     "Leaving the thigh pad loose so you slide around.",
+     "Letting the weight snap back up."
+    ]
+   },
+   "tr": {
+    "title": "Seated Leg Curl",
+    "about": "Kalça bükülü olduğu için hamstringler gerilir; gelişim için en iyi leg curl'lerden biridir.",
+    "steps": [
+     "Dizlerin makinenin dönme noktasıyla hizalı otur.",
+     "Uyluk pedini dizlerin üstüne sıkıca kilitle.",
+     "Topuklarını olabildiğince aşağı ve geri bük.",
+     "Bacaklar tamamen açılana kadar yavaşça geri dön."
+    ],
+    "cues": [
+     "Daha büyük gerilme için gövdeni öne eğ.",
+     "Tam bükülmede güçlü sık."
+    ],
+    "mistakes": [
+     "Uyluk pedini gevşek bırakıp kaymak.",
+     "Ağırlığın hızla geri fırlamasına izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "Seated Leg Curl",
+    "about": "ثني الورك يضع أوتار الركبة في وضع تمدد، فيجعله من أفضل تمارين ثني الساق للنمو.",
+    "steps": [
+     "اجلس والركبتان على محاذاة محور الجهاز.",
+     "ثبّت وسادة الفخذ بإحكام فوق الركبتين.",
+     "اثنِ كعبيك للأسفل والخلف بأقصى ما يمكن.",
+     "عد ببطء حتى تستقيم الساقان تماماً."
+    ],
+    "cues": [
+     "مِل بجذعك للأمام لتمدد أكبر لأوتار الركبة.",
+     "اعصر بقوة عند الثني الكامل."
+    ],
+    "mistakes": [
+     "ترك وسادة الفخذ مرتخية فتنزلق.",
+     "ترك الوزن يرتد بسرعة للأعلى."
+    ]
+   }
+  },
+  "dumbbell-leg-curl": {
+   "primary": [
+    "hamstrings"
+   ],
+   "secondary": [
+    "calves"
+   ],
+   "en": {
+    "title": "Dumbbell Leg Curl",
+    "about": "A home-friendly leg curl using a dumbbell between the feet to isolate the hamstrings.",
+    "steps": [
+     "Lie face down (or kneel) and grip a dumbbell between your feet.",
+     "Start with legs nearly straight.",
+     "Curl your heels toward your glutes.",
+     "Lower slowly, stopping before the dumbbell can slip."
+    ],
+    "cues": [
+     "Squeeze the dumbbell tightly with your feet.",
+     "Keep hips pinned down throughout."
+    ],
+    "mistakes": [
+     "Curling past vertical, where tension drops to zero.",
+     "Using too heavy a dumbbell to control safely."
+    ]
+   },
+   "tr": {
+    "title": "Dumbbell Leg Curl",
+    "about": "Ayakların arasında dambılla yapılan, evde de uygulanabilen hamstring izolasyonu.",
+    "steps": [
+     "Yüz üstü uzan (ya da diz çök) ve dambılı ayaklarının arasına sıkıştır.",
+     "Bacaklar neredeyse düzken başla.",
+     "Topuklarını kalçana doğru bük.",
+     "Dambıl kaymadan yavaşça indir."
+    ],
+    "cues": [
+     "Dambılı ayaklarınla sıkıca kavra.",
+     "Kalçanı hareket boyunca yerde tut."
+    ],
+    "mistakes": [
+     "Gerilimin sıfırlandığı dikey noktanın ötesine bükmek.",
+     "Güvenle kontrol edemeyeceğin ağır dambıl kullanmak."
+    ]
+   },
+   "ar": {
+    "title": "Dumbbell Leg Curl",
+    "about": "ثني ساق بدمبل بين القدمين يمكن أداؤه في المنزل لعزل أوتار الركبة.",
+    "steps": [
+     "استلقِ على بطنك (أو اركع) وأمسك دمبلاً بين قدميك.",
+     "ابدأ والساقان شبه مستقيمتين.",
+     "اثنِ كعبيك نحو الألوية.",
+     "انزل ببطء وتوقف قبل أن ينزلق الدمبل."
+    ],
+    "cues": [
+     "اضغط الدمبل بقوة بقدميك.",
+     "أبقِ الحوض ملتصقاً طوال الحركة."
+    ],
+    "mistakes": [
+     "الثني بعد الوضع العمودي حيث يزول الشد.",
+     "استخدام دمبل ثقيل يصعب التحكم به بأمان."
+    ]
+   }
+  },
+  "ball-hamstring-curl": {
+   "primary": [
+    "hamstrings"
+   ],
+   "secondary": [
+    "glutes",
+    "abs"
+   ],
+   "en": {
+    "title": "Ball Hamstring Curl",
+    "about": "A stability-ball curl that trains the hamstrings while the glutes hold your hips up.",
+    "steps": [
+     "Lie on your back with heels on a stability ball.",
+     "Lift your hips into a straight line from shoulders to knees.",
+     "Curl the ball toward your glutes, keeping hips high.",
+     "Roll it back out slowly until legs are straight."
+    ],
+    "cues": [
+     "Keep hips up throughout the set.",
+     "Move slowly to keep the ball stable."
+    ],
+    "mistakes": [
+     "Letting the hips sag as you curl.",
+     "Rushing and losing control of the ball."
+    ]
+   },
+   "tr": {
+    "title": "Ball Hamstring Curl",
+    "about": "Pilates topuyla yapılan curl; kalça kasları kalçayı havada tutarken hamstringleri çalıştırır.",
+    "steps": [
+     "Sırt üstü uzan, topukların topun üzerinde olsun.",
+     "Kalçanı omuzlardan dizlere düz bir çizgi olacak şekilde kaldır.",
+     "Kalça yüksekte, topu kalçana doğru çek.",
+     "Bacaklar düzleşene kadar topu yavaşça geri yuvarla."
+    ],
+    "cues": [
+     "Set boyunca kalçan havada kalsın.",
+     "Topu stabil tutmak için yavaş hareket et."
+    ],
+    "mistakes": [
+     "Çekerken kalçanın düşmesine izin vermek.",
+     "Acele edip top kontrolünü kaybetmek."
+    ]
+   },
+   "ar": {
+    "title": "Ball Hamstring Curl",
+    "about": "ثني بالكرة السويسرية يمرّن أوتار الركبة بينما تبقي الألوية الحوض مرفوعاً.",
+    "steps": [
+     "استلقِ على ظهرك والكعبان على الكرة.",
+     "ارفع حوضك لخط مستقيم من الكتفين إلى الركبتين.",
+     "اسحب الكرة نحو الألوية مع إبقاء الحوض مرتفعاً.",
+     "دحرجها ببطء للخارج حتى تستقيم الساقان."
+    ],
+    "cues": [
+     "أبقِ الحوض مرتفعاً طوال المجموعة.",
+     "تحرك ببطء للحفاظ على ثبات الكرة."
+    ],
+    "mistakes": [
+     "ترك الحوض يهبط أثناء الثني.",
+     "التسرع وفقدان التحكم بالكرة."
+    ]
+   }
+  },
+  "romanian-deadlift": {
+   "primary": [
+    "hamstrings",
+    "glutes"
+   ],
+   "secondary": [
+    "lower-back",
+    "adductors",
+    "forearms"
+   ],
+   "en": {
+    "title": "Romanian Deadlift / Stiff Leg",
+    "about": "A hip hinge that loads the hamstrings and glutes in a deep stretch, a top hamstring builder.",
+    "steps": [
+     "Stand tall holding the weight in front of your thighs.",
+     "Soften the knees slightly and keep them fixed.",
+     "Push your hips back, sliding the weight down your legs.",
+     "Stop at a deep hamstring stretch with a flat back, then drive hips forward."
+    ],
+    "cues": [
+     "Think hips back, not chest down.",
+     "Keep the weight close to your legs."
+    ],
+    "mistakes": [
+     "Rounding the lower back to reach lower.",
+     "Bending the knees so it becomes a squat."
+    ]
+   },
+   "tr": {
+    "title": "Romanian Deadlift / Stiff Leg",
+    "about": "Hamstring ve kalçayı derin gerilmede yükleyen hip hinge; en iyi hamstring geliştiricilerinden biri.",
+    "steps": [
+     "Ağırlığı uyluklarının önünde tutarak dik dur.",
+     "Dizlerini hafifçe kır ve o açıda sabitle.",
+     "Ağırlığı bacaklarında kaydırarak kalçanı geriye it.",
+     "Sırt düz, derin hamstring gerilmesinde dur ve kalçayı öne sür."
+    ],
+    "cues": [
+     "Göğsü indirmeyi değil, kalçayı geriye itmeyi düşün.",
+     "Ağırlığı bacaklarına yakın tut."
+    ],
+    "mistakes": [
+     "Daha aşağı inmek için beli yuvarlamak.",
+     "Dizleri büküp hareketi squat'a çevirmek."
+    ]
+   },
+   "ar": {
+    "title": "Romanian Deadlift / Stiff Leg",
+    "about": "انحناء من الورك يحمّل أوتار الركبة والألوية في تمدد عميق، ومن أفضل تمارين بناء أوتار الركبة.",
+    "steps": [
+     "قف مستقيماً ممسكاً بالوزن أمام فخذيك.",
+     "اثنِ الركبتين قليلاً وثبّتهما.",
+     "ادفع الحوض للخلف مع انزلاق الوزن على ساقيك.",
+     "توقف عند تمدد عميق مع ظهر مستقيم ثم ادفع الحوض للأمام."
+    ],
+    "cues": [
+     "فكّر في دفع الحوض للخلف لا في خفض الصدر.",
+     "أبقِ الوزن قريباً من ساقيك."
+    ],
+    "mistakes": [
+     "تقوس أسفل الظهر للنزول أكثر.",
+     "ثني الركبتين فيتحول إلى سكوات."
+    ]
+   }
+  },
+  "glute-rdl": {
+   "primary": [
+    "glutes",
+    "hamstrings"
+   ],
+   "secondary": [
+    "adductors",
+    "lower-back"
+   ],
+   "en": {
+    "title": "Glute-Biased RDL",
+    "about": "An RDL variant with more knee bend, rounded upper back or staggered stance to bias the glutes.",
+    "steps": [
+     "Hold the weight and set a staggered or hip-width stance.",
+     "Bend the knees a bit more than a normal RDL.",
+     "Hinge forward, letting the upper back round slightly while hips go back.",
+     "Drive the hips through and squeeze the glutes at the top."
+    ],
+    "cues": [
+     "Push the hips back until you feel a deep glute stretch.",
+     "Keep the lower back neutral even if the upper back rounds."
+    ],
+    "mistakes": [
+     "Rounding the lower back under load.",
+     "Hyperextending the spine at lockout instead of squeezing glutes."
+    ]
+   },
+   "tr": {
+    "title": "Glute Odaklı RDL",
+    "about": "Daha fazla diz bükümü, hafif yuvarlak üst sırt ya da kademeli duruşla kalçayı vurgulayan RDL çeşidi.",
+    "steps": [
+     "Ağırlığı tut, kademeli ya da kalça genişliğinde duruş al.",
+     "Dizleri normal RDL'den biraz daha fazla bük.",
+     "Kalça geriye giderken üst sırtın hafif yuvarlanmasına izin vererek eğil.",
+     "Kalçayı öne sür ve tepede kalça kaslarını sık."
+    ],
+    "cues": [
+     "Derin kalça gerilmesi hissedene kadar kalçayı geri it.",
+     "Üst sırt yuvarlansa da beli nötr tut."
+    ],
+    "mistakes": [
+     "Yük altında beli yuvarlamak.",
+     "Tepede kalçayı sıkmak yerine beli aşırı geriye bükmek."
+    ]
+   },
+   "ar": {
+    "title": "RDL مركّز على الألوية",
+    "about": "نسخة من RDL بثني أكبر للركبة أو تقوس خفيف لأعلى الظهر أو وقفة متدرجة لتركيز العمل على الألوية.",
+    "steps": [
+     "أمسك الوزن واتخذ وقفة متدرجة أو بعرض الورك.",
+     "اثنِ الركبتين أكثر قليلاً من RDL العادي.",
+     "انحنِ للأمام مع تقوس خفيف لأعلى الظهر ودفع الحوض للخلف.",
+     "ادفع الحوض للأمام واعصر الألوية في الأعلى."
+    ],
+    "cues": [
+     "ادفع الحوض للخلف حتى تشعر بتمدد عميق في الألوية.",
+     "أبقِ أسفل الظهر محايداً حتى لو تقوس أعلاه."
+    ],
+    "mistakes": [
+     "تقوس أسفل الظهر تحت الحمل.",
+     "فرط بسط العمود الفقري في الأعلى بدل عصر الألوية."
+    ]
+   }
+  },
+  "single-leg-rdl": {
+   "primary": [
+    "hamstrings",
+    "glutes"
+   ],
+   "secondary": [
+    "adductors",
+    "abs"
+   ],
+   "en": {
+    "title": "Single Leg RDL",
+    "about": "A one-leg hinge that stretches the hamstrings and glutes and trains hip stability.",
+    "steps": [
+     "Stand on one leg with a slight knee bend.",
+     "Hold the weight in one hand.",
+     "Hinge forward as the free leg extends behind you.",
+     "Lower to a deep stretch, then drive the hip forward to stand."
+    ],
+    "cues": [
+     "Keep hips square to the floor.",
+     "Use a light support if balance limits you."
+    ],
+    "mistakes": [
+     "Opening the hip so the pelvis rotates up.",
+     "Rounding the back to reach lower."
+    ]
+   },
+   "tr": {
+    "title": "Single Leg RDL",
+    "about": "Hamstring ve kalçayı geren, kalça stabilitesini çalıştıran tek bacak hinge.",
+    "steps": [
+     "Diz hafif bükülü, tek bacak üzerinde dur.",
+     "Ağırlığı tek elinde tut.",
+     "Boştaki bacak geriye uzanırken öne eğil.",
+     "Derin gerilmeye in, kalçayı öne sürerek dikil."
+    ],
+    "cues": [
+     "Kalçanı yere paralel tut.",
+     "Denge sınırlıyorsa hafif bir destek kullan."
+    ],
+    "mistakes": [
+     "Kalçayı açıp leğenin yukarı dönmesi.",
+     "Daha aşağı inmek için sırtı yuvarlamak."
+    ]
+   },
+   "ar": {
+    "title": "Single Leg RDL",
+    "about": "انحناء على ساق واحدة يمدد أوتار الركبة والألوية ويدرّب ثبات الورك.",
+    "steps": [
+     "قف على ساق واحدة مع ثني خفيف للركبة.",
+     "أمسك الوزن بيد واحدة.",
+     "انحنِ للأمام بينما تمتد الساق الحرة للخلف.",
+     "انزل لتمدد عميق ثم ادفع الورك للأمام للوقوف."
+    ],
+    "cues": [
+     "أبقِ الحوض موازياً للأرض.",
+     "استخدم داعماً خفيفاً إن حدّ التوازن من أدائك."
+    ],
+    "mistakes": [
+     "فتح الورك فيدور الحوض للأعلى.",
+     "تقوس الظهر للنزول أكثر."
+    ]
+   }
+  },
+  "good-morning": {
+   "primary": [
+    "hamstrings",
+    "glutes"
+   ],
+   "secondary": [
+    "lower-back",
+    "adductors"
+   ],
+   "en": {
+    "title": "Good Morning",
+    "about": "A barbell-on-back hinge that loads the hamstrings and glutes in a long stretch.",
+    "steps": [
+     "Rest the bar on your upper back as for a squat.",
+     "Unlock the knees slightly and brace.",
+     "Push hips back and lower the torso toward parallel.",
+     "Drive the hips forward to stand tall."
+    ],
+    "cues": [
+     "Keep the spine neutral and the bar over mid-foot.",
+     "Start light; the long lever makes it hard."
+    ],
+    "mistakes": [
+     "Rounding the back at the bottom.",
+     "Bending the knees so it turns into a squat."
+    ]
+   },
+   "tr": {
+    "title": "Good Morning",
+    "about": "Bar sırttayken yapılan hinge; hamstring ve kalçayı uzun gerilmede yükler.",
+    "steps": [
+     "Barı squat'taki gibi üst sırtına yerleştir.",
+     "Dizlerin kilidini hafifçe aç ve karnını sık.",
+     "Kalçayı geri it ve gövdeni paralele doğru indir.",
+     "Kalçayı öne sürerek dikil."
+    ],
+    "cues": [
+     "Omurgayı nötr, barı orta ayağın üzerinde tut.",
+     "Hafif başla; uzun kol hareketi zorlaştırır."
+    ],
+    "mistakes": [
+     "Dipte sırtı yuvarlamak.",
+     "Dizleri büküp hareketi squat'a çevirmek."
+    ]
+   },
+   "ar": {
+    "title": "Good Morning",
+    "about": "انحناء مع البار على الظهر يحمّل أوتار الركبة والألوية في تمدد طويل.",
+    "steps": [
+     "ضع البار على أعلى ظهرك كما في السكوات.",
+     "حرر قفل الركبتين قليلاً واشدد الجذع.",
+     "ادفع الحوض للخلف وأنزل الجذع نحو الوضع الموازي.",
+     "ادفع الحوض للأمام لتقف مستقيماً."
+    ],
+    "cues": [
+     "أبقِ العمود الفقري محايداً والبار فوق منتصف القدم.",
+     "ابدأ بوزن خفيف، فالذراع الطويلة تجعله صعباً."
+    ],
+    "mistakes": [
+     "تقوس الظهر في القاع.",
+     "ثني الركبتين فيتحول إلى سكوات."
+    ]
+   }
+  },
+  "hamstring-hyper": {
+   "primary": [
+    "hamstrings",
+    "glutes"
+   ],
+   "secondary": [
+    "lower-back"
+   ],
+   "en": {
+    "title": "Hamstring Hyperextension",
+    "about": "A 45-degree back extension done as a hip hinge with a flat back, targeting the hamstrings.",
+    "steps": [
+     "Set the pad just below your hip crease.",
+     "Hook your heels and keep a neutral spine.",
+     "Hinge at the hips and lower until you feel a strong hamstring stretch.",
+     "Drive hips into the pad to return to a straight line."
+    ],
+    "cues": [
+     "Keep the back flat; move only at the hips.",
+     "Push heels into the footplate to feel the hamstrings."
+    ],
+    "mistakes": [
+     "Rounding and unrounding the spine instead of hinging.",
+     "Arching past straight at the top."
+    ]
+   },
+   "tr": {
+    "title": "Hamstring Hyperextension",
+    "about": "Düz sırtla hip hinge olarak yapılan 45 derece hiperekstansiyon; hamstringleri hedefler.",
+    "steps": [
+     "Pedi kalça kıvrımının hemen altına ayarla.",
+     "Topuklarını sabitle ve omurganı nötr tut.",
+     "Kalçadan kırıl ve güçlü hamstring gerilmesi hissedene kadar in.",
+     "Kalçayı pede bastırarak düz çizgiye geri dön."
+    ],
+    "cues": [
+     "Sırt düz kalsın, yalnızca kalçadan hareket et.",
+     "Hamstringleri hissetmek için topukları basamağa bastır."
+    ],
+    "mistakes": [
+     "Kalçadan kırılmak yerine omurgayı yuvarlayıp açmak.",
+     "Tepede düz çizgiyi geçip beli bükmek."
+    ]
+   },
+   "ar": {
+    "title": "Hamstring Hyperextension",
+    "about": "تمرين بسط الظهر بزاوية 45 درجة يُؤدى كانحناء من الورك بظهر مستقيم لاستهداف أوتار الركبة.",
+    "steps": [
+     "اضبط الوسادة تحت ثنية الورك مباشرة.",
+     "ثبّت كعبيك وحافظ على عمود فقري محايد.",
+     "انحنِ من الورك وانزل حتى تشعر بتمدد قوي في أوتار الركبة.",
+     "ادفع الحوض نحو الوسادة للعودة إلى خط مستقيم."
+    ],
+    "cues": [
+     "أبقِ الظهر مستقيماً وتحرك من الورك فقط.",
+     "اضغط الكعبين على المسند لتشعر بأوتار الركبة."
+    ],
+    "mistakes": [
+     "تقويس العمود الفقري وفرده بدل الانحناء من الورك.",
+     "التقوس بعد الخط المستقيم في الأعلى."
+    ]
+   }
+  },
+  "glute-hyper": {
+   "primary": [
+    "glutes"
+   ],
+   "secondary": [
+    "hamstrings",
+    "lower-back"
+   ],
+   "en": {
+    "title": "Glute Hyperextension",
+    "about": "A back extension with rounded upper back and toes out that shifts work to the glutes.",
+    "steps": [
+     "Set the pad lower on your thighs so hips can flex freely.",
+     "Turn toes out and round your upper back slightly.",
+     "Lower your torso toward the floor under control.",
+     "Squeeze the glutes to drive hips into the pad and rise."
+    ],
+    "cues": [
+     "Think of pushing hips forward, not lifting with the back.",
+     "Pause and squeeze at the top."
+    ],
+    "mistakes": [
+     "Driving the movement from the lower back.",
+     "Swinging up with momentum."
+    ]
+   },
+   "tr": {
+    "title": "Glute Hyperextension",
+    "about": "Üst sırt yuvarlak, parmak uçları dışa dönük yapılan; yükü kalça kaslarına kaydıran hiperekstansiyon.",
+    "steps": [
+     "Kalça serbestçe bükülsün diye pedi uyluklarında daha aşağı ayarla.",
+     "Parmak uçlarını dışa çevir ve üst sırtını hafifçe yuvarla.",
+     "Gövdeni kontrollü şekilde yere doğru indir.",
+     "Kalçanı sıkarak pede bastır ve yüksel."
+    ],
+    "cues": [
+     "Belinle kaldırmayı değil, kalçayı öne itmeyi düşün.",
+     "Tepede dur ve sık."
+    ],
+    "mistakes": [
+     "Hareketi belden yapmak.",
+     "Momentumla savrularak kalkmak."
+    ]
+   },
+   "ar": {
+    "title": "Glute Hyperextension",
+    "about": "تمرين بسط ظهر مع تقوس أعلى الظهر وأصابع للخارج ينقل العمل إلى الألوية.",
+    "steps": [
+     "اضبط الوسادة أسفل الفخذين ليثني الورك بحرية.",
+     "وجّه الأصابع للخارج وقوّس أعلى ظهرك قليلاً.",
+     "أنزل جذعك نحو الأرض بتحكم.",
+     "اعصر الألوية لدفع الحوض نحو الوسادة والصعود."
+    ],
+    "cues": [
+     "فكّر في دفع الحوض للأمام لا الرفع بالظهر.",
+     "توقف واعصر في الأعلى."
+    ],
+    "mistakes": [
+     "قيادة الحركة من أسفل الظهر.",
+     "الصعود بالتأرجح والزخم."
+    ]
+   }
+  },
+  "hip-thrust": {
+   "primary": [
+    "glutes"
+   ],
+   "secondary": [
+    "hamstrings",
+    "quads",
+    "adductors"
+   ],
+   "en": {
+    "title": "Hip Thrust",
+    "about": "Loads the glutes hardest at full hip extension, a great complement to squats and RDLs.",
+    "steps": [
+     "Sit with your upper back against a bench, bar over your hips.",
+     "Plant feet so shins are vertical at the top.",
+     "Drive through your heels and lift hips until the torso is level.",
+     "Squeeze glutes, then lower under control."
+    ],
+    "cues": [
+     "Tuck chin and ribs down; tilt the pelvis slightly back at the top.",
+     "Pause one second at lockout."
+    ],
+    "mistakes": [
+     "Arching the lower back to fake lockout.",
+     "Feet too far out so hamstrings take over."
+    ]
+   },
+   "tr": {
+    "title": "Hip Thrust",
+    "about": "Kalça kaslarını tam kalça ekstansiyonunda en yoğun yükler; squat ve RDL'yi mükemmel tamamlar.",
+    "steps": [
+     "Üst sırtın sehpaya dayalı, bar kalçanın üzerinde otur.",
+     "Tepede kaval kemikleri dik olacak şekilde ayaklarını yerleştir.",
+     "Topuklardan iterek gövde düzleşene kadar kalçayı kaldır.",
+     "Kalçanı sık, sonra kontrollü indir."
+    ],
+    "cues": [
+     "Çeneyi ve kaburgaları aşağıda tut; tepede leğeni hafif geri devir.",
+     "Kilitlenmede bir saniye bekle."
+    ],
+    "mistakes": [
+     "Kilitlenmeyi taklit etmek için beli bükmek.",
+     "Ayakları çok uzağa koyup işi hamstringlere bırakmak."
+    ]
+   },
+   "ar": {
+    "title": "Hip Thrust",
+    "about": "يحمّل الألوية بأقصى قدر عند البسط الكامل للورك، ومكمّل ممتاز للسكوات وRDL.",
+    "steps": [
+     "اجلس وأعلى ظهرك على مقعد والبار فوق وركيك.",
+     "ثبّت قدميك لتكون الساقان عموديتين في الأعلى.",
+     "ادفع بكعبيك وارفع الحوض حتى يستوي الجذع.",
+     "اعصر الألوية ثم انزل بتحكم."
+    ],
+    "cues": [
+     "اخفض الذقن والأضلاع وأمِل الحوض للخلف قليلاً في الأعلى.",
+     "توقف ثانية عند القفل."
+    ],
+    "mistakes": [
+     "تقويس أسفل الظهر لتزييف القفل.",
+     "وضع القدمين بعيداً جداً فتتولى أوتار الركبة العمل."
+    ]
+   }
+  },
+  "hip-abduction": {
+   "primary": [
+    "glutes"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Hip Abduction",
+    "about": "Isolates the upper glutes (glute medius and upper glute max) by pushing the legs apart.",
+    "steps": [
+     "Sit in the machine with pads on the outside of your knees.",
+     "Lean forward slightly to bias the upper glute max.",
+     "Push your knees out as far as possible.",
+     "Return slowly until you feel a stretch on the outer hips."
+    ],
+    "cues": [
+     "Use the full range, including the stretched start.",
+     "Keep a steady tempo; avoid bouncing the stack."
+    ],
+    "mistakes": [
+     "Doing tiny partial reps with excessive weight.",
+     "Letting the weight slam back together."
+    ]
+   },
+   "tr": {
+    "title": "Hip Abduction",
+    "about": "Bacakları dışa iterek üst kalçayı (gluteus medius ve üst gluteus maximus) izole eder.",
+    "steps": [
+     "Pedler dizlerinin dışında olacak şekilde makineye otur.",
+     "Üst gluteus maximusu vurgulamak için hafifçe öne eğil.",
+     "Dizlerini olabildiğince dışa it.",
+     "Kalçanın dışında gerilme hissedene kadar yavaşça geri dön."
+    ],
+    "cues": [
+     "Gerilmiş başlangıç dahil tam açıklığı kullan.",
+     "Düzenli tempo koru; ağırlığı sektirme."
+    ],
+    "mistakes": [
+     "Aşırı ağırlıkla minik yarım tekrarlar yapmak.",
+     "Ağırlıkların çarparak kapanmasına izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "Hip Abduction",
+    "about": "يعزل الجزء العلوي من الألوية (الألوية الوسطى والجزء العلوي من الكبرى) بدفع الساقين للخارج.",
+    "steps": [
+     "اجلس في الجهاز والوسادات على الجهة الخارجية للركبتين.",
+     "مِل للأمام قليلاً للتركيز على الجزء العلوي من الألوية الكبرى.",
+     "ادفع ركبتيك للخارج بأقصى ما يمكن.",
+     "عد ببطء حتى تشعر بتمدد على جانبي الوركين."
+    ],
+    "cues": [
+     "استخدم المدى الكامل بما فيه بداية التمدد.",
+     "حافظ على إيقاع ثابت وتجنب ارتداد الأوزان."
+    ],
+    "mistakes": [
+     "أداء تكرارات جزئية صغيرة بوزن مفرط.",
+     "ترك الأوزان تصطدم عند العودة."
+    ]
+   }
+  },
+  "cable-kickback": {
+   "primary": [
+    "glutes"
+   ],
+   "secondary": [
+    "hamstrings"
+   ],
+   "en": {
+    "title": "Cable Glute Kickback",
+    "about": "A cable hip extension that isolates the glutes one side at a time.",
+    "steps": [
+     "Attach an ankle cuff and face the cable stack.",
+     "Hinge forward slightly and hold the frame for support.",
+     "Kick the leg back and slightly out, squeezing the glute.",
+     "Return slowly until the hip is flexed and stretched."
+    ],
+    "cues": [
+     "Move from the hip, not the lower back.",
+     "Keep the torso still and core braced."
+    ],
+    "mistakes": [
+     "Arching the lower back to swing the leg higher.",
+     "Rushing reps with no stretch at the front."
+    ]
+   },
+   "tr": {
+    "title": "Cable Glute Kickback",
+    "about": "Kalça kaslarını tek taraflı izole eden kablolu kalça ekstansiyonu.",
+    "steps": [
+     "Ayak bileğine kelepçe tak ve kabloya dön.",
+     "Hafifçe öne eğil ve destek için makineye tutun.",
+     "Kalçayı sıkarak bacağı geriye ve hafif dışa it.",
+     "Kalça bükülüp gerilene kadar yavaşça geri dön."
+    ],
+    "cues": [
+     "Belden değil kalçadan hareket et.",
+     "Gövdeni sabit tut, karnını sık."
+    ],
+    "mistakes": [
+     "Bacağı daha yükseğe savurmak için beli bükmek.",
+     "Öndeki gerilmeyi atlayıp tekrarları aceleye getirmek."
+    ]
+   },
+   "ar": {
+    "title": "Cable Glute Kickback",
+    "about": "بسط الورك بالكابل يعزل الألوية جانباً تلو الآخر.",
+    "steps": [
+     "ثبّت حزام الكاحل وقف مواجهاً للكابل.",
+     "انحنِ للأمام قليلاً وأمسك الجهاز للدعم.",
+     "اركل الساق للخلف وللخارج قليلاً مع عصر الألوية.",
+     "عد ببطء حتى ينثني الورك ويتمدد."
+    ],
+    "cues": [
+     "تحرك من الورك لا من أسفل الظهر.",
+     "أبقِ الجذع ثابتاً ومشدوداً."
+    ],
+    "mistakes": [
+     "تقويس أسفل الظهر لأرجحة الساق أعلى.",
+     "التسرع دون تمدد في الأمام."
+    ]
+   }
+  },
+  "sumo-deadlift": {
+   "primary": [
+    "glutes",
+    "adductors",
+    "quads"
+   ],
+   "secondary": [
+    "hamstrings",
+    "lower-back",
+    "traps",
+    "forearms"
+   ],
+   "en": {
+    "title": "Sumo Deadlift",
+    "about": "A wide-stance deadlift that trains glutes, adductors and quads with an upright torso.",
+    "steps": [
+     "Stand wide with toes out and the bar over mid-foot.",
+     "Grip the bar inside your knees, arms straight.",
+     "Push knees out, chest up, and pull slack from the bar.",
+     "Push the floor away and lock out with your glutes."
+    ],
+    "cues": [
+     "Spread the floor with your feet.",
+     "Keep the bar dragging close to your legs."
+    ],
+    "mistakes": [
+     "Hips shooting up first and rounding the back.",
+     "Jerking the bar off the floor."
+    ]
+   },
+   "tr": {
+    "title": "Sumo Deadlift",
+    "about": "Geniş duruşlu deadlift; dik gövdeyle kalça, adductor ve quadı çalıştırır.",
+    "steps": [
+     "Geniş dur, parmaklar dışa dönük, bar orta ayağın üzerinde.",
+     "Kollar düz, barı dizlerinin içinden kavra.",
+     "Dizleri dışa it, göğsü kaldır ve bardaki boşluğu al.",
+     "Yeri iterek kalk ve kalçanla kilitle."
+    ],
+    "cues": [
+     "Ayaklarınla yeri iki yana açıyormuş gibi it.",
+     "Bar bacaklarına yakın sürtünerek çıksın."
+    ],
+    "mistakes": [
+     "Kalçanın önce kalkıp sırtın yuvarlanması.",
+     "Barı yerden sarsarak koparmak."
+    ]
+   },
+   "ar": {
+    "title": "Sumo Deadlift",
+    "about": "رفعة ميتة بوقفة واسعة تمرّن الألوية والعضلات المقرّبة والفخذ مع جذع مستقيم.",
+    "steps": [
+     "قف بوقفة واسعة وأصابع للخارج والبار فوق منتصف القدم.",
+     "أمسك البار داخل الركبتين والذراعان مستقيمتان.",
+     "ادفع الركبتين للخارج وارفع الصدر وأزل الارتخاء من البار.",
+     "ادفع الأرض بقدميك واقفل بالألوية."
+    ],
+    "cues": [
+     "افرد الأرض بقدميك للجانبين.",
+     "أبقِ البار قريباً من ساقيك."
+    ],
+    "mistakes": [
+     "ارتفاع الحوض أولاً وتقوس الظهر.",
+     "انتزاع البار من الأرض بعنف."
+    ]
+   }
+  },
+  "rear-delt-fly": {
+   "primary": [
+    "delt-rear"
+   ],
+   "secondary": [
+    "upper-back",
+    "traps"
+   ],
+   "en": {
+    "title": "Rear Delt Fly / Raise",
+    "about": "Isolates the rear delts by moving the arms out and back, improving shoulder balance and posture.",
+    "steps": [
+     "Lie chest-down on an incline bench or sit facing the machine.",
+     "Hold the weights or handles with arms nearly straight.",
+     "Sweep the arms out and back in a wide arc.",
+     "Pause, then return slowly to a full stretch."
+    ],
+    "cues": [
+     "Lead with the elbows and keep shoulders down.",
+     "Use light weight and feel the back of the shoulder."
+    ],
+    "mistakes": [
+     "Squeezing the shoulder blades so the traps take over.",
+     "Swinging the torso to move heavier weight."
+    ]
+   },
+   "tr": {
+    "title": "Rear Delt Fly / Raise",
+    "about": "Kolları dışa ve geriye açarak arka omuzu izole eder; omuz dengesini ve duruşu iyileştirir.",
+    "steps": [
+     "Eğimli sehpaya göğüs üstü uzan ya da makineye dönük otur.",
+     "Ağırlıkları ya da tutamaçları kollar neredeyse düz tut.",
+     "Kollarını geniş bir yay çizerek dışa ve geriye aç.",
+     "Kısa bekle, sonra tam gerilmeye yavaşça dön."
+    ],
+    "cues": [
+     "Dirseklerle öncülük et, omuzları aşağıda tut.",
+     "Hafif ağırlık kullan ve omzun arkasını hisset."
+    ],
+    "mistakes": [
+     "Kürek kemiklerini sıkıp işi trapezlere bırakmak.",
+     "Daha ağır kaldırmak için gövdeyi sallamak."
+    ]
+   },
+   "ar": {
+    "title": "Rear Delt Fly / Raise",
+    "about": "يعزل الكتف الخلفي بتحريك الذراعين للخارج والخلف، فيحسن توازن الكتف والقوام.",
+    "steps": [
+     "استلقِ على صدرك فوق مقعد مائل أو اجلس مواجهاً الجهاز.",
+     "أمسك الأوزان أو المقابض والذراعان شبه مستقيمتين.",
+     "حرك الذراعين للخارج والخلف في قوس واسع.",
+     "توقف لحظة ثم عد ببطء إلى تمدد كامل."
+    ],
+    "cues": [
+     "قُد الحركة بالمرفقين وأبقِ الكتفين منخفضين.",
+     "استخدم وزناً خفيفاً واشعر بمؤخرة الكتف."
+    ],
+    "mistakes": [
+     "ضم لوحي الكتف بقوة فتتولى الترابيس العمل.",
+     "أرجحة الجذع لرفع وزن أثقل."
+    ]
+   }
+  },
+  "hip-adduction": {
+   "primary": [
+    "adductors"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Hip Adduction",
+    "about": "Isolates the inner-thigh adductors, which aid squat strength and hip health.",
+    "steps": [
+     "Sit in the machine with pads on the inside of your knees.",
+     "Open the legs to a comfortable deep stretch.",
+     "Squeeze your knees together until the pads meet.",
+     "Return slowly to the stretched position."
+    ],
+    "cues": [
+     "Lean slightly forward and sit tall.",
+     "Control the opening; the stretch drives growth."
+    ],
+    "mistakes": [
+     "Starting with a range so wide it strains the groin.",
+     "Letting the weight fling the legs open."
+    ]
+   },
+   "tr": {
+    "title": "Hip Adduction",
+    "about": "Squat gücüne ve kalça sağlığına katkı sağlayan iç uyluk adductorlarını izole eder.",
+    "steps": [
+     "Pedler dizlerinin iç tarafında olacak şekilde makineye otur.",
+     "Bacaklarını rahat ve derin bir gerilmeye aç.",
+     "Pedler birleşene kadar dizlerini birbirine sık.",
+     "Gerilmiş pozisyona yavaşça geri dön."
+    ],
+    "cues": [
+     "Hafifçe öne eğil ve dik otur.",
+     "Açılışı kontrol et; gelişimi gerilme sağlar."
+    ],
+    "mistakes": [
+     "Kasığı zorlayacak kadar geniş açıyla başlamak.",
+     "Ağırlığın bacakları savurarak açmasına izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "Hip Adduction",
+    "about": "يعزل العضلات المقرّبة في باطن الفخذ، والتي تدعم قوة السكوات وصحة الورك.",
+    "steps": [
+     "اجلس في الجهاز والوسادات على الجهة الداخلية للركبتين.",
+     "افتح ساقيك إلى تمدد عميق مريح.",
+     "اضغط ركبتيك معاً حتى تلتقي الوسادات.",
+     "عد ببطء إلى وضع التمدد."
+    ],
+    "cues": [
+     "مِل للأمام قليلاً واجلس مستقيماً.",
+     "تحكّم في الفتح، فالتمدد يحفز النمو."
+    ],
+    "mistakes": [
+     "البدء بمدى واسع جداً يجهد منطقة الفخذ الداخلية.",
+     "ترك الوزن يفتح الساقين بعنف."
+    ]
+   }
+  },
+  "standing-calf-raise": {
+   "primary": [
+    "calves"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Standing Calf Raise",
+    "about": "Straight-knee calf raises train both the gastrocnemius and soleus, best with a deep stretch at the bottom.",
+    "steps": [
+     "Stand with the balls of your feet on a step or block.",
+     "Keep knees straight but not locked.",
+     "Lower your heels as far as possible and pause in the stretch.",
+     "Rise onto your big toe as high as you can, then lower slowly."
+    ],
+    "cues": [
+     "Pause 1–2 seconds at the bottom to kill the bounce.",
+     "Push through the big toe, not the outer foot."
+    ],
+    "mistakes": [
+     "Bouncing quick half reps off the Achilles tendon.",
+     "Bending the knees to help push the weight."
+    ]
+   },
+   "tr": {
+    "title": "Standing Calf Raise",
+    "about": "Düz dizle yapılan calf raise gastrocnemius ve soleusu birlikte çalıştırır; altta derin gerilmeyle en etkilidir.",
+    "steps": [
+     "Ayak tabanının ön kısmı bir basamakta olacak şekilde dur.",
+     "Dizlerini düz tut ama kilitleme.",
+     "Topuklarını olabildiğince indir ve gerilmede bekle.",
+     "Başparmağın üzerinde olabildiğince yüksel, sonra yavaşça in."
+    ],
+    "cues": [
+     "Sekmeyi önlemek için altta 1–2 saniye bekle.",
+     "Ayağın dışından değil başparmaktan it."
+    ],
+    "mistakes": [
+     "Aşil tendonundan sekerek hızlı yarım tekrarlar yapmak.",
+     "Ağırlığı itmek için dizleri bükmek."
+    ]
+   },
+   "ar": {
+    "title": "Standing Calf Raise",
+    "about": "رفع السمانة بركبة مستقيمة يمرّن عضلتي السمانة والنعلية معاً، ويكون أفضل مع تمدد عميق في الأسفل.",
+    "steps": [
+     "قف ومقدمة قدميك على درجة أو مكعب.",
+     "أبقِ الركبتين مستقيمتين دون قفلهما.",
+     "أنزل كعبيك بأقصى ما يمكن وتوقف في وضع التمدد.",
+     "ارتفع على إصبع القدم الكبير بأعلى ما يمكن ثم انزل ببطء."
+    ],
+    "cues": [
+     "توقف 1–2 ثانية في الأسفل لإلغاء الارتداد.",
+     "ادفع من الإصبع الكبير لا من حافة القدم الخارجية."
+    ],
+    "mistakes": [
+     "أداء أنصاف تكرارات سريعة بالارتداد على وتر أخيل.",
+     "ثني الركبتين للمساعدة في دفع الوزن."
+    ]
+   }
+  },
+  "leg-press-calf-raise": {
+   "primary": [
+    "calves"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Leg Press Calf Raise",
+    "about": "Uses the leg press to load the calves heavily and safely through a full stretch.",
+    "steps": [
+     "Sit in the leg press with the balls of your feet on the platform's lower edge.",
+     "Press the sled up with knees straight but soft.",
+     "Let the platform push your toes back into a deep stretch.",
+     "Press through the big toes to full ankle extension."
+    ],
+    "cues": [
+     "Keep the safety handles within reach.",
+     "Pause at the bottom stretch each rep."
+    ],
+    "mistakes": [
+     "Bending the knees to move the sled.",
+     "Feet slipping too high so the range shrinks."
+    ]
+   },
+   "tr": {
+    "title": "Leg Press Calf Raise",
+    "about": "Baldırları leg press'te ağır ve güvenle, tam gerilmeyle yüklemeyi sağlar.",
+    "steps": [
+     "Ayak tabanının önü platformun alt kenarında olacak şekilde leg press'e otur.",
+     "Dizler düz ama gevşek, kızağı yukarı it.",
+     "Platformun parmaklarını geri iterek derin gerilme oluşturmasına izin ver.",
+     "Başparmaklardan iterek bileği tam aç."
+    ],
+    "cues": [
+     "Emniyet kollarını elinin altında tut.",
+     "Her tekrarda alttaki gerilmede bekle."
+    ],
+    "mistakes": [
+     "Kızağı oynatmak için dizleri bükmek.",
+     "Ayakların yukarı kayıp hareket açıklığını daraltması."
+    ]
+   },
+   "ar": {
+    "title": "Leg Press Calf Raise",
+    "about": "يستخدم جهاز Leg Press لتحميل السمانة بثقل وأمان عبر تمدد كامل.",
+    "steps": [
+     "اجلس في الجهاز ومقدمة قدميك على الحافة السفلية للمنصة.",
+     "ادفع المنصة للأعلى والركبتان مستقيمتان دون قفل.",
+     "دع المنصة تدفع أصابعك للخلف في تمدد عميق.",
+     "ادفع من الأصابع الكبيرة حتى البسط الكامل للكاحل."
+    ],
+    "cues": [
+     "أبقِ مقابض الأمان في متناول يدك.",
+     "توقف عند التمدد السفلي في كل تكرار."
+    ],
+    "mistakes": [
+     "ثني الركبتين لتحريك المنصة.",
+     "انزلاق القدمين للأعلى فيقصر المدى."
+    ]
+   }
+  },
+  "seated-calf-raise": {
+   "primary": [
+    "calves"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Seated Calf Raise",
+    "about": "Bent knees slacken the gastrocnemius so the soleus does most of the work.",
+    "steps": [
+     "Sit with the pad snug across your lower thighs.",
+     "Place the balls of your feet on the platform edge.",
+     "Lower heels to a deep stretch and pause.",
+     "Drive up onto the big toes as high as possible."
+    ],
+    "cues": [
+     "Use a full range; the deep stretch matters most.",
+     "Keep a controlled tempo with no bouncing."
+    ],
+    "mistakes": [
+     "Short, bouncy reps that skip the stretch.",
+     "Rocking the torso to lift the weight."
+    ]
+   },
+   "tr": {
+    "title": "Seated Calf Raise",
+    "about": "Bükülü diz gastrocnemiusu gevşetir; böylece işin çoğunu soleus yapar.",
+    "steps": [
+     "Ped alt uyluklarına oturacak şekilde otur.",
+     "Ayak tabanının önünü platformun kenarına koy.",
+     "Topukları derin gerilmeye indir ve bekle.",
+     "Başparmakların üzerinde olabildiğince yüksel."
+    ],
+    "cues": [
+     "Tam açıklığı kullan; en önemlisi derin gerilmedir.",
+     "Sekmeden kontrollü tempoda çalış."
+    ],
+    "mistakes": [
+     "Gerilmeyi atlayan kısa, sekmeli tekrarlar.",
+     "Ağırlığı kaldırmak için gövdeyi sallamak."
+    ]
+   },
+   "ar": {
+    "title": "Seated Calf Raise",
+    "about": "ثني الركبتين يرخي عضلة السمانة فتقوم العضلة النعلية بمعظم العمل.",
+    "steps": [
+     "اجلس والوسادة مثبتة على أسفل الفخذين.",
+     "ضع مقدمة قدميك على حافة المنصة.",
+     "أنزل الكعبين إلى تمدد عميق وتوقف.",
+     "ارتفع على الأصابع الكبيرة بأعلى ما يمكن."
+    ],
+    "cues": [
+     "استخدم المدى الكامل، فالتمدد العميق هو الأهم.",
+     "حافظ على إيقاع متحكم دون ارتداد."
+    ],
+    "mistakes": [
+     "تكرارات قصيرة مرتدة تتجاهل التمدد.",
+     "تأرجح الجذع لرفع الوزن."
+    ]
+   }
+  },
+  "tibialis-raise": {
+   "primary": [
+    "shins"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Tibialis Raise",
+    "about": "Trains the tibialis anterior on the front of the shin, supporting knee and ankle health.",
+    "steps": [
+     "Sit or lean with heels on a bench edge and the weight on your feet.",
+     "Let your toes drop down into a full stretch.",
+     "Pull your toes up toward your shins as high as possible.",
+     "Pause, then lower slowly."
+    ],
+    "cues": [
+     "Keep the heel fixed; move only at the ankle.",
+     "Use high reps and chase a burn."
+    ],
+    "mistakes": [
+     "Kicking the weight up from the knee.",
+     "Skipping the bottom stretch."
+    ]
+   },
+   "tr": {
+    "title": "Tibialis Raise",
+    "about": "Kaval kemiğinin önündeki tibialis anterioru çalıştırır; diz ve ayak bileği sağlığını destekler.",
+    "steps": [
+     "Topuklar sehpa kenarında, ağırlık ayaklarında olacak şekilde otur ya da yaslan.",
+     "Parmak uçlarının tam gerilmeye düşmesine izin ver.",
+     "Parmaklarını olabildiğince kaval kemiğine doğru çek.",
+     "Kısa bekle, sonra yavaşça indir."
+    ],
+    "cues": [
+     "Topuğu sabit tut; yalnızca bilekten hareket et.",
+     "Yüksek tekrar yap ve yanmayı kovala."
+    ],
+    "mistakes": [
+     "Ağırlığı dizden savurarak kaldırmak.",
+     "Alttaki gerilmeyi atlamak."
+    ]
+   },
+   "ar": {
+    "title": "Tibialis Raise",
+    "about": "يمرّن العضلة الظنبوبية الأمامية في مقدمة الساق، ويدعم صحة الركبة والكاحل.",
+    "steps": [
+     "اجلس أو اتكئ والكعبان على حافة مقعد والوزن على القدمين.",
+     "دع أصابع قدميك تنزل إلى تمدد كامل.",
+     "اسحب أصابعك نحو الساق بأعلى ما يمكن.",
+     "توقف لحظة ثم انزل ببطء."
+    ],
+    "cues": [
+     "أبقِ الكعب ثابتاً وتحرك من الكاحل فقط.",
+     "استخدم تكرارات عالية حتى الشعور بالحرقة."
+    ],
+    "mistakes": [
+     "رفع الوزن بالركل من الركبة.",
+     "تجاهل التمدد في الأسفل."
+    ]
+   }
+  },
+  "hanging-knee-raise": {
+   "primary": [
+    "abs"
+   ],
+   "secondary": [
+    "obliques",
+    "forearms",
+    "lats"
+   ],
+   "en": {
+    "title": "Hanging Knee Raise",
+    "about": "Hanging and curling the pelvis up trains the lower abs and grip with no equipment beyond a bar.",
+    "steps": [
+     "Hang from a bar or straps with arms straight.",
+     "Brace your core and stop any swing.",
+     "Raise your knees toward your chest, curling the pelvis up.",
+     "Lower slowly until legs are straight below you."
+    ],
+    "cues": [
+     "Think of tilting the pelvis up, not just lifting the knees.",
+     "Exhale as you raise."
+    ],
+    "mistakes": [
+     "Swinging the body for momentum.",
+     "Only lifting knees to hip height without pelvic curl."
+    ]
+   },
+   "tr": {
+    "title": "Hanging Knee Raise",
+    "about": "Barda asılı halde leğeni yukarı kıvırmak alt karın ve kavrama gücünü çalıştırır.",
+    "steps": [
+     "Kollar düz, bara ya da kayışlara asıl.",
+     "Karnını sık ve sallanmayı durdur.",
+     "Leğeni yukarı kıvırarak dizlerini göğsüne çek.",
+     "Bacaklar altta düzleşene kadar yavaşça indir."
+    ],
+    "cues": [
+     "Sadece dizleri kaldırmayı değil, leğeni yukarı devirmeyi düşün.",
+     "Kaldırırken nefes ver."
+    ],
+    "mistakes": [
+     "Momentum için vücudu sallamak.",
+     "Leğeni kıvırmadan dizleri sadece kalça hizasına kaldırmak."
+    ]
+   },
+   "ar": {
+    "title": "Hanging Knee Raise",
+    "about": "التعلق مع لف الحوض للأعلى يمرّن أسفل البطن وقوة القبضة دون أدوات سوى البار.",
+    "steps": [
+     "تعلّق بالبار أو بالأحزمة والذراعان مستقيمتان.",
+     "شدّ الجذع وأوقف أي تأرجح.",
+     "ارفع ركبتيك نحو صدرك مع لف الحوض للأعلى.",
+     "انزل ببطء حتى تستقيم الساقان أسفلك."
+    ],
+    "cues": [
+     "فكّر في إمالة الحوض للأعلى لا رفع الركبتين فقط.",
+     "ازفر أثناء الرفع."
+    ],
+    "mistakes": [
+     "أرجحة الجسم لاكتساب الزخم.",
+     "رفع الركبتين لمستوى الورك فقط دون لف الحوض."
+    ]
+   }
+  },
+  "hanging-leg-raise": {
+   "primary": [
+    "abs"
+   ],
+   "secondary": [
+    "obliques",
+    "forearms",
+    "lats"
+   ],
+   "en": {
+    "title": "Hanging Leg Raise",
+    "about": "A straight-leg raise that strongly loads the abs through a long lever, among the hardest ab moves.",
+    "steps": [
+     "Hang from a bar, straps or dip station with a firm brace.",
+     "Keep legs straight and together.",
+     "Raise your legs as high as possible, curling the pelvis up.",
+     "Lower under control without swinging."
+    ],
+    "cues": [
+     "Posteriorly tilt the pelvis at the top to involve the abs.",
+     "Pause briefly before each rep to stop swinging."
+    ],
+    "mistakes": [
+     "Using the hip flexors alone with an arched lower back.",
+     "Dropping the legs fast between reps."
+    ]
+   },
+   "tr": {
+    "title": "Hanging Leg Raise",
+    "about": "Uzun kol nedeniyle karın kaslarını güçlü yükleyen düz bacak kaldırma; en zor karın hareketlerinden.",
+    "steps": [
+     "Bara ya da kayışlara asıl veya paralel barda kollarına dayan; karnını sık.",
+     "Bacakları düz ve bitişik tut.",
+     "Leğeni kıvırarak bacaklarını olabildiğince yükseğe kaldır.",
+     "Sallanmadan kontrollü indir."
+    ],
+    "cues": [
+     "Karını devreye sokmak için tepede leğeni geriye devir.",
+     "Sallanmayı kesmek için her tekrardan önce kısa bekle."
+    ],
+    "mistakes": [
+     "Bel kavisliyken yalnızca kalça fleksörleriyle kaldırmak.",
+     "Tekrarlar arasında bacakları hızla düşürmek."
+    ]
+   },
+   "ar": {
+    "title": "Hanging Leg Raise",
+    "about": "رفع الساقين مستقيمتين يحمّل البطن بقوة عبر ذراع طويلة، وهو من أصعب تمارين البطن.",
+    "steps": [
+     "تعلّق بالبار أو الأحزمة أو استند على جهاز المتوازي مع شدّ قوي.",
+     "أبقِ الساقين مستقيمتين ومتلاصقتين.",
+     "ارفع ساقيك بأعلى ما يمكن مع لف الحوض للأعلى.",
+     "انزل بتحكم دون تأرجح."
+    ],
+    "cues": [
+     "أمِل الحوض للخلف في الأعلى لإشراك عضلات البطن.",
+     "توقف لحظة قبل كل تكرار لإيقاف التأرجح."
+    ],
+    "mistakes": [
+     "الاعتماد على ثانيات الورك فقط مع تقوس أسفل الظهر.",
+     "إسقاط الساقين بسرعة بين التكرارات."
+    ]
+   }
+  },
+  "reverse-crunch": {
+   "primary": [
+    "abs"
+   ],
+   "secondary": [
+    "obliques"
+   ],
+   "en": {
+    "title": "Reverse Crunch / Lying Leg Raise",
+    "about": "Curling the pelvis toward the ribs on a bench targets the lower abs.",
+    "steps": [
+     "Lie on a flat or decline bench and grip behind your head.",
+     "Bend or straighten the legs, lifted off the bench.",
+     "Curl the pelvis up so the hips lift off the bench.",
+     "Lower slowly until legs are nearly flat."
+    ],
+    "cues": [
+     "Keep the lower back pressed down at the start.",
+     "Move slowly; the curl is small but intense."
+    ],
+    "mistakes": [
+     "Swinging the legs with no pelvic curl.",
+     "Arching the lower back as the legs lower."
+    ]
+   },
+   "tr": {
+    "title": "Reverse Crunch / Lying Leg Raise",
+    "about": "Düz ya da decline sehpada leğeni kaburgalara doğru kıvırmak alt karnı hedefler.",
+    "steps": [
+     "Düz ya da decline sehpaya uzan, başının arkasından tutun.",
+     "Bacakları bükülü ya da düz, sehpadan kaldırılmış tut.",
+     "Leğeni kıvırarak kalçanı sehpadan kaldır.",
+     "Bacaklar neredeyse yatay olana kadar yavaşça indir."
+    ],
+    "cues": [
+     "Başlangıçta belini sehpaya bastır.",
+     "Yavaş hareket et; kıvrılma küçük ama yoğundur."
+    ],
+    "mistakes": [
+     "Leğeni kıvırmadan bacakları savurmak.",
+     "Bacaklar inerken beli kavislendirmek."
+    ]
+   },
+   "ar": {
+    "title": "Reverse Crunch / Lying Leg Raise",
+    "about": "لف الحوض نحو الأضلاع على مقعد يستهدف أسفل البطن.",
+    "steps": [
+     "استلقِ على مقعد مستوٍ أو مائل وأمسك خلف رأسك.",
+     "اثنِ الساقين أو افردهما مرفوعتين عن المقعد.",
+     "لفّ الحوض للأعلى حتى يرتفع الورك عن المقعد.",
+     "انزل ببطء حتى تكاد الساقان تستويان."
+    ],
+    "cues": [
+     "أبقِ أسفل الظهر ملتصقاً في البداية.",
+     "تحرك ببطء، فاللف صغير لكنه مكثف."
+    ],
+    "mistakes": [
+     "أرجحة الساقين دون لف الحوض.",
+     "تقوس أسفل الظهر عند نزول الساقين."
+    ]
+   }
+  },
+  "crunch": {
+   "primary": [
+    "abs"
+   ],
+   "secondary": [
+    "obliques"
+   ],
+   "en": {
+    "title": "Crunch",
+    "about": "Spinal flexion with the rib cage curling toward the pelvis directly trains the rectus abdominis.",
+    "steps": [
+     "Lie on your back with knees bent or feet elevated.",
+     "Hold the weight on your chest or arms forward.",
+     "Curl your ribs toward your pelvis, lifting the shoulder blades.",
+     "Lower slowly until your upper back touches down."
+    ],
+    "cues": [
+     "Think of rolling the spine up, not lifting with the neck.",
+     "Exhale fully at the top."
+    ],
+    "mistakes": [
+     "Yanking on the head with the hands.",
+     "Lifting with the hip flexors into a sit-up."
+    ]
+   },
+   "tr": {
+    "title": "Crunch",
+    "about": "Kaburgaları leğene doğru kıvıran omurga fleksiyonu rectus abdominisi doğrudan çalıştırır.",
+    "steps": [
+     "Dizler bükülü ya da ayaklar yükseltilmiş, sırt üstü uzan.",
+     "Ağırlığı göğsünde tut ya da kollarını öne uzat.",
+     "Kürek kemiklerini kaldırarak kaburgalarını leğene doğru kıvır.",
+     "Üst sırt yere değene kadar yavaşça in."
+    ],
+    "cues": [
+     "Boyunla kalkmayı değil, omurgayı yuvarlamayı düşün.",
+     "Tepede nefesini tamamen ver."
+    ],
+    "mistakes": [
+     "Elleriyle başı çekmek.",
+     "Kalça fleksörleriyle sit-up'a dönüştürmek."
+    ]
+   },
+   "ar": {
+    "title": "Crunch",
+    "about": "ثني العمود الفقري بلف الأضلاع نحو الحوض يمرّن العضلة المستقيمة البطنية مباشرة.",
+    "steps": [
+     "استلقِ على ظهرك والركبتان مثنيتان أو القدمان مرفوعتان.",
+     "أمسك الوزن على صدرك أو مدّ ذراعيك للأمام.",
+     "لفّ أضلاعك نحو الحوض مع رفع لوحي الكتف.",
+     "انزل ببطء حتى يلامس أعلى الظهر الأرض."
+    ],
+    "cues": [
+     "فكّر في لف العمود الفقري لا الرفع بالرقبة.",
+     "ازفر بالكامل في الأعلى."
+    ],
+    "mistakes": [
+     "شد الرأس باليدين.",
+     "الرفع بثانيات الورك فيتحول إلى Sit-Up."
+    ]
+   }
+  },
+  "decline-crunch": {
+   "primary": [
+    "abs"
+   ],
+   "secondary": [
+    "obliques"
+   ],
+   "en": {
+    "title": "Decline Crunch / Sit-Up",
+    "about": "The decline adds resistance and a deeper stretch for the abs at the bottom.",
+    "steps": [
+     "Lock your feet under the pads of a decline bench.",
+     "Lie back with arms crossed or overhead.",
+     "Curl your torso up, rounding the spine segment by segment.",
+     "Lower slowly, letting the abs stretch at the bottom."
+    ],
+    "cues": [
+     "Round the spine instead of hinging at the hips.",
+     "Control the lowering for a 2–3 second eccentric."
+    ],
+    "mistakes": [
+     "Flopping down without control.",
+     "Pulling up with the hip flexors and a flat back."
+    ]
+   },
+   "tr": {
+    "title": "Decline Crunch / Sit-Up",
+    "about": "Decline açı direnci artırır ve altta karın kaslarına daha derin gerilme verir.",
+    "steps": [
+     "Ayaklarını decline sehpanın pedlerinin altına kilitle.",
+     "Kollar çapraz ya da başının üstünde, geriye uzan.",
+     "Omurgayı omur omur yuvarlayarak gövdeni kaldır.",
+     "Altta karnın gerilmesine izin vererek yavaşça in."
+    ],
+    "cues": [
+     "Kalçadan kırılmak yerine omurgayı yuvarla.",
+     "İnişi 2–3 saniyelik eksantrikle kontrol et."
+    ],
+    "mistakes": [
+     "Kontrolsüzce geri düşmek.",
+     "Düz sırtla kalça fleksörlerinden çekmek."
+    ]
+   },
+   "ar": {
+    "title": "Decline Crunch / Sit-Up",
+    "about": "الميل للأسفل يضيف مقاومة وتمدداً أعمق لعضلات البطن في الأسفل.",
+    "steps": [
+     "ثبّت قدميك تحت وسادات المقعد المائل للأسفل.",
+     "استلقِ للخلف والذراعان متقاطعتان أو فوق الرأس.",
+     "ارفع جذعك بلف العمود الفقري فقرة تلو الأخرى.",
+     "انزل ببطء مع ترك البطن يتمدد في الأسفل."
+    ],
+    "cues": [
+     "قوّس العمود الفقري بدل الانحناء من الورك.",
+     "تحكّم في النزول لمدة 2–3 ثوانٍ."
+    ],
+    "mistakes": [
+     "السقوط للخلف دون تحكم.",
+     "السحب بثانيات الورك مع ظهر مستقيم."
+    ]
+   }
+  },
+  "cable-crunch": {
+   "primary": [
+    "abs"
+   ],
+   "secondary": [
+    "obliques"
+   ],
+   "en": {
+    "title": "Cable / Machine Crunch",
+    "about": "A loadable crunch that lets you progressively overload the abs like any other muscle.",
+    "steps": [
+     "Kneel facing a cable with a rope, or sit in the crunch machine.",
+     "Hold the handles by your head and fix your hips in place.",
+     "Crunch your ribs toward your pelvis, rounding the spine.",
+     "Return slowly until your abs are fully stretched."
+    ],
+    "cues": [
+     "Keep hips still; the spine does the bending.",
+     "Exhale hard at full contraction."
+    ],
+    "mistakes": [
+     "Sitting back on the heels so the hips do the work.",
+     "Pulling with the arms instead of the abs."
+    ]
+   },
+   "tr": {
+    "title": "Cable / Machine Crunch",
+    "about": "Karın kaslarına da diğer kaslar gibi kademeli yüklenmeni sağlayan ağırlıklı crunch.",
+    "steps": [
+     "Halatlı kabloya dönük diz çök ya da crunch makinesine otur.",
+     "Tutamaçları başının yanında tut ve kalçanı sabitle.",
+     "Omurgayı yuvarlayarak kaburgalarını leğene doğru sık.",
+     "Karın tam gerilene kadar yavaşça geri dön."
+    ],
+    "cues": [
+     "Kalçan sabit kalsın; bükülmeyi omurga yapar.",
+     "Tam kasılmada güçlü nefes ver."
+    ],
+    "mistakes": [
+     "Topuklara oturup işi kalçaya yaptırmak.",
+     "Karın yerine kollarla çekmek."
+    ]
+   },
+   "ar": {
+    "title": "Cable / Machine Crunch",
+    "about": "تمرين كرنش بأوزان يتيح زيادة الحمل تدريجياً على البطن كأي عضلة أخرى.",
+    "steps": [
+     "اركع مواجهاً الكابل مع حبل أو اجلس في جهاز الكرنش.",
+     "أمسك المقابض بجانب رأسك وثبّت الحوض.",
+     "اضغط أضلاعك نحو الحوض مع تقويس العمود الفقري.",
+     "عد ببطء حتى تتمدد عضلات البطن تماماً."
+    ],
+    "cues": [
+     "أبقِ الحوض ثابتاً، فالعمود الفقري هو من ينثني.",
+     "ازفر بقوة عند الانقباض الكامل."
+    ],
+    "mistakes": [
+     "الجلوس على الكعبين فيقوم الورك بالعمل.",
+     "السحب بالذراعين بدل البطن."
+    ]
+   }
+  },
+  "ab-rollout": {
+   "primary": [
+    "abs"
+   ],
+   "secondary": [
+    "lats",
+    "obliques",
+    "triceps"
+   ],
+   "en": {
+    "title": "Ab Rollout",
+    "about": "An anti-extension move that loads the abs in a long, stretched position.",
+    "steps": [
+     "Kneel holding a barbell or ab wheel under your shoulders.",
+     "Brace and tuck your pelvis slightly.",
+     "Roll forward slowly as far as you can without arching.",
+     "Pull back with your abs to the start."
+    ],
+    "cues": [
+     "Keep a slight hollow; ribs down.",
+     "Only go as far as you can keep the back flat."
+    ],
+    "mistakes": [
+     "Letting the lower back sag at full extension.",
+     "Pulling back with the hips first."
+    ]
+   },
+   "tr": {
+    "title": "Ab Rollout",
+    "about": "Karın kaslarını uzun, gerilmiş pozisyonda yükleyen anti-ekstansiyon hareketi.",
+    "steps": [
+     "Diz çök, barı ya da ab tekerini omuzlarının altında tut.",
+     "Karnını sık ve leğeni hafifçe içe devir.",
+     "Beli kavislendirmeden gidebildiğin kadar yavaşça öne yuvarlan.",
+     "Karın kaslarınla başlangıca geri çek."
+    ],
+    "cues": [
+     "Hafif hollow pozisyonu koru; kaburgalar aşağıda.",
+     "Sırtını düz tutabildiğin kadar ileri git."
+    ],
+    "mistakes": [
+     "Tam uzanmada belin çökmesi.",
+     "Geri dönerken önce kalçayla çekmek."
+    ]
+   },
+   "ar": {
+    "title": "Ab Rollout",
+    "about": "تمرين مقاومة للبسط يحمّل البطن في وضع ممدود وطويل.",
+    "steps": [
+     "اركع ممسكاً باراً أو عجلة بطن تحت كتفيك.",
+     "شدّ الجذع وأمِل الحوض للداخل قليلاً.",
+     "تدحرج ببطء للأمام بأبعد ما يمكن دون تقوس.",
+     "اسحب نفسك بعضلات البطن إلى البداية."
+    ],
+    "cues": [
+     "حافظ على تجويف خفيف والأضلاع للأسفل.",
+     "تقدم فقط بقدر ما تستطيع إبقاء الظهر مستقيماً."
+    ],
+    "mistakes": [
+     "هبوط أسفل الظهر عند الامتداد الكامل.",
+     "السحب بالورك أولاً عند العودة."
+    ]
+   }
+  },
+  "v-up": {
+   "primary": [
+    "abs"
+   ],
+   "secondary": [
+    "obliques"
+   ],
+   "en": {
+    "title": "V-Up",
+    "about": "Raises the torso and legs together, training upper and lower abs in one move.",
+    "steps": [
+     "Lie flat with arms overhead and legs straight.",
+     "Brace and press your lower back down.",
+     "Lift arms and legs together, reaching hands toward feet.",
+     "Lower both slowly back to just above the floor."
+    ],
+    "cues": [
+     "Curl the spine; don't just hinge at the hips.",
+     "Bend the knees if you can't keep legs straight."
+    ],
+    "mistakes": [
+     "Flopping back down with no control.",
+     "Arching the lower back at the bottom."
+    ]
+   },
+   "tr": {
+    "title": "V-Up",
+    "about": "Gövde ve bacakları birlikte kaldırarak üst ve alt karnı tek harekette çalıştırır.",
+    "steps": [
+     "Kollar başının üstünde, bacaklar düz, sırt üstü uzan.",
+     "Karnını sık ve belini yere bastır.",
+     "Kolları ve bacakları birlikte kaldır, ellerini ayaklarına uzat.",
+     "İkisini de yerin hemen üstüne yavaşça indir."
+    ],
+    "cues": [
+     "Sadece kalçadan kırılma, omurgayı kıvır.",
+     "Bacakları düz tutamıyorsan dizleri bük."
+    ],
+    "mistakes": [
+     "Kontrolsüzce yere düşmek.",
+     "Altta beli kavislendirmek."
+    ]
+   },
+   "ar": {
+    "title": "V-Up",
+    "about": "رفع الجذع والساقين معاً يمرّن أعلى البطن وأسفله في حركة واحدة.",
+    "steps": [
+     "استلقِ مستوياً والذراعان فوق الرأس والساقان مستقيمتان.",
+     "شدّ الجذع واضغط أسفل الظهر على الأرض.",
+     "ارفع الذراعين والساقين معاً ومدّ يديك نحو قدميك.",
+     "أنزلهما ببطء إلى ما فوق الأرض بقليل."
+    ],
+    "cues": [
+     "لفّ العمود الفقري ولا تكتفِ بالانحناء من الورك.",
+     "اثنِ الركبتين إن لم تستطع إبقاء الساقين مستقيمتين."
+    ],
+    "mistakes": [
+     "السقوط للخلف دون تحكم.",
+     "تقوس أسفل الظهر في الأسفل."
+    ]
+   }
+  },
+  "seated-bicycle": {
+   "primary": [
+    "abs",
+    "obliques"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Seated Bicycle",
+    "about": "A seated twisting crunch that trains the obliques and lower abs together.",
+    "steps": [
+     "Sit on the floor, lean back slightly and lift your feet.",
+     "Place hands lightly behind your head.",
+     "Bring one knee in while rotating the opposite elbow toward it.",
+     "Switch sides in a smooth pedaling rhythm."
+    ],
+    "cues": [
+     "Rotate through the ribs, not just the elbows.",
+     "Keep the movement slow and controlled."
+    ],
+    "mistakes": [
+     "Pulling on the neck.",
+     "Racing through reps with tiny rotation."
+    ]
+   },
+   "tr": {
+    "title": "Seated Bicycle",
+    "about": "Oblikleri ve alt karnı birlikte çalıştıran oturarak yapılan dönüşlü crunch.",
+    "steps": [
+     "Yere otur, hafifçe geriye yaslan ve ayaklarını kaldır.",
+     "Ellerini hafifçe başının arkasına koy.",
+     "Bir dizini çekerken karşı dirseği ona doğru döndür.",
+     "Akıcı bir pedal ritmiyle taraf değiştir."
+    ],
+    "cues": [
+     "Sadece dirsekleri değil, kaburgaları döndür.",
+     "Hareketi yavaş ve kontrollü tut."
+    ],
+    "mistakes": [
+     "Boynu çekmek.",
+     "Minik dönüşlerle tekrarları aceleye getirmek."
+    ]
+   },
+   "ar": {
+    "title": "Seated Bicycle",
+    "about": "كرنش دوراني جالس يمرّن العضلات المائلة وأسفل البطن معاً.",
+    "steps": [
+     "اجلس على الأرض ومِل للخلف قليلاً وارفع قدميك.",
+     "ضع يديك بخفة خلف رأسك.",
+     "اسحب ركبة للداخل مع تدوير المرفق المقابل نحوها.",
+     "بدّل الجانبين بإيقاع سلس كالتبديل على الدراجة."
+    ],
+    "cues": [
+     "دوّر من الأضلاع لا من المرفقين فقط.",
+     "أبقِ الحركة بطيئة ومتحكمة."
+    ],
+    "mistakes": [
+     "شد الرقبة.",
+     "التسرع في التكرارات بدوران صغير."
+    ]
+   }
+  }
+ },
+ "map": {
+  "sissy-squat-copy": "hack-squat",
+  "hack-squat-copy": "hack-squat",
+  "hack-squat-upper-back-elevated-hip-dominant": "hack-squat",
+  "hack-squat-copy-ryan_humis514743": "hack-squat",
+  "back-elevated-hack-squat-quad-dominant": "hack-squat",
+  "pendulum-squat-toes-low-quad-dominant": "hack-squat",
+  "single-leg-leg-press-copy-ryan_humis514743": "leg-press",
+  "leg-leg-press-toes-low-copy": "leg-press",
+  "leg-leg-press-wide-copy-ryan_humis514743": "leg-press",
+  "leg-press-wide-stance-safety-stop": "leg-press",
+  "single-leg-extension-copy-ryan_humis514743": "leg-press",
+  "seated-leg-curl-toes-in-copy": "leg-extension",
+  "leg-extension-3-4-reps-copy": "leg-extension",
+  "leg-extension-lengthened-partials": "leg-extension",
+  "leg-extensions-ryan_humis514743": "leg-extension",
+  "leg-extensions-copy": "leg-extension",
+  "heel-elevated-high-bar-squats-copy": "high-bar-squat",
+  "low-bar-squats-copy": "high-bar-squat",
+  "high-bar-squat-heels-elevated-garage-2-0": "high-bar-squat",
+  "slow-high-bar-squats-giant-set-garage-program": "high-bar-squat",
+  "squats-1-5s-garage-program": "high-bar-squat",
+  "squats-drops-garage-program": "high-bar-squat",
+  "century-squats-garage-program": "high-bar-squat",
+  "safety-bar-squat-ryan_humis514743": "high-bar-squat",
+  "safety-bar-high-bar-squat": "high-bar-squat",
+  "low-bar-squat-garage-2-0": "low-bar-squat",
+  "sumo-deads-copy-ryan_humis514743": "low-bar-squat",
+  "safety-bar-low-bar-squat": "low-bar-squat",
+  "barbell-front-squat-ryan_humis514743": "front-squat",
+  "barbell-front-squat-heel-elevated": "front-squat",
+  "dumbbell-heel-elevated-front-squat-garage-program": "front-squat",
+  "smith-front-squat-heel-elevated": "front-squat",
+  "hack-squat-toes-low-quad-copy": "smith-squat",
+  "smith-squat-wide-stance": "smith-squat",
+  "smith-squat-copy": "smith-squat",
+  "belt-squat-ryan_humis514743": "belt-squat",
+  "high-bar-squats-copy": "sissy-squat",
+  "sissy-squat-no-weight": "sissy-squat",
+  "sissy-squat-barbell-assisted-extreme-depth": "sissy-squat",
+  "barbell-sissy-squat": "sissy-squat",
+  "barbell-sissy-squat-on-dumbbell": "sissy-squat",
+  "dumbbell-sissy-squat-garage-2-0": "sissy-squat",
+  "dumbbell-sissy-squats-giant-set-garage-program": "sissy-squat",
+  "extreme-sissy-squat-giant-set-garage-program": "sissy-squat",
+  "dumbbell-heel-elevated-sissy-leaning-back-during-contraction": "sissy-squat",
+  "landmine-sissy-squats": "sissy-squat",
+  "barbell-somersault-squat": "somersault-squat",
+  "somersault-squat-on-smith": "somersault-squat",
+  "somersault-squats-bodyweight": "somersault-squat",
+  "spanish-squat-ryan_humis514743": "spanish-squat",
+  "split-squat-garage-program": "split-squat",
+  "dumbbell-hamstring-curls-copy": "split-squat",
+  "dumbbell-split-squat-drops-garage-program": "split-squat",
+  "dumbbell-split-static-lunge": "split-squat",
+  "barbell-split-squat-heel-elevated-quad-dominant": "split-squat",
+  "smith-quad-split-squat": "split-squat",
+  "smith-split-squat-heel-elevated": "split-squat",
+  "static-lunges-garage-program": "split-squat",
+  "barbell-static-lunges": "split-squat",
+  "landmine-static-lunge": "split-squat",
+  "dumbbell-quad-split-squat-copy": "split-squat",
+  "glute-dominant-static-lunges": "split-squat",
+  "smith-split-squat-foot-on-bench": "bulgarian-split-squat",
+  "smith-split-squat-foot-on-bench-leaned-forward": "bulgarian-split-squat",
+  "smith-split-squat-glute-focused-foot-elevated-back-foot-on-bench": "bulgarian-split-squat",
+  "twisting-bulgarian-split-squat-glute": "bulgarian-split-squat",
+  "split-stance-dumbbell-glute-stiff-copy": "reverse-lunge",
+  "reverse-barbell-lunges-garage-program": "reverse-lunge",
+  "barbell-reverse-lunge-copy-ryan_humis514743": "reverse-lunge",
+  "reverse-dumbbell-lunge-stabilized": "reverse-lunge",
+  "reverse-dumbbell-lunges-holding-something-garage-program": "reverse-lunge",
+  "landmine-reverse-lunge-ryan_humis514743": "reverse-lunge",
+  "weighted-walking-lunges-copy": "reverse-lunge",
+  "180-continuous-walking-lunges-garage-program": "walking-lunge",
+  "weighted-walking-lunges-heavy-copy-4955e1e5-9f64-49bd-ae9e-9798a3335e15": "walking-lunge",
+  "walking-lunges-garage-program": "walking-lunge",
+  "dumbbell-walking-lunges-rp": "walking-lunge",
+  "walking-lunges-no-weight": "walking-lunge",
+  "weighted-walking-lunges-quad-dominant-short-steps": "walking-lunge",
+  "ball-hamstring-curls-copy": "walking-lunge",
+  "leg-press-calf-raise-single-clusterfuck-copy-ryan_humis514743": "walking-lunge",
+  "lunges-45-degree-step": "walking-lunge",
+  "lunges-long-stride-drag-back-foot": "walking-lunge",
+  "weighted-walking-lunges-copy-copy": "walking-lunge",
+  "lunges-monster-walk": "walking-lunge",
+  "db-lateral-lunge-plate-slides": "lateral-lunge",
+  "lateral-lunge-stabilizing-leg-elevated": "lateral-lunge",
+  "lateral-lunge-plate-slides-ryan_humis514743": "lateral-lunge",
+  "dumbbell-step-ups-garage-program": "step-up",
+  "step-ups-garage-2-0": "step-up",
+  "dumbbell-walking-lunges-copy": "step-up",
+  "quad-dominant-step-ups-single-dumbbell-held-like-a-front-squat": "step-up",
+  "dumbbell-sumo-squat-garage-program": "sumo-squat",
+  "modified-pistol-squat-giant-set-garage-program": "single-leg-squat",
+  "landmine-single-leg-hack-squat-ryan_humis514743": "single-leg-squat",
+  "quad-extreme-stretch": "quad-stretch",
+  "cardio": "cardio",
+  "knee-tucks-stay-up": "tuck-jump",
+  "angled-nordic-curl": "nordic-curl",
+  "diy-nordic-curl-angled": "nordic-curl",
+  "diy-nordic-curl-full-rom": "nordic-curl",
+  "fuck-it-nordic-curl-use-your-hands": "nordic-curl",
+  "tucked-nordic-curl": "nordic-curl",
+  "seated-leg-curl-copy": "lying-leg-curl",
+  "lying-leg-curls-pad-elevated": "lying-leg-curl",
+  "dumbbell-stiff-legs-copy": "seated-leg-curl",
+  "single-leg-glute-hyper-copy": "seated-leg-curl",
+  "hamstring-hyper-copy": "dumbbell-leg-curl",
+  "kneeling-dumbbell-leg-curl": "dumbbell-leg-curl",
+  "lying-dumbbell-leg-curl-ground": "dumbbell-leg-curl",
+  "lying-dumbbell-leg-curls-bench": "dumbbell-leg-curl",
+  "leg-leg-press-wide-copy": "ball-hamstring-curl",
+  "barbell-stiff-legs": "romanian-deadlift",
+  "rdls-garage-program": "romanian-deadlift",
+  "rdls-toes-elevated-garage-program": "romanian-deadlift",
+  "smith-rdls": "romanian-deadlift",
+  "smith-stiff-legs": "romanian-deadlift",
+  "glute-rdls-copy": "romanian-deadlift",
+  "dumbbell-stiff-leg-deadlifts": "romanian-deadlift",
+  "dumbbell-hamstring-curls-copy-fe1f775b-1e2f-4662-9a68-2e5657cd287a": "romanian-deadlift",
+  "dumbbell-stiffs-extreme-stretch-garage-program": "romanian-deadlift",
+  "dumbbell-stiffs-barbell-assisted-garage-2-0": "romanian-deadlift",
+  "dumbbell-stiffs-smith-assisted": "romanian-deadlift",
+  "monster-walk-copy": "romanian-deadlift",
+  "leg-supported-dumbbell-stiffs": "romanian-deadlift",
+  "hyper-extension-stiff-leg-deadlift": "romanian-deadlift",
+  "sumo-deads-copy": "glute-rdl",
+  "belt-squat-glute-rdl": "glute-rdl",
+  "dumbbell-hamstring-curls-copy-ryan_humis514743": "glute-rdl",
+  "b-stance-twisting-glute-rdl": "glute-rdl",
+  "b-stance-landmine-twisting-glute-rdl": "glute-rdl",
+  "single-leg-landmine-stiffs-opposite-side": "single-leg-rdl",
+  "single-leg-landmine-stiffs-same-side": "single-leg-rdl",
+  "hip-dominant-barbell-good-morning": "good-morning",
+  "single-leg-hamstring-hyper-copy": "hamstring-hyper",
+  "hamstring-hyper-extension": "hamstring-hyper",
+  "hyperextension-toes-out-copy": "hamstring-hyper",
+  "hamstring-barbell-hyper-extension": "hamstring-hyper",
+  "glute-hyper-copy": "hamstring-hyper",
+  "smith-dumbbell-stiff-leg-copy": "glute-hyper",
+  "glute-hyper-weighted": "glute-hyper",
+  "leg-press-calf-raise-single-clusterfuck-copy": "glute-hyper",
+  "barbell-hip-thrust-compound-garage-program": "hip-thrust",
+  "weighted-walking-lunges-heavy-copy": "hip-thrust",
+  "smith-hip-thrust-ryan_humis514743": "hip-thrust",
+  "abductions-ryan_humis514743": "hip-abduction",
+  "abductor-machine-ryan_humis514743": "hip-abduction",
+  "lateral-head-cable-extensions-copy": "cable-kickback",
+  "split-stance-dumbbell-glute-stiff-copy-ryan_humis514743": "sumo-deadlift",
+  "incline-dumbbell-rear-delt-raise-abduction": "rear-delt-fly",
+  "machine-rear-delt-fly-horizontal-abduction-external-rotation": "rear-delt-fly",
+  "adductions": "hip-adduction",
+  "barbell-calf-raise-ryan_humis514743": "standing-calf-raise",
+  "barbell-calf-raise-extreme-stretch": "standing-calf-raise",
+  "cable-fly-copy": "standing-calf-raise",
+  "smith-calf-raise-copy": "standing-calf-raise",
+  "smith-machine-single-leg-calf-raise-ryan_humis514743": "standing-calf-raise",
+  "standing-machine-calf-raise-ryan_humis514743": "standing-calf-raise",
+  "standing-machine-calf-raise-extreme-stretch": "standing-calf-raise",
+  "single-leg-machine-calf-raise": "standing-calf-raise",
+  "plate-calf-raises-toes-straight-garage-program": "standing-calf-raise",
+  "plate-calf-raises-toes-turned-in-garage-program": "standing-calf-raise",
+  "plate-calf-raises-toes-turned-out-garage-program": "standing-calf-raise",
+  "straight-bar-curl-clusterfuck-copy": "standing-calf-raise",
+  "single-leg-dumbbell-calf-raise-ryan_humis514743": "standing-calf-raise",
+  "single-leg-dumbbell-calf-raise-neutral": "standing-calf-raise",
+  "single-leg-dumbbell-calf-raise-toe-in": "standing-calf-raise",
+  "single-leg-dumbbell-calf-raise-toe-in-ryan_humis514743": "standing-calf-raise",
+  "single-leg-dumbbell-calf-raise-toe-out": "standing-calf-raise",
+  "single-leg-dumbbell-calf-raise-toe-out-ryan_humis514743": "standing-calf-raise",
+  "single-leg-dumbbell-calf-raise-toes-straight": "standing-calf-raise",
+  "single-leg-donkey-calf-raise-garage-program": "standing-calf-raise",
+  "squatting-dumbbell-calf-raise-garage-program": "standing-calf-raise",
+  "leg-press-single-leg-calf-raise-copy": "leg-press-calf-raise",
+  "leg-press-bent-knee-calf-raise-copy-62cf74b8-e7b9-4f36-bf19-be1856fdda4e": "leg-press-calf-raise",
+  "standing-dc-style-calf-raise-copy": "leg-press-calf-raise",
+  "wide-grip-upright-row-copy": "leg-press-calf-raise",
+  "leg-press-calf-raise-toes-in-copy": "leg-press-calf-raise",
+  "seated-calf-toes-out-copy": "leg-press-calf-raise",
+  "single-leg-seated-calf-raise-copy": "seated-calf-raise",
+  "seated-dumbbell-shrug-drops-copy-b24829a5-f696-485f-92d9-3cc55769fbb9": "seated-calf-raise",
+  "dc-seated-calf-raise-copy": "seated-calf-raise",
+  "single-leg-smith-calf-raise-copy": "seated-calf-raise",
+  "seated-calf-raise-5-drops": "seated-calf-raise",
+  "seated-calf-raise-bottom-partials": "seated-calf-raise",
+  "seated-dumbbell-shrug-drops-copy-ryan_humis514743": "seated-calf-raise",
+  "seated-calf-raise-extreme-stretch": "seated-calf-raise",
+  "seated-calf-raise-full-rom": "seated-calf-raise",
+  "seated-calf-raise-locked-out-partials": "seated-calf-raise",
+  "seated-calf-raise-neutral": "seated-calf-raise",
+  "seated-calf-raise-toes-in": "seated-calf-raise",
+  "seated-calf-raise-toes-out": "seated-calf-raise",
+  "seated-calf-raises-garage-program": "seated-calf-raise",
+  "seated-calf-partials-top-copy": "seated-calf-raise",
+  "seated-calf-raise-copy": "seated-calf-raise",
+  "poor-mans-seated-calf-raise-weighted": "seated-calf-raise",
+  "dumbbell-tibs": "tibialis-raise",
+  "plate-tib-raises-garage-program": "tibialis-raise",
+  "ab-straps-hanging-knee-raise-weighted": "hanging-knee-raise",
+  "hanging-knee-raises-garage-2-0": "hanging-knee-raise",
+  "hanging-knee-raises-barbell-stabilized": "hanging-knee-raise",
+  "hanging-knee-raises-weighted-garage-2-0": "hanging-knee-raise",
+  "hanging-knee-rotations": "hanging-knee-raise",
+  "ab-straps-hanging-leg-raises": "hanging-leg-raise",
+  "dip-leg-raise-copy": "hanging-leg-raise",
+  "hanging-leg-raises-garage-2-0": "hanging-leg-raise",
+  "dip-bar-leg-raises-ryan_humis514743": "hanging-leg-raise",
+  "single-arm-french-pressed-to-bench-copy": "hanging-leg-raise",
+  "dip-bar-abdominal-pikes": "hanging-leg-raise",
+  "decline-leg-raise-ryan_humis514743": "reverse-crunch",
+  "decline-bench-lower-ab-hip-tilt-raise": "reverse-crunch",
+  "seated-knee-raises-garage-program": "reverse-crunch",
+  "feet-elevated-crunches-ryan_humis514743": "crunch",
+  "weight-crunch-garage-program": "crunch",
+  "elbows-to-knees-crunch": "crunch",
+  "straight-arm-crunches": "crunch",
+  "decline-crunch-mechanical-drop-starting-form-copy": "decline-crunch",
+  "bodyweight-french-press-copy": "decline-crunch",
+  "decline-thoracic-extension-flexion-crunch": "decline-crunch",
+  "decline-sit-ups-ryan_humis514743": "decline-crunch",
+  "cable-crunches-ryan_humis514743": "cable-crunch",
+  "machine-ab-crunch-ryan_humis514743": "cable-crunch",
+  "diy-barbell-ab-roller": "ab-rollout",
+  "poor-mans-ab-roller-garage-program": "ab-rollout",
+  "v-ups-ryan_humis514743": "v-up",
+  "v-ups-garage-2-0": "v-up",
+  "v-ups-dumbbell-feet-only-garage-program": "v-up",
+  "v-ups-dumbbell-between-feet": "v-up",
+  "v-ups-dumbbell-both-hands-feet": "v-up",
+  "v-ups-dumbbell-in-hands": "v-up",
+  "partial-v-ups-dumbbell-in-hands-feet-garage-program": "v-up",
+  "weighted-v-ups-bent-knees": "v-up",
+  "exercise-ball-pass-v-ups": "v-up",
+  "seated-bicycles-garage-program": "seated-bicycle"
+ },
+ "variantNotes": {
+  "hack-squat-copy": {
+   "en": "Feet low on the platform lets the knees travel forward, biasing the quads.",
+   "tr": "Ayakları platformun altına koymak dizlerin öne gitmesini sağlar ve quadı vurgular.",
+   "ar": "وضع القدمين أسفل المنصة يتيح تقدم الركبتين فيركز على الفخذ."
+  },
+  "single-leg-leg-press-copy-ryan_humis514743": {
+   "en": "Feet low on the platform lets the knees travel forward, biasing the quads.",
+   "tr": "Ayakları platformun altına koymak dizlerin öne gitmesini sağlar ve quadı vurgular.",
+   "ar": "وضع القدمين أسفل المنصة يتيح تقدم الركبتين فيركز على الفخذ."
+  },
+  "pendulum-squat-toes-low-quad-dominant": {
+   "en": "Pendulum machine with feet low: the arcing path keeps tension on the quads at deep knee angles.",
+   "tr": "Ayaklar alçakta pendulum makinesi: yay şeklindeki yol derin diz açılarında quadda gerilimi korur.",
+   "ar": "جهاز Pendulum مع القدمين أسفل المنصة: المسار القوسي يحافظ على شد الفخذ في زوايا الركبة العميقة."
+  },
+  "hack-squat-upper-back-elevated-hip-dominant": {
+   "en": "Upper back set higher on the pad with feet higher shifts the work toward the glutes.",
+   "tr": "Üst sırt pedde daha yukarıda ve ayaklar yüksekte olunca iş kalçaya kayar.",
+   "ar": "رفع أعلى الظهر على الوسادة مع وضع القدمين أعلى ينقل العمل نحو الألوية."
+  },
+  "back-elevated-hack-squat-quad-dominant": {
+   "en": "Back elevated with feet low keeps the torso upright and maximizes knee travel for the quads.",
+   "tr": "Sırt yükseltilmiş, ayaklar alçakta; gövde dik kalır ve dizler quad için en çok öne gider.",
+   "ar": "رفع الظهر مع خفض القدمين يبقي الجذع مستقيماً ويزيد تقدم الركبتين لصالح الفخذ."
+  },
+  "hack-squat-copy-ryan_humis514743": {
+   "en": "Wide stance biases adductors and glutes, done as a cluster set with short rests between mini-sets.",
+   "tr": "Geniş duruş adductor ve kalçayı vurgular; mini setler arası kısa dinlenmeli cluster set olarak yapılır.",
+   "ar": "الوقفة الواسعة تركز على المقرّبة والألوية، وتُؤدى كمجموعة عنقودية براحات قصيرة."
+  },
+  "leg-leg-press-toes-low-copy": {
+   "en": "Wide stance with toes out shifts more work to the adductors and glutes.",
+   "tr": "Parmaklar dışa dönük geniş duruş, işi daha çok adductor ve kalçaya kaydırır.",
+   "ar": "الوقفة الواسعة مع الأصابع للخارج تنقل عملاً أكبر إلى العضلات المقرّبة والألوية."
+  },
+  "smith-squat-wide-stance": {
+   "en": "Wide stance with toes out shifts more work to the adductors and glutes.",
+   "tr": "Parmaklar dışa dönük geniş duruş, işi daha çok adductor ve kalçaya kaydırır.",
+   "ar": "الوقفة الواسعة مع الأصابع للخارج تنقل عملاً أكبر إلى العضلات المقرّبة والألوية."
+  },
+  "dumbbell-sumo-squat-garage-program": {
+   "en": "Wide stance with toes out shifts more work to the adductors and glutes.",
+   "tr": "Parmaklar dışa dönük geniş duruş, işi daha çok adductor ve kalçaya kaydırır.",
+   "ar": "الوقفة الواسعة مع الأصابع للخارج تنقل عملاً أكبر إلى العضلات المقرّبة والألوية."
+  },
+  "leg-leg-press-wide-copy-ryan_humis514743": {
+   "en": "Wide stance for adductors and glutes, performed as a cluster set.",
+   "tr": "Adductor ve kalça için geniş duruş, cluster set olarak yapılır.",
+   "ar": "وقفة واسعة للمقرّبة والألوية، تُؤدى كمجموعة عنقودية."
+  },
+  "leg-press-wide-stance-safety-stop": {
+   "en": "Wide stance with the safety stops set so you reach full depth safely on every rep.",
+   "tr": "Geniş duruş; emniyet durdurucuları her tekrarda tam derinliğe güvenle inecek şekilde ayarlanır.",
+   "ar": "وقفة واسعة مع ضبط مصدات الأمان لتصل إلى العمق الكامل بأمان في كل تكرار."
+  },
+  "single-leg-extension-copy-ryan_humis514743": {
+   "en": "Single-leg version: trains each side alone to fix imbalances; use less weight.",
+   "tr": "Tek bacak versiyonu: dengesizlikleri gidermek için her tarafı ayrı çalıştırır; daha az ağırlık kullan.",
+   "ar": "نسخة الساق الواحدة: تمرّن كل جانب على حدة لتصحيح عدم التوازن؛ استخدم وزناً أقل."
+  },
+  "leg-extensions-copy": {
+   "en": "Single-leg version: trains each side alone to fix imbalances; use less weight.",
+   "tr": "Tek bacak versiyonu: dengesizlikleri gidermek için her tarafı ayrı çalıştırır; daha az ağırlık kullan.",
+   "ar": "نسخة الساق الواحدة: تمرّن كل جانب على حدة لتصحيح عدم التوازن؛ استخدم وزناً أقل."
+  },
+  "seated-leg-curl-toes-in-copy": {
+   "en": "3/4 reps: skip the top quarter to keep constant tension on the quads in the stretched range.",
+   "tr": "3/4 tekrar: üst çeyreği atlayarak gerilmiş bölgede quadda sürekli gerilimi koru.",
+   "ar": "تكرارات 3/4: تجاوز الربع العلوي للحفاظ على شد مستمر للفخذ في نطاق التمدد."
+  },
+  "leg-extension-3-4-reps-copy": {
+   "en": "3/4 reps done as a cluster: skip the top quarter and rest briefly between mini-sets.",
+   "tr": "Cluster olarak 3/4 tekrar: üst çeyreği atla ve mini setler arasında kısa dinlen.",
+   "ar": "تكرارات 3/4 بأسلوب عنقودي: تجاوز الربع العلوي وارتح قليلاً بين المجموعات الصغيرة."
+  },
+  "leg-extension-lengthened-partials": {
+   "en": "Lengthened partials: move only through the bottom half where the quads are most stretched.",
+   "tr": "Uzatılmış yarım tekrarlar: yalnızca quadın en gerildiği alt yarıda hareket et.",
+   "ar": "تكرارات جزئية مطوّلة: تحرك فقط في النصف السفلي حيث يكون الفخذ أكثر تمدداً."
+  },
+  "heel-elevated-high-bar-squats-copy": {
+   "en": "Heels elevated on a plate or wedge lets the knees travel further forward for more quad work.",
+   "tr": "Topukları plaka ya da takoz üzerinde yükseltmek dizlerin daha öne gitmesini sağlar, quadı daha çok çalıştırır.",
+   "ar": "رفع الكعبين على قرص أو إسفين يتيح تقدم الركبتين أكثر لعمل أكبر على الفخذ."
+  },
+  "low-bar-squats-copy": {
+   "en": "Heels elevated on a plate or wedge lets the knees travel further forward for more quad work.",
+   "tr": "Topukları plaka ya da takoz üzerinde yükseltmek dizlerin daha öne gitmesini sağlar, quadı daha çok çalıştırır.",
+   "ar": "رفع الكعبين على قرص أو إسفين يتيح تقدم الركبتين أكثر لعمل أكبر على الفخذ."
+  },
+  "high-bar-squat-heels-elevated-garage-2-0": {
+   "en": "Heels elevated on a plate or wedge lets the knees travel further forward for more quad work.",
+   "tr": "Topukları plaka ya da takoz üzerinde yükseltmek dizlerin daha öne gitmesini sağlar, quadı daha çok çalıştırır.",
+   "ar": "رفع الكعبين على قرص أو إسفين يتيح تقدم الركبتين أكثر لعمل أكبر على الفخذ."
+  },
+  "barbell-front-squat-heel-elevated": {
+   "en": "Heels elevated on a plate or wedge lets the knees travel further forward for more quad work.",
+   "tr": "Topukları plaka ya da takoz üzerinde yükseltmek dizlerin daha öne gitmesini sağlar, quadı daha çok çalıştırır.",
+   "ar": "رفع الكعبين على قرص أو إسفين يتيح تقدم الركبتين أكثر لعمل أكبر على الفخذ."
+  },
+  "dumbbell-heel-elevated-front-squat-garage-program": {
+   "en": "Heels elevated on a plate or wedge lets the knees travel further forward for more quad work.",
+   "tr": "Topukları plaka ya da takoz üzerinde yükseltmek dizlerin daha öne gitmesini sağlar, quadı daha çok çalıştırır.",
+   "ar": "رفع الكعبين على قرص أو إسفين يتيح تقدم الركبتين أكثر لعمل أكبر على الفخذ."
+  },
+  "smith-front-squat-heel-elevated": {
+   "en": "Heels elevated on a plate or wedge lets the knees travel further forward for more quad work.",
+   "tr": "Topukları plaka ya da takoz üzerinde yükseltmek dizlerin daha öne gitmesini sağlar, quadı daha çok çalıştırır.",
+   "ar": "رفع الكعبين على قرص أو إسفين يتيح تقدم الركبتين أكثر لعمل أكبر على الفخذ."
+  },
+  "smith-squat-copy": {
+   "en": "Heels elevated on a plate or wedge lets the knees travel further forward for more quad work.",
+   "tr": "Topukları plaka ya da takoz üzerinde yükseltmek dizlerin daha öne gitmesini sağlar, quadı daha çok çalıştırır.",
+   "ar": "رفع الكعبين على قرص أو إسفين يتيح تقدم الركبتين أكثر لعمل أكبر على الفخذ."
+  },
+  "barbell-split-squat-heel-elevated-quad-dominant": {
+   "en": "Heels elevated on a plate or wedge lets the knees travel further forward for more quad work.",
+   "tr": "Topukları plaka ya da takoz üzerinde yükseltmek dizlerin daha öne gitmesini sağlar, quadı daha çok çalıştırır.",
+   "ar": "رفع الكعبين على قرص أو إسفين يتيح تقدم الركبتين أكثر لعمل أكبر على الفخذ."
+  },
+  "smith-split-squat-heel-elevated": {
+   "en": "Heels elevated on a plate or wedge lets the knees travel further forward for more quad work.",
+   "tr": "Topukları plaka ya da takoz üzerinde yükseltmek dizlerin daha öne gitmesini sağlar, quadı daha çok çalıştırır.",
+   "ar": "رفع الكعبين على قرص أو إسفين يتيح تقدم الركبتين أكثر لعمل أكبر على الفخذ."
+  },
+  "slow-high-bar-squats-giant-set-garage-program": {
+   "en": "Slow tempo (about 3–4 seconds down) inside a giant set; use lighter weight.",
+   "tr": "Giant set içinde yavaş tempo (yaklaşık 3–4 saniye iniş); daha hafif ağırlık kullan.",
+   "ar": "إيقاع بطيء (نحو 3–4 ثوانٍ للنزول) ضمن مجموعة عملاقة؛ استخدم وزناً أخف."
+  },
+  "squats-1-5s-garage-program": {
+   "en": "1.5 reps: go to the bottom, rise halfway, sink again, then stand fully; that is one rep.",
+   "tr": "1.5 tekrar: dibe in, yarıya kalk, tekrar in, sonra tamamen kalk; bu bir tekrardır.",
+   "ar": "تكرار 1.5: انزل للقاع، اصعد للنصف، انزل مجدداً ثم قف تماماً؛ هذا تكرار واحد."
+  },
+  "squats-drops-garage-program": {
+   "en": "Drop set: at failure, strip about 20–30% of the load and keep going without rest.",
+   "tr": "Drop set: tükenişte yükün yaklaşık %20–30'unu azalt ve dinlenmeden devam et.",
+   "ar": "مجموعة تنازلية: عند الفشل خفّف الوزن بنحو 20–30% واستمر دون راحة."
+  },
+  "dumbbell-split-squat-drops-garage-program": {
+   "en": "Drop set: at failure, strip about 20–30% of the load and keep going without rest.",
+   "tr": "Drop set: tükenişte yükün yaklaşık %20–30'unu azalt ve dinlenmeden devam et.",
+   "ar": "مجموعة تنازلية: عند الفشل خفّف الوزن بنحو 20–30% واستمر دون راحة."
+  },
+  "seated-calf-raise-5-drops": {
+   "en": "Drop set: at failure, strip about 20–30% of the load and keep going without rest.",
+   "tr": "Drop set: tükenişte yükün yaklaşık %20–30'unu azalt ve dinlenmeden devam et.",
+   "ar": "مجموعة تنازلية: عند الفشل خفّف الوزن بنحو 20–30% واستمر دون راحة."
+  },
+  "century-squats-garage-program": {
+   "en": "Century: 100 total reps with a light load, resting only as needed.",
+   "tr": "Century: hafif yükle toplam 100 tekrar, yalnızca gerektikçe dinlen.",
+   "ar": "المئوية: 100 تكرار إجمالاً بوزن خفيف مع الراحة عند الحاجة فقط."
+  },
+  "safety-bar-squat-ryan_humis514743": {
+   "en": "Safety squat bar: the cambered handles ease shoulder strain and keep you more upright.",
+   "tr": "Safety squat bar: kavisli tutamaçlar omuz zorlanmasını azaltır ve seni daha dik tutar.",
+   "ar": "بار الأمان: المقابض المنحنية تخفف إجهاد الكتف وتبقيك أكثر استقامة."
+  },
+  "safety-bar-high-bar-squat": {
+   "en": "Safety squat bar: the cambered handles ease shoulder strain and keep you more upright.",
+   "tr": "Safety squat bar: kavisli tutamaçlar omuz zorlanmasını azaltır ve seni daha dik tutar.",
+   "ar": "بار الأمان: المقابض المنحنية تخفف إجهاد الكتف وتبقيك أكثر استقامة."
+  },
+  "safety-bar-low-bar-squat": {
+   "en": "Safety squat bar: the cambered handles ease shoulder strain and keep you more upright.",
+   "tr": "Safety squat bar: kavisli tutamaçlar omuz zorlanmasını azaltır ve seni daha dik tutar.",
+   "ar": "بار الأمان: المقابض المنحنية تخفف إجهاد الكتف وتبقيك أكثر استقامة."
+  },
+  "sissy-squat-no-weight": {
+   "en": "Bodyweight version: master the full range here before adding load.",
+   "tr": "Vücut ağırlığı versiyonu: yük eklemeden önce tam açıklığa burada hakim ol.",
+   "ar": "نسخة بوزن الجسم: أتقن المدى الكامل هنا قبل إضافة الوزن."
+  },
+  "somersault-squats-bodyweight": {
+   "en": "Bodyweight version: master the full range here before adding load.",
+   "tr": "Vücut ağırlığı versiyonu: yük eklemeden önce tam açıklığa burada hakim ol.",
+   "ar": "نسخة بوزن الجسم: أتقن المدى الكامل هنا قبل إضافة الوزن."
+  },
+  "walking-lunges-no-weight": {
+   "en": "Bodyweight version: master the full range here before adding load.",
+   "tr": "Vücut ağırlığı versiyonu: yük eklemeden önce tam açıklığa burada hakim ol.",
+   "ar": "نسخة بوزن الجسم: أتقن المدى الكامل هنا قبل إضافة الوزن."
+  },
+  "step-ups-garage-2-0": {
+   "en": "Bodyweight version: master the full range here before adding load.",
+   "tr": "Vücut ağırlığı versiyonu: yük eklemeden önce tam açıklığa burada hakim ol.",
+   "ar": "نسخة بوزن الجسم: أتقن المدى الكامل هنا قبل إضافة الوزن."
+  },
+  "sissy-squat-barbell-assisted-extreme-depth": {
+   "en": "Hold a racked barbell for support so you can sink to maximum knee depth safely.",
+   "tr": "Maksimum diz derinliğine güvenle inmek için raftaki bara tutunarak destek al.",
+   "ar": "أمسك باراً مثبتاً على الحامل للدعم لتنزل إلى أقصى عمق للركبة بأمان."
+  },
+  "barbell-sissy-squat": {
+   "en": "Barbell held on the back or front rack adds load once bodyweight sissies are easy.",
+   "tr": "Vücut ağırlığıyla sissy kolaylaşınca sırtta ya da önde tutulan bar yük ekler.",
+   "ar": "البار على الظهر أو الأمام يضيف حملاً عندما يصبح Sissy بوزن الجسم سهلاً."
+  },
+  "barbell-sissy-squat-on-dumbbell": {
+   "en": "Heels on a dumbbell handle raise the heels for a deeper knee bend while holding a barbell.",
+   "tr": "Bar tutarken topukları dambıl sapına koymak daha derin diz bükümü sağlar.",
+   "ar": "وضع الكعبين على مقبض دمبل يرفعهما لثني أعمق للركبة أثناء حمل البار."
+  },
+  "dumbbell-sissy-squats-giant-set-garage-program": {
+   "en": "Done as part of a giant set: several exercises back to back with minimal rest.",
+   "tr": "Giant set'in parçası: birkaç hareket arka arkaya, minimum dinlenmeyle yapılır.",
+   "ar": "يُؤدى ضمن مجموعة عملاقة: عدة تمارين متتالية بأقل راحة ممكنة."
+  },
+  "extreme-sissy-squat-giant-set-garage-program": {
+   "en": "Done as part of a giant set: several exercises back to back with minimal rest.",
+   "tr": "Giant set'in parçası: birkaç hareket arka arkaya, minimum dinlenmeyle yapılır.",
+   "ar": "يُؤدى ضمن مجموعة عملاقة: عدة تمارين متتالية بأقل راحة ممكنة."
+  },
+  "modified-pistol-squat-giant-set-garage-program": {
+   "en": "Modified pistol: sit to a bench or hold support, done within a giant set.",
+   "tr": "Modifiye pistol: bir sehpaya otur ya da desteğe tutun; giant set içinde yapılır.",
+   "ar": "Pistol معدّل: اجلس على مقعد أو أمسك داعماً، ويُؤدى ضمن مجموعة عملاقة."
+  },
+  "dumbbell-heel-elevated-sissy-leaning-back-during-contraction": {
+   "en": "Heels elevated; lean back as you stand to keep the rectus femoris stretched under load.",
+   "tr": "Topuklar yükseltilmiş; kalkarken geriye yaslanarak rectus femorisi yük altında gergin tut.",
+   "ar": "الكعبان مرفوعان؛ مِل للخلف أثناء الوقوف لإبقاء المستقيمة الفخذية ممدودة تحت الحمل."
+  },
+  "landmine-sissy-squats": {
+   "en": "Landmine version: the angled bar path is easy to balance and joint-friendly.",
+   "tr": "Landmine versiyonu: açılı bar yolu dengesi kolay ve eklem dostudur.",
+   "ar": "نسخة Landmine: مسار البار المائل سهل التوازن ومريح للمفاصل."
+  },
+  "landmine-static-lunge": {
+   "en": "Landmine version: the angled bar path is easy to balance and joint-friendly.",
+   "tr": "Landmine versiyonu: açılı bar yolu dengesi kolay ve eklem dostudur.",
+   "ar": "نسخة Landmine: مسار البار المائل سهل التوازن ومريح للمفاصل."
+  },
+  "landmine-reverse-lunge-ryan_humis514743": {
+   "en": "Landmine version: the angled bar path is easy to balance and joint-friendly.",
+   "tr": "Landmine versiyonu: açılı bar yolu dengesi kolay ve eklem dostudur.",
+   "ar": "نسخة Landmine: مسار البار المائل سهل التوازن ومريح للمفاصل."
+  },
+  "somersault-squat-on-smith": {
+   "en": "Smith machine version: the fixed bar path adds stability so you can focus on the target muscle.",
+   "tr": "Smith makinesi versiyonu: sabit bar yolu stabilite sağlar, hedef kasa odaklanırsın.",
+   "ar": "نسخة جهاز Smith: مسار البار الثابت يضيف ثباتاً لتركز على العضلة المستهدفة."
+  },
+  "smith-rdls": {
+   "en": "Smith machine version: the fixed bar path adds stability so you can focus on the target muscle.",
+   "tr": "Smith makinesi versiyonu: sabit bar yolu stabilite sağlar, hedef kasa odaklanırsın.",
+   "ar": "نسخة جهاز Smith: مسار البار الثابت يضيف ثباتاً لتركز على العضلة المستهدفة."
+  },
+  "smith-stiff-legs": {
+   "en": "Smith machine version: the fixed bar path adds stability so you can focus on the target muscle.",
+   "tr": "Smith makinesi versiyonu: sabit bar yolu stabilite sağlar, hedef kasa odaklanırsın.",
+   "ar": "نسخة جهاز Smith: مسار البار الثابت يضيف ثباتاً لتركز على العضلة المستهدفة."
+  },
+  "cable-fly-copy": {
+   "en": "Smith machine version: the fixed bar path adds stability so you can focus on the target muscle.",
+   "tr": "Smith makinesi versiyonu: sabit bar yolu stabilite sağlar, hedef kasa odaklanırsın.",
+   "ar": "نسخة جهاز Smith: مسار البار الثابت يضيف ثباتاً لتركز على العضلة المستهدفة."
+  },
+  "dumbbell-hamstring-curls-copy": {
+   "en": "Quad focus: shorter stance, upright torso and let the front knee travel forward.",
+   "tr": "Quad odağı: daha kısa duruş, dik gövde ve ön dizin öne gitmesine izin ver.",
+   "ar": "تركيز على الفخذ: وقفة أقصر وجذع مستقيم ودع الركبة الأمامية تتقدم."
+  },
+  "smith-quad-split-squat": {
+   "en": "Quad focus: shorter stance, upright torso and let the front knee travel forward.",
+   "tr": "Quad odağı: daha kısa duruş, dik gövde ve ön dizin öne gitmesine izin ver.",
+   "ar": "تركيز على الفخذ: وقفة أقصر وجذع مستقيم ودع الركبة الأمامية تتقدم."
+  },
+  "dumbbell-quad-split-squat-copy": {
+   "en": "Glute focus: take a longer stance and lean the torso forward over the front leg.",
+   "tr": "Kalça odağı: daha uzun duruş al ve gövdeni ön bacağın üzerine eğ.",
+   "ar": "تركيز على الألوية: اتخذ وقفة أطول ومِل بجذعك فوق الساق الأمامية."
+  },
+  "glute-dominant-static-lunges": {
+   "en": "Glute focus: take a longer stance and lean the torso forward over the front leg.",
+   "tr": "Kalça odağı: daha uzun duruş al ve gövdeni ön bacağın üzerine eğ.",
+   "ar": "تركيز على الألوية: اتخذ وقفة أطول ومِل بجذعك فوق الساق الأمامية."
+  },
+  "smith-split-squat-foot-on-bench": {
+   "en": "Rear foot on a bench in the Smith machine for a stable Bulgarian split squat.",
+   "tr": "Smith makinesinde arka ayak sehpada; stabil bir Bulgarian split squat.",
+   "ar": "القدم الخلفية على مقعد في جهاز Smith لأداء Bulgarian Split Squat ثابت."
+  },
+  "smith-split-squat-foot-on-bench-leaned-forward": {
+   "en": "Rear foot on bench with a forward torso lean to bias the glutes of the front leg.",
+   "tr": "Arka ayak sehpada, gövde öne eğik; ön bacağın kalçasını vurgular.",
+   "ar": "القدم الخلفية على المقعد مع ميل الجذع للأمام لتركيز العمل على ألوية الساق الأمامية."
+  },
+  "smith-split-squat-glute-focused-foot-elevated-back-foot-on-bench": {
+   "en": "Front foot on a plate and rear foot on a bench increases range for a deep glute stretch.",
+   "tr": "Ön ayak plakada, arka ayak sehpada; hareket açıklığını artırıp derin kalça gerilmesi sağlar.",
+   "ar": "القدم الأمامية على قرص والخلفية على مقعد يزيد المدى لتمدد عميق للألوية."
+  },
+  "twisting-bulgarian-split-squat-glute": {
+   "en": "Rotate the torso toward the front leg at the bottom to increase glute stretch.",
+   "tr": "Altta gövdeni ön bacağa doğru döndürerek kalça gerilmesini artır.",
+   "ar": "دوّر الجذع نحو الساق الأمامية في الأسفل لزيادة تمدد الألوية."
+  },
+  "reverse-dumbbell-lunge-stabilized": {
+   "en": "Hold a rack or bench with one hand for balance so the legs can work harder.",
+   "tr": "Bacaklar daha çok çalışabilsin diye denge için bir ele kafese ya da sehpaya tutun.",
+   "ar": "أمسك الحامل أو المقعد بيد واحدة للتوازن لتعمل الساقان بقوة أكبر."
+  },
+  "lateral-lunge-stabilizing-leg-elevated": {
+   "en": "Straight leg rests on a raised surface, increasing the adductor stretch.",
+   "tr": "Düz bacak yükseltilmiş bir yüzeyde durur; adductor gerilmesini artırır.",
+   "ar": "توضع الساق المستقيمة على سطح مرتفع، فيزداد تمدد العضلات المقرّبة."
+  },
+  "reverse-dumbbell-lunges-holding-something-garage-program": {
+   "en": "Hold onto something sturdy with one hand for balance, the dumbbell in the other.",
+   "tr": "Bir elinle denge için sağlam bir yere tutun, diğerinde dambıl olsun.",
+   "ar": "أمسك شيئاً ثابتاً بيد للتوازن والدمبل في اليد الأخرى."
+  },
+  "weighted-walking-lunges-copy": {
+   "en": "Smith machine reverse lunge: step back under a fixed bar for stability.",
+   "tr": "Smith makinesinde reverse lunge: stabilite için sabit barın altında geriye adım at.",
+   "ar": "Reverse Lunge على جهاز Smith: اخطُ للخلف تحت بار ثابت لمزيد من الثبات."
+  },
+  "180-continuous-walking-lunges-garage-program": {
+   "en": "High-volume finisher: 180 continuous steps, using bodyweight or light dumbbells.",
+   "tr": "Yüksek hacimli bitiriş: vücut ağırlığı ya da hafif dambıllarla 180 kesintisiz adım.",
+   "ar": "تمرين ختامي عالي الحجم: 180 خطوة متواصلة بوزن الجسم أو دمبلات خفيفة."
+  },
+  "weighted-walking-lunges-quad-dominant-short-steps": {
+   "en": "Short steps and an upright torso let the front knee travel forward for more quad work.",
+   "tr": "Kısa adımlar ve dik gövde ön dizin öne gitmesini sağlar; quad daha çok çalışır.",
+   "ar": "الخطوات القصيرة مع جذع مستقيم تتيح تقدم الركبة الأمامية لعمل أكبر على الفخذ."
+  },
+  "leg-press-calf-raise-single-clusterfuck-copy-ryan_humis514743": {
+   "en": "Heavy version: use challenging dumbbells for lower reps while keeping full depth.",
+   "tr": "Ağır versiyon: tam derinliği koruyarak zorlayıcı dambıllarla daha az tekrar yap.",
+   "ar": "النسخة الثقيلة: استخدم دمبلات صعبة لتكرارات أقل مع الحفاظ على العمق الكامل."
+  },
+  "lunges-45-degree-step": {
+   "en": "Step out at a 45-degree angle to involve more adductors and glutes.",
+   "tr": "Daha çok adductor ve kalça için 45 derece açıyla adım at.",
+   "ar": "اخطُ بزاوية 45 درجة لإشراك المقرّبة والألوية أكثر."
+  },
+  "lunges-long-stride-drag-back-foot": {
+   "en": "Long stride; drag the back foot forward instead of stepping, keeping tension on the front leg.",
+   "tr": "Uzun adım; arka ayağı adım atmak yerine öne sürükle, gerilim ön bacakta kalsın.",
+   "ar": "خطوة طويلة؛ اسحب القدم الخلفية للأمام بدل رفعها لإبقاء الشد على الساق الأمامية."
+  },
+  "weighted-walking-lunges-copy-copy": {
+   "en": "Monster walk lunges: long, deep strides with a slight forward lean for glute and quad work.",
+   "tr": "Monster walk lunge: kalça ve quad için hafif öne eğik, uzun ve derin adımlar.",
+   "ar": "طعنات Monster Walk: خطوات طويلة وعميقة مع ميل خفيف للأمام لعمل الألوية والفخذ."
+  },
+  "lunges-monster-walk": {
+   "en": "Monster walk lunges with dumbbells: long, deep strides with a slight forward lean.",
+   "tr": "Dambıllı monster walk lunge: hafif öne eğik, uzun ve derin adımlar.",
+   "ar": "طعنات Monster Walk بالدمبل: خطوات طويلة وعميقة مع ميل خفيف للأمام."
+  },
+  "db-lateral-lunge-plate-slides": {
+   "en": "Slide the moving foot out on a plate or towel while holding a dumbbell for constant tension.",
+   "tr": "Sürekli gerilim için dambıl tutarken hareketli ayağı plaka ya da havlu üzerinde kaydır.",
+   "ar": "انزلق بالقدم المتحركة على قرص أو منشفة مع حمل دمبل لشد مستمر."
+  },
+  "lateral-lunge-plate-slides-ryan_humis514743": {
+   "en": "Slide the moving foot out on a plate or towel on a smooth floor instead of stepping.",
+   "tr": "Adım atmak yerine hareketli ayağı düz zeminde plaka ya da havlu üzerinde kaydır.",
+   "ar": "انزلق بالقدم المتحركة على قرص أو منشفة فوق أرض ملساء بدل الخطو."
+  },
+  "dumbbell-walking-lunges-copy": {
+   "en": "Weighted version: add load (dumbbell, plate or vest) once bodyweight reps get easy.",
+   "tr": "Ağırlıklı versiyon: vücut ağırlığıyla tekrarlar kolaylaşınca dambıl, plaka ya da yelek ekle.",
+   "ar": "نسخة بأوزان: أضف وزناً (دمبل أو قرص أو سترة) عندما تصبح التكرارات بوزن الجسم سهلة."
+  },
+  "glute-hyper-weighted": {
+   "en": "Weighted version: add load (dumbbell, plate or vest) once bodyweight reps get easy.",
+   "tr": "Ağırlıklı versiyon: vücut ağırlığıyla tekrarlar kolaylaşınca dambıl, plaka ya da yelek ekle.",
+   "ar": "نسخة بأوزان: أضف وزناً (دمبل أو قرص أو سترة) عندما تصبح التكرارات بوزن الجسم سهلة."
+  },
+  "hanging-knee-raises-weighted-garage-2-0": {
+   "en": "Weighted version: add load (dumbbell, plate or vest) once bodyweight reps get easy.",
+   "tr": "Ağırlıklı versiyon: vücut ağırlığıyla tekrarlar kolaylaşınca dambıl, plaka ya da yelek ekle.",
+   "ar": "نسخة بأوزان: أضف وزناً (دمبل أو قرص أو سترة) عندما تصبح التكرارات بوزن الجسم سهلة."
+  },
+  "ab-straps-hanging-knee-raise-weighted": {
+   "en": "Weighted version: add load (dumbbell, plate or vest) once bodyweight reps get easy.",
+   "tr": "Ağırlıklı versiyon: vücut ağırlığıyla tekrarlar kolaylaşınca dambıl, plaka ya da yelek ekle.",
+   "ar": "نسخة بأوزان: أضف وزناً (دمبل أو قرص أو سترة) عندما تصبح التكرارات بوزن الجسم سهلة."
+  },
+  "quad-dominant-step-ups-single-dumbbell-held-like-a-front-squat": {
+   "en": "Hold one dumbbell at the chest like a front squat and use a lower box to bias the quads.",
+   "tr": "Quadı vurgulamak için tek dambılı front squat gibi göğüste tut ve daha alçak kutu kullan.",
+   "ar": "أمسك دمبلاً واحداً عند الصدر كما في Front Squat واستخدم صندوقاً أقصر للتركيز على الفخذ."
+  },
+  "landmine-single-leg-hack-squat-ryan_humis514743": {
+   "en": "Hold a landmine bar at the shoulder and squat on one leg for a hack-squat-like path.",
+   "tr": "Landmine barı omuzda tut ve hack squat benzeri bir yolda tek bacakla çök.",
+   "ar": "أمسك بار Landmine عند الكتف وانزل على ساق واحدة بمسار يشبه Hack Squat."
+  },
+  "angled-nordic-curl": {
+   "en": "Angled setup reduces the load, letting you control the full range before doing flat nordics.",
+   "tr": "Açılı kurulum yükü azaltır; düz nordic öncesi tam açıklığı kontrol etmeni sağlar.",
+   "ar": "الوضع المائل يقلل الحمل فيتيح التحكم بالمدى الكامل قبل Nordic المستوي."
+  },
+  "diy-nordic-curl-angled": {
+   "en": "Home setup on an incline board with feet anchored; the angle makes it easier.",
+   "tr": "Ayaklar sabit, eğimli bir tahta üzerinde ev kurulumu; açı hareketi kolaylaştırır.",
+   "ar": "إعداد منزلي على لوح مائل مع تثبيت القدمين؛ الزاوية تجعله أسهل."
+  },
+  "diy-nordic-curl-full-rom": {
+   "en": "Home setup with feet anchored; lower all the way to the floor for full range.",
+   "tr": "Ayaklar sabit ev kurulumu; tam açıklık için yere kadar in.",
+   "ar": "إعداد منزلي مع تثبيت القدمين؛ انزل حتى الأرض لمدى كامل."
+  },
+  "fuck-it-nordic-curl-use-your-hands": {
+   "en": "Lower slowly, then push off the floor with your hands to assist the way up.",
+   "tr": "Yavaşça in, sonra çıkışa yardım etmek için ellerinle yerden it.",
+   "ar": "انزل ببطء ثم ادفع الأرض بيديك للمساعدة في الصعود."
+  },
+  "tucked-nordic-curl": {
+   "en": "Hips flexed (tucked) shortens the lever, making it easier while still stretching the hamstrings.",
+   "tr": "Kalça bükülü (tuck) olunca kol kısalır; hamstringler gerilirken hareket kolaylaşır.",
+   "ar": "ثني الورك يقصّر الذراع فيسهّل التمرين مع بقاء التمدد في أوتار الركبة."
+  },
+  "lying-leg-curls-pad-elevated": {
+   "en": "Hips elevated on a pad flex the hip, stretching the hamstrings more like a seated curl.",
+   "tr": "Kalçanın altına ped koymak kalçayı büker; hamstringleri seated curl gibi daha çok gerer.",
+   "ar": "رفع الحوض على وسادة يثني الورك فيمدد أوتار الركبة أكثر كما في الثني جالساً."
+  },
+  "single-leg-glute-hyper-copy": {
+   "en": "Toes pointed in slightly biases the inner hamstrings (semitendinosus/semimembranosus).",
+   "tr": "Parmakları hafifçe içe çevirmek iç hamstringleri (semitendinosus/semimembranosus) vurgular.",
+   "ar": "توجيه الأصابع للداخل قليلاً يركز على أوتار الركبة الداخلية."
+  },
+  "kneeling-dumbbell-leg-curl": {
+   "en": "Kneel on a bench and curl a dumbbell held between your feet.",
+   "tr": "Bir sehpada diz çök ve ayaklarının arasındaki dambılı bük.",
+   "ar": "اركع على مقعد واثنِ دمبلاً بين قدميك."
+  },
+  "lying-dumbbell-leg-curl-ground": {
+   "en": "Done lying on the floor; range is shorter, so focus on the stretch.",
+   "tr": "Yerde uzanarak yapılır; açıklık daha kısadır, gerilmeye odaklan.",
+   "ar": "يُؤدى مستلقياً على الأرض؛ المدى أقصر فركّز على التمدد."
+  },
+  "lying-dumbbell-leg-curls-bench": {
+   "en": "Lying on a bench lets the dumbbell start lower for a fuller stretch.",
+   "tr": "Sehpada uzanmak dambılın daha aşağıdan başlamasını sağlar; gerilme artar.",
+   "ar": "الاستلقاء على مقعد يتيح بدء الدمبل من نقطة أدنى لتمدد أكمل."
+  },
+  "rdls-toes-elevated-garage-program": {
+   "en": "Toes on a plate pre-stretch the calves and hamstrings for a deeper stretch.",
+   "tr": "Parmak uçlarını plakaya koymak baldır ve hamstringi önceden gerer; gerilme derinleşir.",
+   "ar": "وضع الأصابع على قرص يمدد السمانة وأوتار الركبة مسبقاً لتمدد أعمق."
+  },
+  "glute-rdls-copy": {
+   "en": "Stiff-leg deadlift with straighter knees than an RDL for maximal hamstring stretch.",
+   "tr": "RDL'den daha düz dizlerle stiff-leg deadlift; maksimum hamstring gerilmesi.",
+   "ar": "رفعة ميتة بساق مستقيمة أكثر من RDL لأقصى تمدد لأوتار الركبة."
+  },
+  "dumbbell-stiffs-extreme-stretch-garage-program": {
+   "en": "Extreme stretch: pause 3–5 seconds in the deepest stretched position each rep.",
+   "tr": "Ekstrem gerilme: her tekrarda en derin gerilmiş pozisyonda 3–5 saniye bekle.",
+   "ar": "تمدد أقصى: توقف 3–5 ثوانٍ في أعمق وضع تمدد في كل تكرار."
+  },
+  "barbell-calf-raise-extreme-stretch": {
+   "en": "Extreme stretch: pause 3–5 seconds in the deepest stretched position each rep.",
+   "tr": "Ekstrem gerilme: her tekrarda en derin gerilmiş pozisyonda 3–5 saniye bekle.",
+   "ar": "تمدد أقصى: توقف 3–5 ثوانٍ في أعمق وضع تمدد في كل تكرار."
+  },
+  "standing-machine-calf-raise-extreme-stretch": {
+   "en": "Extreme stretch: pause 3–5 seconds in the deepest stretched position each rep.",
+   "tr": "Ekstrem gerilme: her tekrarda en derin gerilmiş pozisyonda 3–5 saniye bekle.",
+   "ar": "تمدد أقصى: توقف 3–5 ثوانٍ في أعمق وضع تمدد في كل تكرار."
+  },
+  "seated-calf-raise-extreme-stretch": {
+   "en": "Extreme stretch: pause 3–5 seconds in the deepest stretched position each rep.",
+   "tr": "Ekstrem gerilme: her tekrarda en derin gerilmiş pozisyonda 3–5 saniye bekle.",
+   "ar": "تمدد أقصى: توقف 3–5 ثوانٍ في أعمق وضع تمدد في كل تكرار."
+  },
+  "dumbbell-stiffs-barbell-assisted-garage-2-0": {
+   "en": "Hold a racked barbell with one hand for balance and a dumbbell in the other.",
+   "tr": "Denge için bir elinle raftaki bara tutun, diğerinde dambıl olsun.",
+   "ar": "أمسك باراً مثبتاً بيد للتوازن والدمبل في اليد الأخرى."
+  },
+  "dumbbell-stiffs-smith-assisted": {
+   "en": "Hold the Smith bar with one hand for balance and a dumbbell in the other.",
+   "tr": "Denge için bir elinle Smith barına tutun, diğerinde dambıl olsun.",
+   "ar": "أمسك بار Smith بيد للتوازن والدمبل في اليد الأخرى."
+  },
+  "monster-walk-copy": {
+   "en": "Hold the Smith bar for balance while doing a dumbbell stiff-leg deadlift.",
+   "tr": "Dambıllı stiff-leg yaparken denge için Smith barına tutun.",
+   "ar": "أمسك بار Smith للتوازن أثناء الرفعة الميتة بساق مستقيمة بالدمبل."
+  },
+  "leg-supported-dumbbell-stiffs": {
+   "en": "Rest the back foot lightly on a support so most of the load stays on the front leg.",
+   "tr": "Arka ayağı hafifçe bir desteğe koy; yükün çoğu ön bacakta kalsın.",
+   "ar": "ضع القدم الخلفية بخفة على داعم ليبقى معظم الحمل على الساق الأمامية."
+  },
+  "hyper-extension-stiff-leg-deadlift": {
+   "en": "Stand on a raised platform or hyper bench so the weight can travel below your feet.",
+   "tr": "Ağırlığın ayaklarının altına inebilmesi için yükseltilmiş bir platformda dur.",
+   "ar": "قف على منصة مرتفعة ليتمكن الوزن من النزول أسفل مستوى القدمين."
+  },
+  "belt-squat-glute-rdl": {
+   "en": "Belt squat machine loads the hips directly, so grip and lower back are not limiting.",
+   "tr": "Belt squat makinesi yükü doğrudan kalçaya verir; kavrama ve bel sınırlamaz.",
+   "ar": "جهاز Belt Squat يحمّل الورك مباشرة فلا تحدّ القبضة وأسفل الظهر من الأداء."
+  },
+  "dumbbell-hamstring-curls-copy-ryan_humis514743": {
+   "en": "Split stance puts most load on the front leg for a deeper glute stretch.",
+   "tr": "Kademeli duruş yükün çoğunu ön bacağa verir; kalça gerilmesi derinleşir.",
+   "ar": "الوقفة المتدرجة تضع معظم الحمل على الساق الأمامية لتمدد أعمق للألوية."
+  },
+  "b-stance-twisting-glute-rdl": {
+   "en": "B-stance with a slight twist toward the working leg increases glute stretch.",
+   "tr": "B-stance ve çalışan bacağa doğru hafif dönüş kalça gerilmesini artırır.",
+   "ar": "وقفة B مع دوران خفيف نحو الساق العاملة تزيد تمدد الألوية."
+  },
+  "b-stance-landmine-twisting-glute-rdl": {
+   "en": "Landmine B-stance with a slight twist toward the working leg for a deep glute stretch.",
+   "tr": "Landmine ile B-stance; derin kalça gerilmesi için çalışan bacağa doğru hafif dön.",
+   "ar": "وقفة B مع Landmine ودوران خفيف نحو الساق العاملة لتمدد عميق للألوية."
+  },
+  "single-leg-landmine-stiffs-opposite-side": {
+   "en": "Hold the landmine in the hand opposite the working leg for more glute and stability demand.",
+   "tr": "Landmine'ı çalışan bacağın karşı elinde tut; kalça ve denge talebi artar.",
+   "ar": "أمسك Landmine باليد المقابلة للساق العاملة لزيادة عمل الألوية والثبات."
+  },
+  "single-leg-landmine-stiffs-same-side": {
+   "en": "Hold the landmine on the same side as the working leg; easier to balance.",
+   "tr": "Landmine'ı çalışan bacakla aynı tarafta tut; dengesi daha kolaydır.",
+   "ar": "أمسك Landmine في نفس جهة الساق العاملة؛ التوازن أسهل."
+  },
+  "hip-dominant-barbell-good-morning": {
+   "en": "Hip dominant: push hips far back with soft knees to maximize hamstring and glute stretch.",
+   "tr": "Kalça baskın: hamstring ve kalça gerilmesini artırmak için dizler gevşek, kalçayı çok geriye it.",
+   "ar": "تركيز على الورك: ادفع الحوض بعيداً للخلف مع ركبتين مرنتين لأقصى تمدد."
+  },
+  "hyperextension-toes-out-copy": {
+   "en": "Toes out with a drop set: when you fail with weight, drop it and continue with bodyweight.",
+   "tr": "Parmaklar dışa, drop set: ağırlıkla tükenince bırak ve vücut ağırlığıyla devam et.",
+   "ar": "الأصابع للخارج مع مجموعة تنازلية: عند الفشل اترك الوزن واستمر بوزن الجسم."
+  },
+  "hamstring-barbell-hyper-extension": {
+   "en": "Hold a barbell across the upper back or in the hands to add load.",
+   "tr": "Yük eklemek için barı üst sırtta ya da ellerinde tut.",
+   "ar": "أمسك باراً على أعلى الظهر أو باليدين لإضافة حمل."
+  },
+  "glute-hyper-copy": {
+   "en": "Single-leg version: trains each side alone to fix imbalances; use less weight.",
+   "tr": "Tek bacak versiyonu: dengesizlikleri gidermek için her tarafı ayrı çalıştırır; daha az ağırlık kullan.",
+   "ar": "نسخة الساق الواحدة: تمرّن كل جانب على حدة لتصحيح عدم التوازن؛ استخدم وزناً أقل."
+  },
+  "leg-press-calf-raise-single-clusterfuck-copy": {
+   "en": "Single-leg version: trains each side alone to fix imbalances; use less weight.",
+   "tr": "Tek bacak versiyonu: dengesizlikleri gidermek için her tarafı ayrı çalıştırır; daha az ağırlık kullan.",
+   "ar": "نسخة الساق الواحدة: تمرّن كل جانب على حدة لتصحيح عدم التوازن؛ استخدم وزناً أقل."
+  },
+  "single-leg-machine-calf-raise": {
+   "en": "Single-leg version: trains each side alone to fix imbalances; use less weight.",
+   "tr": "Tek bacak versiyonu: dengesizlikleri gidermek için her tarafı ayrı çalıştırır; daha az ağırlık kullan.",
+   "ar": "نسخة الساق الواحدة: تمرّن كل جانب على حدة لتصحيح عدم التوازن؛ استخدم وزناً أقل."
+  },
+  "smith-machine-single-leg-calf-raise-ryan_humis514743": {
+   "en": "Single-leg version: trains each side alone to fix imbalances; use less weight.",
+   "tr": "Tek bacak versiyonu: dengesizlikleri gidermek için her tarafı ayrı çalıştırır; daha az ağırlık kullan.",
+   "ar": "نسخة الساق الواحدة: تمرّن كل جانب على حدة لتصحيح عدم التوازن؛ استخدم وزناً أقل."
+  },
+  "smith-calf-raise-copy": {
+   "en": "Single-leg version: trains each side alone to fix imbalances; use less weight.",
+   "tr": "Tek bacak versiyonu: dengesizlikleri gidermek için her tarafı ayrı çalıştırır; daha az ağırlık kullan.",
+   "ar": "نسخة الساق الواحدة: تمرّن كل جانب على حدة لتصحيح عدم التوازن؛ استخدم وزناً أقل."
+  },
+  "seated-calf-toes-out-copy": {
+   "en": "Single-leg leg press calf raise: one side at a time for a deeper stretch and balance.",
+   "tr": "Tek bacak leg press calf raise: daha derin gerilme ve denge için tek taraf çalış.",
+   "ar": "رفع السمانة بساق واحدة على Leg Press: جانب واحد في كل مرة لتمدد أعمق وتوازن."
+  },
+  "seated-calf-raise-copy": {
+   "en": "Single-leg version: trains each side alone to fix imbalances; use less weight.",
+   "tr": "Tek bacak versiyonu: dengesizlikleri gidermek için her tarafı ayrı çalıştırır; daha az ağırlık kullan.",
+   "ar": "نسخة الساق الواحدة: تمرّن كل جانب على حدة لتصحيح عدم التوازن؛ استخدم وزناً أقل."
+  },
+  "single-leg-dumbbell-calf-raise-ryan_humis514743": {
+   "en": "Single-leg version: trains each side alone to fix imbalances; use less weight.",
+   "tr": "Tek bacak versiyonu: dengesizlikleri gidermek için her tarafı ayrı çalıştırır; daha az ağırlık kullan.",
+   "ar": "نسخة الساق الواحدة: تمرّن كل جانب على حدة لتصحيح عدم التوازن؛ استخدم وزناً أقل."
+  },
+  "smith-hip-thrust-ryan_humis514743": {
+   "en": "Smith machine bar path makes setup quick and the lift very stable.",
+   "tr": "Smith bar yolu kurulumu hızlandırır ve hareketi çok stabil kılar.",
+   "ar": "مسار بار Smith يجعل الإعداد سريعاً والرفع ثابتاً جداً."
+  },
+  "abductor-machine-ryan_humis514743": {
+   "en": "Try leaning forward to bias the upper glute max, or sitting upright for glute medius.",
+   "tr": "Üst gluteus maximus için öne eğil, gluteus medius için dik otur.",
+   "ar": "جرّب الميل للأمام للتركيز على أعلى الألوية الكبرى أو الجلوس مستقيماً للألوية الوسطى."
+  },
+  "incline-dumbbell-rear-delt-raise-abduction": {
+   "en": "Chest on an incline bench, raise dumbbells out wide to the sides to target the rear delts.",
+   "tr": "Göğüs eğimli sehpada, arka omuzu hedeflemek için dambılları yanlara geniş kaldır.",
+   "ar": "الصدر على مقعد مائل، ارفع الدمبلات واسعاً للجانبين لاستهداف الكتف الخلفي."
+  },
+  "machine-rear-delt-fly-horizontal-abduction-external-rotation": {
+   "en": "On the reverse fly machine, rotate the thumbs up as you open to add external rotation.",
+   "tr": "Reverse fly makinesinde açarken başparmakları yukarı çevirerek dış rotasyon ekle.",
+   "ar": "على جهاز Reverse Fly دوّر الإبهامين للأعلى أثناء الفتح لإضافة دوران خارجي."
+  },
+  "plate-calf-raises-toes-turned-in-garage-program": {
+   "en": "Toes turned in slightly biases the outer (lateral) calf head.",
+   "tr": "Parmak uçlarını hafifçe içe çevirmek baldırın dış başını vurgular.",
+   "ar": "توجيه الأصابع للداخل قليلاً يركز على الرأس الخارجي للسمانة."
+  },
+  "single-leg-dumbbell-calf-raise-toe-in": {
+   "en": "Toes turned in slightly biases the outer (lateral) calf head.",
+   "tr": "Parmak uçlarını hafifçe içe çevirmek baldırın dış başını vurgular.",
+   "ar": "توجيه الأصابع للداخل قليلاً يركز على الرأس الخارجي للسمانة."
+  },
+  "single-leg-dumbbell-calf-raise-toe-in-ryan_humis514743": {
+   "en": "Toes turned in slightly biases the outer (lateral) calf head.",
+   "tr": "Parmak uçlarını hafifçe içe çevirmek baldırın dış başını vurgular.",
+   "ar": "توجيه الأصابع للداخل قليلاً يركز على الرأس الخارجي للسمانة."
+  },
+  "wide-grip-upright-row-copy": {
+   "en": "Toes turned in slightly biases the outer (lateral) calf head.",
+   "tr": "Parmak uçlarını hafifçe içe çevirmek baldırın dış başını vurgular.",
+   "ar": "توجيه الأصابع للداخل قليلاً يركز على الرأس الخارجي للسمانة."
+  },
+  "seated-calf-raise-toes-in": {
+   "en": "Toes turned in slightly biases the outer (lateral) calf head.",
+   "tr": "Parmak uçlarını hafifçe içe çevirmek baldırın dış başını vurgular.",
+   "ar": "توجيه الأصابع للداخل قليلاً يركز على الرأس الخارجي للسمانة."
+  },
+  "plate-calf-raises-toes-turned-out-garage-program": {
+   "en": "Toes turned out slightly biases the inner (medial) calf head.",
+   "tr": "Parmak uçlarını hafifçe dışa çevirmek baldırın iç başını vurgular.",
+   "ar": "توجيه الأصابع للخارج قليلاً يركز على الرأس الداخلي للسمانة."
+  },
+  "single-leg-dumbbell-calf-raise-toe-out": {
+   "en": "Toes turned out slightly biases the inner (medial) calf head.",
+   "tr": "Parmak uçlarını hafifçe dışa çevirmek baldırın iç başını vurgular.",
+   "ar": "توجيه الأصابع للخارج قليلاً يركز على الرأس الداخلي للسمانة."
+  },
+  "single-leg-dumbbell-calf-raise-toe-out-ryan_humis514743": {
+   "en": "Toes turned out slightly biases the inner (medial) calf head.",
+   "tr": "Parmak uçlarını hafifçe dışa çevirmek baldırın iç başını vurgular.",
+   "ar": "توجيه الأصابع للخارج قليلاً يركز على الرأس الداخلي للسمانة."
+  },
+  "leg-press-calf-raise-toes-in-copy": {
+   "en": "Toes turned out slightly biases the inner (medial) calf head.",
+   "tr": "Parmak uçlarını hafifçe dışa çevirmek baldırın iç başını vurgular.",
+   "ar": "توجيه الأصابع للخارج قليلاً يركز على الرأس الداخلي للسمانة."
+  },
+  "seated-calf-raise-toes-out": {
+   "en": "Toes turned out slightly biases the inner (medial) calf head.",
+   "tr": "Parmak uçlarını hafifçe dışa çevirmek baldırın iç başını vurgular.",
+   "ar": "توجيه الأصابع للخارج قليلاً يركز على الرأس الداخلي للسمانة."
+  },
+  "seated-calf-partials-top-copy": {
+   "en": "Toes turned out slightly biases the inner (medial) calf head.",
+   "tr": "Parmak uçlarını hafifçe dışa çevirmek baldırın iç başını vurgular.",
+   "ar": "توجيه الأصابع للخارج قليلاً يركز على الرأس الداخلي للسمانة."
+  },
+  "plate-calf-raises-toes-straight-garage-program": {
+   "en": "Toes pointing straight ahead for balanced work across both calf heads.",
+   "tr": "Parmak uçları düz ileri bakar; baldırın iki başı dengeli çalışır.",
+   "ar": "الأصابع متجهة للأمام مباشرة لعمل متوازن على رأسي السمانة."
+  },
+  "single-leg-dumbbell-calf-raise-neutral": {
+   "en": "Toes pointing straight ahead for balanced work across both calf heads.",
+   "tr": "Parmak uçları düz ileri bakar; baldırın iki başı dengeli çalışır.",
+   "ar": "الأصابع متجهة للأمام مباشرة لعمل متوازن على رأسي السمانة."
+  },
+  "single-leg-dumbbell-calf-raise-toes-straight": {
+   "en": "Toes pointing straight ahead for balanced work across both calf heads.",
+   "tr": "Parmak uçları düz ileri bakar; baldırın iki başı dengeli çalışır.",
+   "ar": "الأصابع متجهة للأمام مباشرة لعمل متوازن على رأسي السمانة."
+  },
+  "seated-calf-raise-neutral": {
+   "en": "Toes pointing straight ahead for balanced work across both calf heads.",
+   "tr": "Parmak uçları düz ileri bakar; baldırın iki başı dengeli çalışır.",
+   "ar": "الأصابع متجهة للأمام مباشرة لعمل متوازن على رأسي السمانة."
+  },
+  "straight-bar-curl-clusterfuck-copy": {
+   "en": "DC style: pause 10–15 seconds in the deepest stretch on the final reps.",
+   "tr": "DC stili: son tekrarlarda en derin gerilmede 10–15 saniye bekle.",
+   "ar": "أسلوب DC: توقف 10–15 ثانية في أعمق تمدد في التكرارات الأخيرة."
+  },
+  "dc-seated-calf-raise-copy": {
+   "en": "Top partials: pulse in the top half after full reps to extend the set.",
+   "tr": "Üst yarım tekrarlar: seti uzatmak için tam tekrarlardan sonra üst yarıda nabız gibi tekrarla.",
+   "ar": "تكرارات جزئية علوية: نبضات في النصف العلوي بعد التكرارات الكاملة لإطالة المجموعة."
+  },
+  "single-leg-seated-calf-raise-copy": {
+   "en": "DC style: pause 10–15 seconds in the deep stretch on the final reps.",
+   "tr": "DC stili: son tekrarlarda derin gerilmede 10–15 saniye bekle.",
+   "ar": "أسلوب DC: توقف 10–15 ثانية في التمدد العميق في التكرارات الأخيرة."
+  },
+  "seated-calf-raise-bottom-partials": {
+   "en": "Bottom partials: pulse only through the lower, most stretched half of the range.",
+   "tr": "Alt yarım tekrarlar: yalnızca en gerilmiş alt yarıda nabız gibi tekrarla.",
+   "ar": "تكرارات جزئية سفلية: تحرك فقط في النصف السفلي الأكثر تمدداً."
+  },
+  "seated-calf-raise-locked-out-partials": {
+   "en": "Locked-out partials: pulse at the very top while holding a hard contraction.",
+   "tr": "Kilitli yarım tekrarlar: en tepede güçlü kasılmayı koruyarak nabız gibi tekrarla.",
+   "ar": "تكرارات جزئية مقفلة: نبضات في الأعلى تماماً مع الحفاظ على انقباض قوي."
+  },
+  "seated-dumbbell-shrug-drops-copy-b24829a5-f696-485f-92d9-3cc55769fbb9": {
+   "en": "Ascending then descending: add weight each mini-set, then strip it back down.",
+   "tr": "Artan sonra azalan: her mini sette ağırlık ekle, sonra geri azalt.",
+   "ar": "تصاعدي ثم تنازلي: أضف وزناً في كل مجموعة صغيرة ثم خفّفه تدريجياً."
+  },
+  "seated-dumbbell-shrug-drops-copy-ryan_humis514743": {
+   "en": "Cluster set: split the set into mini-sets with 10–20 seconds rest to do more total reps.",
+   "tr": "Cluster set: seti 10–20 saniyelik dinlenmelerle mini setlere bölerek toplam tekrarı artır.",
+   "ar": "مجموعة عنقودية: قسّم المجموعة إلى مجموعات صغيرة براحة 10–20 ثانية لزيادة مجموع التكرارات."
+  },
+  "standing-dc-style-calf-raise-copy": {
+   "en": "Single-leg leg press calf raise done as a cluster set with short rests.",
+   "tr": "Kısa dinlenmeli cluster set olarak tek bacak leg press calf raise.",
+   "ar": "رفع سمانة بساق واحدة على Leg Press يُؤدى كمجموعة عنقودية براحات قصيرة."
+  },
+  "leg-press-single-leg-calf-raise-copy": {
+   "en": "Knees slightly bent shifts more work to the soleus.",
+   "tr": "Dizleri hafif bükmek işi daha çok soleusa kaydırır.",
+   "ar": "ثني الركبتين قليلاً ينقل عملاً أكبر إلى العضلة النعلية."
+  },
+  "seated-calf-raise-full-rom": {
+   "en": "Emphasize the absolute full range: deepest stretch to highest contraction every rep.",
+   "tr": "Tam açıklığa vurgu: her tekrarda en derin gerilmeden en yüksek kasılmaya.",
+   "ar": "ركّز على المدى الكامل تماماً: من أعمق تمدد إلى أعلى انقباض في كل تكرار."
+  },
+  "poor-mans-seated-calf-raise-weighted": {
+   "en": "No machine: sit on a bench with a weight on your knees and toes on a plate.",
+   "tr": "Makine yok: sehpaya otur, ağırlığı dizlerine koy ve parmak uçların plakada olsun.",
+   "ar": "بدون جهاز: اجلس على مقعد مع وزن على ركبتيك وأصابعك على قرص."
+  },
+  "single-leg-smith-calf-raise-copy": {
+   "en": "Standard seated calf raise machine; the soleus does most of the work.",
+   "tr": "Standart seated calf makinesi; işin çoğunu soleus yapar.",
+   "ar": "جهاز رفع السمانة جالساً القياسي؛ العضلة النعلية تقوم بمعظم العمل."
+  },
+  "single-leg-donkey-calf-raise-garage-program": {
+   "en": "Hinge forward at the hips: this pre-stretches the gastrocnemius; done one leg at a time.",
+   "tr": "Kalçadan öne eğil: bu gastrocnemiusu önceden gerer; tek bacakla yapılır.",
+   "ar": "انحنِ للأمام من الورك؛ هذا يمدد عضلة السمانة مسبقاً، ويُؤدى بساق واحدة."
+  },
+  "squatting-dumbbell-calf-raise-garage-program": {
+   "en": "Hold a deep squat while raising the heels; bent knees bias the soleus.",
+   "tr": "Topukları kaldırırken derin squat'ta kal; bükülü diz soleusu vurgular.",
+   "ar": "حافظ على سكوات عميق أثناء رفع الكعبين؛ ثني الركبتين يركز على النعلية."
+  },
+  "dumbbell-tibs": {
+   "en": "Hold a dumbbell between your feet while seated on a high bench.",
+   "tr": "Yüksek bir sehpada otururken ayaklarının arasında dambıl tut.",
+   "ar": "أمسك دمبلاً بين قدميك أثناء الجلوس على مقعد مرتفع."
+  },
+  "hanging-knee-raises-barbell-stabilized": {
+   "en": "Hold a racked barbell or brace on it to stop swinging and isolate the abs.",
+   "tr": "Sallanmayı önleyip karnı izole etmek için raftaki bara tutun.",
+   "ar": "أمسك باراً مثبتاً أو استند عليه لمنع التأرجح وعزل البطن."
+  },
+  "hanging-knee-rotations": {
+   "en": "Raise the knees toward one side, alternating, to add oblique work.",
+   "tr": "Oblik çalışması eklemek için dizleri sırayla bir yana doğru kaldır.",
+   "ar": "ارفع الركبتين نحو جانب واحد بالتناوب لإضافة عمل العضلات المائلة."
+  },
+  "ab-straps-hanging-leg-raises": {
+   "en": "Ab straps support the elbows so grip doesn't fail before the abs.",
+   "tr": "Ab kayışları dirsekleri destekler; kavrama karından önce tükenmez.",
+   "ar": "أحزمة البطن تدعم المرفقين فلا تفشل القبضة قبل البطن."
+  },
+  "dip-bar-leg-raises-ryan_humis514743": {
+   "en": "Support yourself on dip bars with locked arms instead of hanging.",
+   "tr": "Asılmak yerine kollar kilitli şekilde paralel barda kendini taşı.",
+   "ar": "استند على المتوازي بذراعين مقفلتين بدل التعلق."
+  },
+  "single-arm-french-pressed-to-bench-copy": {
+   "en": "Support yourself on dip bars with locked arms instead of hanging.",
+   "tr": "Asılmak yerine kollar kilitli şekilde paralel barda kendini taşı.",
+   "ar": "استند على المتوازي بذراعين مقفلتين بدل التعلق."
+  },
+  "dip-bar-abdominal-pikes": {
+   "en": "On dip bars, raise straight legs into a pike as high as possible, rolling the pelvis up.",
+   "tr": "Paralel barda düz bacakları leğeni kıvırarak olabildiğince yükseğe pike pozisyonuna kaldır.",
+   "ar": "على المتوازي ارفع الساقين مستقيمتين إلى وضع Pike بأعلى ما يمكن مع لف الحوض."
+  },
+  "decline-bench-lower-ab-hip-tilt-raise": {
+   "en": "Small range: focus only on tilting the pelvis up off the decline bench.",
+   "tr": "Küçük açıklık: yalnızca leğeni decline sehpadan yukarı devirmeye odaklan.",
+   "ar": "مدى صغير: ركّز فقط على إمالة الحوض للأعلى عن المقعد المائل."
+  },
+  "seated-knee-raises-garage-program": {
+   "en": "Sit on a bench edge, lean back slightly and tuck the knees to the chest.",
+   "tr": "Sehpanın kenarına otur, hafif geriye yaslan ve dizlerini göğsüne çek.",
+   "ar": "اجلس على حافة مقعد ومِل للخلف قليلاً واسحب الركبتين نحو الصدر."
+  },
+  "feet-elevated-crunches-ryan_humis514743": {
+   "en": "Feet on a bench or wall reduces hip-flexor involvement.",
+   "tr": "Ayakları sehpaya ya da duvara koymak kalça fleksörlerinin katılımını azaltır.",
+   "ar": "وضع القدمين على مقعد أو جدار يقلل مشاركة ثانيات الورك."
+  },
+  "weight-crunch-garage-program": {
+   "en": "Hold a plate or dumbbell on the chest to add resistance.",
+   "tr": "Direnç eklemek için göğsünde plaka ya da dambıl tut.",
+   "ar": "أمسك قرصاً أو دمبلاً على صدرك لإضافة مقاومة."
+  },
+  "elbows-to-knees-crunch": {
+   "en": "Bring knees and elbows together at the top, crunching from both ends.",
+   "tr": "Tepede dizleri ve dirsekleri buluştur; iki uçtan sıkıştır.",
+   "ar": "اجمع الركبتين والمرفقين في الأعلى بالضغط من الطرفين."
+  },
+  "straight-arm-crunches": {
+   "en": "Keep arms straight overhead or forward and reach up as you crunch.",
+   "tr": "Kolları başının üstünde ya da önde düz tut ve crunch yaparken uzan.",
+   "ar": "أبقِ الذراعين مستقيمتين فوق الرأس أو للأمام وامتد للأعلى أثناء الكرنش."
+  },
+  "decline-crunch-mechanical-drop-starting-form-copy": {
+   "en": "Mechanical drop, end form: after the harder version fails, switch to arms by your sides and continue.",
+   "tr": "Mekanik drop, son form: zor versiyonda tükenince kollar yanlarda devam et.",
+   "ar": "تنازل ميكانيكي، الشكل الأخير: بعد الفشل في النسخة الأصعب انتقل إلى الذراعين بجانبيك واستمر."
+  },
+  "bodyweight-french-press-copy": {
+   "en": "Mechanical drop, starting form: begin with arms overhead (hardest); switch to an easier arm position at failure.",
+   "tr": "Mekanik drop, başlangıç formu: kollar başının üstünde (en zor) başla; tükenişte daha kolay kol pozisyonuna geç.",
+   "ar": "تنازل ميكانيكي، الشكل الأول: ابدأ والذراعان فوق الرأس (الأصعب) وانتقل لوضع أسهل عند الفشل."
+  },
+  "decline-thoracic-extension-flexion-crunch": {
+   "en": "Let the upper back extend over the bench at the bottom for a bigger ab stretch, then crunch.",
+   "tr": "Daha büyük karın gerilmesi için altta üst sırtının geriye açılmasına izin ver, sonra crunch yap.",
+   "ar": "دع أعلى الظهر ينبسط في الأسفل لتمدد أكبر للبطن ثم نفّذ الكرنش."
+  },
+  "decline-sit-ups-ryan_humis514743": {
+   "en": "Full sit-up: curl up all the way until the torso is upright.",
+   "tr": "Tam sit-up: gövde dikleşene kadar tamamen kalk.",
+   "ar": "Sit-Up كامل: ارتفع حتى يصبح الجذع مستقيماً."
+  },
+  "machine-ab-crunch-ryan_humis514743": {
+   "en": "Machine version: set the seat so you crunch through the spine, not the hips.",
+   "tr": "Makine versiyonu: koltuğu kalçadan değil omurgadan bükülecek şekilde ayarla.",
+   "ar": "نسخة الجهاز: اضبط المقعد لتنثني من العمود الفقري لا من الورك."
+  },
+  "diy-barbell-ab-roller": {
+   "en": "Use a loaded barbell with round plates as the ab wheel.",
+   "tr": "Yuvarlak plakalı yüklü bir barı ab tekeri gibi kullan.",
+   "ar": "استخدم باراً محمّلاً بأقراص دائرية كعجلة بطن."
+  },
+  "poor-mans-ab-roller-garage-program": {
+   "en": "No wheel: use a barbell, towel on a smooth floor or sliders instead.",
+   "tr": "Teker yok: bar, kaygan zeminde havlu ya da slider kullan.",
+   "ar": "بدون عجلة: استخدم باراً أو منشفة على أرض ملساء أو أقراص انزلاق."
+  },
+  "v-ups-dumbbell-feet-only-garage-program": {
+   "en": "Hold a dumbbell between the feet for added resistance.",
+   "tr": "Ek direnç için ayaklarının arasında bir dambıl tut.",
+   "ar": "أمسك دمبلاً بين قدميك لمقاومة إضافية."
+  },
+  "v-ups-dumbbell-between-feet": {
+   "en": "Hold a dumbbell between the feet for added resistance.",
+   "tr": "Ek direnç için ayaklarının arasında bir dambıl tut.",
+   "ar": "أمسك دمبلاً بين قدميك لمقاومة إضافية."
+  },
+  "v-ups-dumbbell-in-hands": {
+   "en": "Hold a dumbbell in the hands to load the upper-body part of the movement.",
+   "tr": "Hareketin üst gövde kısmını yüklemek için ellerinde bir dambıl tut.",
+   "ar": "أمسك دمبلاً بيديك لتحميل جزء الجذع العلوي من الحركة."
+  },
+  "v-ups-dumbbell-both-hands-feet": {
+   "en": "Hold a dumbbell in the hands and another between the feet for maximal load.",
+   "tr": "Maksimum yük için ellerinde bir dambıl, ayaklarının arasında bir dambıl tut.",
+   "ar": "أمسك دمبلاً بيديك وآخر بين قدميك لأقصى حمل."
+  },
+  "partial-v-ups-dumbbell-in-hands-feet-garage-program": {
+   "en": "Partial range with dumbbells in hands and feet; keep tension and never rest on the floor.",
+   "tr": "Ellerde ve ayaklarda dambılla yarım açıklık; gerilimi koru, yere hiç dinlenme.",
+   "ar": "مدى جزئي مع دمبلات في اليدين والقدمين؛ حافظ على الشد ولا ترتح على الأرض."
+  },
+  "weighted-v-ups-bent-knees": {
+   "en": "Bent knees shorten the lever; hold a medicine ball for load.",
+   "tr": "Bükülü dizler kolu kısaltır; yük için sağlık topu tut.",
+   "ar": "ثني الركبتين يقصّر الذراع؛ أمسك كرة طبية للحمل."
+  },
+  "exercise-ball-pass-v-ups": {
+   "en": "Pass a ball from hands to feet at the top of each rep, then back again.",
+   "tr": "Her tekrarın tepesinde topu ellerden ayaklara, sonra geri aktar.",
+   "ar": "مرّر الكرة من يديك إلى قدميك في أعلى كل تكرار ثم أعدها."
+  }
+ }
+}

@@ -1,0 +1,18 @@
+# private / source material — never commit
+raw/
+*.xapk
+*.apk
+.token
+*.token
+.env*
+
+# media: kept outside the repo until the deploy step moves it into app/media
+/media/
+app/media
+
+# local / generated
+__pycache__/
+*.pyc
+node_modules/
+.DS_Store
+shots/

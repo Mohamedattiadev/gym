@@ -1,0 +1,4350 @@
+{
+ "families": {
+  "pull-up": {
+   "primary": [
+    "lats"
+   ],
+   "secondary": [
+    "biceps",
+    "upper-back",
+    "delt-rear",
+    "forearms"
+   ],
+   "en": {
+    "title": "Pull-Up",
+    "about": "A bodyweight vertical pull that builds wide lats and a strong upper back with a big overhead stretch.",
+    "steps": [
+     "Hang from the bar with arms fully straight and shoulders stretched.",
+     "Brace your core and keep legs still.",
+     "Drive elbows down toward your ribs until your chin clears the bar.",
+     "Lower slowly back to a full dead hang."
+    ],
+    "cues": [
+     "Think elbows to back pockets, not hands to bar.",
+     "Start every rep from a full stretch.",
+     "Keep chest up and lean back slightly."
+    ],
+    "mistakes": [
+     "Kipping or swinging to cheat reps.",
+     "Stopping short of a full hang at the bottom."
+    ]
+   },
+   "tr": {
+    "title": "Pull-Up",
+    "about": "Lat kaslarını genişleten ve sırtı güçlendiren, tepede büyük esneme sağlayan vücut ağırlığıyla dikey çekiş.",
+    "steps": [
+     "Barda kollar tamamen düz, omuzlar esnemiş şekilde asıl.",
+     "Karnını sık ve bacaklarını sabit tut.",
+     "Dirseklerini kaburgalarına doğru indir, çenen barı geçsin.",
+     "Kontrollü şekilde tam asılı pozisyona geri in."
+    ],
+    "cues": [
+     "Elleri değil, dirsekleri arka ceplere çekmeyi düşün.",
+     "Her tekrara tam esnemeden başla.",
+     "Göğsü yukarıda tut, hafif geriye yaslan."
+    ],
+    "mistakes": [
+     "Sallanarak ya da kipping ile tekrar çalmak.",
+     "Altta kolları tam açmadan tekrara başlamak."
+    ]
+   },
+   "ar": {
+    "title": "العقلة (Pull-Up)",
+    "about": "سحب عمودي بوزن الجسم يوسّع العضلة الظهرية العريضة ويقوّي أعلى الظهر مع تمدد كبير.",
+    "steps": [
+     "تعلّق بالبار والذراعان مستقيمتان تمامًا والكتفان ممدودتان.",
+     "شدّ عضلات البطن وثبّت الساقين.",
+     "اسحب المرفقين نحو الأضلاع حتى يتجاوز الذقن البار.",
+     "انزل ببطء حتى التعلّق الكامل."
+    ],
+    "cues": [
+     "فكّر في سحب المرفقين نحو الجيوب الخلفية لا اليدين نحو البار.",
+     "ابدأ كل تكرار من تمدد كامل.",
+     "ارفع الصدر ومِل للخلف قليلًا."
+    ],
+    "mistakes": [
+     "التأرجح أو استخدام الزخم لإكمال التكرارات.",
+     "عدم النزول إلى التعلّق الكامل في الأسفل."
+    ]
+   }
+  },
+  "assisted-pull-up": {
+   "primary": [
+    "lats"
+   ],
+   "secondary": [
+    "biceps",
+    "upper-back",
+    "delt-rear"
+   ],
+   "en": {
+    "title": "Assisted Pull-Up",
+    "about": "A machine-assisted pull-up that lets you train the full lat range with adjustable load.",
+    "steps": [
+     "Set the counterweight and kneel or stand on the pad.",
+     "Grip the handles and let arms straighten fully overhead.",
+     "Pull elbows down and in until your chin passes the handles.",
+     "Control the way up into a deep lat stretch."
+    ],
+    "cues": [
+     "Use only enough assistance to reach near failure in your rep range.",
+     "Keep shoulders down at the top of the pull.",
+     "Pause briefly in the stretched position."
+    ],
+    "mistakes": [
+     "Using so much assistance the set becomes easy.",
+     "Bouncing out of the bottom instead of controlling it."
+    ]
+   },
+   "tr": {
+    "title": "Assisted Pull-Up",
+    "about": "Makine destekli barfiks; ayarlanabilir yükle lat kaslarını tam hareket açıklığında çalıştırırsın.",
+    "steps": [
+     "Karşı ağırlığı ayarla, platforma diz çök ya da bas.",
+     "Tutamakları kavra, kollar yukarıda tamamen düzleşsin.",
+     "Dirsekleri aşağı ve içe çek, çene tutamakları geçsin.",
+     "Yukarı çıkışı kontrol ederek derin bir lat esnemesine gel."
+    ],
+    "cues": [
+     "Sadece tükenişe yaklaşmana yetecek kadar destek kullan.",
+     "Çekişin sonunda omuzları aşağıda tut.",
+     "Esneme pozisyonunda kısa bir an dur."
+    ],
+    "mistakes": [
+     "Seti kolaylaştıracak kadar fazla destek almak.",
+     "Altta kontrol yerine sekerek çıkmak."
+    ]
+   },
+   "ar": {
+    "title": "العقلة المساعدة (Assisted Pull-Up)",
+    "about": "عقلة بمساعدة الجهاز تتيح تدريب العضلة الظهرية بمدى كامل وحمل قابل للتعديل.",
+    "steps": [
+     "اضبط الوزن المعاكس واركع أو قف على الوسادة.",
+     "أمسك المقابض واترك الذراعين تستقيمان فوق الرأس.",
+     "اسحب المرفقين للأسفل والداخل حتى يتجاوز الذقن المقابض.",
+     "تحكّم في الصعود حتى تمدد عميق للظهر."
+    ],
+    "cues": [
+     "استخدم مساعدة تكفي فقط للوصول قرب الفشل.",
+     "أبقِ الكتفين منخفضتين في أعلى السحب.",
+     "توقف لحظة في وضع التمدد."
+    ],
+    "mistakes": [
+     "استخدام مساعدة كبيرة تجعل المجموعة سهلة.",
+     "الارتداد من الأسفل بدل التحكم."
+    ]
+   }
+  },
+  "bench-assisted-pull-up": {
+   "primary": [
+    "lats"
+   ],
+   "secondary": [
+    "biceps",
+    "upper-back",
+    "delt-rear",
+    "quads"
+   ],
+   "en": {
+    "title": "Bench-Assisted Pull-Up",
+    "about": "A home-gym pull-up where your feet on a bench provide just enough help to finish hard reps.",
+    "steps": [
+     "Place a bench behind a bar and rest your feet on it.",
+     "Hang with straight arms and hips slightly bent.",
+     "Pull your chest toward the bar using your back first.",
+     "Use your legs only as much as needed to finish the rep.",
+     "Lower slowly to a full stretch."
+    ],
+    "cues": [
+     "Let the back do most of the work.",
+     "Reduce leg help as you get stronger.",
+     "Keep a full hang at the bottom."
+    ],
+    "mistakes": [
+     "Turning it into a leg press with the arms along.",
+     "Cutting the bottom range short."
+    ]
+   },
+   "tr": {
+    "title": "Bench-Assisted Pull-Up",
+    "about": "Ayakların sehpada olduğu, zor tekrarları bitirmeye yetecek kadar destek veren ev salonu barfiksi.",
+    "steps": [
+     "Barın arkasına sehpa koy ve ayaklarını üzerine yerleştir.",
+     "Kollar düz, kalça hafif bükülü şekilde asıl.",
+     "Önce sırtınla göğsünü bara doğru çek.",
+     "Bacaklarını sadece tekrarı bitirmek için kullan.",
+     "Tam esnemeye yavaşça in."
+    ],
+    "cues": [
+     "İşin çoğunu sırt yapsın.",
+     "Güçlendikçe bacak desteğini azalt.",
+     "Altta kolları tam aç."
+    ],
+    "mistakes": [
+     "Hareketi bacak itişine çevirmek.",
+     "Alt hareket açıklığını kısaltmak."
+    ]
+   },
+   "ar": {
+    "title": "العقلة بمساعدة المقعد (Bench-Assisted Pull-Up)",
+    "about": "عقلة منزلية تمنحك فيها القدمان على المقعد مساعدة كافية لإنهاء التكرارات الصعبة.",
+    "steps": [
+     "ضع مقعدًا خلف البار وضع قدميك عليه.",
+     "تعلّق بذراعين مستقيمتين ووركين منثنيين قليلًا.",
+     "اسحب صدرك نحو البار باستخدام الظهر أولًا.",
+     "استخدم الساقين فقط بالقدر اللازم لإنهاء التكرار.",
+     "انزل ببطء حتى التمدد الكامل."
+    ],
+    "cues": [
+     "اجعل الظهر يقوم بمعظم العمل.",
+     "قلّل مساعدة الساقين كلما ازدادت قوتك.",
+     "حافظ على تعلّق كامل في الأسفل."
+    ],
+    "mistakes": [
+     "تحويل التمرين إلى دفع بالساقين.",
+     "تقصير المدى في الأسفل."
+    ]
+   }
+  },
+  "lat-pulldown": {
+   "primary": [
+    "lats"
+   ],
+   "secondary": [
+    "biceps",
+    "upper-back",
+    "delt-rear"
+   ],
+   "en": {
+    "title": "Lat Pulldown",
+    "about": "A cable vertical pull that loads the lats through a long, stable range and is easy to progress.",
+    "steps": [
+     "Lock your thighs under the pad and grip the bar.",
+     "Let the weight stretch your arms fully overhead.",
+     "Pull the bar to your upper chest, driving elbows down.",
+     "Return slowly until your lats are fully stretched."
+    ],
+    "cues": [
+     "Lead with the elbows, keep hands as hooks.",
+     "Lean back only slightly; keep the torso steady.",
+     "Control the eccentric for two to three seconds."
+    ],
+    "mistakes": [
+     "Leaning far back and turning it into a row.",
+     "Letting the stack yank you up without control."
+    ]
+   },
+   "tr": {
+    "title": "Lat Pulldown",
+    "about": "Lat kaslarını uzun ve stabil bir açıklıkta yükleyen, kolay ilerleme sağlayan kablo dikey çekişi.",
+    "steps": [
+     "Bacaklarını pedin altına sabitle ve barı kavra.",
+     "Ağırlık kollarını yukarıda tamamen esnetsin.",
+     "Dirsekleri aşağı sürerek barı üst göğsüne çek.",
+     "Lat kasların tamamen esneyene kadar yavaşça bırak."
+    ],
+    "cues": [
+     "Dirseklerle öncülük et, ellerin sadece kanca olsun.",
+     "Hafifçe geriye yaslan, gövdeyi sabit tut.",
+     "Negatif fazı iki üç saniyede kontrol et."
+    ],
+    "mistakes": [
+     "Çok geriye yaslanıp hareketi row'a çevirmek.",
+     "Ağırlığın seni kontrolsüzce yukarı çekmesine izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "السحب العلوي (Lat Pulldown)",
+    "about": "سحب عمودي بالكابل يحمّل العضلة الظهرية عبر مدى طويل وثابت ويسهل التدرج فيه.",
+    "steps": [
+     "ثبّت فخذيك تحت الوسادة وأمسك البار.",
+     "دع الوزن يمدّ ذراعيك فوق الرأس بالكامل.",
+     "اسحب البار إلى أعلى الصدر دافعًا المرفقين للأسفل.",
+     "عد ببطء حتى تتمدد العضلة الظهرية بالكامل."
+    ],
+    "cues": [
+     "قُد الحركة بالمرفقين واجعل اليدين كالخطاف.",
+     "مِل للخلف قليلًا فقط وثبّت الجذع.",
+     "تحكّم في النزول لمدة ثانيتين إلى ثلاث."
+    ],
+    "mistakes": [
+     "الميل كثيرًا للخلف وتحويله إلى تجديف.",
+     "ترك الأوزان تسحبك للأعلى دون تحكم."
+    ]
+   }
+  },
+  "close-grip-pulldown": {
+   "primary": [
+    "lats"
+   ],
+   "secondary": [
+    "biceps",
+    "upper-back",
+    "delt-rear"
+   ],
+   "en": {
+    "title": "Close-Grip Pulldown",
+    "about": "A neutral, close-grip pulldown that keeps elbows tight to the body for strong lat emphasis.",
+    "steps": [
+     "Attach a V-bar or two handles and sit under the pad.",
+     "Reach up and let your shoulders rise into a full stretch.",
+     "Pull handles to your upper chest, elbows tracking close to your sides.",
+     "Return under control to the full overhead stretch."
+    ],
+    "cues": [
+     "Drive elbows down toward your hips.",
+     "Keep a slight lean and a proud chest.",
+     "Own the stretch at the top of every rep."
+    ],
+    "mistakes": [
+     "Pulling with the arms and shrugging the shoulders.",
+     "Short reps that skip the stretch."
+    ]
+   },
+   "tr": {
+    "title": "Close-Grip Pulldown",
+    "about": "Dirsekleri vücuda yakın tutarak lat kaslarını güçlü şekilde vurgulayan nötr dar tutuşlu pulldown.",
+    "steps": [
+     "V-bar ya da iki tutamak tak, pedin altına otur.",
+     "Yukarı uzan, omuzların tam esnemeye kalksın.",
+     "Tutamakları üst göğse çek, dirsekler yanlara yakın kalsın.",
+     "Kontrollü şekilde tam esnemeye geri dön."
+    ],
+    "cues": [
+     "Dirsekleri kalçalarına doğru sür.",
+     "Hafif yaslan, göğsü dik tut.",
+     "Her tekrarın tepesindeki esnemeyi hisset."
+    ],
+    "mistakes": [
+     "Kollarla çekip omuz silkmek.",
+     "Esnemeyi atlayan yarım tekrarlar."
+    ]
+   },
+   "ar": {
+    "title": "السحب العلوي بقبضة ضيقة (Close-Grip Pulldown)",
+    "about": "سحب علوي بقبضة محايدة ضيقة يبقي المرفقين قريبين من الجسم لتركيز قوي على الظهر.",
+    "steps": [
+     "ركّب مقبض V أو مقبضين واجلس تحت الوسادة.",
+     "مدّ يديك للأعلى ودع الكتفين ترتفعان في تمدد كامل.",
+     "اسحب المقابض إلى أعلى الصدر والمرفقان قريبان من الجانبين.",
+     "عد بتحكم إلى التمدد الكامل فوق الرأس."
+    ],
+    "cues": [
+     "ادفع المرفقين نحو الوركين.",
+     "حافظ على ميل بسيط وصدر مرفوع.",
+     "تحكّم في التمدد أعلى كل تكرار."
+    ],
+    "mistakes": [
+     "السحب بالذراعين ورفع الكتفين.",
+     "تكرارات قصيرة تتجاوز التمدد."
+    ]
+   }
+  },
+  "dumbbell-pullover": {
+   "primary": [
+    "lats"
+   ],
+   "secondary": [
+    "chest",
+    "triceps",
+    "abs"
+   ],
+   "en": {
+    "title": "Dumbbell Pullover",
+    "about": "A shoulder-extension movement that trains the lats in a deep overhead stretch without biceps fatigue.",
+    "steps": [
+     "Lie on a bench holding one dumbbell over your chest.",
+     "Keep elbows slightly bent and fixed.",
+     "Lower the weight behind your head until lats and chest stretch.",
+     "Pull it back over your chest using your lats."
+    ],
+    "cues": [
+     "Keep ribs down so the lower back does not arch.",
+     "Move only at the shoulder, not the elbows.",
+     "Stop the top just before tension disappears."
+    ],
+    "mistakes": [
+     "Bending the elbows and turning it into a triceps extension.",
+     "Flaring the ribs and arching hard to fake range."
+    ]
+   },
+   "tr": {
+    "title": "Dumbbell Pullover",
+    "about": "Biceps yorgunluğu olmadan lat kaslarını derin bir esnemede çalıştıran omuz ekstansiyon hareketi.",
+    "steps": [
+     "Sehpaya uzan, tek dumbbell'ı göğsünün üzerinde tut.",
+     "Dirsekler hafif bükülü ve sabit kalsın.",
+     "Ağırlığı lat ve göğüs esneyene kadar başının arkasına indir.",
+     "Lat kaslarınla göğsünün üzerine geri çek."
+    ],
+    "cues": [
+     "Kaburgaları aşağıda tut, bel boşluğu artmasın.",
+     "Sadece omuzdan hareket et, dirseklerden değil.",
+     "Gerilim kaybolmadan hemen önce üstte dur."
+    ],
+    "mistakes": [
+     "Dirsekleri büküp hareketi triceps ekstansiyonuna çevirmek.",
+     "Kaburgaları açıp beli aşırı kavislendirmek."
+    ]
+   },
+   "ar": {
+    "title": "البول أوفر بالدمبل (Dumbbell Pullover)",
+    "about": "حركة مدّ للكتف تدرّب العضلة الظهرية في تمدد عميق دون إجهاد العضلة ذات الرأسين.",
+    "steps": [
+     "استلقِ على مقعد ممسكًا دمبلًا واحدًا فوق صدرك.",
+     "أبقِ المرفقين منثنيين قليلًا وثابتين.",
+     "أنزل الوزن خلف رأسك حتى تتمدد الظهرية والصدر.",
+     "اسحبه فوق صدرك مجددًا باستخدام عضلات الظهر."
+    ],
+    "cues": [
+     "أبقِ الأضلاع منخفضة كي لا يتقوس أسفل الظهر.",
+     "تحرّك من الكتف فقط لا من المرفقين.",
+     "توقف في الأعلى قبل أن يختفي الشد."
+    ],
+    "mistakes": [
+     "ثني المرفقين وتحويله إلى تمرين للعضلة ثلاثية الرؤوس.",
+     "فتح الأضلاع وتقويس الظهر لتزييف المدى."
+    ]
+   }
+  },
+  "barbell-pullover": {
+   "primary": [
+    "lats"
+   ],
+   "secondary": [
+    "chest",
+    "triceps",
+    "abs"
+   ],
+   "en": {
+    "title": "Barbell Pullover",
+    "about": "A pullover with a bar that allows heavier loading of the lats in a long stretched position.",
+    "steps": [
+     "Lie on a flat or slightly inclined bench with a bar over your chest.",
+     "Use a shoulder-width grip and soft elbows.",
+     "Arc the bar back behind your head into a deep stretch.",
+     "Sweep it back over your chest with your lats."
+    ],
+    "cues": [
+     "Keep elbow angle constant throughout.",
+     "Brace your core to keep the lower back flat.",
+     "Go slow through the bottom stretch."
+    ],
+    "mistakes": [
+     "Letting the elbows flare and bend.",
+     "Dropping the bar too fast into the stretch."
+    ]
+   },
+   "tr": {
+    "title": "Barbell Pullover",
+    "about": "Lat kaslarını uzun esneme pozisyonunda daha ağır yüklemeye izin veren barlı pullover.",
+    "steps": [
+     "Düz ya da hafif eğimli sehpaya uzan, bar göğsünün üzerinde olsun.",
+     "Omuz genişliğinde tut, dirsekler hafif bükülü.",
+     "Barı yay çizerek başının arkasına derin esnemeye indir.",
+     "Lat kaslarınla göğsünün üzerine geri süpür."
+    ],
+    "cues": [
+     "Dirsek açısını hareket boyunca sabit tut.",
+     "Beli düz tutmak için karnını sık.",
+     "Alttaki esnemede yavaş ol."
+    ],
+    "mistakes": [
+     "Dirseklerin açılıp bükülmesine izin vermek.",
+     "Barı esnemeye hızla düşürmek."
+    ]
+   },
+   "ar": {
+    "title": "البول أوفر بالبار (Barbell Pullover)",
+    "about": "بول أوفر بالبار يسمح بتحميل أثقل للعضلة الظهرية في وضع تمدد طويل.",
+    "steps": [
+     "استلقِ على مقعد مستوٍ أو مائل قليلًا والبار فوق صدرك.",
+     "أمسك بعرض الكتفين مع مرفقين لينين.",
+     "حرّك البار بقوس خلف رأسك حتى تمدد عميق.",
+     "أعده فوق صدرك بعضلات الظهر."
+    ],
+    "cues": [
+     "ثبّت زاوية المرفق طوال الحركة.",
+     "شدّ البطن لإبقاء أسفل الظهر مستويًا.",
+     "تحرّك ببطء عند التمدد السفلي."
+    ],
+    "mistakes": [
+     "ترك المرفقين ينفتحان وينثنيان.",
+     "إسقاط البار بسرعة نحو التمدد."
+    ]
+   }
+  },
+  "cable-pullover": {
+   "primary": [
+    "lats"
+   ],
+   "secondary": [
+    "triceps",
+    "upper-back",
+    "abs"
+   ],
+   "en": {
+    "title": "Cable Pullover",
+    "about": "A straight-arm cable pull that keeps constant tension on the lats from stretch to contraction.",
+    "steps": [
+     "Set a cable high and grab a bar, rope or handle.",
+     "Hinge slightly and reach arms up into a stretch.",
+     "With soft elbows, sweep your hands down to your thighs.",
+     "Let the cable pull your arms back up slowly."
+    ],
+    "cues": [
+     "Think about pulling with your armpits.",
+     "Keep elbows locked at a slight bend.",
+     "Reach fully overhead on every rep."
+    ],
+    "mistakes": [
+     "Bending elbows and pushing down like a triceps pressdown.",
+     "Rocking the torso to move the weight."
+    ]
+   },
+   "tr": {
+    "title": "Cable Pullover",
+    "about": "Lat kaslarında esnemeden kasılmaya kadar sürekli gerilim sağlayan düz kollu kablo çekişi.",
+    "steps": [
+     "Kabloyu yükseğe ayarla, bar, halat ya da tutamak al.",
+     "Hafif öne eğil ve kolları yukarı esnemeye uzat.",
+     "Dirsekler hafif bükülü, ellerini uyluklarına doğru süpür.",
+     "Kablonun kollarını yavaşça yukarı çekmesine izin ver."
+    ],
+    "cues": [
+     "Koltuk altlarınla çektiğini düşün.",
+     "Dirsekleri hafif bükülü sabit tut.",
+     "Her tekrarda tamamen yukarı uzan."
+    ],
+    "mistakes": [
+     "Dirsekleri büküp triceps pushdown gibi itmek.",
+     "Ağırlığı gövdeyi sallayarak oynatmak."
+    ]
+   },
+   "ar": {
+    "title": "البول أوفر بالكابل (Cable Pullover)",
+    "about": "سحب بالكابل بذراعين مستقيمتين يحافظ على شد مستمر على الظهرية من التمدد حتى الانقباض.",
+    "steps": [
+     "اضبط الكابل عاليًا وأمسك بارًا أو حبلًا أو مقبضًا.",
+     "انحنِ قليلًا ومدّ ذراعيك للأعلى في تمدد.",
+     "بمرفقين لينين اسحب يديك نزولًا نحو الفخذين.",
+     "دع الكابل يعيد ذراعيك للأعلى ببطء."
+    ],
+    "cues": [
+     "فكّر في السحب بالإبطين.",
+     "ثبّت المرفقين بانثناء بسيط.",
+     "مدّ ذراعيك بالكامل فوق الرأس في كل تكرار."
+    ],
+    "mistakes": [
+     "ثني المرفقين والدفع كتمرين ثلاثية الرؤوس.",
+     "هزّ الجذع لتحريك الوزن."
+    ]
+   }
+  },
+  "barbell-row": {
+   "primary": [
+    "upper-back",
+    "lats"
+   ],
+   "secondary": [
+    "traps",
+    "delt-rear",
+    "biceps",
+    "lower-back",
+    "hamstrings"
+   ],
+   "en": {
+    "title": "Barbell Row",
+    "about": "A heavy bent-over row that builds overall back thickness and is easy to overload.",
+    "steps": [
+     "Hinge forward with a flat back, bar hanging at arm's length.",
+     "Brace your core and keep knees softly bent.",
+     "Row the bar to your lower ribs, squeezing shoulder blades.",
+     "Lower slowly until arms and shoulders are fully stretched."
+    ],
+    "cues": [
+     "Keep torso angle fixed; don't stand up as you pull.",
+     "Pull with elbows, not wrists.",
+     "Let shoulder blades spread at the bottom."
+    ],
+    "mistakes": [
+     "Using hip drive and momentum on every rep.",
+     "Rounding the lower back under load."
+    ]
+   },
+   "tr": {
+    "title": "Barbell Row",
+    "about": "Sırt kalınlığını geliştiren, kolayca ağırlık artırılabilen ağır eğilerek yapılan row.",
+    "steps": [
+     "Sırt düz, kalçadan öne eğil; bar kollarının ucunda asılı dursun.",
+     "Karnını sık, dizler hafif bükülü kalsın.",
+     "Barı alt kaburgalarına çek, kürek kemiklerini sık.",
+     "Kollar ve omuzlar tamamen esneyene kadar yavaşça indir."
+    ],
+    "cues": [
+     "Gövde açını sabit tut, çekerken doğrulma.",
+     "Bileklerle değil, dirseklerle çek.",
+     "Altta kürek kemiklerinin açılmasına izin ver."
+    ],
+    "mistakes": [
+     "Her tekrarda kalça ve momentum kullanmak.",
+     "Yük altında beli yuvarlamak."
+    ]
+   },
+   "ar": {
+    "title": "التجديف بالبار (Barbell Row)",
+    "about": "تجديف ثقيل منحنٍ يبني سماكة الظهر بالكامل ويسهل زيادة الحمل فيه.",
+    "steps": [
+     "انحنِ من الورك بظهر مستقيم والبار متدلٍّ بطول الذراعين.",
+     "شدّ البطن وأبقِ الركبتين منثنيتين قليلًا.",
+     "اسحب البار إلى أسفل الأضلاع واضغط لوحي الكتف.",
+     "أنزله ببطء حتى تتمدد الذراعان والكتفان بالكامل."
+    ],
+    "cues": [
+     "ثبّت زاوية الجذع ولا تنتصب أثناء السحب.",
+     "اسحب بالمرفقين لا بالمعصمين.",
+     "دع لوحي الكتف يتباعدان في الأسفل."
+    ],
+    "mistakes": [
+     "استخدام دفع الورك والزخم في كل تكرار.",
+     "تقويس أسفل الظهر تحت الحمل."
+    ]
+   }
+  },
+  "pendlay-row": {
+   "primary": [
+    "upper-back",
+    "lats"
+   ],
+   "secondary": [
+    "traps",
+    "delt-rear",
+    "biceps",
+    "lower-back"
+   ],
+   "en": {
+    "title": "Pendlay Row",
+    "about": "A strict row from a dead stop on the floor that builds explosive back strength without momentum.",
+    "steps": [
+     "Set the bar on the floor and hinge until your torso is near parallel.",
+     "Grip just outside shoulder width with a flat back.",
+     "Pull the bar explosively to your upper stomach.",
+     "Return it to the floor and reset each rep."
+    ],
+    "cues": [
+     "Keep the torso still; only the arms and shoulder blades move.",
+     "Start each rep from a full arm stretch.",
+     "Brace hard before every pull."
+    ],
+    "mistakes": [
+     "Raising the chest to meet the bar.",
+     "Bouncing the bar off the floor."
+    ]
+   },
+   "tr": {
+    "title": "Pendlay Row",
+    "about": "Her tekrar yerden duruştan başlayan, momentumsuz patlayıcı sırt gücü geliştiren sıkı row.",
+    "steps": [
+     "Barı yere koy, gövdeni yere neredeyse paralel olacak şekilde eğ.",
+     "Sırt düz, omuz genişliğinin biraz dışından tut.",
+     "Barı patlayıcı şekilde üst karnına çek.",
+     "Barı yere bırak ve her tekrarda yeniden hazırlan."
+    ],
+    "cues": [
+     "Gövde sabit; sadece kollar ve kürek kemikleri hareket etsin.",
+     "Her tekrara kollar tam açıkken başla.",
+     "Her çekişten önce sıkıca nefes alıp sık."
+    ],
+    "mistakes": [
+     "Göğsü bara doğru kaldırmak.",
+     "Barı yerden sektirmek."
+    ]
+   },
+   "ar": {
+    "title": "تجديف بندلاي (Pendlay Row)",
+    "about": "تجديف صارم يبدأ من الأرض في كل تكرار ويبني قوة ظهر انفجارية دون زخم.",
+    "steps": [
+     "ضع البار على الأرض وانحنِ حتى يقارب الجذع الوضع الأفقي.",
+     "أمسك خارج عرض الكتفين قليلًا بظهر مستقيم.",
+     "اسحب البار بانفجار نحو أعلى البطن.",
+     "أعده إلى الأرض واستعد من جديد كل تكرار."
+    ],
+    "cues": [
+     "ثبّت الجذع؛ لا يتحرك سوى الذراعين ولوحي الكتف.",
+     "ابدأ كل تكرار من تمدد كامل للذراعين.",
+     "شدّ جذعك بقوة قبل كل سحب."
+    ],
+    "mistakes": [
+     "رفع الصدر لملاقاة البار.",
+     "ارتداد البار عن الأرض."
+    ]
+   }
+  },
+  "dumbbell-row-bent-over": {
+   "primary": [
+    "upper-back",
+    "lats"
+   ],
+   "secondary": [
+    "traps",
+    "delt-rear",
+    "biceps",
+    "lower-back"
+   ],
+   "en": {
+    "title": "Bent-Over Dumbbell Row",
+    "about": "A two-dumbbell bent-over row that lets each arm move freely for a long range and deep stretch.",
+    "steps": [
+     "Hold two dumbbells and hinge until your torso is near parallel.",
+     "Let the weights hang straight below your shoulders.",
+     "Row both dumbbells toward your hips.",
+     "Lower slowly and let your shoulder blades stretch forward."
+    ],
+    "cues": [
+     "Keep a neutral spine and fixed torso angle.",
+     "Drive elbows back, not just up.",
+     "Use the extra range dumbbells give you."
+    ],
+    "mistakes": [
+     "Standing more upright as you fatigue.",
+     "Jerking the weights up with momentum."
+    ]
+   },
+   "tr": {
+    "title": "Bent-Over Dumbbell Row",
+    "about": "Her kolun serbest hareket ettiği, uzun açıklık ve derin esneme sağlayan çift dumbbell row.",
+    "steps": [
+     "İki dumbbell al, gövde yere neredeyse paralel olana kadar eğil.",
+     "Ağırlıklar omuzlarının hemen altında sarkıyor olsun.",
+     "İki dumbbell'ı kalçalarına doğru çek.",
+     "Yavaşça indir, kürek kemikleri öne doğru esnesin."
+    ],
+    "cues": [
+     "Omurgayı nötr, gövde açısını sabit tut.",
+     "Dirsekleri sadece yukarı değil, geriye sür.",
+     "Dumbbell'ın verdiği ekstra açıklığı kullan."
+    ],
+    "mistakes": [
+     "Yoruldukça gövdeyi dikleştirmek.",
+     "Ağırlıkları momentumla savurmak."
+    ]
+   },
+   "ar": {
+    "title": "التجديف المنحني بالدمبل (Bent-Over Dumbbell Row)",
+    "about": "تجديف منحنٍ بدمبلين يتيح لكل ذراع حركة حرة لمدى طويل وتمدد عميق.",
+    "steps": [
+     "أمسك دمبلين وانحنِ حتى يقارب الجذع الوضع الأفقي.",
+     "دع الأوزان تتدلى أسفل الكتفين مباشرة.",
+     "اسحب الدمبلين نحو الوركين.",
+     "أنزل ببطء ودع لوحي الكتف يتمددان للأمام."
+    ],
+    "cues": [
+     "حافظ على عمود فقري محايد وزاوية جذع ثابتة.",
+     "ادفع المرفقين للخلف لا للأعلى فقط.",
+     "استفد من المدى الإضافي الذي يمنحه الدمبل."
+    ],
+    "mistakes": [
+     "الانتصاب تدريجيًا مع التعب.",
+     "رفع الأوزان بالزخم."
+    ]
+   }
+  },
+  "one-arm-dumbbell-row": {
+   "primary": [
+    "lats",
+    "upper-back"
+   ],
+   "secondary": [
+    "biceps",
+    "delt-rear",
+    "forearms",
+    "traps"
+   ],
+   "en": {
+    "title": "One-Arm Dumbbell Row",
+    "about": "A supported single-arm row that gives a huge lat stretch and lets you focus on one side.",
+    "steps": [
+     "Brace one hand on a bench or your knee with a flat back.",
+     "Let the dumbbell hang and your shoulder drop into a stretch.",
+     "Pull the dumbbell toward your hip, elbow close to your side.",
+     "Lower slowly until the lat is fully lengthened."
+    ],
+    "cues": [
+     "Pull in an arc toward the hip for more lats.",
+     "Keep hips and shoulders square; avoid twisting.",
+     "Pause briefly in the bottom stretch."
+    ],
+    "mistakes": [
+     "Rotating the torso to heave the weight.",
+     "Shrugging the dumbbell up toward the ear."
+    ]
+   },
+   "tr": {
+    "title": "One-Arm Dumbbell Row",
+    "about": "Lat kasında büyük esneme veren ve tek tarafa odaklanmanı sağlayan destekli tek kol row.",
+    "steps": [
+     "Bir elini sehpaya ya da dizine daya, sırtın düz olsun.",
+     "Dumbbell sarksın, omzun esnemeye insin.",
+     "Dumbbell'ı kalçana doğru çek, dirsek vücuda yakın.",
+     "Lat tamamen uzayana kadar yavaşça indir."
+    ],
+    "cues": [
+     "Daha çok lat için kalçaya doğru yay çizerek çek.",
+     "Kalça ve omuzları düz tut, dönme.",
+     "Alttaki esnemede kısa bir an dur."
+    ],
+    "mistakes": [
+     "Ağırlığı kaldırmak için gövdeyi döndürmek.",
+     "Dumbbell'ı kulağa doğru silkmek."
+    ]
+   },
+   "ar": {
+    "title": "التجديف بذراع واحدة بالدمبل (One-Arm Dumbbell Row)",
+    "about": "تجديف مدعوم بذراع واحدة يمنح تمددًا كبيرًا للظهرية ويتيح التركيز على جانب واحد.",
+    "steps": [
+     "استند بيد على مقعد أو على ركبتك بظهر مستقيم.",
+     "دع الدمبل يتدلى والكتف ينزل في تمدد.",
+     "اسحب الدمبل نحو الورك والمرفق قريب من الجانب.",
+     "أنزل ببطء حتى تطول العضلة الظهرية بالكامل."
+    ],
+    "cues": [
+     "اسحب بقوس نحو الورك لتركيز أكبر على الظهرية.",
+     "أبقِ الوركين والكتفين متوازيين دون التفاف.",
+     "توقف لحظة عند التمدد السفلي."
+    ],
+    "mistakes": [
+     "لفّ الجذع لرفع الوزن.",
+     "رفع الدمبل نحو الأذن بهزّ الكتف."
+    ]
+   }
+  },
+  "one-arm-lat-row": {
+   "primary": [
+    "lats"
+   ],
+   "secondary": [
+    "upper-back",
+    "biceps",
+    "delt-rear"
+   ],
+   "en": {
+    "title": "Single-Arm Lat Row",
+    "about": "A one-arm row path aimed at the lats, pulling low toward the hip from a deep reach.",
+    "steps": [
+     "Set up supported with your working arm reaching forward.",
+     "Let the shoulder reach long for a full lat stretch.",
+     "Pull the handle down and back toward your hip.",
+     "Return slowly to the long reach."
+    ],
+    "cues": [
+     "Keep the elbow tucked close to your side.",
+     "Think of moving the elbow, not curling the hand.",
+     "Stop when the elbow reaches your torso."
+    ],
+    "mistakes": [
+     "Flaring the elbow high, shifting work to the upper back.",
+     "Cutting off the forward stretch."
+    ]
+   },
+   "tr": {
+    "title": "Single-Arm Lat Row",
+    "about": "Derin uzanmadan kalçaya doğru alçak çekişle lat kaslarını hedefleyen tek kol row.",
+    "steps": [
+     "Destekli pozisyon al, çalışan kolun öne uzansın.",
+     "Omuz uzun uzansın, lat tamamen esnesin.",
+     "Tutamağı aşağı ve geriye, kalçana doğru çek.",
+     "Yavaşça uzun uzanma pozisyonuna dön."
+    ],
+    "cues": [
+     "Dirseği vücuduna yakın tut.",
+     "Eli bükmeyi değil, dirseği hareket ettirmeyi düşün.",
+     "Dirsek gövdeye gelince dur."
+    ],
+    "mistakes": [
+     "Dirseği açıp yükü üst sırta kaydırmak.",
+     "Öndeki esnemeyi kesmek."
+    ]
+   },
+   "ar": {
+    "title": "تجديف الظهرية بذراع واحدة (Single-Arm Lat Row)",
+    "about": "تجديف بذراع واحدة يستهدف العضلة الظهرية بالسحب المنخفض نحو الورك من مدّ عميق.",
+    "steps": [
+     "اتخذ وضعًا مدعومًا وذراعك العاملة ممتدة للأمام.",
+     "دع الكتف يمتد بعيدًا لتمدد كامل للظهرية.",
+     "اسحب المقبض للأسفل والخلف نحو الورك.",
+     "عد ببطء إلى المدّ الطويل."
+    ],
+    "cues": [
+     "أبقِ المرفق ملاصقًا للجانب.",
+     "فكّر في تحريك المرفق لا ثني اليد.",
+     "توقف عندما يصل المرفق إلى الجذع."
+    ],
+    "mistakes": [
+     "فتح المرفق عاليًا ونقل العمل إلى أعلى الظهر.",
+     "قطع التمدد الأمامي."
+    ]
+   }
+  },
+  "high-elbow-dumbbell-row": {
+   "primary": [
+    "upper-back",
+    "delt-rear"
+   ],
+   "secondary": [
+    "traps",
+    "lats",
+    "biceps"
+   ],
+   "en": {
+    "title": "High-Elbow Dumbbell Row",
+    "about": "A row with elbows flared wide that shifts work to the upper back, mid traps and rear delts.",
+    "steps": [
+     "Hinge or brace on a support with the dumbbell hanging.",
+     "Turn the elbow out about 60–90 degrees from your torso.",
+     "Row the elbow up and back toward your shoulder line.",
+     "Lower slowly and let the shoulder blade spread."
+    ],
+    "cues": [
+     "Lead with the elbow, keep the wrist relaxed.",
+     "Squeeze shoulder blades together at the top.",
+     "Get a full stretch across the upper back at the bottom."
+    ],
+    "mistakes": [
+     "Shrugging up into the neck instead of pulling back.",
+     "Tucking the elbow, which turns it into a lat row."
+    ]
+   },
+   "tr": {
+    "title": "High-Elbow Dumbbell Row",
+    "about": "Dirsekleri yana açarak yükü üst sırta, orta trapeze ve arka omza kaydıran row.",
+    "steps": [
+     "Öne eğil ya da desteğe yaslan, dumbbell sarksın.",
+     "Dirseği gövdeden yaklaşık 60–90 derece dışa aç.",
+     "Dirseği yukarı ve geriye, omuz hizasına doğru çek.",
+     "Yavaşça indir, kürek kemiği açılsın."
+    ],
+    "cues": [
+     "Dirsekle öncülük et, bileği gevşek bırak.",
+     "Üstte kürek kemiklerini birbirine sık.",
+     "Altta üst sırtta tam esneme hisset."
+    ],
+    "mistakes": [
+     "Geriye çekmek yerine boyna doğru silkmek.",
+     "Dirseği kapatıp hareketi lat row'a çevirmek."
+    ]
+   },
+   "ar": {
+    "title": "التجديف بالمرفق المرتفع بالدمبل (High-Elbow Dumbbell Row)",
+    "about": "تجديف بمرفقين مفتوحين ينقل العمل إلى أعلى الظهر ووسط الترابيس والكتف الخلفي.",
+    "steps": [
+     "انحنِ أو استند على دعامة والدمبل متدلٍّ.",
+     "افتح المرفق بنحو 60–90 درجة عن الجذع.",
+     "اسحب المرفق للأعلى والخلف نحو خط الكتف.",
+     "أنزل ببطء ودع لوح الكتف يتباعد."
+    ],
+    "cues": [
+     "قُد الحركة بالمرفق وأرخِ المعصم.",
+     "اضغط لوحي الكتف معًا في الأعلى.",
+     "اشعر بتمدد كامل لأعلى الظهر في الأسفل."
+    ],
+    "mistakes": [
+     "رفع الكتفين نحو الرقبة بدل السحب للخلف.",
+     "ضمّ المرفق فيتحول التمرين إلى تجديف للظهرية."
+    ]
+   }
+  },
+  "chest-supported-row": {
+   "primary": [
+    "upper-back",
+    "lats"
+   ],
+   "secondary": [
+    "delt-rear",
+    "traps",
+    "biceps"
+   ],
+   "en": {
+    "title": "Chest-Supported Dumbbell Row",
+    "about": "An incline-bench row that removes lower-back fatigue so all effort goes into the back.",
+    "steps": [
+     "Lie chest-down on an incline bench with dumbbells hanging.",
+     "Let your shoulders sink forward into a stretch.",
+     "Row the dumbbells back toward your hips or lower ribs.",
+     "Lower slowly to a full hang."
+    ],
+    "cues": [
+     "Keep your chest glued to the pad.",
+     "Choose elbow angle to bias lats (tucked) or upper back (flared).",
+     "Control every eccentric."
+    ],
+    "mistakes": [
+     "Lifting the chest off the bench to cheat.",
+     "Short reps without a full stretch."
+    ]
+   },
+   "tr": {
+    "title": "Chest-Supported Dumbbell Row",
+    "about": "Bel yorgunluğunu ortadan kaldırarak tüm eforu sırta veren eğimli sehpa row'u.",
+    "steps": [
+     "Eğimli sehpaya göğüs üstü uzan, dumbbell'lar sarksın.",
+     "Omuzların öne doğru esnemeye insin.",
+     "Dumbbell'ları kalçana ya da alt kaburgalarına çek.",
+     "Tam sarkma pozisyonuna yavaşça indir."
+    ],
+    "cues": [
+     "Göğsünü pedden ayırma.",
+     "Lat için dirsek kapalı, üst sırt için açık çek.",
+     "Her negatif fazı kontrol et."
+    ],
+    "mistakes": [
+     "Hile için göğsü sehpadan kaldırmak.",
+     "Tam esnemesiz kısa tekrarlar."
+    ]
+   },
+   "ar": {
+    "title": "التجديف المدعوم بالصدر (Chest-Supported Dumbbell Row)",
+    "about": "تجديف على مقعد مائل يزيل إجهاد أسفل الظهر ليذهب كل الجهد إلى الظهر.",
+    "steps": [
+     "استلقِ على صدرك فوق مقعد مائل والدمبلات متدلية.",
+     "دع الكتفين تنزلان للأمام في تمدد.",
+     "اسحب الدمبلات نحو الوركين أو أسفل الأضلاع.",
+     "أنزل ببطء حتى التدلي الكامل."
+    ],
+    "cues": [
+     "أبقِ صدرك ملتصقًا بالوسادة.",
+     "ضمّ المرفقين للظهرية أو افتحهما لأعلى الظهر.",
+     "تحكّم في كل مرحلة نزول."
+    ],
+    "mistakes": [
+     "رفع الصدر عن المقعد للغش.",
+     "تكرارات قصيرة بلا تمدد كامل."
+    ]
+   }
+  },
+  "chest-supported-high-elbow-row": {
+   "primary": [
+    "upper-back",
+    "delt-rear"
+   ],
+   "secondary": [
+    "traps",
+    "lats",
+    "biceps"
+   ],
+   "en": {
+    "title": "Chest-Supported High-Elbow Row",
+    "about": "A supported row with flared elbows that isolates the upper back and rear delts without lower-back strain.",
+    "steps": [
+     "Lie chest-down on an incline or flat bench.",
+     "Hang the dumbbells with palms facing back or down.",
+     "Row with elbows flared wide toward shoulder height.",
+     "Lower slowly until shoulder blades fully protract."
+    ],
+    "cues": [
+     "Keep the chest pinned to the pad.",
+     "Pull elbows back, not hands up.",
+     "Squeeze the upper back for a beat at the top."
+    ],
+    "mistakes": [
+     "Shrugging toward the ears.",
+     "Letting the weights drop without control."
+    ]
+   },
+   "tr": {
+    "title": "Chest-Supported High-Elbow Row",
+    "about": "Dirsekler açık, bele yük bindirmeden üst sırt ve arka omzu izole eden destekli row.",
+    "steps": [
+     "Eğimli ya da düz sehpaya göğüs üstü uzan.",
+     "Dumbbell'ları avuç içi arkaya ya da aşağı bakacak şekilde sarkıt.",
+     "Dirsekler geniş açık, omuz hizasına doğru çek.",
+     "Kürek kemikleri tamamen açılana kadar yavaşça indir."
+    ],
+    "cues": [
+     "Göğsü pede sabitle.",
+     "Elleri yukarı değil, dirsekleri geriye çek.",
+     "Üstte bir an üst sırtını sık."
+    ],
+    "mistakes": [
+     "Omuzları kulaklara doğru silkmek.",
+     "Ağırlıkları kontrolsüz düşürmek."
+    ]
+   },
+   "ar": {
+    "title": "التجديف المدعوم بالمرفق المرتفع (Chest-Supported High-Elbow Row)",
+    "about": "تجديف مدعوم بمرفقين مفتوحين يعزل أعلى الظهر والكتف الخلفي دون إجهاد أسفل الظهر.",
+    "steps": [
+     "استلقِ على صدرك فوق مقعد مائل أو مستوٍ.",
+     "دلِّ الدمبلات وراحتا اليد للخلف أو للأسفل.",
+     "اسحب والمرفقان مفتوحان نحو مستوى الكتف.",
+     "أنزل ببطء حتى يتباعد لوحا الكتف بالكامل."
+    ],
+    "cues": [
+     "ثبّت الصدر على الوسادة.",
+     "اسحب المرفقين للخلف لا اليدين للأعلى.",
+     "اضغط أعلى الظهر لحظة في الأعلى."
+    ],
+    "mistakes": [
+     "رفع الكتفين نحو الأذنين.",
+     "ترك الأوزان تسقط دون تحكم."
+    ]
+   }
+  },
+  "bodyweight-row": {
+   "primary": [
+    "upper-back",
+    "lats"
+   ],
+   "secondary": [
+    "delt-rear",
+    "biceps",
+    "abs"
+   ],
+   "en": {
+    "title": "Bodyweight Row",
+    "about": "An inverted row under a bar or table that trains the upper back with zero equipment cost.",
+    "steps": [
+     "Lie under a sturdy bar or table edge and grab it.",
+     "Keep your body straight from heels to head.",
+     "Pull your chest up, elbows flared for upper back.",
+     "Lower slowly to straight arms."
+    ],
+    "cues": [
+     "Squeeze glutes and abs to stay rigid.",
+     "Walk feet forward to make it harder.",
+     "Touch the bar or get close each rep."
+    ],
+    "mistakes": [
+     "Sagging the hips toward the floor.",
+     "Craning the neck forward to fake range."
+    ]
+   },
+   "tr": {
+    "title": "Bodyweight Row",
+    "about": "Bar ya da masa altında yapılan, ekipman gerektirmeden üst sırtı çalıştıran ters row.",
+    "steps": [
+     "Sağlam bir barın ya da masa kenarının altına uzan ve tut.",
+     "Vücudun topuktan başa düz bir çizgi olsun.",
+     "Göğsünü yukarı çek, üst sırt için dirsekler açık.",
+     "Kollar düzleşene kadar yavaşça in."
+    ],
+    "cues": [
+     "Kalça ve karnı sıkarak gergin kal.",
+     "Zorlaştırmak için ayakları öne al.",
+     "Her tekrarda bara değ ya da çok yaklaş."
+    ],
+    "mistakes": [
+     "Kalçayı yere doğru sarkıtmak.",
+     "Açıklığı taklit etmek için boynu uzatmak."
+    ]
+   },
+   "ar": {
+    "title": "التجديف بوزن الجسم (Bodyweight Row)",
+    "about": "تجديف معكوس تحت بار أو طاولة يدرّب أعلى الظهر دون أي معدات.",
+    "steps": [
+     "استلقِ تحت بار متين أو حافة طاولة وأمسكها.",
+     "أبقِ جسمك مستقيمًا من الكعبين حتى الرأس.",
+     "اسحب صدرك للأعلى والمرفقان مفتوحان لأعلى الظهر.",
+     "انزل ببطء حتى استقامة الذراعين."
+    ],
+    "cues": [
+     "شدّ الأرداف والبطن لتبقى صلبًا.",
+     "قرّب القدمين للأمام لزيادة الصعوبة.",
+     "المس البار أو اقترب منه في كل تكرار."
+    ],
+    "mistakes": [
+     "ترهّل الوركين نحو الأرض.",
+     "مدّ الرقبة للأمام لتزييف المدى."
+    ]
+   }
+  },
+  "t-bar-row": {
+   "primary": [
+    "upper-back",
+    "lats"
+   ],
+   "secondary": [
+    "traps",
+    "delt-rear",
+    "biceps",
+    "lower-back"
+   ],
+   "en": {
+    "title": "T-Bar Row",
+    "about": "A landmine-style row with a fixed arc that is stable, heavy and great for back thickness.",
+    "steps": [
+     "Straddle the bar and grab the handle or V-grip.",
+     "Hinge forward with a flat back and soft knees.",
+     "Row the weight toward your upper stomach.",
+     "Lower until your arms and back are fully stretched."
+    ],
+    "cues": [
+     "Keep the chest up and spine neutral.",
+     "Squeeze shoulder blades at the top.",
+     "Let the plates almost touch at the bottom for range."
+    ],
+    "mistakes": [
+     "Standing up and using the hips to swing the weight.",
+     "Loading so heavy that range of motion shrinks."
+    ]
+   },
+   "tr": {
+    "title": "T-Bar Row",
+    "about": "Sabit yay çizen, stabil ve ağır çalışılabilen, sırt kalınlığı için harika landmine tarzı row.",
+    "steps": [
+     "Barın iki yanına bas, tutamağı ya da V-grip'i kavra.",
+     "Sırt düz, dizler hafif bükülü şekilde öne eğil.",
+     "Ağırlığı üst karnına doğru çek.",
+     "Kollar ve sırt tamamen esneyene kadar indir."
+    ],
+    "cues": [
+     "Göğsü dik, omurgayı nötr tut.",
+     "Üstte kürek kemiklerini sık.",
+     "Açıklık için altta plakalar neredeyse yere değsin."
+    ],
+    "mistakes": [
+     "Doğrulup kalçayla ağırlığı savurmak.",
+     "Hareket açıklığını kısaltacak kadar ağır yüklemek."
+    ]
+   },
+   "ar": {
+    "title": "تجديف T-Bar (T-Bar Row)",
+    "about": "تجديف بقوس ثابت مستقر وثقيل ورائع لسماكة الظهر.",
+    "steps": [
+     "قف فوق البار وأمسك المقبض أو مقبض V.",
+     "انحنِ للأمام بظهر مستقيم وركبتين لينتين.",
+     "اسحب الوزن نحو أعلى البطن.",
+     "أنزل حتى تتمدد الذراعان والظهر بالكامل."
+    ],
+    "cues": [
+     "ارفع الصدر وحافظ على عمود فقري محايد.",
+     "اضغط لوحي الكتف في الأعلى.",
+     "دع الأقراص تقترب من الأرض في الأسفل لمدى أكبر."
+    ],
+    "mistakes": [
+     "الانتصاب واستخدام الورك لأرجحة الوزن.",
+     "تحميل ثقيل لدرجة تقليص المدى."
+    ]
+   }
+  },
+  "meadows-row": {
+   "primary": [
+    "lats",
+    "upper-back"
+   ],
+   "secondary": [
+    "delt-rear",
+    "traps",
+    "biceps",
+    "forearms"
+   ],
+   "en": {
+    "title": "Meadows Row",
+    "about": "A one-arm landmine row with a staggered stance that gives a big stretch and heavy overload.",
+    "steps": [
+     "Stand perpendicular to the end of a landmine bar.",
+     "Stagger your stance and rest your free forearm on your knee.",
+     "Grip the bar sleeve and let your shoulder stretch down.",
+     "Row your elbow up and back past your torso.",
+     "Lower slowly into the stretch."
+    ],
+    "cues": [
+     "Keep hips square and spine neutral.",
+     "Drive the elbow, not the hand.",
+     "Use straps if grip limits you."
+    ],
+    "mistakes": [
+     "Twisting the torso to lift the weight.",
+     "Jerking the bar up from the bottom."
+    ]
+   },
+   "tr": {
+    "title": "Meadows Row",
+    "about": "Ayaklar çapraz duruşta, büyük esneme ve ağır yükleme sağlayan tek kol landmine row.",
+    "steps": [
+     "Landmine barının ucuna dik açıyla dur.",
+     "Ayakları çapraz aç, boştaki kolunu dizine daya.",
+     "Barın ucunu kavra, omzun aşağı esnesin.",
+     "Dirseğini gövdeni geçecek şekilde yukarı ve geriye çek.",
+     "Esnemeye yavaşça in."
+    ],
+    "cues": [
+     "Kalçayı düz, omurgayı nötr tut.",
+     "Eli değil, dirseği sür.",
+     "Kavrama yetmezse kayış kullan."
+    ],
+    "mistakes": [
+     "Ağırlığı kaldırmak için gövdeyi döndürmek.",
+     "Barı alttan silkelemek."
+    ]
+   },
+   "ar": {
+    "title": "تجديف ميدوز (Meadows Row)",
+    "about": "تجديف بذراع واحدة على اللاندماين بوقفة متقدمة يمنح تمددًا كبيرًا وحملًا ثقيلًا.",
+    "steps": [
+     "قف متعامدًا على طرف بار اللاندماين.",
+     "قدّم قدمًا وأسند ساعدك الحرة على ركبتك.",
+     "أمسك طرف البار ودع الكتف يتمدد للأسفل.",
+     "اسحب المرفق للأعلى والخلف متجاوزًا الجذع.",
+     "أنزل ببطء نحو التمدد."
+    ],
+    "cues": [
+     "أبقِ الوركين متوازيين والعمود الفقري محايدًا.",
+     "ادفع المرفق لا اليد.",
+     "استخدم الأحزمة إن كانت القبضة تحدّك."
+    ],
+    "mistakes": [
+     "لفّ الجذع لرفع الوزن.",
+     "هزّ البار من الأسفل بعنف."
+    ]
+   }
+  },
+  "seated-cable-row": {
+   "primary": [
+    "lats",
+    "upper-back"
+   ],
+   "secondary": [
+    "delt-rear",
+    "traps",
+    "biceps",
+    "lower-back"
+   ],
+   "en": {
+    "title": "Seated Cable Row",
+    "about": "A stable cable row with constant tension that is easy to overload and offers a big forward stretch.",
+    "steps": [
+     "Sit with feet on the platform and knees softly bent.",
+     "Grab the handle and lean forward slightly to stretch the back.",
+     "Row to your stomach while bringing the torso upright.",
+     "Return slowly, letting shoulders reach forward."
+    ],
+    "cues": [
+     "Keep the torso movement small and controlled.",
+     "Pull elbows past your ribs and squeeze.",
+     "Feel the lats stretch on every return."
+    ],
+    "mistakes": [
+     "Rocking far back and using body momentum.",
+     "Rounding the lower back under load."
+    ]
+   },
+   "tr": {
+    "title": "Seated Cable Row",
+    "about": "Sürekli gerilimli, kolayca ağırlık artırılan ve önde büyük esneme sağlayan stabil kablo row'u.",
+    "steps": [
+     "Ayakların platformda, dizler hafif bükülü otur.",
+     "Tutamağı al, sırtı esnetmek için hafif öne eğil.",
+     "Gövdeyi dikleştirirken tutamağı karnına çek.",
+     "Omuzlar öne uzanacak şekilde yavaşça geri bırak."
+    ],
+    "cues": [
+     "Gövde hareketini küçük ve kontrollü tut.",
+     "Dirsekleri kaburgaları geçecek kadar çek ve sık.",
+     "Her dönüşte lat esnemesini hisset."
+    ],
+    "mistakes": [
+     "Çok geriye yaslanıp vücut momentumu kullanmak.",
+     "Yük altında beli yuvarlamak."
+    ]
+   },
+   "ar": {
+    "title": "التجديف بالكابل جالسًا (Seated Cable Row)",
+    "about": "تجديف كابل مستقر بشد مستمر يسهل تحميله ويمنح تمددًا أماميًا كبيرًا.",
+    "steps": [
+     "اجلس والقدمان على المنصة والركبتان منثنيتان قليلًا.",
+     "أمسك المقبض ومِل للأمام قليلًا لتمديد الظهر.",
+     "اسحب نحو البطن مع اعتدال الجذع.",
+     "عد ببطء تاركًا الكتفين تمتدان للأمام."
+    ],
+    "cues": [
+     "اجعل حركة الجذع صغيرة ومتحكمًا بها.",
+     "اسحب المرفقين متجاوزًا الأضلاع واضغط.",
+     "اشعر بتمدد الظهرية في كل عودة."
+    ],
+    "mistakes": [
+     "الميل كثيرًا للخلف واستخدام زخم الجسم.",
+     "تقويس أسفل الظهر تحت الحمل."
+    ]
+   }
+  },
+  "seated-cable-high-elbow-row": {
+   "primary": [
+    "upper-back",
+    "delt-rear"
+   ],
+   "secondary": [
+    "traps",
+    "lats",
+    "biceps"
+   ],
+   "en": {
+    "title": "Seated Cable High-Elbow Row",
+    "about": "A cable row pulled toward the chest with flared elbows to emphasize upper back and rear delts.",
+    "steps": [
+     "Sit at the cable row with a wide or neutral bar.",
+     "Reach forward and let the shoulder blades spread.",
+     "Row to your lower chest with elbows flared out.",
+     "Return slowly until the upper back fully stretches."
+    ],
+    "cues": [
+     "Keep elbows roughly 60–90 degrees from the torso.",
+     "Pull shoulder blades back, not up.",
+     "Stay tall; minimal leaning."
+    ],
+    "mistakes": [
+     "Shrugging the traps into the pull.",
+     "Turning it into a lean-back swing."
+    ]
+   },
+   "tr": {
+    "title": "Seated Cable High-Elbow Row",
+    "about": "Dirsekler açık, göğse doğru çekilerek üst sırt ve arka omzu vurgulayan kablo row'u.",
+    "steps": [
+     "Geniş ya da nötr barla kablo row istasyonuna otur.",
+     "Öne uzan, kürek kemikleri açılsın.",
+     "Dirsekler dışa açık şekilde alt göğsüne çek.",
+     "Üst sırt tamamen esneyene kadar yavaşça bırak."
+    ],
+    "cues": [
+     "Dirsekleri gövdeden yaklaşık 60–90 derece açık tut.",
+     "Kürek kemiklerini yukarı değil, geriye çek.",
+     "Dik otur, çok az yaslan."
+    ],
+    "mistakes": [
+     "Trapezleri çekişe katarak silkmek.",
+     "Hareketi geriye savurmaya çevirmek."
+    ]
+   },
+   "ar": {
+    "title": "التجديف بالكابل بالمرفق المرتفع (Seated Cable High-Elbow Row)",
+    "about": "تجديف كابل نحو الصدر بمرفقين مفتوحين لتركيز على أعلى الظهر والكتف الخلفي.",
+    "steps": [
+     "اجلس على جهاز التجديف ببار عريض أو محايد.",
+     "مدّ يديك للأمام ودع لوحي الكتف يتباعدان.",
+     "اسحب نحو أسفل الصدر والمرفقان مفتوحان.",
+     "عد ببطء حتى يتمدد أعلى الظهر بالكامل."
+    ],
+    "cues": [
+     "أبقِ المرفقين بزاوية 60–90 درجة تقريبًا عن الجذع.",
+     "اسحب لوحي الكتف للخلف لا للأعلى.",
+     "اجلس منتصبًا بأقل ميل ممكن."
+    ],
+    "mistakes": [
+     "إشراك الترابيس برفع الكتفين.",
+     "تحويل التمرين إلى أرجحة للخلف."
+    ]
+   }
+  },
+  "single-arm-cable-row": {
+   "primary": [
+    "lats",
+    "upper-back"
+   ],
+   "secondary": [
+    "delt-rear",
+    "biceps",
+    "obliques"
+   ],
+   "en": {
+    "title": "Single-Arm Cable Row",
+    "about": "A one-arm cable row with constant tension and a long reach for a strong lat stretch.",
+    "steps": [
+     "Set a single handle at the needed height and sit or kneel.",
+     "Reach forward and let the shoulder rotate slightly into the stretch.",
+     "Row the handle toward your hip, elbow close.",
+     "Return slowly to a long reach."
+    ],
+    "cues": [
+     "Keep the torso mostly square to the cable.",
+     "Pull to the hip for lats, higher for upper back.",
+     "Control the stretch on every rep."
+    ],
+    "mistakes": [
+     "Twisting the whole body to move the load.",
+     "Letting the cable snap the arm forward."
+    ]
+   },
+   "tr": {
+    "title": "Single-Arm Cable Row",
+    "about": "Sürekli gerilimli ve uzun uzanmalı, güçlü lat esnemesi veren tek kol kablo row'u.",
+    "steps": [
+     "Tek tutamağı uygun yüksekliğe ayarla, otur ya da diz çök.",
+     "Öne uzan, omuz hafifçe dönerek esnesin.",
+     "Tutamağı kalçana doğru çek, dirsek yakın.",
+     "Yavaşça uzun uzanmaya dön."
+    ],
+    "cues": [
+     "Gövdeyi kabloya büyük ölçüde düz tut.",
+     "Lat için kalçaya, üst sırt için daha yükseğe çek.",
+     "Her tekrarda esnemeyi kontrol et."
+    ],
+    "mistakes": [
+     "Yükü oynatmak için tüm vücudu döndürmek.",
+     "Kablonun kolu aniden öne çekmesine izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "التجديف بالكابل بذراع واحدة (Single-Arm Cable Row)",
+    "about": "تجديف كابل بذراع واحدة بشد مستمر ومدّ طويل لتمدد قوي للظهرية.",
+    "steps": [
+     "اضبط مقبضًا واحدًا على الارتفاع المناسب واجلس أو اركع.",
+     "مدّ يدك للأمام ودع الكتف يدور قليلًا في التمدد.",
+     "اسحب المقبض نحو الورك والمرفق قريب.",
+     "عد ببطء إلى مدّ طويل."
+    ],
+    "cues": [
+     "أبقِ الجذع مواجهًا للكابل غالبًا.",
+     "اسحب نحو الورك للظهرية وأعلى لأعلى الظهر.",
+     "تحكّم في التمدد في كل تكرار."
+    ],
+    "mistakes": [
+     "لفّ الجسم كله لتحريك الحمل.",
+     "ترك الكابل يشدّ الذراع للأمام فجأة."
+    ]
+   }
+  },
+  "machine-row": {
+   "primary": [
+    "lats",
+    "upper-back"
+   ],
+   "secondary": [
+    "delt-rear",
+    "traps",
+    "biceps"
+   ],
+   "en": {
+    "title": "Machine Row",
+    "about": "A plate-loaded or selectorized row with chest support for stable, heavy back training.",
+    "steps": [
+     "Adjust the seat so handles line up with your mid-chest.",
+     "Press your chest into the pad and reach forward.",
+     "Row the handles back, driving elbows behind you.",
+     "Return slowly to a full forward stretch."
+    ],
+    "cues": [
+     "Keep the chest on the pad throughout.",
+     "Tuck elbows for lats, flare them for upper back.",
+     "Pause for a beat at peak contraction."
+    ],
+    "mistakes": [
+     "Leaning off the pad to cheat reps.",
+     "Stopping short of the stretch."
+    ]
+   },
+   "tr": {
+    "title": "Machine Row",
+    "about": "Göğüs destekli, stabil ve ağır sırt antrenmanı sağlayan plakalı ya da pimli makine row.",
+    "steps": [
+     "Koltuğu tutamaklar göğüs ortası hizasında olacak şekilde ayarla.",
+     "Göğsünü pede bastır ve öne uzan.",
+     "Dirsekleri arkana sürerek tutamakları çek.",
+     "Tam ön esnemeye yavaşça dön."
+    ],
+    "cues": [
+     "Göğsü hareket boyunca pedde tut.",
+     "Lat için dirsek kapalı, üst sırt için açık.",
+     "Tam kasılmada bir an dur."
+    ],
+    "mistakes": [
+     "Hile için pedden ayrılmak.",
+     "Esnemeye gelmeden durmak."
+    ]
+   },
+   "ar": {
+    "title": "التجديف على الجهاز (Machine Row)",
+    "about": "تجديف على جهاز بأقراص أو أوزان مع دعم للصدر لتدريب ظهر مستقر وثقيل.",
+    "steps": [
+     "اضبط المقعد لتكون المقابض بمستوى منتصف الصدر.",
+     "اضغط صدرك على الوسادة ومدّ يديك للأمام.",
+     "اسحب المقابض دافعًا المرفقين خلفك.",
+     "عد ببطء إلى تمدد أمامي كامل."
+    ],
+    "cues": [
+     "أبقِ الصدر على الوسادة طوال الحركة.",
+     "ضمّ المرفقين للظهرية وافتحهما لأعلى الظهر.",
+     "توقف لحظة عند أقصى انقباض."
+    ],
+    "mistakes": [
+     "الابتعاد عن الوسادة للغش.",
+     "التوقف قبل الوصول إلى التمدد."
+    ]
+   }
+  },
+  "thoracic-flexion-extension": {
+   "primary": [
+    "upper-back"
+   ],
+   "secondary": [
+    "lower-back",
+    "abs"
+   ],
+   "en": {
+    "title": "Thoracic Flexion & Extension",
+    "about": "A controlled mid-back mobility and strength drill that trains the spinal erectors through flexion and extension.",
+    "steps": [
+     "Sit or kneel tall with hands across your chest or holding light load.",
+     "Slowly round your upper back, tucking the chin.",
+     "Reverse by extending the mid-back and lifting the chest.",
+     "Move segment by segment without using the hips."
+    ],
+    "cues": [
+     "Keep the movement in the upper back, not the lower back.",
+     "Breathe out as you round, in as you extend.",
+     "Use light load and smooth tempo."
+    ],
+    "mistakes": [
+     "Hinging at the hips instead of moving the spine.",
+     "Rushing reps or loading too heavy."
+    ]
+   },
+   "tr": {
+    "title": "Thoracic Flexion & Extension",
+    "about": "Omurga dikleştiricilerini fleksiyon ve ekstansiyonda çalıştıran kontrollü orta sırt mobilite ve güç egzersizi.",
+    "steps": [
+     "Dik otur ya da diz çök, kollar göğüste ya da hafif yük tut.",
+     "Üst sırtını yavaşça yuvarla, çeneyi içeri al.",
+     "Orta sırtı açıp göğsü kaldırarak tersine dön.",
+     "Kalçayı kullanmadan omur omur hareket et."
+    ],
+    "cues": [
+     "Hareketi belde değil, üst sırtta tut.",
+     "Yuvarlarken nefes ver, açarken al.",
+     "Hafif yük ve akıcı tempo kullan."
+    ],
+    "mistakes": [
+     "Omurga yerine kalçadan menteşe yapmak.",
+     "Tekrarları aceleyle yapmak ya da çok ağır yüklemek."
+    ]
+   },
+   "ar": {
+    "title": "ثني ومدّ الظهر الصدري (Thoracic Flexion & Extension)",
+    "about": "تمرين مرونة وقوة متحكم به لمنتصف الظهر يدرّب العضلات الناصبة للفقار ثنيًا ومدًّا.",
+    "steps": [
+     "اجلس أو اركع منتصبًا واليدان على الصدر أو مع حمل خفيف.",
+     "قوّس أعلى ظهرك ببطء مع خفض الذقن.",
+     "اعكس الحركة بمدّ منتصف الظهر ورفع الصدر.",
+     "تحرّك فقرة فقرة دون استخدام الوركين."
+    ],
+    "cues": [
+     "اجعل الحركة في أعلى الظهر لا أسفله.",
+     "ازفر عند التقويس واشهق عند المدّ.",
+     "استخدم حملًا خفيفًا وإيقاعًا سلسًا."
+    ],
+    "mistakes": [
+     "الانحناء من الوركين بدل تحريك العمود الفقري.",
+     "الاستعجال أو التحميل الثقيل."
+    ]
+   }
+  },
+  "machine-lateral-raise": {
+   "primary": [
+    "delt-side"
+   ],
+   "secondary": [
+    "traps",
+    "delt-front"
+   ],
+   "en": {
+    "title": "Machine Lateral Raise",
+    "about": "A machine side raise that keeps steady tension on the side delts for wider-looking shoulders.",
+    "steps": [
+     "Adjust the seat so the pivot lines up with your shoulder.",
+     "Place the arm pad against your upper arm.",
+     "Raise the arm out to shoulder height in the scapular plane.",
+     "Lower slowly to the bottom stretch."
+    ],
+    "cues": [
+     "Lead with the elbow, not the hand.",
+     "Keep shoulders down; no shrugging.",
+     "Work slightly forward of your body, about 30 degrees."
+    ],
+    "mistakes": [
+     "Shrugging the traps to lift the weight.",
+     "Dropping the arm without control."
+    ]
+   },
+   "tr": {
+    "title": "Machine Lateral Raise",
+    "about": "Yan omuzda sürekli gerilim sağlayarak omuzları daha geniş gösteren makine yan açış.",
+    "steps": [
+     "Koltuğu dönme noktası omuz hizasında olacak şekilde ayarla.",
+     "Kol pedini üst koluna yerleştir.",
+     "Kolu skapular düzlemde omuz hizasına kadar kaldır.",
+     "Alt esnemeye yavaşça indir."
+    ],
+    "cues": [
+     "Elle değil, dirsekle öncülük et.",
+     "Omuzları aşağıda tut, silkme.",
+     "Vücudun yaklaşık 30 derece önünde çalış."
+    ],
+    "mistakes": [
+     "Ağırlığı kaldırmak için trapezi silkmek.",
+     "Kolu kontrolsüz düşürmek."
+    ]
+   },
+   "ar": {
+    "title": "الرفرفة الجانبية على الجهاز (Machine Lateral Raise)",
+    "about": "رفع جانبي على الجهاز يحافظ على شد ثابت على الكتف الجانبي لكتفين أعرض مظهرًا.",
+    "steps": [
+     "اضبط المقعد ليكون محور الدوران بمحاذاة الكتف.",
+     "ضع وسادة الذراع على أعلى ذراعك.",
+     "ارفع الذراع حتى مستوى الكتف في مستوى لوح الكتف.",
+     "أنزل ببطء حتى التمدد السفلي."
+    ],
+    "cues": [
+     "قُد الحركة بالمرفق لا باليد.",
+     "أبقِ الكتفين منخفضتين دون هزّ.",
+     "اعمل أمام جسمك قليلًا بنحو 30 درجة."
+    ],
+    "mistakes": [
+     "رفع الترابيس لرفع الوزن.",
+     "إسقاط الذراع دون تحكم."
+    ]
+   }
+  },
+  "deadlift": {
+   "primary": [
+    "glutes",
+    "hamstrings",
+    "lower-back"
+   ],
+   "secondary": [
+    "quads",
+    "traps",
+    "upper-back",
+    "lats",
+    "forearms"
+   ],
+   "en": {
+    "title": "Deadlift",
+    "about": "A full posterior-chain hinge that builds total-body strength in the glutes, hamstrings and back.",
+    "steps": [
+     "Stand with mid-foot under the bar, feet hip-width.",
+     "Hinge and grip just outside your legs.",
+     "Brace, pull slack out of the bar and keep a flat back.",
+     "Push the floor away and stand tall with hips through.",
+     "Lower the bar along your legs under control."
+    ],
+    "cues": [
+     "Keep the bar touching your legs the whole way.",
+     "Lock lats by pulling the bar into your body.",
+     "Hips and shoulders rise together."
+    ],
+    "mistakes": [
+     "Rounding the lower back off the floor.",
+     "Jerking the bar instead of building tension first."
+    ]
+   },
+   "tr": {
+    "title": "Deadlift",
+    "about": "Kalça, arka bacak ve sırtta tüm vücut gücü geliştiren tam arka zincir menteşe hareketi.",
+    "steps": [
+     "Ayak ortası barın altında, ayaklar kalça genişliğinde dur.",
+     "Kalçadan eğil, bacaklarının hemen dışından tut.",
+     "Nefes alıp sık, barın boşluğunu al, sırtı düz tut.",
+     "Yeri it ve kalçayı öne alarak dik dur.",
+     "Barı bacakların boyunca kontrollü indir."
+    ],
+    "cues": [
+     "Bar hareket boyunca bacaklarına değsin.",
+     "Barı vücuduna çekerek lat kaslarını kilitle.",
+     "Kalça ve omuzlar birlikte yükselsin."
+    ],
+    "mistakes": [
+     "Yerden kalkarken beli yuvarlamak.",
+     "Önce gerilim oluşturmadan barı silkelemek."
+    ]
+   },
+   "ar": {
+    "title": "الرفعة الميتة (Deadlift)",
+    "about": "حركة انحناء للسلسلة الخلفية تبني قوة الجسم كله في الأرداف وأوتار الركبة والظهر.",
+    "steps": [
+     "قف ومنتصف القدم تحت البار والقدمان بعرض الوركين.",
+     "انحنِ وأمسك البار خارج ساقيك مباشرة.",
+     "شدّ جذعك وأزل الارتخاء من البار بظهر مستقيم.",
+     "ادفع الأرض وانتصب مع دفع الوركين للأمام.",
+     "أنزل البار على امتداد الساقين بتحكم."
+    ],
+    "cues": [
+     "أبقِ البار ملامسًا لساقيك طوال الحركة.",
+     "ثبّت الظهرية بسحب البار نحو جسمك.",
+     "ارفع الوركين والكتفين معًا."
+    ],
+    "mistakes": [
+     "تقويس أسفل الظهر عند الرفع من الأرض.",
+     "شدّ البار بعنف قبل بناء التوتر."
+    ]
+   }
+  },
+  "sumo-deadlift": {
+   "primary": [
+    "glutes",
+    "quads",
+    "adductors"
+   ],
+   "secondary": [
+    "hamstrings",
+    "lower-back",
+    "traps",
+    "forearms"
+   ],
+   "en": {
+    "title": "Sumo Deadlift",
+    "about": "A wide-stance deadlift with a more upright torso that hits glutes, quads and adductors hard.",
+    "steps": [
+     "Take a wide stance with toes turned out and shins near the bar.",
+     "Grip the bar inside your knees, arms straight down.",
+     "Push knees out, brace and lift your chest.",
+     "Drive through the floor and lock out the hips.",
+     "Lower under control with the same position."
+    ],
+    "cues": [
+     "Spread the floor apart with your feet.",
+     "Keep the torso upright and bar close.",
+     "Knees track over the toes."
+    ],
+    "mistakes": [
+     "Letting knees cave inward.",
+     "Hips shooting up first so it becomes a stiff-leg pull."
+    ]
+   },
+   "tr": {
+    "title": "Sumo Deadlift",
+    "about": "Daha dik gövdeyle yapılan, kalça, ön bacak ve iç bacağı sert çalıştıran geniş duruşlu deadlift.",
+    "steps": [
+     "Ayak uçları dışa dönük geniş dur, kaval kemikleri bara yakın.",
+     "Barı dizlerinin içinden, kollar düz aşağıda tut.",
+     "Dizleri dışa it, nefes alıp sık, göğsü kaldır.",
+     "Yere basarak kalkış yap ve kalçayı kilitle.",
+     "Aynı pozisyonla kontrollü indir."
+    ],
+    "cues": [
+     "Ayaklarınla yeri iki yana açıyormuş gibi bas.",
+     "Gövdeyi dik, barı yakın tut.",
+     "Dizler ayak uçları yönünde ilerlesin."
+    ],
+    "mistakes": [
+     "Dizlerin içe çökmesine izin vermek.",
+     "Kalçanın önce fırlayıp hareketin düz bacağa dönmesi."
+    ]
+   },
+   "ar": {
+    "title": "الرفعة الميتة سومو (Sumo Deadlift)",
+    "about": "رفعة ميتة بوقفة واسعة وجذع أكثر انتصابًا تستهدف الأرداف والفخذ الأمامي والمقربات بقوة.",
+    "steps": [
+     "اتخذ وقفة واسعة وأصابع القدمين للخارج والساقان قرب البار.",
+     "أمسك البار داخل الركبتين والذراعان مستقيمتان.",
+     "ادفع الركبتين للخارج وشدّ جذعك وارفع الصدر.",
+     "ادفع الأرض وأقفل الوركين في الأعلى.",
+     "أنزل بتحكم بنفس الوضعية."
+    ],
+    "cues": [
+     "افرد الأرض بقدميك كأنك تباعدها.",
+     "أبقِ الجذع منتصبًا والبار قريبًا.",
+     "اجعل الركبتين فوق أصابع القدمين."
+    ],
+    "mistakes": [
+     "انهيار الركبتين للداخل.",
+     "ارتفاع الوركين أولًا فتتحول إلى رفعة بساقين مستقيمتين."
+    ]
+   }
+  },
+  "back-extension": {
+   "primary": [
+    "lower-back",
+    "glutes",
+    "hamstrings"
+   ],
+   "secondary": [
+    "upper-back"
+   ],
+   "en": {
+    "title": "Back Extension",
+    "about": "A 45° or horizontal hyperextension that strengthens the spinal erectors, glutes and hamstrings safely.",
+    "steps": [
+     "Set the pad just below your hip bones and hook your feet.",
+     "Cross arms or hold a plate at your chest.",
+     "Hinge down at the hips until you feel a hamstring stretch.",
+     "Rise until your body forms a straight line, then lower slowly."
+    ],
+    "cues": [
+     "Hinge at the hips with a neutral spine.",
+     "Squeeze glutes at the top; don't overarch.",
+     "Lower slowly to a deep stretch."
+    ],
+    "mistakes": [
+     "Hyperextending the lower back at the top.",
+     "Bouncing out of the bottom."
+    ]
+   },
+   "tr": {
+    "title": "Back Extension",
+    "about": "Bel dikleştiricilerini, kalça ve arka bacağı güvenle güçlendiren 45° ya da yatay hiperekstansiyon.",
+    "steps": [
+     "Pedi kalça kemiklerinin hemen altına ayarla, ayaklarını tak.",
+     "Kollarını çaprazla ya da göğsünde plaka tut.",
+     "Arka bacakta esneme hissedene kadar kalçadan aşağı in.",
+     "Vücudun düz çizgi olana kadar kalk, sonra yavaşça in."
+    ],
+    "cues": [
+     "Nötr omurgayla kalçadan menteşe yap.",
+     "Üstte kalçayı sık, beli aşırı bükme.",
+     "Derin esnemeye yavaşça in."
+    ],
+    "mistakes": [
+     "Üstte beli aşırı geriye bükmek.",
+     "Alttan sekerek çıkmak."
+    ]
+   },
+   "ar": {
+    "title": "تمديد الظهر (Back Extension)",
+    "about": "تمديد للظهر بزاوية 45° أو أفقي يقوّي ناصبات الفقار والأرداف وأوتار الركبة بأمان.",
+    "steps": [
+     "اضبط الوسادة أسفل عظمتي الورك مباشرة وثبّت قدميك.",
+     "اعقد ذراعيك أو أمسك قرصًا على صدرك.",
+     "انحنِ من الوركين حتى تشعر بتمدد أوتار الركبة.",
+     "ارتفع حتى يستقيم جسمك ثم انزل ببطء."
+    ],
+    "cues": [
+     "انحنِ من الوركين بعمود فقري محايد.",
+     "اضغط الأرداف في الأعلى دون تقويس زائد.",
+     "انزل ببطء إلى تمدد عميق."
+    ],
+    "mistakes": [
+     "فرط مدّ أسفل الظهر في الأعلى.",
+     "الارتداد من الأسفل."
+    ]
+   }
+  },
+  "spinal-flexion-extension-hyper": {
+   "primary": [
+    "lower-back"
+   ],
+   "secondary": [
+    "glutes",
+    "hamstrings",
+    "upper-back"
+   ],
+   "en": {
+    "title": "Hyperextension (Flexion + Extension)",
+    "about": "A back extension where you round and re-extend the spine to directly train the spinal erectors.",
+    "steps": [
+     "Set up on the hyper bench with the pad at your hips.",
+     "Lower down by rounding your back one vertebra at a time.",
+     "Pause briefly in the fully rounded stretch.",
+     "Uncurl the spine back to neutral, finishing with hips."
+    ],
+    "cues": [
+     "Start light; this deliberately loads spinal flexion.",
+     "Move slowly and smoothly through each segment.",
+     "Stop at a straight line, not an arch."
+    ],
+    "mistakes": [
+     "Using heavy weight before building tolerance.",
+     "Swinging fast through the range."
+    ]
+   },
+   "tr": {
+    "title": "Hyperextension (Flexion + Extension)",
+    "about": "Omurgayı yuvarlayıp yeniden açarak bel dikleştiricilerini doğrudan çalıştıran back extension.",
+    "steps": [
+     "Hiper sehpasına geç, ped kalçanda olsun.",
+     "Sırtını omur omur yuvarlayarak aşağı in.",
+     "Tamamen yuvarlak esnemede kısa bir an dur.",
+     "Omurgayı nötre aç, kalçayla bitir."
+    ],
+    "cues": [
+     "Hafif başla; bu hareket bilinçli olarak fleksiyon yükler.",
+     "Her bölümde yavaş ve akıcı hareket et.",
+     "Düz çizgide dur, geriye bükme."
+    ],
+    "mistakes": [
+     "Tolerans oluşmadan ağır yük kullanmak.",
+     "Açıklık boyunca hızlı sallanmak."
+    ]
+   },
+   "ar": {
+    "title": "تمديد الظهر بالثني والمدّ (Hyperextension Flexion + Extension)",
+    "about": "تمديد ظهر تقوّس فيه العمود الفقري ثم تمدّه لتدريب ناصبات الفقار مباشرة.",
+    "steps": [
+     "اتخذ وضعك على جهاز التمديد والوسادة عند الوركين.",
+     "انزل بتقويس ظهرك فقرة فقرة.",
+     "توقف لحظة في التمدد المقوّس الكامل.",
+     "افرد العمود الفقري إلى الوضع المحايد ثم أكمل بالوركين."
+    ],
+    "cues": [
+     "ابدأ بحمل خفيف فهذا يحمّل ثني العمود عمدًا.",
+     "تحرّك ببطء وسلاسة عبر كل جزء.",
+     "توقف عند الخط المستقيم لا التقويس للخلف."
+    ],
+    "mistakes": [
+     "استخدام وزن ثقيل قبل بناء التحمّل.",
+     "التأرجح السريع عبر المدى."
+    ]
+   }
+  },
+  "reverse-hyper": {
+   "primary": [
+    "glutes",
+    "hamstrings",
+    "lower-back"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Reverse Hyperextension",
+    "about": "A hip-extension movement where the legs move and the torso stays fixed, sparing the spine.",
+    "steps": [
+     "Lie face-down on a reverse hyper or high bench, hips at the edge.",
+     "Grip the bench and let your legs hang down.",
+     "Squeeze glutes to lift legs up to hip height.",
+     "Lower slowly to a full hang."
+    ],
+    "cues": [
+     "Drive the movement with glutes, not momentum.",
+     "Stop at a straight line; avoid overarching.",
+     "Keep the upper body pinned."
+    ],
+    "mistakes": [
+     "Swinging the legs fast and high.",
+     "Cranking the lower back into hyperextension."
+    ]
+   },
+   "tr": {
+    "title": "Reverse Hyperextension",
+    "about": "Gövde sabitken bacakların hareket ettiği, omurgayı koruyan kalça ekstansiyon hareketi.",
+    "steps": [
+     "Reverse hyper makinesine ya da yüksek sehpaya yüz üstü uzan, kalça kenarda.",
+     "Sehpayı tut, bacaklarını aşağı sarkıt.",
+     "Kalçanı sıkarak bacakları kalça hizasına kaldır.",
+     "Tam sarkmaya yavaşça indir."
+    ],
+    "cues": [
+     "Hareketi momentumla değil, kalçayla yönet.",
+     "Düz çizgide dur, beli aşırı bükme.",
+     "Üst gövdeni sabit tut."
+    ],
+    "mistakes": [
+     "Bacakları hızlı ve yükseğe savurmak.",
+     "Beli aşırı ekstansiyona zorlamak."
+    ]
+   },
+   "ar": {
+    "title": "تمديد الظهر العكسي (Reverse Hyperextension)",
+    "about": "حركة مدّ للورك تتحرك فيها الساقان ويبقى الجذع ثابتًا مما يحمي العمود الفقري.",
+    "steps": [
+     "استلقِ على بطنك فوق جهاز أو مقعد مرتفع والوركان على الحافة.",
+     "أمسك المقعد ودع ساقيك تتدليان.",
+     "اضغط الأرداف لرفع الساقين حتى مستوى الورك.",
+     "أنزل ببطء حتى التدلي الكامل."
+    ],
+    "cues": [
+     "قُد الحركة بالأرداف لا بالزخم.",
+     "توقف عند الخط المستقيم دون تقويس زائد.",
+     "ثبّت الجزء العلوي من جسمك."
+    ],
+    "mistakes": [
+     "أرجحة الساقين بسرعة وعلو.",
+     "دفع أسفل الظهر إلى فرط المدّ."
+    ]
+   }
+  },
+  "good-morning": {
+   "primary": [
+    "hamstrings",
+    "glutes",
+    "lower-back"
+   ],
+   "secondary": [
+    "upper-back",
+    "abs"
+   ],
+   "en": {
+    "title": "Standing Hip Hinge (Good Morning)",
+    "about": "A standing hip hinge that loads the hamstrings in a long stretch and builds spinal-erector endurance.",
+    "steps": [
+     "Stand with feet hip-width, bar on upper back or hands at chest.",
+     "Soften the knees and brace your core.",
+     "Push hips back, lowering the torso with a flat back.",
+     "Stop at a deep hamstring stretch, then drive hips forward to stand."
+    ],
+    "cues": [
+     "Keep the spine neutral throughout.",
+     "Hips move back, not knees forward.",
+     "Squeeze glutes to finish."
+    ],
+    "mistakes": [
+     "Rounding the back to get lower.",
+     "Bending the knees into a squat."
+    ]
+   },
+   "tr": {
+    "title": "Standing Hip Hinge (Good Morning)",
+    "about": "Arka bacağı uzun esnemede yükleyen ve bel dikleştiricilerinin dayanıklılığını artıran ayakta kalça menteşesi.",
+    "steps": [
+     "Ayaklar kalça genişliğinde, bar üst sırtta ya da eller göğüste dur.",
+     "Dizleri hafif bük, karnını sık.",
+     "Kalçayı geri it, sırt düz şekilde gövdeyi indir.",
+     "Derin arka bacak esnemesinde dur, kalçayı ileri iterek kalk."
+    ],
+    "cues": [
+     "Omurgayı hareket boyunca nötr tut.",
+     "Dizler öne değil, kalça geriye gitsin.",
+     "Bitirirken kalçanı sık."
+    ],
+    "mistakes": [
+     "Daha aşağı inmek için sırtı yuvarlamak.",
+     "Dizleri büküp hareketi squat'a çevirmek."
+    ]
+   },
+   "ar": {
+    "title": "الانحناء الواقف (Good Morning)",
+    "about": "انحناء من الورك واقفًا يحمّل أوتار الركبة في تمدد طويل ويبني تحمّل ناصبات الفقار.",
+    "steps": [
+     "قف والقدمان بعرض الوركين والبار على أعلى الظهر أو اليدان على الصدر.",
+     "أرخِ الركبتين قليلًا وشدّ البطن.",
+     "ادفع الوركين للخلف وأنزل الجذع بظهر مستقيم.",
+     "توقف عند تمدد عميق لأوتار الركبة ثم ادفع الوركين للأمام لتنتصب."
+    ],
+    "cues": [
+     "حافظ على عمود فقري محايد طوال الحركة.",
+     "الوركان للخلف لا الركبتان للأمام.",
+     "اضغط الأرداف لإنهاء الحركة."
+    ],
+    "mistakes": [
+     "تقويس الظهر للنزول أكثر.",
+     "ثني الركبتين وتحويله إلى قرفصاء."
+    ]
+   }
+  },
+  "jefferson-curl": {
+   "primary": [
+    "lower-back",
+    "hamstrings"
+   ],
+   "secondary": [
+    "upper-back",
+    "glutes"
+   ],
+   "en": {
+    "title": "Jefferson Curl",
+    "about": "A slow, loaded spinal-flexion drill that builds posterior-chain flexibility and spinal resilience.",
+    "steps": [
+     "Stand on a box holding a light weight with straight legs.",
+     "Tuck the chin and roll down one vertebra at a time.",
+     "Let the weight reach below the box into a deep stretch.",
+     "Roll back up slowly, stacking the spine from the bottom."
+    ],
+    "cues": [
+     "Use very light load and progress gradually.",
+     "Move slowly; two to four seconds each way.",
+     "Keep knees straight but not hyperextended."
+    ],
+    "mistakes": [
+     "Starting too heavy or moving fast.",
+     "Hinging at the hips instead of segmentally rolling."
+    ]
+   },
+   "tr": {
+    "title": "Jefferson Curl",
+    "about": "Arka zincir esnekliği ve omurga dayanıklılığı geliştiren yavaş, yüklü omurga fleksiyon egzersizi.",
+    "steps": [
+     "Bacaklar düz, hafif bir ağırlıkla kutunun üstünde dur.",
+     "Çeneyi içeri al, omur omur aşağı yuvarlan.",
+     "Ağırlık kutunun altına inip derin esnemeye gelsin.",
+     "Omurgayı aşağıdan yukarı dizerek yavaşça kalk."
+    ],
+    "cues": [
+     "Çok hafif yükle başla, yavaş artır.",
+     "Her yönde iki ila dört saniye yavaş hareket et.",
+     "Dizler düz olsun ama kilitlenmesin."
+    ],
+    "mistakes": [
+     "Çok ağır başlamak ya da hızlı hareket etmek.",
+     "Omur omur yuvarlanmak yerine kalçadan eğilmek."
+    ]
+   },
+   "ar": {
+    "title": "جيفرسون كيرل (Jefferson Curl)",
+    "about": "تمرين ثني بطيء ومحمّل للعمود الفقري يبني مرونة السلسلة الخلفية ومتانة العمود الفقري.",
+    "steps": [
+     "قف على صندوق ممسكًا وزنًا خفيفًا والساقان مستقيمتان.",
+     "اخفض الذقن وانزل فقرة فقرة.",
+     "دع الوزن ينزل أسفل الصندوق في تمدد عميق.",
+     "اصعد ببطء مرتّبًا العمود الفقري من الأسفل."
+    ],
+    "cues": [
+     "استخدم حملًا خفيفًا جدًا وتدرّج ببطء.",
+     "تحرّك ببطء من ثانيتين إلى أربع في كل اتجاه.",
+     "أبقِ الركبتين مستقيمتين دون إقفال مفرط."
+    ],
+    "mistakes": [
+     "البدء بوزن ثقيل أو التحرك بسرعة.",
+     "الانحناء من الوركين بدل التقويس التدريجي."
+    ]
+   }
+  },
+  "hanging-leg-raise": {
+   "primary": [
+    "abs"
+   ],
+   "secondary": [
+    "obliques"
+   ],
+   "en": {
+    "title": "Roman Chair Leg Raise",
+    "about": "A captain's-chair raise that trains the abs by curling the pelvis up under control.",
+    "steps": [
+     "Support yourself on the forearm pads with back against the pad.",
+     "Let legs hang straight down.",
+     "Raise knees or straight legs while curling the pelvis up.",
+     "Lower slowly without swinging."
+    ],
+    "cues": [
+     "Tilt the pelvis up at the top to engage abs.",
+     "Exhale as you lift.",
+     "Keep the lower back pressed to the pad."
+    ],
+    "mistakes": [
+     "Swinging the legs with momentum.",
+     "Only lifting the thighs without curling the pelvis."
+    ]
+   },
+   "tr": {
+    "title": "Roman Chair Leg Raise",
+    "about": "Leğeni kontrollü şekilde yukarı kıvırarak karın kaslarını çalıştıran captain's chair bacak kaldırma.",
+    "steps": [
+     "Önkol pedlerine dayan, sırtın pede yaslı olsun.",
+     "Bacaklar düz aşağı sarksın.",
+     "Leğeni kıvırarak dizleri ya da düz bacakları kaldır.",
+     "Sallanmadan yavaşça indir."
+    ],
+    "cues": [
+     "Karnı devreye sokmak için üstte leğeni yukarı devir.",
+     "Kaldırırken nefes ver.",
+     "Belini pede bastırılı tut."
+    ],
+    "mistakes": [
+     "Bacakları momentumla savurmak.",
+     "Leğeni kıvırmadan sadece uylukları kaldırmak."
+    ]
+   },
+   "ar": {
+    "title": "رفع الساقين على الكرسي الروماني (Roman Chair Leg Raise)",
+    "about": "رفع للساقين على الكرسي يدرّب عضلات البطن بلفّ الحوض للأعلى بتحكم.",
+    "steps": [
+     "استند على وسادتي الساعدين والظهر ملاصق للوسادة.",
+     "دع الساقين تتدليان مستقيمتين.",
+     "ارفع الركبتين أو الساقين المستقيمتين مع لفّ الحوض للأعلى.",
+     "أنزل ببطء دون تأرجح."
+    ],
+    "cues": [
+     "أمِل الحوض للأعلى في القمة لإشراك البطن.",
+     "ازفر أثناء الرفع.",
+     "أبقِ أسفل الظهر مضغوطًا على الوسادة."
+    ],
+    "mistakes": [
+     "أرجحة الساقين بالزخم.",
+     "رفع الفخذين فقط دون لفّ الحوض."
+    ]
+   }
+  },
+  "barbell-curl": {
+   "primary": [
+    "biceps"
+   ],
+   "secondary": [
+    "forearms",
+    "delt-front"
+   ],
+   "en": {
+    "title": "Barbell / EZ-Bar Curl",
+    "about": "A two-handed curl that lets you load the biceps heavy and progress steadily.",
+    "steps": [
+     "Stand tall holding the bar with an underhand grip.",
+     "Pin your elbows at your sides with arms fully straight.",
+     "Curl the bar up until forearms are near vertical.",
+     "Lower slowly to a full elbow extension."
+    ],
+    "cues": [
+     "Keep elbows mostly still; slight forward drift is fine.",
+     "Fully straighten the arms at the bottom.",
+     "Take two to three seconds on the way down."
+    ],
+    "mistakes": [
+     "Swinging the torso to heave the bar.",
+     "Half reps that never reach full extension."
+    ]
+   },
+   "tr": {
+    "title": "Barbell / EZ-Bar Curl",
+    "about": "Biceps'i ağır yüklemene ve düzenli ilerlemene izin veren çift el curl.",
+    "steps": [
+     "Barı avuç içi yukarı bakacak şekilde tutarak dik dur.",
+     "Dirsekler yanlarda, kollar tamamen düz olsun.",
+     "Önkollar dikeye yaklaşana kadar barı kaldır.",
+     "Dirsekler tamamen açılana kadar yavaşça indir."
+    ],
+    "cues": [
+     "Dirsekleri büyük ölçüde sabit tut; hafif öne kayma sorun değil.",
+     "Altta kolları tamamen aç.",
+     "İnişte iki üç saniye harca."
+    ],
+    "mistakes": [
+     "Barı kaldırmak için gövdeyi sallamak.",
+     "Tam açılmaya hiç gelmeyen yarım tekrarlar."
+    ]
+   },
+   "ar": {
+    "title": "الكيرل بالبار (Barbell / EZ-Bar Curl)",
+    "about": "كيرل باليدين يتيح تحميل العضلة ذات الرأسين بثقل والتقدم بثبات.",
+    "steps": [
+     "قف منتصبًا ممسكًا البار بقبضة سفلية.",
+     "ثبّت المرفقين بجانبيك والذراعان مستقيمتان.",
+     "ارفع البار حتى يقارب الساعدان الوضع العمودي.",
+     "أنزل ببطء حتى المدّ الكامل للمرفق."
+    ],
+    "cues": [
+     "أبقِ المرفقين ثابتين غالبًا ولا بأس بانزلاق بسيط للأمام.",
+     "افرد الذراعين بالكامل في الأسفل.",
+     "خذ ثانيتين إلى ثلاث في النزول."
+    ],
+    "mistakes": [
+     "أرجحة الجذع لرفع البار.",
+     "أنصاف تكرارات لا تصل إلى المدّ الكامل."
+    ]
+   }
+  },
+  "drag-curl": {
+   "primary": [
+    "biceps"
+   ],
+   "secondary": [
+    "forearms",
+    "delt-rear"
+   ],
+   "en": {
+    "title": "Drag Curl",
+    "about": "A curl where elbows travel back and the weight drags up the torso, keeping biceps tension.",
+    "steps": [
+     "Hold the weight at your thighs with arms straight.",
+     "Pull your elbows back as you curl.",
+     "Drag the bar or dumbbells up along your torso to the lower chest.",
+     "Lower along the same path to full extension."
+    ],
+    "cues": [
+     "Keep the weight in contact with, or very close to, your body.",
+     "Elbows move behind you, never forward.",
+     "Squeeze hard at the top."
+    ],
+    "mistakes": [
+     "Letting the elbows swing forward into a normal curl.",
+     "Leaning back to cheat the weight up."
+    ]
+   },
+   "tr": {
+    "title": "Drag Curl",
+    "about": "Dirseklerin geriye gittiği, barın gövde boyunca sürtünerek kalktığı ve biceps gerilimini koruyan curl.",
+    "steps": [
+     "Ağırlığı kollar düz, uyluklarının önünde tut.",
+     "Kaldırırken dirseklerini geriye çek.",
+     "Barı ya da dumbbell'ları gövde boyunca alt göğse sürükle.",
+     "Aynı yoldan tam açılmaya indir."
+    ],
+    "cues": [
+     "Ağırlığı vücuduna değdir ya da çok yakın tut.",
+     "Dirsekler öne değil, arkaya gitsin.",
+     "Üstte sıkıca kas."
+    ],
+    "mistakes": [
+     "Dirseklerin öne gelip normal curl'e dönmesi.",
+     "Ağırlığı kaldırmak için geriye yaslanmak."
+    ]
+   },
+   "ar": {
+    "title": "الدراغ كيرل (Drag Curl)",
+    "about": "كيرل تتحرك فيه المرفقان للخلف وينزلق البار على الجذع ليبقى الشد على العضلة ذات الرأسين.",
+    "steps": [
+     "أمسك الوزن عند الفخذين والذراعان مستقيمتان.",
+     "اسحب المرفقين للخلف أثناء الرفع.",
+     "اسحب البار أو الدمبلات على امتداد الجذع حتى أسفل الصدر.",
+     "أنزل بنفس المسار حتى المدّ الكامل."
+    ],
+    "cues": [
+     "أبقِ الوزن ملامسًا لجسمك أو قريبًا جدًا منه.",
+     "المرفقان يتحركان للخلف لا للأمام أبدًا.",
+     "اضغط بقوة في الأعلى."
+    ],
+    "mistakes": [
+     "ترك المرفقين يتقدمان فيتحول إلى كيرل عادي.",
+     "الميل للخلف لرفع الوزن بالغش."
+    ]
+   }
+  },
+  "reverse-curl": {
+   "primary": [
+    "forearms",
+    "biceps"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Reverse-Grip Curl",
+    "about": "An overhand curl that shifts work to the brachialis and brachioradialis for thicker arms and forearms.",
+    "steps": [
+     "Hold the bar or handles with an overhand grip.",
+     "Keep elbows at your sides and wrists neutral.",
+     "Curl up until forearms are near vertical.",
+     "Lower slowly to full extension."
+    ],
+    "cues": [
+     "Keep wrists straight, not bent back.",
+     "Use lighter weight than normal curls.",
+     "Control the full range."
+    ],
+    "mistakes": [
+     "Letting the wrists collapse backward.",
+     "Swinging the body to lift heavy loads."
+    ]
+   },
+   "tr": {
+    "title": "Reverse-Grip Curl",
+    "about": "Yükü brachialis ve brachioradialis'e kaydırarak kol ve önkolu kalınlaştıran ters tutuş curl.",
+    "steps": [
+     "Barı ya da tutamakları avuç içi aşağı bakacak şekilde tut.",
+     "Dirsekler yanlarda, bilekler nötr kalsın.",
+     "Önkollar dikeye yaklaşana kadar kaldır.",
+     "Tam açılmaya yavaşça indir."
+    ],
+    "cues": [
+     "Bilekleri geriye bükme, düz tut.",
+     "Normal curl'den daha hafif ağırlık kullan.",
+     "Tüm hareket açıklığını kontrol et."
+    ],
+    "mistakes": [
+     "Bileklerin geriye düşmesine izin vermek.",
+     "Ağır yük için vücudu sallamak."
+    ]
+   },
+   "ar": {
+    "title": "الكيرل بقبضة معكوسة (Reverse-Grip Curl)",
+    "about": "كيرل بقبضة علوية ينقل العمل إلى العضلة العضدية والعضدية الكعبرية لذراعين وساعدين أسمك.",
+    "steps": [
+     "أمسك البار أو المقابض بقبضة علوية.",
+     "أبقِ المرفقين بجانبيك والمعصمين محايدين.",
+     "ارفع حتى يقارب الساعدان الوضع العمودي.",
+     "أنزل ببطء حتى المدّ الكامل."
+    ],
+    "cues": [
+     "أبقِ المعصمين مستقيمين لا مثنيين للخلف.",
+     "استخدم وزنًا أخف من الكيرل العادي.",
+     "تحكّم في المدى الكامل."
+    ],
+    "mistakes": [
+     "ترك المعصمين ينثنيان للخلف.",
+     "أرجحة الجسم لرفع أوزان ثقيلة."
+    ]
+   }
+  },
+  "finger-flexor-curl": {
+   "primary": [
+    "forearms"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Finger Flexor Curl",
+    "about": "A wrist and finger curl that builds forearm flexors and grip by rolling the weight through the fingers.",
+    "steps": [
+     "Hold the weight underhand with forearms supported or arms hanging.",
+     "Let the weight roll down to your fingertips.",
+     "Close the fingers, then curl the wrist up.",
+     "Lower slowly back to the fingertips."
+    ],
+    "cues": [
+     "Use the full finger range on every rep.",
+     "Keep forearms still; only hands move.",
+     "Go for higher reps with a controlled tempo."
+    ],
+    "mistakes": [
+     "Moving the elbows or curling the whole arm.",
+     "Cutting the stretch short at the fingertips."
+    ]
+   },
+   "tr": {
+    "title": "Finger Flexor Curl",
+    "about": "Ağırlığı parmaklar boyunca yuvarlayarak önkol fleksörlerini ve kavrama gücünü geliştiren bilek-parmak curl'ü.",
+    "steps": [
+     "Ağırlığı avuç içi yukarı tut, önkollar destekli ya da kollar sarkık.",
+     "Ağırlığın parmak uçlarına yuvarlanmasına izin ver.",
+     "Önce parmakları kapat, sonra bileği yukarı kıvır.",
+     "Yavaşça parmak uçlarına geri indir."
+    ],
+    "cues": [
+     "Her tekrarda parmakların tüm açıklığını kullan.",
+     "Önkollar sabit, sadece eller hareket etsin.",
+     "Kontrollü tempoyla yüksek tekrar yap."
+    ],
+    "mistakes": [
+     "Dirsekleri oynatmak ya da tüm kolu bükmek.",
+     "Parmak uçlarındaki esnemeyi kısaltmak."
+    ]
+   },
+   "ar": {
+    "title": "كيرل ثني الأصابع (Finger Flexor Curl)",
+    "about": "كيرل للمعصم والأصابع يبني عضلات ثني الساعد وقوة القبضة بدحرجة الوزن عبر الأصابع.",
+    "steps": [
+     "أمسك الوزن بقبضة سفلية والساعدان مدعومان أو الذراعان متدليتان.",
+     "دع الوزن يتدحرج حتى أطراف الأصابع.",
+     "أغلق الأصابع ثم اثنِ المعصم للأعلى.",
+     "أنزل ببطء إلى أطراف الأصابع."
+    ],
+    "cues": [
+     "استخدم المدى الكامل للأصابع في كل تكرار.",
+     "ثبّت الساعدين ولا تحرّك سوى اليدين.",
+     "اعمل بتكرارات أعلى وإيقاع متحكم."
+    ],
+    "mistakes": [
+     "تحريك المرفقين أو ثني الذراع كلها.",
+     "تقصير التمدد عند أطراف الأصابع."
+    ]
+   }
+  },
+  "preacher-curl": {
+   "primary": [
+    "biceps"
+   ],
+   "secondary": [
+    "forearms"
+   ],
+   "en": {
+    "title": "Preacher Curl",
+    "about": "A pad-supported curl that removes cheating and loads the biceps hard in the stretched position.",
+    "steps": [
+     "Sit at the preacher bench with armpits snug on the pad.",
+     "Grip the weight with arms almost fully straight.",
+     "Curl up until just before forearms reach vertical.",
+     "Lower slowly into a full stretch."
+    ],
+    "cues": [
+     "Keep the back of your arms flat on the pad.",
+     "Control the bottom; that is where growth happens.",
+     "Don't rest at the top."
+    ],
+    "mistakes": [
+     "Bouncing out of the bottom.",
+     "Lifting the elbows off the pad."
+    ]
+   },
+   "tr": {
+    "title": "Preacher Curl",
+    "about": "Hileyi ortadan kaldıran ve biceps'i esneme pozisyonunda sert yükleyen pedli curl.",
+    "steps": [
+     "Preacher sehpasına otur, koltuk altların pede otursun.",
+     "Ağırlığı kollar neredeyse tamamen düzken kavra.",
+     "Önkollar dikeye gelmeden hemen önceye kadar kaldır.",
+     "Tam esnemeye yavaşça indir."
+    ],
+    "cues": [
+     "Kolların arkasını pedde düz tut.",
+     "Altı kontrol et; gelişim orada olur.",
+     "Üstte dinlenme."
+    ],
+    "mistakes": [
+     "Alttan sekerek çıkmak.",
+     "Dirsekleri pedden kaldırmak."
+    ]
+   },
+   "ar": {
+    "title": "كيرل الواعظ (Preacher Curl)",
+    "about": "كيرل مدعوم بالوسادة يمنع الغش ويحمّل العضلة ذات الرأسين بقوة في وضع التمدد.",
+    "steps": [
+     "اجلس على مقعد الواعظ والإبطان ملاصقان للوسادة.",
+     "أمسك الوزن والذراعان شبه مستقيمتين.",
+     "ارفع حتى قبيل وصول الساعدين للوضع العمودي.",
+     "أنزل ببطء حتى التمدد الكامل."
+    ],
+    "cues": [
+     "أبقِ خلفية الذراعين مسطحة على الوسادة.",
+     "تحكّم في الأسفل حيث يحدث النمو.",
+     "لا تسترح في الأعلى."
+    ],
+    "mistakes": [
+     "الارتداد من الأسفل.",
+     "رفع المرفقين عن الوسادة."
+    ]
+   }
+  },
+  "spider-curl": {
+   "primary": [
+    "biceps"
+   ],
+   "secondary": [
+    "forearms"
+   ],
+   "en": {
+    "title": "Spider Curl",
+    "about": "A chest-supported curl with arms hanging vertically, giving peak tension near the top of the rep.",
+    "steps": [
+     "Lie chest-down on an incline bench with arms hanging straight.",
+     "Grip the weight with palms forward.",
+     "Curl up while keeping upper arms vertical.",
+     "Squeeze, then lower slowly to full extension."
+    ],
+    "cues": [
+     "Keep upper arms perpendicular to the floor.",
+     "Squeeze hard at the top for a second.",
+     "Fully straighten arms between reps."
+    ],
+    "mistakes": [
+     "Swinging the elbows forward to make it easier.",
+     "Lifting the chest off the bench."
+    ]
+   },
+   "tr": {
+    "title": "Spider Curl",
+    "about": "Kollar dikey sarkarken göğüs destekli yapılan, tekrarın üst kısmında en yüksek gerilimi veren curl.",
+    "steps": [
+     "Eğimli sehpaya göğüs üstü uzan, kollar düz sarksın.",
+     "Ağırlığı avuç içi öne bakacak şekilde tut.",
+     "Üst kollar dikey kalırken kaldır.",
+     "Sık, sonra tam açılmaya yavaşça indir."
+    ],
+    "cues": [
+     "Üst kolları yere dik tut.",
+     "Üstte bir saniye sıkıca kas.",
+     "Tekrarlar arasında kolları tam aç."
+    ],
+    "mistakes": [
+     "Kolaylaştırmak için dirsekleri öne savurmak.",
+     "Göğsü sehpadan kaldırmak."
+    ]
+   },
+   "ar": {
+    "title": "السبايدر كيرل (Spider Curl)",
+    "about": "كيرل مدعوم بالصدر والذراعان متدليتان عموديًا يمنح أعلى شد قرب قمة التكرار.",
+    "steps": [
+     "استلقِ على صدرك فوق مقعد مائل والذراعان متدليتان.",
+     "أمسك الوزن وراحتا اليد للأمام.",
+     "ارفع مع إبقاء العضدين عموديين.",
+     "اضغط ثم أنزل ببطء حتى المدّ الكامل."
+    ],
+    "cues": [
+     "أبقِ العضدين عموديين على الأرض.",
+     "اضغط بقوة ثانية في الأعلى.",
+     "افرد الذراعين بالكامل بين التكرارات."
+    ],
+    "mistakes": [
+     "أرجحة المرفقين للأمام لتسهيل الحركة.",
+     "رفع الصدر عن المقعد."
+    ]
+   }
+  },
+  "incline-dumbbell-curl": {
+   "primary": [
+    "biceps"
+   ],
+   "secondary": [
+    "forearms"
+   ],
+   "en": {
+    "title": "Incline Dumbbell Curl",
+    "about": "A curl with arms behind the body that stretches the long head of the biceps under load.",
+    "steps": [
+     "Sit back on an incline bench set around 45–60 degrees.",
+     "Let the dumbbells hang straight down behind your torso.",
+     "Curl up without letting the elbows drift forward.",
+     "Lower slowly until arms are fully straight."
+    ],
+    "cues": [
+     "Keep your head and shoulders back on the bench.",
+     "Feel the stretch at the bottom of every rep.",
+     "Supinate the palms as you curl."
+    ],
+    "mistakes": [
+     "Bringing elbows forward to shorten the range.",
+     "Shoulders rolling off the bench."
+    ]
+   },
+   "tr": {
+    "title": "Incline Dumbbell Curl",
+    "about": "Kollar vücudun arkasındayken biceps uzun başını yük altında esneten curl.",
+    "steps": [
+     "Yaklaşık 45–60 dereceye ayarlı eğimli sehpaya yaslan.",
+     "Dumbbell'lar gövdenin arkasında düz aşağı sarksın.",
+     "Dirsekleri öne kaydırmadan kaldır.",
+     "Kollar tamamen düzleşene kadar yavaşça indir."
+    ],
+    "cues": [
+     "Başını ve omuzlarını sehpada tut.",
+     "Her tekrarın altında esnemeyi hisset.",
+     "Kaldırırken avuç içini yukarı çevir."
+    ],
+    "mistakes": [
+     "Açıklığı kısaltmak için dirsekleri öne getirmek.",
+     "Omuzların sehpadan ayrılması."
+    ]
+   },
+   "ar": {
+    "title": "الكيرل على المقعد المائل (Incline Dumbbell Curl)",
+    "about": "كيرل والذراعان خلف الجسم يمدّ الرأس الطويل للعضلة ذات الرأسين تحت الحمل.",
+    "steps": [
+     "اجلس مستندًا على مقعد مائل بزاوية 45–60 درجة تقريبًا.",
+     "دع الدمبلات تتدلى مستقيمة خلف الجذع.",
+     "ارفع دون أن تتقدم المرفقان للأمام.",
+     "أنزل ببطء حتى تستقيم الذراعان بالكامل."
+    ],
+    "cues": [
+     "أبقِ الرأس والكتفين على المقعد.",
+     "اشعر بالتمدد في أسفل كل تكرار.",
+     "لفّ راحتي اليد للأعلى أثناء الرفع."
+    ],
+    "mistakes": [
+     "تقديم المرفقين لتقصير المدى.",
+     "ابتعاد الكتفين عن المقعد."
+    ]
+   }
+  },
+  "dumbbell-curl": {
+   "primary": [
+    "biceps"
+   ],
+   "secondary": [
+    "forearms",
+    "delt-front"
+   ],
+   "en": {
+    "title": "Dumbbell Curl",
+    "about": "A free dumbbell curl that lets the wrist supinate fully for complete biceps contraction.",
+    "steps": [
+     "Stand or sit holding dumbbells at your sides.",
+     "Start with arms fully straight, palms forward or neutral.",
+     "Curl up, turning palms up as you lift.",
+     "Lower slowly to full extension."
+    ],
+    "cues": [
+     "Keep elbows close and mostly still.",
+     "Twist the pinky up at the top for a full squeeze.",
+     "Control the eccentric for two to three seconds."
+    ],
+    "mistakes": [
+     "Swinging the dumbbells with the hips.",
+     "Stopping short of full extension."
+    ]
+   },
+   "tr": {
+    "title": "Dumbbell Curl",
+    "about": "Bileğin tam supinasyonuna izin vererek biceps'i tam kasan serbest dumbbell curl.",
+    "steps": [
+     "Dumbbell'lar yanlarda, ayakta ya da oturarak dur.",
+     "Kollar tamamen düz, avuç içi öne ya da içe baksın.",
+     "Kaldırırken avuç içini yukarı çevir.",
+     "Tam açılmaya yavaşça indir."
+    ],
+    "cues": [
+     "Dirsekleri yakın ve büyük ölçüde sabit tut.",
+     "Tam sıkışma için üstte serçe parmağı yukarı çevir.",
+     "Negatifi iki üç saniyede kontrol et."
+    ],
+    "mistakes": [
+     "Dumbbell'ları kalçayla savurmak.",
+     "Tam açılmadan tekrarı kesmek."
+    ]
+   },
+   "ar": {
+    "title": "الكيرل بالدمبل (Dumbbell Curl)",
+    "about": "كيرل حر بالدمبل يتيح لفّ المعصم بالكامل لانقباض تام للعضلة ذات الرأسين.",
+    "steps": [
+     "قف أو اجلس ممسكًا الدمبلات بجانبيك.",
+     "ابدأ والذراعان مستقيمتان وراحتا اليد للأمام أو للداخل.",
+     "ارفع مع لفّ راحتي اليد للأعلى.",
+     "أنزل ببطء حتى المدّ الكامل."
+    ],
+    "cues": [
+     "أبقِ المرفقين قريبين وثابتين غالبًا.",
+     "لفّ الإصبع الصغير للأعلى في القمة لضغط كامل.",
+     "تحكّم في النزول لمدة ثانيتين إلى ثلاث."
+    ],
+    "mistakes": [
+     "أرجحة الدمبلات بالوركين.",
+     "التوقف قبل المدّ الكامل."
+    ]
+   }
+  },
+  "hammer-curl": {
+   "primary": [
+    "biceps",
+    "forearms"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Hammer Curl",
+    "about": "A neutral-grip curl that targets the brachialis and brachioradialis for thicker upper arms and forearms.",
+    "steps": [
+     "Hold dumbbells at your sides with palms facing each other.",
+     "Keep elbows tucked and arms straight.",
+     "Curl up without rotating the wrists.",
+     "Lower slowly to full extension."
+    ],
+    "cues": [
+     "Thumbs stay pointing up the whole rep.",
+     "Keep upper arms still.",
+     "Lower under control."
+    ],
+    "mistakes": [
+     "Swinging the torso to move heavy weight.",
+     "Letting elbows flare out to the sides."
+    ]
+   },
+   "tr": {
+    "title": "Hammer Curl",
+    "about": "Brachialis ve brachioradialis'i hedefleyerek üst kol ve önkolu kalınlaştıran nötr tutuşlu curl.",
+    "steps": [
+     "Dumbbell'ları avuç içleri birbirine bakacak şekilde yanlarda tut.",
+     "Dirsekler vücuda yakın, kollar düz olsun.",
+     "Bilekleri çevirmeden kaldır.",
+     "Tam açılmaya yavaşça indir."
+    ],
+    "cues": [
+     "Başparmaklar tekrar boyunca yukarı baksın.",
+     "Üst kolları sabit tut.",
+     "Kontrollü indir."
+    ],
+    "mistakes": [
+     "Ağır yük için gövdeyi sallamak.",
+     "Dirseklerin yanlara açılmasına izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "الهامر كيرل (Hammer Curl)",
+    "about": "كيرل بقبضة محايدة يستهدف العضلة العضدية والعضدية الكعبرية لعضد وساعد أسمك.",
+    "steps": [
+     "أمسك الدمبلات بجانبيك وراحتا اليد متقابلتان.",
+     "أبقِ المرفقين ملاصقين والذراعين مستقيمتين.",
+     "ارفع دون لفّ المعصمين.",
+     "أنزل ببطء حتى المدّ الكامل."
+    ],
+    "cues": [
+     "يبقى الإبهام متجهًا للأعلى طوال التكرار.",
+     "ثبّت العضدين.",
+     "أنزل بتحكم."
+    ],
+    "mistakes": [
+     "أرجحة الجذع لتحريك وزن ثقيل.",
+     "ترك المرفقين ينفتحان للجانبين."
+    ]
+   }
+  },
+  "concentration-curl": {
+   "primary": [
+    "biceps"
+   ],
+   "secondary": [
+    "forearms"
+   ],
+   "en": {
+    "title": "Concentration Curl",
+    "about": "A seated one-arm curl braced against the thigh that isolates the biceps with zero momentum.",
+    "steps": [
+     "Sit on a bench and brace the back of your upper arm on your inner thigh.",
+     "Let the dumbbell hang with your arm fully straight.",
+     "Curl up toward your shoulder, rotating the palm up.",
+     "Lower slowly to full extension."
+    ],
+    "cues": [
+     "Keep the upper arm fixed against the thigh.",
+     "Squeeze hard at the top.",
+     "Finish every rep with a straight arm."
+    ],
+    "mistakes": [
+     "Using the thigh or torso to bump the weight up.",
+     "Short reps that skip the stretch."
+    ]
+   },
+   "tr": {
+    "title": "Concentration Curl",
+    "about": "Üst kol uyluğa dayalı, momentumu sıfırlayarak biceps'i izole eden oturarak tek kol curl.",
+    "steps": [
+     "Sehpaya otur, üst kolunun arkasını iç uyluğuna daya.",
+     "Dumbbell kol tamamen düz şekilde sarksın.",
+     "Avuç içini yukarı çevirerek omzuna doğru kaldır.",
+     "Tam açılmaya yavaşça indir."
+    ],
+    "cues": [
+     "Üst kolu uyluğa sabit tut.",
+     "Üstte sıkıca kas.",
+     "Her tekrarı düz kolla bitir."
+    ],
+    "mistakes": [
+     "Ağırlığı uyluk ya da gövdeyle itmek.",
+     "Esnemeyi atlayan kısa tekrarlar."
+    ]
+   },
+   "ar": {
+    "title": "كيرل التركيز (Concentration Curl)",
+    "about": "كيرل بذراع واحدة جالسًا مستندًا إلى الفخذ يعزل العضلة ذات الرأسين دون أي زخم.",
+    "steps": [
+     "اجلس على مقعد وأسند خلفية العضد على باطن فخذك.",
+     "دع الدمبل يتدلى والذراع مستقيمة تمامًا.",
+     "ارفع نحو كتفك مع لفّ راحة اليد للأعلى.",
+     "أنزل ببطء حتى المدّ الكامل."
+    ],
+    "cues": [
+     "ثبّت العضد على الفخذ.",
+     "اضغط بقوة في الأعلى.",
+     "أنهِ كل تكرار بذراع مستقيمة."
+    ],
+    "mistakes": [
+     "استخدام الفخذ أو الجذع لدفع الوزن.",
+     "تكرارات قصيرة تتجاوز التمدد."
+    ]
+   }
+  },
+  "cable-curl": {
+   "primary": [
+    "biceps"
+   ],
+   "secondary": [
+    "forearms"
+   ],
+   "en": {
+    "title": "Cable Curl",
+    "about": "A standing cable curl that keeps tension on the biceps through the entire range.",
+    "steps": [
+     "Attach a bar or handle to a low pulley and stand facing it.",
+     "Grip underhand with arms fully straight.",
+     "Curl up while keeping elbows near your sides.",
+     "Lower slowly until arms are straight again."
+    ],
+    "cues": [
+     "Step back slightly so tension stays on at the bottom.",
+     "Keep the torso still.",
+     "Control every eccentric."
+    ],
+    "mistakes": [
+     "Leaning back and using body weight.",
+     "Elbows sliding far forward at the top."
+    ]
+   },
+   "tr": {
+    "title": "Cable Curl",
+    "about": "Biceps'te tüm hareket boyunca gerilimi koruyan ayakta kablo curl.",
+    "steps": [
+     "Alt makaraya bar ya da tutamak tak, karşısına dur.",
+     "Avuç içi yukarı, kollar tamamen düz kavra.",
+     "Dirsekler yanlara yakın kalırken kaldır.",
+     "Kollar tekrar düzleşene kadar yavaşça indir."
+    ],
+    "cues": [
+     "Altta gerilim kalsın diye hafif geri adım at.",
+     "Gövdeyi sabit tut.",
+     "Her negatifi kontrol et."
+    ],
+    "mistakes": [
+     "Geriye yaslanıp vücut ağırlığı kullanmak.",
+     "Üstte dirseklerin çok öne kayması."
+    ]
+   },
+   "ar": {
+    "title": "الكيرل بالكابل (Cable Curl)",
+    "about": "كيرل بالكابل واقفًا يحافظ على الشد على العضلة ذات الرأسين طوال المدى.",
+    "steps": [
+     "ركّب بارًا أو مقبضًا على البكرة السفلية وقف مواجهًا لها.",
+     "أمسك بقبضة سفلية والذراعان مستقيمتان.",
+     "ارفع مع إبقاء المرفقين قرب الجانبين.",
+     "أنزل ببطء حتى تستقيم الذراعان مجددًا."
+    ],
+    "cues": [
+     "تراجع خطوة ليبقى الشد في الأسفل.",
+     "ثبّت الجذع.",
+     "تحكّم في كل نزول."
+    ],
+    "mistakes": [
+     "الميل للخلف واستخدام وزن الجسم.",
+     "انزلاق المرفقين كثيرًا للأمام في الأعلى."
+    ]
+   }
+  },
+  "behind-body-cable-curl": {
+   "primary": [
+    "biceps"
+   ],
+   "secondary": [
+    "forearms",
+    "delt-front"
+   ],
+   "en": {
+    "title": "Behind-the-Body Cable Curl",
+    "about": "A cable curl with the arm behind the torso that stretches the biceps long head under constant tension.",
+    "steps": [
+     "Set the pulley low and face away from the stack.",
+     "Step forward so the arm is pulled behind your body.",
+     "Curl up while keeping the upper arm back.",
+     "Lower slowly into a deep biceps stretch."
+    ],
+    "cues": [
+     "Keep the elbow behind the torso throughout.",
+     "Use a staggered stance for stability.",
+     "Pause briefly in the stretch."
+    ],
+    "mistakes": [
+     "Letting the elbow swing forward.",
+     "Going too heavy and losing the stretch."
+    ]
+   },
+   "tr": {
+    "title": "Behind-the-Body Cable Curl",
+    "about": "Kol gövdenin arkasındayken biceps uzun başını sürekli gerilimle esneten kablo curl.",
+    "steps": [
+     "Makarayı alçağa ayarla, sırtını makineye dön.",
+     "Kol vücudunun arkasına çekilecek kadar öne adım at.",
+     "Üst kolu geride tutarak kaldır.",
+     "Derin biceps esnemesine yavaşça indir."
+    ],
+    "cues": [
+     "Dirsek hareket boyunca gövdenin arkasında kalsın.",
+     "Denge için çapraz duruş kullan.",
+     "Esnemede kısa bir an dur."
+    ],
+    "mistakes": [
+     "Dirseğin öne savrulmasına izin vermek.",
+     "Çok ağır alıp esnemeyi kaybetmek."
+    ]
+   },
+   "ar": {
+    "title": "الكيرل بالكابل خلف الجسم (Behind-the-Body Cable Curl)",
+    "about": "كيرل بالكابل والذراع خلف الجذع يمدّ الرأس الطويل للعضلة ذات الرأسين بشد مستمر.",
+    "steps": [
+     "اضبط البكرة منخفضة وأدر ظهرك للجهاز.",
+     "تقدّم خطوة لتُسحب الذراع خلف جسمك.",
+     "ارفع مع إبقاء العضد للخلف.",
+     "أنزل ببطء إلى تمدد عميق للعضلة ذات الرأسين."
+    ],
+    "cues": [
+     "أبقِ المرفق خلف الجذع طوال الحركة.",
+     "استخدم وقفة متقدمة للثبات.",
+     "توقف لحظة في التمدد."
+    ],
+    "mistakes": [
+     "ترك المرفق يتأرجح للأمام.",
+     "استخدام وزن ثقيل جدًا وفقدان التمدد."
+    ]
+   }
+  },
+  "lying-cable-curl": {
+   "primary": [
+    "biceps"
+   ],
+   "secondary": [
+    "forearms"
+   ],
+   "en": {
+    "title": "Lying Cable Curl",
+    "about": "A curl lying on your back at a low pulley that removes body English for strict biceps work.",
+    "steps": [
+     "Lie on your back with feet toward a low pulley.",
+     "Hold the bar with arms straight along your body.",
+     "Curl the bar toward your forehead or chest.",
+     "Lower slowly to full extension."
+    ],
+    "cues": [
+     "Keep upper arms pinned to the floor or bench.",
+     "Squeeze at the top for a beat.",
+     "Straighten fully between reps."
+    ],
+    "mistakes": [
+     "Lifting the elbows off the floor.",
+     "Rushing the eccentric."
+    ]
+   },
+   "tr": {
+    "title": "Lying Cable Curl",
+    "about": "Alt makarada sırtüstü yatarak yapılan, vücut hilesini kaldırıp sıkı biceps çalışması sağlayan curl.",
+    "steps": [
+     "Ayakların alt makaraya dönük şekilde sırtüstü uzan.",
+     "Barı kollar vücudun boyunca düz şekilde tut.",
+     "Barı alnına ya da göğsüne doğru kaldır.",
+     "Tam açılmaya yavaşça indir."
+    ],
+    "cues": [
+     "Üst kolları yere ya da sehpaya sabitle.",
+     "Üstte bir an sık.",
+     "Tekrarlar arasında tam aç."
+    ],
+    "mistakes": [
+     "Dirsekleri yerden kaldırmak.",
+     "Negatifi aceleye getirmek."
+    ]
+   },
+   "ar": {
+    "title": "الكيرل بالكابل مستلقيًا (Lying Cable Curl)",
+    "about": "كيرل مستلقيًا على الظهر أمام بكرة منخفضة يزيل الغش لعمل صارم للعضلة ذات الرأسين.",
+    "steps": [
+     "استلقِ على ظهرك والقدمان نحو البكرة السفلية.",
+     "أمسك البار والذراعان مستقيمتان بمحاذاة الجسم.",
+     "ارفع البار نحو الجبهة أو الصدر.",
+     "أنزل ببطء حتى المدّ الكامل."
+    ],
+    "cues": [
+     "ثبّت العضدين على الأرض أو المقعد.",
+     "اضغط لحظة في الأعلى.",
+     "افرد الذراعين بالكامل بين التكرارات."
+    ],
+    "mistakes": [
+     "رفع المرفقين عن الأرض.",
+     "الاستعجال في النزول."
+    ]
+   }
+  },
+  "machine-curl": {
+   "primary": [
+    "biceps"
+   ],
+   "secondary": [
+    "forearms"
+   ],
+   "en": {
+    "title": "Machine Biceps Curl",
+    "about": "A guided curl machine that provides stable resistance so you can push the biceps close to failure.",
+    "steps": [
+     "Adjust the seat so elbows line up with the machine's pivot.",
+     "Rest upper arms on the pad and grip the handles.",
+     "Curl up until fully contracted.",
+     "Lower slowly to a full stretch."
+    ],
+    "cues": [
+     "Keep elbows aligned with the pivot point.",
+     "Don't lift your hips or lean back.",
+     "Use full range; the machine makes it safe."
+    ],
+    "mistakes": [
+     "Wrong seat height that misaligns the elbows.",
+     "Stopping before full extension."
+    ]
+   },
+   "tr": {
+    "title": "Machine Biceps Curl",
+    "about": "Stabil direnç sağlayarak biceps'i tükenişe yakın zorlamanı sağlayan yönlendirmeli curl makinesi.",
+    "steps": [
+     "Koltuğu dirsekler makinenin dönme noktasıyla hizalanacak şekilde ayarla.",
+     "Üst kolları pede yasla, tutamakları kavra.",
+     "Tam kasılana kadar kaldır.",
+     "Tam esnemeye yavaşça indir."
+    ],
+    "cues": [
+     "Dirsekleri dönme noktasıyla hizalı tut.",
+     "Kalçayı kaldırma, geriye yaslanma.",
+     "Tam açıklık kullan; makine bunu güvenli kılar."
+    ],
+    "mistakes": [
+     "Dirsekleri kaydıran yanlış koltuk yüksekliği.",
+     "Tam açılmadan durmak."
+    ]
+   },
+   "ar": {
+    "title": "الكيرل على الجهاز (Machine Biceps Curl)",
+    "about": "جهاز كيرل موجّه يوفر مقاومة ثابتة لتدفع العضلة ذات الرأسين قرب الفشل.",
+    "steps": [
+     "اضبط المقعد ليتحاذى المرفقان مع محور الجهاز.",
+     "أسند العضدين على الوسادة وأمسك المقابض.",
+     "ارفع حتى الانقباض الكامل.",
+     "أنزل ببطء حتى التمدد الكامل."
+    ],
+    "cues": [
+     "أبقِ المرفقين بمحاذاة نقطة المحور.",
+     "لا ترفع الوركين ولا تمل للخلف.",
+     "استخدم المدى الكامل فالجهاز يجعله آمنًا."
+    ],
+    "mistakes": [
+     "ارتفاع مقعد خاطئ يُبعد المرفقين عن المحور.",
+     "التوقف قبل المدّ الكامل."
+    ]
+   }
+  },
+  "bodyweight-curl": {
+   "primary": [
+    "biceps"
+   ],
+   "secondary": [
+    "forearms",
+    "upper-back",
+    "abs"
+   ],
+   "en": {
+    "title": "Bodyweight Curl",
+    "about": "A suspended or bar curl using your own body weight to train biceps without equipment.",
+    "steps": [
+     "Grab a low bar or rings underhand and lean back with straight arms.",
+     "Keep your body rigid from heels to head.",
+     "Curl your body up by bending only at the elbows.",
+     "Lower slowly to straight arms."
+    ],
+    "cues": [
+     "Keep elbows pointing forward; don't row.",
+     "Walk feet forward to make it harder.",
+     "Squeeze glutes to avoid sagging."
+    ],
+    "mistakes": [
+     "Turning it into a row by pulling elbows back.",
+     "Letting the hips drop."
+    ]
+   },
+   "tr": {
+    "title": "Bodyweight Curl",
+    "about": "Ekipmansız biceps çalışması için kendi vücut ağırlığınla barda ya da halkada yapılan curl.",
+    "steps": [
+     "Alçak barı ya da halkaları avuç içi yukarı tut, kollar düz geriye yaslan.",
+     "Vücudunu topuktan başa gergin tut.",
+     "Sadece dirseklerden bükerek vücudunu yukarı çek.",
+     "Kollar düzleşene kadar yavaşça in."
+    ],
+    "cues": [
+     "Dirsekler öne baksın; row yapma.",
+     "Zorlaştırmak için ayakları öne al.",
+     "Sarkmamak için kalçanı sık."
+    ],
+    "mistakes": [
+     "Dirsekleri geriye çekip row'a çevirmek.",
+     "Kalçanın düşmesine izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "الكيرل بوزن الجسم (Bodyweight Curl)",
+    "about": "كيرل بوزن الجسم على بار أو حلقات لتدريب العضلة ذات الرأسين دون معدات.",
+    "steps": [
+     "أمسك بارًا منخفضًا أو حلقات بقبضة سفلية ومِل للخلف بذراعين مستقيمتين.",
+     "أبقِ جسمك صلبًا من الكعبين حتى الرأس.",
+     "ارفع جسمك بثني المرفقين فقط.",
+     "انزل ببطء حتى استقامة الذراعين."
+    ],
+    "cues": [
+     "أبقِ المرفقين متجهين للأمام دون تجديف.",
+     "قرّب القدمين للأمام لزيادة الصعوبة.",
+     "اضغط الأرداف لتجنّب الترهّل."
+    ],
+    "mistakes": [
+     "تحويله إلى تجديف بسحب المرفقين للخلف.",
+     "ترك الوركين يهبطان."
+    ]
+   }
+  },
+  "neutral-dumbbell-press": {
+   "primary": [
+    "delt-front",
+    "triceps"
+   ],
+   "secondary": [
+    "delt-side",
+    "chest",
+    "traps"
+   ],
+   "en": {
+    "title": "Neutral-Grip Dumbbell Shoulder Press",
+    "about": "A seated overhead press with palms facing each other that is joint-friendly for the shoulders.",
+    "steps": [
+     "Sit on an upright bench with dumbbells at shoulder height, palms facing in.",
+     "Brace your core and keep your back on the pad.",
+     "Press the dumbbells overhead until arms are nearly straight.",
+     "Lower slowly until the dumbbells reach shoulder level."
+    ],
+    "cues": [
+     "Keep elbows slightly in front of your body.",
+     "Lower to a deep but comfortable bottom position.",
+     "Don't arch the lower back to finish reps."
+    ],
+    "mistakes": [
+     "Cutting the bottom of the rep short.",
+     "Leaning back into an incline press."
+    ]
+   },
+   "tr": {
+    "title": "Neutral-Grip Dumbbell Shoulder Press",
+    "about": "Avuç içleri birbirine bakarken yapılan, omuz eklemine dost oturarak omuz pres.",
+    "steps": [
+     "Dik sehpaya otur, dumbbell'lar omuz hizasında, avuç içleri içe baksın.",
+     "Karnını sık, sırtını pede yasla.",
+     "Dumbbell'ları kollar neredeyse düzleşene kadar yukarı it.",
+     "Dumbbell'lar omuz hizasına gelene kadar yavaşça indir."
+    ],
+    "cues": [
+     "Dirsekleri vücudun hafif önünde tut.",
+     "Derin ama rahat bir alt pozisyona in.",
+     "Tekrarı bitirmek için beli kavislendirme."
+    ],
+    "mistakes": [
+     "Tekrarın alt kısmını kısaltmak.",
+     "Geriye yaslanıp incline press'e çevirmek."
+    ]
+   },
+   "ar": {
+    "title": "ضغط الكتف بالدمبل بقبضة محايدة (Neutral-Grip Dumbbell Shoulder Press)",
+    "about": "ضغط علوي جالسًا وراحتا اليد متقابلتان، لطيف على مفصل الكتف.",
+    "steps": [
+     "اجلس على مقعد قائم والدمبلات بمستوى الكتف وراحتا اليد للداخل.",
+     "شدّ البطن وأسند ظهرك على الوسادة.",
+     "اضغط الدمبلات للأعلى حتى تقارب الذراعان الاستقامة.",
+     "أنزل ببطء حتى تصل الدمبلات إلى مستوى الكتف."
+    ],
+    "cues": [
+     "أبقِ المرفقين أمام جسمك قليلًا.",
+     "انزل إلى وضع سفلي عميق ومريح.",
+     "لا تقوّس أسفل الظهر لإنهاء التكرار."
+    ],
+    "mistakes": [
+     "تقصير الجزء السفلي من التكرار.",
+     "الميل للخلف وتحويله إلى ضغط مائل."
+    ]
+   }
+  }
+ },
+ "map": {
+  "1-arm-row-ryan_humis514743": "one-arm-dumbbell-row",
+  "2-part-high-elbow-row": "seated-cable-high-elbow-row",
+  "3-way-incline-dumbbell-row-45-degrees-garage-program": "chest-supported-row",
+  "3-way-incline-dumbbell-row-90-degrees-garage-program": "chest-supported-row",
+  "3-way-incline-dumbbell-row-tucked-garage-program": "chest-supported-row",
+  "alternating-curls-giant-set-garage-program": "dumbbell-curl",
+  "ascending-dumbbell-curls": "dumbbell-curl",
+  "assisted-thoracic-extensions": "thoracic-flexion-extension",
+  "assisted-wide-grip-pull-ups-garage-program": "assisted-pull-up",
+  "barbell-curl-copy-53446e13-a84b-4219-a553-a7ddfc805de9": "barbell-curl",
+  "barbell-curl-copy-ryan_humis514743": "reverse-curl",
+  "barbell-curls-garage-2-0": "barbell-curl",
+  "barbell-drag-curl-ryan_humis514743": "drag-curl",
+  "barbell-finger-flexor-curls": "finger-flexor-curl",
+  "barbell-preacher-curl-copy": "preacher-curl",
+  "barbell-preacher-curl-flat-side-copy": "preacher-curl",
+  "barbell-pullovers-copy": "pull-up",
+  "barbell-row-mechanical-drop-starting-form-copy": "barbell-row",
+  "barbell-rows-ryan_humis514743": "barbell-row",
+  "barbell-shrugs-wide-grip-copy": "chest-supported-high-elbow-row",
+  "barbell-thoracic-flexion-extension": "thoracic-flexion-extension",
+  "bench-assisted-wide-grip-pull-ups-garage-2-0": "bench-assisted-pull-up",
+  "bent-over-barbell-row-copy": "t-bar-row",
+  "bent-over-barbell-row-garage-program": "barbell-row",
+  "bent-over-barbell-rows-2-count-hold-garage-program": "barbell-row",
+  "bent-over-dumbbell-row-copy-ryan_humis514743": "high-elbow-dumbbell-row",
+  "bent-over-dumbbell-row-pronated-grip": "dumbbell-row-bent-over",
+  "bent-over-dumbbell-rows-garage-program": "dumbbell-row-bent-over",
+  "bent-over-dumbbell-rows-wrap-around-garage-program": "dumbbell-row-bent-over",
+  "bent-over-high-elbow-barbell-row-garage-program": "barbell-row",
+  "bodyweight-curl": "bodyweight-curl",
+  "bodyweight-curls-triset-garage-program": "bodyweight-curl",
+  "bodyweight-high-elbow-row-garage-2-0": "bodyweight-row",
+  "cable-ez-bar-curl-copy": "cable-curl",
+  "cable-long-head-curl-copy": "incline-dumbbell-curl",
+  "cable-one-arm-row-kneeling": "single-arm-cable-row",
+  "cable-pullovers-copy": "cable-pullover",
+  "cable-rotations-copy": "reverse-curl",
+  "cable-straight-bar-curl-extreme-stretch": "cable-curl",
+  "cable-straight-bar-finger-flexor-curls": "finger-flexor-curl",
+  "close-grip-assisted-pull-ups": "assisted-pull-up",
+  "close-grip-bench-assisted-pull-ups": "bench-assisted-pull-up",
+  "concentration-curl-copy-c194449e-62e6-468b-a38f-a293416ca6d7": "preacher-curl",
+  "concentration-curl-copy-copy": "behind-body-cable-curl",
+  "concentration-curl-copy-ryan_humis514743": "barbell-curl",
+  "concentration-curls-heavy": "concentration-curl",
+  "deadlift-garage-program": "deadlift",
+  "deadlifts-copy": "back-extension",
+  "deadlifts-garage-program": "deadlift",
+  "dual-cable-bicep-curls-face-out-slight-shoulder-tilt": "behind-body-cable-curl",
+  "dual-single-handle-lat-pulldown-elbows-close-eccentric": "close-grip-pulldown",
+  "dumbbell-bent-over-rows-garage-2-0": "dumbbell-row-bent-over",
+  "dumbbell-drag-curls-garage-program": "drag-curl",
+  "dumbbell-finger-flexor-curl": "finger-flexor-curl",
+  "dumbbell-hamer-curl-garage-program": "hammer-curl",
+  "dumbbell-hammer-curls-garage-2-0": "hammer-curl",
+  "dumbbell-high-elbow-wall-row-garage-program": "high-elbow-dumbbell-row",
+  "dumbbell-incline-high-row-garage-program": "chest-supported-high-elbow-row",
+  "dumbbell-partial-curls-garage-program": "dumbbell-curl",
+  "dumbbell-preacher-curl-copy-ryan_humis514743": "preacher-curl",
+  "dumbbell-preacher-curl-flat-side-copy": "preacher-curl",
+  "dumbbell-pullovers-garage-program": "dumbbell-pullover",
+  "dumbbell-pullovers-garage-program-ryan_humis514743": "dumbbell-pullover",
+  "dumbbell-shrug-mechanical-drop-end-form-copy": "spinal-flexion-extension-hyper",
+  "dumbbell-spider-curls-garage-program": "spider-curl",
+  "dumbbell-spider-curls-garage-program-copy": "incline-dumbbell-curl",
+  "dumbbell-spider-hammer-curl": "spider-curl",
+  "dumbbell-spider-supinated": "spider-curl",
+  "external-rotation-dumbbell-curls-giant-set-garage-program": "dumbbell-curl",
+  "ez-bar-cable-curl-close-grip": "cable-curl",
+  "ez-bar-cable-curl-wide-grip": "cable-curl",
+  "ez-bar-cable-curls-wide-grip": "cable-curl",
+  "ez-bar-cable-drag-curls-wide-grip": "drag-curl",
+  "ez-bar-curl-close-grip": "barbell-curl",
+  "ez-bar-curl-close-grip-elbows-tucked": "barbell-curl",
+  "ez-bar-curl-wide-grip": "barbell-curl",
+  "ez-bar-curl-wide-grip-elbows-back": "barbell-curl",
+  "ez-bar-curl-wide-grip-ryan_humis514743": "barbell-curl",
+  "ez-bar-curls-garage-program-copy": "drag-curl",
+  "ez-bar-preacher-curl-copy": "preacher-curl",
+  "ez-bar-reverse-grip-curls-copy": "concentration-curl",
+  "ez-bar-spider-curl-close-grip": "spider-curl",
+  "ez-bar-spider-curl-wide-grip": "spider-curl",
+  "flexion-extension-hyper": "spinal-flexion-extension-hyper",
+  "hammer-curls-dumbbells-touching": "hammer-curl",
+  "hammer-curls-giant-set-garage-program": "hammer-curl",
+  "hammer-preacher-curl-flat-side": "hammer-curl",
+  "hanging-low-trap-shrug-copy": "one-arm-dumbbell-row",
+  "high-elbow-pendlay-barbell-row": "pendlay-row",
+  "high-incline-dumbbell-curl-ryan_humis514743": "incline-dumbbell-curl",
+  "high-incline-spider-curls": "spider-curl",
+  "hyper-extensions-flexion-extension-copy": "good-morning",
+  "hyper-extensions-heavy-copy": "spinal-flexion-extension-hyper",
+  "hyper-extensions-ryan_humis514743": "back-extension",
+  "hyper-extensions-weighted": "back-extension",
+  "hyperextension-flexion-extension-copy": "lat-pulldown",
+  "incline-barbell-spider-curl": "spider-curl",
+  "incline-bench-cable-pullovers-copy": "seated-cable-row",
+  "incline-cable-curl-copy": "behind-body-cable-curl",
+  "incline-cable-curl-copy-ryan_humis514743": "reverse-curl",
+  "incline-dumbbell-curl-super-slow-garage-program": "incline-dumbbell-curl",
+  "incline-dumbbell-curls-garage-program-copy": "barbell-curl",
+  "incline-dumbbell-curls-triset-garage-program": "incline-dumbbell-curl",
+  "incline-dumbbell-high-elbow-row-garage-2-0": "chest-supported-high-elbow-row",
+  "incline-dumbbell-row-45-degree-elbow": "chest-supported-row",
+  "incline-dumbbell-spider-curls": "spider-curl",
+  "incline-ez-bar-spider-curls": "spider-curl",
+  "incline-lat-row-neutral-grip": "chest-supported-row",
+  "incline-one-arm-dumbbell-row": "chest-supported-row",
+  "incline-one-arm-high-elbow-row": "chest-supported-high-elbow-row",
+  "incline-single-arm-dumbbell-curl-copy": "concentration-curl",
+  "internal-rotation-dumbbell-curls-giant-set-garage-program": "dumbbell-curl",
+  "iso-lat-row": "machine-row",
+  "jeffersons": "jefferson-curl",
+  "lying-ez-bar-cable-curls": "lying-cable-curl",
+  "lying-ez-bar-cable-curls-close-grip": "lying-cable-curl",
+  "lying-ez-bar-cable-curls-wide-grip": "lying-cable-curl",
+  "machine-biceps-curl-ryan_humis514743": "machine-curl",
+  "machine-high-elbow-row": "machine-row",
+  "machine-iso-lat-row": "machine-row",
+  "machine-lat-row-roll-upper-back-rest-pause": "machine-row",
+  "machine-single-arm-rear-delt-fly-copy-f3f2bf18-674c-43af-9f13-4fcf47830306": "machine-lateral-raise",
+  "machine-t-bar-high-elbow-row": "t-bar-row",
+  "meadows-row-copy": "one-arm-dumbbell-row",
+  "mid-grip-pull-ups-lat-focused": "pull-up",
+  "modified-reverse-hyper-bench-garage-program": "reverse-hyper",
+  "one-arm-db-pronated-grip-copy": "lat-pulldown",
+  "one-arm-db-row-pronated-grip-copy": "barbell-row",
+  "one-arm-dumbbell-pullover": "dumbbell-pullover",
+  "one-arm-dumbbell-row-exaggerated-stretch": "one-arm-dumbbell-row",
+  "one-arm-dumbbell-row-feet-level": "one-arm-dumbbell-row",
+  "one-arm-high-elbow-row": "high-elbow-dumbbell-row",
+  "one-arm-meadows-row-copy": "deadlift",
+  "one-arm-meadows-t-bar-row-garage-2-0": "meadows-row",
+  "one-arm-row-prontated-copy": "high-elbow-dumbbell-row",
+  "one-arm-row-staggered-stance-2-second-stretch": "one-arm-dumbbell-row",
+  "one-arm-row-traditional-copy": "one-arm-dumbbell-row",
+  "one-arm-t-bar-row-garage-2-0": "meadows-row",
+  "partial-deadlifts-garage-program": "deadlift",
+  "pause-deadlifts-garage-program": "deadlift",
+  "pit-shark-v-bar-row": "seated-cable-high-elbow-row",
+  "poor-mans-hyper-extension": "back-extension",
+  "pronated-grip-bicep-pull-ups-copy": "cable-pullover",
+  "pullovers-barbell": "barbell-pullover",
+  "rear-delt-around-the-world-copy": "behind-body-cable-curl",
+  "reverse-grip-bench-assisted-pull-ups-garage-program": "bench-assisted-pull-up",
+  "reverse-grip-cable-curls-ryan_humis514743": "reverse-curl",
+  "reverse-grip-ez-bar-cable-curl-copy": "reverse-curl",
+  "reverse-grip-ez-straight-bar-curl-copy": "cable-curl",
+  "reverse-grip-pull-ups-garage-program": "pull-up",
+  "reverse-grip-smith-drag-curl-ryan_humis514743": "drag-curl",
+  "reverse-grip-straight-bar-curl-clusterfuck-copy": "barbell-curl",
+  "reverse-grip-straight-bar-curls-garage-2-0": "reverse-curl",
+  "reverse-grip-straight-bar-curls-triset-garage-program": "reverse-curl",
+  "reverse-grip-straight-bar-wall-curls": "reverse-curl",
+  "reverse-hyper-extension-ryan_humis514743": "reverse-hyper",
+  "rocking-dumbbell-curls-triset-garage-program": "dumbbell-curl",
+  "rocking-ez-bar-curl": "barbell-curl",
+  "roman-chair-ryan_humis514743": "hanging-leg-raise",
+  "roman-chair-weighted-knees-to-chest": "hanging-leg-raise",
+  "seal-high-elbow-row": "chest-supported-high-elbow-row",
+  "seated-cable-high-elbow-row-neutral-lat-bar-drops": "seated-cable-high-elbow-row",
+  "seated-cable-row-pronated-clusterfuck": "seated-cable-row",
+  "seated-concentration-curl-copy": "reverse-curl",
+  "seated-dumbbell-press-slightly-supinated-copy": "neutral-dumbbell-press",
+  "seated-dumbbell-shrug-drops-copy": "single-arm-cable-row",
+  "seated-lat-row-copy": "seated-cable-row",
+  "seated-lat-row-copy-ryan_humis514743": "one-arm-lat-row",
+  "seated-lat-row-pronated-grip-copy": "t-bar-row",
+  "seated-row-high-elbow-row-copy": "dumbbell-row-bent-over",
+  "seated-row-v-bar-copy": "seated-cable-row",
+  "seated-row-v-bar-copy-ryan_humis514743": "seated-cable-row",
+  "seated-row-v-bar-flexion-extension-copy": "seated-cable-high-elbow-row",
+  "seated-single-arm-dumbbell-press-slightly-supinated-copy": "neutral-dumbbell-press",
+  "seated-single-arm-high-cable-row": "single-arm-cable-row",
+  "seated-single-cable-arm-row": "single-arm-cable-row",
+  "seated-supinated-dumbbell-curls": "dumbbell-curl",
+  "seated-v-bar-row-upper-back-rolled": "seated-cable-row",
+  "single-arm-cable-curl-ryan_humis514743": "cable-curl",
+  "single-arm-cable-pullover": "cable-pullover",
+  "single-arm-dumbbell-high-elbow-row-2-second-stretch": "high-elbow-dumbbell-row",
+  "single-arm-dumbbell-preacher-curl-tilt-back": "preacher-curl",
+  "single-arm-dumbbell-pullover-ryan_humis514743": "dumbbell-pullover",
+  "single-arm-dumbbell-reverse-grip-brachialis-curls-tilt-back": "reverse-curl",
+  "single-arm-lat-pulldown-ryan_humis514743": "lat-pulldown",
+  "single-arm-lat-pulldowns-copy": "barbell-pullover",
+  "single-arm-lat-row-hammer-copy": "one-arm-lat-row",
+  "single-arm-long-head-incline-curls": "incline-dumbbell-curl",
+  "single-arm-machine-biceps-curl": "machine-curl",
+  "single-arm-machine-lat-focused-row-rest-pause": "machine-row",
+  "single-leg-hyper-extensions-weighted": "back-extension",
+  "slight-incline-barbell-pullover-garage-program": "barbell-pullover",
+  "slightly-supinated-press-clusterfuck-copy": "cable-curl",
+  "smith-bent-over-rows-copy": "pull-up",
+  "smith-pendlay-rows": "pendlay-row",
+  "standing-barbell-shoulder-press-copy-ryan_humis514743": "hammer-curl",
+  "standing-hyper-barbell-copy": "barbell-row",
+  "standing-posterior-chain-hypers": "good-morning",
+  "standing-supinated-dumbbell-curls": "dumbbell-curl",
+  "straight-bar-cable-curl-clusterfuck-copy": "preacher-curl",
+  "straight-bar-curls-garage-program": "barbell-curl",
+  "straight-bar-drag-curls-triset-garage-program": "drag-curl",
+  "straight-bar-lat-pulldown-mid-grip-lat-focused": "lat-pulldown",
+  "strict-barbell-wall-curls": "barbell-curl",
+  "strict-hammer-curls": "hammer-curl",
+  "sumo-deadlift-grage-program": "sumo-deadlift",
+  "sumo-deadlifts-compound-garage-program": "sumo-deadlift",
+  "sumo-deadlifts-garage-2-0": "sumo-deadlift",
+  "sumo-dumbbell-deadlifts-garage-program": "sumo-deadlift",
+  "supinated-cable-curls-elbows-tucked": "cable-curl",
+  "supinated-dumbbell-curl-externally-rotated-wide-grip": "dumbbell-curl",
+  "supinated-dumbbell-curls-garage-2-0": "dumbbell-curl",
+  "supinated-dumbbell-elbows-tucked-close-grip": "dumbbell-curl",
+  "t-bar-row-chest-supported": "t-bar-row",
+  "t-bar-row-copy-ryan_humis514743": "meadows-row",
+  "t-bar-row-mechanical-drop-starting-form-copy": "t-bar-row",
+  "thoracic-flexion-extension-no-weight": "thoracic-flexion-extension",
+  "v-bar-lat-pulldowns-extreme-stretch": "close-grip-pulldown",
+  "v-bar-pullups": "pull-up",
+  "v-handle-cable-curls": "cable-curl",
+  "wall-dumbbell-curls-garage-program": "dumbbell-curl",
+  "weighted-straight-hyper-drop-start": "back-extension",
+  "weighted-straight-hyper-drop-start-copy": "back-extension",
+  "weighted-walking-lunges-heavy-copy-ryan_humis514743": "back-extension",
+  "wide-grip-assisted-pull-ups": "assisted-pull-up",
+  "wide-grip-bench-assisted-pull-ups-garage-program": "bench-assisted-pull-up",
+  "wide-grip-lat-pulldown-clusterfuck-copy": "pendlay-row",
+  "wide-grip-lat-pulldown-fixed-elbow-clusterfuck-copy": "single-arm-cable-row",
+  "wide-grip-lat-pulldowns-copy": "close-grip-pulldown",
+  "wide-grip-lat-pulldowns-ryan_humis514743": "lat-pulldown",
+  "wide-grip-pull-ups-copy-ryan_humis514743": "pull-up",
+  "wide-grip-pulldown-clusterfuck": "lat-pulldown",
+  "wide-grip-pulldown-clusterfuck-copy": "seated-cable-row"
+ },
+ "variantNotes": {
+  "2-part-high-elbow-row": {
+   "en": "Each rep has two parts: lean forward into the stretch, then row with high elbows.",
+   "tr": "Her tekrar iki bölüm: öne eğilip esne, sonra dirsekler yüksek çek.",
+   "ar": "لكل تكرار جزءان: مِل للأمام نحو التمدد ثم اسحب بمرفقين مرتفعين."
+  },
+  "3-way-incline-dumbbell-row-45-degrees-garage-program": {
+   "en": "Elbows about 45° from the torso: a balance of lats and upper back.",
+   "tr": "Dirsekler gövdeden yaklaşık 45°: lat ve üst sırt dengesi.",
+   "ar": "المرفقان بنحو 45° عن الجذع: توازن بين الظهرية وأعلى الظهر."
+  },
+  "3-way-incline-dumbbell-row-90-degrees-garage-program": {
+   "en": "Elbows flared to 90°: emphasizes upper back and rear delts.",
+   "tr": "Dirsekler 90° açık: üst sırt ve arka omuz vurgusu.",
+   "ar": "المرفقان مفتوحان 90°: تركيز على أعلى الظهر والكتف الخلفي."
+  },
+  "3-way-incline-dumbbell-row-tucked-garage-program": {
+   "en": "Elbows tucked to your sides, pulling to the hips: emphasizes the lats.",
+   "tr": "Dirsekler yanlarda, kalçaya çekiş: lat vurgusu.",
+   "ar": "المرفقان ملاصقان والسحب نحو الوركين: تركيز على الظهرية."
+  },
+  "alternating-curls-giant-set-garage-program": {
+   "en": "Alternate arms each rep; part of a giant set of curls done back-to-back.",
+   "tr": "Her tekrarda kol değiştir; arka arkaya yapılan curl giant set'inin parçası.",
+   "ar": "بدّل الذراعين كل تكرار؛ ضمن مجموعة عملاقة من الكيرل المتتالي."
+  },
+  "assisted-thoracic-extensions": {
+   "en": "Use a machine or support to assist and guide the extension.",
+   "tr": "Ekstansiyonu desteklemek ve yönlendirmek için makine ya da destek kullan.",
+   "ar": "استخدم جهازًا أو دعامة لمساعدة وتوجيه المدّ."
+  },
+  "assisted-wide-grip-pull-ups-garage-program": {
+   "en": "Wide grip: hands outside shoulder width, slightly more upper-back involvement.",
+   "tr": "Geniş tutuş: eller omuz genişliğinin dışında, üst sırt biraz daha fazla çalışır.",
+   "ar": "قبضة عريضة: اليدان خارج عرض الكتفين مع إشراك أكبر قليلًا لأعلى الظهر."
+  },
+  "barbell-preacher-curl-copy": {
+   "en": "Uses the vertical (flat) side of the preacher pad, shifting peak tension toward the top.",
+   "tr": "Preacher pedinin dikey (düz) tarafı kullanılır, en yüksek gerilim üst kısma kayar.",
+   "ar": "يُستخدم الجانب العمودي (المسطح) من وسادة الواعظ فينتقل أقصى شد نحو الأعلى."
+  },
+  "barbell-pullovers-copy": {
+   "en": "Wide grip: hands outside shoulder width, slightly more upper-back involvement.",
+   "tr": "Geniş tutuş: eller omuz genişliğinin dışında, üst sırt biraz daha fazla çalışır.",
+   "ar": "قبضة عريضة: اليدان خارج عرض الكتفين مع إشراك أكبر قليلًا لأعلى الظهر."
+  },
+  "barbell-row-mechanical-drop-starting-form-copy": {
+   "en": "Mechanical drop, end form: the easier, more upright version you switch to after failing the strict form.",
+   "tr": "Mechanical drop, bitiş formu: sıkı formda tükenince geçtiğin daha kolay ve dik versiyon.",
+   "ar": "تنازل ميكانيكي، الوضعية النهائية: النسخة الأسهل والأكثر انتصابًا بعد الفشل في الوضعية الصارمة."
+  },
+  "barbell-thoracic-flexion-extension": {
+   "en": "Hold a light barbell to add load once bodyweight feels easy.",
+   "tr": "Vücut ağırlığı kolaylaşınca yük için hafif bir bar tut.",
+   "ar": "أمسك بارًا خفيفًا لإضافة حمل عندما يصبح وزن الجسم سهلًا."
+  },
+  "bench-assisted-wide-grip-pull-ups-garage-2-0": {
+   "en": "Wide grip: hands outside shoulder width, slightly more upper-back involvement.",
+   "tr": "Geniş tutuş: eller omuz genişliğinin dışında, üst sırt biraz daha fazla çalışır.",
+   "ar": "قبضة عريضة: اليدان خارج عرض الكتفين مع إشراك أكبر قليلًا لأعلى الظهر."
+  },
+  "bent-over-barbell-rows-2-count-hold-garage-program": {
+   "en": "Hold the squeezed top position for a two-second count each rep.",
+   "tr": "Her tekrarda sıkışmış üst pozisyonda iki saniye bekle.",
+   "ar": "اثبت في وضع الانقباض العلوي لمدة ثانيتين في كل تكرار."
+  },
+  "bent-over-dumbbell-row-pronated-grip": {
+   "en": "Overhand grip with elbows a bit wider, shifting some work to the upper back.",
+   "tr": "Avuç içi aşağı tutuş ve biraz açık dirsek, yükün bir kısmını üst sırta kaydırır.",
+   "ar": "قبضة علوية ومرفقان أعرض قليلًا ينقلان جزءًا من العمل لأعلى الظهر."
+  },
+  "bent-over-dumbbell-rows-wrap-around-garage-program": {
+   "en": "Row in an arc that wraps toward the hip for a longer lat path.",
+   "tr": "Daha uzun lat yolu için kalçaya doğru sarılan bir yay çizerek çek.",
+   "ar": "اسحب بقوس يلتف نحو الورك لمسار أطول للظهرية."
+  },
+  "bent-over-high-elbow-barbell-row-garage-program": {
+   "en": "High-elbow version: flare elbows out to shift work to upper back and rear delts.",
+   "tr": "High-elbow versiyonu: yükü üst sırt ve arka omza kaydırmak için dirsekleri aç.",
+   "ar": "نسخة المرفق المرتفع: افتح المرفقين لنقل العمل إلى أعلى الظهر والكتف الخلفي."
+  },
+  "bodyweight-curls-triset-garage-program": {
+   "en": "Tri-set: done back-to-back with two other exercises, no rest between them.",
+   "tr": "Tri-set: araya dinlenme koymadan iki başka hareketle arka arkaya yapılır.",
+   "ar": "مجموعة ثلاثية: تُؤدّى متتالية مع تمرينين آخرين دون راحة بينها."
+  },
+  "cable-long-head-curl-copy": {
+   "en": "Single-arm version: one side at a time for better focus and a slightly longer range.",
+   "tr": "Tek kol versiyonu: daha iyi odak ve biraz daha uzun açıklık için tek taraf çalışılır.",
+   "ar": "نسخة بذراع واحدة: جانب واحد في كل مرة لتركيز أفضل ومدى أطول قليلًا."
+  },
+  "cable-one-arm-row-kneeling": {
+   "en": "Standing, hinged forward with a hand braced, rowing from a low cable.",
+   "tr": "Ayakta, bir el destekte öne eğilmiş şekilde alçak kablodan çek.",
+   "ar": "واقفًا ومنحنيًا للأمام مع إسناد يد، اسحب من كابل منخفض."
+  },
+  "cable-pullovers-copy": {
+   "en": "Lie on an incline bench facing away from a high cable for a bigger overhead stretch.",
+   "tr": "Daha büyük esneme için yüksek kabloya sırtını dönüp eğimli sehpaya uzan.",
+   "ar": "استلقِ على مقعد مائل مديرًا ظهرك لكابل عالٍ لتمدد أكبر فوق الرأس."
+  },
+  "cable-rotations-copy": {
+   "en": "Cluster set: split the set into mini-sets of a few reps with 10–20 seconds rest.",
+   "tr": "Cluster set: seti 10–20 saniye dinlenmeli birkaç tekrarlık mini setlere böl.",
+   "ar": "مجموعة عنقودية: قسّم المجموعة إلى مجموعات صغيرة من تكرارات قليلة مع راحة 10–20 ثانية."
+  },
+  "cable-straight-bar-curl-extreme-stretch": {
+   "en": "Prioritise the deepest stretch you can control at the bottom of each rep.",
+   "tr": "Her tekrarın altında kontrol edebildiğin en derin esnemeye öncelik ver.",
+   "ar": "ركّز على أعمق تمدد يمكنك التحكم به في أسفل كل تكرار."
+  },
+  "cable-straight-bar-finger-flexor-curls": {
+   "en": "Cable straight bar keeps tension on the fingers at the bottom.",
+   "tr": "Kablo düz bar, altta parmaklarda gerilimi korur.",
+   "ar": "بار الكابل المستقيم يبقي الشد على الأصابع في الأسفل."
+  },
+  "close-grip-assisted-pull-ups": {
+   "en": "Close grip: hands near shoulder width or narrower for a longer range.",
+   "tr": "Dar tutuş: eller omuz genişliğinde ya da daha dar, açıklık daha uzun.",
+   "ar": "قبضة ضيقة: اليدان بعرض الكتفين أو أضيق لمدى أطول."
+  },
+  "close-grip-bench-assisted-pull-ups": {
+   "en": "Close grip: hands near shoulder width or narrower for a longer range.",
+   "tr": "Dar tutuş: eller omuz genişliğinde ya da daha dar, açıklık daha uzun.",
+   "ar": "قبضة ضيقة: اليدان بعرض الكتفين أو أضيق لمدى أطول."
+  },
+  "concentration-curl-copy-c194449e-62e6-468b-a38f-a293416ca6d7": {
+   "en": "Uses the vertical (flat) side of the preacher pad, shifting peak tension toward the top.",
+   "tr": "Preacher pedinin dikey (düz) tarafı kullanılır, en yüksek gerilim üst kısma kayar.",
+   "ar": "يُستخدم الجانب العمودي (المسطح) من وسادة الواعظ فينتقل أقصى شد نحو الأعلى."
+  },
+  "concentration-curl-copy-copy": {
+   "en": "Lie on an incline bench facing away from a low cable to keep arms behind you.",
+   "tr": "Kollar arkada kalsın diye alçak kabloya sırtını dönüp eğimli sehpaya uzan.",
+   "ar": "استلقِ على مقعد مائل مديرًا ظهرك لكابل منخفض لإبقاء الذراعين خلفك."
+  },
+  "concentration-curls-heavy": {
+   "en": "Heavier load for lower reps; keep the arm braced and strict.",
+   "tr": "Düşük tekrar için daha ağır yük; kolu dayalı ve sıkı tut.",
+   "ar": "حمل أثقل لتكرارات أقل؛ أبقِ الذراع مسندة وصارمة."
+  },
+  "deadlifts-copy": {
+   "en": "Load heavy for lower reps while keeping strict form.",
+   "tr": "Sıkı formu koruyarak düşük tekrar için ağır yükle.",
+   "ar": "حمّل ثقيلًا لتكرارات أقل مع الحفاظ على أداء صارم."
+  },
+  "deadlifts-garage-program": {
+   "en": "Drop set: at failure, lower the weight and keep going without rest.",
+   "tr": "Drop set: tükenişte ağırlığı düşür ve dinlenmeden devam et.",
+   "ar": "مجموعة تنازلية: عند الفشل خفّف الوزن وتابع دون راحة."
+  },
+  "dual-cable-bicep-curls-face-out-slight-shoulder-tilt": {
+   "en": "Stand between two pulleys facing out and curl both arms with a slight lean.",
+   "tr": "İki makara arasında dışa dönük dur, hafif eğilerek iki kolu birlikte kaldır.",
+   "ar": "قف بين بكرتين مواجهًا للخارج وارفع الذراعين معًا مع ميل بسيط."
+  },
+  "dual-single-handle-lat-pulldown-elbows-close-eccentric": {
+   "en": "Use two separate handles and keep elbows tight to the body while lowering.",
+   "tr": "İki ayrı tutamak kullan, inerken dirsekleri vücuda yakın tut.",
+   "ar": "استخدم مقبضين منفصلين وأبقِ المرفقين ملاصقين للجسم أثناء العودة."
+  },
+  "dumbbell-high-elbow-wall-row-garage-program": {
+   "en": "Brace your free hand on a wall for support instead of a bench.",
+   "tr": "Sehpa yerine boştaki elini duvara dayayarak destek al.",
+   "ar": "استند بيدك الحرة على الحائط بدل المقعد."
+  },
+  "dumbbell-partial-curls-garage-program": {
+   "en": "Partials as part of a tri-set: short reps in the stretched range after full reps.",
+   "tr": "Tri-set içinde yarım tekrarlar: tam tekrarlardan sonra esneme bölgesinde kısa tekrarlar.",
+   "ar": "تكرارات جزئية ضمن مجموعة ثلاثية: تكرارات قصيرة في مدى التمدد بعد التكرارات الكاملة."
+  },
+  "dumbbell-preacher-curl-copy-ryan_humis514743": {
+   "en": "Uses the vertical (flat) side of the preacher pad, shifting peak tension toward the top.",
+   "tr": "Preacher pedinin dikey (düz) tarafı kullanılır, en yüksek gerilim üst kısma kayar.",
+   "ar": "يُستخدم الجانب العمودي (المسطح) من وسادة الواعظ فينتقل أقصى شد نحو الأعلى."
+  },
+  "dumbbell-preacher-curl-flat-side-copy": {
+   "en": "Single-arm version: one side at a time for better focus and a slightly longer range.",
+   "tr": "Tek kol versiyonu: daha iyi odak ve biraz daha uzun açıklık için tek taraf çalışılır.",
+   "ar": "نسخة بذراع واحدة: جانب واحد في كل مرة لتركيز أفضل ومدى أطول قليلًا."
+  },
+  "dumbbell-pullovers-garage-program-ryan_humis514743": {
+   "en": "Drop set: at failure, lower the weight and keep going without rest.",
+   "tr": "Drop set: tükenişte ağırlığı düşür ve dinlenmeden devam et.",
+   "ar": "مجموعة تنازلية: عند الفشل خفّف الوزن وتابع دون راحة."
+  },
+  "dumbbell-spider-hammer-curl": {
+   "en": "Neutral grip to bring in the brachialis and brachioradialis.",
+   "tr": "Brachialis ve brachioradialis'i katmak için nötr tutuş.",
+   "ar": "قبضة محايدة لإشراك العضلة العضدية والعضدية الكعبرية."
+  },
+  "external-rotation-dumbbell-curls-giant-set-garage-program": {
+   "en": "Rotate the arms outward so dumbbells travel wide, biasing the short head; part of a giant set.",
+   "tr": "Kolları dışa çevir, dumbbell'lar geniş gitsin; kısa baş vurgusu, giant set parçası.",
+   "ar": "لفّ الذراعين للخارج ليتحرك الدمبل عريضًا لتركيز الرأس القصير؛ ضمن مجموعة عملاقة."
+  },
+  "ez-bar-cable-curl-close-grip": {
+   "en": "Close grip on a curl slightly biases the long (outer) head of the biceps.",
+   "tr": "Curl'de dar tutuş biceps'in uzun (dış) başını biraz daha vurgular.",
+   "ar": "القبضة الضيقة في الكيرل تركّز قليلًا على الرأس الطويل (الخارجي) للعضلة."
+  },
+  "ez-bar-cable-curl-wide-grip": {
+   "en": "Wide grip on a curl slightly biases the short (inner) head of the biceps.",
+   "tr": "Curl'de geniş tutuş biceps'in kısa (iç) başını biraz daha vurgular.",
+   "ar": "القبضة العريضة في الكيرل تركّز قليلًا على الرأس القصير (الداخلي) للعضلة."
+  },
+  "ez-bar-cable-curls-wide-grip": {
+   "en": "Wide grip on a curl slightly biases the short (inner) head of the biceps.",
+   "tr": "Curl'de geniş tutuş biceps'in kısa (iç) başını biraz daha vurgular.",
+   "ar": "القبضة العريضة في الكيرل تركّز قليلًا على الرأس القصير (الداخلي) للعضلة."
+  },
+  "ez-bar-cable-drag-curls-wide-grip": {
+   "en": "Cable version with a wide EZ grip for constant tension.",
+   "tr": "Sürekli gerilim için geniş EZ tutuşlu kablo versiyonu.",
+   "ar": "نسخة بالكابل بقبضة EZ عريضة لشد مستمر."
+  },
+  "ez-bar-curl-close-grip": {
+   "en": "Close grip on a curl slightly biases the long (outer) head of the biceps.",
+   "tr": "Curl'de dar tutuş biceps'in uzun (dış) başını biraz daha vurgular.",
+   "ar": "القبضة الضيقة في الكيرل تركّز قليلًا على الرأس الطويل (الخارجي) للعضلة."
+  },
+  "ez-bar-curl-close-grip-elbows-tucked": {
+   "en": "Close grip with elbows pinned to the ribs to bias the long head.",
+   "tr": "Uzun başı vurgulamak için dar tutuş ve kaburgalara sabit dirsekler.",
+   "ar": "قبضة ضيقة والمرفقان مثبتان على الأضلاع لتركيز الرأس الطويل."
+  },
+  "ez-bar-curl-wide-grip": {
+   "en": "Wide grip on a curl slightly biases the short (inner) head of the biceps.",
+   "tr": "Curl'de geniş tutuş biceps'in kısa (iç) başını biraz daha vurgular.",
+   "ar": "القبضة العريضة في الكيرل تركّز قليلًا على الرأس القصير (الداخلي) للعضلة."
+  },
+  "ez-bar-curl-wide-grip-elbows-back": {
+   "en": "Wide grip with elbows kept slightly behind the torso for more stretch.",
+   "tr": "Daha fazla esneme için geniş tutuş ve gövdenin hafif arkasında dirsekler.",
+   "ar": "قبضة عريضة والمرفقان خلف الجذع قليلًا لتمدد أكبر."
+  },
+  "ez-bar-curl-wide-grip-ryan_humis514743": {
+   "en": "Wide grip on a curl slightly biases the short (inner) head of the biceps.",
+   "tr": "Curl'de geniş tutuş biceps'in kısa (iç) başını biraz daha vurgular.",
+   "ar": "القبضة العريضة في الكيرل تركّز قليلًا على الرأس القصير (الداخلي) للعضلة."
+  },
+  "ez-bar-spider-curl-close-grip": {
+   "en": "Close grip on a curl slightly biases the long (outer) head of the biceps.",
+   "tr": "Curl'de dar tutuş biceps'in uzun (dış) başını biraz daha vurgular.",
+   "ar": "القبضة الضيقة في الكيرل تركّز قليلًا على الرأس الطويل (الخارجي) للعضلة."
+  },
+  "ez-bar-spider-curl-wide-grip": {
+   "en": "Wide grip on a curl slightly biases the short (inner) head of the biceps.",
+   "tr": "Curl'de geniş tutuş biceps'in kısa (iç) başını biraz daha vurgular.",
+   "ar": "القبضة العريضة في الكيرل تركّز قليلًا على الرأس القصير (الداخلي) للعضلة."
+  },
+  "hammer-curls-dumbbells-touching": {
+   "en": "Keep the two dumbbells pressed together throughout the rep.",
+   "tr": "İki dumbbell'ı tekrar boyunca birbirine bastırılı tut.",
+   "ar": "أبقِ الدمبلين متلاصقين طوال التكرار."
+  },
+  "hammer-curls-giant-set-garage-program": {
+   "en": "Giant set: one of several curl variations performed back-to-back without rest.",
+   "tr": "Giant set: dinlenmeden arka arkaya yapılan birkaç curl varyasyonundan biri.",
+   "ar": "مجموعة عملاقة: واحدة من عدة أنواع كيرل تُؤدّى متتالية دون راحة."
+  },
+  "hammer-preacher-curl-flat-side": {
+   "en": "Neutral grip on the flat side of a preacher pad to stop cheating.",
+   "tr": "Hileyi önlemek için preacher pedinin düz tarafında nötr tutuş.",
+   "ar": "قبضة محايدة على الجانب المسطح لوسادة الواعظ لمنع الغش."
+  },
+  "hanging-low-trap-shrug-copy": {
+   "en": "Overhand grip with elbows a bit wider, shifting some work to the upper back.",
+   "tr": "Avuç içi aşağı tutuş ve biraz açık dirsek, yükün bir kısmını üst sırta kaydırır.",
+   "ar": "قبضة علوية ومرفقان أعرض قليلًا ينقلان جزءًا من العمل لأعلى الظهر."
+  },
+  "high-elbow-pendlay-barbell-row": {
+   "en": "High-elbow version: flare elbows out to shift work to upper back and rear delts.",
+   "tr": "High-elbow versiyonu: yükü üst sırt ve arka omza kaydırmak için dirsekleri aç.",
+   "ar": "نسخة المرفق المرتفع: افتح المرفقين لنقل العمل إلى أعلى الظهر والكتف الخلفي."
+  },
+  "high-incline-dumbbell-curl-ryan_humis514743": {
+   "en": "A higher bench angle reduces shoulder strain while keeping arms behind you.",
+   "tr": "Daha yüksek sehpa açısı, kollar arkada kalırken omuz zorlanmasını azaltır.",
+   "ar": "زاوية مقعد أعلى تقلل إجهاد الكتف مع إبقاء الذراعين خلفك."
+  },
+  "high-incline-spider-curls": {
+   "en": "A steeper bench angle lets the arms drift slightly back for more stretch.",
+   "tr": "Daha dik sehpa açısı kolların hafif geriye gitmesine ve daha çok esnemeye izin verir.",
+   "ar": "زاوية مقعد أشد تسمح بعودة الذراعين قليلًا للخلف لتمدد أكبر."
+  },
+  "hyper-extensions-flexion-extension-copy": {
+   "en": "Barbell on the upper back; this is essentially a good morning.",
+   "tr": "Bar üst sırtta; bu temelde bir good morning hareketidir.",
+   "ar": "البار على أعلى الظهر؛ وهي في جوهرها تمرين Good Morning."
+  },
+  "hyper-extensions-weighted": {
+   "en": "Hold a plate or dumbbell at your chest to add load.",
+   "tr": "Yük eklemek için göğsünde plaka ya da dumbbell tut.",
+   "ar": "أمسك قرصًا أو دمبلًا على صدرك لإضافة حمل."
+  },
+  "hyperextension-flexion-extension-copy": {
+   "en": "Cluster set: split the set into mini-sets of a few reps with 10–20 seconds rest.",
+   "tr": "Cluster set: seti 10–20 saniye dinlenmeli birkaç tekrarlık mini setlere böl.",
+   "ar": "مجموعة عنقودية: قسّم المجموعة إلى مجموعات صغيرة من تكرارات قليلة مع راحة 10–20 ثانية."
+  },
+  "incline-bench-cable-pullovers-copy": {
+   "en": "Lat focus: keep elbows tucked and row low toward the hips.",
+   "tr": "Lat odağı: dirsekleri yakın tut, kalçaya doğru alçak çek.",
+   "ar": "تركيز الظهرية: أبقِ المرفقين ملاصقين واسحب منخفضًا نحو الوركين."
+  },
+  "incline-cable-curl-copy-ryan_humis514743": {
+   "en": "EZ bar on a cable; the angled grip is easier on the wrists.",
+   "tr": "Kabloda EZ bar; açılı tutuş bileklere daha rahattır.",
+   "ar": "بار EZ على الكابل؛ القبضة المائلة أريح للمعصمين."
+  },
+  "incline-dumbbell-curl-super-slow-garage-program": {
+   "en": "Use a very slow tempo, about four seconds up and four down.",
+   "tr": "Çok yavaş tempo kullan: yaklaşık dört saniye yukarı, dört saniye aşağı.",
+   "ar": "استخدم إيقاعًا بطيئًا جدًا: نحو أربع ثوانٍ صعودًا وأربع نزولًا."
+  },
+  "incline-dumbbell-curls-triset-garage-program": {
+   "en": "Tri-set: done back-to-back with two other exercises, no rest between them.",
+   "tr": "Tri-set: araya dinlenme koymadan iki başka hareketle arka arkaya yapılır.",
+   "ar": "مجموعة ثلاثية: تُؤدّى متتالية مع تمرينين آخرين دون راحة بينها."
+  },
+  "incline-dumbbell-row-45-degree-elbow": {
+   "en": "Keep elbows about 45° from the torso throughout.",
+   "tr": "Dirsekleri hareket boyunca gövdeden yaklaşık 45° açık tut.",
+   "ar": "أبقِ المرفقين بنحو 45° عن الجذع طوال الحركة."
+  },
+  "incline-lat-row-neutral-grip": {
+   "en": "Neutral grip with elbows tucked, rowing toward the hips for lats.",
+   "tr": "Nötr tutuş, dirsekler yakın; lat için kalçaya doğru çek.",
+   "ar": "قبضة محايدة والمرفقان ملاصقان، اسحب نحو الوركين للظهرية."
+  },
+  "incline-one-arm-dumbbell-row": {
+   "en": "Single-arm version: one side at a time for better focus and a slightly longer range.",
+   "tr": "Tek kol versiyonu: daha iyi odak ve biraz daha uzun açıklık için tek taraf çalışılır.",
+   "ar": "نسخة بذراع واحدة: جانب واحد في كل مرة لتركيز أفضل ومدى أطول قليلًا."
+  },
+  "incline-one-arm-high-elbow-row": {
+   "en": "Single-arm version: one side at a time for better focus and a slightly longer range.",
+   "tr": "Tek kol versiyonu: daha iyi odak ve biraz daha uzun açıklık için tek taraf çalışılır.",
+   "ar": "نسخة بذراع واحدة: جانب واحد في كل مرة لتركيز أفضل ومدى أطول قليلًا."
+  },
+  "internal-rotation-dumbbell-curls-giant-set-garage-program": {
+   "en": "Curl across the body with arms rotated inward; part of a giant set.",
+   "tr": "Kollar içe dönük, vücut önünde çapraz curl; giant set parçası.",
+   "ar": "كيرل عبر الجسم والذراعان مدوّرتان للداخل؛ ضمن مجموعة عملاقة."
+  },
+  "iso-lat-row": {
+   "en": "Single-arm version: one side at a time for better focus and a slightly longer range.",
+   "tr": "Tek kol versiyonu: daha iyi odak ve biraz daha uzun açıklık için tek taraf çalışılır.",
+   "ar": "نسخة بذراع واحدة: جانب واحد في كل مرة لتركيز أفضل ومدى أطول قليلًا."
+  },
+  "lying-ez-bar-cable-curls-close-grip": {
+   "en": "Close grip on a curl slightly biases the long (outer) head of the biceps.",
+   "tr": "Curl'de dar tutuş biceps'in uzun (dış) başını biraz daha vurgular.",
+   "ar": "القبضة الضيقة في الكيرل تركّز قليلًا على الرأس الطويل (الخارجي) للعضلة."
+  },
+  "lying-ez-bar-cable-curls-wide-grip": {
+   "en": "Wide grip on a curl slightly biases the short (inner) head of the biceps.",
+   "tr": "Curl'de geniş tutuş biceps'in kısa (iç) başını biraz daha vurgular.",
+   "ar": "القبضة العريضة في الكيرل تركّز قليلًا على الرأس القصير (الداخلي) للعضلة."
+  },
+  "machine-high-elbow-row": {
+   "en": "High-elbow version: flare elbows out to shift work to upper back and rear delts.",
+   "tr": "High-elbow versiyonu: yükü üst sırt ve arka omza kaydırmak için dirsekleri aç.",
+   "ar": "نسخة المرفق المرتفع: افتح المرفقين لنقل العمل إلى أعلى الظهر والكتف الخلفي."
+  },
+  "machine-iso-lat-row": {
+   "en": "Independent arms let each side work through its own full range.",
+   "tr": "Bağımsız kollar her tarafın kendi tam açıklığında çalışmasını sağlar.",
+   "ar": "الأذرع المستقلة تسمح لكل جانب بالعمل في مداه الكامل."
+  },
+  "machine-lat-row-roll-upper-back-rest-pause": {
+   "en": "Let the upper back round forward in the stretch, then extend as you row; often done rest-pause.",
+   "tr": "Esnemede üst sırtı öne yuvarla, çekerken aç; genelde rest-pause yapılır.",
+   "ar": "دع أعلى الظهر يتقوّس في التمدد ثم افرده أثناء السحب؛ غالبًا بأسلوب راحة-توقف."
+  },
+  "machine-single-arm-rear-delt-fly-copy-f3f2bf18-674c-43af-9f13-4fcf47830306": {
+   "en": "Single-arm version: one side at a time for better focus and a slightly longer range.",
+   "tr": "Tek kol versiyonu: daha iyi odak ve biraz daha uzun açıklık için tek taraf çalışılır.",
+   "ar": "نسخة بذراع واحدة: جانب واحد في كل مرة لتركيز أفضل ومدى أطول قليلًا."
+  },
+  "machine-t-bar-high-elbow-row": {
+   "en": "High-elbow version: flare elbows out to shift work to upper back and rear delts.",
+   "tr": "High-elbow versiyonu: yükü üst sırt ve arka omza kaydırmak için dirsekleri aç.",
+   "ar": "نسخة المرفق المرتفع: افتح المرفقين لنقل العمل إلى أعلى الظهر والكتف الخلفي."
+  },
+  "mid-grip-pull-ups-lat-focused": {
+   "en": "Shoulder-width grip; pull elbows to your sides to bias the lats.",
+   "tr": "Omuz genişliğinde tutuş; lat vurgusu için dirsekleri yanlara çek.",
+   "ar": "قبضة بعرض الكتفين؛ اسحب المرفقين للجانبين لتركيز الظهرية."
+  },
+  "modified-reverse-hyper-bench-garage-program": {
+   "en": "Lie face-down on a high flat bench with hips at the edge instead of a machine.",
+   "tr": "Makine yerine kalça kenarda olacak şekilde yüksek düz sehpaya yüz üstü uzan.",
+   "ar": "استلقِ على بطنك فوق مقعد مستوٍ مرتفع والوركان على الحافة بدل الجهاز."
+  },
+  "one-arm-db-pronated-grip-copy": {
+   "en": "Keep the elbow path fixed and identical on every rep, done as a cluster set.",
+   "tr": "Dirsek yolunu her tekrarda sabit ve aynı tut; cluster set olarak yapılır.",
+   "ar": "ثبّت مسار المرفق بنفس الشكل في كل تكرار، ويُؤدّى كمجموعة عنقودية."
+  },
+  "one-arm-db-row-pronated-grip-copy": {
+   "en": "Mechanical drop, starting form: use the strictest version until failure, then switch to the end form.",
+   "tr": "Mechanical drop, başlangıç formu: tükenişe kadar en sıkı versiyonu yap, sonra bitiş formuna geç.",
+   "ar": "تنازل ميكانيكي، الوضعية الأولى: نفّذ النسخة الأكثر صرامة حتى الفشل ثم انتقل للوضعية النهائية."
+  },
+  "one-arm-dumbbell-pullover": {
+   "en": "Single-arm version: one side at a time for better focus and a slightly longer range.",
+   "tr": "Tek kol versiyonu: daha iyi odak ve biraz daha uzun açıklık için tek taraf çalışılır.",
+   "ar": "نسخة بذراع واحدة: جانب واحد في كل مرة لتركيز أفضل ومدى أطول قليلًا."
+  },
+  "one-arm-dumbbell-row-exaggerated-stretch": {
+   "en": "Prioritise the deepest stretch you can control at the bottom of each rep.",
+   "tr": "Her tekrarın altında kontrol edebildiğin en derin esnemeye öncelik ver.",
+   "ar": "ركّز على أعمق تمدد يمكنك التحكم به في أسفل كل تكرار."
+  },
+  "one-arm-dumbbell-row-feet-level": {
+   "en": "Both feet on the floor side by side with a hand on the bench.",
+   "tr": "Bir el sehpada, iki ayak yan yana yerde.",
+   "ar": "القدمان متجاورتان على الأرض ويد على المقعد."
+  },
+  "one-arm-high-elbow-row": {
+   "en": "Single-arm version: one side at a time for better focus and a slightly longer range.",
+   "tr": "Tek kol versiyonu: daha iyi odak ve biraz daha uzun açıklık için tek taraf çalışılır.",
+   "ar": "نسخة بذراع واحدة: جانب واحد في كل مرة لتركيز أفضل ومدى أطول قليلًا."
+  },
+  "one-arm-row-prontated-copy": {
+   "en": "Single-arm version: one side at a time for better focus and a slightly longer range.",
+   "tr": "Tek kol versiyonu: daha iyi odak ve biraz daha uzun açıklık için tek taraf çalışılır.",
+   "ar": "نسخة بذراع واحدة: جانب واحد في كل مرة لتركيز أفضل ومدى أطول قليلًا."
+  },
+  "one-arm-row-staggered-stance-2-second-stretch": {
+   "en": "Pause two seconds in the bottom stretch on every rep.",
+   "tr": "Her tekrarda alttaki esnemede iki saniye dur.",
+   "ar": "توقف ثانيتين عند التمدد السفلي في كل تكرار."
+  },
+  "one-arm-row-traditional-copy": {
+   "en": "Overhand grip with elbows a bit wider, shifting some work to the upper back.",
+   "tr": "Avuç içi aşağı tutuş ve biraz açık dirsek, yükün bir kısmını üst sırta kaydırır.",
+   "ar": "قبضة علوية ومرفقان أعرض قليلًا ينقلان جزءًا من العمل لأعلى الظهر."
+  },
+  "one-arm-t-bar-row-garage-2-0": {
+   "en": "Stand beside the bar and row toward your hip with a neutral grip.",
+   "tr": "Barın yanında dur ve nötr tutuşla kalçana doğru çek.",
+   "ar": "قف بجانب البار واسحب نحو وركك بقبضة محايدة."
+  },
+  "partial-deadlifts-garage-program": {
+   "en": "Rack pull: start with the bar just below the knees to overload the lockout.",
+   "tr": "Rack pull: kilitlemeyi aşırı yüklemek için bar dizin hemen altından başlar.",
+   "ar": "سحب من الحامل: يبدأ البار أسفل الركبتين لتحميل زائد لمرحلة الإقفال."
+  },
+  "pause-deadlifts-garage-program": {
+   "en": "Pause for one to two seconds just below the knee on the way up.",
+   "tr": "Kalkarken dizin hemen altında bir iki saniye dur.",
+   "ar": "توقف ثانية إلى ثانيتين أسفل الركبة مباشرة أثناء الصعود."
+  },
+  "pit-shark-v-bar-row": {
+   "en": "V-bar row with a deep forward lean, pulling elbows high and wide.",
+   "tr": "Derin öne eğilmeli V-bar row; dirsekleri yüksek ve geniş çek.",
+   "ar": "تجديف بمقبض V مع ميل عميق للأمام وسحب المرفقين عاليًا وعريضًا."
+  },
+  "poor-mans-hyper-extension": {
+   "en": "No machine: lie over a bench with a partner or anchor holding your legs.",
+   "tr": "Makine yok: bacaklarını bir partner ya da sabitleyici tutarken sehpaya uzan.",
+   "ar": "دون جهاز: استلقِ على مقعد مع شريك أو مثبّت يمسك ساقيك."
+  },
+  "reverse-grip-bench-assisted-pull-ups-garage-program": {
+   "en": "Underhand grip for more biceps involvement.",
+   "tr": "Daha fazla biceps katılımı için avuç içi sana dönük tutuş.",
+   "ar": "قبضة سفلية لإشراك أكبر للعضلة ذات الرأسين."
+  },
+  "reverse-grip-cable-curls-ryan_humis514743": {
+   "en": "Cable version for constant tension through the range.",
+   "tr": "Hareket boyunca sürekli gerilim için kablo versiyonu.",
+   "ar": "نسخة بالكابل لشد مستمر طوال المدى."
+  },
+  "reverse-grip-ez-bar-cable-curl-copy": {
+   "en": "Straight bar on a low cable for constant tension.",
+   "tr": "Sürekli gerilim için alçak kabloda düz bar.",
+   "ar": "بار مستقيم على كابل منخفض لشد مستمر."
+  },
+  "reverse-grip-pull-ups-garage-program": {
+   "en": "Underhand chin-up grip, which brings in more biceps.",
+   "tr": "Avuç içi sana dönük chin-up tutuşu; biceps daha çok devreye girer.",
+   "ar": "قبضة سفلية (Chin-up) تُشرك العضلة ذات الرأسين أكثر."
+  },
+  "reverse-grip-smith-drag-curl-ryan_humis514743": {
+   "en": "Overhand grip on a Smith bar, adding brachialis and forearm work.",
+   "tr": "Smith barında ters tutuş; brachialis ve önkol işini artırır.",
+   "ar": "قبضة علوية على بار سميث تضيف عمل العضلة العضدية والساعد."
+  },
+  "reverse-grip-straight-bar-curl-clusterfuck-copy": {
+   "en": "Cluster set: split the set into mini-sets of a few reps with 10–20 seconds rest.",
+   "tr": "Cluster set: seti 10–20 saniye dinlenmeli birkaç tekrarlık mini setlere böl.",
+   "ar": "مجموعة عنقودية: قسّم المجموعة إلى مجموعات صغيرة من تكرارات قليلة مع راحة 10–20 ثانية."
+  },
+  "reverse-grip-straight-bar-curls-triset-garage-program": {
+   "en": "Tri-set: done back-to-back with two other exercises, no rest between them.",
+   "tr": "Tri-set: araya dinlenme koymadan iki başka hareketle arka arkaya yapılır.",
+   "ar": "مجموعة ثلاثية: تُؤدّى متتالية مع تمرينين آخرين دون راحة بينها."
+  },
+  "reverse-grip-straight-bar-wall-curls": {
+   "en": "Back against a wall to remove any body swing.",
+   "tr": "Vücut sallanmasını önlemek için sırt duvarda.",
+   "ar": "الظهر على الحائط لإزالة أي تأرجح."
+  },
+  "rocking-dumbbell-curls-triset-garage-program": {
+   "en": "A small controlled rock helps you move heavier weight; part of a tri-set.",
+   "tr": "Küçük kontrollü sallanma daha ağır yük kaldırmana yardım eder; tri-set parçası.",
+   "ar": "تأرجح صغير متحكم به يساعدك على رفع وزن أثقل؛ ضمن مجموعة ثلاثية."
+  },
+  "rocking-ez-bar-curl": {
+   "en": "Heavy curl using a small controlled rock to start, then a slow negative.",
+   "tr": "Başlamak için küçük kontrollü sallanma ile ağır curl, sonra yavaş negatif.",
+   "ar": "كيرل ثقيل بتأرجح صغير متحكم به للبدء ثم نزول بطيء."
+  },
+  "roman-chair-ryan_humis514743": {
+   "en": "Raise straight legs to hip height or higher for a harder lever.",
+   "tr": "Daha zor kaldıraç için düz bacakları kalça hizasına ya da üstüne kaldır.",
+   "ar": "ارفع الساقين مستقيمتين حتى مستوى الورك أو أعلى لرافعة أصعب."
+  },
+  "roman-chair-weighted-knees-to-chest": {
+   "en": "Hold a dumbbell between the feet and bring knees to chest.",
+   "tr": "Ayaklar arasında dumbbell tut ve dizleri göğse çek.",
+   "ar": "أمسك دمبلًا بين القدمين وارفع الركبتين نحو الصدر."
+  },
+  "seal-high-elbow-row": {
+   "en": "Lie flat on a raised bench so the weights hang freely below.",
+   "tr": "Ağırlıklar altta serbest sarksın diye yükseltilmiş düz sehpaya uzan.",
+   "ar": "استلقِ على مقعد مستوٍ مرتفع لتتدلى الأوزان بحرية."
+  },
+  "seated-cable-high-elbow-row-neutral-lat-bar-drops": {
+   "en": "Drop set: at failure, lower the weight and keep going without rest.",
+   "tr": "Drop set: tükenişte ağırlığı düşür ve dinlenmeden devam et.",
+   "ar": "مجموعة تنازلية: عند الفشل خفّف الوزن وتابع دون راحة."
+  },
+  "seated-cable-row-pronated-clusterfuck": {
+   "en": "Cluster set: split the set into mini-sets of a few reps with 10–20 seconds rest.",
+   "tr": "Cluster set: seti 10–20 saniye dinlenmeli birkaç tekrarlık mini setlere böl.",
+   "ar": "مجموعة عنقودية: قسّم المجموعة إلى مجموعات صغيرة من تكرارات قليلة مع راحة 10–20 ثانية."
+  },
+  "seated-concentration-curl-copy": {
+   "en": "Seated concentration position with an overhand grip, arm braced on the thigh.",
+   "tr": "Kol uyluğa dayalı, ters tutuşla oturarak concentration pozisyonu.",
+   "ar": "وضعية كيرل التركيز جالسًا بقبضة علوية والذراع مسندة على الفخذ."
+  },
+  "seated-dumbbell-shrug-drops-copy": {
+   "en": "Drop set: at failure, lower the weight and keep going without rest.",
+   "tr": "Drop set: tükenişte ağırlığı düşür ve dinlenmeden devam et.",
+   "ar": "مجموعة تنازلية: عند الفشل خفّف الوزن وتابع دون راحة."
+  },
+  "seated-lat-row-copy-ryan_humis514743": {
+   "en": "Neutral (hammer) grip keeps the elbow tucked for lat focus.",
+   "tr": "Nötr (hammer) tutuş dirseği yakın tutarak lat odağı sağlar.",
+   "ar": "القبضة المحايدة (Hammer) تبقي المرفق ملاصقًا لتركيز الظهرية."
+  },
+  "seated-lat-row-pronated-grip-copy": {
+   "en": "Mechanical drop, starting form: use the strictest version until failure, then switch to the end form.",
+   "tr": "Mechanical drop, başlangıç formu: tükenişe kadar en sıkı versiyonu yap, sonra bitiş formuna geç.",
+   "ar": "تنازل ميكانيكي، الوضعية الأولى: نفّذ النسخة الأكثر صرامة حتى الفشل ثم انتقل للوضعية النهائية."
+  },
+  "seated-row-v-bar-copy": {
+   "en": "Overhand grip with elbows a bit wider, shifting some work to the upper back.",
+   "tr": "Avuç içi aşağı tutuş ve biraz açık dirsek, yükün bir kısmını üst sırta kaydırır.",
+   "ar": "قبضة علوية ومرفقان أعرض قليلًا ينقلان جزءًا من العمل لأعلى الظهر."
+  },
+  "seated-row-v-bar-copy-ryan_humis514743": {
+   "en": "Allow controlled spinal flexion on the stretch and extend fully as you pull; keep it light.",
+   "tr": "Esnemede kontrollü omurga fleksiyonuna izin ver, çekerken tam aç; hafif tut.",
+   "ar": "اسمح بثني متحكم للعمود عند التمدد وافرده عند السحب؛ استخدم وزنًا خفيفًا."
+  },
+  "seated-single-arm-dumbbell-press-slightly-supinated-copy": {
+   "en": "Single-arm version: one side at a time for better focus and a slightly longer range.",
+   "tr": "Tek kol versiyonu: daha iyi odak ve biraz daha uzun açıklık için tek taraf çalışılır.",
+   "ar": "نسخة بذراع واحدة: جانب واحد في كل مرة لتركيز أفضل ومدى أطول قليلًا."
+  },
+  "seated-single-arm-high-cable-row": {
+   "en": "Set the cable high and row down and back for an angled lat pull.",
+   "tr": "Kabloyu yükseğe ayarla, açılı lat çekişi için aşağı ve geriye çek.",
+   "ar": "اضبط الكابل عاليًا واسحب للأسفل والخلف لسحب مائل للظهرية."
+  },
+  "seated-supinated-dumbbell-curls": {
+   "en": "Seated to reduce body swing, palms up throughout.",
+   "tr": "Vücut sallanmasını azaltmak için oturarak, avuç içi hep yukarı.",
+   "ar": "جالسًا لتقليل التأرجح وراحتا اليد للأعلى طوال الحركة."
+  },
+  "seated-v-bar-row-upper-back-rolled": {
+   "en": "Let the upper back round forward on the return for an extra stretch, then extend as you row.",
+   "tr": "Ekstra esneme için dönüşte üst sırtı öne yuvarla, çekerken aç.",
+   "ar": "دع أعلى الظهر يتقوّس للأمام عند العودة لتمدد إضافي ثم افرده أثناء السحب."
+  },
+  "single-arm-cable-curl-ryan_humis514743": {
+   "en": "Single-arm version: one side at a time for better focus and a slightly longer range.",
+   "tr": "Tek kol versiyonu: daha iyi odak ve biraz daha uzun açıklık için tek taraf çalışılır.",
+   "ar": "نسخة بذراع واحدة: جانب واحد في كل مرة لتركيز أفضل ومدى أطول قليلًا."
+  },
+  "single-arm-cable-pullover": {
+   "en": "Single-arm version: one side at a time for better focus and a slightly longer range.",
+   "tr": "Tek kol versiyonu: daha iyi odak ve biraz daha uzun açıklık için tek taraf çalışılır.",
+   "ar": "نسخة بذراع واحدة: جانب واحد في كل مرة لتركيز أفضل ومدى أطول قليلًا."
+  },
+  "single-arm-dumbbell-high-elbow-row-2-second-stretch": {
+   "en": "Pause two seconds in the bottom stretch on every rep.",
+   "tr": "Her tekrarda alttaki esnemede iki saniye dur.",
+   "ar": "توقف ثانيتين عند التمدد السفلي في كل تكرار."
+  },
+  "single-arm-dumbbell-preacher-curl-tilt-back": {
+   "en": "Lean back slightly so the dumbbell keeps tension deep in the stretch.",
+   "tr": "Dumbbell esnemede gerilimi korusun diye hafif geriye yaslan.",
+   "ar": "مِل للخلف قليلًا ليحافظ الدمبل على الشد في عمق التمدد."
+  },
+  "single-arm-dumbbell-pullover-ryan_humis514743": {
+   "en": "Single-arm version: one side at a time for better focus and a slightly longer range.",
+   "tr": "Tek kol versiyonu: daha iyi odak ve biraz daha uzun açıklık için tek taraf çalışılır.",
+   "ar": "نسخة بذراع واحدة: جانب واحد في كل مرة لتركيز أفضل ومدى أطول قليلًا."
+  },
+  "single-arm-dumbbell-reverse-grip-brachialis-curls-tilt-back": {
+   "en": "One dumbbell, overhand, leaning the torso back slightly to keep tension at the bottom.",
+   "tr": "Tek dumbbell, ters tutuş; altta gerilim için gövdeyi hafif geriye yatır.",
+   "ar": "دمبل واحد بقبضة علوية مع إمالة الجذع للخلف قليلًا لإبقاء الشد في الأسفل."
+  },
+  "single-arm-lat-pulldown-ryan_humis514743": {
+   "en": "One arm at a time; lean slightly toward the working side for a bigger stretch.",
+   "tr": "Tek kol; daha büyük esneme için çalışan tarafa hafif eğil.",
+   "ar": "ذراع واحدة في كل مرة؛ مِل قليلًا نحو الجانب العامل لتمدد أكبر."
+  },
+  "single-arm-lat-row-hammer-copy": {
+   "en": "Overhand grip; still keep the elbow low and pull to the hip.",
+   "tr": "Avuç içi aşağı tutuş; yine dirseği alçak tut ve kalçaya çek.",
+   "ar": "قبضة علوية؛ أبقِ المرفق منخفضًا واسحب نحو الورك."
+  },
+  "single-arm-long-head-incline-curls": {
+   "en": "Single-arm version: one side at a time for better focus and a slightly longer range.",
+   "tr": "Tek kol versiyonu: daha iyi odak ve biraz daha uzun açıklık için tek taraf çalışılır.",
+   "ar": "نسخة بذراع واحدة: جانب واحد في كل مرة لتركيز أفضل ومدى أطول قليلًا."
+  },
+  "single-arm-machine-biceps-curl": {
+   "en": "Single-arm version: one side at a time for better focus and a slightly longer range.",
+   "tr": "Tek kol versiyonu: daha iyi odak ve biraz daha uzun açıklık için tek taraf çalışılır.",
+   "ar": "نسخة بذراع واحدة: جانب واحد في كل مرة لتركيز أفضل ومدى أطول قليلًا."
+  },
+  "single-arm-machine-lat-focused-row-rest-pause": {
+   "en": "One arm, elbow tucked, pulling to the hip; done rest-pause.",
+   "tr": "Tek kol, dirsek yakın, kalçaya çekiş; rest-pause olarak yapılır.",
+   "ar": "ذراع واحدة والمرفق ملاصق والسحب نحو الورك؛ بأسلوب راحة-توقف."
+  },
+  "single-leg-hyper-extensions-weighted": {
+   "en": "One leg hooked and loaded, doubling the demand on each side's glute and hamstring.",
+   "tr": "Tek bacak takılı ve yüklü; her taraftaki kalça ve arka bacağa iki kat yük.",
+   "ar": "ساق واحدة مثبتة مع حمل، فيتضاعف الجهد على أرداف وأوتار كل جانب."
+  },
+  "slight-incline-barbell-pullover-garage-program": {
+   "en": "A slight incline keeps tension on the lats deeper into the top of the rep.",
+   "tr": "Hafif eğim, tekrarın üst kısmında da lat gerilimini korur.",
+   "ar": "الميل البسيط يحافظ على شد الظهرية حتى أعلى التكرار."
+  },
+  "slightly-supinated-press-clusterfuck-copy": {
+   "en": "Cluster set: split the set into mini-sets of a few reps with 10–20 seconds rest.",
+   "tr": "Cluster set: seti 10–20 saniye dinlenmeli birkaç tekrarlık mini setlere böl.",
+   "ar": "مجموعة عنقودية: قسّم المجموعة إلى مجموعات صغيرة من تكرارات قليلة مع راحة 10–20 ثانية."
+  },
+  "smith-bent-over-rows-copy": {
+   "en": "Come to a complete dead hang and pause before every rep.",
+   "tr": "Her tekrardan önce tamamen asılı pozisyona gel ve dur.",
+   "ar": "عد إلى تعلّق كامل وتوقف قبل كل تكرار."
+  },
+  "smith-pendlay-rows": {
+   "en": "Smith machine with flared elbows; reset on the safeties each rep.",
+   "tr": "Dirsekler açık Smith versiyonu; her tekrarda güvenlik pimlerinde yeniden başla.",
+   "ar": "على جهاز سميث بمرفقين مفتوحين؛ ابدأ من مساند الأمان في كل تكرار."
+  },
+  "standing-barbell-shoulder-press-copy-ryan_humis514743": {
+   "en": "Single-arm version: one side at a time for better focus and a slightly longer range.",
+   "tr": "Tek kol versiyonu: daha iyi odak ve biraz daha uzun açıklık için tek taraf çalışılır.",
+   "ar": "نسخة بذراع واحدة: جانب واحد في كل مرة لتركيز أفضل ومدى أطول قليلًا."
+  },
+  "standing-hyper-barbell-copy": {
+   "en": "Done on a Smith machine for a fixed bar path and extra stability.",
+   "tr": "Sabit bar yolu ve ekstra stabilite için Smith makinesinde yapılır.",
+   "ar": "تُؤدّى على جهاز سميث لمسار ثابت للبار وثبات إضافي."
+  },
+  "standing-posterior-chain-hypers": {
+   "en": "Bodyweight version; reach long and focus on the hamstring stretch.",
+   "tr": "Vücut ağırlığı versiyonu; uzun uzan ve arka bacak esnemesine odaklan.",
+   "ar": "نسخة بوزن الجسم؛ امتد بعيدًا وركّز على تمدد أوتار الركبة."
+  },
+  "straight-bar-cable-curl-clusterfuck-copy": {
+   "en": "No preacher bench: brace your arm on an incline bench back or similar pad.",
+   "tr": "Preacher sehpası yok: kolunu eğimli sehpa sırtına ya da benzer pede daya.",
+   "ar": "دون مقعد واعظ: أسند ذراعك على ظهر مقعد مائل أو وسادة مشابهة."
+  },
+  "straight-bar-drag-curls-triset-garage-program": {
+   "en": "Tri-set: done back-to-back with two other exercises, no rest between them.",
+   "tr": "Tri-set: araya dinlenme koymadan iki başka hareketle arka arkaya yapılır.",
+   "ar": "مجموعة ثلاثية: تُؤدّى متتالية مع تمرينين آخرين دون راحة بينها."
+  },
+  "straight-bar-lat-pulldown-mid-grip-lat-focused": {
+   "en": "Shoulder-width grip; drive elbows down to your sides to bias the lats.",
+   "tr": "Omuz genişliğinde tutuş; lat vurgusu için dirsekleri yanlara indir.",
+   "ar": "قبضة بعرض الكتفين؛ ادفع المرفقين للجانبين لتركيز الظهرية."
+  },
+  "strict-barbell-wall-curls": {
+   "en": "Stand with your back against a wall to eliminate swinging.",
+   "tr": "Sallanmayı önlemek için sırtını duvara yaslayarak dur.",
+   "ar": "قف وظهرك ملاصق للحائط لمنع التأرجح."
+  },
+  "strict-hammer-curls": {
+   "en": "No swing at all; slow negatives and full extension.",
+   "tr": "Hiç sallanma yok; yavaş negatif ve tam açılma.",
+   "ar": "دون أي تأرجح؛ نزول بطيء ومدّ كامل."
+  },
+  "sumo-deadlifts-compound-garage-program": {
+   "en": "Performed as the heavy compound lift of a superset or circuit.",
+   "tr": "Bir süperset ya da devrenin ağır bileşik hareketi olarak yapılır.",
+   "ar": "يُؤدّى كالتمرين المركّب الثقيل ضمن مجموعة مزدوجة أو دائرة."
+  },
+  "sumo-dumbbell-deadlifts-garage-program": {
+   "en": "Hold one heavy dumbbell between your legs instead of a barbell.",
+   "tr": "Bar yerine bacaklarının arasında tek ağır dumbbell tut.",
+   "ar": "أمسك دمبلًا ثقيلًا واحدًا بين ساقيك بدل البار."
+  },
+  "supinated-cable-curls-elbows-tucked": {
+   "en": "Elbows stay pinned to the ribs with palms fully up.",
+   "tr": "Dirsekler kaburgalara sabit, avuç içi tamamen yukarı.",
+   "ar": "المرفقان مثبتان على الأضلاع وراحتا اليد للأعلى تمامًا."
+  },
+  "supinated-dumbbell-curl-externally-rotated-wide-grip": {
+   "en": "Wide grip on a curl slightly biases the short (inner) head of the biceps.",
+   "tr": "Curl'de geniş tutuş biceps'in kısa (iç) başını biraz daha vurgular.",
+   "ar": "القبضة العريضة في الكيرل تركّز قليلًا على الرأس القصير (الداخلي) للعضلة."
+  },
+  "supinated-dumbbell-elbows-tucked-close-grip": {
+   "en": "Close grip on a curl slightly biases the long (outer) head of the biceps.",
+   "tr": "Curl'de dar tutuş biceps'in uzun (dış) başını biraz daha vurgular.",
+   "ar": "القبضة الضيقة في الكيرل تركّز قليلًا على الرأس الطويل (الخارجي) للعضلة."
+  },
+  "t-bar-row-chest-supported": {
+   "en": "Chest on the pad removes lower-back strain and body English.",
+   "tr": "Göğüs pedde olduğu için bel yükü ve vücut hilesi ortadan kalkar.",
+   "ar": "الصدر على الوسادة يزيل إجهاد أسفل الظهر والغش بالجسم."
+  },
+  "t-bar-row-mechanical-drop-starting-form-copy": {
+   "en": "Mechanical drop, end form: the easier, more upright version you switch to after failing the strict form.",
+   "tr": "Mechanical drop, bitiş formu: sıkı formda tükenince geçtiğin daha kolay ve dik versiyon.",
+   "ar": "تنازل ميكانيكي، الوضعية النهائية: النسخة الأسهل والأكثر انتصابًا بعد الفشل في الوضعية الصارمة."
+  },
+  "v-bar-lat-pulldowns-extreme-stretch": {
+   "en": "Prioritise the deepest stretch you can control at the bottom of each rep.",
+   "tr": "Her tekrarın altında kontrol edebildiğin en derin esnemeye öncelik ver.",
+   "ar": "ركّز على أعمق تمدد يمكنك التحكم به في أسفل كل تكرار."
+  },
+  "v-bar-pullups": {
+   "en": "Hang a V-handle over the bar for a close neutral grip.",
+   "tr": "Yakın nötr tutuş için barın üzerine V-tutamak as.",
+   "ar": "علّق مقبض V على البار لقبضة محايدة ضيقة."
+  },
+  "v-handle-cable-curls": {
+   "en": "A V-handle gives a semi-neutral grip that is easy on the wrists.",
+   "tr": "V-tutamak bileklere rahat yarı nötr bir tutuş sağlar.",
+   "ar": "مقبض V يمنح قبضة شبه محايدة مريحة للمعصمين."
+  },
+  "wall-dumbbell-curls-garage-program": {
+   "en": "Back against a wall to remove momentum.",
+   "tr": "Momentumu ortadan kaldırmak için sırt duvarda.",
+   "ar": "الظهر على الحائط لإزالة الزخم."
+  },
+  "weighted-straight-hyper-drop-start": {
+   "en": "Keep the spine rigid; start weighted, then drop the load at failure and continue.",
+   "tr": "Omurgayı sabit tut; yükle başla, tükenişte yükü bırakıp devam et.",
+   "ar": "أبقِ العمود صلبًا؛ ابدأ بالحمل ثم أسقطه عند الفشل وتابع."
+  },
+  "weighted-straight-hyper-drop-start-copy": {
+   "en": "Keep the spine rigid; finish the set by dropping the weight for extra bodyweight reps.",
+   "tr": "Omurgayı sabit tut; seti ağırlığı bırakıp ekstra vücut ağırlığı tekrarlarıyla bitir.",
+   "ar": "أبقِ العمود صلبًا؛ أنهِ المجموعة بإسقاط الوزن وتكرارات إضافية بوزن الجسم."
+  },
+  "weighted-walking-lunges-heavy-copy-ryan_humis514743": {
+   "en": "Turn toes out to bias the glutes more.",
+   "tr": "Kalçayı daha çok vurgulamak için ayak uçlarını dışa çevir.",
+   "ar": "وجّه أصابع القدمين للخارج لتركيز أكبر على الأرداف."
+  },
+  "wide-grip-assisted-pull-ups": {
+   "en": "Wide grip: hands outside shoulder width, slightly more upper-back involvement.",
+   "tr": "Geniş tutuş: eller omuz genişliğinin dışında, üst sırt biraz daha fazla çalışır.",
+   "ar": "قبضة عريضة: اليدان خارج عرض الكتفين مع إشراك أكبر قليلًا لأعلى الظهر."
+  },
+  "wide-grip-bench-assisted-pull-ups-garage-program": {
+   "en": "Wide grip: hands outside shoulder width, slightly more upper-back involvement.",
+   "tr": "Geniş tutuş: eller omuz genişliğinin dışında, üst sırt biraz daha fazla çalışır.",
+   "ar": "قبضة عريضة: اليدان خارج عرض الكتفين مع إشراك أكبر قليلًا لأعلى الظهر."
+  },
+  "wide-grip-lat-pulldown-fixed-elbow-clusterfuck-copy": {
+   "en": "Overhand grip with elbows a bit wider, shifting some work to the upper back.",
+   "tr": "Avuç içi aşağı tutuş ve biraz açık dirsek, yükün bir kısmını üst sırta kaydırır.",
+   "ar": "قبضة علوية ومرفقان أعرض قليلًا ينقلان جزءًا من العمل لأعلى الظهر."
+  },
+  "wide-grip-lat-pulldowns-ryan_humis514743": {
+   "en": "Wide grip: hands outside shoulder width, slightly more upper-back involvement.",
+   "tr": "Geniş tutuş: eller omuz genişliğinin dışında, üst sırt biraz daha fazla çalışır.",
+   "ar": "قبضة عريضة: اليدان خارج عرض الكتفين مع إشراك أكبر قليلًا لأعلى الظهر."
+  },
+  "wide-grip-pull-ups-copy-ryan_humis514743": {
+   "en": "Close grip: hands near shoulder width or narrower for a longer range.",
+   "tr": "Dar tutuş: eller omuz genişliğinde ya da daha dar, açıklık daha uzun.",
+   "ar": "قبضة ضيقة: اليدان بعرض الكتفين أو أضيق لمدى أطول."
+  },
+  "wide-grip-pulldown-clusterfuck": {
+   "en": "Cluster set: split the set into mini-sets of a few reps with 10–20 seconds rest.",
+   "tr": "Cluster set: seti 10–20 saniye dinlenmeli birkaç tekrarlık mini setlere böl.",
+   "ar": "مجموعة عنقودية: قسّم المجموعة إلى مجموعات صغيرة من تكرارات قليلة مع راحة 10–20 ثانية."
+  },
+  "wide-grip-pulldown-clusterfuck-copy": {
+   "en": "Overhand grip while still pulling low to the hips for lats.",
+   "tr": "Avuç içi aşağı tutuş; lat için yine kalçaya alçak çek.",
+   "ar": "قبضة علوية مع السحب منخفضًا نحو الوركين للظهرية."
+  }
+ }
+}

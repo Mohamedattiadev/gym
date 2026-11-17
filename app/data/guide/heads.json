@@ -1,0 +1,676 @@
+{
+  "muscles": {
+    "chest": {
+      "about": {
+        "en": "One fan-shaped muscle with fibers running in different directions. Change the press or fly angle to shift work between regions.",
+        "tr": "Lifleri farklı yönlere uzanan yelpaze şeklinde tek bir kas. Pres veya fly açısını değiştirerek yükü bölgeler arasında kaydırırsın.",
+        "ar": "عضلة واحدة على شكل مروحة تتجه أليافها في اتجاهات مختلفة. غيّر زاوية الضغط أو الفتح لتنقل الحمل بين المناطق."
+      },
+      "heads": [
+        {
+          "id": "chest-upper",
+          "name": {"en": "Upper chest", "tr": "Üst göğüs", "ar": "أعلى الصدر"},
+          "latin": "Clavicular head (pectoralis major)",
+          "about": {
+            "en": "Raises the arm forward and up. Bias it with 15-45 degree incline presses and flies, low-to-high cable flies or a reverse-grip bench.",
+            "tr": "Kolu öne ve yukarı kaldırır. 15-45 derece incline pres ve fly, aşağıdan yukarı kablo fly veya ters tutuş bench ile öne çıkar.",
+            "ar": "يرفع الذراع للأمام وللأعلى. ركّز عليه بالضغط والفتح على بنش مائل 15-45 درجة، أو فتح الكابل من الأسفل للأعلى، أو البنش بقبضة معكوسة."
+          },
+          "match": "incline|clavicular|low[- ]to[- ]high|reverse[- ]grip",
+          "default": false
+        },
+        {
+          "id": "chest-mid",
+          "name": {"en": "Mid chest", "tr": "Orta göğüs", "ar": "منتصف الصدر"},
+          "latin": "Sternal head (pectoralis major)",
+          "about": {
+            "en": "The bulk of the chest; brings the arm across the body. Flat presses, push-ups and flies hit it hardest.",
+            "tr": "Göğsün büyük kısmı; kolu vücudun önünden karşıya getirir. Düz presler, şınav ve fly en çok bunu çalıştırır.",
+            "ar": "الجزء الأكبر من الصدر؛ يقرّب الذراع عبر الجسم. الضغط المستوي والضغط الأرضي والفتح تستهدفه أكثر."
+          },
+          "match": "",
+          "default": true
+        },
+        {
+          "id": "chest-lower",
+          "name": {"en": "Lower chest", "tr": "Alt göğüs", "ar": "أسفل الصدر"},
+          "latin": "Abdominal (costal) fibers, sternal head",
+          "about": {
+            "en": "Lowest fibers that pull the arm down and in. Dips, decline presses and high-to-low cable flies bias them; flat pressing still trains them well.",
+            "tr": "Kolu aşağı ve içe çeken en alt lifler. Dips, decline pres ve yukarıdan aşağı kablo fly öne çıkarır; düz pres de iyi çalıştırır.",
+            "ar": "الألياف السفلية التي تسحب الذراع للأسفل والداخل. التغطيس والضغط المنحدر وفتح الكابل من الأعلى للأسفل تركّز عليها، والضغط المستوي يدرّبها جيداً أيضاً."
+          },
+          "match": "\\bdips?\\b|decline|high to low",
+          "default": false
+        }
+      ]
+    },
+    "delt-front": {
+      "about": {
+        "en": "Front of the shoulder. It already works hard in every chest press, so a little direct work goes a long way.",
+        "tr": "Omzun ön kısmı. Her göğüs presinde zaten yoğun çalışır, bu yüzden az miktar direkt çalışma yeterlidir.",
+        "ar": "مقدمة الكتف. تعمل بقوة في كل تمارين ضغط الصدر، لذا يكفيها قليل من التمرين المباشر."
+      },
+      "heads": [
+        {
+          "id": "delt-front",
+          "name": {"en": "Front delt", "tr": "Ön omuz", "ar": "الكتف الأمامي"},
+          "latin": "Anterior deltoid",
+          "about": {
+            "en": "Raises the arm forward and overhead. Overhead presses and front raises are the most direct work.",
+            "tr": "Kolu öne ve baş üstüne kaldırır. Omuz presleri ve ön kaldırışlar en direkt çalışmadır.",
+            "ar": "يرفع الذراع للأمام وفوق الرأس. ضغط الكتف فوق الرأس والرفع الأمامي هما التمرين الأكثر مباشرة."
+          },
+          "match": "",
+          "default": true
+        }
+      ]
+    },
+    "delt-side": {
+      "about": {
+        "en": "Side of the shoulder and the key to shoulder width. Presses barely reach it, so it needs its own raises.",
+        "tr": "Omzun yan kısmı ve omuz genişliğinin anahtarı. Presler pek ulaşmaz, kendi kaldırış hareketlerine ihtiyaç duyar.",
+        "ar": "جانب الكتف ومفتاح عرض الكتفين. تمارين الضغط بالكاد تصل إليه، لذا يحتاج تمارين رفع خاصة به."
+      },
+      "heads": [
+        {
+          "id": "delt-side",
+          "name": {"en": "Side delt", "tr": "Yan omuz", "ar": "الكتف الجانبي"},
+          "latin": "Lateral deltoid",
+          "about": {
+            "en": "Lifts the arm out to the side. Lateral raises (cables keep tension in the stretch) and wide-grip upright rows target it.",
+            "tr": "Kolu yana kaldırır. Yana kaldırışlar (kablo esneme noktasında gerilimi korur) ve geniş tutuş upright row hedefler.",
+            "ar": "يرفع الذراع إلى الجانب. الرفع الجانبي (الكابل يحافظ على الشد في وضع الإطالة) والسحب العمودي بقبضة واسعة يستهدفانه."
+          },
+          "match": "",
+          "default": true
+        }
+      ]
+    },
+    "delt-rear": {
+      "about": {
+        "en": "Back of the shoulder. Rows help, but reverse flies with the arm out wide hit it best.",
+        "tr": "Omzun arka kısmı. Row hareketleri yardımcı olur ama kollar açıkken yapılan ters fly en iyi çalıştırır.",
+        "ar": "خلف الكتف. تمارين السحب تساعد، لكن الفتح العكسي مع إبعاد الذراع هو الأفضل له."
+      },
+      "heads": [
+        {
+          "id": "delt-rear",
+          "name": {"en": "Rear delt", "tr": "Arka omuz", "ar": "الكتف الخلفي"},
+          "latin": "Posterior deltoid",
+          "about": {
+            "en": "Pulls the arm back and out. Bias it with reverse flies, face pulls and wide, high-elbow rows.",
+            "tr": "Kolu geriye ve dışa çeker. Ters fly, face pull ve dirsekler yüksekte geniş row ile öne çıkar.",
+            "ar": "يسحب الذراع للخلف وللخارج. ركّز عليه بالفتح العكسي وسحب الوجه والتجديف الواسع بمرفقين مرتفعين."
+          },
+          "match": "",
+          "default": true
+        }
+      ]
+    },
+    "biceps": {
+      "about": {
+        "en": "Two heads that bend the elbow and turn the palm up, plus the brachialis underneath. Shoulder position changes which head is stretched.",
+        "tr": "Dirseği büken ve avucu yukarı çeviren iki baş, altında da brachialis. Omuz pozisyonu hangi başın gerildiğini değiştirir.",
+        "ar": "رأسان يثنيان المرفق ويديران الكف للأعلى، وتحتهما العضلة العضدية. وضع الكتف يحدد أي رأس يتمدد أكثر."
+      },
+      "heads": [
+        {
+          "id": "biceps-brachialis",
+          "name": {"en": "Brachialis and brachioradialis", "tr": "Brachialis ve brachioradialis", "ar": "العضدية والعضدية الكعبرية"},
+          "latin": "Brachialis, brachioradialis",
+          "about": {
+            "en": "Pure elbow flexors under and beside the biceps; they add arm thickness. Neutral (hammer) and overhand (reverse) grips take the biceps partly out and bias them.",
+            "tr": "Biceps'in altında ve yanında saf dirsek bükücüler; kola kalınlık katar. Nötr (hammer) ve üstten (reverse) tutuş biceps'i kısmen devreden çıkarıp bunları öne çıkarır.",
+            "ar": "عضلات ثني مرفق بحتة تحت البايسبس وبجانبه؛ تضيف سماكة للذراع. القبضة المحايدة (هامر) والقبضة العلوية (معكوسة) تقلّل دور البايسبس وتركّز عليها."
+          },
+          "match": "hamm?er|reverse[- ]grip|pronated|brachialis",
+          "default": false
+        },
+        {
+          "id": "biceps-short",
+          "name": {"en": "Short head", "tr": "Kısa baş", "ar": "الرأس القصير"},
+          "latin": "Caput breve (biceps brachii)",
+          "about": {
+            "en": "Inner biceps. Curls with the arms in front of the body (preacher, spider, concentration) or a wider grip slightly favor it; regular curls train both heads well.",
+            "tr": "İç biceps. Kollar vücudun önündeyken yapılan curl (preacher, spider, concentration) veya daha geniş tutuş hafifçe öne çıkarır; normal curl iki başı da iyi çalıştırır.",
+            "ar": "البايسبس الداخلي. التمرين والذراعان أمام الجسم (بريتشر، سبايدر، تركيز) أو بقبضة أوسع يفضّله قليلاً؛ التمارين العادية تدرّب الرأسين جيداً."
+          },
+          "match": "preacher|spider|concentration|wide[- ]grip|machine biceps",
+          "default": true
+        },
+        {
+          "id": "biceps-long",
+          "name": {"en": "Long head", "tr": "Uzun baş", "ar": "الرأس الطويل"},
+          "latin": "Caput longum (biceps brachii)",
+          "about": {
+            "en": "Outer biceps that crosses the shoulder. Curls with the elbows behind the body (incline, drag, behind-the-back cable) stretch it most; a closer grip may help a bit.",
+            "tr": "Omuz ekleminden geçen dış biceps. Dirsekler vücudun arkasındayken yapılan curl (incline, drag, arkadan kablo) en çok gerer; dar tutuş biraz yardımcı olabilir.",
+            "ar": "البايسبس الخارجي الذي يعبر مفصل الكتف. التمرين والمرفقان خلف الجسم (مائل، سحب، كابل من الخلف) يمدّه أكثر؛ القبضة الأضيق قد تساعد قليلاً."
+          },
+          "match": "incline|drag|long head|behind|face out|close grip|elbows back|wall curl",
+          "default": false
+        }
+      ]
+    },
+    "triceps": {
+      "about": {
+        "en": "Three heads that straighten the elbow; about two thirds of upper-arm size. Only the long head crosses the shoulder.",
+        "tr": "Dirseği düzleştiren üç baş; üst kol hacminin yaklaşık üçte ikisi. Sadece uzun baş omuz ekleminden geçer.",
+        "ar": "ثلاثة رؤوس تمد المرفق؛ نحو ثلثي حجم العضد. الرأس الطويل وحده يعبر مفصل الكتف."
+      },
+      "heads": [
+        {
+          "id": "triceps-long",
+          "name": {"en": "Long head", "tr": "Uzun baş", "ar": "الرأس الطويل"},
+          "latin": "Caput longum (triceps brachii)",
+          "about": {
+            "en": "Biggest head, on the inner back of the arm. Overhead and behind-the-head extensions stretch it and grew it more than pushdowns in research; skull crushers are close behind.",
+            "tr": "Kolun arka iç kısmındaki en büyük baş. Baş üstü ve baş arkası extension onu gerer ve araştırmalarda pushdown'dan daha fazla büyüttü; skull crusher hemen arkasından gelir.",
+            "ar": "أكبر رأس، في الجزء الخلفي الداخلي للذراع. التمديد فوق الرأس وخلفه يمدّه ونمّاه أكثر من الدفع للأسفل في الأبحاث؛ وتمرين سكال كراشر قريب منه."
+          },
+          "match": "overhead|french|skull|skulls|crusher|behind|incline cable (ext|rope|tricep)|elbows high|extreme stretch",
+          "default": false
+        },
+        {
+          "id": "triceps-lateral",
+          "name": {"en": "Lateral head", "tr": "Lateral baş", "ar": "الرأس الجانبي"},
+          "latin": "Caput laterale (triceps brachii)",
+          "about": {
+            "en": "Outer horseshoe. Strong in pushdowns, kickbacks and heavy presses with the arm at your side; flaring the elbows may bias it slightly.",
+            "tr": "Dıştaki at nalı kısmı. Kol yandayken yapılan pushdown, kickback ve ağır preslerde güçlüdür; dirsekleri açmak hafifçe öne çıkarabilir.",
+            "ar": "حدوة الحصان الخارجية. قوي في الدفع للأسفل والركل الخلفي والضغط الثقيل والذراع بجانب الجسم؛ فتح المرفقين قد يركّز عليه قليلاً."
+          },
+          "match": "",
+          "default": true
+        },
+        {
+          "id": "triceps-medial",
+          "name": {"en": "Medial head", "tr": "Medial baş", "ar": "الرأس الإنسي"},
+          "latin": "Caput mediale (triceps brachii)",
+          "about": {
+            "en": "Deep head that works in every extension, so it cannot be isolated. It may be most active near lockout and with an underhand grip; evidence is limited.",
+            "tr": "Her extension'da çalışan derin baş, izole edilemez. Kilitlemeye yakın ve alttan tutuşta en aktiftir; kanıtlar sınırlı.",
+            "ar": "رأس عميق يعمل في كل تمرين تمديد، فلا يمكن عزله. أكثر نشاطاً قرب المد الكامل وبالقبضة السفلية؛ الأدلة محدودة."
+          },
+          "match": "reverse[- ]grip|underhand|supinated",
+          "default": false
+        }
+      ]
+    },
+    "forearms": {
+      "about": {
+        "en": "Many small muscles that move the wrist and fingers. Train the front, the back and the thumb side for complete forearms.",
+        "tr": "Bilek ve parmakları hareket ettiren birçok küçük kas. Tam ön kol için ön yüzü, arka yüzü ve başparmak tarafını çalıştır.",
+        "ar": "عضلات صغيرة كثيرة تحرك الرسغ والأصابع. درّب الجهة الأمامية والخلفية وجهة الإبهام لساعد متكامل."
+      },
+      "heads": [
+        {
+          "id": "forearms-brachioradialis",
+          "name": {"en": "Brachioradialis", "tr": "Brachioradialis", "ar": "العضدية الكعبرية"},
+          "latin": "Brachioradialis",
+          "about": {
+            "en": "The thick muscle near the elbow on the thumb side. Reverse-grip and hammer curls hit it best.",
+            "tr": "Dirseğe yakın, başparmak tarafındaki kalın kas. Ters tutuş ve hammer curl en iyi çalıştırır.",
+            "ar": "العضلة السميكة قرب المرفق من جهة الإبهام. التمرين بقبضة معكوسة وتمرين الهامر يستهدفانها أفضل."
+          },
+          "match": "reverse[- ]grip (curl|drag|barbell curl|ez|straight|cable curl)|reverse curls?|reverse grip curls|brachialis|pinwheel|hamm?er|pronated concentration",
+          "default": false
+        },
+        {
+          "id": "forearms-flexors",
+          "name": {"en": "Wrist and finger flexors", "tr": "Bilek ve parmak bükücüler", "ar": "عضلات ثني الرسغ والأصابع"},
+          "latin": "Flexor carpi, flexor digitorum, pronator teres",
+          "about": {
+            "en": "Palm side; curl the wrist and close the hand. Wrist curls, finger curls, dead hangs and pronation work build them and your grip.",
+            "tr": "Avuç tarafı; bileği büker ve eli kapatır. Wrist curl, parmak curl, asılı durma ve pronasyon çalışması onları ve kavrayışı geliştirir.",
+            "ar": "جهة الكف؛ تثني الرسغ وتغلق اليد. ثني الرسغ وثني الأصابع والتعلق والكب تبنيها وتقوّي القبضة."
+          },
+          "match": "",
+          "default": true
+        },
+        {
+          "id": "forearms-extensors",
+          "name": {"en": "Wrist extensors", "tr": "Bilek açıcılar", "ar": "عضلات بسط الرسغ"},
+          "latin": "Extensor carpi, extensor digitorum, supinator",
+          "about": {
+            "en": "Back of the forearm; lift the back of the hand. Wrist extensions and supination work target them.",
+            "tr": "Ön kolun arka yüzü; elin sırtını kaldırır. Wrist extension ve supinasyon çalışması hedefler.",
+            "ar": "ظهر الساعد؛ ترفع ظهر اليد. بسط الرسغ وتمارين البطح تستهدفها."
+          },
+          "match": "wrist extension|supinat",
+          "default": false
+        }
+      ]
+    },
+    "abs": {
+      "about": {
+        "en": "The six-pack is one long muscle that curls the spine, wrapped by a deep corset layer. Upper and lower abs can only be shifted a little.",
+        "tr": "Six-pack omurgayı büken tek uzun bir kastır, etrafını derin bir korse tabakası sarar. Üst ve alt karın sadece biraz öne çıkarılabilir.",
+        "ar": "عضلات البطن الستة هي عضلة طويلة واحدة تثني العمود الفقري، تحيط بها طبقة مشدّ عميقة. يمكن التركيز على الأعلى والأسفل بقدر بسيط فقط."
+      },
+      "heads": [
+        {
+          "id": "abs-upper",
+          "name": {"en": "Upper abs", "tr": "Üst karın", "ar": "أعلى البطن"},
+          "latin": "Rectus abdominis (upper region)",
+          "about": {
+            "en": "Crunches and sit-ups that curl the ribs toward the hips may favor the upper part. The bias is small and debated; the whole muscle works.",
+            "tr": "Kaburgaları kalçaya doğru büken crunch ve sit-up üst kısmı öne çıkarabilir. Fark küçük ve tartışmalı; tüm kas çalışır.",
+            "ar": "تمارين الطحن والجلوس التي تقرّب الأضلاع من الحوض قد تفضّل الجزء العلوي. الفرق صغير ومختلف عليه؛ العضلة كلها تعمل."
+          },
+          "match": "",
+          "default": true
+        },
+        {
+          "id": "abs-lower",
+          "name": {"en": "Lower abs", "tr": "Alt karın", "ar": "أسفل البطن"},
+          "latin": "Rectus abdominis (lower region)",
+          "about": {
+            "en": "Leg and knee raises only help if you tilt the pelvis up at the top; otherwise the hip flexors do the work. The bias is small and debated.",
+            "tr": "Bacak ve diz kaldırma, sonda leğeni yukarı devirirsen işe yarar; yoksa işi kalça bükücüler yapar. Fark küçük ve tartışmalı.",
+            "ar": "رفع الساقين والركبتين يفيد فقط إذا أملت الحوض للأعلى في النهاية؛ وإلا تقوم عضلات ثني الورك بالعمل. الفرق صغير ومختلف عليه."
+          },
+          "match": "raises?|v-ups?|pike|tuck|pelvic|knees to chest|lower ab",
+          "default": false
+        },
+        {
+          "id": "abs-ta",
+          "name": {"en": "Deep core", "tr": "Derin core", "ar": "العضلات العميقة"},
+          "latin": "Transversus abdominis",
+          "about": {
+            "en": "Deep corset that braces the trunk and pulls the belly in. Ab rollouts, planks and hard bracing on big lifts train it.",
+            "tr": "Gövdeyi sabitleyen ve karnı içeri çeken derin korse. Ab roller, plank ve büyük kaldırışlarda sıkı bracing çalıştırır.",
+            "ar": "مشدّ عميق يثبّت الجذع ويسحب البطن للداخل. عجلة البطن والبلانك والشدّ القوي في الرفعات الكبيرة تدرّبه."
+          },
+          "match": "roller|rollout|plank|vacuum|hollow|dead bug|pallof",
+          "default": false
+        }
+      ]
+    },
+    "obliques": {
+      "about": {
+        "en": "Two layers on the sides of the waist that rotate and side-bend the trunk. They also help in every crunch and leg raise.",
+        "tr": "Belin yanlarında gövdeyi döndüren ve yana büken iki katman. Her crunch ve bacak kaldırmada da yardım ederler.",
+        "ar": "طبقتان على جانبي الخصر تدوّران الجذع وتميلانه جانبياً. وتساعدان أيضاً في كل تمرين طحن ورفع ساقين."
+      },
+      "heads": [
+        {
+          "id": "obliques-external",
+          "name": {"en": "External obliques", "tr": "Dış oblikler", "ar": "المائلة الخارجية"},
+          "latin": "Obliquus externus abdominis",
+          "about": {
+            "en": "Outer layer; rotates the trunk to the opposite side and bends it sideways. Twisting crunches, cable rotations and side bends bias it.",
+            "tr": "Dış katman; gövdeyi karşı tarafa döndürür ve yana büker. Dönüşlü crunch, kablo rotasyon ve yana eğilmeler öne çıkarır.",
+            "ar": "الطبقة الخارجية؛ تدوّر الجذع للجهة المقابلة وتميله جانبياً. الطحن مع الدوران وتدوير الكابل والميل الجانبي تركّز عليها."
+          },
+          "match": "rotation|twist|bicycle|side bend|woodchop|elbows to knees|oblique|russian",
+          "default": true
+        },
+        {
+          "id": "obliques-internal",
+          "name": {"en": "Internal obliques", "tr": "İç oblikler", "ar": "المائلة الداخلية"},
+          "latin": "Obliquus internus abdominis",
+          "about": {
+            "en": "Deeper layer; rotates to the same side and braces with the deep core. Anti-rotation, side planks and rollouts train it along with rotation work.",
+            "tr": "Derin katman; aynı tarafa döndürür ve derin core ile birlikte sabitler. Anti-rotasyon, yan plank ve roller rotasyon çalışmasıyla birlikte çalıştırır.",
+            "ar": "الطبقة الأعمق؛ تدوّر لنفس الجهة وتثبّت مع العضلات العميقة. تمارين مقاومة الدوران والبلانك الجانبي والعجلة تدرّبها مع تمارين الدوران."
+          },
+          "match": "pallof|anti[- ]?rotation|side plank|suitcase|roller|rollout|plank",
+          "default": false
+        }
+      ]
+    },
+    "quads": {
+      "about": {
+        "en": "Four muscles that straighten the knee. Squats grow the three vasti; the rectus femoris also crosses the hip and needs knee extensions too.",
+        "tr": "Dizi düzleştiren dört kas. Squat üç vastus'u büyütür; rectus femoris kalçadan da geçer ve diz extension'a da ihtiyaç duyar.",
+        "ar": "أربع عضلات تمد الركبة. السكوات ينمّي العضلات المتسعة الثلاث؛ أما المستقيمة الفخذية فتعبر الورك أيضاً وتحتاج تمارين مد الركبة."
+      },
+      "heads": [
+        {
+          "id": "quads-rf",
+          "name": {"en": "Rectus femoris", "tr": "Rectus femoris", "ar": "المستقيمة الفخذية"},
+          "latin": "Rectus femoris",
+          "about": {
+            "en": "Center of the thigh; also flexes the hip, so squats barely grow it. Leg extensions (ideally leaning back), sissy squats and reverse Nordics bias it.",
+            "tr": "Uyluğun ortası; kalçayı da büker, bu yüzden squat onu pek büyütmez. Leg extension (tercihen geriye yaslanarak), sissy squat ve reverse Nordic öne çıkarır.",
+            "ar": "وسط الفخذ؛ يثني الورك أيضاً لذا لا ينمّيه السكوات كثيراً. مد الساق (ويفضّل مع الميل للخلف) وسيسي سكوات والنوردك العكسي تركّز عليه."
+          },
+          "match": "leg extension|single leg extension|sissy|reverse nordic|quad \\(extreme stretch\\)",
+          "default": false
+        },
+        {
+          "id": "quads-vm",
+          "name": {"en": "Vastus medialis", "tr": "Vastus medialis", "ar": "المتسعة الإنسية"},
+          "latin": "Vastus medialis (incl. VMO)",
+          "about": {
+            "en": "Teardrop above the inner knee. It cannot be isolated (the VMO idea is a myth), but deep, knees-forward squats and split squats load it hard.",
+            "tr": "İç dizin üstündeki damla şekli. İzole edilemez (VMO fikri bir efsane), ama derin, dizler önde squat ve split squat onu yoğun yükler.",
+            "ar": "شكل الدمعة فوق الركبة من الداخل. لا يمكن عزلها (فكرة VMO خرافة)، لكن السكوات العميق والركبتان للأمام والسبليت سكوات تحمّلها بقوة."
+          },
+          "match": "heel elevated|heels elevated|toes low|quad dominant|\\(quad\\)|quad split|front squat|pendulum|spanish|pistol",
+          "default": false
+        },
+        {
+          "id": "quads-vl",
+          "name": {"en": "Vastus lateralis", "tr": "Vastus lateralis", "ar": "المتسعة الوحشية"},
+          "latin": "Vastus lateralis (with vastus intermedius)",
+          "about": {
+            "en": "Largest quad, on the outer thigh, with the intermedius underneath. Squats, leg presses, hack squats and lunges grow it.",
+            "tr": "Dış uyluktaki en büyük quad, altında intermedius ile. Squat, leg press, hack squat ve lunge büyütür.",
+            "ar": "أكبر عضلات الفخذ الأمامية، على الجهة الخارجية، وتحتها المتسعة المتوسطة. السكوات وضغط الأرجل والهاك سكوات والطعنات تنمّيها."
+          },
+          "match": "",
+          "default": true
+        }
+      ]
+    },
+    "adductors": {
+      "about": {
+        "en": "Inner-thigh group that pulls the legs together. It is big and works hard in deep squats, lunges and hinges.",
+        "tr": "Bacakları birbirine çeken iç uyluk grubu. Büyüktür ve derin squat, lunge ve hinge'de yoğun çalışır.",
+        "ar": "مجموعة باطن الفخذ التي تقرّب الساقين. كبيرة وتعمل بقوة في السكوات العميق والطعنات وتمارين الانحناء."
+      },
+      "heads": [
+        {
+          "id": "adductors-magnus",
+          "name": {"en": "Adductor magnus", "tr": "Adductor magnus", "ar": "المقرّبة الكبرى"},
+          "latin": "Adductor magnus",
+          "about": {
+            "en": "The largest part; also extends the hip like a hamstring. Deep and wide squats, sumo deadlifts and lateral lunges load it.",
+            "tr": "En büyük kısım; hamstring gibi kalçayı da açar. Derin ve geniş squat, sumo deadlift ve yan lunge yükler.",
+            "ar": "الجزء الأكبر؛ يمد الورك أيضاً مثل أوتار الركبة. السكوات العميق والواسع والرفعة الميتة سومو والطعن الجانبي تحمّلها."
+          },
+          "match": "sumo|lateral lunge|wide|deep|copenhagen",
+          "default": false
+        },
+        {
+          "id": "adductors-short",
+          "name": {"en": "Longus, brevis, gracilis", "tr": "Longus, brevis, gracilis", "ar": "الطويلة والقصيرة والرشيقة"},
+          "latin": "Adductor longus, adductor brevis, gracilis",
+          "about": {
+            "en": "Front inner-thigh adductors that pull the leg in. The adduction machine and cable adductions train them most directly.",
+            "tr": "Bacağı içe çeken ön iç uyluk adduktorları. Adduction makinesi ve kablo adduction en direkt çalıştırır.",
+            "ar": "عضلات التقريب الأمامية في باطن الفخذ التي تسحب الساق للداخل. جهاز التقريب والتقريب بالكابل يدرّبانها بشكل مباشر."
+          },
+          "match": "",
+          "default": true
+        }
+      ]
+    },
+    "shins": {
+      "about": {
+        "en": "Front of the lower leg. Strong shins help knee and ankle health and balance out the calves.",
+        "tr": "Alt bacağın ön kısmı. Güçlü kaval kemiği kasları diz ve ayak bileği sağlığına yardım eder, baldırı dengeler.",
+        "ar": "مقدمة الساق. عضلات الساق الأمامية القوية تدعم صحة الركبة والكاحل وتوازن السمانة."
+      },
+      "heads": [
+        {
+          "id": "shins-tibialis",
+          "name": {"en": "Tibialis anterior", "tr": "Tibialis anterior", "ar": "الظنبوبية الأمامية"},
+          "latin": "Tibialis anterior",
+          "about": {
+            "en": "Lifts the toes toward the shin. Tib raises against a wall or with a plate or dumbbell on the feet train it.",
+            "tr": "Ayak parmaklarını kaval kemiğine doğru kaldırır. Duvara yaslanarak veya ayakta plaka/dambılla tib raise çalıştırır.",
+            "ar": "يرفع أصابع القدم نحو الساق. رفع الظنبوب مستنداً إلى جدار أو بقرص أو دمبل على القدمين يدرّبه."
+          },
+          "match": "",
+          "default": true
+        }
+      ]
+    },
+    "calves": {
+      "about": {
+        "en": "Two muscles that point the foot. Knee angle decides which one does more: straight knee for the gastrocnemius, bent knee for the soleus.",
+        "tr": "Ayağı aşağı bastıran iki kas. Diz açısı hangisinin daha çok çalışacağını belirler: düz diz gastrocnemius, bükük diz soleus.",
+        "ar": "عضلتان تمدّان القدم للأسفل. زاوية الركبة تحدد أيهما يعمل أكثر: ركبة مستقيمة للتوأمية، وركبة مثنية للنعلية."
+      },
+      "heads": [
+        {
+          "id": "calves-gastroc",
+          "name": {"en": "Gastrocnemius", "tr": "Gastrocnemius", "ar": "التوأمية"},
+          "latin": "Gastrocnemius (medial and lateral heads)",
+          "about": {
+            "en": "The visible diamond shape; crosses the knee. Straight-knee raises (standing, leg press, Smith) with a deep stretch at the bottom target it.",
+            "tr": "Görünen elmas şekli; dizden geçer. Altta derin esneme ile düz diz kaldırışları (ayakta, leg press, Smith) hedefler.",
+            "ar": "شكل الماسة الظاهر؛ تعبر الركبة. رفع الكعب بركبة مستقيمة (وقوفاً، جهاز الأرجل، سميث) مع إطالة عميقة في الأسفل يستهدفها."
+          },
+          "match": "",
+          "default": true
+        },
+        {
+          "id": "calves-soleus",
+          "name": {"en": "Soleus", "tr": "Soleus", "ar": "النعلية"},
+          "latin": "Soleus",
+          "about": {
+            "en": "Flat muscle under the gastrocnemius. Bending the knee slackens the gastrocnemius, so seated and bent-knee raises bias the soleus.",
+            "tr": "Gastrocnemius'un altındaki yassı kas. Dizi bükmek gastrocnemius'u gevşetir, bu yüzden oturarak ve bükük diz kaldırışlar soleus'u öne çıkarır.",
+            "ar": "عضلة مسطحة تحت التوأمية. ثني الركبة يرخي التوأمية، لذا رفع الكعب جلوساً أو بركبة مثنية يركّز على النعلية."
+          },
+          "match": "seated|bent knee|squatting",
+          "default": false
+        }
+      ]
+    },
+    "traps": {
+      "about": {
+        "en": "One large muscle with three parts that move the shoulder blades up, together and down.",
+        "tr": "Kürek kemiklerini yukarı, birbirine ve aşağı hareket ettiren üç bölümlü büyük tek bir kas.",
+        "ar": "عضلة كبيرة واحدة من ثلاثة أجزاء تحرك لوحي الكتف للأعلى ولبعضهما وللأسفل."
+      },
+      "heads": [
+        {
+          "id": "traps-lower",
+          "name": {"en": "Lower traps", "tr": "Alt trapez", "ar": "أسفل الترابيس"},
+          "latin": "Pars ascendens (trapezius)",
+          "about": {
+            "en": "Pulls the shoulder blades down. Pull-up and pulldown shrugs (depression), Y raises and low-trap shrugs bias it.",
+            "tr": "Kürek kemiklerini aşağı çeker. Barfiks ve pulldown shrug (depresyon), Y kaldırışı ve low-trap shrug öne çıkarır.",
+            "ar": "يسحب لوحي الكتف للأسفل. هزّ الكتفين على العقلة أو جهاز السحب (خفض الكتفين) والرفع على شكل Y تركّز عليه."
+          },
+          "match": "low(er)? trap|pull-?ups? shrug|pulldown|lat .?shrug|y raise|hanging",
+          "default": false
+        },
+        {
+          "id": "traps-mid",
+          "name": {"en": "Mid traps", "tr": "Orta trapez", "ar": "وسط الترابيس"},
+          "latin": "Pars transversa (trapezius)",
+          "about": {
+            "en": "Squeezes the shoulder blades together. Chest-supported or bent-over shrugs, Kelso shrugs and high-elbow rows bias it.",
+            "tr": "Kürek kemiklerini birbirine sıkıştırır. Göğüs destekli veya eğilerek shrug, Kelso shrug ve dirsek yüksekte row öne çıkarır.",
+            "ar": "يضم لوحي الكتف معاً. هزّ الكتفين مع سند الصدر أو بانحناء، وهزّ كيلسو، والتجديف بمرفقين مرتفعين تركّز عليه."
+          },
+          "match": "mid[- ]?trap|high elbow|bent|kelso|incline|row",
+          "default": false
+        },
+        {
+          "id": "traps-upper",
+          "name": {"en": "Upper traps", "tr": "Üst trapez", "ar": "أعلى الترابيس"},
+          "latin": "Pars descendens (trapezius)",
+          "about": {
+            "en": "Lifts the shoulder blades up. Standing shrugs with dumbbells, barbell or cables are the main work; deadlifts and carries help.",
+            "tr": "Kürek kemiklerini yukarı kaldırır. Dambıl, barbell veya kabloyla ayakta shrug ana çalışmadır; deadlift ve taşımalar yardım eder.",
+            "ar": "يرفع لوحي الكتف للأعلى. هزّ الكتفين وقوفاً بالدمبل أو البار أو الكابل هو التمرين الأساسي؛ والرفعة الميتة والحمل يساعدان."
+          },
+          "match": "",
+          "default": true
+        }
+      ]
+    },
+    "upper-back": {
+      "about": {
+        "en": "The muscles between and around the shoulder blades that give the back thickness. Elbow path in a row decides which ones work most.",
+        "tr": "Sırta kalınlık veren, kürek kemiklerinin arasındaki ve etrafındaki kaslar. Row'da dirseğin yolu hangisinin daha çok çalışacağını belirler.",
+        "ar": "العضلات بين لوحي الكتف وحولهما التي تمنح الظهر سماكة. مسار المرفق في التجديف يحدد أيها يعمل أكثر."
+      },
+      "heads": [
+        {
+          "id": "upper-back-erectors",
+          "name": {"en": "Thoracic extensors", "tr": "Torasik açıcılar", "ar": "باسطات الظهر الصدرية"},
+          "latin": "Erector spinae (thoracic part)",
+          "about": {
+            "en": "Keep the upper back upright. Thoracic extensions and rows where you round then arch the upper back train them.",
+            "tr": "Üst sırtı dik tutar. Torasik extension ve üst sırtı yuvarlayıp sonra kavislendirdiğin row çalıştırır.",
+            "ar": "تحافظ على استقامة أعلى الظهر. تمارين بسط الظهر الصدري والتجديف مع تقويس ثم فرد أعلى الظهر تدرّبها."
+          },
+          "match": "thoracic|flexion|rolled",
+          "default": false
+        },
+        {
+          "id": "upper-back-teres",
+          "name": {"en": "Teres major", "tr": "Teres major", "ar": "المدوّرة الكبرى"},
+          "latin": "Teres major",
+          "about": {
+            "en": "The lats' little helper at the outer shoulder blade. Rows with the elbows tucked and pulled toward the hip bias it.",
+            "tr": "Kürek kemiğinin dış kenarında lats'ın küçük yardımcısı. Dirsekler vücuda yakın ve kalçaya doğru çekilen row öne çıkarır.",
+            "ar": "المساعد الصغير للظهرية العريضة عند الحافة الخارجية للوح الكتف. التجديف بمرفقين قريبين ومسحوبين نحو الورك يركّز عليها."
+          },
+          "match": "tucked|v-?bar|meadows|exaggerated stretch|wrap around|close grip|neutral",
+          "default": false
+        },
+        {
+          "id": "upper-back-rhomboids",
+          "name": {"en": "Rhomboids and mid traps", "tr": "Rhomboidler ve orta trapez", "ar": "المعينية ووسط الترابيس"},
+          "latin": "Rhomboideus major/minor, trapezius (middle)",
+          "about": {
+            "en": "Pull the shoulder blades together. Rows with the elbows flared out to about 45-90 degrees and a hard squeeze bias them.",
+            "tr": "Kürek kemiklerini birbirine çeker. Dirsekler yaklaşık 45-90 derece açık ve sıkı bir sıkıştırmayla yapılan row öne çıkarır.",
+            "ar": "تضم لوحي الكتف معاً. التجديف بمرفقين مفتوحين نحو 45-90 درجة مع ضغط قوي يركّز عليها."
+          },
+          "match": "",
+          "default": true
+        }
+      ]
+    },
+    "lats": {
+      "about": {
+        "en": "The widest back muscle and the V-taper. Its fibers run from the upper to the lower back, and grip and elbow path may shift work between them.",
+        "tr": "Sırtın en geniş kası ve V görünümü. Lifleri üst sırttan bel bölgesine uzanır; tutuş ve dirsek yolu yükü aralarında kaydırabilir.",
+        "ar": "أعرض عضلة في الظهر وسر شكل V. أليافها تمتد من أعلى الظهر إلى أسفله، والقبضة ومسار المرفق قد ينقلان الحمل بينها."
+      },
+      "heads": [
+        {
+          "id": "lats-upper",
+          "name": {"en": "Upper lats", "tr": "Üst lats", "ar": "أعلى الظهرية"},
+          "latin": "Latissimus dorsi (thoracic fibers)",
+          "about": {
+            "en": "Upper fibers, which pull the arm down from wide and overhead. Wide-grip pulldowns and pull-ups may favor them; evidence is limited.",
+            "tr": "Kolu genişten ve baş üstünden aşağı çeken üst lifler. Geniş tutuş pulldown ve barfiks öne çıkarabilir; kanıtlar sınırlı.",
+            "ar": "الألياف العلوية التي تسحب الذراع للأسفل من وضع واسع وفوق الرأس. السحب للأسفل والعقلة بقبضة واسعة قد تفضّلها؛ الأدلة محدودة."
+          },
+          "match": "wide|pronated|prontated|high elbow",
+          "default": true
+        },
+        {
+          "id": "lats-lower",
+          "name": {"en": "Lower lats", "tr": "Alt lats", "ar": "أسفل الظهرية"},
+          "latin": "Latissimus dorsi (lumbar and iliac fibers)",
+          "about": {
+            "en": "Lower fibers, which pull the elbow down and back toward the hip. Close or neutral grip pulls, single-arm rows and pullovers may favor them; evidence is limited.",
+            "tr": "Dirseği aşağı ve geriye, kalçaya doğru çeken alt lifler. Dar veya nötr tutuş çekişler, tek kol row ve pullover öne çıkarabilir; kanıtlar sınırlı.",
+            "ar": "الألياف السفلية التي تسحب المرفق للأسفل والخلف نحو الورك. السحب بقبضة ضيقة أو محايدة والتجديف بذراع واحدة والبول أوفر قد تفضّلها؛ الأدلة محدودة."
+          },
+          "match": "pullover|close grip|v-?bar|neutral|reverse grip|row|elbows close|single arm lat pulldown",
+          "default": false
+        }
+      ]
+    },
+    "lower-back": {
+      "about": {
+        "en": "Muscles along the spine that keep it straight under load. They already work in every squat, hinge and row.",
+        "tr": "Yük altında omurgayı düz tutan, omurga boyunca uzanan kaslar. Her squat, hinge ve row'da zaten çalışırlar.",
+        "ar": "عضلات على طول العمود الفقري تحافظ على استقامته تحت الحمل. تعمل أصلاً في كل سكوات وانحناء وتجديف."
+      },
+      "heads": [
+        {
+          "id": "lower-back-erectors",
+          "name": {"en": "Spinal erectors", "tr": "Omurga dikleştiricileri", "ar": "ناصبات الفقار"},
+          "latin": "Erector spinae (iliocostalis, longissimus), multifidus",
+          "about": {
+            "en": "Extend and stabilize the spine. Back extensions where you round then straighten the spine train them directly; deadlifts train them isometrically.",
+            "tr": "Omurgayı açar ve sabitler. Omurgayı yuvarlayıp sonra düzleştirdiğin back extension direkt çalıştırır; deadlift izometrik çalıştırır.",
+            "ar": "تمد العمود الفقري وتثبّته. تمارين بسط الظهر مع تقويس ثم فرد العمود تدرّبها مباشرة؛ والرفعة الميتة تدرّبها بشكل ثابت."
+          },
+          "match": "",
+          "default": true
+        }
+      ]
+    },
+    "glutes": {
+      "about": {
+        "en": "The body's largest muscle group. It extends the hip and moves the leg out to the side.",
+        "tr": "Vücudun en büyük kas grubu. Kalçayı açar ve bacağı yana hareket ettirir.",
+        "ar": "أكبر مجموعة عضلية في الجسم. تمد الورك وتحرّك الساق إلى الجانب."
+      },
+      "heads": [
+        {
+          "id": "glutes-med",
+          "name": {"en": "Glute medius and minimus", "tr": "Gluteus medius ve minimus", "ar": "الألوية الوسطى والصغرى"},
+          "latin": "Gluteus medius, gluteus minimus",
+          "about": {
+            "en": "Upper side of the hip; moves the leg out and keeps the pelvis level. Hip abduction machine, side-lying raises and band walks bias them.",
+            "tr": "Kalçanın üst yanı; bacağı dışa açar ve leğeni dengede tutar. Hip abduction makinesi, yan yatarak kaldırış ve bant yürüyüşü öne çıkarır.",
+            "ar": "أعلى جانب الورك؛ تبعد الساق وتحافظ على استواء الحوض. جهاز إبعاد الورك والرفع الجانبي مستلقياً والمشي بالمطاط تركّز عليها."
+          },
+          "match": "^abductions?$|abductor|hip abduction|monster|side[- ]lying|clam|band walk",
+          "default": false
+        },
+        {
+          "id": "glutes-max",
+          "name": {"en": "Glute maximus", "tr": "Gluteus maximus", "ar": "الألوية الكبرى"},
+          "latin": "Gluteus maximus",
+          "about": {
+            "en": "The main glute; extends the hip. Deep lunges, split squats and RDLs load it in the stretch; hip thrusts load it at the top.",
+            "tr": "Ana kalça kası; kalçayı açar. Derin lunge, split squat ve RDL esneme noktasında yükler; hip thrust tepede yükler.",
+            "ar": "عضلة الألوية الرئيسية؛ تمد الورك. الطعنات العميقة والسبليت سكوات والرفعة الرومانية تحمّلها في الإطالة، والدفع بالورك يحمّلها في الأعلى."
+          },
+          "match": "",
+          "default": true
+        }
+      ]
+    },
+    "hamstrings": {
+      "about": {
+        "en": "Back-of-thigh muscles that bend the knee and extend the hip. Train both a hinge and a leg curl, because each grows different parts.",
+        "tr": "Dizi büken ve kalçayı açan arka uyluk kasları. Hem hinge hem leg curl çalış, çünkü her biri farklı bölümleri büyütür.",
+        "ar": "عضلات خلف الفخذ التي تثني الركبة وتمد الورك. درّب الانحناء وثني الساق معاً، لأن كلاً منهما ينمّي أجزاء مختلفة."
+      },
+      "heads": [
+        {
+          "id": "hamstrings-semis",
+          "name": {"en": "Inner hamstrings", "tr": "İç hamstring", "ar": "أوتار الركبة الداخلية"},
+          "latin": "Semitendinosus, semimembranosus",
+          "about": {
+            "en": "Inner back thigh. Leg curls and Nordics grew the semitendinosus most in studies; seated curls beat lying curls for overall growth.",
+            "tr": "İç arka uyluk. Araştırmalarda leg curl ve Nordic semitendinosus'u en çok büyüttü; genel büyüme için oturarak curl yatarak curl'den iyi.",
+            "ar": "باطن خلف الفخذ. في الدراسات نمّى ثني الساق والنوردك الوترية النصفية أكثر؛ والثني جلوساً أفضل من الثني مستلقياً للنمو العام."
+          },
+          "match": "curls?\\b|nordic",
+          "default": false
+        },
+        {
+          "id": "hamstrings-bf",
+          "name": {"en": "Outer hamstring", "tr": "Dış hamstring", "ar": "أوتار الركبة الخارجية"},
+          "latin": "Biceps femoris (long and short head)",
+          "about": {
+            "en": "Outer back thigh. The long head is loaded well by hinges (RDLs, stiff legs, good mornings, hypers); the short head only bends the knee, so curls train it.",
+            "tr": "Dış arka uyluk. Uzun baş hinge hareketleriyle (RDL, stiff leg, good morning, hyper) iyi yüklenir; kısa baş sadece dizi büker, onu curl çalıştırır.",
+            "ar": "خارج خلف الفخذ. الرأس الطويل يُحمَّل جيداً بتمارين الانحناء (الرومانية، الأرجل المستقيمة، صباح الخير، الهايبر)؛ والرأس القصير يثني الركبة فقط فيدرّبه الثني."
+          },
+          "match": "",
+          "default": true
+        }
+      ]
+    }
+  },
+  "sources": [
+    {"title": "Jeff Nippard (YouTube)", "url": "https://www.youtube.com/@JeffNippard"},
+    {"title": "Maeo et al. 2023, triceps overhead vs pushdown (PubMed)", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Maeo+2023+triceps+overhead+extension+hypertrophy"},
+    {"title": "Maeo et al. 2021, seated vs prone leg curl (PubMed)", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Maeo+2021+seated+prone+leg+curl+hamstring+hypertrophy"},
+    {"title": "Bourne et al. 2017, Nordic vs hip extension hamstring growth (PubMed)", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Bourne+2017+nordic+hip+extension+hamstring+hypertrophy"},
+    {"title": "Kubo et al. 2019, squat depth and muscle growth (PubMed)", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Kubo+2019+squat+depth+muscle+hypertrophy"},
+    {"title": "Bench inclination and pectoralis activation (PubMed)", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=bench+press+inclination+clavicular+pectoralis+major+electromyography"},
+    {"title": "Leg extension seated vs supine, rectus femoris (PubMed)", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Maeo+2021+knee+extension+hip+flexed+rectus+femoris+hypertrophy"}
+  ]
+}

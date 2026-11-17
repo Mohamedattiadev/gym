@@ -1,0 +1,3430 @@
+{
+ "families": {
+  "dumbbell-lateral-raise": {
+   "primary": [
+    "delt-side"
+   ],
+   "secondary": [
+    "traps",
+    "delt-front"
+   ],
+   "en": {
+    "title": "Dumbbell Lateral Raise",
+    "about": "Isolates the side delts, the key muscle for wider-looking shoulders.",
+    "steps": [
+     "Stand or sit tall holding dumbbells at your sides, palms facing in.",
+     "Lean slightly forward and keep a soft bend in the elbows.",
+     "Raise the dumbbells out to the sides until your arms are about parallel to the floor.",
+     "Lower slowly under control until your arms are nearly at your sides."
+    ],
+    "cues": [
+     "Lead with the elbows, as if pushing the weights out toward the walls.",
+     "Keep the shoulders down, away from the ears.",
+     "Take 2–3 seconds on the way down."
+    ],
+    "mistakes": [
+     "Swinging the torso to heave the weight up.",
+     "Shrugging so the upper traps take over the lift."
+    ]
+   },
+   "tr": {
+    "title": "Dumbbell Lateral Raise",
+    "about": "Yan omuzu izole eder; daha geniş görünen omuzların ana kasıdır.",
+    "steps": [
+     "Dumbbell'lar yanlarda, avuç içleri içe bakacak şekilde dik dur ya da otur.",
+     "Gövdeni hafifçe öne eğ, dirseklerde hafif bir bükülme bırak.",
+     "Kollar yere yaklaşık paralel olana kadar dumbbell'ları yanlara kaldır.",
+     "Kollar neredeyse yanına gelene kadar kontrollü şekilde indir."
+    ],
+    "cues": [
+     "Hareketi dirseklerle başlat, ağırlığı duvarlara doğru itiyormuş gibi düşün.",
+     "Omuzları kulaklardan uzak, aşağıda tut.",
+     "İnişi 2–3 saniyede yap."
+    ],
+    "mistakes": [
+     "Gövdeyi sallayarak ağırlığı savurmak.",
+     "Omuz silkip işi üst trapeze yaptırmak."
+    ]
+   },
+   "ar": {
+    "title": "Dumbbell Lateral Raise",
+    "about": "يعزل الدالية الجانبية، وهي العضلة الأساسية لكتفين أعرض مظهرًا.",
+    "steps": [
+     "قف أو اجلس منتصبًا والدمبلز بجانبيك وراحتاك للداخل.",
+     "مِل بجذعك قليلًا للأمام مع ثني خفيف في المرفقين.",
+     "ارفع الدمبلز جانبًا حتى تصبح ذراعاك موازيتين للأرض تقريبًا.",
+     "أنزلهما ببطء وتحكم حتى تقتربا من جانبيك."
+    ],
+    "cues": [
+     "ابدأ الحركة بالمرفقين كأنك تدفع الوزن نحو الجدران.",
+     "أبقِ كتفيك منخفضين بعيدًا عن أذنيك.",
+     "خذ 2–3 ثوانٍ في النزول."
+    ],
+    "mistakes": [
+     "أرجحة الجذع لرفع الوزن بالزخم.",
+     "رفع الكتفين نحو الأذنين فتتولى شبه المنحرفة العمل."
+    ]
+   }
+  },
+  "incline-lateral-raise": {
+   "primary": [
+    "delt-side"
+   ],
+   "secondary": [
+    "traps"
+   ],
+   "en": {
+    "title": "Incline Dumbbell Lateral Raise",
+    "about": "Loads the side delt hardest near the bottom, where it is stretched.",
+    "steps": [
+     "Set a bench to a moderate incline and lie on it as cued, braced and stable.",
+     "Let the working arm hang down with a slight elbow bend.",
+     "Raise the dumbbell out and up until the arm is roughly in line with your shoulder.",
+     "Lower slowly back to the deep stretched position."
+    ],
+    "cues": [
+     "Keep the arm moving out to the side, not forward.",
+     "Own the bottom stretch; do not let the weight bounce.",
+     "Stop before the shoulder starts to shrug."
+    ],
+    "mistakes": [
+     "Cutting the bottom of the range short.",
+     "Using a weight so heavy the torso rolls to help."
+    ]
+   },
+   "tr": {
+    "title": "Incline Dumbbell Lateral Raise",
+    "about": "Yan omzu en çok alt kısımda, kasın gerildiği pozisyonda yükler.",
+    "steps": [
+     "Sehpayı orta eğime ayarla ve tarif edildiği gibi sabit şekilde yerleş.",
+     "Çalışan kolu hafif dirsek bükülmesiyle aşağı sarkıt.",
+     "Kol omuz hizasına gelene kadar dumbbell'ı yana ve yukarı kaldır.",
+     "Yavaşça derin gerilme pozisyonuna geri indir."
+    ],
+    "cues": [
+     "Kolu öne değil, yana doğru hareket ettir.",
+     "Alttaki gerilmeyi hisset; ağırlığı sektirme.",
+     "Omuz silkilmeye başlamadan dur."
+    ],
+    "mistakes": [
+     "Hareketin alt kısmını kısa kesmek.",
+     "Gövdeyi yuvarlatıp yardım alacak kadar ağır kilo kullanmak."
+    ]
+   },
+   "ar": {
+    "title": "Incline Dumbbell Lateral Raise",
+    "about": "يحمّل الدالية الجانبية أكثر في الأسفل حيث تكون العضلة ممدودة.",
+    "steps": [
+     "اضبط المقعد على ميل متوسط واستقر عليه بثبات كما هو موضح.",
+     "اترك الذراع العاملة تتدلى مع ثني خفيف في المرفق.",
+     "ارفع الدمبل جانبًا وللأعلى حتى تحاذي الذراع الكتف تقريبًا.",
+     "أنزله ببطء إلى وضع التمدد العميق."
+    ],
+    "cues": [
+     "حرّك الذراع إلى الجانب لا إلى الأمام.",
+     "تحكّم في التمدد السفلي ولا ترتد بالوزن.",
+     "توقف قبل أن يبدأ الكتف بالارتفاع نحو الأذن."
+    ],
+    "mistakes": [
+     "اختصار الجزء السفلي من المدى.",
+     "استخدام وزن ثقيل يجعل الجذع يلتف للمساعدة."
+    ]
+   }
+  },
+  "cable-lateral-raise": {
+   "primary": [
+    "delt-side"
+   ],
+   "secondary": [
+    "traps"
+   ],
+   "en": {
+    "title": "Cable Lateral Raise",
+    "about": "Keeps constant tension on the side delts, especially in the stretched bottom range.",
+    "steps": [
+     "Set the pulley low and grab the handle with the arm across your body.",
+     "Stand tall, brace, and keep a slight bend in the elbow.",
+     "Sweep the arm out and up until it is about shoulder height.",
+     "Return slowly, letting the cable pull the arm across your body."
+    ],
+    "cues": [
+     "Think of moving the elbow out, not lifting the hand.",
+     "Keep the shoulder blade down and stable.",
+     "Pause briefly at the top before a slow lowering."
+    ],
+    "mistakes": [
+     "Leaning away and using the body to move the weight.",
+     "Letting the stack slam between reps and losing tension."
+    ]
+   },
+   "tr": {
+    "title": "Cable Lateral Raise",
+    "about": "Yan omuzda, özellikle gerilmiş alt bölgede sürekli gerilim sağlar.",
+    "steps": [
+     "Makarayı alta ayarla, tutamağı vücudunun önünden çapraz tut.",
+     "Dik dur, karnını sık, dirseği hafif bükülü tut.",
+     "Kolu yana ve yukarı, yaklaşık omuz hizasına kadar süpür.",
+     "Kablonun kolu çapraz çekmesine izin vererek yavaşça geri dön."
+    ],
+    "cues": [
+     "Eli kaldırmayı değil, dirseği dışarı taşımayı düşün.",
+     "Kürek kemiğini aşağıda ve sabit tut.",
+     "Tepede kısa dur, sonra yavaşça indir."
+    ],
+    "mistakes": [
+     "Yana yaslanıp vücutla ağırlığı hareket ettirmek.",
+     "Tekrarlar arasında ağırlığı bırakıp gerilimi kaybetmek."
+    ]
+   },
+   "ar": {
+    "title": "Cable Lateral Raise",
+    "about": "يحافظ على شد مستمر على الدالية الجانبية خصوصًا في وضع التمدد السفلي.",
+    "steps": [
+     "اضبط البكرة منخفضة وأمسك المقبض بذراع تعبر أمام جسمك.",
+     "قف منتصبًا وشدّ بطنك مع ثني خفيف في المرفق.",
+     "حرّك الذراع جانبًا وللأعلى حتى مستوى الكتف تقريبًا.",
+     "عد ببطء واترك الكابل يسحب الذراع أمام جسمك."
+    ],
+    "cues": [
+     "فكّر في دفع المرفق للخارج لا رفع اليد.",
+     "أبقِ لوح الكتف منخفضًا وثابتًا.",
+     "توقف لحظة في الأعلى ثم أنزل ببطء."
+    ],
+    "mistakes": [
+     "الميل بعيدًا واستخدام الجسم لتحريك الوزن.",
+     "ترك الأوزان ترتطم بين التكرارات وفقدان الشد."
+    ]
+   }
+  },
+  "machine-lateral-raise": {
+   "primary": [
+    "delt-side"
+   ],
+   "secondary": [
+    "traps"
+   ],
+   "en": {
+    "title": "Machine Lateral Raise",
+    "about": "A stable lateral raise that lets you push the side delts close to failure safely.",
+    "steps": [
+     "Adjust the seat so your shoulders line up with the machine's pivot.",
+     "Place your arms against the pads with a slight elbow bend.",
+     "Raise the pads out to the sides until your arms reach shoulder height.",
+     "Lower slowly to a full stretch without letting the plates touch."
+    ],
+    "cues": [
+     "Push through the elbows, not the hands.",
+     "Keep your chest against the pad and shoulders down.",
+     "Control the negative for 2–3 seconds."
+    ],
+    "mistakes": [
+     "Setting the seat so the shoulder sits far from the pivot.",
+     "Shrugging the shoulders up at the top."
+    ]
+   },
+   "tr": {
+    "title": "Machine Lateral Raise",
+    "about": "Yan omzu güvenle tükenişe yakın çalıştırmaya imkan veren stabil bir varyasyon.",
+    "steps": [
+     "Koltuğu omuzların makinenin dönme ekseniyle hizalanacağı şekilde ayarla.",
+     "Kollarını hafif dirsek bükülmesiyle pedlere yerleştir.",
+     "Kollar omuz hizasına gelene kadar pedleri yanlara kaldır.",
+     "Plakalar birbirine değmeden tam gerilmeye kadar yavaşça indir."
+    ],
+    "cues": [
+     "Ellerle değil, dirseklerle it.",
+     "Göğsünü pede yasla, omuzları aşağıda tut.",
+     "Negatifi 2–3 saniyede kontrol et."
+    ],
+    "mistakes": [
+     "Koltuğu omuz eksenden uzak kalacak şekilde ayarlamak.",
+     "Tepede omuzları kulaklara doğru silkmek."
+    ]
+   },
+   "ar": {
+    "title": "Machine Lateral Raise",
+    "about": "رفع جانبي ثابت يتيح لك دفع الدالية الجانبية قرب الفشل بأمان.",
+    "steps": [
+     "اضبط المقعد ليحاذي كتفاك محور دوران الجهاز.",
+     "ضع ذراعيك على الوسائد مع ثني خفيف في المرفقين.",
+     "ارفع الوسائد جانبًا حتى تصل ذراعاك لمستوى الكتف.",
+     "أنزل ببطء إلى تمدد كامل دون أن تلامس الأوزان بعضها."
+    ],
+    "cues": [
+     "ادفع بالمرفقين لا باليدين.",
+     "أبقِ صدرك على الوسادة وكتفيك منخفضين.",
+     "تحكم في النزول لمدة 2–3 ثوانٍ."
+    ],
+    "mistakes": [
+     "ضبط المقعد بحيث يبتعد الكتف عن محور الجهاز.",
+     "رفع الكتفين نحو الأذنين في الأعلى."
+    ]
+   }
+  },
+  "y-raise": {
+   "primary": [
+    "delt-side",
+    "traps"
+   ],
+   "secondary": [
+    "delt-rear",
+    "upper-back"
+   ],
+   "en": {
+    "title": "Y Raise",
+    "about": "Trains the side delts and lower traps together, building healthy overhead shoulder control.",
+    "steps": [
+     "Set up (bench, cable or TRX) with arms hanging in front of you.",
+     "Point thumbs up and keep the elbows almost straight.",
+     "Raise your arms up and out into a Y shape, about 30 degrees from your head.",
+     "Lower slowly back to the start."
+    ],
+    "cues": [
+     "Pull the shoulder blades slightly back and down as you lift.",
+     "Use light weight and feel the delts, not the neck.",
+     "Keep the ribs down; do not arch the lower back."
+    ],
+    "mistakes": [
+     "Shrugging the shoulders toward the ears.",
+     "Arching the back to get the arms higher."
+    ]
+   },
+   "tr": {
+    "title": "Y Raise",
+    "about": "Yan omuz ve alt trapezi birlikte çalıştırır, baş üstü omuz kontrolünü geliştirir.",
+    "steps": [
+     "Sehpa, kablo ya da TRX ile kollar önde sarkacak şekilde pozisyon al.",
+     "Başparmaklar yukarı baksın, dirsekler neredeyse düz olsun.",
+     "Kolları yukarı ve dışarı Y şeklinde, başından yaklaşık 30 derece açıyla kaldır.",
+     "Yavaşça başlangıca indir."
+    ],
+    "cues": [
+     "Kaldırırken kürek kemiklerini hafifçe geri ve aşağı çek.",
+     "Hafif ağırlık kullan, boynu değil omzu hisset.",
+     "Kaburgaları aşağıda tut, beli kavislendirme."
+    ],
+    "mistakes": [
+     "Omuzları kulaklara doğru silkmek.",
+     "Kolları yükseğe çıkarmak için beli kavislendirmek."
+    ]
+   },
+   "ar": {
+    "title": "Y Raise",
+    "about": "يدرّب الدالية الجانبية والجزء السفلي من شبه المنحرفة معًا لتحكم أفضل فوق الرأس.",
+    "steps": [
+     "اتخذ وضعك (على مقعد أو كابل أو TRX) والذراعان متدليتان أمامك.",
+     "وجّه الإبهامين للأعلى وأبقِ المرفقين شبه مستقيمين.",
+     "ارفع ذراعيك للأعلى والخارج على شكل حرف Y بزاوية نحو 30 درجة عن الرأس.",
+     "أنزلهما ببطء إلى البداية."
+    ],
+    "cues": [
+     "اسحب لوحي الكتف قليلًا للخلف والأسفل أثناء الرفع.",
+     "استخدم وزنًا خفيفًا واشعر بالكتف لا بالرقبة.",
+     "أبقِ الأضلاع منخفضة ولا تقوّس أسفل الظهر."
+    ],
+    "mistakes": [
+     "رفع الكتفين نحو الأذنين.",
+     "تقويس الظهر لرفع الذراعين أعلى."
+    ]
+   }
+  },
+  "w-raise": {
+   "primary": [
+    "delt-rear"
+   ],
+   "secondary": [
+    "traps",
+    "upper-back"
+   ],
+   "en": {
+    "title": "Incline Dumbbell W Raise",
+    "about": "Targets the rear delts, rotator cuff and mid traps for balanced, healthy shoulders.",
+    "steps": [
+     "Lie chest-down on an incline bench holding light dumbbells.",
+     "Bend the elbows to about 90 degrees, close to your sides.",
+     "Pull the elbows back while rotating the forearms up into a W shape.",
+     "Squeeze briefly, then lower slowly."
+    ],
+    "cues": [
+     "Keep the chest glued to the bench.",
+     "Rotate the hands up and back, elbows staying bent.",
+     "Move slowly with light weight."
+    ],
+    "mistakes": [
+     "Shrugging the shoulders up toward the ears.",
+     "Lifting the chest off the pad to cheat the reps."
+    ]
+   },
+   "tr": {
+    "title": "Incline Dumbbell W Raise",
+    "about": "Arka omuz, rotator cuff ve orta trapezi hedefler; dengeli ve sağlıklı omuzlar sağlar.",
+    "steps": [
+     "Hafif dumbbell'larla eğimli sehpaya göğüs üstü uzan.",
+     "Dirsekleri yaklaşık 90 derece bük, yanlarına yakın tut.",
+     "Dirsekleri geri çekerken ön kolları W şeklinde yukarı döndür.",
+     "Kısa süre sık, sonra yavaşça indir."
+    ],
+    "cues": [
+     "Göğsünü sehpadan ayırma.",
+     "Elleri yukarı ve geri döndür, dirsekler bükülü kalsın.",
+     "Hafif ağırlıkla yavaş çalış."
+    ],
+    "mistakes": [
+     "Omuzları kulaklara doğru silkmek.",
+     "Göğsü pedden kaldırıp hile yapmak."
+    ]
+   },
+   "ar": {
+    "title": "Incline Dumbbell W Raise",
+    "about": "يستهدف الدالية الخلفية والكفة المدورة ووسط شبه المنحرفة لكتفين متوازنين وصحيين.",
+    "steps": [
+     "استلقِ على صدرك فوق مقعد مائل ممسكًا دمبلز خفيفة.",
+     "اثنِ المرفقين نحو 90 درجة وأبقهما قرب جانبيك.",
+     "اسحب المرفقين للخلف مع تدوير الساعدين للأعلى على شكل W.",
+     "اعصر لحظة ثم أنزل ببطء."
+    ],
+    "cues": [
+     "أبقِ صدرك ملتصقًا بالمقعد.",
+     "دوّر اليدين للأعلى والخلف مع بقاء المرفقين مثنيين.",
+     "تحرك ببطء وبوزن خفيف."
+    ],
+    "mistakes": [
+     "رفع الكتفين نحو الأذنين.",
+     "رفع الصدر عن المقعد للغش في التكرارات."
+    ]
+   }
+  },
+  "bus-driver": {
+   "primary": [
+    "delt-front"
+   ],
+   "secondary": [
+    "delt-side",
+    "forearms"
+   ],
+   "en": {
+    "title": "Bus Driver",
+    "about": "Works the front delts isometrically while rotating the shoulder, building endurance and control.",
+    "steps": [
+     "Hold a plate (or dumbbell) with both hands at arm's length in front of you.",
+     "Raise it to about shoulder height with elbows nearly straight.",
+     "Rotate the plate side to side like turning a steering wheel.",
+     "Keep the arms at height for the whole set, then lower slowly."
+    ],
+    "cues": [
+     "Keep the plate at shoulder level without dropping.",
+     "Brace the core so the torso stays still.",
+     "Move the rotation slowly and fully."
+    ],
+    "mistakes": [
+     "Leaning back to hold the weight up.",
+     "Letting the arms sink as fatigue sets in."
+    ]
+   },
+   "tr": {
+    "title": "Bus Driver",
+    "about": "Ön omzu izometrik olarak çalıştırırken omzu döndürür; dayanıklılık ve kontrol kazandırır.",
+    "steps": [
+     "Plakayı (ya da dumbbell'ı) iki elle kollar önde uzanmış şekilde tut.",
+     "Dirsekler neredeyse düz, yaklaşık omuz hizasına kaldır.",
+     "Plakayı direksiyon çevirir gibi sağa sola döndür.",
+     "Set boyunca kolları bu yükseklikte tut, sonra yavaşça indir."
+    ],
+    "cues": [
+     "Plakayı düşürmeden omuz hizasında tut.",
+     "Gövde sabit kalsın diye karnını sık.",
+     "Dönüşü yavaş ve tam yap."
+    ],
+    "mistakes": [
+     "Ağırlığı tutmak için geriye yaslanmak.",
+     "Yoruldukça kolların aşağı düşmesine izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "Bus Driver",
+    "about": "يشغّل الدالية الأمامية بثبات مع تدوير الكتف لبناء التحمل والتحكم.",
+    "steps": [
+     "أمسك قرصًا (أو دمبل) بكلتا اليدين والذراعان ممدودتان أمامك.",
+     "ارفعه لمستوى الكتف تقريبًا والمرفقان شبه مستقيمين.",
+     "دوّر القرص يمينًا ويسارًا كأنك تدير مقود سيارة.",
+     "حافظ على ارتفاع الذراعين طوال المجموعة ثم أنزل ببطء."
+    ],
+    "cues": [
+     "أبقِ القرص بمستوى الكتف دون أن ينخفض.",
+     "شدّ عضلات البطن ليبقى الجذع ثابتًا.",
+     "نفّذ الدوران ببطء وبمدى كامل."
+    ],
+    "mistakes": [
+     "الميل للخلف لحمل الوزن.",
+     "ترك الذراعين تهبطان مع التعب."
+    ]
+   }
+  },
+  "front-raise": {
+   "primary": [
+    "delt-front"
+   ],
+   "secondary": [
+    "delt-side",
+    "chest"
+   ],
+   "en": {
+    "title": "Front Raise",
+    "about": "Isolates the front delts with a simple shoulder-flexion movement.",
+    "steps": [
+     "Hold the weight in front of your thighs with arms nearly straight.",
+     "Brace your core and stand tall.",
+     "Raise the weight forward and up to about eye level.",
+     "Lower slowly back to your thighs."
+    ],
+    "cues": [
+     "Keep the torso still; the arms do the work.",
+     "Lift with the shoulders, not by leaning back.",
+     "Control the lowering for 2–3 seconds."
+    ],
+    "mistakes": [
+     "Swinging the weight up with the hips.",
+     "Lifting far above the head and shrugging."
+    ]
+   },
+   "tr": {
+    "title": "Front Raise",
+    "about": "Basit bir omuz fleksiyonu hareketiyle ön omzu izole eder.",
+    "steps": [
+     "Ağırlığı kollar neredeyse düz, uyluklarının önünde tut.",
+     "Karnını sık ve dik dur.",
+     "Ağırlığı öne ve yukarı, yaklaşık göz hizasına kaldır.",
+     "Yavaşça uyluklarına geri indir."
+    ],
+    "cues": [
+     "Gövdeyi sabit tut, işi kollar yapsın.",
+     "Geriye yaslanarak değil, omuzlarla kaldır.",
+     "İnişi 2–3 saniyede kontrol et."
+    ],
+    "mistakes": [
+     "Kalçayla ağırlığı savurmak.",
+     "Başın çok üstüne kaldırıp omuz silkmek."
+    ]
+   },
+   "ar": {
+    "title": "Front Raise",
+    "about": "يعزل الدالية الأمامية بحركة ثني كتف بسيطة.",
+    "steps": [
+     "أمسك الوزن أمام فخذيك والذراعان شبه مستقيمتين.",
+     "شدّ بطنك وقف منتصبًا.",
+     "ارفع الوزن للأمام وللأعلى حتى مستوى العينين تقريبًا.",
+     "أنزله ببطء إلى فخذيك."
+    ],
+    "cues": [
+     "أبقِ الجذع ثابتًا ودع الذراعين تعملان.",
+     "ارفع بالكتفين لا بالميل للخلف.",
+     "تحكم في النزول لمدة 2–3 ثوانٍ."
+    ],
+    "mistakes": [
+     "أرجحة الوزن بالوركين.",
+     "الرفع فوق الرأس كثيرًا مع رفع الكتفين."
+    ]
+   }
+  },
+  "arnold-rotation": {
+   "primary": [
+    "delt-front",
+    "delt-side"
+   ],
+   "secondary": [
+    "triceps",
+    "traps"
+   ],
+   "en": {
+    "title": "Arnold Rotation",
+    "about": "Rotates the arms through the front-to-side delt range, hitting multiple delt heads.",
+    "steps": [
+     "Hold dumbbells at shoulder height, palms facing you, elbows in front.",
+     "Rotate the elbows out to the sides while turning the palms forward.",
+     "Stop with elbows wide and dumbbells beside your head, without pressing.",
+     "Reverse slowly back to the start position."
+    ],
+    "cues": [
+     "Keep tension on the delts through the whole arc.",
+     "Move the elbows, keeping forearms roughly vertical.",
+     "Use slow, deliberate reps."
+    ],
+    "mistakes": [
+     "Turning it into a fast, jerky press.",
+     "Arching the lower back to move heavier weight."
+    ]
+   },
+   "tr": {
+    "title": "Arnold Rotation",
+    "about": "Kolları ön omuzdan yan omza doğru döndürerek birden fazla omuz başını çalıştırır.",
+    "steps": [
+     "Dumbbell'ları omuz hizasında, avuçlar sana dönük, dirsekler önde tut.",
+     "Avuçları öne çevirirken dirsekleri yanlara aç.",
+     "Dirsekler geniş ve dumbbell'lar başının yanındayken, itmeden dur.",
+     "Yavaşça başlangıç pozisyonuna geri dön."
+    ],
+    "cues": [
+     "Tüm hareket boyunca gerilimi omuzlarda tut.",
+     "Dirsekleri hareket ettir, ön kollar dik kalsın.",
+     "Yavaş ve kontrollü tekrarlar yap."
+    ],
+    "mistakes": [
+     "Hareketi hızlı ve kesik bir press'e çevirmek.",
+     "Daha ağır kaldırmak için beli kavislendirmek."
+    ]
+   },
+   "ar": {
+    "title": "Arnold Rotation",
+    "about": "يدوّر الذراعين من مدى الدالية الأمامية إلى الجانبية فيعمل على أكثر من رأس.",
+    "steps": [
+     "أمسك الدمبلز بمستوى الكتف وراحتاك نحوك والمرفقان أمامك.",
+     "افتح المرفقين للجانبين مع تدوير الراحتين للأمام.",
+     "توقف والمرفقان متباعدان والدمبلز بجانب رأسك دون ضغط للأعلى.",
+     "عد ببطء إلى وضع البداية."
+    ],
+    "cues": [
+     "حافظ على الشد على الكتفين طوال القوس.",
+     "حرّك المرفقين مع بقاء الساعدين عموديين تقريبًا.",
+     "نفّذ تكرارات بطيئة ومتعمدة."
+    ],
+    "mistakes": [
+     "تحويلها إلى ضغط سريع ومتقطع.",
+     "تقويس أسفل الظهر لرفع وزن أثقل."
+    ]
+   }
+  },
+  "front-delt-around-the-world": {
+   "primary": [
+    "delt-front"
+   ],
+   "secondary": [
+    "delt-side",
+    "chest"
+   ],
+   "en": {
+    "title": "Incline Front Delt Around The World",
+    "about": "Takes the front delts through a long overhead arc for a big range of motion.",
+    "steps": [
+     "Lie back on an incline bench holding light dumbbells at your hips.",
+     "Keep the elbows slightly bent and palms facing up.",
+     "Sweep the arms out and up in a wide arc until overhead.",
+     "Reverse the arc slowly back down to your hips."
+    ],
+    "cues": [
+     "Keep the lower back on the bench.",
+     "Move in one smooth, wide circle.",
+     "Use light weight to protect the shoulder joint."
+    ],
+    "mistakes": [
+     "Bending the elbows and turning it into a press.",
+     "Going heavy and losing control overhead."
+    ]
+   },
+   "tr": {
+    "title": "Incline Front Delt Around The World",
+    "about": "Ön omzu uzun bir baş üstü yayla geniş hareket açıklığında çalıştırır.",
+    "steps": [
+     "Hafif dumbbell'lar kalçanın yanında, eğimli sehpaya sırt üstü uzan.",
+     "Dirsekleri hafif bükülü, avuçları yukarı bakar tut.",
+     "Kolları geniş bir yayla dışarı ve yukarı, baş üstüne kadar süpür.",
+     "Yayı yavaşça tersine çevirip kalçaya indir."
+    ],
+    "cues": [
+     "Belini sehpada tut.",
+     "Tek, akıcı ve geniş bir daire çiz.",
+     "Omuz eklemini korumak için hafif ağırlık kullan."
+    ],
+    "mistakes": [
+     "Dirsekleri bükerek hareketi press'e çevirmek.",
+     "Ağır kilo alıp baş üstünde kontrolü kaybetmek."
+    ]
+   },
+   "ar": {
+    "title": "Incline Front Delt Around The World",
+    "about": "يأخذ الدالية الأمامية في قوس طويل فوق الرأس لمدى حركة كبير.",
+    "steps": [
+     "استلقِ على مقعد مائل ممسكًا دمبلز خفيفة بجانب وركيك.",
+     "أبقِ المرفقين مثنيين قليلًا والراحتين للأعلى.",
+     "حرّك الذراعين في قوس واسع للخارج والأعلى حتى فوق الرأس.",
+     "اعكس القوس ببطء نزولًا إلى الوركين."
+    ],
+    "cues": [
+     "أبقِ أسفل ظهرك على المقعد.",
+     "تحرك في دائرة واسعة وانسيابية.",
+     "استخدم وزنًا خفيفًا لحماية مفصل الكتف."
+    ],
+    "mistakes": [
+     "ثني المرفقين وتحويلها إلى ضغط.",
+     "استخدام وزن ثقيل وفقدان التحكم فوق الرأس."
+    ]
+   }
+  },
+  "barbell-overhead-press": {
+   "primary": [
+    "delt-front"
+   ],
+   "secondary": [
+    "triceps",
+    "delt-side",
+    "traps",
+    "abs"
+   ],
+   "en": {
+    "title": "Barbell Shoulder Press",
+    "about": "A heavy compound press that builds front-delt and triceps strength and size.",
+    "steps": [
+     "Grip the bar just outside shoulder width, resting it on the upper chest.",
+     "Brace your core and squeeze your glutes.",
+     "Press the bar up in a straight line, moving your head back slightly.",
+     "Lock out overhead, then lower under control to the upper chest."
+    ],
+    "cues": [
+     "Keep the forearms vertical under the bar.",
+     "Ribs down; avoid excessive back arch.",
+     "Lower to full depth on every rep."
+    ],
+    "mistakes": [
+     "Leaning back hard and turning it into an incline press.",
+     "Flaring the elbows straight out to the sides."
+    ]
+   },
+   "tr": {
+    "title": "Barbell Shoulder Press",
+    "about": "Ön omuz ve triceps gücü ile kütlesi geliştiren ağır bir bileşik press.",
+    "steps": [
+     "Barı omuz genişliğinin biraz dışından kavra, üst göğsüne yasla.",
+     "Karnını sık ve kalçanı kas.",
+     "Başını hafifçe geri alarak barı düz bir çizgide yukarı it.",
+     "Yukarıda kilitle, sonra kontrollü şekilde üst göğse indir."
+    ],
+    "cues": [
+     "Ön kollar barın altında dik olsun.",
+     "Kaburgalar aşağıda; aşırı bel kavsinden kaçın.",
+     "Her tekrarda tam derinliğe in."
+    ],
+    "mistakes": [
+     "Çok geriye yaslanıp hareketi incline press'e çevirmek.",
+     "Dirsekleri tamamen yanlara açmak."
+    ]
+   },
+   "ar": {
+    "title": "Barbell Shoulder Press",
+    "about": "تمرين ضغط مركب ثقيل يبني قوة وحجم الدالية الأمامية والترايسبس.",
+    "steps": [
+     "أمسك البار أوسع قليلًا من الكتفين وأسنده على أعلى الصدر.",
+     "شدّ بطنك واعصر عضلات المؤخرة.",
+     "ادفع البار في خط مستقيم للأعلى مع إرجاع رأسك قليلًا.",
+     "ثبّت الذراعين فوق الرأس ثم أنزل بتحكم إلى أعلى الصدر."
+    ],
+    "cues": [
+     "أبقِ الساعدين عموديين تحت البار.",
+     "الأضلاع للأسفل وتجنب تقويس الظهر المفرط.",
+     "انزل إلى العمق الكامل في كل تكرار."
+    ],
+    "mistakes": [
+     "الميل للخلف بشدة وتحويلها إلى ضغط مائل.",
+     "فتح المرفقين للجانبين تمامًا."
+    ]
+   }
+  },
+  "dumbbell-shoulder-press": {
+   "primary": [
+    "delt-front"
+   ],
+   "secondary": [
+    "triceps",
+    "delt-side"
+   ],
+   "en": {
+    "title": "Dumbbell Shoulder Press",
+    "about": "Builds the front delts with a free path and a deep stretch at the bottom.",
+    "steps": [
+     "Sit on a high-incline bench with dumbbells at shoulder height.",
+     "Plant your feet and keep your back against the pad.",
+     "Press the dumbbells up until your arms are nearly straight.",
+     "Lower slowly until the dumbbells reach shoulder level or slightly below."
+    ],
+    "cues": [
+     "Keep the wrists stacked over the elbows.",
+     "Get a full stretch at the bottom of each rep.",
+     "Press up and slightly in, without clanging the weights."
+    ],
+    "mistakes": [
+     "Stopping halfway down to lift heavier.",
+     "Arching off the bench to finish reps."
+    ]
+   },
+   "tr": {
+    "title": "Dumbbell Shoulder Press",
+    "about": "Serbest hareket yolu ve altta derin gerilmeyle ön omzu geliştirir.",
+    "steps": [
+     "Dumbbell'lar omuz hizasında, yüksek eğimli sehpaya otur.",
+     "Ayaklarını yere bas, sırtını pede yasla.",
+     "Kollar neredeyse düz olana kadar dumbbell'ları yukarı it.",
+     "Dumbbell'lar omuz hizasına ya da biraz altına inene kadar yavaşça indir."
+    ],
+    "cues": [
+     "Bilekler dirseklerin tam üstünde olsun.",
+     "Her tekrarın altında tam gerilmeyi hisset.",
+     "Ağırlıkları çarpıştırmadan yukarı ve hafif içe it."
+    ],
+    "mistakes": [
+     "Daha ağır kaldırmak için yarıda durmak.",
+     "Tekrarları bitirmek için sırtı sehpadan kaldırmak."
+    ]
+   },
+   "ar": {
+    "title": "Dumbbell Shoulder Press",
+    "about": "يبني الدالية الأمامية بمسار حر وتمدد عميق في الأسفل.",
+    "steps": [
+     "اجلس على مقعد بميل مرتفع والدمبلز بمستوى الكتفين.",
+     "ثبّت قدميك وأبقِ ظهرك على المسند.",
+     "ادفع الدمبلز للأعلى حتى تصبح الذراعان شبه مستقيمتين.",
+     "أنزلها ببطء حتى مستوى الكتف أو أسفل منه بقليل."
+    ],
+    "cues": [
+     "أبقِ الرسغين فوق المرفقين مباشرة.",
+     "احصل على تمدد كامل في أسفل كل تكرار.",
+     "ادفع للأعلى وللداخل قليلًا دون أن تصطدم الأوزان."
+    ],
+    "mistakes": [
+     "التوقف في منتصف النزول لرفع وزن أثقل.",
+     "تقويس الظهر عن المقعد لإكمال التكرارات."
+    ]
+   }
+  },
+  "machine-shoulder-press": {
+   "primary": [
+    "delt-front"
+   ],
+   "secondary": [
+    "triceps",
+    "delt-side"
+   ],
+   "en": {
+    "title": "Machine Shoulder Press",
+    "about": "A stable press that lets you train the front delts hard with less balance demand.",
+    "steps": [
+     "Set the seat so the handles start at or just below shoulder height.",
+     "Sit with your back flat against the pad and grip the handles.",
+     "Press up until your arms are nearly locked out.",
+     "Lower slowly to the deepest comfortable stretch."
+    ],
+    "cues": [
+     "Keep the shoulder blades against the pad.",
+     "Control every negative; no bouncing at the bottom.",
+     "Keep elbows slightly in front of the torso."
+    ],
+    "mistakes": [
+     "Setting the seat too high and cutting the range.",
+     "Pushing the head forward and shrugging."
+    ]
+   },
+   "tr": {
+    "title": "Machine Shoulder Press",
+    "about": "Daha az denge gerektiren, ön omzu sert çalıştırmaya imkan veren stabil bir press.",
+    "steps": [
+     "Koltuğu tutamaklar omuz hizasında ya da biraz altında başlayacak şekilde ayarla.",
+     "Sırtını pede yaslayarak otur ve tutamakları kavra.",
+     "Kollar neredeyse kilitlenene kadar yukarı it.",
+     "Rahat olduğun en derin gerilmeye kadar yavaşça indir."
+    ],
+    "cues": [
+     "Kürek kemiklerini pedde tut.",
+     "Her negatifi kontrol et; altta sektirme.",
+     "Dirsekler gövdenin biraz önünde olsun."
+    ],
+    "mistakes": [
+     "Koltuğu çok yüksek ayarlayıp hareket açıklığını kısaltmak.",
+     "Başı öne uzatıp omuz silkmek."
+    ]
+   },
+   "ar": {
+    "title": "Machine Shoulder Press",
+    "about": "ضغط ثابت يتيح تدريب الدالية الأمامية بقوة مع حاجة أقل للتوازن.",
+    "steps": [
+     "اضبط المقعد لتبدأ المقابض عند مستوى الكتف أو أسفله قليلًا.",
+     "اجلس وظهرك مستوٍ على المسند وأمسك المقابض.",
+     "ادفع للأعلى حتى تقترب الذراعان من الاستقامة.",
+     "أنزل ببطء إلى أعمق تمدد مريح."
+    ],
+    "cues": [
+     "أبقِ لوحي الكتف على المسند.",
+     "تحكم في كل نزول دون ارتداد في الأسفل.",
+     "أبقِ المرفقين أمام الجذع قليلًا."
+    ],
+    "mistakes": [
+     "ضبط المقعد مرتفعًا جدًا واختصار المدى.",
+     "دفع الرأس للأمام ورفع الكتفين."
+    ]
+   }
+  },
+  "smith-shoulder-press": {
+   "primary": [
+    "delt-front"
+   ],
+   "secondary": [
+    "triceps",
+    "delt-side"
+   ],
+   "en": {
+    "title": "Smith Machine Shoulder Press",
+    "about": "A guided bar press that lets you overload the front delts safely.",
+    "steps": [
+     "Place a bench under the Smith bar so the bar lowers to your upper chest.",
+     "Grip slightly wider than shoulders and unrack the bar.",
+     "Press up until your arms are nearly straight.",
+     "Lower slowly until the bar is around chin to upper-chest level."
+    ],
+    "cues": [
+     "Keep forearms vertical at the bottom.",
+     "Keep your back on the pad and core braced.",
+     "Use the full range on every rep."
+    ],
+    "mistakes": [
+     "Positioning the bench so the bar hits your face.",
+     "Bouncing out of the bottom."
+    ]
+   },
+   "tr": {
+    "title": "Smith Machine Shoulder Press",
+    "about": "Ön omzu güvenle aşırı yüklemeye imkan veren rayda bir bar press.",
+    "steps": [
+     "Sehpayı bar üst göğsüne inecek şekilde Smith barın altına yerleştir.",
+     "Omuzlardan biraz geniş kavra ve barı kancalardan çıkar.",
+     "Kollar neredeyse düz olana kadar yukarı it.",
+     "Bar çene ile üst göğüs arasına gelene kadar yavaşça indir."
+    ],
+    "cues": [
+     "Altta ön kollar dik olsun.",
+     "Sırtını pedde tut, karnını sık.",
+     "Her tekrarda tam hareket açıklığını kullan."
+    ],
+    "mistakes": [
+     "Sehpayı bar yüzüne çarpacak şekilde koymak.",
+     "Alttan sektirerek kalkmak."
+    ]
+   },
+   "ar": {
+    "title": "Smith Machine Shoulder Press",
+    "about": "ضغط ببار موجّه يتيح تحميل الدالية الأمامية بأمان.",
+    "steps": [
+     "ضع المقعد تحت بار السميث بحيث ينزل البار إلى أعلى صدرك.",
+     "أمسك أوسع قليلًا من الكتفين وحرّر البار.",
+     "ادفع للأعلى حتى تصبح الذراعان شبه مستقيمتين.",
+     "أنزل ببطء حتى يصل البار بين الذقن وأعلى الصدر."
+    ],
+    "cues": [
+     "أبقِ الساعدين عموديين في الأسفل.",
+     "أبقِ ظهرك على المسند وبطنك مشدودًا.",
+     "استخدم المدى الكامل في كل تكرار."
+    ],
+    "mistakes": [
+     "وضع المقعد بحيث يصطدم البار بوجهك.",
+     "الارتداد من أسفل الحركة."
+    ]
+   }
+  },
+  "viking-press": {
+   "primary": [
+    "delt-front"
+   ],
+   "secondary": [
+    "triceps",
+    "delt-side",
+    "traps"
+   ],
+   "en": {
+    "title": "Viking Press",
+    "about": "A neutral-grip overhead press on an arc that is friendly to the shoulder joint.",
+    "steps": [
+     "Stand facing the handles (or landmine end) with them at shoulder height.",
+     "Grip with palms facing each other and brace your core.",
+     "Press up and slightly forward until your arms are nearly straight.",
+     "Lower slowly back to shoulder level."
+    ],
+    "cues": [
+     "Keep elbows tucked slightly forward.",
+     "Stack ribs over hips; do not lean back.",
+     "Control the lowering phase."
+    ],
+    "mistakes": [
+     "Using leg drive to push the weight up.",
+     "Cutting the bottom of the press short."
+    ]
+   },
+   "tr": {
+    "title": "Viking Press",
+    "about": "Omuz eklemine dost, yay çizen nötr tutuşlu bir baş üstü press.",
+    "steps": [
+     "Tutamaklara (ya da landmine ucuna) dönük, omuz hizasında dur.",
+     "Avuçlar birbirine bakacak şekilde kavra, karnını sık.",
+     "Kollar neredeyse düz olana kadar yukarı ve hafif öne it.",
+     "Yavaşça omuz hizasına geri indir."
+    ],
+    "cues": [
+     "Dirsekler hafif önde ve içte olsun.",
+     "Kaburgalar kalçanın üstünde; geriye yaslanma.",
+     "İniş fazını kontrol et."
+    ],
+    "mistakes": [
+     "Ağırlığı bacak gücüyle itmek.",
+     "Press'in alt kısmını kısa kesmek."
+    ]
+   },
+   "ar": {
+    "title": "Viking Press",
+    "about": "ضغط فوق الرأس بقبضة محايدة على مسار قوسي مريح لمفصل الكتف.",
+    "steps": [
+     "قف مواجهًا المقابض (أو طرف اللاندماين) عند مستوى الكتف.",
+     "أمسك والراحتان متقابلتان وشدّ بطنك.",
+     "ادفع للأعلى وللأمام قليلًا حتى تقترب الذراعان من الاستقامة.",
+     "أنزل ببطء إلى مستوى الكتف."
+    ],
+    "cues": [
+     "أبقِ المرفقين للأمام قليلًا.",
+     "الأضلاع فوق الوركين ولا تمل للخلف.",
+     "تحكم في مرحلة النزول."
+    ],
+    "mistakes": [
+     "استخدام دفع الساقين لرفع الوزن.",
+     "اختصار الجزء السفلي من الضغط."
+    ]
+   }
+  },
+  "upright-row": {
+   "primary": [
+    "delt-side"
+   ],
+   "secondary": [
+    "traps",
+    "biceps",
+    "forearms"
+   ],
+   "en": {
+    "title": "Wide Grip Upright Row",
+    "about": "A wide grip shifts the upright row onto the side delts and upper traps.",
+    "steps": [
+     "Grip the bar about 1.5 times shoulder width with an overhand grip.",
+     "Stand tall with the bar at arm's length against your thighs.",
+     "Pull the elbows up and out until they reach shoulder height.",
+     "Lower slowly until the arms are straight."
+    ],
+    "cues": [
+     "Lead with the elbows; hands stay below them.",
+     "Stop at shoulder height to keep the shoulder comfortable.",
+     "Keep the bar close to the body."
+    ],
+    "mistakes": [
+     "Using a narrow grip and pulling the bar to the chin.",
+     "Jerking the weight up with the hips."
+    ]
+   },
+   "tr": {
+    "title": "Wide Grip Upright Row",
+    "about": "Geniş tutuş, upright row'u yan omuz ve üst trapeze yönlendirir.",
+    "steps": [
+     "Barı omuz genişliğinin yaklaşık 1,5 katı, üstten kavra.",
+     "Bar uyluklarında, kollar uzanmış şekilde dik dur.",
+     "Dirsekleri omuz hizasına gelene kadar yukarı ve dışarı çek.",
+     "Kollar düzelene kadar yavaşça indir."
+    ],
+    "cues": [
+     "Dirseklerle öncülük et; eller dirseklerin altında kalsın.",
+     "Omzu rahat tutmak için omuz hizasında dur.",
+     "Barı vücuda yakın tut."
+    ],
+    "mistakes": [
+     "Dar tutuşla barı çeneye kadar çekmek.",
+     "Ağırlığı kalçayla silkerek kaldırmak."
+    ]
+   },
+   "ar": {
+    "title": "Wide Grip Upright Row",
+    "about": "القبضة الواسعة توجّه التجديف العمودي نحو الدالية الجانبية وأعلى شبه المنحرفة.",
+    "steps": [
+     "أمسك البار بقبضة علوية بعرض 1.5 ضعف الكتفين تقريبًا.",
+     "قف منتصبًا والبار على فخذيك والذراعان ممدودتان.",
+     "اسحب المرفقين للأعلى والخارج حتى مستوى الكتف.",
+     "أنزل ببطء حتى تستقيم الذراعان."
+    ],
+    "cues": [
+     "قُد الحركة بالمرفقين وأبقِ اليدين أسفلهما.",
+     "توقف عند مستوى الكتف ليبقى المفصل مرتاحًا.",
+     "أبقِ البار قريبًا من الجسم."
+    ],
+    "mistakes": [
+     "استخدام قبضة ضيقة وسحب البار إلى الذقن.",
+     "رفع الوزن بدفعة من الوركين."
+    ]
+   }
+  },
+  "rear-delt-raise": {
+   "primary": [
+    "delt-rear"
+   ],
+   "secondary": [
+    "upper-back",
+    "traps"
+   ],
+   "en": {
+    "title": "Rear Delt Raise",
+    "about": "Isolates the rear delts, improving shoulder balance, posture and 3D shoulder look.",
+    "steps": [
+     "Hinge forward or lie chest-down on an incline bench, arms hanging.",
+     "Hold the weights with a slight bend in the elbows.",
+     "Sweep the arms out and back until they are in line with your torso.",
+     "Lower slowly back to a full stretch."
+    ],
+    "cues": [
+     "Think of pushing the weights out wide, not squeezing the shoulder blades.",
+     "Keep the neck neutral and the torso still.",
+     "Use light weight and controlled tempo."
+    ],
+    "mistakes": [
+     "Rowing the weight with bent elbows so the back takes over.",
+     "Swinging the torso up to lift heavier."
+    ]
+   },
+   "tr": {
+    "title": "Rear Delt Raise",
+    "about": "Arka omzu izole eder; omuz dengesini, duruşu ve dolgun omuz görünümünü geliştirir.",
+    "steps": [
+     "Öne eğil ya da eğimli sehpaya göğüs üstü uzan, kollar sarksın.",
+     "Ağırlıkları dirseklerde hafif bükülmeyle tut.",
+     "Kollar gövdenle aynı hizaya gelene kadar yana ve geriye süpür.",
+     "Tam gerilmeye kadar yavaşça indir."
+    ],
+    "cues": [
+     "Kürek kemiklerini sıkmayı değil, ağırlıkları geniş dışarı itmeyi düşün.",
+     "Boynu nötr, gövdeyi sabit tut.",
+     "Hafif ağırlık ve kontrollü tempo kullan."
+    ],
+    "mistakes": [
+     "Dirsekleri büküp row yaparak işi sırta yaptırmak.",
+     "Daha ağır kaldırmak için gövdeyi savurmak."
+    ]
+   },
+   "ar": {
+    "title": "Rear Delt Raise",
+    "about": "يعزل الدالية الخلفية لتحسين توازن الكتف والقوام ومظهر الكتف الممتلئ.",
+    "steps": [
+     "انحنِ للأمام أو استلقِ على صدرك فوق مقعد مائل والذراعان متدليتان.",
+     "أمسك الأوزان مع ثني خفيف في المرفقين.",
+     "حرّك الذراعين للخارج والخلف حتى تحاذيا الجذع.",
+     "أنزل ببطء إلى تمدد كامل."
+    ],
+    "cues": [
+     "فكّر في دفع الأوزان للخارج بعيدًا لا في عصر لوحي الكتف.",
+     "أبقِ الرقبة محايدة والجذع ثابتًا.",
+     "استخدم وزنًا خفيفًا وإيقاعًا متحكمًا."
+    ],
+    "mistakes": [
+     "التجديف بمرفقين مثنيين فيتولى الظهر العمل.",
+     "أرجحة الجذع لرفع وزن أثقل."
+    ]
+   }
+  },
+  "rear-delt-cable-fly": {
+   "primary": [
+    "delt-rear"
+   ],
+   "secondary": [
+    "upper-back",
+    "traps"
+   ],
+   "en": {
+    "title": "Cable Rear Delt Fly",
+    "about": "Cables keep the rear delts loaded through the full range, including the stretch.",
+    "steps": [
+     "Set the pulley at or below shoulder height and grab the handle across your body.",
+     "Stand or sit tall with a slight bend in the elbow.",
+     "Sweep the arm out and back until it lines up with your torso.",
+     "Return slowly across the body to a full stretch."
+    ],
+    "cues": [
+     "Keep the arm low and close to the body if cued.",
+     "Move from the shoulder; the elbow angle stays fixed.",
+     "Keep the shoulder blade quiet rather than retracting hard."
+    ],
+    "mistakes": [
+     "Turning it into a row by bending the elbow.",
+     "Rotating the torso to help the weight move."
+    ]
+   },
+   "tr": {
+    "title": "Cable Rear Delt Fly",
+    "about": "Kablo, gerilme dahil tüm hareket boyunca arka omzu yüklü tutar.",
+    "steps": [
+     "Makarayı omuz hizasında ya da altında ayarla, tutamağı çapraz tut.",
+     "Dirsek hafif bükülü, dik dur ya da otur.",
+     "Kolu gövdeyle aynı hizaya gelene kadar yana ve geriye süpür.",
+     "Vücudun önünden yavaşça tam gerilmeye dön."
+    ],
+    "cues": [
+     "Belirtilmişse kolu alçakta ve vücuda yakın tut.",
+     "Hareketi omuzdan yap; dirsek açısı sabit kalsın.",
+     "Kürek kemiğini sert sıkmak yerine sakin tut."
+    ],
+    "mistakes": [
+     "Dirseği büküp hareketi row'a çevirmek.",
+     "Ağırlığı taşımak için gövdeyi döndürmek."
+    ]
+   },
+   "ar": {
+    "title": "Cable Rear Delt Fly",
+    "about": "الكابل يبقي الدالية الخلفية محمّلة طوال المدى بما فيه التمدد.",
+    "steps": [
+     "اضبط البكرة عند مستوى الكتف أو أسفله وأمسك المقبض عبر جسمك.",
+     "قف أو اجلس منتصبًا مع ثني خفيف في المرفق.",
+     "حرّك الذراع للخارج والخلف حتى تحاذي الجذع.",
+     "عد ببطء عبر الجسم إلى تمدد كامل."
+    ],
+    "cues": [
+     "أبقِ الذراع منخفضة وقريبة من الجسم إن طُلب ذلك.",
+     "تحرك من الكتف وزاوية المرفق ثابتة.",
+     "أبقِ لوح الكتف هادئًا بدل عصره بقوة."
+    ],
+    "mistakes": [
+     "تحويلها إلى تجديف بثني المرفق.",
+     "تدوير الجذع لمساعدة الوزن على التحرك."
+    ]
+   }
+  },
+  "rear-delt-around-the-world": {
+   "primary": [
+    "delt-rear"
+   ],
+   "secondary": [
+    "delt-side",
+    "traps",
+    "upper-back"
+   ],
+   "en": {
+    "title": "Rear Delt Around The World",
+    "about": "Combines a rear-delt sweep with shoulder rotation for a long range of motion.",
+    "steps": [
+     "Lie chest-down on an incline bench with light dumbbells hanging.",
+     "Raise the arms out to the sides with elbows slightly bent.",
+     "Continue the arc forward and overhead, or rotate as cued.",
+     "Reverse the path slowly back to the start."
+    ],
+    "cues": [
+     "Keep the chest on the pad throughout.",
+     "Use a slow, smooth circle with light weight.",
+     "Feel the back of the shoulder, not the neck."
+    ],
+    "mistakes": [
+     "Using too much weight and losing the arc.",
+     "Shrugging at the top of the circle."
+    ]
+   },
+   "tr": {
+    "title": "Rear Delt Around The World",
+    "about": "Arka omuz süpürme hareketini omuz rotasyonuyla birleştirir; uzun bir hareket açıklığı sunar.",
+    "steps": [
+     "Hafif dumbbell'lar sarkarken eğimli sehpaya göğüs üstü uzan.",
+     "Dirsekler hafif bükülü, kolları yanlara kaldır.",
+     "Yayı öne ve baş üstüne doğru sürdür ya da tarif edildiği gibi döndür.",
+     "Aynı yoldan yavaşça başlangıca dön."
+    ],
+    "cues": [
+     "Göğsünü sürekli pedde tut.",
+     "Hafif ağırlıkla yavaş ve akıcı bir daire çiz.",
+     "Boynu değil, omzun arkasını hisset."
+    ],
+    "mistakes": [
+     "Çok ağır kilo kullanıp yayı bozmak.",
+     "Dairenin tepesinde omuz silkmek."
+    ]
+   },
+   "ar": {
+    "title": "Rear Delt Around The World",
+    "about": "يجمع حركة الدالية الخلفية مع تدوير الكتف لمدى حركة طويل.",
+    "steps": [
+     "استلقِ على صدرك فوق مقعد مائل والدمبلز الخفيفة متدلية.",
+     "ارفع الذراعين جانبًا والمرفقان مثنيان قليلًا.",
+     "أكمل القوس للأمام وفوق الرأس أو دوّر كما هو موضح.",
+     "اعكس المسار ببطء إلى البداية."
+    ],
+    "cues": [
+     "أبقِ صدرك على المسند طوال الوقت.",
+     "ارسم دائرة بطيئة وانسيابية بوزن خفيف.",
+     "اشعر بخلف الكتف لا بالرقبة."
+    ],
+    "mistakes": [
+     "استخدام وزن ثقيل وفقدان شكل القوس.",
+     "رفع الكتفين في أعلى الدائرة."
+    ]
+   }
+  },
+  "landmine-rear-delt-raise": {
+   "primary": [
+    "delt-rear"
+   ],
+   "secondary": [
+    "upper-back",
+    "traps"
+   ],
+   "en": {
+    "title": "Landmine Rear Delt Raise",
+    "about": "The landmine arc gives the rear delt a strong stretch and steady resistance.",
+    "steps": [
+     "Stand side-on to a landmine, hinge forward, and grab the bar end.",
+     "Let the arm hang across your body with a slight elbow bend.",
+     "Sweep the arm out and up until it lines up with your torso.",
+     "Lower slowly to the stretched position."
+    ],
+    "cues": [
+     "Hand position (low, mid, high) changes the line of pull; stay consistent.",
+     "Keep the torso still and the neck neutral.",
+     "Lead with the back of the shoulder."
+    ],
+    "mistakes": [
+     "Rotating the torso open to lift the bar.",
+     "Bending the elbow and rowing the weight."
+    ]
+   },
+   "tr": {
+    "title": "Landmine Rear Delt Raise",
+    "about": "Landmine yayı arka omza güçlü bir gerilme ve dengeli direnç verir.",
+    "steps": [
+     "Landmine'a yan dur, öne eğil ve barın ucunu kavra.",
+     "Kol hafif bükülü dirsekle vücudunun önünden çapraz sarksın.",
+     "Kolu gövdeyle aynı hizaya gelene kadar dışarı ve yukarı süpür.",
+     "Gerilmiş pozisyona yavaşça indir."
+    ],
+    "cues": [
+     "El pozisyonu (alt, orta, üst) çekiş açısını değiştirir; sabit kal.",
+     "Gövdeyi sabit, boynu nötr tut.",
+     "Hareketi omzun arkasıyla başlat."
+    ],
+    "mistakes": [
+     "Barı kaldırmak için gövdeyi açarak döndürmek.",
+     "Dirseği büküp ağırlığı row'lamak."
+    ]
+   },
+   "ar": {
+    "title": "Landmine Rear Delt Raise",
+    "about": "قوس اللاندماين يمنح الدالية الخلفية تمددًا قويًا ومقاومة ثابتة.",
+    "steps": [
+     "قف جانبيًا للاندماين وانحنِ للأمام وأمسك طرف البار.",
+     "اترك الذراع تتدلى عبر جسمك مع ثني خفيف في المرفق.",
+     "حرّك الذراع للخارج والأعلى حتى تحاذي الجذع.",
+     "أنزل ببطء إلى وضع التمدد."
+    ],
+    "cues": [
+     "موضع اليد (منخفض، متوسط، مرتفع) يغيّر خط السحب؛ حافظ على ثباته.",
+     "أبقِ الجذع ثابتًا والرقبة محايدة.",
+     "ابدأ الحركة بخلف الكتف."
+    ],
+    "mistakes": [
+     "تدوير الجذع للخارج لرفع البار.",
+     "ثني المرفق وتجديف الوزن."
+    ]
+   }
+  },
+  "behind-back-barbell-raise": {
+   "primary": [
+    "delt-rear"
+   ],
+   "secondary": [
+    "lats",
+    "traps",
+    "triceps"
+   ],
+   "en": {
+    "title": "Behind The Back Barbell Raise",
+    "about": "Trains the rear delts through shoulder extension with the bar held behind you.",
+    "steps": [
+     "Hold a barbell behind your hips with an overhand, shoulder-width grip.",
+     "Stand tall with arms straight and chest up.",
+     "Raise the bar back and away from your body using your shoulders.",
+     "Lower slowly until it lightly touches your hips."
+    ],
+    "cues": [
+     "Keep the arms straight and the torso upright.",
+     "Move a short, strict range with no momentum.",
+     "Squeeze the back of the shoulders at the top."
+    ],
+    "mistakes": [
+     "Leaning forward to make the bar travel higher.",
+     "Bending the elbows and shrugging."
+    ]
+   },
+   "tr": {
+    "title": "Behind The Back Barbell Raise",
+    "about": "Bar arkada tutulurken omuz ekstansiyonuyla arka omzu çalıştırır.",
+    "steps": [
+     "Barı kalçanın arkasında, omuz genişliğinde üstten kavra.",
+     "Kollar düz, göğüs yukarıda dik dur.",
+     "Omuzlarını kullanarak barı geriye ve vücudundan uzağa kaldır.",
+     "Kalçana hafifçe değene kadar yavaşça indir."
+    ],
+    "cues": [
+     "Kollar düz, gövde dik kalsın.",
+     "Kısa ve katı bir aralıkta, momentumsuz çalış.",
+     "Tepede omuzların arkasını sık."
+    ],
+    "mistakes": [
+     "Barı daha yükseğe çıkarmak için öne eğilmek.",
+     "Dirsekleri büküp omuz silkmek."
+    ]
+   },
+   "ar": {
+    "title": "Behind The Back Barbell Raise",
+    "about": "يدرّب الدالية الخلفية بمدّ الكتف مع حمل البار خلفك.",
+    "steps": [
+     "أمسك البار خلف وركيك بقبضة علوية بعرض الكتفين.",
+     "قف منتصبًا والذراعان مستقيمتان والصدر مرفوع.",
+     "ارفع البار للخلف بعيدًا عن جسمك باستخدام كتفيك.",
+     "أنزله ببطء حتى يلامس وركيك برفق."
+    ],
+    "cues": [
+     "أبقِ الذراعين مستقيمتين والجذع منتصبًا.",
+     "تحرك بمدى قصير وصارم دون زخم.",
+     "اعصر خلف الكتفين في الأعلى."
+    ],
+    "mistakes": [
+     "الميل للأمام لجعل البار يرتفع أكثر.",
+     "ثني المرفقين ورفع الكتفين."
+    ]
+   }
+  },
+  "machine-rear-delt-fly": {
+   "primary": [
+    "delt-rear"
+   ],
+   "secondary": [
+    "upper-back",
+    "traps"
+   ],
+   "en": {
+    "title": "Machine Rear Delt Fly",
+    "about": "A stable reverse pec-deck that makes it easy to load the rear delts hard.",
+    "steps": [
+     "Set the handles to the rear-delt position and the seat so arms are at shoulder height.",
+     "Sit facing the pad and grab the handles with a slight elbow bend.",
+     "Sweep the arms out and back until they line up with your torso.",
+     "Return slowly until you feel a stretch in the back of the shoulders."
+    ],
+    "cues": [
+     "Push out wide with the hands rather than pinching the shoulder blades.",
+     "Keep your chest on the pad.",
+     "Control the stretch on every rep."
+    ],
+    "mistakes": [
+     "Letting the weights slam and losing tension.",
+     "Leaning back off the pad to swing the weight."
+    ]
+   },
+   "tr": {
+    "title": "Machine Rear Delt Fly",
+    "about": "Arka omzu kolayca sert yüklemeyi sağlayan stabil bir reverse pec-deck.",
+    "steps": [
+     "Tutamakları arka omuz pozisyonuna, koltuğu kollar omuz hizasında olacak şekilde ayarla.",
+     "Pede dönük otur, tutamakları hafif bükülü dirseklerle kavra.",
+     "Kolları gövdeyle aynı hizaya gelene kadar dışarı ve geriye süpür.",
+     "Omuz arkasında gerilme hissedene kadar yavaşça geri dön."
+    ],
+    "cues": [
+     "Kürek kemiklerini sıkıştırmak yerine elleri geniş dışarı it.",
+     "Göğsünü pedde tut.",
+     "Her tekrarda gerilmeyi kontrol et."
+    ],
+    "mistakes": [
+     "Ağırlıkları çarptırıp gerilimi kaybetmek.",
+     "Ağırlığı savurmak için peden geriye yaslanmak."
+    ]
+   },
+   "ar": {
+    "title": "Machine Rear Delt Fly",
+    "about": "جهاز فراشة عكسي ثابت يسهّل تحميل الدالية الخلفية بقوة.",
+    "steps": [
+     "اضبط المقابض على وضع الدالية الخلفية والمقعد لتكون الذراعان بمستوى الكتف.",
+     "اجلس مواجهًا المسند وأمسك المقابض مع ثني خفيف في المرفقين.",
+     "حرّك الذراعين للخارج والخلف حتى تحاذيا الجذع.",
+     "عد ببطء حتى تشعر بتمدد في خلف الكتفين."
+    ],
+    "cues": [
+     "ادفع باليدين للخارج بدل ضم لوحي الكتف.",
+     "أبقِ صدرك على المسند.",
+     "تحكم في التمدد في كل تكرار."
+    ],
+    "mistakes": [
+     "ترك الأوزان ترتطم وفقدان الشد.",
+     "الميل للخلف عن المسند لأرجحة الوزن."
+    ]
+   }
+  },
+  "rear-delt-row": {
+   "primary": [
+    "delt-rear"
+   ],
+   "secondary": [
+    "upper-back",
+    "traps",
+    "biceps"
+   ],
+   "en": {
+    "title": "Rear Delt Row",
+    "about": "A wide-elbow row that shifts the work from the lats onto the rear delts.",
+    "steps": [
+     "Set up with a cable, machine or TRX, arms straight in front at chest height.",
+     "Use an overhand grip and raise the elbows out to about shoulder level.",
+     "Pull the elbows back and wide until they pass your torso.",
+     "Extend the arms slowly back to a full stretch."
+    ],
+    "cues": [
+     "Keep the elbows high and flared, about 70–90 degrees.",
+     "Pull with the back of the shoulders, not the biceps.",
+     "Pause briefly at the end of each pull."
+    ],
+    "mistakes": [
+     "Dropping the elbows so it becomes a lat row.",
+     "Leaning back and using body momentum."
+    ]
+   },
+   "tr": {
+    "title": "Rear Delt Row",
+    "about": "Geniş dirsekli bir row; işi latlardan arka omza kaydırır.",
+    "steps": [
+     "Kablo, makine ya da TRX ile kollar önde göğüs hizasında uzanmış başla.",
+     "Üstten kavra ve dirsekleri yaklaşık omuz hizasına kaldır.",
+     "Dirsekleri gövdeni geçene kadar geri ve geniş çek.",
+     "Kolları yavaşça tam gerilmeye kadar uzat."
+    ],
+    "cues": [
+     "Dirsekler yüksek ve açık olsun, yaklaşık 70–90 derece.",
+     "Biceps'le değil, omzun arkasıyla çek.",
+     "Her çekişin sonunda kısa dur."
+    ],
+    "mistakes": [
+     "Dirsekleri düşürüp hareketi lat row'a çevirmek.",
+     "Geriye yaslanıp vücut momentumu kullanmak."
+    ]
+   },
+   "ar": {
+    "title": "Rear Delt Row",
+    "about": "تجديف بمرفقين متباعدين ينقل العمل من الظهر العريض إلى الدالية الخلفية.",
+    "steps": [
+     "اتخذ وضعك بكابل أو جهاز أو TRX والذراعان ممدودتان أمامك بمستوى الصدر.",
+     "استخدم قبضة علوية وارفع المرفقين إلى مستوى الكتف تقريبًا.",
+     "اسحب المرفقين للخلف وللخارج حتى يتجاوزا الجذع.",
+     "مدّ الذراعين ببطء إلى تمدد كامل."
+    ],
+    "cues": [
+     "أبقِ المرفقين مرتفعين ومفتوحين بنحو 70–90 درجة.",
+     "اسحب بخلف الكتفين لا بالبايسبس.",
+     "توقف لحظة في نهاية كل سحبة."
+    ],
+    "mistakes": [
+     "إنزال المرفقين فتتحول إلى تجديف للظهر العريض.",
+     "الميل للخلف واستخدام زخم الجسم."
+    ]
+   }
+  },
+  "face-pull": {
+   "primary": [
+    "delt-rear"
+   ],
+   "secondary": [
+    "traps",
+    "upper-back",
+    "biceps"
+   ],
+   "en": {
+    "title": "Cable Face Pull",
+    "about": "Builds the rear delts and external rotators, great for shoulder health and posture.",
+    "steps": [
+     "Set a rope at upper-chest to face height and grip it with thumbs toward you.",
+     "Step back until the arms are straight and the cable is taut.",
+     "Pull the rope toward your face, spreading the ends apart.",
+     "Finish with hands beside your ears, then return slowly."
+    ],
+    "cues": [
+     "Keep elbows high, at or above the hands' line.",
+     "Rotate the hands back at the end of the pull.",
+     "Stay upright; do not lean back."
+    ],
+    "mistakes": [
+     "Pulling to the chest with low elbows.",
+     "Using too much weight and yanking with the lower back."
+    ]
+   },
+   "tr": {
+    "title": "Cable Face Pull",
+    "about": "Arka omuz ve dış rotatorleri geliştirir; omuz sağlığı ve duruş için harikadır.",
+    "steps": [
+     "Halatı üst göğüs-yüz hizasına ayarla, başparmaklar sana bakacak şekilde kavra.",
+     "Kollar düz ve kablo gergin olana kadar geri adım at.",
+     "Uçları ayırarak halatı yüzüne doğru çek.",
+     "Eller kulaklarının yanında bitir, sonra yavaşça geri dön."
+    ],
+    "cues": [
+     "Dirsekleri yüksek, ellerle aynı hizada ya da üstünde tut.",
+     "Çekişin sonunda elleri geriye döndür.",
+     "Dik kal; geriye yaslanma."
+    ],
+    "mistakes": [
+     "Alçak dirseklerle göğse doğru çekmek.",
+     "Çok ağır kilo alıp belle asılmak."
+    ]
+   },
+   "ar": {
+    "title": "Cable Face Pull",
+    "about": "يبني الدالية الخلفية والعضلات الدوّارة الخارجية، ممتاز لصحة الكتف والقوام.",
+    "steps": [
+     "اضبط الحبل بين أعلى الصدر والوجه وأمسكه والإبهامان نحوك.",
+     "تراجع حتى تستقيم الذراعان ويشتد الكابل.",
+     "اسحب الحبل نحو وجهك مع فصل طرفيه.",
+     "أنهِ واليدان بجانب أذنيك ثم عد ببطء."
+    ],
+    "cues": [
+     "أبقِ المرفقين مرتفعين بمستوى اليدين أو أعلى.",
+     "دوّر اليدين للخلف في نهاية السحب.",
+     "ابقَ منتصبًا ولا تمل للخلف."
+    ],
+    "mistakes": [
+     "السحب نحو الصدر بمرفقين منخفضين.",
+     "استخدام وزن ثقيل والشد بأسفل الظهر."
+    ]
+   }
+  },
+  "cable-rotation": {
+   "primary": [
+    "obliques"
+   ],
+   "secondary": [
+    "abs",
+    "delt-front"
+   ],
+   "en": {
+    "title": "Cable Rotation",
+    "about": "Trains the obliques and core to rotate powerfully and resist twisting.",
+    "steps": [
+     "Set the cable at mid-height and stand side-on with feet shoulder-width.",
+     "Hold the handle with both hands, arms extended in front of your chest.",
+     "Rotate your torso away from the stack, keeping arms long.",
+     "Return slowly, then switch sides after the set."
+    ],
+    "cues": [
+     "Turn from the ribcage while hips stay mostly square.",
+     "Keep the core braced throughout.",
+     "Control the return; do not let the cable yank you."
+    ],
+    "mistakes": [
+     "Pulling with the arms instead of rotating the torso.",
+     "Twisting fast and loose through the lower back."
+    ]
+   },
+   "tr": {
+    "title": "Cable Rotation",
+    "about": "Oblikleri ve core'u güçlü dönmeye ve dönmeye direnmeye çalıştırır.",
+    "steps": [
+     "Kabloyu orta yüksekliğe ayarla, ayaklar omuz genişliğinde yan dur.",
+     "Tutamağı iki elle, kollar göğsün önünde uzanmış tut.",
+     "Kollar uzun kalarak gövdeni makineden uzağa döndür.",
+     "Yavaşça geri dön, set bitince taraf değiştir."
+    ],
+    "cues": [
+     "Kalça büyük ölçüde sabitken göğüs kafesinden dön.",
+     "Karnını sürekli sıkı tut.",
+     "Dönüşü kontrol et; kablonun seni çekmesine izin verme."
+    ],
+    "mistakes": [
+     "Gövdeyi döndürmek yerine kollarla çekmek.",
+     "Belden hızlı ve gevşek şekilde burkulmak."
+    ]
+   },
+   "ar": {
+    "title": "Cable Rotation",
+    "about": "يدرّب العضلات المائلة والجذع على الدوران بقوة ومقاومة الالتواء.",
+    "steps": [
+     "اضبط الكابل على ارتفاع متوسط وقف جانبيًا والقدمان بعرض الكتفين.",
+     "أمسك المقبض بكلتا اليدين والذراعان ممدودتان أمام صدرك.",
+     "دوّر جذعك بعيدًا عن الأوزان مع بقاء الذراعين ممدودتين.",
+     "عد ببطء ثم بدّل الجانب بعد المجموعة."
+    ],
+    "cues": [
+     "دُر من القفص الصدري مع بقاء الوركين ثابتين غالبًا.",
+     "أبقِ بطنك مشدودًا طوال الحركة.",
+     "تحكم في العودة ولا تدع الكابل يسحبك."
+    ],
+    "mistakes": [
+     "السحب بالذراعين بدل تدوير الجذع.",
+     "الالتواء بسرعة وارتخاء من أسفل الظهر."
+    ]
+   }
+  },
+  "shrug": {
+   "primary": [
+    "traps"
+   ],
+   "secondary": [
+    "forearms",
+    "upper-back"
+   ],
+   "en": {
+    "title": "Shrug",
+    "about": "Directly builds the upper traps by elevating the shoulder blades under load.",
+    "steps": [
+     "Hold the weight at arm's length with a firm grip.",
+     "Stand or sit tall and let the shoulders drop for a full stretch.",
+     "Shrug the shoulders straight up toward your ears.",
+     "Pause briefly, then lower slowly to the stretched position."
+    ],
+    "cues": [
+     "Lift the shoulders up, not forward or in circles.",
+     "Keep the arms straight; do not bend the elbows.",
+     "Use straps if grip limits the set."
+    ],
+    "mistakes": [
+     "Bouncing short reps without a full stretch at the bottom.",
+     "Rolling the shoulders, which adds nothing but strain."
+    ]
+   },
+   "tr": {
+    "title": "Shrug",
+    "about": "Yük altında kürek kemiklerini yükselterek üst trapezi doğrudan geliştirir.",
+    "steps": [
+     "Ağırlığı sıkı bir tutuşla, kollar uzanmış şekilde tut.",
+     "Dik dur ya da otur, tam gerilme için omuzları aşağı bırak.",
+     "Omuzlarını dümdüz kulaklarına doğru kaldır.",
+     "Kısa dur, sonra gerilmiş pozisyona yavaşça indir."
+    ],
+    "cues": [
+     "Omuzları öne ya da daire çizerek değil, düz yukarı kaldır.",
+     "Kollar düz kalsın; dirsekleri bükme.",
+     "Kavrama yetmiyorsa kayış kullan."
+    ],
+    "mistakes": [
+     "Altta tam gerilme olmadan kısa, sektirmeli tekrarlar yapmak.",
+     "Omuzları döndürmek; fayda sağlamaz, sadece zorlar."
+    ]
+   },
+   "ar": {
+    "title": "Shrug",
+    "about": "يبني الجزء العلوي من شبه المنحرفة مباشرة برفع لوحي الكتف تحت الحمل.",
+    "steps": [
+     "أمسك الوزن والذراعان ممدودتان بقبضة قوية.",
+     "قف أو اجلس منتصبًا واترك الكتفين ينخفضان لتمدد كامل.",
+     "ارفع كتفيك مباشرة نحو أذنيك.",
+     "توقف لحظة ثم أنزل ببطء إلى وضع التمدد."
+    ],
+    "cues": [
+     "ارفع الكتفين للأعلى لا للأمام ولا بشكل دائري.",
+     "أبقِ الذراعين مستقيمتين ولا تثنِ المرفقين.",
+     "استخدم الأحزمة إن كانت القبضة تحدّ من المجموعة."
+    ],
+    "mistakes": [
+     "تكرارات قصيرة مرتدة دون تمدد كامل في الأسفل.",
+     "تدوير الكتفين، ولا فائدة منه سوى الإجهاد."
+    ]
+   }
+  },
+  "incline-shrug": {
+   "primary": [
+    "traps"
+   ],
+   "secondary": [
+    "upper-back",
+    "delt-rear",
+    "forearms"
+   ],
+   "en": {
+    "title": "Incline Dumbbell Shrug",
+    "about": "Leaning forward shrugs the blades up and back, hitting upper and mid traps.",
+    "steps": [
+     "Lie chest-down on an incline bench, or hinge forward, holding dumbbells.",
+     "Let the arms hang straight and the shoulder blades spread apart.",
+     "Shrug the shoulders up and back toward your ears.",
+     "Hold briefly, then lower slowly to a full stretch."
+    ],
+    "cues": [
+     "Think 'shoulders to ears' along the line of your torso.",
+     "Keep the arms long; no rowing with the elbows.",
+     "Pause at the top of each rep."
+    ],
+    "mistakes": [
+     "Turning the shrug into a row.",
+     "Lifting the chest off the bench to gain range."
+    ]
+   },
+   "tr": {
+    "title": "Incline Dumbbell Shrug",
+    "about": "Öne eğilmek kürek kemiklerini yukarı ve geri kaldırır; üst ve orta trapezi çalıştırır.",
+    "steps": [
+     "Dumbbell'larla eğimli sehpaya göğüs üstü uzan ya da öne eğil.",
+     "Kollar düz sarksın, kürek kemikleri birbirinden açılsın.",
+     "Omuzlarını kulaklarına doğru yukarı ve geriye kaldır.",
+     "Kısa tut, sonra tam gerilmeye kadar yavaşça indir."
+    ],
+    "cues": [
+     "Gövde çizgisinde 'omuzlar kulaklara' diye düşün.",
+     "Kollar uzun kalsın; dirseklerle row yapma.",
+     "Her tekrarın tepesinde dur."
+    ],
+    "mistakes": [
+     "Shrug'ı row'a çevirmek.",
+     "Daha fazla açıklık için göğsü sehpadan kaldırmak."
+    ]
+   },
+   "ar": {
+    "title": "Incline Dumbbell Shrug",
+    "about": "الميل للأمام يرفع لوحي الكتف للأعلى والخلف فيعمل على أعلى ووسط شبه المنحرفة.",
+    "steps": [
+     "استلقِ على صدرك فوق مقعد مائل أو انحنِ للأمام ممسكًا الدمبلز.",
+     "اترك الذراعين تتدليان مستقيمتين ولوحي الكتف متباعدين.",
+     "ارفع كتفيك للأعلى والخلف نحو أذنيك.",
+     "اثبت لحظة ثم أنزل ببطء إلى تمدد كامل."
+    ],
+    "cues": [
+     "فكّر \"الكتفان إلى الأذنين\" على امتداد خط الجذع.",
+     "أبقِ الذراعين ممدودتين ولا تجدّف بالمرفقين.",
+     "توقف في أعلى كل تكرار."
+    ],
+    "mistakes": [
+     "تحويل الحركة إلى تجديف.",
+     "رفع الصدر عن المقعد لزيادة المدى."
+    ]
+   }
+  },
+  "mid-trap-shrug": {
+   "primary": [
+    "traps",
+    "upper-back"
+   ],
+   "secondary": [
+    "delt-rear",
+    "forearms"
+   ],
+   "en": {
+    "title": "Bent Over Mid Trap Shrug (Kelso Shrug)",
+    "about": "Retracts the shoulder blades from a bent position to target the mid traps and rhomboids.",
+    "steps": [
+     "Hinge forward to about 45 degrees or more, holding the weight with straight arms.",
+     "Let the shoulder blades spread wide at the bottom.",
+     "Squeeze the shoulder blades back together without bending the elbows.",
+     "Hold one second, then let them spread slowly."
+    ],
+    "cues": [
+     "Move only the shoulder blades; the arms are just hooks.",
+     "Keep a neutral spine and a stable hinge.",
+     "Use a full protraction-to-retraction range."
+    ],
+    "mistakes": [
+     "Bending the elbows and turning it into a row.",
+     "Rounding the lower back while hinged."
+    ]
+   },
+   "tr": {
+    "title": "Bent Over Mid Trap Shrug (Kelso Shrug)",
+    "about": "Eğik pozisyonda kürek kemiklerini geriye çekerek orta trapez ve rhomboidleri hedefler.",
+    "steps": [
+     "Ağırlığı düz kollarla tutarak en az 45 dereceye kadar öne eğil.",
+     "Altta kürek kemiklerinin geniş açılmasına izin ver.",
+     "Dirsekleri bükmeden kürek kemiklerini geriye doğru birleştir.",
+     "Bir saniye tut, sonra yavaşça açılmalarına izin ver."
+    ],
+    "cues": [
+     "Sadece kürek kemiklerini hareket ettir; kollar sadece kanca.",
+     "Nötr omurga ve sabit bir menteşe pozisyonu koru.",
+     "Tam açılmadan tam sıkışmaya kadar çalış."
+    ],
+    "mistakes": [
+     "Dirsekleri büküp hareketi row'a çevirmek.",
+     "Eğikken beli yuvarlamak."
+    ]
+   },
+   "ar": {
+    "title": "Bent Over Mid Trap Shrug (Kelso Shrug)",
+    "about": "يضم لوحي الكتف من وضع الانحناء لاستهداف وسط شبه المنحرفة والمعينيات.",
+    "steps": [
+     "انحنِ للأمام بزاوية 45 درجة أو أكثر ممسكًا الوزن بذراعين مستقيمتين.",
+     "اترك لوحي الكتف يتباعدان في الأسفل.",
+     "اضمم لوحي الكتف للخلف دون ثني المرفقين.",
+     "اثبت ثانية ثم اتركهما يتباعدان ببطء."
+    ],
+    "cues": [
+     "حرّك لوحي الكتف فقط والذراعان مجرد خطافين.",
+     "حافظ على عمود فقري محايد وانحناء ثابت.",
+     "استخدم المدى الكامل من التباعد إلى الضم."
+    ],
+    "mistakes": [
+     "ثني المرفقين وتحويلها إلى تجديف.",
+     "تقوّس أسفل الظهر أثناء الانحناء."
+    ]
+   }
+  },
+  "high-elbow-shrug": {
+   "primary": [
+    "upper-back",
+    "traps"
+   ],
+   "secondary": [
+    "delt-rear",
+    "biceps"
+   ],
+   "en": {
+    "title": "High Elbow Shrug",
+    "about": "A tiny row with high elbows that isolates the mid and upper traps.",
+    "steps": [
+     "Grip the handles with arms extended and elbows flared out high.",
+     "Let the shoulder blades reach forward for a full stretch.",
+     "Pull the shoulder blades back and slightly up, barely bending the elbows.",
+     "Pause, then let the blades travel forward slowly."
+    ],
+    "cues": [
+     "Keep the elbows at roughly shoulder height.",
+     "Drive the movement from the shoulder blades, not the arms.",
+     "Hold the squeeze for a second."
+    ],
+    "mistakes": [
+     "Pulling a full row with the arms.",
+     "Shrugging straight up into the neck only."
+    ]
+   },
+   "tr": {
+    "title": "High Elbow Shrug",
+    "about": "Yüksek dirsekli küçük bir row; orta ve üst trapezi izole eder.",
+    "steps": [
+     "Kollar uzanmış, dirsekler yüksekte ve açık şekilde tutamakları kavra.",
+     "Tam gerilme için kürek kemiklerinin öne uzanmasına izin ver.",
+     "Dirsekleri çok az bükerek kürek kemiklerini geri ve hafif yukarı çek.",
+     "Dur, sonra kürek kemiklerini yavaşça öne bırak."
+    ],
+    "cues": [
+     "Dirsekleri yaklaşık omuz hizasında tut.",
+     "Hareketi kollarla değil, kürek kemikleriyle yap.",
+     "Sıkışmayı bir saniye tut."
+    ],
+    "mistakes": [
+     "Kollarla tam bir row çekmek.",
+     "Sadece boyna doğru dümdüz silkmek."
+    ]
+   },
+   "ar": {
+    "title": "High Elbow Shrug",
+    "about": "تجديف صغير بمرفقين مرتفعين يعزل وسط وأعلى شبه المنحرفة.",
+    "steps": [
+     "أمسك المقابض والذراعان ممدودتان والمرفقان مرتفعان ومفتوحان.",
+     "اترك لوحي الكتف يمتدان للأمام لتمدد كامل.",
+     "اسحب لوحي الكتف للخلف وللأعلى قليلًا مع ثني بسيط جدًا للمرفقين.",
+     "توقف ثم اترك اللوحين يتقدمان ببطء."
+    ],
+    "cues": [
+     "أبقِ المرفقين بمستوى الكتف تقريبًا.",
+     "قُد الحركة بلوحي الكتف لا بالذراعين.",
+     "اثبت على الانقباض ثانية."
+    ],
+    "mistakes": [
+     "سحب تجديف كامل بالذراعين.",
+     "الرفع مباشرة نحو الرقبة فقط."
+    ]
+   }
+  },
+  "hanging-scapular-shrug": {
+   "primary": [
+    "lats",
+    "traps"
+   ],
+   "secondary": [
+    "forearms",
+    "upper-back"
+   ],
+   "en": {
+    "title": "Pull-Up Shrug (Scapular Pull-Up)",
+    "about": "Depresses the shoulder blades from a hang, training the lower traps and lats.",
+    "steps": [
+     "Hang from a pull-up bar with straight arms, adding weight if cued.",
+     "Let the shoulders rise up toward your ears for a full stretch.",
+     "Pull the shoulders down and away from your ears, lifting your body slightly.",
+     "Lower slowly back to a full dead hang."
+    ],
+    "cues": [
+     "Keep the elbows straight the whole time.",
+     "Think 'shoulders into back pockets'.",
+     "Pause at the top of each rep."
+    ],
+    "mistakes": [
+     "Bending the arms and doing a partial pull-up.",
+     "Swinging or kipping to move."
+    ]
+   },
+   "tr": {
+    "title": "Pull-Up Shrug (Scapular Pull-Up)",
+    "about": "Asılı pozisyonda kürek kemiklerini aşağı çekerek alt trapez ve latları çalıştırır.",
+    "steps": [
+     "Barfiks barında kollar düz asıl; belirtilmişse ağırlık ekle.",
+     "Tam gerilme için omuzların kulaklara doğru yükselmesine izin ver.",
+     "Omuzları kulaklardan uzağa, aşağı çekerek vücudunu hafifçe kaldır.",
+     "Yavaşça tam asılı pozisyona geri in."
+    ],
+    "cues": [
+     "Dirsekler her zaman düz kalsın.",
+     "'Omuzlar arka ceplere' diye düşün.",
+     "Her tekrarın tepesinde dur."
+    ],
+    "mistakes": [
+     "Kolları büküp yarım barfiks yapmak.",
+     "Sallanarak ya da kip yaparak hareket etmek."
+    ]
+   },
+   "ar": {
+    "title": "Pull-Up Shrug (Scapular Pull-Up)",
+    "about": "يخفض لوحي الكتف من وضع التعلق ليدرّب أسفل شبه المنحرفة والظهر العريض.",
+    "steps": [
+     "تعلّق بعقلة والذراعان مستقيمتان، وأضف وزنًا إن طُلب.",
+     "اترك الكتفين يرتفعان نحو الأذنين لتمدد كامل.",
+     "اسحب الكتفين للأسفل بعيدًا عن الأذنين فيرتفع جسمك قليلًا.",
+     "انزل ببطء إلى تعلق كامل."
+    ],
+    "cues": [
+     "أبقِ المرفقين مستقيمين طوال الوقت.",
+     "فكّر \"الكتفان إلى الجيوب الخلفية\".",
+     "توقف في أعلى كل تكرار."
+    ],
+    "mistakes": [
+     "ثني الذراعين وأداء عقلة جزئية.",
+     "التأرجح أو استخدام الزخم للتحرك."
+    ]
+   }
+  },
+  "pulldown-scapular-shrug": {
+   "primary": [
+    "lats",
+    "traps"
+   ],
+   "secondary": [
+    "upper-back"
+   ],
+   "en": {
+    "title": "Lat Pulldown Shrug",
+    "about": "Isolates scapular depression on the cable, hitting the lower traps and lats.",
+    "steps": [
+     "Sit at a pulldown station and grip the bar or V-bar with straight arms.",
+     "Let the weight pull your shoulders up toward your ears.",
+     "Pull the shoulder blades down without bending the elbows.",
+     "Hold briefly, then let the shoulders rise slowly."
+    ],
+    "cues": [
+     "Keep the arms straight; only the shoulders move.",
+     "Sit tall with a slight lean back at most.",
+     "Use a full up-and-down shoulder range."
+    ],
+    "mistakes": [
+     "Bending the elbows into a mini pulldown.",
+     "Leaning back to move more weight."
+    ]
+   },
+   "tr": {
+    "title": "Lat Pulldown Shrug",
+    "about": "Kabloda kürek kemiği depresyonunu izole eder; alt trapez ve latları çalıştırır.",
+    "steps": [
+     "Pulldown istasyonuna otur, barı ya da V-bar'ı düz kollarla kavra.",
+     "Ağırlığın omuzlarını kulaklara doğru çekmesine izin ver.",
+     "Dirsekleri bükmeden kürek kemiklerini aşağı çek.",
+     "Kısa tut, sonra omuzların yavaşça yükselmesine izin ver."
+    ],
+    "cues": [
+     "Kollar düz; sadece omuzlar hareket eder.",
+     "Dik otur, en fazla hafif geriye yaslan.",
+     "Omuzların tam yukarı-aşağı açıklığını kullan."
+    ],
+    "mistakes": [
+     "Dirsekleri büküp mini pulldown yapmak.",
+     "Daha fazla kilo için geriye yaslanmak."
+    ]
+   },
+   "ar": {
+    "title": "Lat Pulldown Shrug",
+    "about": "يعزل خفض لوح الكتف على الكابل فيعمل على أسفل شبه المنحرفة والظهر العريض.",
+    "steps": [
+     "اجلس في جهاز السحب وأمسك البار أو مقبض V بذراعين مستقيمتين.",
+     "اترك الوزن يسحب كتفيك نحو أذنيك.",
+     "اسحب لوحي الكتف للأسفل دون ثني المرفقين.",
+     "اثبت لحظة ثم اترك الكتفين يرتفعان ببطء."
+    ],
+    "cues": [
+     "الذراعان مستقيمتان والكتفان فقط يتحركان.",
+     "اجلس منتصبًا مع ميل خفيف للخلف كحد أقصى.",
+     "استخدم المدى الكامل لحركة الكتف للأعلى والأسفل."
+    ],
+    "mistakes": [
+     "ثني المرفقين وأداء سحب مصغّر.",
+     "الميل للخلف لتحريك وزن أكبر."
+    ]
+   }
+  },
+  "wrist-curl": {
+   "primary": [
+    "forearms"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Wrist Curl",
+    "about": "Isolates the forearm flexors for bigger forearms and a stronger grip.",
+    "steps": [
+     "Sit and rest your forearms on your thighs or a bench, palms up.",
+     "Let the wrists extend back so the weight rolls toward your fingertips.",
+     "Curl the wrists up as high as possible, squeezing the forearms.",
+     "Lower slowly to a full stretch."
+    ],
+    "cues": [
+     "Keep the forearms pinned; only the wrists move.",
+     "Use the full range, including the finger roll at the bottom.",
+     "Higher reps (12–20) work well here."
+    ],
+    "mistakes": [
+     "Lifting the elbows or forearms to cheat the weight up.",
+     "Doing short, bouncy reps."
+    ]
+   },
+   "tr": {
+    "title": "Wrist Curl",
+    "about": "Ön kol fleksörlerini izole eder; daha büyük ön kol ve daha güçlü kavrama sağlar.",
+    "steps": [
+     "Otur, ön kollarını avuçlar yukarı bakacak şekilde uyluklarına ya da sehpaya koy.",
+     "Ağırlık parmak uçlarına yuvarlanacak şekilde bilekleri geriye bırak.",
+     "Bilekleri olabildiğince yukarı kıvır, ön kolları sık.",
+     "Tam gerilmeye kadar yavaşça indir."
+    ],
+    "cues": [
+     "Ön kollar sabit kalsın; sadece bilekler hareket eder.",
+     "Alttaki parmak yuvarlaması dahil tam açıklığı kullan.",
+     "Yüksek tekrarlar (12–20) burada iyi çalışır."
+    ],
+    "mistakes": [
+     "Ağırlığı kaldırmak için dirsekleri ya da ön kolları kaldırmak.",
+     "Kısa, sektirmeli tekrarlar yapmak."
+    ]
+   },
+   "ar": {
+    "title": "Wrist Curl",
+    "about": "يعزل العضلات القابضة للساعد لساعدين أكبر وقبضة أقوى.",
+    "steps": [
+     "اجلس وضع ساعديك على فخذيك أو مقعد والراحتان للأعلى.",
+     "اترك الرسغين ينثنيان للخلف ليتدحرج الوزن نحو أطراف الأصابع.",
+     "اثنِ الرسغين للأعلى قدر الإمكان واعصر الساعدين.",
+     "أنزل ببطء إلى تمدد كامل."
+    ],
+    "cues": [
+     "أبقِ الساعدين ثابتين والرسغان فقط يتحركان.",
+     "استخدم المدى الكامل بما فيه تدحرج الأصابع في الأسفل.",
+     "التكرارات العالية (12–20) مناسبة هنا."
+    ],
+    "mistakes": [
+     "رفع المرفقين أو الساعدين للغش في الوزن.",
+     "تكرارات قصيرة ومرتدة."
+    ]
+   }
+  },
+  "wrist-extension": {
+   "primary": [
+    "forearms"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Wrist Extension",
+    "about": "Strengthens the forearm extensors, balancing grip work and protecting the elbows.",
+    "steps": [
+     "Rest your forearms on your thighs or a bench, palms facing down.",
+     "Let the hands drop down for a stretch on top of the forearm.",
+     "Raise the backs of the hands up as far as possible.",
+     "Lower slowly to the stretched position."
+    ],
+    "cues": [
+     "Keep the forearms still; move only at the wrist.",
+     "Use lighter weight than wrist curls.",
+     "Pause briefly at the top."
+    ],
+    "mistakes": [
+     "Lifting the forearms off the support.",
+     "Dropping the weight quickly on the way down."
+    ]
+   },
+   "tr": {
+    "title": "Wrist Extension",
+    "about": "Ön kol ekstansörlerini güçlendirir; kavrama çalışmasını dengeler ve dirsekleri korur.",
+    "steps": [
+     "Ön kollarını avuçlar aşağı bakacak şekilde uyluklarına ya da sehpaya koy.",
+     "Ön kolun üstünde gerilme için ellerin aşağı düşmesine izin ver.",
+     "El sırtlarını olabildiğince yukarı kaldır.",
+     "Gerilmiş pozisyona yavaşça indir."
+    ],
+    "cues": [
+     "Ön kollar sabit; sadece bilekten hareket et.",
+     "Wrist curl'den daha hafif ağırlık kullan.",
+     "Tepede kısa dur."
+    ],
+    "mistakes": [
+     "Ön kolları destekten kaldırmak.",
+     "İnişte ağırlığı hızla bırakmak."
+    ]
+   },
+   "ar": {
+    "title": "Wrist Extension",
+    "about": "يقوّي العضلات الباسطة للساعد ليوازن تمارين القبضة ويحمي المرفقين.",
+    "steps": [
+     "ضع ساعديك على فخذيك أو مقعد والراحتان للأسفل.",
+     "اترك اليدين تنخفضان لتشعر بتمدد أعلى الساعد.",
+     "ارفع ظهر اليدين للأعلى قدر الإمكان.",
+     "أنزل ببطء إلى وضع التمدد."
+    ],
+    "cues": [
+     "أبقِ الساعدين ثابتين وتحرك من الرسغ فقط.",
+     "استخدم وزنًا أخف من تمرين ثني الرسغ.",
+     "توقف لحظة في الأعلى."
+    ],
+    "mistakes": [
+     "رفع الساعدين عن الدعامة.",
+     "إسقاط الوزن بسرعة أثناء النزول."
+    ]
+   }
+  },
+  "reverse-curl": {
+   "primary": [
+    "forearms"
+   ],
+   "secondary": [
+    "biceps"
+   ],
+   "en": {
+    "title": "Reverse Grip Curl",
+    "about": "An overhand curl that emphasizes the brachioradialis and forearm extensors.",
+    "steps": [
+     "Grip the bar overhand at about shoulder width, arms straight.",
+     "Pin your elbows to your sides.",
+     "Curl the bar up until the forearms are near vertical.",
+     "Lower slowly until the arms are fully straight."
+    ],
+    "cues": [
+     "Keep the wrists neutral, not bent back.",
+     "Elbows stay still; no swinging.",
+     "Control the full lowering phase."
+    ],
+    "mistakes": [
+     "Letting the wrists collapse under the bar.",
+     "Using the hips to swing the bar up."
+    ]
+   },
+   "tr": {
+    "title": "Reverse Grip Curl",
+    "about": "Üstten tutuşlu bir curl; brachioradialis ve ön kol ekstansörlerini vurgular.",
+    "steps": [
+     "Barı omuz genişliğinde üstten kavra, kollar düz.",
+     "Dirseklerini yanlarına sabitle.",
+     "Ön kollar neredeyse dik olana kadar barı kıvır.",
+     "Kollar tamamen düzelene kadar yavaşça indir."
+    ],
+    "cues": [
+     "Bilekler nötr kalsın, geriye bükülmesin.",
+     "Dirsekler sabit; sallanma yok.",
+     "Tüm iniş fazını kontrol et."
+    ],
+    "mistakes": [
+     "Bileklerin barın altında çökmesine izin vermek.",
+     "Barı kalçayla savurarak kaldırmak."
+    ]
+   },
+   "ar": {
+    "title": "Reverse Grip Curl",
+    "about": "ثني بقبضة علوية يركّز على العضلة العضدية الكعبرية وباسطات الساعد.",
+    "steps": [
+     "أمسك البار بقبضة علوية بعرض الكتفين والذراعان مستقيمتان.",
+     "ثبّت مرفقيك بجانبيك.",
+     "اثنِ البار للأعلى حتى يقترب الساعدان من الوضع العمودي.",
+     "أنزل ببطء حتى تستقيم الذراعان تمامًا."
+    ],
+    "cues": [
+     "أبقِ الرسغين محايدين لا مثنيين للخلف.",
+     "المرفقان ثابتان ودون أرجحة.",
+     "تحكم في مرحلة النزول كاملة."
+    ],
+    "mistakes": [
+     "ترك الرسغين ينهاران تحت البار.",
+     "استخدام الوركين لأرجحة البار."
+    ]
+   }
+  },
+  "forearm-drag-curl": {
+   "primary": [
+    "forearms"
+   ],
+   "secondary": [
+    "biceps"
+   ],
+   "en": {
+    "title": "Forearm Drag Curl",
+    "about": "Dragging the weight up the body with an overhand or neutral grip hammers the brachioradialis.",
+    "steps": [
+     "Hold the weight against your thighs with an overhand or neutral grip.",
+     "Pull the elbows back as you drag the weight up along your body.",
+     "Curl until the weight reaches your lower chest.",
+     "Slide it back down slowly, keeping contact with your body."
+    ],
+    "cues": [
+     "Elbows travel back, not forward.",
+     "Keep the weight close to your torso the whole time.",
+     "Keep wrists firm and straight."
+    ],
+    "mistakes": [
+     "Letting the elbows drift forward like a normal curl.",
+     "Leaning back to heave the weight."
+    ]
+   },
+   "tr": {
+    "title": "Forearm Drag Curl",
+    "about": "Ağırlığı üstten ya da nötr tutuşla vücut boyunca sürüklemek brachioradialis'i sert çalıştırır.",
+    "steps": [
+     "Ağırlığı üstten ya da nötr tutuşla uyluklarına yaslı tut.",
+     "Ağırlığı vücudun boyunca sürüklerken dirsekleri geriye çek.",
+     "Ağırlık alt göğsüne gelene kadar kıvır.",
+     "Vücuduna temas ettirerek yavaşça aşağı kaydır."
+    ],
+    "cues": [
+     "Dirsekler öne değil, geriye gider.",
+     "Ağırlığı sürekli gövdene yakın tut.",
+     "Bilekleri sıkı ve düz tut."
+    ],
+    "mistakes": [
+     "Dirseklerin normal curl gibi öne kaymasına izin vermek.",
+     "Ağırlığı kaldırmak için geriye yaslanmak."
+    ]
+   },
+   "ar": {
+    "title": "Forearm Drag Curl",
+    "about": "سحب الوزن على امتداد الجسم بقبضة علوية أو محايدة يشغّل العضلة العضدية الكعبرية بقوة.",
+    "steps": [
+     "أمسك الوزن على فخذيك بقبضة علوية أو محايدة.",
+     "اسحب المرفقين للخلف بينما تجر الوزن للأعلى على جسمك.",
+     "اثنِ حتى يصل الوزن إلى أسفل صدرك.",
+     "أنزله ببطء مع إبقائه ملامسًا لجسمك."
+    ],
+    "cues": [
+     "المرفقان يتحركان للخلف لا للأمام.",
+     "أبقِ الوزن قريبًا من جذعك طوال الوقت.",
+     "أبقِ الرسغين ثابتين ومستقيمين."
+    ],
+    "mistakes": [
+     "ترك المرفقين يتقدمان كتمرين ثني عادي.",
+     "الميل للخلف لرفع الوزن بالقوة."
+    ]
+   }
+  },
+  "forearm-pronation": {
+   "primary": [
+    "forearms"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Forearm Pronation",
+    "about": "Trains the pronator muscles that turn the palm down, supporting elbow health and grip.",
+    "steps": [
+     "Rest your forearm on a bench or thigh with the hand past the edge.",
+     "Hold the dumbbell end or strap with the palm facing up.",
+     "Rotate the forearm to turn the palm down.",
+     "Rotate back slowly to the start."
+    ],
+    "cues": [
+     "Keep the elbow still; the twist comes from the forearm.",
+     "Choke up or down on the handle to adjust difficulty.",
+     "Move slowly through the full rotation."
+    ],
+    "mistakes": [
+     "Moving the whole arm or shoulder to rotate.",
+     "Letting the weight flop over quickly."
+    ]
+   },
+   "tr": {
+    "title": "Forearm Pronation",
+    "about": "Avucu aşağı çeviren pronator kaslarını çalıştırır; dirsek sağlığını ve kavramayı destekler.",
+    "steps": [
+     "Ön kolunu, el kenardan taşacak şekilde sehpaya ya da uyluğuna koy.",
+     "Dumbbell ucunu ya da kayışı avuç yukarı bakacak şekilde tut.",
+     "Ön kolu döndürerek avucu aşağı çevir.",
+     "Yavaşça başlangıca geri döndür."
+    ],
+    "cues": [
+     "Dirsek sabit; dönüş ön koldan gelir.",
+     "Zorluğu ayarlamak için tutamağı yukarıdan ya da aşağıdan tut.",
+     "Tam dönüş boyunca yavaş hareket et."
+    ],
+    "mistakes": [
+     "Döndürmek için tüm kolu ya da omzu hareket ettirmek.",
+     "Ağırlığın hızla devrilmesine izin vermek."
+    ]
+   },
+   "ar": {
+    "title": "Forearm Pronation",
+    "about": "يدرّب العضلات الكابّة التي تقلب الراحة للأسفل لدعم صحة المرفق والقبضة.",
+    "steps": [
+     "ضع ساعدك على مقعد أو فخذ واليد خارج الحافة.",
+     "أمسك طرف الدمبل أو الحزام والراحة للأعلى.",
+     "دوّر الساعد لتقلب الراحة للأسفل.",
+     "دوّر ببطء عائدًا إلى البداية."
+    ],
+    "cues": [
+     "أبقِ المرفق ثابتًا والدوران من الساعد.",
+     "قرّب يدك أو أبعدها عن الثقل لضبط الصعوبة.",
+     "تحرك ببطء خلال الدوران الكامل."
+    ],
+    "mistakes": [
+     "تحريك الذراع كلها أو الكتف للدوران.",
+     "ترك الوزن ينقلب بسرعة."
+    ]
+   }
+  },
+  "forearm-supination": {
+   "primary": [
+    "forearms"
+   ],
+   "secondary": [
+    "biceps"
+   ],
+   "en": {
+    "title": "Forearm Supination",
+    "about": "Trains the supinator and biceps' twisting role, turning the palm up against resistance.",
+    "steps": [
+     "Rest your forearm on a bench or thigh with the hand past the edge.",
+     "Hold the dumbbell end or strap with the palm facing down.",
+     "Rotate the forearm to turn the palm up.",
+     "Rotate back slowly to the start."
+    ],
+    "cues": [
+     "Keep the elbow fixed at your side or on the support.",
+     "Use a light load and a full twist.",
+     "Control both directions."
+    ],
+    "mistakes": [
+     "Swinging the arm to finish the rotation.",
+     "Going too heavy and shortening the range."
+    ]
+   },
+   "tr": {
+    "title": "Forearm Supination",
+    "about": "Dirence karşı avucu yukarı çevirerek supinator kasını ve biceps'in döndürme görevini çalıştırır.",
+    "steps": [
+     "Ön kolunu, el kenardan taşacak şekilde sehpaya ya da uyluğuna koy.",
+     "Dumbbell ucunu ya da kayışı avuç aşağı bakacak şekilde tut.",
+     "Ön kolu döndürerek avucu yukarı çevir.",
+     "Yavaşça başlangıca geri döndür."
+    ],
+    "cues": [
+     "Dirseği yanında ya da destek üzerinde sabit tut.",
+     "Hafif yük ve tam dönüş kullan.",
+     "İki yönü de kontrol et."
+    ],
+    "mistakes": [
+     "Dönüşü tamamlamak için kolu savurmak.",
+     "Çok ağır alıp açıklığı kısaltmak."
+    ]
+   },
+   "ar": {
+    "title": "Forearm Supination",
+    "about": "يدرّب العضلة الباطحة ودور البايسبس في التدوير بقلب الراحة للأعلى ضد مقاومة.",
+    "steps": [
+     "ضع ساعدك على مقعد أو فخذ واليد خارج الحافة.",
+     "أمسك طرف الدمبل أو الحزام والراحة للأسفل.",
+     "دوّر الساعد لتقلب الراحة للأعلى.",
+     "دوّر ببطء عائدًا إلى البداية."
+    ],
+    "cues": [
+     "أبقِ المرفق ثابتًا بجانبك أو على الدعامة.",
+     "استخدم حملًا خفيفًا ودورانًا كاملًا.",
+     "تحكم في الاتجاهين."
+    ],
+    "mistakes": [
+     "أرجحة الذراع لإكمال الدوران.",
+     "استخدام وزن ثقيل جدًا واختصار المدى."
+    ]
+   }
+  },
+  "finger-flexor-curl": {
+   "primary": [
+    "forearms"
+   ],
+   "secondary": [],
+   "en": {
+    "title": "Finger Curl",
+    "about": "Isolates the finger flexors to build crushing grip strength and forearm size.",
+    "steps": [
+     "Hold the handles or weight with palms up and wrists supported.",
+     "Open the fingers and let the weight roll down to the fingertips.",
+     "Close the fingers into a tight fist, curling the weight back up.",
+     "Open the hand slowly and repeat."
+    ],
+    "cues": [
+     "Keep the wrist still; only the fingers move.",
+     "Squeeze hard at the top.",
+     "Use a full open-to-closed range."
+    ],
+    "mistakes": [
+     "Turning it into a wrist curl.",
+     "Using a load so heavy the weight slips from the fingers."
+    ]
+   },
+   "tr": {
+    "title": "Finger Curl",
+    "about": "Parmak fleksörlerini izole ederek sıkma kavrama gücü ve ön kol hacmi kazandırır.",
+    "steps": [
+     "Tutamakları ya da ağırlığı avuçlar yukarı, bilekler destekli tut.",
+     "Parmakları aç, ağırlığın parmak uçlarına yuvarlanmasına izin ver.",
+     "Parmakları sıkı bir yumruğa kapatarak ağırlığı geri kıvır.",
+     "Eli yavaşça aç ve tekrarla."
+    ],
+    "cues": [
+     "Bilek sabit; sadece parmaklar hareket eder.",
+     "Tepede sertçe sık.",
+     "Tam açıktan tam kapalıya kadar çalış."
+    ],
+    "mistakes": [
+     "Hareketi wrist curl'e çevirmek.",
+     "Parmaklardan kayacak kadar ağır yük kullanmak."
+    ]
+   },
+   "ar": {
+    "title": "Finger Curl",
+    "about": "يعزل قابضات الأصابع لبناء قوة قبضة ساحقة وحجم الساعد.",
+    "steps": [
+     "أمسك المقابض أو الوزن والراحتان للأعلى والرسغان مدعومان.",
+     "افتح الأصابع واترك الوزن يتدحرج إلى أطرافها.",
+     "أغلق الأصابع في قبضة محكمة لترفع الوزن مجددًا.",
+     "افتح اليد ببطء وكرر."
+    ],
+    "cues": [
+     "أبقِ الرسغ ثابتًا والأصابع فقط تتحرك.",
+     "اعصر بقوة في الأعلى.",
+     "استخدم المدى الكامل من الفتح إلى الإغلاق."
+    ],
+    "mistakes": [
+     "تحويلها إلى تمرين ثني الرسغ.",
+     "استخدام حمل ثقيل ينزلق من الأصابع."
+    ]
+   }
+  },
+  "dead-hang": {
+   "primary": [
+    "forearms"
+   ],
+   "secondary": [
+    "lats",
+    "traps",
+    "abs"
+   ],
+   "en": {
+    "title": "Dead Hang",
+    "about": "Builds grip endurance and decompresses the shoulders through a long overhead hang.",
+    "steps": [
+     "Grip a pull-up bar with hands about shoulder-width apart.",
+     "Lift your feet and hang with arms fully straight.",
+     "Keep a light brace in your core and breathe steadily.",
+     "Hold for the target time, then step down under control."
+    ],
+    "cues": [
+     "Squeeze the bar hard throughout.",
+     "Let the shoulders stretch but avoid total slack.",
+     "Stay still; no swinging."
+    ],
+    "mistakes": [
+     "Bending the arms to make the hang easier.",
+     "Holding your breath during the hang."
+    ]
+   },
+   "tr": {
+    "title": "Dead Hang",
+    "about": "Uzun baş üstü asılmayla kavrama dayanıklılığı kazandırır ve omuzları rahatlatır.",
+    "steps": [
+     "Barfiks barını eller yaklaşık omuz genişliğinde olacak şekilde kavra.",
+     "Ayaklarını kaldır ve kollar tamamen düz şekilde asıl.",
+     "Karnını hafifçe sık ve düzenli nefes al.",
+     "Hedef süre boyunca tut, sonra kontrollü in."
+    ],
+    "cues": [
+     "Barı baştan sona sıkıca kavra.",
+     "Omuzlar gerilsin ama tamamen gevşeme.",
+     "Sabit kal; sallanma."
+    ],
+    "mistakes": [
+     "Asılmayı kolaylaştırmak için kolları bükmek.",
+     "Asılırken nefesi tutmak."
+    ]
+   },
+   "ar": {
+    "title": "Dead Hang",
+    "about": "يبني تحمّل القبضة ويريح الكتفين عبر تعلق طويل فوق الرأس.",
+    "steps": [
+     "أمسك العقلة واليدان بعرض الكتفين تقريبًا.",
+     "ارفع قدميك وتعلّق والذراعان مستقيمتان تمامًا.",
+     "شدّ بطنك قليلًا وتنفس بانتظام.",
+     "اثبت للمدة المستهدفة ثم انزل بتحكم."
+    ],
+    "cues": [
+     "اعصر البار بقوة طوال الوقت.",
+     "دع الكتفين يتمددان دون ارتخاء تام.",
+     "ابقَ ثابتًا دون تأرجح."
+    ],
+    "mistakes": [
+     "ثني الذراعين لتسهيل التعلق.",
+     "حبس النفس أثناء التعلق."
+    ]
+   }
+  }
+ },
+ "map": {
+  "1-arm-dumbbell-kelso-shrug": "mid-trap-shrug",
+  "angled-dumbbell-drags-garage-program": "upright-row",
+  "arnold-rotations-garage-program": "arnold-rotation",
+  "arnold-rotations-slight-incline": "arnold-rotation",
+  "around-the-world-rear-delt": "rear-delt-around-the-world",
+  "barbell-bent-over-mid-trap-shrugs": "mid-trap-shrug",
+  "barbell-rear-delt-raise": "rear-delt-raise",
+  "barbell-reverse-grip-drag-curl": "forearm-drag-curl",
+  "barbell-row-mechanical-drop-end-form-copy": "shrug",
+  "barbell-shoulder-press-45-degree": "barbell-overhead-press",
+  "barbell-shrug-drops-garage-program": "shrug",
+  "barbell-shrugs-wide-grip-garage-2-0": "shrug",
+  "barbell-wrist-curls-ryan_humis514743": "wrist-curl",
+  "barbell-wrist-extensions-ryan_humis514743": "wrist-extension",
+  "behind-the-back-barbell-raise-clusterfuck-copy": "cable-rotation",
+  "bent-dumbbell-shrugs": "incline-shrug",
+  "bent-over-dumbbell-rear-delt-raise-garage-2-0": "rear-delt-raise",
+  "bent-over-rear-delts-partials-full-rom-garage-program": "rear-delt-raise",
+  "bent-single-arm-supinated-rear-delt-raise": "rear-delt-raise",
+  "bus-driver-incline": "bus-driver",
+  "bus-drivers-super-slow-garage-program": "bus-driver",
+  "cable-face-pull-ryan_humis514743": "face-pull",
+  "cable-rear-delt-close-to-body-copy": "rear-delt-raise",
+  "cable-side-lateral-single-arm-behind-the-back": "cable-lateral-raise",
+  "cable-side-laterals-45-degree-scap-plane": "cable-lateral-raise",
+  "cable-straight-bar-reverse-curls": "reverse-curl",
+  "cable-straight-bar-wrist-curls": "wrist-curl",
+  "cable-straight-bar-wrist-extensions": "wrist-extension",
+  "dead-hang-ryan_humis514743": "dead-hang",
+  "dead-pull-ups-copy": "shrug",
+  "decline-dumbbell-press-copy": "dumbbell-lateral-raise",
+  "dual-cable-side-laterals": "cable-lateral-raise",
+  "dual-cable-side-laterals-pronated-to-palm-down": "cable-lateral-raise",
+  "dual-single-handle-finger-flexor": "finger-flexor-curl",
+  "dual-single-handle-wrist-curl": "wrist-curl",
+  "dual-single-handle-wrist-extension": "wrist-extension",
+  "dumbbell-pronators": "forearm-pronation",
+  "dumbbell-shoulder-press-frontal-plane-high-incline": "dumbbell-shoulder-press",
+  "dumbbell-shrug-extreme-stretch": "shrug",
+  "dumbbell-shrug-mechanical-drop-starting-form-copy": "shrug",
+  "dumbbell-shrugs-copy": "shrug",
+  "dumbbell-side-lateral-controlled-copy": "rear-delt-around-the-world",
+  "dumbbell-side-lateral-copy": "dumbbell-lateral-raise",
+  "dumbbell-side-lateral-holds-garage-program": "dumbbell-lateral-raise",
+  "dumbbell-side-lateral-incline": "incline-lateral-raise",
+  "dumbbell-side-lateral-incline-copy": "dumbbell-lateral-raise",
+  "dumbbell-side-lateral-incline-copy-ryan_humis514743": "cable-lateral-raise",
+  "dumbbell-side-lateral-lats-flared": "dumbbell-lateral-raise",
+  "dumbbell-side-lateral-partials-garage-program": "dumbbell-lateral-raise",
+  "dumbbell-side-laterals-fixed-elbow-garage-program": "dumbbell-lateral-raise",
+  "dumbbell-side-laterals-scapular-plane-garage-2-0": "dumbbell-lateral-raise",
+  "dumbbell-side-laterals-straight-arm-garage-program": "dumbbell-lateral-raise",
+  "dumbbell-supinators": "forearm-supination",
+  "dumbbell-wrist-curl-ryan_humis514743": "wrist-curl",
+  "ez-bar-drag-curls-garage-program-copy-ryan_humis514743": "dumbbell-shoulder-press",
+  "ez-bar-reverse-grip-curls-ryan_humis514743": "reverse-curl",
+  "fixed-elbow-side-lateral-clusterfuck-copy": "upright-row",
+  "high-incline-hybrid-front-side-lateral-raise": "incline-lateral-raise",
+  "incline-anterior-delt-around-the-worlds-garage-program": "front-delt-around-the-world",
+  "incline-barbell-shoulder-press": "barbell-overhead-press",
+  "incline-barbell-wide-grip-upright-row": "upright-row",
+  "incline-cable-side-lateral": "cable-lateral-raise",
+  "incline-dumbbell-high-elbow-row-copy": "shrug",
+  "incline-dumbbell-rear-delt-raise-copy": "rear-delt-raise",
+  "incline-dumbbell-rear-delt-raise-garage-2-0": "rear-delt-raise",
+  "incline-dumbbell-shoulder-press-scapular-plane-neutral-grip": "dumbbell-shoulder-press",
+  "incline-dumbbell-shrug-45-degree-elbow": "incline-shrug",
+  "incline-dumbbell-shrug-ryan_humis514743": "incline-shrug",
+  "incline-dumbbell-side-lateral-facing-bench-lats-flared": "incline-lateral-raise",
+  "incline-dumbbell-side-lateral-garage-2-0": "incline-lateral-raise",
+  "incline-dumbbell-w-raise": "w-raise",
+  "incline-one-arm-shrug": "incline-shrug",
+  "incline-partial-rear-delt-raises-garage-program": "rear-delt-raise",
+  "incline-rear-delt-around-the-world": "rear-delt-around-the-world",
+  "incline-rear-delt-around-the-worlds-garage-2-0": "rear-delt-around-the-world",
+  "incline-rear-delt-around-the-worlds-garage-program": "rear-delt-around-the-world",
+  "incline-shoulder-press-slightly-supinated-grip": "dumbbell-shoulder-press",
+  "incline-straight-arm-rear-delt-partials": "rear-delt-raise",
+  "landmine-mid-trap-shrugs": "mid-trap-shrug",
+  "landmine-rear-delt-raise": "landmine-rear-delt-raise",
+  "landmine-rear-delt-raise-2nd-position": "landmine-rear-delt-raise",
+  "landmine-rear-delt-raise-high-hand-position": "landmine-rear-delt-raise",
+  "leg-press-calf-raise-toes-out-copy": "behind-back-barbell-raise",
+  "lying-arnold-rotations-garage-program": "arnold-rotation",
+  "lying-dual-cable-side-lateral": "cable-lateral-raise",
+  "lying-dumbbell-pronation": "forearm-pronation",
+  "lying-incline-bus-drivers-garage-program": "bus-driver",
+  "lying-incline-dual-cable-side-lateral": "cable-lateral-raise",
+  "lying-rear-delt-flys-pronated-garage-program": "rear-delt-raise",
+  "machine-high-elbow-shrugs": "high-elbow-shrug",
+  "machine-rear-delt-fly-extended-partials": "machine-rear-delt-fly",
+  "machine-rear-delt-fly-high-hands": "machine-rear-delt-fly",
+  "machine-rear-delt-fly-ryan_humis514743": "machine-rear-delt-fly",
+  "machine-rear-delt-partials": "machine-rear-delt-fly",
+  "machine-shoulder-press-extreme-stretch": "machine-shoulder-press",
+  "machine-shoulder-press-frontal-plane": "machine-shoulder-press",
+  "machine-shoulder-press-ryan_humis514743": "machine-shoulder-press",
+  "machine-shoulder-press-scapular-plane": "machine-shoulder-press",
+  "machine-shrug-drops-last-drop-is-a-row": "shrug",
+  "machine-side-laterals-straight-arm-partials": "machine-lateral-raise",
+  "machine-single-arm-rear-delt-fly-copy": "rear-delt-row",
+  "machine-single-arm-rear-delt-fly-copy-ryan_humis514743": "rear-delt-row",
+  "machine-t-bar-high-elbow-shrugs": "high-elbow-shrug",
+  "mid-grip-pull-up-shrugs-weighted": "hanging-scapular-shrug",
+  "modified-arnold-press-ryan_humis514743": "dumbbell-shoulder-press",
+  "partial-sides-pre-exhaust-garage-program": "dumbbell-lateral-raise",
+  "pendlay-row-copy": "shrug",
+  "pinwheel-drag": "forearm-drag-curl",
+  "plate-supinated-raise-garage-2-0": "front-raise",
+  "poor-mans-viking-press": "viking-press",
+  "rear-delt-behind-the-back-barbell-raise-copy": "rear-delt-cable-fly",
+  "rear-delt-fly-buffet-bottom-garage-program": "rear-delt-raise",
+  "rear-delt-fly-buffet-full-rom-garage-program": "rear-delt-raise",
+  "rear-delt-fly-buffet-top-garage-program": "rear-delt-raise",
+  "reverse-grip-shoulder-press-garage-program-copy": "incline-lateral-raise",
+  "seated-angled-barbell-wrist-curls": "wrist-curl",
+  "seated-bus-driver-garage-program": "bus-driver",
+  "seated-cable-reverse-grip-wrist-extension": "wrist-extension",
+  "seated-cable-shrugs": "shrug",
+  "seated-dumbbell-press-hammer-copy": "smith-shoulder-press",
+  "seated-dumbbell-side-lateral-copy": "machine-lateral-raise",
+  "seated-dumbbell-side-lateral-copy-ryan_humis514743": "dumbbell-lateral-raise",
+  "seated-dumbbell-wrist-curls": "wrist-curl",
+  "seated-dumbbell-wrist-extensions": "wrist-extension",
+  "seated-high-elbow-shrug": "high-elbow-shrug",
+  "seated-high-incline-rear-delt-cable-fly-arms-close-to-body": "rear-delt-cable-fly",
+  "seated-one-arm-shrug": "shrug",
+  "seated-rear-delt-close-to-body-raise": "rear-delt-raise",
+  "seated-rear-delt-partial-raise": "rear-delt-raise",
+  "seated-supinated-shrugs-garage-program": "shrug",
+  "side-lateral-buffet-bottom-garage-program": "dumbbell-lateral-raise",
+  "side-lateral-buffet-full-rom-garage-program": "dumbbell-lateral-raise",
+  "side-lateral-buffet-top-garage-program": "dumbbell-lateral-raise",
+  "side-laterals-fixed-elbow": "dumbbell-lateral-raise",
+  "single-arm-bench-stabilized-dumbbell-side-lateral": "dumbbell-lateral-raise",
+  "single-arm-cable-rear-delt-copy": "rear-delt-cable-fly",
+  "single-arm-cable-rear-delt-partials-copy": "rear-delt-cable-fly",
+  "single-arm-dumbbell-rear-delt-raise-copy": "machine-rear-delt-fly",
+  "single-arm-dumbbell-side-lateral-controlled": "dumbbell-lateral-raise",
+  "single-arm-machine-rear-delt-fly-exaggerated-stretch": "machine-rear-delt-fly",
+  "single-arm-machine-shoulder-press-ryan_humis514743": "machine-shoulder-press",
+  "single-arm-rear-delt-db-raises": "rear-delt-raise",
+  "single-arm-side-lateral-machine-rear-delt": "machine-rear-delt-fly",
+  "slight-incline-cable-straight-bar-reverse-curls": "reverse-curl",
+  "slight-incline-rear-delt-fixed-elbow-rotations": "rear-delt-around-the-world",
+  "slight-incline-rear-delt-raise": "rear-delt-raise",
+  "slightly-bent-dumbbell-shrugs": "incline-shrug",
+  "slow-motion-side-laterals-thumbs-up-garage-program": "dumbbell-lateral-raise",
+  "smith-bent-over-mid-trap-shrugs": "mid-trap-shrug",
+  "smith-shoulder-press-65-degree-scapular-plane": "smith-shoulder-press",
+  "smith-wide-grip-upright-row": "upright-row",
+  "standing-barbell-shoulder-press-copy": "behind-back-barbell-raise",
+  "standing-barbell-shoulder-press-ryan_humis514743": "barbell-overhead-press",
+  "standing-db-side-lateral": "dumbbell-lateral-raise",
+  "standing-dumbbell-shrugs-ryan_humis514743": "shrug",
+  "standing-dumbbell-straight-arm-partials": "dumbbell-lateral-raise",
+  "standing-lateral-raise-machine-ryan_humis514743": "machine-lateral-raise",
+  "standing-rear-delt-cable-fly-arms-close-to-body": "rear-delt-cable-fly",
+  "standing-shrugs-garage-program": "shrug",
+  "strap-attachment-pronators": "forearm-pronation",
+  "strap-attachment-supinator": "forearm-supination",
+  "supinated-barbell-front-raise-clusterfuck-copy": "bus-driver",
+  "supinated-barbell-front-raise-clusterfuck-copy-ryan_humis514743": "dumbbell-lateral-raise",
+  "trx-rear-delt-pull-separate": "rear-delt-row",
+  "trx-y-raise-ryan_humis514743": "y-raise",
+  "upright-row-wide-grip-ryan_humis514743": "upright-row",
+  "v-bar-lat-shrugs": "pulldown-scapular-shrug",
+  "v-bar-low-trap-shrugs": "pulldown-scapular-shrug",
+  "v-bar-pull-up-shrugs": "hanging-scapular-shrug",
+  "viking-press-neutral-grip": "viking-press",
+  "viking-press-ryan_humis514743": "viking-press",
+  "weighted-straight-hyper-drop-finish-copy": "hanging-scapular-shrug",
+  "wide-grip-lat-pulldown-shrugs": "pulldown-scapular-shrug",
+  "wide-grip-pull-up-shrugs-weighted": "hanging-scapular-shrug",
+  "wide-grip-smith-upright-row": "upright-row",
+  "y-raise-ryan_humis514743": "y-raise"
+ },
+ "variantNotes": {
+  "1-arm-dumbbell-kelso-shrug": {
+   "en": "Single arm: train one side at a time for better focus and a stable torso.",
+   "tr": "Tek kol: daha iyi odak ve sabit gövde için her seferinde tek tarafı çalıştır.",
+   "ar": "ذراع واحدة: درّب جانبًا واحدًا في كل مرة لتركيز أفضل وجذع ثابت."
+  },
+  "angled-dumbbell-drags-garage-program": {
+   "en": "Dumbbells angled slightly, dragged up close to the body with elbows leading out wide.",
+   "tr": "Dumbbell'lar hafif açılı, dirsekler geniş öncülük ederken vücuda yakın yukarı sürüklenir.",
+   "ar": "الدمبلز مائلة قليلًا وتُسحب للأعلى قرب الجسم والمرفقان يقودان للخارج."
+  },
+  "arnold-rotations-slight-incline": {
+   "en": "Done on a slight incline bench for back support and a bit more stretch.",
+   "tr": "Sırt desteği ve biraz daha gerilme için hafif eğimli sehpada yapılır.",
+   "ar": "تُنفّذ على مقعد مائل قليلًا لدعم الظهر وتمدد أكبر قليلًا."
+  },
+  "around-the-world-rear-delt": {
+   "en": "Standing version: raise out to the sides, then continue overhead in a slow arc.",
+   "tr": "Ayakta versiyon: yanlara kaldır, sonra yavaş bir yayla baş üstüne devam et.",
+   "ar": "نسخة الوقوف: ارفع جانبًا ثم أكمل فوق الرأس في قوس بطيء."
+  },
+  "barbell-rear-delt-raise": {
+   "en": "Barbell: hinge over and raise a wide-grip barbell with straight arms.",
+   "tr": "Barbell: öne eğil ve geniş tutuşlu barı düz kollarla kaldır.",
+   "ar": "باربل: انحنِ وارفع البار بقبضة واسعة وذراعين مستقيمتين."
+  },
+  "barbell-row-mechanical-drop-end-form-copy": {
+   "en": "Mechanical drop: switch to a stronger body position at failure instead of lowering the weight.",
+   "tr": "Mechanical drop: tükenişte ağırlığı azaltmak yerine daha güçlü bir pozisyona geç.",
+   "ar": "Mechanical drop: عند الفشل انتقل إلى وضعية أقوى بدل تخفيف الوزن."
+  },
+  "barbell-shoulder-press-45-degree": {
+   "en": "Pressed on a 45-degree bench, which shifts some work toward the upper chest.",
+   "tr": "45 derece sehpada yapılır; işin bir kısmı üst göğse kayar.",
+   "ar": "يُنفّذ على مقعد 45 درجة، ما ينقل جزءًا من العمل نحو أعلى الصدر."
+  },
+  "barbell-shrug-drops-garage-program": {
+   "en": "Drop set: at failure, reduce the weight immediately and keep going without rest.",
+   "tr": "Drop set: tükenişte ağırlığı hemen azalt ve dinlenmeden devam et.",
+   "ar": "Drop set: عند الفشل خفّف الوزن فورًا واستمر دون راحة."
+  },
+  "barbell-shrugs-wide-grip-garage-2-0": {
+   "en": "Wide grip: hands outside shoulder width, which feels natural for many and frees the shoulders.",
+   "tr": "Geniş tutuş: eller omuz genişliğinin dışında; çoğu kişiye doğal gelir ve omuzları rahatlatır.",
+   "ar": "قبضة واسعة: اليدان أوسع من الكتفين، وهي مريحة للكثيرين وتحرر حركة الكتف."
+  },
+  "bent-dumbbell-shrugs": {
+   "en": "Bent forward at the hips instead of lying on a bench.",
+   "tr": "Sehpaya uzanmak yerine kalçadan öne eğilerek yapılır.",
+   "ar": "انحناء للأمام من الوركين بدل الاستلقاء على مقعد."
+  },
+  "bent-over-rear-delts-partials-full-rom-garage-program": {
+   "en": "Combine full-range reps with stretched-position partials in the same set.",
+   "tr": "Aynı sette tam açıklıklı tekrarları gerilmiş pozisyondaki partials ile birleştir.",
+   "ar": "ادمج تكرارات بالمدى الكامل مع تكرارات جزئية في وضع التمدد ضمن المجموعة نفسها."
+  },
+  "bent-single-arm-supinated-rear-delt-raise": {
+   "en": "Single arm with palm turned forward (supinated), which can improve rear-delt focus.",
+   "tr": "Avuç öne dönük (supinasyon) tek kol; arka omuz odağını artırabilir.",
+   "ar": "ذراع واحدة والراحة متجهة للأمام (قبضة سفلية)، ما قد يحسّن التركيز على الدالية الخلفية."
+  },
+  "bus-driver-incline": {
+   "en": "Done lying chest-down on an incline bench so the torso cannot cheat.",
+   "tr": "Gövde hile yapamasın diye eğimli sehpaya göğüs üstü uzanarak yapılır.",
+   "ar": "تُنفّذ مستلقيًا على صدرك فوق مقعد مائل فلا يستطيع الجذع الغش."
+  },
+  "bus-drivers-super-slow-garage-program": {
+   "en": "Slow tempo: use roughly 3–4 seconds up and down to maximize time under tension.",
+   "tr": "Yavaş tempo: gerilim altındaki süreyi artırmak için iniş ve çıkışı yaklaşık 3–4 saniye yap.",
+   "ar": "إيقاع بطيء: خذ نحو 3–4 ثوانٍ صعودًا ونزولًا لزيادة زمن الشد."
+  },
+  "cable-rear-delt-close-to-body-copy": {
+   "en": "Lying on an incline bench removes momentum and keeps tension in the stretched position.",
+   "tr": "Eğimli sehpaya uzanmak momentumu ortadan kaldırır ve gerilimi gerilmiş pozisyonda tutar.",
+   "ar": "الاستلقاء على مقعد مائل يلغي الزخم ويبقي الشد في وضع التمدد."
+  },
+  "cable-side-lateral-single-arm-behind-the-back": {
+   "en": "Run the cable behind your back for a deeper stretch at the bottom.",
+   "tr": "Daha derin alt gerilme için kabloyu sırtının arkasından geçir.",
+   "ar": "مرّر الكابل خلف ظهرك لتمدد أعمق في الأسفل."
+  },
+  "cable-side-laterals-45-degree-scap-plane": {
+   "en": "Scapular plane: move about 30 degrees in front of the body, a natural, shoulder-friendly path.",
+   "tr": "Scapular plane: vücudun yaklaşık 30 derece önünde hareket et; doğal ve omuz dostu bir yol.",
+   "ar": "مستوى لوح الكتف: تحرك بزاوية نحو 30 درجة أمام الجسم، وهو مسار طبيعي ومريح للكتف."
+  },
+  "cable-straight-bar-wrist-curls": {
+   "en": "Cable version keeps tension at the bottom stretch.",
+   "tr": "Kablo versiyonu alttaki gerilmede gerilimi korur.",
+   "ar": "نسخة الكابل تحافظ على الشد في التمدد السفلي."
+  },
+  "cable-straight-bar-wrist-extensions": {
+   "en": "Cable version keeps tension at the bottom stretch.",
+   "tr": "Kablo versiyonu alttaki gerilmede gerilimi korur.",
+   "ar": "نسخة الكابل تحافظ على الشد في التمدد السفلي."
+  },
+  "dead-hang-ryan_humis514743": {
+   "en": "Target: hold for 60 seconds, accumulating time if needed.",
+   "tr": "Hedef: 60 saniye tut, gerekirse süreyi parça parça biriktir.",
+   "ar": "الهدف: الثبات 60 ثانية، مع تجميع الوقت على دفعات عند الحاجة."
+  },
+  "decline-dumbbell-press-copy": {
+   "en": "Slow tempo: use roughly 3–4 seconds up and down to maximize time under tension.",
+   "tr": "Yavaş tempo: gerilim altındaki süreyi artırmak için iniş ve çıkışı yaklaşık 3–4 saniye yap.",
+   "ar": "إيقاع بطيء: خذ نحو 3–4 ثوانٍ صعودًا ونزولًا لزيادة زمن الشد."
+  },
+  "dual-cable-side-laterals": {
+   "en": "Dual cable: use two pulleys with cables crossed to train both sides at once.",
+   "tr": "Çift kablo: iki makarayı çapraz kablolarla kullanarak iki tarafı aynı anda çalıştır.",
+   "ar": "كابلان: استخدم بكرتين مع تقاطع الكابلين لتدريب الجانبين معًا."
+  },
+  "dual-cable-side-laterals-pronated-to-palm-down": {
+   "en": "Rotate the palms down as you rise to keep the side delt as the prime mover.",
+   "tr": "Kalkarken avuçları aşağı çevir; yan omuz ana çalışan kas olarak kalsın.",
+   "ar": "دوّر الراحتين للأسفل أثناء الرفع لتبقى الدالية الجانبية المحرك الأساسي."
+  },
+  "dual-single-handle-wrist-curl": {
+   "en": "Use two single cable handles to train each wrist independently.",
+   "tr": "Her bileği ayrı çalıştırmak için iki tekli kablo tutamağı kullan.",
+   "ar": "استخدم مقبضين منفردين للكابل لتدريب كل رسغ بشكل مستقل."
+  },
+  "dual-single-handle-wrist-extension": {
+   "en": "Use two single cable handles to train each wrist independently.",
+   "tr": "Her bileği ayrı çalıştırmak için iki tekli kablo tutamağı kullan.",
+   "ar": "استخدم مقبضين منفردين للكابل لتدريب كل رسغ بشكل مستقل."
+  },
+  "dumbbell-shoulder-press-frontal-plane-high-incline": {
+   "en": "Frontal plane: elbows stay out to the sides in line with the torso for more side-delt work.",
+   "tr": "Frontal plane: dirsekler gövde hizasında yanlarda kalır; yan omuz daha çok çalışır.",
+   "ar": "المستوى الأمامي: يبقى المرفقان جانبًا على خط الجذع لعمل أكبر للدالية الجانبية."
+  },
+  "dumbbell-shrug-extreme-stretch": {
+   "en": "Extreme stretch: lower deeper than usual to emphasize the loaded stretch, staying pain-free.",
+   "tr": "Extreme stretch: yüklü gerilmeyi vurgulamak için normalden daha derine in, ağrısız kal.",
+   "ar": "تمدد أقصى: انزل أعمق من المعتاد للتركيز على التمدد المحمّل دون ألم."
+  },
+  "dumbbell-shrug-mechanical-drop-starting-form-copy": {
+   "en": "Mechanical drop: switch to a stronger body position at failure instead of lowering the weight.",
+   "tr": "Mechanical drop: tükenişte ağırlığı azaltmak yerine daha güçlü bir pozisyona geç.",
+   "ar": "Mechanical drop: عند الفشل انتقل إلى وضعية أقوى بدل تخفيف الوزن."
+  },
+  "dumbbell-shrugs-copy": {
+   "en": "Wide grip: hands outside shoulder width, which feels natural for many and frees the shoulders.",
+   "tr": "Geniş tutuş: eller omuz genişliğinin dışında; çoğu kişiye doğal gelir ve omuzları rahatlatır.",
+   "ar": "قبضة واسعة: اليدان أوسع من الكتفين، وهي مريحة للكثيرين وتحرر حركة الكتف."
+  },
+  "dumbbell-side-lateral-controlled-copy": {
+   "en": "Standing version: raise out to the sides, then continue overhead in a slow arc.",
+   "tr": "Ayakta versiyon: yanlara kaldır, sonra yavaş bir yayla baş üstüne devam et.",
+   "ar": "نسخة الوقوف: ارفع جانبًا ثم أكمل فوق الرأس في قوس بطيء."
+  },
+  "dumbbell-side-lateral-copy": {
+   "en": "Single arm: train one side at a time for better focus and a stable torso.",
+   "tr": "Tek kol: daha iyi odak ve sabit gövde için her seferinde tek tarafı çalıştır.",
+   "ar": "ذراع واحدة: درّب جانبًا واحدًا في كل مرة لتركيز أفضل وجذع ثابت."
+  },
+  "dumbbell-side-lateral-holds-garage-program": {
+   "en": "Holds: pause and hold the arms near the top for a few seconds each rep.",
+   "tr": "Holds: her tekrarda kolları tepeye yakın birkaç saniye tut.",
+   "ar": "Holds: توقف وثبّت الذراعين قرب الأعلى بضع ثوانٍ في كل تكرار."
+  },
+  "dumbbell-side-lateral-incline": {
+   "en": "Lying on an incline bench removes momentum and keeps tension in the stretched position.",
+   "tr": "Eğimli sehpaya uzanmak momentumu ortadan kaldırır ve gerilimi gerilmiş pozisyonda tutar.",
+   "ar": "الاستلقاء على مقعد مائل يلغي الزخم ويبقي الشد في وضع التمدد."
+  },
+  "dumbbell-side-lateral-incline-copy": {
+   "en": "Seated: sitting removes leg drive and body swing.",
+   "tr": "Oturarak: oturmak bacak itişini ve gövde salınımını ortadan kaldırır.",
+   "ar": "جلوسًا: الجلوس يلغي دفع الساقين وأرجحة الجسم."
+  },
+  "dumbbell-side-lateral-incline-copy-ryan_humis514743": {
+   "en": "Single arm: train one side at a time for better focus and a stable torso.",
+   "tr": "Tek kol: daha iyi odak ve sabit gövde için her seferinde tek tarafı çalıştır.",
+   "ar": "ذراع واحدة: درّب جانبًا واحدًا في كل مرة لتركيز أفضل وجذع ثابت."
+  },
+  "dumbbell-side-lateral-lats-flared": {
+   "en": "Lats flared: keep the lats spread and arms slightly away from the body to keep tension on the side delt.",
+   "tr": "Lats flared: latları açık, kolları vücuttan hafif uzak tut; gerilim yan omuzda kalsın.",
+   "ar": "Lats flared: أبقِ الظهر العريض مفرودًا والذراعين بعيدتين قليلًا عن الجسم ليبقى الشد على الدالية الجانبية."
+  },
+  "dumbbell-side-lateral-partials-garage-program": {
+   "en": "Partials: work only the stretched lower half of the range, ideally after full-range reps fail.",
+   "tr": "Partials: sadece gerilmiş alt yarıda çalış, ideal olarak tam açıklık tükendikten sonra.",
+   "ar": "Partials: اعمل في النصف السفلي الممدود فقط، ويفضّل بعد الفشل في المدى الكامل."
+  },
+  "dumbbell-side-laterals-fixed-elbow-garage-program": {
+   "en": "Fixed elbow: lock the elbow at about 90 degrees so the arm moves as one short lever.",
+   "tr": "Fixed elbow: dirseği yaklaşık 90 derecede sabitle; kol tek ve kısa bir kaldıraç gibi hareket etsin.",
+   "ar": "مرفق ثابت: ثبّت المرفق عند نحو 90 درجة لتتحرك الذراع كرافعة واحدة قصيرة."
+  },
+  "dumbbell-side-laterals-scapular-plane-garage-2-0": {
+   "en": "Scapular plane: move about 30 degrees in front of the body, a natural, shoulder-friendly path.",
+   "tr": "Scapular plane: vücudun yaklaşık 30 derece önünde hareket et; doğal ve omuz dostu bir yol.",
+   "ar": "مستوى لوح الكتف: تحرك بزاوية نحو 30 درجة أمام الجسم، وهو مسار طبيعي ومريح للكتف."
+  },
+  "dumbbell-side-laterals-straight-arm-garage-program": {
+   "en": "Straight arm: keep the elbow locked straight, making the lever longer and the load harder.",
+   "tr": "Düz kol: dirseği düz kilitli tut; kaldıraç uzar ve yük zorlaşır.",
+   "ar": "ذراع مستقيمة: أبقِ المرفق مستقيمًا فتطول الرافعة ويصعب الحمل."
+  },
+  "ez-bar-drag-curls-garage-program-copy-ryan_humis514743": {
+   "en": "Reverse grip: palms face you throughout, keeping elbows forward and stressing the front delt.",
+   "tr": "Ters tutuş: avuçlar sürekli sana dönük; dirsekler önde kalır ve ön omuz vurgulanır.",
+   "ar": "قبضة عكسية: الراحتان نحوك طوال الحركة، فيبقى المرفقان أمامك ويُركَّز على الدالية الأمامية."
+  },
+  "ez-bar-reverse-grip-curls-ryan_humis514743": {
+   "en": "EZ bar's angled grip reduces wrist strain.",
+   "tr": "EZ barın açılı tutuşu bilek yükünü azaltır.",
+   "ar": "القبضة المائلة لبار EZ تقلل الضغط على الرسغ."
+  },
+  "high-incline-hybrid-front-side-lateral-raise": {
+   "en": "Hybrid: raise between the front and side, training both the front and side delts.",
+   "tr": "Hibrit: ön ile yan arasında bir açıda kaldır; ön ve yan omuz birlikte çalışır.",
+   "ar": "هجين: ارفع بين الأمام والجانب لتدريب الدالية الأمامية والجانبية معًا."
+  },
+  "incline-barbell-shoulder-press": {
+   "en": "Seated on a high-incline bench for back support and stability.",
+   "tr": "Sırt desteği ve stabilite için yüksek eğimli sehpada oturarak yapılır.",
+   "ar": "جلوسًا على مقعد بميل مرتفع لدعم الظهر والثبات."
+  },
+  "incline-barbell-wide-grip-upright-row": {
+   "en": "Lie chest-down on an incline bench and row wide, removing hip drive.",
+   "tr": "Eğimli sehpaya göğüs üstü uzan ve geniş çek; kalça itişini ortadan kaldırır.",
+   "ar": "استلقِ على صدرك فوق مقعد مائل واسحب بقبضة واسعة لإلغاء دفع الوركين."
+  },
+  "incline-cable-side-lateral": {
+   "en": "Lying on an incline bench removes momentum and keeps tension in the stretched position.",
+   "tr": "Eğimli sehpaya uzanmak momentumu ortadan kaldırır ve gerilimi gerilmiş pozisyonda tutar.",
+   "ar": "الاستلقاء على مقعد مائل يلغي الزخم ويبقي الشد في وضع التمدد."
+  },
+  "incline-dumbbell-high-elbow-row-copy": {
+   "en": "Wide grip: hands outside shoulder width, which feels natural for many and frees the shoulders.",
+   "tr": "Geniş tutuş: eller omuz genişliğinin dışında; çoğu kişiye doğal gelir ve omuzları rahatlatır.",
+   "ar": "قبضة واسعة: اليدان أوسع من الكتفين، وهي مريحة للكثيرين وتحرر حركة الكتف."
+  },
+  "incline-dumbbell-rear-delt-raise-copy": {
+   "en": "Single arm: train one side at a time for better focus and a stable torso.",
+   "tr": "Tek kol: daha iyi odak ve sabit gövde için her seferinde tek tarafı çalıştır.",
+   "ar": "ذراع واحدة: درّب جانبًا واحدًا في كل مرة لتركيز أفضل وجذع ثابت."
+  },
+  "incline-dumbbell-rear-delt-raise-garage-2-0": {
+   "en": "Lying on an incline bench removes momentum and keeps tension in the stretched position.",
+   "tr": "Eğimli sehpaya uzanmak momentumu ortadan kaldırır ve gerilimi gerilmiş pozisyonda tutar.",
+   "ar": "الاستلقاء على مقعد مائل يلغي الزخم ويبقي الشد في وضع التمدد."
+  },
+  "incline-dumbbell-shoulder-press-scapular-plane-neutral-grip": {
+   "en": "Scapular plane with palms facing each other, a very joint-friendly press path.",
+   "tr": "Avuçlar birbirine bakarken scapular plane'de; eklemlere çok dost bir press yolu.",
+   "ar": "في مستوى لوح الكتف والراحتان متقابلتان، وهو مسار ضغط مريح جدًا للمفصل."
+  },
+  "incline-dumbbell-shrug-45-degree-elbow": {
+   "en": "Flare the elbows about 45 degrees to bias the mid traps.",
+   "tr": "Orta trapezi vurgulamak için dirsekleri yaklaşık 45 derece aç.",
+   "ar": "افتح المرفقين نحو 45 درجة للتركيز على وسط شبه المنحرفة."
+  },
+  "incline-dumbbell-side-lateral-facing-bench-lats-flared": {
+   "en": "Lie chest-down facing the bench with lats flared; this removes cheating and adds a stretch.",
+   "tr": "Latlar açık, yüzün sehpaya dönük göğüs üstü uzan; hileyi engeller ve gerilme ekler.",
+   "ar": "استلقِ على صدرك مواجهًا المقعد مع فرد الظهر العريض؛ هذا يمنع الغش ويزيد التمدد."
+  },
+  "incline-dumbbell-side-lateral-garage-2-0": {
+   "en": "Lying on an incline bench removes momentum and keeps tension in the stretched position.",
+   "tr": "Eğimli sehpaya uzanmak momentumu ortadan kaldırır ve gerilimi gerilmiş pozisyonda tutar.",
+   "ar": "الاستلقاء على مقعد مائل يلغي الزخم ويبقي الشد في وضع التمدد."
+  },
+  "incline-one-arm-shrug": {
+   "en": "Single arm: train one side at a time for better focus and a stable torso.",
+   "tr": "Tek kol: daha iyi odak ve sabit gövde için her seferinde tek tarafı çalıştır.",
+   "ar": "ذراع واحدة: درّب جانبًا واحدًا في كل مرة لتركيز أفضل وجذع ثابت."
+  },
+  "incline-partial-rear-delt-raises-garage-program": {
+   "en": "Partials: work only the stretched lower half of the range, ideally after full-range reps fail.",
+   "tr": "Partials: sadece gerilmiş alt yarıda çalış, ideal olarak tam açıklık tükendikten sonra.",
+   "ar": "Partials: اعمل في النصف السفلي الممدود فقط، ويفضّل بعد الفشل في المدى الكامل."
+  },
+  "incline-shoulder-press-slightly-supinated-grip": {
+   "en": "Slightly supinated grip: palms turned a bit toward you, easing shoulder stress.",
+   "tr": "Hafif supinasyon tutuşu: avuçlar biraz sana dönük; omuz stresini azaltır.",
+   "ar": "قبضة سفلية قليلًا: الراحتان مائلتان نحوك قليلًا لتخفيف الضغط على الكتف."
+  },
+  "incline-straight-arm-rear-delt-partials": {
+   "en": "Straight-arm partials on an incline bench: elbows locked, reps in the stretched range.",
+   "tr": "Eğimli sehpada düz kol partials: dirsekler kilitli, tekrarlar gerilmiş aralıkta.",
+   "ar": "Partials بذراع مستقيمة على مقعد مائل: المرفقان مقفلان والتكرارات في المدى الممدود."
+  },
+  "landmine-mid-trap-shrugs": {
+   "en": "Straddle or face a landmine bar for a stable, comfortable grip.",
+   "tr": "Stabil ve rahat tutuş için landmine barının üstüne ya da karşısına geç.",
+   "ar": "قف فوق بار اللاندماين أو مواجهًا له لقبضة ثابتة ومريحة."
+  },
+  "landmine-rear-delt-raise": {
+   "en": "Low hand position: grip near the bar end for the longest lever and most stretch.",
+   "tr": "Alt el pozisyonu: en uzun kaldıraç ve en fazla gerilme için bar ucuna yakın tut.",
+   "ar": "وضع اليد المنخفض: أمسك قرب طرف البار لأطول رافعة وأكبر تمدد."
+  },
+  "landmine-rear-delt-raise-2nd-position": {
+   "en": "Mid hand position: a balance between stretch and load at the top.",
+   "tr": "Orta el pozisyonu: gerilme ile tepedeki yük arasında denge.",
+   "ar": "وضع اليد المتوسط: توازن بين التمدد والحمل في الأعلى."
+  },
+  "landmine-rear-delt-raise-high-hand-position": {
+   "en": "High hand position: a shorter lever that lets you handle more load.",
+   "tr": "Üst el pozisyonu: daha kısa kaldıraç, daha fazla yük kaldırmanı sağlar.",
+   "ar": "وضع اليد المرتفع: رافعة أقصر تتيح لك حمل وزن أكبر."
+  },
+  "leg-press-calf-raise-toes-out-copy": {
+   "en": "Cluster sets: do short mini-sets with 10–20 seconds rest to accumulate more hard reps.",
+   "tr": "Cluster set: 10–20 saniye dinlenmeli kısa mini setlerle daha fazla zorlu tekrar biriktir.",
+   "ar": "Cluster sets: نفّذ مجموعات صغيرة قصيرة مع راحة 10–20 ثانية لتجميع تكرارات صعبة أكثر."
+  },
+  "lying-arnold-rotations-garage-program": {
+   "en": "Lying on a bench changes the resistance curve and removes momentum.",
+   "tr": "Sehpaya uzanmak direnç eğrisini değiştirir ve momentumu kaldırır.",
+   "ar": "الاستلقاء على مقعد يغيّر منحنى المقاومة ويلغي الزخم."
+  },
+  "lying-dual-cable-side-lateral": {
+   "en": "Lying: lie on a flat bench between cables, which loads the delt hard at the bottom.",
+   "tr": "Lying: kablolar arasında düz sehpaya uzan; delt'i altta sert yükler.",
+   "ar": "استلقاءً: استلقِ على مقعد مستوٍ بين الكابلين، ما يحمّل الدالية بقوة في الأسفل."
+  },
+  "lying-dumbbell-pronation": {
+   "en": "Lying with the arm supported removes shoulder cheating.",
+   "tr": "Kol destekliyken uzanmak omuzla hileyi ortadan kaldırır.",
+   "ar": "الاستلقاء مع دعم الذراع يمنع الغش بالكتف."
+  },
+  "lying-incline-bus-drivers-garage-program": {
+   "en": "Lying on an incline bench (back supported) shifts load and removes body swing.",
+   "tr": "Sırt destekli eğimli sehpaya uzanmak yükü değiştirir ve gövde salınımını önler.",
+   "ar": "الاستلقاء على مقعد مائل (الظهر مدعوم) يغيّر توزيع الحمل ويمنع أرجحة الجسم."
+  },
+  "lying-incline-dual-cable-side-lateral": {
+   "en": "Lying on an incline bench removes momentum and keeps tension in the stretched position.",
+   "tr": "Eğimli sehpaya uzanmak momentumu ortadan kaldırır ve gerilimi gerilmiş pozisyonda tutar.",
+   "ar": "الاستلقاء على مقعد مائل يلغي الزخم ويبقي الشد في وضع التمدد."
+  },
+  "lying-rear-delt-flys-pronated-garage-program": {
+   "en": "Lying chest-down with palms facing down (pronated) for strict rear-delt isolation.",
+   "tr": "Katı arka omuz izolasyonu için avuçlar aşağı (pronasyon), göğüs üstü uzanarak.",
+   "ar": "مستلقيًا على صدرك والراحتان للأسفل لعزل صارم للدالية الخلفية."
+  },
+  "machine-rear-delt-fly-extended-partials": {
+   "en": "Extended partials: after failure, keep doing partial reps in the stretched half.",
+   "tr": "Extended partials: tükenişten sonra gerilmiş yarıda yarım tekrarlarla devam et.",
+   "ar": "Extended partials: بعد الفشل استمر بتكرارات جزئية في النصف الممدود."
+  },
+  "machine-rear-delt-fly-high-hands": {
+   "en": "High hands: set handles higher so the arms travel above shoulder level, shifting load toward the rear delt.",
+   "tr": "Yüksek eller: tutamakları yüksek ayarla; kollar omuz üstünden geçer ve yük arka omza kayar.",
+   "ar": "يدان مرتفعتان: اضبط المقابض أعلى لتمر الذراعان فوق مستوى الكتف فيتجه الحمل نحو الدالية الخلفية."
+  },
+  "machine-rear-delt-partials": {
+   "en": "Partials: work only the stretched lower half of the range, ideally after full-range reps fail.",
+   "tr": "Partials: sadece gerilmiş alt yarıda çalış, ideal olarak tam açıklık tükendikten sonra.",
+   "ar": "Partials: اعمل في النصف السفلي الممدود فقط، ويفضّل بعد الفشل في المدى الكامل."
+  },
+  "machine-shoulder-press-extreme-stretch": {
+   "en": "Extreme stretch: lower deeper than usual to emphasize the loaded stretch, staying pain-free.",
+   "tr": "Extreme stretch: yüklü gerilmeyi vurgulamak için normalden daha derine in, ağrısız kal.",
+   "ar": "تمدد أقصى: انزل أعمق من المعتاد للتركيز على التمدد المحمّل دون ألم."
+  },
+  "machine-shoulder-press-frontal-plane": {
+   "en": "Frontal plane: elbows stay out to the sides in line with the torso for more side-delt work.",
+   "tr": "Frontal plane: dirsekler gövde hizasında yanlarda kalır; yan omuz daha çok çalışır.",
+   "ar": "المستوى الأمامي: يبقى المرفقان جانبًا على خط الجذع لعمل أكبر للدالية الجانبية."
+  },
+  "machine-shoulder-press-scapular-plane": {
+   "en": "Scapular plane: move about 30 degrees in front of the body, a natural, shoulder-friendly path.",
+   "tr": "Scapular plane: vücudun yaklaşık 30 derece önünde hareket et; doğal ve omuz dostu bir yol.",
+   "ar": "مستوى لوح الكتف: تحرك بزاوية نحو 30 درجة أمام الجسم، وهو مسار طبيعي ومريح للكتف."
+  },
+  "machine-shrug-drops-last-drop-is-a-row": {
+   "en": "Drop set on a machine; on the final drop, switch to rows to finish the upper back.",
+   "tr": "Makinede drop set; son düşüşte üst sırtı bitirmek için row'a geç.",
+   "ar": "drop set على الجهاز؛ وفي آخر تخفيف انتقل للتجديف لإنهاء أعلى الظهر."
+  },
+  "machine-side-laterals-straight-arm-partials": {
+   "en": "Straight-arm partials on the machine: arms locked, reps in the stretched lower range.",
+   "tr": "Makinede düz kol partials: kollar kilitli, tekrarlar alttaki gerilmiş aralıkta.",
+   "ar": "Partials بذراع مستقيمة على الجهاز: الذراعان مقفلتان والتكرارات في المدى السفلي الممدود."
+  },
+  "machine-single-arm-rear-delt-fly-copy-ryan_humis514743": {
+   "en": "Lying chest-down, row the cable with high elbows to remove momentum.",
+   "tr": "Göğüs üstü uzanarak, momentumu kaldırmak için kabloyu yüksek dirseklerle çek.",
+   "ar": "مستلقيًا على صدرك، اسحب الكابل بمرفقين مرتفعين لإلغاء الزخم."
+  },
+  "machine-t-bar-high-elbow-shrugs": {
+   "en": "Chest-supported T-bar machine removes lower-back strain.",
+   "tr": "Göğüs destekli T-bar makinesi bel yükünü ortadan kaldırır.",
+   "ar": "جهاز T-bar بدعم للصدر يزيل الضغط عن أسفل الظهر."
+  },
+  "mid-grip-pull-up-shrugs-weighted": {
+   "en": "Weighted, shoulder-width grip; add load with a belt or dumbbell.",
+   "tr": "Ağırlıklı, omuz genişliğinde tutuş; kemer ya da dumbbell ile yük ekle.",
+   "ar": "مع وزن وقبضة بعرض الكتفين؛ أضف الحمل بحزام أو دمبل."
+  },
+  "modified-arnold-press-ryan_humis514743": {
+   "en": "Modified Arnold: start palms in front and rotate out as you press, adding front-delt range.",
+   "tr": "Modified Arnold: avuçlar önde başla, iterken dışa döndür; ön omuza açıklık ekler.",
+   "ar": "Arnold معدّل: ابدأ والراحتان نحوك ودوّرهما للخارج أثناء الضغط لزيادة مدى الدالية الأمامية."
+  },
+  "partial-sides-pre-exhaust-garage-program": {
+   "en": "Pre-exhaust: do partial lateral raises first to fatigue the side delts before presses.",
+   "tr": "Pre-exhaust: press'ten önce yan omzu yormak için önce yarım lateral raise yap.",
+   "ar": "إجهاد مسبق: نفّذ رفعات جانبية جزئية أولًا لإجهاد الدالية الجانبية قبل الضغط."
+  },
+  "pendlay-row-copy": {
+   "en": "Seated with drop sets: reduce the weight at failure and continue without rest.",
+   "tr": "Oturarak drop set: tükenişte ağırlığı azalt ve dinlenmeden devam et.",
+   "ar": "جلوسًا مع drop set: خفّف الوزن عند الفشل واستمر دون راحة."
+  },
+  "pinwheel-drag": {
+   "en": "Neutral (hammer) grip with dumbbells, dragged across or up the body.",
+   "tr": "Dumbbell'larla nötr (hammer) tutuş; vücut boyunca ya da çapraz sürüklenir.",
+   "ar": "قبضة محايدة (hammer) بالدمبلز مع سحبها على امتداد الجسم أو عرضيًا."
+  },
+  "plate-supinated-raise-garage-2-0": {
+   "en": "Hold a plate with palms up; the supinated grip emphasizes the front delt and biceps.",
+   "tr": "Plakayı avuçlar yukarı tut; supinasyon tutuşu ön omzu ve biceps'i vurgular.",
+   "ar": "أمسك القرص والراحتان للأعلى؛ القبضة السفلية تبرز الدالية الأمامية والبايسبس."
+  },
+  "poor-mans-viking-press": {
+   "en": "Improvised version: press a landmine bar end with both hands if no Viking handle exists.",
+   "tr": "Doğaçlama versiyon: Viking tutamağı yoksa landmine bar ucunu iki elle it.",
+   "ar": "نسخة مرتجلة: اضغط طرف بار اللاندماين بكلتا اليدين إن لم يتوفر مقبض Viking."
+  },
+  "rear-delt-behind-the-back-barbell-raise-copy": {
+   "en": "Partials: work only the stretched lower half of the range, ideally after full-range reps fail.",
+   "tr": "Partials: sadece gerilmiş alt yarıda çalış, ideal olarak tam açıklık tükendikten sonra.",
+   "ar": "Partials: اعمل في النصف السفلي الممدود فقط، ويفضّل بعد الفشل في المدى الكامل."
+  },
+  "rear-delt-fly-buffet-bottom-garage-program": {
+   "en": "Buffet (bottom): do partial reps in the lower, stretched portion of the range.",
+   "tr": "Buffet (alt): hareketin alt, gerilmiş kısmında yarım tekrarlar yap.",
+   "ar": "Buffet (الأسفل): نفّذ تكرارات جزئية في الجزء السفلي الممدود من المدى."
+  },
+  "rear-delt-fly-buffet-full-rom-garage-program": {
+   "en": "Buffet (full ROM): finish the sequence with full-range reps.",
+   "tr": "Buffet (tam açıklık): seriyi tam hareket açıklığıyla tamamla.",
+   "ar": "Buffet (المدى الكامل): أكمل السلسلة بتكرارات بالمدى الكامل."
+  },
+  "rear-delt-fly-buffet-top-garage-program": {
+   "en": "Buffet (top): do partial reps in the upper, contracted portion of the range.",
+   "tr": "Buffet (üst): hareketin üst, kasılmış kısmında yarım tekrarlar yap.",
+   "ar": "Buffet (الأعلى): نفّذ تكرارات جزئية في الجزء العلوي المنقبض من المدى."
+  },
+  "reverse-grip-shoulder-press-garage-program-copy": {
+   "en": "Sit on a high-incline bench with back support to stop momentum.",
+   "tr": "Momentumu önlemek için sırt destekli yüksek eğimli sehpaya otur.",
+   "ar": "اجلس على مقعد بميل مرتفع مع دعم للظهر لمنع الزخم."
+  },
+  "seated-angled-barbell-wrist-curls": {
+   "en": "Angle the forearms down off the knees for a deeper stretch.",
+   "tr": "Daha derin gerilme için ön kolları dizlerden aşağı açılı yerleştir.",
+   "ar": "اجعل الساعدين مائلين للأسفل عن الركبتين لتمدد أعمق."
+  },
+  "seated-bus-driver-garage-program": {
+   "en": "Seated: removes leg drive, keeping the work on the front delts.",
+   "tr": "Oturarak: bacak itişini kaldırır, iş ön omuzda kalır.",
+   "ar": "جلوسًا: يلغي دفع الساقين ويبقي العمل على الدالية الأمامية."
+  },
+  "seated-cable-reverse-grip-wrist-extension": {
+   "en": "Seated cable with overhand grip for constant tension.",
+   "tr": "Sürekli gerilim için üstten tutuşla oturarak kablo.",
+   "ar": "كابل جلوسًا بقبضة علوية لشد مستمر."
+  },
+  "seated-cable-shrugs": {
+   "en": "Seated cable: constant tension and a stable base.",
+   "tr": "Oturarak kablo: sürekli gerilim ve stabil bir zemin.",
+   "ar": "كابل جلوسًا: شد مستمر وقاعدة ثابتة."
+  },
+  "seated-high-elbow-shrug": {
+   "en": "Cable version gives constant tension at the stretch.",
+   "tr": "Kablo versiyonu gerilmede sürekli gerilim sağlar.",
+   "ar": "نسخة الكابل تمنح شدًا مستمرًا في وضع التمدد."
+  },
+  "seated-high-incline-rear-delt-cable-fly-arms-close-to-body": {
+   "en": "Seated on a high incline facing the bench, arms sweeping back close to the body.",
+   "tr": "Sehpaya dönük yüksek eğimde oturarak, kollar vücuda yakın geriye süpürülür.",
+   "ar": "جلوسًا على ميل مرتفع مواجهًا المقعد، والذراعان تتحركان للخلف قرب الجسم."
+  },
+  "seated-one-arm-shrug": {
+   "en": "Single arm: train one side at a time for better focus and a stable torso.",
+   "tr": "Tek kol: daha iyi odak ve sabit gövde için her seferinde tek tarafı çalıştır.",
+   "ar": "ذراع واحدة: درّب جانبًا واحدًا في كل مرة لتركيز أفضل وجذع ثابت."
+  },
+  "seated-rear-delt-close-to-body-raise": {
+   "en": "Seated, sweep the arms back low and close to the body for a longer rear-delt range.",
+   "tr": "Oturarak kolları alçaktan ve vücuda yakın geriye süpür; arka omuz açıklığı uzar.",
+   "ar": "جلوسًا، حرّك الذراعين للخلف منخفضتين وقريبتين من الجسم لمدى أطول للدالية الخلفية."
+  },
+  "seated-rear-delt-partial-raise": {
+   "en": "Partials: work only the stretched lower half of the range, ideally after full-range reps fail.",
+   "tr": "Partials: sadece gerilmiş alt yarıda çalış, ideal olarak tam açıklık tükendikten sonra.",
+   "ar": "Partials: اعمل في النصف السفلي الممدود فقط، ويفضّل بعد الفشل في المدى الكامل."
+  },
+  "seated-supinated-shrugs-garage-program": {
+   "en": "Palms facing forward (supinated) while seated; some lifters feel the traps better this way.",
+   "tr": "Oturarak avuçlar öne dönük (supinasyon); bazıları trapezi böyle daha iyi hisseder.",
+   "ar": "جلوسًا والراحتان للأمام (قبضة سفلية)؛ يشعر بعض المتدربين بشبه المنحرفة أفضل هكذا."
+  },
+  "side-lateral-buffet-bottom-garage-program": {
+   "en": "Buffet (bottom): do partial reps in the lower, stretched portion of the range.",
+   "tr": "Buffet (alt): hareketin alt, gerilmiş kısmında yarım tekrarlar yap.",
+   "ar": "Buffet (الأسفل): نفّذ تكرارات جزئية في الجزء السفلي الممدود من المدى."
+  },
+  "side-lateral-buffet-full-rom-garage-program": {
+   "en": "Buffet (full ROM): finish the sequence with full-range reps.",
+   "tr": "Buffet (tam açıklık): seriyi tam hareket açıklığıyla tamamla.",
+   "ar": "Buffet (المدى الكامل): أكمل السلسلة بتكرارات بالمدى الكامل."
+  },
+  "side-lateral-buffet-top-garage-program": {
+   "en": "Buffet (top): do partial reps in the upper, contracted portion of the range.",
+   "tr": "Buffet (üst): hareketin üst, kasılmış kısmında yarım tekrarlar yap.",
+   "ar": "Buffet (الأعلى): نفّذ تكرارات جزئية في الجزء العلوي المنقبض من المدى."
+  },
+  "side-laterals-fixed-elbow": {
+   "en": "Fixed elbow: lock the elbow at about 90 degrees so the arm moves as one short lever.",
+   "tr": "Fixed elbow: dirseği yaklaşık 90 derecede sabitle; kol tek ve kısa bir kaldıraç gibi hareket etsin.",
+   "ar": "مرفق ثابت: ثبّت المرفق عند نحو 90 درجة لتتحرك الذراع كرافعة واحدة قصيرة."
+  },
+  "single-arm-bench-stabilized-dumbbell-side-lateral": {
+   "en": "Hold a bench with the free hand to lock the torso and isolate the side delt.",
+   "tr": "Torsoyu sabitlemek ve yan omzu izole etmek için boştaki elinle sehpayı tut.",
+   "ar": "أمسك المقعد باليد الحرة لتثبيت الجذع وعزل الدالية الجانبية."
+  },
+  "single-arm-cable-rear-delt-copy": {
+   "en": "Arms close to body: keep the cable path low beside the torso for a deep stretch.",
+   "tr": "Kollar vücuda yakın: derin gerilme için kablo yolunu gövdenin yanında alçak tut.",
+   "ar": "الذراعان قرب الجسم: أبقِ مسار الكابل منخفضًا بجانب الجذع لتمدد عميق."
+  },
+  "single-arm-cable-rear-delt-partials-copy": {
+   "en": "Single arm: train one side at a time for better focus and a stable torso.",
+   "tr": "Tek kol: daha iyi odak ve sabit gövde için her seferinde tek tarafı çalıştır.",
+   "ar": "ذراع واحدة: درّب جانبًا واحدًا في كل مرة لتركيز أفضل وجذع ثابت."
+  },
+  "single-arm-dumbbell-rear-delt-raise-copy": {
+   "en": "Single arm: train one side at a time for better focus and a stable torso.",
+   "tr": "Tek kol: daha iyi odak ve sabit gövde için her seferinde tek tarafı çalıştır.",
+   "ar": "ذراع واحدة: درّب جانبًا واحدًا في كل مرة لتركيز أفضل وجذع ثابت."
+  },
+  "single-arm-dumbbell-side-lateral-controlled": {
+   "en": "Single arm, controlled: one side at a time with a slow, strict tempo.",
+   "tr": "Tek kol, kontrollü: her seferinde tek taraf, yavaş ve katı tempo.",
+   "ar": "ذراع واحدة بتحكم: جانب واحد في كل مرة بإيقاع بطيء وصارم."
+  },
+  "single-arm-machine-rear-delt-fly-exaggerated-stretch": {
+   "en": "Single arm, reaching across the body at the bottom for an exaggerated stretch.",
+   "tr": "Tek kol; altta vücudun önünden uzanarak abartılı bir gerilme sağla.",
+   "ar": "ذراع واحدة مع مدّها عبر الجسم في الأسفل لتمدد مبالغ فيه."
+  },
+  "single-arm-machine-shoulder-press-ryan_humis514743": {
+   "en": "Single arm: train one side at a time for better focus and a stable torso.",
+   "tr": "Tek kol: daha iyi odak ve sabit gövde için her seferinde tek tarafı çalıştır.",
+   "ar": "ذراع واحدة: درّب جانبًا واحدًا في كل مرة لتركيز أفضل وجذع ثابت."
+  },
+  "single-arm-rear-delt-db-raises": {
+   "en": "Single arm: train one side at a time for better focus and a stable torso.",
+   "tr": "Tek kol: daha iyi odak ve sabit gövde için her seferinde tek tarafı çalıştır.",
+   "ar": "ذراع واحدة: درّب جانبًا واحدًا في كل مرة لتركيز أفضل وجذع ثابت."
+  },
+  "single-arm-side-lateral-machine-rear-delt": {
+   "en": "Use a lateral raise machine facing the pad, one arm at a time, to train the rear delt.",
+   "tr": "Arka omzu çalıştırmak için lateral raise makinesine yüzün pede dönük, tek kolla otur.",
+   "ar": "استخدم جهاز الرفع الجانبي مواجهًا المسند وبذراع واحدة لتدريب الدالية الخلفية."
+  },
+  "slight-incline-cable-straight-bar-reverse-curls": {
+   "en": "Lie back on a slight incline facing away from the cable for extra stretch.",
+   "tr": "Ekstra gerilme için kabloya sırtın dönük, hafif eğimli sehpaya uzan.",
+   "ar": "استلقِ على مقعد مائل قليلًا ظهرك للكابل لتمدد إضافي."
+  },
+  "slight-incline-rear-delt-fixed-elbow-rotations": {
+   "en": "Elbows fixed at 90 degrees on a slight incline; rotate the forearms up to hit rear delts and rotator cuff.",
+   "tr": "Hafif eğimde dirsekler 90 derecede sabit; ön kolları yukarı döndürerek arka omuz ve rotator cuff'ı çalıştır.",
+   "ar": "المرفقان ثابتان عند 90 درجة على ميل خفيف؛ دوّر الساعدين للأعلى لتشغيل الدالية الخلفية والكفة المدورة."
+  },
+  "slight-incline-rear-delt-raise": {
+   "en": "Slight incline partials: lie on a low incline and work the stretched part of the range.",
+   "tr": "Hafif eğim partials: düşük eğimli sehpaya uzan, hareketin gerilmiş kısmında çalış.",
+   "ar": "Partials على ميل خفيف: استلقِ على مقعد منخفض الميل واعمل في الجزء الممدود."
+  },
+  "slightly-bent-dumbbell-shrugs": {
+   "en": "Only a slight forward lean, between a standing and a bent shrug.",
+   "tr": "Sadece hafif öne eğilme; ayakta ile eğik shrug arası.",
+   "ar": "ميل خفيف للأمام فقط، بين الشراغ وقوفًا والشراغ منحنيًا."
+  },
+  "slow-motion-side-laterals-thumbs-up-garage-program": {
+   "en": "Super slow with thumbs pointing up, a slightly more front-delt-friendly hand position.",
+   "tr": "Başparmaklar yukarı bakacak şekilde süper yavaş; ön omza biraz daha yakın bir el pozisyonu.",
+   "ar": "بطء شديد مع توجيه الإبهامين للأعلى، وهو وضع يد يُشرك الدالية الأمامية قليلًا."
+  },
+  "smith-bent-over-mid-trap-shrugs": {
+   "en": "Smith machine: the fixed path lets you focus purely on squeezing.",
+   "tr": "Smith machine: sabit yol sadece sıkmaya odaklanmanı sağlar.",
+   "ar": "جهاز السميث: المسار الثابت يتيح التركيز على العصر فقط."
+  },
+  "smith-shoulder-press-65-degree-scapular-plane": {
+   "en": "Set the bench to about 60 degrees and keep elbows in the scapular plane.",
+   "tr": "Sehpayı yaklaşık 60 dereceye ayarla, dirsekleri scapular plane'de tut.",
+   "ar": "اضبط المقعد على نحو 60 درجة وأبقِ المرفقين في مستوى لوح الكتف."
+  },
+  "smith-wide-grip-upright-row": {
+   "en": "Smith machine: the fixed bar path lets you focus purely on the delts.",
+   "tr": "Smith machine: sabit bar yolu sadece omuzlara odaklanmanı sağlar.",
+   "ar": "جهاز السميث: مسار البار الثابت يتيح التركيز على الكتفين فقط."
+  },
+  "standing-dumbbell-straight-arm-partials": {
+   "en": "Straight-arm partials: elbows locked, reps only in the lower stretched range.",
+   "tr": "Düz kol partials: dirsekler kilitli, tekrarlar sadece alttaki gerilmiş aralıkta.",
+   "ar": "Partials بذراع مستقيمة: المرفقان مقفلان والتكرارات في المدى السفلي الممدود فقط."
+  },
+  "strap-attachment-pronators": {
+   "en": "Cable strap attachment gives constant tension through the rotation.",
+   "tr": "Kablo kayış aparatı dönüş boyunca sürekli gerilim sağlar.",
+   "ar": "ملحق الحزام بالكابل يمنح شدًا مستمرًا طوال الدوران."
+  },
+  "strap-attachment-supinator": {
+   "en": "Cable strap attachment gives constant tension through the rotation.",
+   "tr": "Kablo kayış aparatı dönüş boyunca sürekli gerilim sağlar.",
+   "ar": "ملحق الحزام بالكابل يمنح شدًا مستمرًا طوال الدوران."
+  },
+  "supinated-barbell-front-raise-clusterfuck-copy": {
+   "en": "Done lying chest-down on an incline bench so the torso cannot cheat.",
+   "tr": "Gövde hile yapamasın diye eğimli sehpaya göğüs üstü uzanarak yapılır.",
+   "ar": "تُنفّذ مستلقيًا على صدرك فوق مقعد مائل فلا يستطيع الجذع الغش."
+  },
+  "supinated-barbell-front-raise-clusterfuck-copy-ryan_humis514743": {
+   "en": "Fixed elbow + cluster: elbows locked at 90 degrees, done in short mini-sets with brief rests.",
+   "tr": "Fixed elbow + cluster: dirsekler 90 derecede sabit, kısa dinlenmeli mini setlerle yapılır.",
+   "ar": "مرفق ثابت + cluster: المرفقان مثبتان عند 90 درجة مع مجموعات صغيرة وراحات قصيرة."
+  },
+  "trx-rear-delt-pull-separate": {
+   "en": "TRX: pull with high elbows, then spread the arms wide at the top.",
+   "tr": "TRX: yüksek dirseklerle çek, sonra tepede kolları geniş aç.",
+   "ar": "TRX: اسحب بمرفقين مرتفعين ثم افتح الذراعين على اتساعهما في الأعلى."
+  },
+  "trx-y-raise-ryan_humis514743": {
+   "en": "TRX: lean back on the straps and pull yourself up into a Y; walk feet forward to add difficulty.",
+   "tr": "TRX: kayışlarda geriye yaslan ve kendini Y şeklinde çek; zorlaştırmak için ayakları öne al.",
+   "ar": "TRX: مِل للخلف على الأحزمة واسحب نفسك على شكل Y، وقدّم قدميك لزيادة الصعوبة."
+  },
+  "v-bar-lat-shrugs": {
+   "en": "Close neutral grip on a V-bar; think of driving the elbows toward your hips to feel the lats.",
+   "tr": "V-bar'da dar nötr tutuş; latları hissetmek için dirsekleri kalçaya doğru sürmeyi düşün.",
+   "ar": "قبضة محايدة ضيقة على مقبض V؛ فكّر في دفع المرفقين نحو الوركين لتشعر بالظهر العريض."
+  },
+  "v-bar-low-trap-shrugs": {
+   "en": "Lean back slightly and drive the shoulder blades down to bias the lower traps.",
+   "tr": "Hafif geriye yaslan ve alt trapezi vurgulamak için kürek kemiklerini aşağı it.",
+   "ar": "مِل للخلف قليلًا وادفع لوحي الكتف للأسفل للتركيز على أسفل شبه المنحرفة."
+  },
+  "v-bar-pull-up-shrugs": {
+   "en": "Hang from a V-bar with a close neutral grip.",
+   "tr": "Dar nötr tutuşla V-bar'dan asıl.",
+   "ar": "تعلّق بمقبض V بقبضة محايدة ضيقة."
+  },
+  "viking-press-neutral-grip": {
+   "en": "Neutral grip: palms facing each other for a more shoulder-friendly press.",
+   "tr": "Nötr tutuş: avuçlar birbirine bakar; daha omuz dostu bir press.",
+   "ar": "قبضة محايدة: الراحتان متقابلتان لضغط أكثر راحة للكتف."
+  },
+  "weighted-straight-hyper-drop-finish-copy": {
+   "en": "Focus on pulling the shoulders down to bias the lower traps.",
+   "tr": "Alt trapezi vurgulamak için omuzları aşağı çekmeye odaklan.",
+   "ar": "ركّز على سحب الكتفين للأسفل للتركيز على أسفل شبه المنحرفة."
+  },
+  "wide-grip-pull-up-shrugs-weighted": {
+   "en": "Weighted, wide grip; add load with a belt or dumbbell.",
+   "tr": "Ağırlıklı, geniş tutuş; kemer ya da dumbbell ile yük ekle.",
+   "ar": "مع وزن وقبضة واسعة؛ أضف الحمل بحزام أو دمبل."
+  },
+  "wide-grip-smith-upright-row": {
+   "en": "Smith machine: the fixed bar path lets you focus purely on the delts.",
+   "tr": "Smith machine: sabit bar yolu sadece omuzlara odaklanmanı sağlar.",
+   "ar": "جهاز السميث: مسار البار الثابت يتيح التركيز على الكتفين فقط."
+  }
+ }
+}
