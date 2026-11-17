@@ -1,4 +1,5 @@
 // App shell: router, top bar, theme, shared exercise card, body map, Jeff's videos, boot.
+import "./log.js"; // FE-6: first, so boot errors are caught too
 import { S, save, loadStore, persist, flush, degraded } from "./store.js";
 import { $, $$, esc, ic, openSheet, closeSheet, initSheet, toast, haptic, unlockAudio, indicate, selectIn, RM } from "./ui.js";
 import { EX, searchEx, byTier, weeklyVolume, loadExercises, hasEquip, hurts, recovery } from "./data.js";
@@ -64,6 +65,8 @@ function route(quiet) {
   hideSplash();
 }
 addEventListener("hashchange", () => { closeSheet(); route(); });
+// SEC-4: no inline onerror (CSP) — thumbnails marked data-hide-broken hide themselves when the file is missing
+addEventListener("error", (e) => { if (e.target?.hasAttribute?.("data-hide-broken")) e.target.style.visibility = "hidden"; }, true);
 // BE-2: another tab saved -> show its data here; never re-render under the user's fingers or a hidden tab
 let staleView = false;
 const refresh = () => {

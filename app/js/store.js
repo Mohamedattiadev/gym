@@ -9,7 +9,10 @@ const DEFAULTS = {
   profile: null, // {level, days, equipment, name}
 };
 
+import { sanitize } from "./sanitize.js";
 let db;
+// SEC-3: clean anything that comes from a file or the sync repo before it reaches S
+export const clean = (d) => sanitize(d, { keys: Object.keys(DEFAULTS), schema: SCHEMA, uid: () => Math.random().toString(36).slice(2, 9) + Date.now().toString(36) });
 export const S = structuredClone(DEFAULTS);
 
 function idb() {
@@ -137,9 +140,10 @@ export function exportData() {
 }
 export async function importData(text) {
   const j = JSON.parse(text);
-  const d = j.app === "gymy" ? j.data : j; // also accept v1 backups
-  if (!Array.isArray(d.workouts) || !Array.isArray(d.sessions)) throw new Error("Not a Gym backup");
-  d.sessions = d.sessions.map((s) => ({ ...s, startedAt: s.startedAt || s.start, endedAt: s.endedAt || s.end }));
+  const raw = j && j.app === "gymy" ? j.data : j; // also accept v1 backups
+  if (!raw || !Array.isArray(raw.workouts) || !Array.isArray(raw.sessions)) throw new Error("Not a Gym backup");
+  raw.sessions = raw.sessions.map((s) => ({ ...s, startedAt: s?.startedAt || s?.start, endedAt: s?.endedAt || s?.end }));
+  const d = clean(raw);
   Object.assign(S, structuredClone(DEFAULTS), d, { settings: { ...DEFAULTS.settings, ...(d.settings || {}) }, active: S.active, sync: S.sync });
   await saveAll();
 }

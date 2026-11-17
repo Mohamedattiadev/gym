@@ -7,11 +7,14 @@ import { e1rm } from "./calc.js";
 import { setTop, applyTheme, fillIll, installNow, standalone, MEDIA_CACHE, tierBadge } from "./main.js";
 import { lib } from "./exercise.js";
 import * as Sync from "./sync.js";
+import { readLog, clearLog } from "./log.js";
 
 const view = () => $("#view");
 const me = { tab: "progress", ex: null };
 const u = () => S.settings.unit;
 
+// FE-6: shown only when something actually went wrong
+const errLog = () => { const n = readLog().length; return n ? `<div class="dim tiny errlog" style="margin-top:6px">${n} app error${n > 1 ? "s" : ""} logged · <a href="#" id="copyLog" style="color:var(--accent-text)">Copy debug log</a> · <a href="#" id="clearLog" style="color:var(--accent-text)">Clear</a></div>` : ""; };
 export function meView() {
   setTop({ title: "Me" });
   view().innerHTML = `<div class="ptabs" id="mtabs">${[["progress", "Progress"], ["history", "History"]].map(([k, l]) => `<button data-k="${k}" class="${me.tab === k ? "on" : ""}">${l}</button>`).join("")}</div>
@@ -125,7 +128,7 @@ function historyPanel(p) {
   const ss = [...S.sessions].reverse();
   p.innerHTML = ss.length ? `<div class="stack tight stagger">${ss.slice(0, 60).map((s) => `<div class="card pad">
       <div class="row"><div class="grow"><b>${esc(s.name)}</b><div class="dim small">${fmtDate(s.endedAt)} · ${fmtDur(s.endedAt - s.startedAt)} · ${s.entries.reduce((a, en) => a + en.sets.length, 0)} sets</div></div>
-      <button class="iconbtn sm" data-del="${s.id}" aria-label="Delete" style="color:var(--t3)">${ic("trash", "sm")}</button></div>
+      <button class="iconbtn sm" data-del="${esc(s.id)}" aria-label="Delete" style="color:var(--t3)">${ic("trash", "sm")}</button></div>
       ${s.entries.map((en) => `<div class="small" style="margin-top:6px"><b class="b">${esc(BY[en.slug]?.name || en.slug)}</b> <span class="dim">${esc(setsText(en.sets))}</span></div>`).join("")}</div>`).join("")}</div>`
     : `<div class="empty"><div class="ill" data-ill="empty-history"></div>Finished workouts appear here.</div>`;
   p.onclick = async (e) => {
@@ -168,7 +171,7 @@ export async function settingsView() {
         <div class="row"><button class="btn sm grow" id="exp">${ic("share", "sm")} Export</button><label class="btn sm grow">${ic("download", "sm")} Import<input type="file" id="imp" accept=".json,application/json" hidden></label></div>
         <div class="dim small" style="margin:12px 0 6px">Spreadsheet (CSV) — open in Excel, or move from another app</div>
         <div class="row"><button class="btn sm grow" id="expCsv">${ic("share", "sm")} Export CSV</button><label class="btn sm grow">${ic("download", "sm")} From Strong / Hevy<input type="file" id="impCsv" accept=".csv,text/csv,text/plain" hidden></label></div>
-        <div class="dim tiny" style="margin-top:8px" id="pst"></div></div>
+        <div class="dim tiny" style="margin-top:8px" id="pst"></div>${errLog()}</div>
       ${standalone() ? "" : `<button class="btn block" id="inst">${ic("phone", "sm")} Install app</button>`}
     </div></div>
     <div class="credits card soft pad" style="margin-top:16px">
@@ -201,6 +204,11 @@ export async function settingsView() {
     else { const a = document.createElement("a"); a.href = URL.createObjectURL(file); a.download = file.name; a.click(); }
     S.settings.lastBackup = Date.now(); save("settings");
   };
+  const cl = $("#copyLog"); if (cl) cl.onclick = async (ev) => { ev.preventDefault();
+    const txt = readLog().map((x) => `${new Date(x.t).toISOString()} ${x.hash} ${x.msg}\n${x.stack}`).join("\n\n");
+    try { await navigator.clipboard.writeText(txt); toast("Debug log copied"); } catch { toast("Couldn't copy"); }
+  };
+  const xl = $("#clearLog"); if (xl) xl.onclick = (ev) => { ev.preventDefault(); clearLog(); xl.closest(".errlog")?.remove(); };
   $("#expCsv").onclick = async () => {
     await flush(); if (!S.sessions.length) return toast("No workouts to export yet");
     const C = await import("./csv.js");

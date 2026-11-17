@@ -1,7 +1,7 @@
 // Optional cloud backup to the owner's OWN PRIVATE GitHub repo (see SYNC.md).
 // The token stays on this device (IndexedDB key "sync") and is NEVER written into the backup file.
 // Talks only to https://api.github.com. No libraries.
-import { S, save, flush, exportData } from "./store.js";
+import { S, save, flush, exportData, clean as cleanData } from "./store.js";
 
 const API = "https://api.github.com";
 const DEBOUNCE_MS = 20000;
@@ -231,6 +231,7 @@ const exclusive = (fn) => {
 
 // Write merged data into S (all keys, never the device's sync config / active workout).
 async function applyData(d) {
+  d = cleanData(d); // SEC-3: the sync repo is outside data
   for (const [k, v] of Object.entries(d)) {
     if (k === "sync" || k === "active") continue;
     S[k] = structuredClone(v);

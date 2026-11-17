@@ -26,7 +26,7 @@ function heroCard() {
   const next = T.nextWorkout();
   if (next) return `<div class="hero-card"><div class="eyebrow">Up next</div><h3>${esc(next.name)}</h3>
       <div class="muted small">${next.items.length} exercises · about ${Math.max(10, Math.round(next.items.reduce((a, it) => a + +it.sets * 2.6, 0) / 5) * 5)} min</div>
-      <div class="thumbs">${next.items.slice(0, 6).map((it) => `<img src="${BY[it.slug]?.poster || ""}" alt="" onerror="this.style.visibility='hidden'">`).join("")}</div>
+      <div class="thumbs">${next.items.slice(0, 6).map((it) => `<img src="${BY[it.slug]?.poster || ""}" alt="" data-hide-broken>`).join("")}</div>
       <div class="row"><button class="btn primary grow" id="startNext">${ic("play", "sm")} Start workout</button><a class="btn" href="#/warmup/w/${next.id}">${ic("flame", "sm")} Warm up</a><a class="btn" href="#/workout/${next.id}" aria-label="Edit">${ic("edit", "sm")}</a></div></div>`;
   return `<div class="hero-card has-ill"><div class="txt"><div class="eyebrow">Get started</div><h3>Build your first workout</h3>
       <div class="muted small" style="margin-bottom:12px">Answer 5 quick questions and get a ready plan for your level.</div>

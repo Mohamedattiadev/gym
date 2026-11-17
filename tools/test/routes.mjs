@@ -13,7 +13,9 @@ const routes = ["#/", "#/lib", `#/ex/${slug}`, "#/body", "#/train", `#/plan/${pl
 const sessionSteps = [{ go: "#/train" }, { waitFor: "[data-use]" }, { click: "[data-use]", wait: 800 }, { waitFor: "[data-start]" },
   { click: "[data-start]", wait: 1200 }, { waitFor: ".xblock" }, { shot: "session" },
   { go: "#/train" }, { waitFor: "a[href^='#/workout/']" },
-  { click: "a[href^='#/workout/']", wait: 900 }, { shot: "workout" }];
+  { click: "a[href^='#/workout/']", wait: 900 }, { shot: "workout" },
+  // FE-6: the app's own error log must stay empty
+  { eval: "(() => { const l = localStorage.getItem('gym-log'); if (l) throw new Error('app error log: ' + l.slice(0, 400)); })()" }];
 let failed = 0;
 for (const vp of ["phone", "desktop"]) for (const scheme of ["light", "dark"]) {
   const steps = [{ vp, scheme }, { go: "#/", wait: 2500 }, { waitFor: "#view" },

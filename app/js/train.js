@@ -57,9 +57,9 @@ export function trainView() {
   view().innerHTML = `${S.active ? `<a class="hero-card live" href="#/session" style="display:block;margin-bottom:4px"><div class="eyebrow">In progress</div><h3>${esc(S.active.name)}</h3><div class="muted small">Tap to resume</div></a>` : ""}
     <div class="cols"><div>
       <div class="sec"><h2>My workouts</h2><button class="btn sm" id="newW">${ic("plus", "sm")} New</button></div>
-      <div class="stack tight stagger">${S.workouts.map((w) => `<div class="wrow"><a class="grow" href="#/workout/${w.id}">
-          <img src="${BY[w.items[0]?.slug]?.poster || ""}" alt="" onerror="this.style.visibility='hidden'"><div class="grow"><div class="b ellip">${esc(w.name)}</div><div class="dim small">${w.items.length} exercises · ${w.items.reduce((a, it) => a + +it.sets, 0)} sets</div></div></a>
-          <button class="go-btn" data-start="${w.id}" aria-label="Start ${esc(w.name)}">${ic("play")}</button></div>`).join("") ||
+      <div class="stack tight stagger">${S.workouts.map((w) => `<div class="wrow"><a class="grow" href="#/workout/${esc(w.id)}">
+          <img src="${BY[w.items[0]?.slug]?.poster || ""}" alt="" data-hide-broken><div class="grow"><div class="b ellip">${esc(w.name)}</div><div class="dim small">${w.items.length} exercises · ${w.items.reduce((a, it) => a + +it.sets, 0)} sets</div></div></a>
+          <button class="go-btn" data-start="${esc(w.id)}" aria-label="Start ${esc(w.name)}">${ic("play")}</button></div>`).join("") ||
         `<div class="card pad row" style="gap:14px;text-align:start"><div class="ill" data-ill="empty-workouts" style="width:84px;margin:0;flex:none"></div><div class="grow"><b>No workouts yet</b><div class="muted small">Use a plan for your level or create your own.</div></div></div>`}</div>
       ${S.active ? "" : `<button class="btn ghost block" id="quick" style="margin-top:6px">${ic("bolt", "sm")} Quick start — empty workout</button>`}
       <div class="sec"><h2>Tools</h2></div>
