@@ -234,15 +234,52 @@ export function sessionView() {
       <button class="btn sm ${gym ? "primary" : ""}" id="gymT" aria-pressed="${gym}">${ic("phone", "sm")} Gym mode</button></div>
     ${!a.warmed && !a.noWarm && a.entries.length && !a.entries.some((en) => en.sets.some((x) => x.done)) ? `<div class="notice acc" id="warmN" style="margin-bottom:12px">${ic("flame", "sm")}<div class="grow"><b>Warm up first</b><div class="small muted">About 6 min, made for this workout</div></div><a class="btn sm primary" href="#/warmup/s">Start</a><button class="iconbtn sm" id="warmX" aria-label="Skip warm-up">${ic("close", "sm")}</button></div>` : ""}
     ${gym ? `<div class="gnav"><button class="iconbtn filled" id="gPrev" aria-label="Previous exercise" ${gi ? "" : "disabled"}>${ic("back")}</button><b class="num">Exercise ${gi + 1} of ${a.entries.length}</b><button class="iconbtn filled fwd" id="gNext" aria-label="Next exercise" ${gi < a.entries.length - 1 ? "" : "disabled"}>${ic("back")}</button></div>` : ""}
+    <div class="sess-grid"><div class="sess-main">
     <div class="stack" id="entries">${a.entries.map((en, ei) => entryHTML(en, ei)).join("") || `<div class="card pad" style="text-align:center"><div class="ill" data-ill="hero-start" style="max-width:140px"></div><b>Empty workout</b><div class="muted small">Add your first exercise.</div></div>`}</div>
     <button class="btn block" id="addEx" style="margin-top:12px">${ic("plus", "sm")} Add exercise</button>
-    <div class="row" style="margin-top:10px"><button class="btn ghost grow danger" id="disc">Discard</button><button class="btn primary grow" id="fin">${ic("check", "sm")} Finish workout</button></div>`;
+    <div class="row" style="margin-top:10px"><button class="btn ghost grow danger" id="disc">Discard</button><button class="btn primary grow" id="fin">${ic("check", "sm")} Finish workout</button></div></div>
+    <aside class="sess-side" id="sside" aria-label="Current exercise"></aside></div>`;
   clearInterval(clockT);
   const tick = () => { const c = $("#clock"); if (!c || !S.active) return clearInterval(clockT); c.textContent = fmtDur(Date.now() - S.active.startedAt); };
   tick(); clockT = setInterval(tick, 1000);
   const wx = $("#warmX"); if (wx) wx.onclick = () => { a.noWarm = true; save("active"); $("#warmN")?.remove(); };
-  wireSession();
+  wireSession(); sideCur = -1; side();
 }
+/* 22b part 4b: wide screens (>= 1200 px) — sticky right column: current exercise video, next set, workout progress */
+const WIDE = matchMedia("(min-width: 1200px)");
+let sideCur = -1, sideSlug = "";
+function curEntry() {
+  const en = S.active?.entries || []; if (!en.length) return -1;
+  if (sideCur >= 0 && en[sideCur]?.sets.some((x) => !x.done)) return sideCur;
+  const k = en.findIndex((x) => x.sets.some((s) => !s.done)); return k >= 0 ? k : en.length - 1;
+}
+function side() {
+  const el = $("#sside"), a = S.active; if (!el || !a) return;
+  if (!WIDE.matches || !a.entries.length) { el.innerHTML = ""; sideSlug = ""; return; }
+  const ei = curEntry(), en = a.entries[ei], e = BY[en.slug], u = S.settings.unit;
+  const k = en.sets.findIndex((x) => !x.done), work = en.sets.filter((x) => x.type !== "w");
+  let now;
+  if (k < 0) now = `<b>All sets done</b>`;
+  else { const s = en.sets[k], warm = s.type === "w", n = warm ? 0 : en.sets.slice(0, k + 1).filter((x) => x.type !== "w").length, tg = warm ? null : planOf(en).tgt(n);
+    const w = s.w || tg?.w, r = s.r || tg?.r;
+    now = `<b>${warm ? "Warm-up set" : `Set ${n} of ${work.length}`}</b>${r ? `<span class="num">${w ? `${esc(w)} ${u} × ${esc(r)}` : `${esc(r)} reps`}</span>` : ""}`; }
+  if (sideSlug !== en.slug || !el.firstElementChild) {
+    sideSlug = en.slug;
+    el.innerHTML = `<div class="card sside"><a class="sv" href="#/ex/${en.slug}" aria-label="How to do ${esc(e?.name || en.slug)}">${e?.poster ? `<img class="hbg" src="${e.poster}" alt="">` : ""}${e?.video ? `<video src="${e.video}" poster="${e?.poster || ""}" autoplay muted loop playsinline preload="metadata"></video>` : e?.poster ? `<img src="${e.poster}" alt="">` : ""}</a>
+      <div class="sbody"><div class="eyebrow">Now</div><div class="st">${esc(e?.name || en.slug)}</div><div class="snow" id="snow"></div>
+        <div class="row" style="gap:8px;margin-top:10px"><a class="btn sm" href="#/ex/${en.slug}">${ic("info", "sm")} How to</a><button class="btn sm" data-go="${ei}">${ic("chev", "sm")} Go to sets</button></div></div></div>
+      <div class="card sprog"><div class="eyebrow">Workout</div><div id="slist"></div></div>`;
+  }
+  $("#snow", el).innerHTML = now;
+  $("[data-go]", el).dataset.go = ei;
+  $("#slist", el).innerHTML = a.entries.map((x, i) => { const d = x.sets.filter((s) => s.done && s.type !== "w").length, t = x.sets.filter((s) => s.type !== "w").length;
+    return `<button class="sitem${i === ei ? " on" : ""}${t && d >= t ? " done" : ""}" data-go="${i}"><span class="grow">${esc(BY[x.slug]?.name || x.slug)}</span><span class="num">${d}/${t}</span></button>`; }).join("");
+  el.onclick = (ev) => { const b = ev.target.closest("[data-go]"); if (!b) return;
+    const blk = $(`#entries [data-ei="${b.dataset.go}"]`); if (!blk) return; sideCur = +b.dataset.go; side();
+    blk.scrollIntoView({ block: "start", behavior: RM.matches ? "auto" : "smooth" });
+    const inp = blk.querySelector('.setrow:not(.done) input[data-k="w"]'); inp?.focus({ preventScroll: true }); };
+}
+WIDE.addEventListener("change", () => { if (location.hash === "#/session") { sideSlug = ""; side(); } });
 /* per-set plan: previous value (same working-set index last time) + today's target (double progression, deload = ~60%) */
 const wStep = (ex) => (ex && (ex.equipment.includes("Barbell") || ex.equipment.includes("Smith")) ? 2.5 : ex?.equipment.includes("Dumbbell") ? 2 : 2.5);
 function planOf(en) {
@@ -302,6 +339,8 @@ function wireSession() {
     const en = a.entries[+inp.closest("[data-ei]").dataset.ei]; en.sets[+inp.closest("[data-si]").dataset.si][inp.dataset.k] = inp.value.replace(",", ".");
     save("active");
   };
+  box.addEventListener("focusin", (e) => { const b = e.target.closest("[data-ei]"); if (b && +b.dataset.ei !== sideCur) { sideCur = +b.dataset.ei; side(); } });
+  box.addEventListener("click", () => setTimeout(side, 0));
   box.addEventListener("focusin", (e) => { const row = e.target.closest(".setrow"); if (!row || row.classList.contains("act")) return;
     row.parentElement.querySelectorAll(".setrow.act").forEach((x) => x.classList.remove("act")); row.classList.add("act"); });
   // keyboard entry: ↑/↓ = ± one step (weight step / 1 rep), Enter in kg -> reps; Enter in reps (mouse/keyboard devices) = set done -> next set's kg

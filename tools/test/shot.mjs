@@ -28,7 +28,7 @@ try {
     if (d.method === "Runtime.consoleAPICalled" && ["error", "warning"].includes(d.params.type)) errors.push(d.params.type + " " + d.params.args.map((a) => a.value ?? a.description).join(" "));
     if (d.method === "Log.entryAdded" && d.params.entry.level === "error") errors.push("LOG " + d.params.entry.text + " " + (d.params.entry.url || ""));
   };
-  await send("Runtime.enable"); await send("Log.enable"); await send("Page.enable");
+  await send("Runtime.enable"); await send("Log.enable"); await send("Page.enable"); await send("Emulation.setFocusEmulationEnabled", { enabled: true }).catch(() => {});
   const ev = async (expr) => { const r = await send("Runtime.evaluate", { expression: expr, awaitPromise: true, returnByValue: true }); if (r.exceptionDetails) errors.push("EVAL " + (r.exceptionDetails.exception?.description || r.exceptionDetails.text).split("\n")[0]); return r.result?.value; };
   let loaded = false, vpName = "phone";
   for (const s of steps) {
