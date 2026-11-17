@@ -144,7 +144,6 @@ export async function nutritionView() {
 }
 
 /* ---------------- plans explained (block 26) ---------------- */
-const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 let plansDays = 0; // filter on the Plans page (kept while the app is open)
 const TARGET = { beginner: [6, 10], intermediate: [10, 16], advanced: [12, 20] };
 export async function plansView(id) {
@@ -158,12 +157,15 @@ export async function plansView(id) {
     const ws = P.weeklySets(p), [lo, hi] = TARGET[p.level], max = Math.max(hi, ...Object.values(ws));
     const rec = p.id === P.recommendedId();
     view().innerHTML = `<div class="card pad"><div class="eyebrow">${esc(p.level)} · ${p.days} days a week${rec ? " · Recommended for you" : ""}</div><p class="small" style="margin:6px 0 0">${esc(L(c.what))}</p>${c.best ? `<p class="dim small" style="margin:6px 0 0">${esc(L(c.best))}</p>` : ""}</div>
-      <div class="h4">Your week</div><div class="sched">${p.week.map((i, d) => `<div class="${i == null ? "off" : ""}"><b>${DAYS[d]}</b><span>${i == null ? "Rest" : esc(p.workouts[i][0])}</span></div>`).join("")}</div>
+      <div class="row between scn-h"><div class="h4">How a week works</div><select class="chip scn-cmp" id="pCmp" aria-label="Compare with another plan"><option value="">Compare with…</option>${P.PLANS.filter((q) => q.id !== p.id).map((q) => `<option value="${q.id}">${esc(L(C[q.id]?.name) || q.name)} · ${q.days} days</option>`).join("")}</select></div><div id="scnHost"></div>
       ${blk("Who it's for", c.who)}${blk("Why it works", c.why)}${list("Good", c.pros, "pros")}${list("Keep in mind", c.cons, "cons")}
       <div class="h4">Hard sets per muscle per week</div><div class="wsets">${P.MAIN.map((g) => [g, ws[g] || 0]).map(([g, n]) => `<div><span>${esc(g)}</span><i><u style="inset-inline-start:${(lo / max) * 100}%;width:${((hi - lo) / max) * 100}%"></u><b style="width:${(n / max) * 100}%" class="${n < lo ? "lo" : ""}"></b></i><em class="num">${n}</em></div>`).join("")}</div>
       <div class="dim tiny" style="margin-top:6px">Green band = a good weekly range for this level (${lo}–${hi} sets). Presses count half a set for triceps, rows and pulldowns half a set for biceps.${(() => { const o = Object.entries(ws).filter(([g]) => !P.MAIN.includes(g)); return o.length ? ` Also: ${o.map(([g, n]) => `${esc(g)} ${n}`).join(" · ")}.` : ""; })()}</div>
       ${blk("How to progress", c.progression)}${list("Tips", c.tips, "")}
       <div class="row" style="margin-top:16px"><button class="btn grow" id="pPv">Preview</button><button class="btn primary grow" id="pUse">${ic("plus", "sm")} Use this plan</button></div>`;
+    const sc = await import("./scenario.js"); if (!live(rid)) return;
+    sc.mountScenario($("#scnHost"), p);
+    $("#pCmp").onchange = (e) => sc.mountScenario($("#scnHost"), p, { compare: e.target.value });
     $("#pPv").onclick = () => T.previewPlan(p);
     $("#pUse").onclick = async () => { if (await T.usePlan(p, false)) go("#/train"); };
     return;

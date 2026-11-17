@@ -182,7 +182,7 @@ export function exerciseStats(from, to) {
 }
 
 /* ---- recovery: per muscle hours left (48–72h window by size & sets) ---- */
-const REC_BASE = { quads: 72, hamstrings: 72, glutes: 72, lats: 66, "upper-back": 66, chest: 66, "lower-back": 72, traps: 54, "delt-front": 54, "delt-side": 54, "delt-rear": 54,
+export const REC_BASE = { quads: 72, hamstrings: 72, glutes: 72, lats: 66, "upper-back": 66, chest: 66, "lower-back": 72, traps: 54, "delt-front": 54, "delt-side": 54, "delt-rear": 54,
   triceps: 54, biceps: 54, adductors: 60, calves: 48, forearms: 48, abs: 48, obliques: 48, shins: 48 };
 export function recovery(now = Date.now()) {
   const load = {}; // muscle → {t: last time, sets}

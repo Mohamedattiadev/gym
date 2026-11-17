@@ -279,6 +279,7 @@ svg.ring circle { fill: none; stroke-width: 4; } svg.ring .bg { stroke: var(--s3
 .hero-card.live .eyebrow, .hero-card.live .muted { color: color-mix(in oklab, var(--accent-ink) 82%, transparent); }
 .hero-card .ill { position: absolute; inset-inline-end: 10px; bottom: 6px; width: 132px; margin: 0; opacity: .95; pointer-events: none; }
 .hero-card.has-ill .txt { padding-inline-end: 128px; }
+.hero-card.rec .ill { top: 12px; bottom: auto; width: 112px; } .hero-card.rec .txt { padding-inline-end: 112px; } .hero-card.rec .row { position: relative; z-index: 1; }
 .thumbs { display: flex; margin: 10px 0 12px; }
 .thumbs img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--s1); margin-inline-end: -9px; background: var(--s3); }
 .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
@@ -746,9 +747,6 @@ body:has(.tpill) .toast { bottom: calc(var(--tab-h) + var(--safe-b) + 70px); }
 .gsec[open] summary svg { transform: rotate(-90deg); }
 .gsec ul, .glist { margin: 0; padding: 0 14px 12px 32px; display: grid; gap: 6px; font-size: 14px; line-height: 1.45; }
 .glist { padding: 0 0 0 18px; }
-.sched { display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 6px; }
-.sched div { display: grid; gap: 2px; padding: 8px 10px; border-radius: 10px; background: var(--s1); box-shadow: var(--raise-sm); }
-.sched div.off { background: transparent; box-shadow: inset 0 0 0 1px var(--edge); } .sched div.off span { color: var(--t3); font-weight: 500; }
 .plan-card.rec { box-shadow: inset 0 0 0 2px color-mix(in oklab, var(--accent) 55%, transparent); }
 .tag.rec-b { color: var(--accent-text); background: color-mix(in oklab, var(--accent) 12%, transparent); display: inline-flex; align-items: center; gap: 3px; }
 .tag.rec-b svg { width: 12px; height: 12px; }
@@ -763,7 +761,6 @@ body:has(.tpill) .toast { bottom: calc(var(--tab-h) + var(--safe-b) + 70px); }
 .wsets b.lo { background: color-mix(in oklab, var(--accent) 45%, transparent); }
 .wsets u { position: absolute; inset-block: 0; background: color-mix(in oklab, var(--ok) 26%, transparent); text-decoration: none; }
 .wsets b { z-index: 1; opacity: .9; }
-.sched b { font-size: 12px; color: var(--t3); text-transform: uppercase; letter-spacing: .04em; } .sched span { font-size: 13.5px; font-weight: 600; }
 
 /* ---- Gym mode: one exercise per screen, big targets ---- */
 .sess-head .btn { align-self: center; }
@@ -940,3 +937,34 @@ body:has(#rov) .toast { bottom: auto; top: calc(var(--safe-t) + 16px); }
 .sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 .storewarn { position: fixed; z-index: 90; top: calc(var(--safe-t) + 8px); left: 12px; right: 12px; max-width: 560px; margin: 0 auto; box-shadow: var(--shadow); }
+
+/* plan scenario player (block 26 part 2) */
+.scn-h { margin-top: 18px; } .scn-h .h4 { margin: 0; } .scn-cmp { display: none; }
+@media (min-width: 900px) { .scn-cmp { display: inline-flex; } }
+.scn-top { margin: 8px 0 10px; gap: 10px; flex-wrap: wrap; }
+.scn { display: grid; gap: 12px; } .scn.two { grid-template-columns: 1fr 1fr; }
+.scn-name { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; } .scn .scn-name { display: none; } .scn.two .scn-name { display: flex; }
+.scn-week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.scn-week button { display: grid; gap: 2px; min-height: 48px; padding: 6px 4px; border: 0; border-radius: 10px; background: var(--s1); box-shadow: var(--raise-sm); color: var(--t1); font: inherit; text-align: center; cursor: pointer; min-width: 0; }
+.scn-week button.off { background: transparent; box-shadow: inset 0 0 0 1px var(--edge); }
+.scn-week button.off span { color: var(--t3); font-weight: 500; }
+.scn-week button.on { box-shadow: inset 0 0 0 2px var(--accent); background: color-mix(in oklab, var(--accent) 9%, var(--s1)); }
+.scn-week b { font-size: 11px; color: var(--t3); text-transform: uppercase; letter-spacing: .04em; }
+.scn-week span { font-size: 12px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.scn .scn-col { margin: 0; }
+.scn-stage { display: flex; gap: 14px; margin-top: 12px; align-items: flex-start; }
+@media (max-width: 599px) { .scn-stage { flex-direction: column; align-items: stretch; } .scn-body { justify-content: center; } .scn-body .body-svg { width: 104px; } }
+.scn-body .body-svg { width: 76px; } .scn-body .body-svg .m { transition: fill .35s ease; }
+@media (min-width: 600px) { .scn-body .body-svg { width: 96px; } }
+.scn-day { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.scn-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 13.5px; }
+.scn-list li { display: flex; justify-content: space-between; gap: 8px; } .scn-list a { color: var(--t1); text-decoration: none; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.scn-list span { flex: none; font-size: 12.5px; }
+.scn-info p { margin: 0; }
+.scn-freq { margin-top: 10px; }
+.prog4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.prog4 div { display: grid; gap: 4px; justify-items: center; text-align: center; }
+.prog4 i { position: relative; width: 100%; max-width: 64px; height: 64px; border-radius: 8px; background: color-mix(in oklab, var(--t3) 12%, transparent); overflow: hidden; }
+.prog4 b { position: absolute; inset-inline: 0; bottom: 0; background: var(--accent); border-radius: 8px 8px 0 0; }
+.prog4 .dl b { background: var(--rec-g); }
+.prog4 em { font-style: normal; font-size: 12.5px; font-weight: 650; } .prog4 span { font-size: 11.5px; color: var(--t2); }

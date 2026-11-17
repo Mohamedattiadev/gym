@@ -7,6 +7,7 @@ import { setTop, go } from "./nav.js";
 import { installBanner, wireInstall } from "./install.js";
 import { xcard, onImg } from "./components.js";
 import * as T from "./train.js";
+import { planById, recommendedId, freqOf, planSlots, planOpts, minutesOf } from "./plans.js";
 import * as Tm from "./timer.js";
 
 const view = () => $("#view");
@@ -30,9 +31,10 @@ function heroCard() {
       <div class="muted small">${next.items.length} exercises · about ${Math.max(10, Math.round(next.items.reduce((a, it) => a + +it.sets * 2.6, 0) / 5) * 5)} min</div>
       <div class="thumbs">${next.items.slice(0, 6).map((it) => `<img src="${BY[it.slug]?.poster || ""}" alt="" data-hide-broken>`).join("")}</div>
       <div class="row"><button class="btn primary grow" id="startNext">${ic("play", "sm")} Start workout</button><a class="btn" href="#/warmup/w/${next.id}">${ic("flame", "sm")} Warm up</a><a class="btn" href="#/workout/${next.id}" aria-label="Edit">${ic("edit", "sm")}</a></div></div>`;
-  return `<div class="hero-card has-ill"><div class="txt"><div class="eyebrow">Get started</div><h3>Build your first workout</h3>
-      <div class="muted small" style="margin-bottom:12px">Answer 5 quick questions and get a ready plan for your level.</div>
-      <a class="btn primary" href="#/start">${ic("dumbbell", "sm")} Find my plan</a></div><div class="ill" data-ill="hero-start"></div></div>`;
+  const p = planById(recommendedId());
+  return `<div class="hero-card has-ill rec"><div class="txt"><div class="eyebrow">Recommended for ${S.profile?.level ? "you" : "beginners"}</div><h3>${esc(p.name)} · ${p.days} days</h3>
+      <div class="muted small" style="margin-bottom:14px">Each muscle ${freqOf(p)}× a week, about ${Math.max(...planSlots(p, planOpts()).map(minutesOf))} min a session. ${S.profile?.level ? "" : "Not a beginner? "}<a href="#/start" style="color:var(--accent-text);font-weight:600">${S.profile?.level ? "Find another plan" : "Find my plan"}</a></div>
+      </div><div class="row"><button class="btn primary grow" id="useRec">${ic("plus", "sm")} Use this plan</button><a class="btn grow" href="#/plan/${p.id}">How it works</a></div><div class="ill" data-ill="hero-start"></div></div>`;
 }
 function timerCard() {
   return `<div class="card pad"><div class="row" style="margin-bottom:10px"><span class="ico-t">${ic("timer", "sm")}</span><b class="grow">Rest timer</b><a class="link small" href="#/timer" style="color:var(--accent-text);font-weight:600">Open timer</a></div>
@@ -77,6 +79,7 @@ export function homeView() {
     <div class="grid">${top.map((e) => xcard(e)).join("")}</div>
     ${installBanner()}`;
   onImg(view());
+  const ur = $("#useRec"); if (ur) ur.onclick = async () => { haptic(); if (await T.usePlan(planById(recommendedId()), false)) homeView(); };
   const sn = $("#startNext"); if (sn) sn.onclick = () => T.startSession(T.nextWorkout());
   $("#presets").onclick = (e) => { const b = e.target.closest("[data-s]"); if (!b) return; haptic(); Tm.startCountdown(+b.dataset.s, { kind: "rest", label: "Rest" }); };
   $("#seeS").onclick = async (e) => { e.preventDefault(); const L = await import("./exercise.js"); Object.assign(L.lib, { tier: "S", group: "All", q: "" }); go("#/lib"); };
