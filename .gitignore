@@ -6,8 +6,7 @@ raw/
 *.token
 .env*
 
-# media: kept outside the repo until the deploy step moves it into app/media
-/media/
+# media: tracked in /media (owner decision, session 31); app/media is a local symlink, the deploy step copies media/ into app/media
 app/media
 
 # local / generated

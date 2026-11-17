@@ -19,6 +19,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Copy media into the site
+        run: rm -rf app/media && cp -r media app/media
       - uses: actions/upload-pages-artifact@v3
         with:
           path: app
