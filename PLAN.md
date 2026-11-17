@@ -66,10 +66,10 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 - 🟡 Jeff tier card (one-line expandable + YouTube link; timestamp pending), your stats (best e1RM, last week vs this week, sparkline), notes, alternatives
 
 ## 5. Body map
-- ⬜ Replace hand-drawn SVG with a **realistic muscular open-source anatomy SVG** (license must allow public use; credit it)
-- ⬜ Tap muscle → smooth **scale-up + zoom** → **Info tab first** (name, what it does, weekly sets vs target) → **Exercises tab** (tier-sorted)
-- ⬜ Weekly heat-map mode kept
-- ⬜ **Sub-muscles / heads** (owner request): tapping a muscle (e.g. Chest) zooms in and shows its heads inside (Upper chest / Mid-lower chest, biceps long/short/brachialis, triceps long/lateral/medial, quads RF/VL/VM, glute max/med, calves gastro/soleus, traps upper/mid/lower…) highlighted on the zoomed SVG, each with name + short about; Exercises tab groups exercises under each head (tier-sorted). Data: `app/data/guide/heads.json` (regex classification), SVG `data-h` shapes
+- ✅ Replace hand-drawn SVG with a **realistic muscular open-source anatomy SVG** (license must allow public use; credit it)
+- ✅ Tap muscle → smooth **scale-up + zoom** → **Info tab first** (name, what it does, weekly sets vs target) → **Exercises tab** (tier-sorted)
+- ✅ Weekly heat-map mode kept; + Recovery mode
+- ✅ **Sub-muscles / heads** (owner request): tapping a muscle (e.g. Chest) zooms in and shows its heads inside (Upper chest / Mid-lower chest, biceps long/short/brachialis, triceps long/lateral/medial, quads RF/VL/VM, glute max/med, calves gastro/soleus, traps upper/mid/lower…) highlighted on the zoomed SVG, each with name + short about; Exercises tab groups exercises under each head (tier-sorted). Data: `app/data/guide/heads.json` (regex classification), SVG `data-h` shapes
 
 ## 6. Training & tracking
 - 🟡 `app/js/train.js` (workouts, level plans, live logger, warm-up sets, PR confetti, rest timer, plate & 1RM calc, intervals, swap, summary) — **needs end-to-end test**
@@ -115,7 +115,7 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 - ⬜ **Common mistakes shown, not just told** (owner, block 22): WRONG vs RIGHT clip / 3D per mistake, credited, exact movement only — spec in NEXT_SESSION.md
 
 - ⬜ **Exercise page declutter + equipment chips + Joint care sheet + 3 tabs** (owner, block 17) — spec in NEXT_SESSION.md
-- ⬜ **Human-looking body (18) + rotatable 3D muscle body for every exercise (19)** (owner: "looks like a stick man", "all angles")
+- 🟡 **Human-looking body (18 ✅ session 5) + rotatable 3D muscle body for every exercise (19)** (owner: "looks like a stick man", "all angles")
 
 ## 9b. Voice guidance (later phase — yes, possible)
 - ⬜ **Narrate the movement explanations** too: about, numbered how-to steps, cues, common mistakes, warm-up drills, plan explanations (a play button on every explanation + hands-free mode during a session)
@@ -165,6 +165,11 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 - Strength goals: e1RM from logged sets whose names match `standards.json` regex; library has no plain flat barbell bench, so bench uses close-grip/slight-incline barbell.
 - Gym mode: session head "Gym mode" toggle (S.settings.gym), one exercise at a time, prev/next + swipe, bigger steppers, "Next exercise" button when done, follows supersets. Wake lock already existed.
 - Share: finish sheet "Share" → `share.js` renders a 1080×1350 PNG (Web Share files, else download). sw VERSION v11.
+
+## Notes (2026-11-17, session 5)
+- Body map (block 18): `app/js/anatomy.js` (VIEWBOX 216×424, `path.m[data-m][data-h]`, `.base`) from react-native-body-highlighter v3.2.0 (MIT, HichamELBSI), polygonised, grown, heads split by us (chest 3 bands, biceps long/short, delts, lats, traps mid/lower, rhomboids synthesized). Generator + source in tools/anatomy/ (build.py src.json out.js 4.5 2). body.js now only MUSCLES + helpers; mirror shapes gone.
+- Body map modes Muscles | This week | Recovery; sheet tabs Info (fn, week sets, recovery text, Parts list → tap highlights head `hsel`) | Exercises (grouped by head via `headOf()` in main.js, equipment chips). On <1000px the sheet is `half` (54dvh) and the zoom keeps the muscle in the top part. Credit link under the map.
+- Content fix: 2-part-high-elbow-row → family chest-supported-high-elbow-row, equipment Dumbbell (also in build_data.py). sw v12.
 
 ## Real-phone lessons (from the owner's Fluent365 Pocket test on Android) — apply to Gym
 - ✅ **System bars match the theme**: Android nav bar/status bar stayed white under a dark app. Set `<meta name="theme-color">` at runtime from the theme (done in `applyTheme`), add `media`-specific theme-color metas for light/dark, and pick manifest `theme_color`/`background_color` that don't flash; note installed WebAPK may need reinstall to update.

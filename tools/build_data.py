@@ -126,6 +126,8 @@ def classify(x):
             if re.search(rx, n, re.I):
                 x["group"] = g
                 break
+    if x["slug"] == "2-part-high-elbow-row":  # video is a chest-supported dumbbell row
+        x["equipment"] = ["Dumbbell"]
     if not x["equipment"]:
         x["equipment"] = [eq for eq, rx in EQUIP_RULES if re.search(rx, n, re.I)]
     return x

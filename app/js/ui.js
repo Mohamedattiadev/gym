@@ -81,9 +81,9 @@ export const fmtKg = (v) => (v >= 10000 ? (v / 1000).toFixed(1) + "t" : Math.rou
 
 /* ---- sheet ---- */
 const sheet = () => $("#sheet");
-export function openSheet(html, mount, { dlg = false } = {}) {
+export function openSheet(html, mount, { dlg = false, half = false } = {}) {
   const d = sheet();
-  d.classList.toggle("dlg", dlg);
+  d.classList.toggle("dlg", dlg); d.classList.toggle("half", half);
   $("#sheetBody").innerHTML = html;
   d.classList.remove("closing");
   if (!d.open) d.showModal();

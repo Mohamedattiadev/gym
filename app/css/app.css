@@ -33,7 +33,7 @@
   --accent: #D93A31; --accent-ink: #FFFFFF; --accent-soft: color-mix(in oklab, var(--accent) 12%, transparent); --accent-text: #C2352D;
   --info: #2F6FC4; --warn: #B87A16; --danger: #C42B2B; --ok: #23925F;
   --tier-S: #94690B; --tier-A: #6D4FD8; --tier-B: #1F6FC0; --tier-C: #6E6761;
-  --mus: #DDD7D1; --mus-line: #F2EFEC;
+  --mus: #CBBFB4; --mus-line: #F7F4F1;
   --rec-r: #D93A31; --rec-y: #D99A2B; --rec-g: #3AA374;
   --raise: -6px -6px 16px #FFFFFFCC, 8px 10px 24px #7A5A4A1F;
   --raise-sm: -3px -3px 8px #FFFFFFCC, 4px 5px 12px #7A5A4A1A;
@@ -365,12 +365,21 @@ svg.ring circle { fill: none; stroke-width: 4; } svg.ring .bg { stroke: var(--s3
 .bm-top { display: flex; gap: 8px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin: 4px 0 6px; }
 .body-wrap { position: relative; display: grid; place-items: center; }
 .body-svg { width: min(100%, 360px); height: auto; max-height: 58dvh; touch-action: manipulation; overflow: visible; }
-.body-svg .base { fill: var(--s3); stroke: var(--line-2); stroke-width: .5; }
+.body-svg .base { fill: var(--s2); stroke: var(--line-2); stroke-width: .5; }
 .body-svg .m { fill: var(--hm, var(--mus)); stroke: var(--mus-line); stroke-width: .7; cursor: pointer; transition: fill 320ms var(--ease), opacity 320ms var(--ease); }
 @media (hover: hover) { .body-svg .m:hover { fill: color-mix(in oklab, var(--accent) 45%, var(--hm, var(--mus))); } }
 .body-svg.focus .m:not(.sel) { opacity: .25; }
 .body-svg .m.sel { fill: var(--accent); }
 .body-svg .m.sec { fill: var(--mus-2); }
+.body-svg.hpick .m.sel:not(.hsel) { fill: color-mix(in oklab, var(--accent) 35%, var(--mus)); }
+.body-svg .m.sel.hsel { fill: var(--accent); }
+.bm-credit { text-align: center; margin-top: 2px; }
+.rdot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.hd-row { width: 100%; border: 0; background: none; text-align: start; color: inherit; align-items: flex-start; border-radius: var(--r-md); }
+.hd-row .hdot { width: 10px; height: 10px; border-radius: 50%; margin-top: 6px; background: var(--s4); flex: none; }
+.hd-row.on .hdot { background: var(--accent); }
+.hd-row.on .t { color: var(--accent-text); }
+.hd-h { margin: 14px 2px 4px; cursor: pointer; }
 .body-svg .m.r { fill: var(--rec-r); } .body-svg .m.y { fill: var(--rec-y); } .body-svg .m.g { fill: var(--rec-g); }
 .body-svg .pin { display: none; }
 .mini-body .body-svg { width: 64px; max-height: none; pointer-events: none; }
@@ -493,6 +502,8 @@ dialog.sheet { position: fixed; inset: auto 0 0 0; margin: 0 auto; width: 100%; 
   border-radius: var(--r-xl) var(--r-xl) 0 0; background: var(--s1); color: var(--t1); box-shadow: var(--shadow-lg); overflow: hidden;
   animation: sheetUp 360ms var(--spring) both; }
 dialog.sheet::backdrop { background: #0008; animation: fadeIn 240ms var(--ease) both; }
+dialog.sheet.half { max-height: 54dvh; } dialog.sheet.half .body { max-height: calc(54dvh - 20px); }
+dialog.sheet.half::backdrop { background: #0003; }
 dialog.sheet.closing { animation: sheetDown 200ms ease-in both; }
 dialog.sheet.closing::backdrop { animation: fadeOut 200ms ease-in both; }
 dialog.sheet .grab { width: 38px; height: 5px; border-radius: 3px; background: var(--line-2); margin: 8px auto 2px; }
