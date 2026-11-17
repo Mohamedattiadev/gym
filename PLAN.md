@@ -112,6 +112,8 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 - **Quick swap** when a machine is busy (exists — make it more visible)
 - **Sound/vibration** cues on rest end, with settings (exists — verify on iOS)
 
+- ⬜ **Common mistakes shown, not just told** (owner, block 22): WRONG vs RIGHT clip / 3D per mistake, credited, exact movement only — spec in NEXT_SESSION.md
+
 ## 9b. Voice guidance (later phase — yes, possible)
 - ⬜ **Narrate the movement explanations** too: about, numbered how-to steps, cues, common mistakes, warm-up drills, plan explanations (a play button on every explanation + hands-free mode during a session)
 - ⬜ Read steps & cues aloud, announce "set 2 of 3", rep count, rest countdown "10 seconds… 3, 2, 1, go"
