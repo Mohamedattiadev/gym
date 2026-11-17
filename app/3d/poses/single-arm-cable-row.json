@@ -1,0 +1,7 @@
+{"ecc":"back","plant":false,"grip":true,"fixed":["seat"],"base":{"thigh":[0.12,-0.1,1],"shin":[0.04,-0.35,0.94],"foot":[0,0.6,0.8],"neck":[0,1,0.1],"uarmL":[0.12,-1,0.2],"farmL":[0.05,-0.25,1]},
+ "keys":[
+  {"torso":[0,1,0.28],"tw":{"torso":-14},"uarmR":[-0.08,-0.15,1],"farmR":[-0.03,-0.08,1]},
+  {"torso":[0,1,-0.05],"tw":{"torso":8},"uarmR":[-0.18,-0.75,-0.6],"farmR":[-0.04,-0.05,1]}],
+ "wrong":{
+  "0":{"keys":[{"tw":{"torso":-40}},{"tw":{"torso":38},"torso":[0,1,-0.25]}],"view":"front"},
+  "1":{"tempo":{"ecc":0.45,"bottom":0}}}}

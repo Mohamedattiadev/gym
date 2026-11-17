@@ -17,7 +17,7 @@ const getAnim = (id) => (anims[id] ??= id.startsWith("p:") ? fetch(`3d/poses/${i
    {base:{...}, keys:[start, (mid), end], ecc:"out"|"back"}  — each key = segment directions in body space
    (x = the body's LEFT/outward for sided segments (mirrored for the right side), y = up, z = forward),
    e.g. "uarm":[0,-1,0.2], "farmR":[...]; "tw":{"farm":deg} twists a segment about its own axis;
-   "frame":deg pitches the whole body (-90 = lying on the back, author as if standing); "plant":false = feet not planted.
+   "frame":deg pitches the whole body (-90 = lying on the back, author as if standing); "plant":false = feet not planted, "footL" = only the front (left) foot.
    Interpolated per sample (directions slerped), so planted feet stay put; eccentric half is slower. */
 const SEG = { torso: ["spine05", "neck01"], neck: ["neck01", "head"], clav: ["clavicle", "upperarm01"], uarm: ["upperarm01", "lowerarm01"],
   farm: ["lowerarm01", "wrist"], hand: ["wrist", "finger3-1"], thigh: ["upperleg01", "lowerleg01"], shin: ["lowerleg01", "foot"], foot: ["foot", "toe3-1"] };
@@ -64,13 +64,13 @@ function buildClip(model, P, eqProp = null) {
   const pw = (b) => b.getWorldPosition(V()), dir = (k) => pw(seg[k][1]).sub(pw(seg[k][0])).normalize();
   const restDir = { footL: dir("footL"), footR: dir("footR") };
   const keys = P.keys.map((k) => resolve({ ...P.base, ...k }));
-  const plant = P.plant ?? "feet", pb = plant === "hands" ? ["handL", "handR"] : ["footL", "footR"]; let anchor = null;
+  const plant = P.plant ?? "feet", pb = plant === "hands" ? ["handL", "handR"] : plant === "footL" ? ["footL", "footL"] : ["footL", "footR"], onFeet = plant === "feet" || plant === "footL"; let anchor = null;
   const pose = (r) => {
     all.forEach((b, i) => b.quaternion.copy(rest[i])); root.position.copy(rootPos);
     const F = Q().setFromAxisAngle(new THREE.Vector3(1, 0, 0), THREE.MathUtils.degToRad(r.frame));
     if (r.frame) { root.quaternion.premultiply(F); }
     model.updateMatrixWorld(true);
-    const target = { ...r.d }; if (plant === "feet") { target.footL ??= restDir.footL.toArray(); target.footR ??= restDir.footR.toArray(); }
+    const target = { ...r.d }; if (onFeet) { target.footL ??= restDir.footL.toArray(); if (plant === "feet") target.footR ??= restDir.footR.toArray(); }
     for (const k of ORDER) {
       const [b, e] = seg[k]; if (!b || !e || (!target[k] && r.tw[k] == null)) continue;
       const bw = b.getWorldQuaternion(Q()), par = b.parent.getWorldQuaternion(Q()).invert();
@@ -80,7 +80,7 @@ function buildClip(model, P, eqProp = null) {
     }
     root.position.add(new THREE.Vector3(...r.pos));
     if (plant) { model.updateMatrixWorld(true); const f = pw(seg[pb[0]][0]).add(pw(seg[pb[1]][0])).multiplyScalar(.5);
-      if (!anchor) anchor = new THREE.Vector3(f.x, plant === "feet" ? restDir.y0 : f.y, f.z); root.position.add(anchor.clone().sub(f)); }
+      if (!anchor) anchor = new THREE.Vector3(f.x, onFeet ? restDir.y0 : f.y, f.z); root.position.add(anchor.clone().sub(f)); }
     model.updateMatrixWorld(true);
     if (P.ik === "backbar" || P.ik === "lowbar") { // hands grip the bar on the traps just outside the shoulders, elbows down/back
       const g = backBar((n) => pw(bones[n]), P.ik === "lowbar");
@@ -137,6 +137,7 @@ function buildClip(model, P, eqProp = null) {
 }
 
 /** Simple props: "bar" between the palms, "cbar" short cable handle, "db" in each hand, "pullbar" above the hands, "bench" under the back (lying moves). */
+const P_CHEST = [.14, .26]; // chest pad: forward, up from the hips
 function makeProp(kinds, model, dark) {
   kinds = kinds.filter(Boolean); if (!kinds.length) return null;
   const bones = {}; model.traverse((o) => { if (o.isBone) bones[o.name] = o; });
@@ -201,6 +202,20 @@ function makeProp(kinds, model, dark) {
       ups.push(() => { const hip = loc(bones.upperleg01L, a).clone().add(loc(bones.upperleg01R, b)).multiplyScalar(.5);
         const ft = loc(bones.footL, a).clone().add(loc(bones.footR, b)).multiplyScalar(.5), toe = loc(bones["toe3-1L"] || bones.toe31L, a).clone().add(loc(bones["toe3-1R"] || bones.toe31R, b)).multiplyScalar(.5);
         d.subVectors(ft, hip).normalize(); o.quaternion.setFromUnitVectors(Z, d); o.position.copy(ft).lerp(toe, kind === "sled" ? .45 : 1).addScaledVector(d, kind === "sled" ? .06 : .035); });
+    } else if (kind === "backpad" || kind === "chestpad") { // hack squat back pad (follows the torso along the sled) / chest pad of a machine row (fixed in front of the chest, from the hips)
+      const o = new THREE.Mesh(new THREE.BoxGeometry(kind === "backpad" ? .42 : .32, kind === "backpad" ? .95 : .3, .07), pad); g.add(o);
+      const t = new THREE.Vector3(), l = new THREE.Vector3(), f = new THREE.Vector3(), M = new THREE.Matrix4(), UP = new THREE.Vector3(0, 1, 0);
+      ups.push(() => { const s5 = loc(bones.spine05, a).clone(), nk = loc(bones.neck01, b).clone(); l.subVectors(loc(bones.upperleg01L, a), loc(bones.upperleg01R, b)).normalize();
+        if (kind === "backpad") { t.subVectors(nk, s5).normalize(); f.crossVectors(l, t).normalize(); o.quaternion.setFromRotationMatrix(M.makeBasis(l, t, f)); o.position.copy(s5).lerp(nk, .38).addScaledVector(f, -.16); }
+        else { f.crossVectors(l, UP).normalize(); o.quaternion.setFromRotationMatrix(M.makeBasis(l, UP, f)); o.position.copy(s5).addScaledVector(UP, P_CHEST[1]).addScaledVector(f, P_CHEST[0]); } });
+    } else if (kind === "kneepad") { // assisted pull-up machine: pad under the knees
+      const o = new THREE.Mesh(new THREE.BoxGeometry(.42, .06, .32), pad); g.add(o);
+      ups.push(() => { const k = loc(bones.lowerleg01L, a).clone().add(loc(bones.lowerleg01R, b)).multiplyScalar(.5), an = loc(bones.footL, a).clone().add(loc(bones.footR, b)).multiplyScalar(.5);
+        o.position.copy(k).lerp(an, .3); o.position.y -= .08; o.rotation.y = Math.atan2(an.x - k.x, an.z - k.z); });
+    } else if (kind === "footbench") { // Bulgarian split squat: bench under the rear (right) foot
+      const o = new THREE.Mesh(new THREE.BoxGeometry(.36, 1, .4), pad); g.add(o);
+      ups.push(() => { const an = loc(bones.footR, a).clone(), toe = loc(bones["toe3-1R"] || bones.toe31R, b).clone(), fl = loc(bones.footL, c).y - .07, top = Math.min(an.y, toe.y) - .035, p = an.lerp(toe, .5), h = Math.max(.1, top - fl);
+        o.scale.y = h; o.position.set(p.x, top - h / 2, p.z); });
     } else if (kind === "dipbars") for (let i = 0; i < 2; i++) { const o = new THREE.Mesh(new THREE.CylinderGeometry(.02, .02, .6, 16), mat); o.rotation.x = Math.PI / 2; g.add(o);
       ups.push(() => { o.position.copy(grip(hand[i], .3)); o.position.y -= .02; });
     }
