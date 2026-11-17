@@ -1,1306 +1,2876 @@
 {
  "families": {
-  "ab-rollout": {
-   "oef": "0857",
-   "file": "animations/0857.webp",
-   "conf": "high"
-  },
-  "around-the-worlds": {
-   "oef": "2143",
-   "file": "animations/2143.webp",
-   "conf": "low"
-  },
   "assisted-pull-up": {
    "oef": "0017",
    "file": "animations/0017.webp",
-   "conf": "high"
-  },
-  "back-extension": {
-   "oef": "0489",
-   "file": "animations/0489.webp",
-   "conf": "high"
-  },
-  "bar-pushdown": {
-   "oef": "0201",
-   "file": "animations/0201.webp",
-   "conf": "high"
-  },
-  "barbell-curl": {
-   "oef": "0031",
-   "file": "animations/0031.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 3 members are Assisted Pull-Up (same equipment + body position)"
   },
   "barbell-incline-press": {
    "oef": "0047",
    "file": "animations/0047.webp",
-   "conf": "high"
-  },
-  "barbell-overhead-press": {
-   "oef": "pulse-0002",
-   "file": "animations/pulse-0002.webp",
-   "conf": "high"
-  },
-  "barbell-pullover": {
-   "oef": "0073",
-   "file": "animations/0073.webp",
-   "conf": "high"
-  },
-  "barbell-row": {
-   "oef": "0027",
-   "file": "animations/0027.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 4 members are Barbell Incline Bench Press (same equipment + body position)"
   },
   "behind-back-barbell-raise": {
    "oef": "0075",
    "file": "animations/0075.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 2 members are Barbell Rear Delt Raise (same equipment + body position)"
   },
   "bench-dips": {
    "oef": "0129",
    "file": "animations/0129.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 3 members are Bench Dip (knees Bent) (same equipment + body position)"
   },
   "bodyweight-row": {
    "oef": "0499",
    "file": "animations/0499.webp",
-   "conf": "high"
-  },
-  "bodyweight-triceps-extension": {
-   "oef": "1771",
-   "file": "animations/1771.webp",
-   "conf": "low"
-  },
-  "bulgarian-split-squat": {
-   "oef": "0768",
-   "file": "animations/0768.webp",
-   "conf": "high"
-  },
-  "cable-crunch": {
-   "oef": "0175",
-   "file": "animations/0175.webp",
-   "conf": "high"
-  },
-  "cable-curl": {
-   "oef": "0868",
-   "file": "animations/0868.webp",
-   "conf": "high"
-  },
-  "cable-fly": {
-   "oef": "0227",
-   "file": "animations/0227.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 1 members are Inverted Row (same equipment + body position)"
   },
   "cable-kickback": {
    "oef": "0228",
    "file": "animations/0228.webp",
-   "conf": "high"
-  },
-  "cable-lateral-raise": {
-   "oef": "0192",
-   "file": "animations/0192.webp",
-   "conf": "high"
-  },
-  "cable-overhead-extension": {
-   "oef": "0194",
-   "file": "animations/0194.webp",
-   "conf": "high"
-  },
-  "cable-pullover": {
-   "oef": "0238",
-   "file": "animations/0238.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 1 members are Cable Standing Hip Extension (same equipment + body position)"
   },
   "cable-rotation": {
    "oef": "0243",
    "file": "animations/0243.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 1 members are Cable Twist (same equipment + body position)"
   },
   "chest-stretch": {
    "oef": "1271",
    "file": "animations/1271.webp",
-   "conf": "med"
-  },
-  "chest-supported-high-elbow-row": {
-   "oef": "1328",
-   "file": "animations/1328.webp",
-   "conf": "high"
-  },
-  "chest-supported-row": {
-   "oef": "0327",
-   "file": "animations/0327.webp",
-   "conf": "high"
-  },
-  "close-grip-press": {
-   "oef": "0751",
-   "file": "animations/0751.webp",
-   "conf": "high"
-  },
-  "close-grip-pulldown": {
-   "oef": "2616",
-   "file": "animations/2616.webp",
-   "conf": "high"
+   "conf": "med",
+   "why": "all 1 members are Chest And Front Of Shoulder Stretch (same equipment + body position)"
   },
   "concentration-curl": {
    "oef": "0297",
    "file": "animations/0297.webp",
-   "conf": "high"
-  },
-  "crunch": {
-   "oef": "0274",
-   "file": "animations/0274.webp",
-   "conf": "high"
-  },
-  "dead-skulls": {
-   "oef": "0060",
-   "file": "animations/0060.webp",
-   "conf": "low"
+   "conf": "high",
+   "why": "all 3 members are Dumbbell Concentration Curl (same equipment + body position)"
   },
   "deadlift": {
    "oef": "0032",
    "file": "animations/0032.webp",
-   "conf": "high"
-  },
-  "decline-crunch": {
-   "oef": "0277",
-   "file": "animations/0277.webp",
-   "conf": "high"
-  },
-  "decline-press": {
-   "oef": "0301",
-   "file": "animations/0301.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 5 members are Barbell Deadlift (same equipment + body position)"
   },
   "deficit-push-ups": {
    "oef": "1274",
    "file": "animations/1274.webp",
-   "conf": "high"
-  },
-  "dips-chest": {
-   "oef": "0251",
-   "file": "animations/0251.webp",
-   "conf": "high"
-  },
-  "drag-curl": {
-   "oef": "0038",
-   "file": "animations/0038.webp",
-   "conf": "high"
-  },
-  "dumbbell-curl": {
-   "oef": "0294",
-   "file": "animations/0294.webp",
-   "conf": "high"
-  },
-  "dumbbell-fly": {
-   "oef": "0308",
-   "file": "animations/0308.webp",
-   "conf": "high"
-  },
-  "dumbbell-lateral-raise": {
-   "oef": "0334",
-   "file": "animations/0334.webp",
-   "conf": "high"
-  },
-  "dumbbell-pullover": {
-   "oef": "0375",
-   "file": "animations/0375.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 2 members are Deep Push Up (same equipment + body position)"
   },
   "dumbbell-row-bent-over": {
    "oef": "0293",
    "file": "animations/0293.webp",
-   "conf": "high"
-  },
-  "dumbbell-shoulder-press": {
-   "oef": "0405",
-   "file": "animations/0405.webp",
-   "conf": "high"
-  },
-  "dumbbell-skull-crushers": {
-   "oef": "0351",
-   "file": "animations/0351.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 5 members are Dumbbell Bent Over Row (same equipment + body position)"
   },
   "face-pull": {
    "oef": "0233",
    "file": "animations/0233.webp",
-   "conf": "med"
-  },
-  "finger-flexor-curl": {
-   "oef": "0455",
-   "file": "animations/0455.webp",
-   "conf": "high"
+   "conf": "med",
+   "why": "all 1 members are Cable Standing Rear Delt Row (with Rope) (same equipment + body position)"
   },
   "flat-dumbbell-press": {
    "oef": "0289",
    "file": "animations/0289.webp",
-   "conf": "high"
-  },
-  "forearm-pronation": {
-   "oef": "0347",
-   "file": "animations/0347.webp",
-   "conf": "high"
-  },
-  "forearm-supination": {
-   "oef": "0349",
-   "file": "animations/0349.webp",
-   "conf": "high"
-  },
-  "french-press": {
-   "oef": "1749",
-   "file": "animations/1749.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 4 members are Dumbbell Bench Press (same equipment + body position)"
   },
   "front-raise": {
    "oef": "0834",
    "file": "animations/0834.webp",
-   "conf": "high"
-  },
-  "front-squat": {
-   "oef": "0042",
-   "file": "animations/0042.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 1 members are Weighted Front Raise (same equipment + body position)"
   },
   "glute-hyper": {
    "oef": "0489",
    "file": "animations/0489.webp",
-   "conf": "med"
-  },
-  "glute-rdl": {
-   "oef": "0085",
-   "file": "animations/0085.webp",
-   "conf": "med"
-  },
-  "good-morning": {
-   "oef": "0044",
-   "file": "animations/0044.webp",
-   "conf": "high"
-  },
-  "hack-squat": {
-   "oef": "0743",
-   "file": "animations/0743.webp",
-   "conf": "high"
-  },
-  "hammer-curl": {
-   "oef": "0313",
-   "file": "animations/0313.webp",
-   "conf": "high"
-  },
-  "hamstring-hyper": {
-   "oef": "0489",
-   "file": "animations/0489.webp",
-   "conf": "med"
-  },
-  "hanging-knee-raise": {
-   "oef": "0011",
-   "file": "animations/0011.webp",
-   "conf": "high"
-  },
-  "hanging-leg-raise": {
-   "oef": "0472",
-   "file": "animations/0472.webp",
-   "conf": "high"
-  },
-  "hanging-scapular-shrug": {
-   "oef": "0688",
-   "file": "animations/0688.webp",
-   "conf": "high"
-  },
-  "high-bar-squat": {
-   "oef": "1436",
-   "file": "animations/1436.webp",
-   "conf": "high"
-  },
-  "high-elbow-dumbbell-row": {
-   "oef": "0377",
-   "file": "animations/0377.webp",
-   "conf": "high"
+   "conf": "med",
+   "why": "all 3 members are Hyperextension (same equipment + body position)"
   },
   "hip-abduction": {
    "oef": "0597",
    "file": "animations/0597.webp",
-   "conf": "high"
-  },
-  "hip-adduction": {
-   "oef": "0598",
-   "file": "animations/0598.webp",
-   "conf": "high"
-  },
-  "hip-thrust": {
-   "oef": "0756",
-   "file": "animations/0756.webp",
-   "conf": "med"
-  },
-  "incline-cable-extension": {
-   "oef": "0173",
-   "file": "animations/0173.webp",
-   "conf": "high"
-  },
-  "incline-cable-fly": {
-   "oef": "0171",
-   "file": "animations/0171.webp",
-   "conf": "high"
-  },
-  "incline-cable-pushdown": {
-   "oef": "0172",
-   "file": "animations/0172.webp",
-   "conf": "high"
-  },
-  "incline-dumbbell-curl": {
-   "oef": "0318",
-   "file": "animations/0318.webp",
-   "conf": "high"
-  },
-  "incline-dumbbell-fly": {
-   "oef": "0319",
-   "file": "animations/0319.webp",
-   "conf": "high"
-  },
-  "incline-dumbbell-press": {
-   "oef": "0314",
-   "file": "animations/0314.webp",
-   "conf": "high"
-  },
-  "incline-lateral-raise": {
-   "oef": "0323",
-   "file": "animations/0323.webp",
-   "conf": "high"
-  },
-  "incline-shrug": {
-   "oef": "0329",
-   "file": "animations/0329.webp",
-   "conf": "high"
-  },
-  "jm-press": {
-   "oef": "0052",
-   "file": "animations/0052.webp",
-   "conf": "med"
-  },
-  "kickback": {
-   "oef": "0333",
-   "file": "animations/0333.webp",
-   "conf": "high"
-  },
-  "lat-pulldown": {
-   "oef": "0198",
-   "file": "animations/0198.webp",
-   "conf": "high"
-  },
-  "lateral-lunge": {
-   "oef": "1410",
-   "file": "animations/1410.webp",
-   "conf": "med"
+   "conf": "high",
+   "why": "all 2 members are Lever Seated Hip Abduction (same equipment + body position)"
   },
   "leg-extension": {
    "oef": "0585",
    "file": "animations/0585.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 5 members are Lever Leg Extension (same equipment + body position)"
   },
   "leg-press": {
    "oef": "0739",
    "file": "animations/0739.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 5 members are Sled 45° Leg Press (same equipment + body position)"
   },
   "leg-press-calf-raise": {
    "oef": "1391",
    "file": "animations/1391.webp",
-   "conf": "high"
-  },
-  "low-bar-squat": {
-   "oef": "1435",
-   "file": "animations/1435.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 6 members are Sled Calf Press On Leg Press (same equipment + body position)"
   },
   "lying-cable-curl": {
    "oef": "1634",
    "file": "animations/1634.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 3 members are Cable Lying Bicep Curl (same equipment + body position)"
   },
   "lying-leg-curl": {
    "oef": "0586",
    "file": "animations/0586.webp",
-   "conf": "high"
-  },
-  "machine-chest-press": {
-   "oef": "0576",
-   "file": "animations/0576.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 2 members are Lever Lying Leg Curl (same equipment + body position)"
   },
   "machine-curl": {
    "oef": "0575",
    "file": "animations/0575.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 2 members are Lever Bicep Curl (same equipment + body position)"
   },
   "machine-dips": {
    "oef": "1451",
    "file": "animations/1451.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 2 members are Lever Seated Dip (same equipment + body position)"
   },
   "machine-fly": {
    "oef": "0596",
    "file": "animations/0596.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 4 members are Lever Seated Fly (same equipment + body position)"
   },
   "machine-incline-press": {
    "oef": "1299",
    "file": "animations/1299.webp",
-   "conf": "high"
-  },
-  "machine-lateral-raise": {
-   "oef": "0584",
-   "file": "animations/0584.webp",
-   "conf": "high"
-  },
-  "machine-rear-delt-fly": {
-   "oef": "0602",
-   "file": "animations/0602.webp",
-   "conf": "high"
-  },
-  "machine-row": {
-   "oef": "1350",
-   "file": "animations/1350.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 3 members are Lever Incline Chest Press (same equipment + body position)"
   },
   "machine-shoulder-press": {
    "oef": "0603",
    "file": "animations/0603.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 5 members are Lever Shoulder Press (same equipment + body position)"
   },
   "meadows-row": {
    "oef": "0589",
    "file": "animations/0589.webp",
-   "conf": "med"
+   "conf": "med",
+   "why": "all 3 members are Lever One Arm Bent Over Row (same equipment + body position)"
   },
   "neutral-dumbbell-press": {
    "oef": "0404",
    "file": "animations/0404.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 2 members are Dumbbell Seated Shoulder Press (parallel Grip) (same equipment + body position)"
   },
   "nordic-curl": {
    "oef": "0496",
    "file": "animations/0496.webp",
-   "conf": "high"
-  },
-  "one-arm-dumbbell-row": {
-   "oef": "0292",
-   "file": "animations/0292.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 5 members are Inverse Leg Curl (bench Support) (same equipment + body position)"
   },
   "one-arm-lat-row": {
    "oef": "0988",
    "file": "animations/0988.webp",
-   "conf": "med"
-  },
-  "pendlay-row": {
-   "oef": "3017",
-   "file": "animations/3017.webp",
-   "conf": "high"
-  },
-  "preacher-curl": {
-   "oef": "0070",
-   "file": "animations/0070.webp",
-   "conf": "high"
-  },
-  "pull-up": {
-   "oef": "0652",
-   "file": "animations/0652.webp",
-   "conf": "high"
-  },
-  "push-ups": {
-   "oef": "0662",
-   "file": "animations/0662.webp",
-   "conf": "high"
-  },
-  "quad-stretch": {
-   "oef": "0613",
-   "file": "animations/0613.webp",
-   "conf": "med"
-  },
-  "rear-delt-cable-fly": {
-   "oef": "0154",
-   "file": "animations/0154.webp",
-   "conf": "high"
-  },
-  "rear-delt-fly": {
-   "oef": "0602",
-   "file": "animations/0602.webp",
-   "conf": "high"
-  },
-  "rear-delt-raise": {
-   "oef": "0380",
-   "file": "animations/0380.webp",
-   "conf": "high"
-  },
-  "rear-delt-row": {
-   "oef": "0203",
-   "file": "animations/0203.webp",
-   "conf": "high"
-  },
-  "reverse-crunch": {
-   "oef": "0872",
-   "file": "animations/0872.webp",
-   "conf": "med"
-  },
-  "reverse-curl": {
-   "oef": "0080",
-   "file": "animations/0080.webp",
-   "conf": "high"
-  },
-  "reverse-grip-press": {
-   "oef": "0764",
-   "file": "animations/0764.webp",
-   "conf": "high"
+   "conf": "med",
+   "why": "all 2 members are Band One Arm Standing Low Row (same equipment + body position)"
   },
   "reverse-hyper": {
    "oef": "0130",
    "file": "animations/0130.webp",
-   "conf": "med"
-  },
-  "reverse-lunge": {
-   "oef": "0381",
-   "file": "animations/0381.webp",
-   "conf": "high"
-  },
-  "romanian-deadlift": {
-   "oef": "0085",
-   "file": "animations/0085.webp",
-   "conf": "high"
+   "conf": "med",
+   "why": "all 2 members are Bench Hip Extension (same equipment + body position)"
   },
   "rope-pushdown": {
    "oef": "0200",
    "file": "animations/0200.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 4 members are Cable Pushdown (with Rope Attachment) (same equipment + body position)"
   },
   "seated-barbell-press": {
    "oef": "0091",
    "file": "animations/0091.webp",
-   "conf": "high"
-  },
-  "seated-bicycle": {
-   "oef": "0003",
-   "file": "animations/0003.webp",
-   "conf": "low"
-  },
-  "seated-cable-high-elbow-row": {
-   "oef": "0218",
-   "file": "animations/0218.webp",
-   "conf": "med"
-  },
-  "seated-cable-row": {
-   "oef": "0861",
-   "file": "animations/0861.webp",
-   "conf": "high"
-  },
-  "seated-calf-raise": {
-   "oef": "0594",
-   "file": "animations/0594.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 1 members are Barbell Seated Overhead Press (same equipment + body position)"
   },
   "seated-leg-curl": {
    "oef": "0599",
    "file": "animations/0599.webp",
-   "conf": "high"
-  },
-  "shrug": {
-   "oef": "0406",
-   "file": "animations/0406.webp",
-   "conf": "high"
-  },
-  "single-arm-cable-row": {
-   "oef": "0214",
-   "file": "animations/0214.webp",
-   "conf": "med"
-  },
-  "single-arm-overhead-extension": {
-   "oef": "0362",
-   "file": "animations/0362.webp",
-   "conf": "high"
-  },
-  "single-arm-pushdown": {
-   "oef": "1723",
-   "file": "animations/1723.webp",
-   "conf": "high"
-  },
-  "single-leg-rdl": {
-   "oef": "1756",
-   "file": "animations/1756.webp",
-   "conf": "med"
-  },
-  "single-leg-squat": {
-   "oef": "1759",
-   "file": "animations/1759.webp",
-   "conf": "med"
-  },
-  "sissy-squat": {
-   "oef": "1489",
-   "file": "animations/1489.webp",
-   "conf": "high"
-  },
-  "skull-crushers": {
-   "oef": "0060",
-   "file": "animations/0060.webp",
-   "conf": "high"
-  },
-  "smith-incline-press": {
-   "oef": "0757",
-   "file": "animations/0757.webp",
-   "conf": "high"
-  },
-  "smith-shoulder-press": {
-   "oef": "0766",
-   "file": "animations/0766.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 2 members are Lever Seated Leg Curl (same equipment + body position)"
   },
   "smith-squat": {
    "oef": "0770",
    "file": "animations/0770.webp",
-   "conf": "high"
-  },
-  "spider-curl": {
-   "oef": "0454",
-   "file": "animations/0454.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "all 3 members are Smith Squat (same equipment + body position)"
   },
   "spinal-flexion-extension-hyper": {
    "oef": "0489",
    "file": "animations/0489.webp",
-   "conf": "med"
-  },
-  "split-squat": {
-   "oef": "2368",
-   "file": "animations/2368.webp",
-   "conf": "high"
-  },
-  "standing-calf-raise": {
-   "oef": "0605",
-   "file": "animations/0605.webp",
-   "conf": "high"
-  },
-  "step-up": {
-   "oef": "0431",
-   "file": "animations/0431.webp",
-   "conf": "high"
-  },
-  "sumo-deadlift": {
-   "oef": "0117",
-   "file": "animations/0117.webp",
-   "conf": "high"
-  },
-  "sumo-squat": {
-   "oef": "3142",
-   "file": "animations/3142.webp",
-   "conf": "med"
-  },
-  "supinated-dumbbell-press": {
-   "oef": "0405",
-   "file": "animations/0405.webp",
-   "conf": "med"
-  },
-  "t-bar-row": {
-   "oef": "0606",
-   "file": "animations/0606.webp",
-   "conf": "med"
-  },
-  "triceps-dips": {
-   "oef": "0814",
-   "file": "animations/0814.webp",
-   "conf": "high"
-  },
-  "triceps-push-ups": {
-   "oef": "0259",
-   "file": "animations/0259.webp",
-   "conf": "high"
-  },
-  "upright-row": {
-   "oef": "0123",
-   "file": "animations/0123.webp",
-   "conf": "high"
-  },
-  "v-up": {
-   "oef": "0507",
-   "file": "animations/0507.webp",
-   "conf": "high"
-  },
-  "walking-lunge": {
-   "oef": "1460",
-   "file": "animations/1460.webp",
-   "conf": "high"
-  },
-  "wrist-curl": {
-   "oef": "0126",
-   "file": "animations/0126.webp",
-   "conf": "high"
-  },
-  "wrist-extension": {
-   "oef": "0082",
-   "file": "animations/0082.webp",
-   "conf": "high"
-  },
-  "y-raise": {
-   "oef": "3541",
-   "file": "animations/3541.webp",
-   "conf": "high"
+   "conf": "med",
+   "why": "all 3 members are Hyperextension (same equipment + body position)"
   }
  },
  "slugs": {
+  "1-arm-row-ryan_humis514743": {
+   "oef": "0292",
+   "file": "animations/0292.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell One Arm Bent-Over Row (family one-arm-dumbbell-row split)"
+  },
+  "180-continuous-walking-lunges-garage-program": {
+   "oef": "1460",
+   "file": "animations/1460.webp",
+   "conf": "high",
+   "why": "same movement as Walking Lunge (family walking-lunge split)"
+  },
+  "3-way-incline-dumbbell-row-45-degrees-garage-program": {
+   "oef": "0327",
+   "file": "animations/0327.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Row (family chest-supported-row split)"
+  },
+  "3-way-incline-dumbbell-row-90-degrees-garage-program": {
+   "oef": "0327",
+   "file": "animations/0327.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Row (family chest-supported-row split)"
+  },
+  "3-way-incline-dumbbell-row-tucked-garage-program": {
+   "oef": "0327",
+   "file": "animations/0327.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Row (family chest-supported-row split)"
+  },
+  "3-way-incline-french-press-copy-ryan_humis514743": {
+   "oef": "0194",
+   "file": "animations/0194.webp",
+   "conf": "high",
+   "why": "same movement as Cable Overhead Triceps Extension (rope Attachment) (family cable-overhead-extension split)"
+  },
   "3-way-push-up-decline-garage-program": {
    "oef": "0279",
    "file": "animations/0279.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Decline Push-Up"
+  },
+  "3-way-push-up-flat-garage-program": {
+   "oef": "0662",
+   "file": "animations/0662.webp",
+   "conf": "high",
+   "why": "same movement as Push-Up (family push-ups split)"
   },
   "3-way-push-up-incline-garage-program": {
    "oef": "0493",
    "file": "animations/0493.webp",
-   "conf": "high"
-  },
-  "3-way-tricep-dumbbell-push-ups-decline-garage-program": {
-   "oef": "0660",
-   "file": "animations/0660.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Incline Push-Up"
   },
   "3-way-tricep-dumbbell-push-ups-flat-garage-program": {
    "oef": "0660",
    "file": "animations/0660.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Push-Up Close-Grip Off Dumbbell"
   },
-  "3-way-tricep-dumbbell-push-ups-incline-garage-program": {
-   "oef": "0660",
-   "file": "animations/0660.webp",
-   "conf": "high"
+  "3-way-tricep-push-ups-neutral-garage-program": {
+   "oef": "0259",
+   "file": "animations/0259.webp",
+   "conf": "high",
+   "why": "same movement as Close-Grip Push-Up (family triceps-push-ups split)"
+  },
+  "3-way-tricep-push-ups-slightly-pronated-garage-program": {
+   "oef": "0259",
+   "file": "animations/0259.webp",
+   "conf": "high",
+   "why": "same movement as Close-Grip Push-Up (family triceps-push-ups split)"
+  },
+  "3-way-tricep-push-ups-slightly-supinated-garage-program": {
+   "oef": "0259",
+   "file": "animations/0259.webp",
+   "conf": "high",
+   "why": "same movement as Close-Grip Push-Up (family triceps-push-ups split)"
+  },
+  "ab-straps-hanging-knee-raise-weighted": {
+   "oef": "0011",
+   "file": "animations/0011.webp",
+   "conf": "high",
+   "why": "same movement as Assisted Hanging Knee Raise (family hanging-knee-raise split)"
   },
   "alternating-curls-giant-set-garage-program": {
    "oef": "0285",
    "file": "animations/0285.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Alternate Biceps Curl"
+  },
+  "ascending-dumbbell-curls": {
+   "oef": "0294",
+   "file": "animations/0294.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Biceps Curl (family dumbbell-curl split)"
+  },
+  "back-elevated-hack-squat-quad-dominant": {
+   "oef": "0743",
+   "file": "animations/0743.webp",
+   "conf": "high",
+   "why": "same movement as Sled Hack Squat (family hack-squat split)"
+  },
+  "bar-tricep-dips-garage-program": {
+   "oef": "0814",
+   "file": "animations/0814.webp",
+   "conf": "high",
+   "why": "same movement as Triceps Dip (family triceps-dips split)"
   },
   "barbell-calf-raise-extreme-stretch": {
    "oef": "1372",
    "file": "animations/1372.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Barbell Standing Calf Raise"
   },
   "barbell-calf-raise-ryan_humis514743": {
    "oef": "1372",
    "file": "animations/1372.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Barbell Standing Calf Raise"
   },
   "barbell-curl-copy-53446e13-a84b-4219-a553-a7ddfc805de9": {
    "oef": "0447",
    "file": "animations/0447.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Ez Barbell Curl"
+  },
+  "barbell-curl-copy-ryan_humis514743": {
+   "oef": "0080",
+   "file": "animations/0080.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Reverse Curl (family reverse-curl split)"
+  },
+  "barbell-curls-garage-2-0": {
+   "oef": "0031",
+   "file": "animations/0031.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Curl (family barbell-curl split)"
+  },
+  "barbell-drag-curl-ryan_humis514743": {
+   "oef": "0038",
+   "file": "animations/0038.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Drag Curl (family drag-curl split)"
+  },
+  "barbell-finger-flexor-curls": {
+   "oef": "0455",
+   "file": "animations/0455.webp",
+   "conf": "high",
+   "why": "same movement as Finger Curls (family finger-flexor-curl split)"
+  },
+  "barbell-front-squat-heel-elevated": {
+   "oef": "0042",
+   "file": "animations/0042.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Front Squat (family front-squat split)"
+  },
+  "barbell-front-squat-ryan_humis514743": {
+   "oef": "0042",
+   "file": "animations/0042.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Front Squat (family front-squat split)"
+  },
+  "barbell-pullovers-copy": {
+   "oef": "0652",
+   "file": "animations/0652.webp",
+   "conf": "high",
+   "why": "same movement as Pull-Up (family pull-up split)"
+  },
+  "barbell-reverse-lunge-copy-ryan_humis514743": {
+   "oef": "0381",
+   "file": "animations/0381.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Rear Lunge (family reverse-lunge split)"
+  },
+  "barbell-row-mechanical-drop-end-form-copy": {
+   "oef": "0406",
+   "file": "animations/0406.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Shrug (family shrug split)"
+  },
+  "barbell-row-mechanical-drop-starting-form-copy": {
+   "oef": "0027",
+   "file": "animations/0027.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Bent Over Row (family barbell-row split)"
+  },
+  "barbell-rows-ryan_humis514743": {
+   "oef": "0027",
+   "file": "animations/0027.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Bent Over Row (family barbell-row split)"
   },
   "barbell-shrug-drops-garage-program": {
    "oef": "0095",
    "file": "animations/0095.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Barbell Shrug"
   },
   "barbell-shrugs-wide-grip-garage-2-0": {
    "oef": "0095",
    "file": "animations/0095.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Barbell Shrug"
+  },
+  "barbell-skull-crushers-extreme-stretched-position": {
+   "oef": "0060",
+   "file": "animations/0060.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Lying Triceps Extension Skull Crusher (family skull-crushers split)"
   },
   "barbell-split-squat-heel-elevated-quad-dominant": {
    "oef": "2810",
    "file": "animations/2810.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Barbell Split Squat (Bar on Back)"
   },
   "barbell-static-lunges": {
    "oef": "2810",
    "file": "animations/2810.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Barbell Split Squat (Bar on Back)"
+  },
+  "barbell-stiff-legs": {
+   "oef": "0085",
+   "file": "animations/0085.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Romanian Deadlift (family romanian-deadlift split)"
+  },
+  "barbell-wrist-curls-ryan_humis514743": {
+   "oef": "0126",
+   "file": "animations/0126.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Wrist Curl (family wrist-curl split)"
+  },
+  "barbell-wrist-extensions-ryan_humis514743": {
+   "oef": "0082",
+   "file": "animations/0082.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Reverse Wrist Curl (family wrist-extension split)"
+  },
+  "bent-over-barbell-row-garage-program": {
+   "oef": "0027",
+   "file": "animations/0027.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Bent Over Row (family barbell-row split)"
+  },
+  "bent-over-barbell-rows-2-count-hold-garage-program": {
+   "oef": "0027",
+   "file": "animations/0027.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Bent Over Row (family barbell-row split)"
+  },
+  "bent-over-dumbbell-row-copy-ryan_humis514743": {
+   "oef": "0377",
+   "file": "animations/0377.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Rear Delt Row (shoulder) (family high-elbow-dumbbell-row split)"
+  },
+  "bent-over-high-elbow-barbell-row-garage-program": {
+   "oef": "0027",
+   "file": "animations/0027.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Bent Over Row (family barbell-row split)"
+  },
+  "bodyweight-french-press-copy": {
+   "oef": "0277",
+   "file": "animations/0277.webp",
+   "conf": "high",
+   "why": "same movement as Decline Crunch (family decline-crunch split)"
+  },
+  "cable-crunches-ryan_humis514743": {
+   "oef": "0175",
+   "file": "animations/0175.webp",
+   "conf": "high",
+   "why": "same movement as Cable Kneeling Crunch (family cable-crunch split)"
+  },
+  "cable-ez-bar-curl-copy": {
+   "oef": "0868",
+   "file": "animations/0868.webp",
+   "conf": "high",
+   "why": "same movement as Cable Curl (family cable-curl split)"
   },
   "cable-fly-copy": {
    "oef": "0773",
    "file": "animations/0773.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Smith Standing Leg Calf Raise"
+  },
+  "cable-fly-high-to-low-clusterfuck-copy-ryan_humis514743": {
+   "oef": "1723",
+   "file": "animations/1723.webp",
+   "conf": "high",
+   "why": "same movement as Cable One Arm Tricep Pushdown (family single-arm-pushdown split)"
+  },
+  "cable-french-press-copy-ryan_humis514743": {
+   "oef": "0173",
+   "file": "animations/0173.webp",
+   "conf": "high",
+   "why": "same movement as Cable Incline Triceps Extension (family incline-cable-extension split)"
+  },
+  "cable-long-head-curl-copy": {
+   "oef": "0318",
+   "file": "animations/0318.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Curl (family incline-dumbbell-curl split)"
   },
   "cable-one-arm-row-kneeling": {
    "oef": "0189",
    "file": "animations/0189.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Cable One Arm Bent Over Row"
   },
   "cable-rear-delt-close-to-body-copy": {
    "oef": "0326",
    "file": "animations/0326.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Incline Rear Lateral Raise"
+  },
+  "cable-rotations-copy": {
+   "oef": "0080",
+   "file": "animations/0080.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Reverse Curl (family reverse-curl split)"
+  },
+  "cable-side-lateral-single-arm-behind-the-back": {
+   "oef": "0192",
+   "file": "animations/0192.webp",
+   "conf": "high",
+   "why": "same movement as Cable One Arm Lateral Raise (family cable-lateral-raise split)"
+  },
+  "cable-straight-bar-curl-copy": {
+   "oef": "0751",
+   "file": "animations/0751.webp",
+   "conf": "high",
+   "why": "same movement as Smith Close-Grip Bench Press (family close-grip-press split)"
+  },
+  "cable-straight-bar-partials-initial-range": {
+   "oef": "0201",
+   "file": "animations/0201.webp",
+   "conf": "high",
+   "why": "same movement as Cable Pushdown (family bar-pushdown split)"
   },
   "cable-straight-bar-reverse-curls": {
    "oef": "0206",
    "file": "animations/0206.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Cable Reverse Curl"
   },
   "cable-straight-bar-wrist-curls": {
    "oef": "0247",
    "file": "animations/0247.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Cable Wrist Curl"
   },
   "cable-straight-bar-wrist-extensions": {
    "oef": "0210",
    "file": "animations/0210.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Cable Reverse Wrist Curl"
+  },
+  "clavicular-head-incline-dumbbell-fly": {
+   "oef": "0319",
+   "file": "animations/0319.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Fly (family incline-dumbbell-fly split)"
   },
   "close-grip-bench-garage-2-0": {
    "oef": "0030",
    "file": "animations/0030.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Barbell Close-Grip Bench Press"
   },
-  "concentration-curl-copy-c194449e-62e6-468b-a38f-a293416ca6d7": {
-   "oef": "0372",
-   "file": "animations/0372.webp",
-   "conf": "high"
+  "close-grip-press-copy": {
+   "oef": "0814",
+   "file": "animations/0814.webp",
+   "conf": "high",
+   "why": "same movement as Triceps Dip (family triceps-dips split)"
+  },
+  "close-grip-smith-copy-ryan_humis514743": {
+   "oef": "0764",
+   "file": "animations/0764.webp",
+   "conf": "high",
+   "why": "same movement as Smith Reverse-Grip Press (family reverse-grip-press split)"
+  },
+  "close-grip-smith-elbows-out": {
+   "oef": "0751",
+   "file": "animations/0751.webp",
+   "conf": "high",
+   "why": "same movement as Smith Close-Grip Bench Press (family close-grip-press split)"
+  },
+  "close-grip-tricep-smith-press-elbows-flared": {
+   "oef": "0751",
+   "file": "animations/0751.webp",
+   "conf": "high",
+   "why": "same movement as Smith Close-Grip Bench Press (family close-grip-press split)"
+  },
+  "close-grip-tricep-smith-press-elbows-tucked": {
+   "oef": "0751",
+   "file": "animations/0751.webp",
+   "conf": "high",
+   "why": "same movement as Smith Close-Grip Bench Press (family close-grip-press split)"
   },
   "concentration-curl-copy-copy": {
    "oef": "1645",
    "file": "animations/1645.webp",
-   "conf": "med"
+   "conf": "med",
+   "why": "exact match: Cable Two Arm Curl On Incline Bench"
+  },
+  "concentration-curl-copy-ryan_humis514743": {
+   "oef": "0031",
+   "file": "animations/0031.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Curl (family barbell-curl split)"
+  },
+  "converging-machine-chest-press": {
+   "oef": "0576",
+   "file": "animations/0576.webp",
+   "conf": "high",
+   "why": "same movement as Lever Chest Press (family machine-chest-press split)"
+  },
+  "dc-seated-calf-raise-copy": {
+   "oef": "0594",
+   "file": "animations/0594.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Calf Raise (family seated-calf-raise split)"
+  },
+  "dead-pull-ups-copy": {
+   "oef": "0406",
+   "file": "animations/0406.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Shrug (family shrug split)"
+  },
+  "deadlifts-copy": {
+   "oef": "0489",
+   "file": "animations/0489.webp",
+   "conf": "high",
+   "why": "same movement as Hyperextension (family back-extension split)"
+  },
+  "decline-crunch-mechanical-drop-starting-form-copy": {
+   "oef": "0277",
+   "file": "animations/0277.webp",
+   "conf": "high",
+   "why": "same movement as Decline Crunch (family decline-crunch split)"
+  },
+  "decline-dumbbell-press-copy": {
+   "oef": "0334",
+   "file": "animations/0334.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Lateral Raise (family dumbbell-lateral-raise split)"
   },
   "decline-sit-ups-ryan_humis514743": {
    "oef": "0282",
    "file": "animations/0282.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Decline Sit-Up"
   },
   "dip-bar-leg-raises-ryan_humis514743": {
    "oef": "0826",
    "file": "animations/0826.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Vertical Leg Raise (on Parallel Bars)"
+  },
+  "dip-leg-raise-copy": {
+   "oef": "0472",
+   "file": "animations/0472.webp",
+   "conf": "high",
+   "why": "same movement as Hanging Leg Raise (family hanging-leg-raise split)"
+  },
+  "dips-3-second-hold-at-bottom": {
+   "oef": "0251",
+   "file": "animations/0251.webp",
+   "conf": "high",
+   "why": "same movement as Chest Dip (family dips-chest split)"
+  },
+  "dips-chest-focused": {
+   "oef": "0251",
+   "file": "animations/0251.webp",
+   "conf": "high",
+   "why": "same movement as Chest Dip (family dips-chest split)"
+  },
+  "dips-extreme-stretch": {
+   "oef": "0251",
+   "file": "animations/0251.webp",
+   "conf": "high",
+   "why": "same movement as Chest Dip (family dips-chest split)"
+  },
+  "dips-giant-set-garage-program": {
+   "oef": "0251",
+   "file": "animations/0251.webp",
+   "conf": "high",
+   "why": "same movement as Chest Dip (family dips-chest split)"
+  },
+  "dips-negatives-garage-2-0": {
+   "oef": "0251",
+   "file": "animations/0251.webp",
+   "conf": "high",
+   "why": "same movement as Chest Dip (family dips-chest split)"
+  },
+  "dips-tilted-forward-copy": {
+   "oef": "0251",
+   "file": "animations/0251.webp",
+   "conf": "high",
+   "why": "same movement as Chest Dip (family dips-chest split)"
+  },
+  "dips-triceps-weighted": {
+   "oef": "0814",
+   "file": "animations/0814.webp",
+   "conf": "high",
+   "why": "same movement as Triceps Dip (family triceps-dips split)"
+  },
+  "dips-weighted-dumbbell-between-knees": {
+   "oef": "0251",
+   "file": "animations/0251.webp",
+   "conf": "high",
+   "why": "same movement as Chest Dip (family dips-chest split)"
+  },
+  "dips-weighted-ryan_humis514743": {
+   "oef": "0251",
+   "file": "animations/0251.webp",
+   "conf": "high",
+   "why": "same movement as Chest Dip (family dips-chest split)"
+  },
+  "diy-barbell-ab-roller": {
+   "oef": "0084",
+   "file": "animations/0084.webp",
+   "conf": "high",
+   "why": "kneeling barbell rollout"
   },
   "dual-cable-side-laterals": {
    "oef": "0178",
    "file": "animations/0178.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Cable Lateral Raise"
   },
   "dual-cable-side-laterals-pronated-to-palm-down": {
    "oef": "0178",
    "file": "animations/0178.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Cable Lateral Raise"
   },
   "dual-single-handle-lat-pulldown-elbows-close-eccentric": {
    "oef": "0818",
    "file": "animations/0818.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Twin Handle Parallel Grip Lat Pulldown"
   },
   "dumbbell-finger-flexor-curl": {
    "oef": "1437",
    "file": "animations/1437.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Finger Curls"
+  },
+  "dumbbell-fly-partials-full-rom-garage-program": {
+   "oef": "0308",
+   "file": "animations/0308.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Fly (family dumbbell-fly split)"
+  },
+  "dumbbell-fly-ryan_humis514743": {
+   "oef": "0308",
+   "file": "animations/0308.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Fly (family dumbbell-fly split)"
+  },
+  "dumbbell-flys-partials-at-bottom-garage-program": {
+   "oef": "0308",
+   "file": "animations/0308.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Fly (family dumbbell-fly split)"
   },
   "dumbbell-french-press-ryan_humis514743": {
    "oef": "0430",
    "file": "animations/0430.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Standing Triceps Extension"
+  },
+  "dumbbell-hamer-curl-garage-program": {
+   "oef": "0313",
+   "file": "animations/0313.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Hammer Curl (family hammer-curl split)"
+  },
+  "dumbbell-hammer-curls-garage-2-0": {
+   "oef": "0313",
+   "file": "animations/0313.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Hammer Curl (family hammer-curl split)"
   },
   "dumbbell-hamstring-curls-copy-fe1f775b-1e2f-4662-9a68-2e5657cd287a": {
    "oef": "1459",
    "file": "animations/1459.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Romanian Deadlift"
+  },
+  "dumbbell-partial-curls-garage-program": {
+   "oef": "0294",
+   "file": "animations/0294.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Biceps Curl (family dumbbell-curl split)"
   },
   "dumbbell-preacher-curl-flat-side-copy": {
    "oef": "0372",
    "file": "animations/0372.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Preacher Curl"
+  },
+  "dumbbell-pronators": {
+   "oef": "0347",
+   "file": "animations/0347.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Lying Pronation (family forearm-pronation split)"
+  },
+  "dumbbell-pullovers-garage-program": {
+   "oef": "0375",
+   "file": "animations/0375.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Pullover (family dumbbell-pullover split)"
+  },
+  "dumbbell-pullovers-garage-program-ryan_humis514743": {
+   "oef": "0375",
+   "file": "animations/0375.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Pullover (family dumbbell-pullover split)"
+  },
+  "dumbbell-shoulder-press-frontal-plane-high-incline": {
+   "oef": "0405",
+   "file": "animations/0405.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Seated Shoulder Press (family dumbbell-shoulder-press split)"
+  },
+  "dumbbell-shrug-extreme-stretch": {
+   "oef": "0406",
+   "file": "animations/0406.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Shrug (family shrug split)"
+  },
+  "dumbbell-shrug-mechanical-drop-starting-form-copy": {
+   "oef": "0406",
+   "file": "animations/0406.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Shrug (family shrug split)"
   },
   "dumbbell-shrugs-copy": {
    "oef": "0095",
    "file": "animations/0095.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Barbell Shrug"
   },
   "dumbbell-side-lateral-copy": {
    "oef": "0355",
    "file": "animations/0355.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell One Arm Lateral Raise"
+  },
+  "dumbbell-side-lateral-holds-garage-program": {
+   "oef": "0334",
+   "file": "animations/0334.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Lateral Raise (family dumbbell-lateral-raise split)"
   },
   "dumbbell-side-lateral-incline-copy": {
    "oef": "0396",
    "file": "animations/0396.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Seated Lateral Raise"
+  },
+  "dumbbell-side-lateral-incline-copy-ryan_humis514743": {
+   "oef": "0192",
+   "file": "animations/0192.webp",
+   "conf": "high",
+   "why": "same movement as Cable One Arm Lateral Raise (family cable-lateral-raise split)"
+  },
+  "dumbbell-side-lateral-lats-flared": {
+   "oef": "0334",
+   "file": "animations/0334.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Lateral Raise (family dumbbell-lateral-raise split)"
+  },
+  "dumbbell-side-lateral-partials-garage-program": {
+   "oef": "0334",
+   "file": "animations/0334.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Lateral Raise (family dumbbell-lateral-raise split)"
+  },
+  "dumbbell-side-laterals-fixed-elbow-garage-program": {
+   "oef": "0334",
+   "file": "animations/0334.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Lateral Raise (family dumbbell-lateral-raise split)"
+  },
+  "dumbbell-side-laterals-scapular-plane-garage-2-0": {
+   "oef": "0334",
+   "file": "animations/0334.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Lateral Raise (family dumbbell-lateral-raise split)"
+  },
+  "dumbbell-side-laterals-straight-arm-garage-program": {
+   "oef": "0334",
+   "file": "animations/0334.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Lateral Raise (family dumbbell-lateral-raise split)"
+  },
+  "dumbbell-skull-crushers-garage-program": {
+   "oef": "0351",
+   "file": "animations/0351.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Lying Triceps Extension (family dumbbell-skull-crushers split)"
+  },
+  "dumbbell-skulls-full-stretch-extension-to-parallel": {
+   "oef": "0351",
+   "file": "animations/0351.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Lying Triceps Extension (family dumbbell-skull-crushers split)"
+  },
+  "dumbbell-spider-curls-garage-program-copy": {
+   "oef": "0318",
+   "file": "animations/0318.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Curl (family incline-dumbbell-curl split)"
+  },
+  "dumbbell-step-ups-garage-program": {
+   "oef": "0431",
+   "file": "animations/0431.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Step-Up (family step-up split)"
   },
   "dumbbell-stiff-leg-deadlifts": {
    "oef": "1459",
    "file": "animations/1459.webp",
-   "conf": "high"
-  },
-  "dumbbell-stiffs-barbell-assisted-garage-2-0": {
-   "oef": "1459",
-   "file": "animations/1459.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Romanian Deadlift"
   },
   "dumbbell-stiffs-extreme-stretch-garage-program": {
    "oef": "1459",
    "file": "animations/1459.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Romanian Deadlift"
   },
-  "dumbbell-stiffs-smith-assisted": {
-   "oef": "1459",
-   "file": "animations/1459.webp",
-   "conf": "high"
+  "dumbbell-supinators": {
+   "oef": "0349",
+   "file": "animations/0349.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Lying Supination (family forearm-supination split)"
   },
-  "dumbbell-wrist-curl-ryan_humis514743": {
-   "oef": "0364",
-   "file": "animations/0364.webp",
-   "conf": "high"
+  "external-rotation-dumbbell-curls-giant-set-garage-program": {
+   "oef": "0294",
+   "file": "animations/0294.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Biceps Curl (family dumbbell-curl split)"
+  },
+  "ez-bar-cable-curl-close-grip": {
+   "oef": "0868",
+   "file": "animations/0868.webp",
+   "conf": "high",
+   "why": "same movement as Cable Curl (family cable-curl split)"
+  },
+  "ez-bar-cable-curl-wide-grip": {
+   "oef": "0868",
+   "file": "animations/0868.webp",
+   "conf": "high",
+   "why": "same movement as Cable Curl (family cable-curl split)"
+  },
+  "ez-bar-cable-curls-wide-grip": {
+   "oef": "0868",
+   "file": "animations/0868.webp",
+   "conf": "high",
+   "why": "same movement as Cable Curl (family cable-curl split)"
   },
   "ez-bar-cable-drag-curls-wide-grip": {
    "oef": "1632",
    "file": "animations/1632.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Cable Drag Curl"
+  },
+  "ez-bar-cable-extensions": {
+   "oef": "0201",
+   "file": "animations/0201.webp",
+   "conf": "high",
+   "why": "same movement as Cable Pushdown (family bar-pushdown split)"
   },
   "ez-bar-curl-close-grip": {
    "oef": "0447",
    "file": "animations/0447.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Ez Barbell Curl"
   },
   "ez-bar-curl-close-grip-elbows-tucked": {
    "oef": "0447",
    "file": "animations/0447.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Ez Barbell Curl"
   },
   "ez-bar-curl-wide-grip": {
    "oef": "0447",
    "file": "animations/0447.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Ez Barbell Curl"
   },
   "ez-bar-curl-wide-grip-elbows-back": {
    "oef": "0447",
    "file": "animations/0447.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Ez Barbell Curl"
   },
   "ez-bar-curl-wide-grip-ryan_humis514743": {
    "oef": "0447",
    "file": "animations/0447.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Ez Barbell Curl"
+  },
+  "ez-bar-preacher-curl-copy": {
+   "oef": "0070",
+   "file": "animations/0070.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Preacher Curl (family preacher-curl split)"
   },
   "ez-bar-reverse-grip-curls-ryan_humis514743": {
    "oef": "0451",
    "file": "animations/0451.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Ez Barbell Reverse Grip Curl"
+  },
+  "ez-bar-spider-curl-close-grip": {
+   "oef": "0454",
+   "file": "animations/0454.webp",
+   "conf": "high",
+   "why": "same movement as Ez Barbell Spider Curl (family spider-curl split)"
+  },
+  "ez-bar-spider-curl-wide-grip": {
+   "oef": "0454",
+   "file": "animations/0454.webp",
+   "conf": "high",
+   "why": "same movement as Ez Barbell Spider Curl (family spider-curl split)"
+  },
+  "flat-dumbbell-fly-ryan_humis514743": {
+   "oef": "0308",
+   "file": "animations/0308.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Fly (family dumbbell-fly split)"
+  },
+  "glute-dominant-static-lunges": {
+   "oef": "2368",
+   "file": "animations/2368.webp",
+   "conf": "high",
+   "why": "same movement as Split Squats (family split-squat split)"
+  },
+  "glute-hyper-copy": {
+   "oef": "0489",
+   "file": "animations/0489.webp",
+   "conf": "high",
+   "why": "same movement as Hyperextension (family hamstring-hyper split)"
+  },
+  "hack-squat-copy": {
+   "oef": "0743",
+   "file": "animations/0743.webp",
+   "conf": "high",
+   "why": "same movement as Sled Hack Squat (family hack-squat split)"
+  },
+  "hack-squat-copy-ryan_humis514743": {
+   "oef": "0743",
+   "file": "animations/0743.webp",
+   "conf": "high",
+   "why": "same movement as Sled Hack Squat (family hack-squat split)"
+  },
+  "hack-squat-upper-back-elevated-hip-dominant": {
+   "oef": "0743",
+   "file": "animations/0743.webp",
+   "conf": "high",
+   "why": "same movement as Sled Hack Squat (family hack-squat split)"
+  },
+  "hammer-curls-dumbbells-touching": {
+   "oef": "0313",
+   "file": "animations/0313.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Hammer Curl (family hammer-curl split)"
+  },
+  "hammer-curls-giant-set-garage-program": {
+   "oef": "0313",
+   "file": "animations/0313.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Hammer Curl (family hammer-curl split)"
   },
   "hammer-preacher-curl-flat-side": {
    "oef": "0370",
    "file": "animations/0370.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Preacher Hammer Curl"
   },
-  "high-incline-dumbbell-french-press": {
-   "oef": "0330",
-   "file": "animations/0330.webp",
-   "conf": "med"
+  "hammer-strength-flat-press": {
+   "oef": "0576",
+   "file": "animations/0576.webp",
+   "conf": "high",
+   "why": "same movement as Lever Chest Press (family machine-chest-press split)"
+  },
+  "hamstring-hyper-extension": {
+   "oef": "0489",
+   "file": "animations/0489.webp",
+   "conf": "high",
+   "why": "same movement as Hyperextension (family hamstring-hyper split)"
+  },
+  "hanging-leg-raises-garage-2-0": {
+   "oef": "0472",
+   "file": "animations/0472.webp",
+   "conf": "high",
+   "why": "same movement as Hanging Leg Raise (family hanging-leg-raise split)"
+  },
+  "hanging-low-trap-shrug-copy": {
+   "oef": "0292",
+   "file": "animations/0292.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell One Arm Bent-Over Row (family one-arm-dumbbell-row split)"
+  },
+  "heel-elevated-high-bar-squats-copy": {
+   "oef": "1436",
+   "file": "animations/1436.webp",
+   "conf": "high",
+   "why": "same movement as Barbell High Bar Squat (family high-bar-squat split)"
+  },
+  "high-bar-squat-heels-elevated-garage-2-0": {
+   "oef": "1436",
+   "file": "animations/1436.webp",
+   "conf": "high",
+   "why": "same movement as Barbell High Bar Squat (family high-bar-squat split)"
+  },
+  "high-bar-squats-copy": {
+   "oef": "1489",
+   "file": "animations/1489.webp",
+   "conf": "high",
+   "why": "same movement as Sissy Squat (family sissy-squat split)"
+  },
+  "high-elbow-pendlay-barbell-row": {
+   "oef": "3017",
+   "file": "animations/3017.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Pendlay Row (family pendlay-row split)"
+  },
+  "high-incline-dumbbell-curl-ryan_humis514743": {
+   "oef": "0318",
+   "file": "animations/0318.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Curl (family incline-dumbbell-curl split)"
+  },
+  "hip-dominant-barbell-good-morning": {
+   "oef": "0044",
+   "file": "animations/0044.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Good Morning (family good-morning split)"
+  },
+  "hyper-extensions-ryan_humis514743": {
+   "oef": "0489",
+   "file": "animations/0489.webp",
+   "conf": "high",
+   "why": "same movement as Hyperextension (family back-extension split)"
+  },
+  "hyper-extensions-weighted": {
+   "oef": "0489",
+   "file": "animations/0489.webp",
+   "conf": "high",
+   "why": "same movement as Hyperextension (family back-extension split)"
+  },
+  "hyperextension-flexion-extension-copy": {
+   "oef": "0198",
+   "file": "animations/0198.webp",
+   "conf": "high",
+   "why": "same movement as Cable Pulldown (family lat-pulldown split)"
+  },
+  "hyperextension-toes-out-copy": {
+   "oef": "0489",
+   "file": "animations/0489.webp",
+   "conf": "high",
+   "why": "same movement as Hyperextension (family hamstring-hyper split)"
   },
   "incline-barbell-press-copy-ryan_humis514743": {
    "oef": "0033",
    "file": "animations/0033.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Barbell Decline Bench Press"
   },
   "incline-cable-curl-copy-ryan_humis514743": {
    "oef": "0206",
    "file": "animations/0206.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Cable Reverse Curl"
+  },
+  "incline-cable-extensions-elbows-back": {
+   "oef": "0173",
+   "file": "animations/0173.webp",
+   "conf": "high",
+   "why": "same movement as Cable Incline Triceps Extension (family incline-cable-extension split)"
+  },
+  "incline-cable-extensions-elbows-high": {
+   "oef": "0173",
+   "file": "animations/0173.webp",
+   "conf": "high",
+   "why": "same movement as Cable Incline Triceps Extension (family incline-cable-extension split)"
+  },
+  "incline-cable-extensions-elbows-mid": {
+   "oef": "0173",
+   "file": "animations/0173.webp",
+   "conf": "high",
+   "why": "same movement as Cable Incline Triceps Extension (family incline-cable-extension split)"
+  },
+  "incline-cable-fly-clavicular-head": {
+   "oef": "0171",
+   "file": "animations/0171.webp",
+   "conf": "high",
+   "why": "same movement as Cable Incline Fly (family incline-cable-fly split)"
+  },
+  "incline-cable-fly-ryan_humis514743": {
+   "oef": "0171",
+   "file": "animations/0171.webp",
+   "conf": "high",
+   "why": "same movement as Cable Incline Fly (family incline-cable-fly split)"
+  },
+  "incline-cable-press-copy": {
+   "oef": "0227",
+   "file": "animations/0227.webp",
+   "conf": "high",
+   "why": "same movement as Cable Standing Fly (family cable-fly split)"
+  },
+  "incline-cable-rope-extensions": {
+   "oef": "0173",
+   "file": "animations/0173.webp",
+   "conf": "high",
+   "why": "same movement as Cable Incline Triceps Extension (family incline-cable-extension split)"
+  },
+  "incline-cable-tricep-extensions-ez-bar": {
+   "oef": "0173",
+   "file": "animations/0173.webp",
+   "conf": "high",
+   "why": "same movement as Cable Incline Triceps Extension (family incline-cable-extension split)"
+  },
+  "incline-dumbbell-clavicular-head-fly": {
+   "oef": "0319",
+   "file": "animations/0319.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Fly (family incline-dumbbell-fly split)"
+  },
+  "incline-dumbbell-clavicular-head-press-elbows-tucked": {
+   "oef": "0314",
+   "file": "animations/0314.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Bench Press (family incline-dumbbell-press split)"
+  },
+  "incline-dumbbell-curl-super-slow-garage-program": {
+   "oef": "0318",
+   "file": "animations/0318.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Curl (family incline-dumbbell-curl split)"
   },
   "incline-dumbbell-curls-garage-program-copy": {
    "oef": "0447",
    "file": "animations/0447.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Ez Barbell Curl"
+  },
+  "incline-dumbbell-curls-triset-garage-program": {
+   "oef": "0318",
+   "file": "animations/0318.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Curl (family incline-dumbbell-curl split)"
+  },
+  "incline-dumbbell-fly-ryan_humis514743": {
+   "oef": "0319",
+   "file": "animations/0319.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Fly (family incline-dumbbell-fly split)"
   },
   "incline-dumbbell-high-elbow-row-copy": {
    "oef": "0767",
    "file": "animations/0767.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Smith Shrug"
+  },
+  "incline-dumbbell-press-garage-2-0": {
+   "oef": "0314",
+   "file": "animations/0314.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Bench Press (family incline-dumbbell-press split)"
+  },
+  "incline-dumbbell-press-super-slow-garage-program": {
+   "oef": "0314",
+   "file": "animations/0314.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Bench Press (family incline-dumbbell-press split)"
   },
   "incline-dumbbell-rear-delt-raise-garage-2-0": {
    "oef": "0326",
    "file": "animations/0326.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Incline Rear Lateral Raise"
+  },
+  "incline-dumbbell-row-45-degree-elbow": {
+   "oef": "0327",
+   "file": "animations/0327.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Row (family chest-supported-row split)"
+  },
+  "incline-dumbbell-shrug-45-degree-elbow": {
+   "oef": "0329",
+   "file": "animations/0329.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Shrug (family incline-shrug split)"
+  },
+  "incline-dumbbell-shrug-ryan_humis514743": {
+   "oef": "0329",
+   "file": "animations/0329.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Shrug (family incline-shrug split)"
   },
   "incline-dumbbell-skulls-garage-2-0": {
    "oef": "0330",
    "file": "animations/0330.webp",
-   "conf": "med"
+   "conf": "med",
+   "why": "exact match: Dumbbell Incline Triceps Extension"
+  },
+  "incline-ez-bar-spider-curls": {
+   "oef": "0454",
+   "file": "animations/0454.webp",
+   "conf": "high",
+   "why": "same movement as Ez Barbell Spider Curl (family spider-curl split)"
   },
   "incline-partial-rear-delt-raises-garage-program": {
    "oef": "0326",
    "file": "animations/0326.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Incline Rear Lateral Raise"
   },
   "incline-push-ups-ryan_humis514743": {
    "oef": "0493",
    "file": "animations/0493.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Incline Push-Up"
+  },
+  "incline-skull-crushers-copy": {
+   "oef": "1749",
+   "file": "animations/1749.webp",
+   "conf": "high",
+   "why": "same movement as Ez Bar Standing French Press (family french-press split)"
+  },
+  "incline-smith": {
+   "oef": "0757",
+   "file": "animations/0757.webp",
+   "conf": "high",
+   "why": "same movement as Smith Incline Bench Press (family smith-incline-press split)"
   },
   "incline-straight-arm-rear-delt-partials": {
    "oef": "0326",
    "file": "animations/0326.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Incline Rear Lateral Raise"
+  },
+  "internally-rotated-cable-extension-single-arm-copy": {
+   "oef": "0201",
+   "file": "animations/0201.webp",
+   "conf": "high",
+   "why": "same movement as Cable Pushdown (family bar-pushdown split)"
   },
   "iso-lat-row": {
    "oef": "1313",
    "file": "animations/1313.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Lever Unilateral Row"
+  },
+  "low-bar-squat-garage-2-0": {
+   "oef": "1435",
+   "file": "animations/1435.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Low Bar Squat (family low-bar-squat split)"
+  },
+  "low-bar-squats-copy": {
+   "oef": "1436",
+   "file": "animations/1436.webp",
+   "conf": "high",
+   "why": "same movement as Barbell High Bar Squat (family high-bar-squat split)"
+  },
+  "lunges-long-stride-drag-back-foot": {
+   "oef": "1460",
+   "file": "animations/1460.webp",
+   "conf": "high",
+   "why": "same movement as Walking Lunge (family walking-lunge split)"
+  },
+  "lying-dumbbell-pronation": {
+   "oef": "0347",
+   "file": "animations/0347.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Lying Pronation (family forearm-pronation split)"
+  },
+  "lying-rear-delt-cable-row-copy": {
+   "oef": "0314",
+   "file": "animations/0314.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Incline Bench Press (family incline-dumbbell-press split)"
   },
   "lying-rear-delt-flys-pronated-garage-program": {
    "oef": "0348",
    "file": "animations/0348.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Lying Rear Lateral Raise"
   },
   "machine-ab-crunch-ryan_humis514743": {
    "oef": "1452",
    "file": "animations/1452.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Lever Seated Crunch"
+  },
+  "machine-chest-press-flat": {
+   "oef": "0576",
+   "file": "animations/0576.webp",
+   "conf": "high",
+   "why": "same movement as Lever Chest Press (family machine-chest-press split)"
   },
   "machine-chest-press-modified-decline": {
    "oef": "1300",
    "file": "animations/1300.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Lever Decline Chest Press"
+  },
+  "machine-chest-press-ryan_humis514743": {
+   "oef": "0576",
+   "file": "animations/0576.webp",
+   "conf": "high",
+   "why": "same movement as Lever Chest Press (family machine-chest-press split)"
   },
   "machine-decline-press-ryan_humis514743": {
    "oef": "1300",
    "file": "animations/1300.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Lever Decline Chest Press"
+  },
+  "machine-flys-copy": {
+   "oef": "0251",
+   "file": "animations/0251.webp",
+   "conf": "high",
+   "why": "same movement as Chest Dip (family dips-chest split)"
+  },
+  "machine-high-elbow-row": {
+   "oef": "1350",
+   "file": "animations/1350.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Row (family machine-row split)"
+  },
+  "machine-iso-lat-row": {
+   "oef": "1350",
+   "file": "animations/1350.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Row (family machine-row split)"
+  },
+  "machine-lat-row-roll-upper-back-rest-pause": {
+   "oef": "1350",
+   "file": "animations/1350.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Row (family machine-row split)"
+  },
+  "machine-rear-delt-fly-extended-partials": {
+   "oef": "0602",
+   "file": "animations/0602.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Reverse Fly (family machine-rear-delt-fly split)"
+  },
+  "machine-rear-delt-fly-high-hands": {
+   "oef": "0602",
+   "file": "animations/0602.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Reverse Fly (family machine-rear-delt-fly split)"
+  },
+  "machine-rear-delt-fly-horizontal-abduction-external-rotation": {
+   "oef": "0602",
+   "file": "animations/0602.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Reverse Fly (family rear-delt-fly split)"
+  },
+  "machine-rear-delt-fly-ryan_humis514743": {
+   "oef": "0602",
+   "file": "animations/0602.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Reverse Fly (family machine-rear-delt-fly split)"
+  },
+  "machine-rear-delt-partials": {
+   "oef": "0602",
+   "file": "animations/0602.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Reverse Fly (family machine-rear-delt-fly split)"
   },
   "machine-shrug-drops-last-drop-is-a-row": {
    "oef": "0604",
    "file": "animations/0604.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Lever Shrug"
   },
-  "modified-arnold-press-ryan_humis514743": {
-   "oef": "2137",
-   "file": "animations/2137.webp",
-   "conf": "high"
+  "machine-side-laterals-straight-arm-partials": {
+   "oef": "0584",
+   "file": "animations/0584.webp",
+   "conf": "high",
+   "why": "same movement as Lever Lateral Raise (family machine-lateral-raise split)"
+  },
+  "machine-single-arm-rear-delt-fly-copy-f3f2bf18-674c-43af-9f13-4fcf47830306": {
+   "oef": "0584",
+   "file": "animations/0584.webp",
+   "conf": "high",
+   "why": "same movement as Lever Lateral Raise (family machine-lateral-raise split)"
+  },
+  "mid-grip-pull-up-shrugs-weighted": {
+   "oef": "0688",
+   "file": "animations/0688.webp",
+   "conf": "high",
+   "why": "same movement as Scapular Pull-Up (family hanging-scapular-shrug split)"
+  },
+  "mid-grip-pull-ups-lat-focused": {
+   "oef": "0652",
+   "file": "animations/0652.webp",
+   "conf": "high",
+   "why": "same movement as Pull-Up (family pull-up split)"
+  },
+  "one-arm-db-pronated-grip-copy": {
+   "oef": "0198",
+   "file": "animations/0198.webp",
+   "conf": "high",
+   "why": "same movement as Cable Pulldown (family lat-pulldown split)"
+  },
+  "one-arm-db-row-pronated-grip-copy": {
+   "oef": "0027",
+   "file": "animations/0027.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Bent Over Row (family barbell-row split)"
+  },
+  "one-arm-dumbbell-row-exaggerated-stretch": {
+   "oef": "0292",
+   "file": "animations/0292.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell One Arm Bent-Over Row (family one-arm-dumbbell-row split)"
+  },
+  "one-arm-dumbbell-row-feet-level": {
+   "oef": "0292",
+   "file": "animations/0292.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell One Arm Bent-Over Row (family one-arm-dumbbell-row split)"
+  },
+  "pronated-grip-bicep-pull-ups-copy": {
+   "oef": "0238",
+   "file": "animations/0238.webp",
+   "conf": "high",
+   "why": "same movement as Cable Straight Arm Pulldown (family cable-pullover split)"
+  },
+  "pullovers-barbell": {
+   "oef": "0073",
+   "file": "animations/0073.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Pullover (family barbell-pullover split)"
+  },
+  "push-ups-garage-2-0": {
+   "oef": "0662",
+   "file": "animations/0662.webp",
+   "conf": "high",
+   "why": "same movement as Push-Up (family push-ups split)"
+  },
+  "rdls-garage-program": {
+   "oef": "0085",
+   "file": "animations/0085.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Romanian Deadlift (family romanian-deadlift split)"
   },
   "reverse-barbell-lunges-garage-program": {
    "oef": "0078",
    "file": "animations/0078.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Barbell Rear Lunge"
   },
   "reverse-grip-cable-curls-ryan_humis514743": {
    "oef": "0206",
    "file": "animations/0206.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Cable Reverse Curl"
   },
   "reverse-grip-ez-bar-cable-curl-copy": {
    "oef": "0206",
    "file": "animations/0206.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Cable Reverse Curl"
+  },
+  "reverse-grip-ez-straight-bar-curl-copy": {
+   "oef": "0868",
+   "file": "animations/0868.webp",
+   "conf": "high",
+   "why": "same movement as Cable Curl (family cable-curl split)"
   },
   "reverse-grip-incline-smith-press": {
    "oef": "0758",
    "file": "animations/0758.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Smith Incline Reverse-Grip Press"
+  },
+  "reverse-grip-pull-ups-garage-program": {
+   "oef": "0674",
+   "file": "animations/0674.webp",
+   "conf": "high",
+   "why": "bodyweight reverse-grip (chin) pull-up"
   },
   "reverse-grip-push-ups-garage-program-copy": {
    "oef": "1721",
    "file": "animations/1721.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Barbell Reverse Grip Skullcrusher"
+  },
+  "reverse-grip-smith-press": {
+   "oef": "0764",
+   "file": "animations/0764.webp",
+   "conf": "high",
+   "why": "same movement as Smith Reverse-Grip Press (family reverse-grip-press split)"
+  },
+  "reverse-grip-straight-bar-curl-clusterfuck-copy": {
+   "oef": "0031",
+   "file": "animations/0031.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Curl (family barbell-curl split)"
+  },
+  "reverse-grip-straight-bar-curls-garage-2-0": {
+   "oef": "0080",
+   "file": "animations/0080.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Reverse Curl (family reverse-curl split)"
+  },
+  "reverse-grip-straight-bar-curls-triset-garage-program": {
+   "oef": "0080",
+   "file": "animations/0080.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Reverse Curl (family reverse-curl split)"
+  },
+  "reverse-grip-straight-bar-wall-curls": {
+   "oef": "0080",
+   "file": "animations/0080.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Reverse Curl (family reverse-curl split)"
+  },
+  "rocking-dumbbell-curls-triset-garage-program": {
+   "oef": "0294",
+   "file": "animations/0294.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Biceps Curl (family dumbbell-curl split)"
   },
   "rocking-ez-bar-curl": {
    "oef": "0447",
    "file": "animations/0447.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Ez Barbell Curl"
   },
   "roman-chair-ryan_humis514743": {
    "oef": "0826",
    "file": "animations/0826.webp",
-   "conf": "high"
-  },
-  "roman-chair-weighted-knees-to-chest": {
-   "oef": "0826",
-   "file": "animations/0826.webp",
-   "conf": "high"
-  },
-  "seated-angled-barbell-wrist-curls": {
-   "oef": "0401",
-   "file": "animations/0401.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Vertical Leg Raise (on Parallel Bars)"
   },
   "seated-cable-reverse-grip-wrist-extension": {
    "oef": "0210",
    "file": "animations/0210.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Cable Reverse Wrist Curl"
   },
-  "seated-cable-shrugs": {
-   "oef": "0220",
-   "file": "animations/0220.webp",
-   "conf": "high"
+  "seated-calf-partials-top-copy": {
+   "oef": "0594",
+   "file": "animations/0594.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Calf Raise (family seated-calf-raise split)"
+  },
+  "seated-calf-raise-5-drops": {
+   "oef": "0594",
+   "file": "animations/0594.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Calf Raise (family seated-calf-raise split)"
+  },
+  "seated-calf-raise-bottom-partials": {
+   "oef": "0594",
+   "file": "animations/0594.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Calf Raise (family seated-calf-raise split)"
+  },
+  "seated-calf-raise-copy": {
+   "oef": "0594",
+   "file": "animations/0594.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Calf Raise (family seated-calf-raise split)"
+  },
+  "seated-calf-raise-extreme-stretch": {
+   "oef": "0594",
+   "file": "animations/0594.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Calf Raise (family seated-calf-raise split)"
+  },
+  "seated-calf-raise-full-rom": {
+   "oef": "0594",
+   "file": "animations/0594.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Calf Raise (family seated-calf-raise split)"
+  },
+  "seated-calf-raise-locked-out-partials": {
+   "oef": "0594",
+   "file": "animations/0594.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Calf Raise (family seated-calf-raise split)"
+  },
+  "seated-calf-raise-neutral": {
+   "oef": "0594",
+   "file": "animations/0594.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Calf Raise (family seated-calf-raise split)"
+  },
+  "seated-calf-raise-toes-in": {
+   "oef": "0594",
+   "file": "animations/0594.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Calf Raise (family seated-calf-raise split)"
+  },
+  "seated-calf-raise-toes-out": {
+   "oef": "0594",
+   "file": "animations/0594.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Calf Raise (family seated-calf-raise split)"
+  },
+  "seated-calf-raises-garage-program": {
+   "oef": "0594",
+   "file": "animations/0594.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Calf Raise (family seated-calf-raise split)"
   },
   "seated-calf-toes-out-copy": {
    "oef": "1392",
    "file": "animations/1392.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Sled One Leg Calf Press On Leg Press"
   },
   "seated-concentration-curl-copy": {
    "oef": "0403",
    "file": "animations/0403.webp",
-   "conf": "med"
+   "conf": "med",
+   "why": "exact match: Dumbbell Seated Reverse Grip Concentration Curl"
+  },
+  "seated-dumbbell-press-hammer-copy": {
+   "oef": "0766",
+   "file": "animations/0766.webp",
+   "conf": "high",
+   "why": "same movement as Smith Shoulder Press (family smith-shoulder-press split)"
+  },
+  "seated-dumbbell-shrug-drops-copy-921b67db-f988-49b7-9310-24584067fddf": {
+   "oef": "0251",
+   "file": "animations/0251.webp",
+   "conf": "high",
+   "why": "same movement as Chest Dip (family dips-chest split)"
+  },
+  "seated-dumbbell-shrug-drops-copy-b24829a5-f696-485f-92d9-3cc55769fbb9": {
+   "oef": "0594",
+   "file": "animations/0594.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Calf Raise (family seated-calf-raise split)"
+  },
+  "seated-dumbbell-shrug-drops-copy-ryan_humis514743": {
+   "oef": "0594",
+   "file": "animations/0594.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Calf Raise (family seated-calf-raise split)"
+  },
+  "seated-dumbbell-side-lateral-copy": {
+   "oef": "0584",
+   "file": "animations/0584.webp",
+   "conf": "high",
+   "why": "same movement as Lever Lateral Raise (family machine-lateral-raise split)"
+  },
+  "seated-dumbbell-side-lateral-copy-ryan_humis514743": {
+   "oef": "0334",
+   "file": "animations/0334.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Lateral Raise (family dumbbell-lateral-raise split)"
   },
   "seated-dumbbell-wrist-curls": {
    "oef": "0401",
    "file": "animations/0401.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Seated Palms Up Wrist Curl"
   },
   "seated-dumbbell-wrist-extensions": {
    "oef": "0385",
    "file": "animations/0385.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Reverse Wrist Curl"
   },
-  "seated-one-arm-shrug": {
-   "oef": "0220",
-   "file": "animations/0220.webp",
-   "conf": "high"
+  "seated-lat-row-copy": {
+   "oef": "0861",
+   "file": "animations/0861.webp",
+   "conf": "high",
+   "why": "same movement as Cable Seated Row (family seated-cable-row split)"
+  },
+  "seated-row-v-bar-copy-ryan_humis514743": {
+   "oef": "0861",
+   "file": "animations/0861.webp",
+   "conf": "high",
+   "why": "same movement as Cable Seated Row (family seated-cable-row split)"
+  },
+  "seated-single-arm-dumbbell-press-copy": {
+   "oef": "0405",
+   "file": "animations/0405.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Seated Shoulder Press (family supinated-dumbbell-press split)"
+  },
+  "seated-single-cable-arm-row": {
+   "oef": "0214",
+   "file": "animations/0214.webp",
+   "conf": "high",
+   "why": "same movement as Cable Seated One Arm Alternate Row (family single-arm-cable-row split)"
   },
   "seated-supinated-dumbbell-curls": {
    "oef": "0391",
    "file": "animations/0391.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Seated Curl"
+  },
+  "seated-v-bar-row-upper-back-rolled": {
+   "oef": "0861",
+   "file": "animations/0861.webp",
+   "conf": "high",
+   "why": "same movement as Cable Seated Row (family seated-cable-row split)"
   },
   "single-arm-cable-curl-ryan_humis514743": {
    "oef": "0190",
    "file": "animations/0190.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Cable One Arm Curl"
+  },
+  "single-arm-cable-press-down-copy": {
+   "oef": "0301",
+   "file": "animations/0301.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Decline Bench Press (family decline-press split)"
+  },
+  "single-arm-cable-rear-delt-copy": {
+   "oef": "0154",
+   "file": "animations/0154.webp",
+   "conf": "high",
+   "why": "same movement as Cable Cross-Over Reverse Fly (family rear-delt-cable-fly split)"
   },
   "single-arm-dumbbell-preacher-curl-tilt-back": {
    "oef": "0372",
    "file": "animations/0372.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Preacher Curl"
   },
-  "single-arm-dumbbell-reverse-grip-brachialis-curls-tilt-back": {
-   "oef": "0425",
-   "file": "animations/0425.webp",
-   "conf": "high"
+  "single-arm-dumbbell-rear-delt-raise-copy": {
+   "oef": "0602",
+   "file": "animations/0602.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Reverse Fly (family machine-rear-delt-fly split)"
   },
   "single-arm-dumbbell-side-lateral-controlled": {
    "oef": "0355",
    "file": "animations/0355.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell One Arm Lateral Raise"
+  },
+  "single-arm-dumbbell-side-lateral-copy": {
+   "oef": "0405",
+   "file": "animations/0405.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Seated Shoulder Press (family supinated-dumbbell-press split)"
   },
   "single-arm-french-pressed-to-bench-copy": {
    "oef": "0826",
    "file": "animations/0826.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Vertical Leg Raise (on Parallel Bars)"
   },
   "single-arm-lat-pulldown-ryan_humis514743": {
    "oef": "3563",
    "file": "animations/3563.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Cable One Arm Pulldown"
+  },
+  "single-arm-lat-pulldowns-copy": {
+   "oef": "0073",
+   "file": "animations/0073.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Pullover (family barbell-pullover split)"
   },
   "single-arm-machine-lat-focused-row-rest-pause": {
    "oef": "1313",
    "file": "animations/1313.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Lever Unilateral Row"
+  },
+  "single-arm-machine-rear-delt-fly-exaggerated-stretch": {
+   "oef": "0602",
+   "file": "animations/0602.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Reverse Fly (family machine-rear-delt-fly split)"
   },
   "single-leg-donkey-calf-raise-garage-program": {
    "oef": "1386",
    "file": "animations/1386.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: One Leg Donkey Calf Raise"
   },
   "single-leg-dumbbell-calf-raise-neutral": {
    "oef": "0409",
    "file": "animations/0409.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Single Leg Calf Raise"
   },
   "single-leg-dumbbell-calf-raise-ryan_humis514743": {
    "oef": "0409",
    "file": "animations/0409.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Single Leg Calf Raise"
   },
   "single-leg-dumbbell-calf-raise-toe-in": {
    "oef": "0409",
    "file": "animations/0409.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Single Leg Calf Raise"
   },
   "single-leg-dumbbell-calf-raise-toe-in-ryan_humis514743": {
    "oef": "0409",
    "file": "animations/0409.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Single Leg Calf Raise"
   },
   "single-leg-dumbbell-calf-raise-toe-out": {
    "oef": "0409",
    "file": "animations/0409.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Single Leg Calf Raise"
   },
   "single-leg-dumbbell-calf-raise-toe-out-ryan_humis514743": {
    "oef": "0409",
    "file": "animations/0409.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Single Leg Calf Raise"
   },
   "single-leg-dumbbell-calf-raise-toes-straight": {
    "oef": "0409",
    "file": "animations/0409.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell Single Leg Calf Raise"
   },
   "single-leg-extension-copy-ryan_humis514743": {
    "oef": "1425",
    "file": "animations/1425.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Sled 45 Degrees One Leg Press"
   },
-  "skull-crushers-copy": {
-   "oef": "0449",
-   "file": "animations/0449.webp",
-   "conf": "med"
+  "single-leg-hamstring-hyper-copy": {
+   "oef": "0489",
+   "file": "animations/0489.webp",
+   "conf": "high",
+   "why": "same movement as Hyperextension (family hamstring-hyper split)"
   },
-  "slight-incline-cable-straight-bar-reverse-curls": {
-   "oef": "0206",
-   "file": "animations/0206.webp",
-   "conf": "high"
+  "single-leg-hyper-extensions-weighted": {
+   "oef": "0489",
+   "file": "animations/0489.webp",
+   "conf": "high",
+   "why": "same movement as Hyperextension (family back-extension split)"
   },
-  "slight-incline-dumbbell-skulls": {
-   "oef": "0330",
-   "file": "animations/0330.webp",
-   "conf": "med"
+  "single-leg-machine-calf-raise": {
+   "oef": "0605",
+   "file": "animations/0605.webp",
+   "conf": "high",
+   "why": "same movement as Lever Standing Calf Raise (family standing-calf-raise split)"
   },
-  "slight-incline-rear-delt-raise": {
-   "oef": "0326",
-   "file": "animations/0326.webp",
-   "conf": "high"
+  "single-leg-seated-calf-raise-copy": {
+   "oef": "0594",
+   "file": "animations/0594.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Calf Raise (family seated-calf-raise split)"
+  },
+  "single-leg-smith-calf-raise-copy": {
+   "oef": "0594",
+   "file": "animations/0594.webp",
+   "conf": "high",
+   "why": "same movement as Lever Seated Calf Raise (family seated-calf-raise split)"
+  },
+  "sissy-squat-copy": {
+   "oef": "0743",
+   "file": "animations/0743.webp",
+   "conf": "high",
+   "why": "same movement as Sled Hack Squat (family hack-squat split)"
+  },
+  "sissy-squat-no-weight": {
+   "oef": "1489",
+   "file": "animations/1489.webp",
+   "conf": "high",
+   "why": "same movement as Sissy Squat (family sissy-squat split)"
+  },
+  "slight-incline-dumbbell-barrel-press-copy": {
+   "oef": "0757",
+   "file": "animations/0757.webp",
+   "conf": "high",
+   "why": "same movement as Smith Incline Bench Press (family smith-incline-press split)"
+  },
+  "slightly-supinated-press-clusterfuck-copy": {
+   "oef": "0868",
+   "file": "animations/0868.webp",
+   "conf": "high",
+   "why": "same movement as Cable Curl (family cable-curl split)"
+  },
+  "slow-high-bar-squats-giant-set-garage-program": {
+   "oef": "1436",
+   "file": "animations/1436.webp",
+   "conf": "high",
+   "why": "same movement as Barbell High Bar Squat (family high-bar-squat split)"
+  },
+  "smith-bent-over-rows-copy": {
+   "oef": "0652",
+   "file": "animations/0652.webp",
+   "conf": "high",
+   "why": "same movement as Pull-Up (family pull-up split)"
   },
   "smith-front-squat-heel-elevated": {
    "oef": "1433",
    "file": "animations/1433.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Smith Front Squat (clean Grip)"
+  },
+  "smith-hip-thrust-ryan_humis514743": {
+   "oef": "0756",
+   "file": "animations/0756.webp",
+   "conf": "high",
+   "why": "same movement as Smith Hip Raise (family hip-thrust split)"
+  },
+  "smith-incline-elbows-tucked-clavicular-head": {
+   "oef": "0757",
+   "file": "animations/0757.webp",
+   "conf": "high",
+   "why": "same movement as Smith Incline Bench Press (family smith-incline-press split)"
+  },
+  "smith-reverse-grip-bench-press": {
+   "oef": "0764",
+   "file": "animations/0764.webp",
+   "conf": "high",
+   "why": "same movement as Smith Reverse-Grip Press (family reverse-grip-press split)"
+  },
+  "smith-slight-incline-press-copy": {
+   "oef": "0757",
+   "file": "animations/0757.webp",
+   "conf": "high",
+   "why": "same movement as Smith Incline Bench Press (family smith-incline-press split)"
+  },
+  "smith-split-squat-foot-on-bench": {
+   "oef": "0768",
+   "file": "animations/0768.webp",
+   "conf": "high",
+   "why": "same movement as Smith Single Leg Split Squat (family bulgarian-split-squat split)"
+  },
+  "smith-split-squat-foot-on-bench-leaned-forward": {
+   "oef": "0768",
+   "file": "animations/0768.webp",
+   "conf": "high",
+   "why": "same movement as Smith Single Leg Split Squat (family bulgarian-split-squat split)"
+  },
+  "smith-split-squat-glute-focused-foot-elevated-back-foot-on-bench": {
+   "oef": "0768",
+   "file": "animations/0768.webp",
+   "conf": "high",
+   "why": "same movement as Smith Single Leg Split Squat (family bulgarian-split-squat split)"
   },
   "smith-wide-grip-upright-row": {
    "oef": "0775",
    "file": "animations/0775.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Smith Upright Row"
+  },
+  "split-squat-garage-program": {
+   "oef": "2368",
+   "file": "animations/2368.webp",
+   "conf": "high",
+   "why": "same movement as Split Squats (family split-squat split)"
   },
   "split-stance-dumbbell-glute-stiff-copy": {
    "oef": "0078",
    "file": "animations/0078.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Barbell Rear Lunge"
+  },
+  "split-stance-dumbbell-glute-stiff-copy-ryan_humis514743": {
+   "oef": "0117",
+   "file": "animations/0117.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Sumo Deadlift (family sumo-deadlift split)"
+  },
+  "standard-push-ups-garage-program": {
+   "oef": "0662",
+   "file": "animations/0662.webp",
+   "conf": "high",
+   "why": "same movement as Push-Up (family push-ups split)"
   },
   "standing-barbell-shoulder-press-copy-ryan_humis514743": {
    "oef": "1671",
    "file": "animations/1671.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Dumbbell One Arm Standing Hammer Curl"
+  },
+  "standing-barbell-shoulder-press-ryan_humis514743": {
+   "oef": "pulse-0002",
+   "file": "animations/pulse-0002.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Standing Overhead Press (family barbell-overhead-press split)"
+  },
+  "standing-cable-fly-cross-midline-pronated-grip": {
+   "oef": "0227",
+   "file": "animations/0227.webp",
+   "conf": "high",
+   "why": "same movement as Cable Standing Fly (family cable-fly split)"
+  },
+  "standing-db-side-lateral": {
+   "oef": "0334",
+   "file": "animations/0334.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Lateral Raise (family dumbbell-lateral-raise split)"
   },
   "standing-dc-style-calf-raise-copy": {
    "oef": "1392",
    "file": "animations/1392.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Sled One Leg Calf Press On Leg Press"
+  },
+  "standing-dumbbell-shrugs-ryan_humis514743": {
+   "oef": "0406",
+   "file": "animations/0406.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Shrug (family shrug split)"
+  },
+  "standing-dumbbell-straight-arm-partials": {
+   "oef": "0334",
+   "file": "animations/0334.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Lateral Raise (family dumbbell-lateral-raise split)"
   },
   "standing-hyper-barbell-copy": {
    "oef": "1359",
    "file": "animations/1359.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Smith Bent Over Row"
+  },
+  "standing-machine-calf-raise-extreme-stretch": {
+   "oef": "0605",
+   "file": "animations/0605.webp",
+   "conf": "high",
+   "why": "same movement as Lever Standing Calf Raise (family standing-calf-raise split)"
+  },
+  "standing-machine-calf-raise-ryan_humis514743": {
+   "oef": "0605",
+   "file": "animations/0605.webp",
+   "conf": "high",
+   "why": "same movement as Lever Standing Calf Raise (family standing-calf-raise split)"
+  },
+  "standing-rear-delt-cable-fly-arms-close-to-body": {
+   "oef": "0154",
+   "file": "animations/0154.webp",
+   "conf": "high",
+   "why": "same movement as Cable Cross-Over Reverse Fly (family rear-delt-cable-fly split)"
+  },
+  "standing-supinated-dumbbell-curls": {
+   "oef": "0294",
+   "file": "animations/0294.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Biceps Curl (family dumbbell-curl split)"
+  },
+  "static-lunges-garage-program": {
+   "oef": "2368",
+   "file": "animations/2368.webp",
+   "conf": "high",
+   "why": "same movement as Split Squats (family split-squat split)"
+  },
+  "straight-arm-crunches": {
+   "oef": "0274",
+   "file": "animations/0274.webp",
+   "conf": "high",
+   "why": "same movement as Crunch Floor (family crunch split)"
+  },
+  "straight-bar-cable-extensions": {
+   "oef": "0201",
+   "file": "animations/0201.webp",
+   "conf": "high",
+   "why": "same movement as Cable Pushdown (family bar-pushdown split)"
+  },
+  "straight-bar-cable-extensions-full-copy": {
+   "oef": "0227",
+   "file": "animations/0227.webp",
+   "conf": "high",
+   "why": "same movement as Cable Standing Fly (family cable-fly split)"
+  },
+  "straight-bar-cable-extensions-partials-copy": {
+   "oef": "0201",
+   "file": "animations/0201.webp",
+   "conf": "high",
+   "why": "same movement as Cable Pushdown (family bar-pushdown split)"
+  },
+  "straight-bar-curls-garage-program": {
+   "oef": "0031",
+   "file": "animations/0031.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Curl (family barbell-curl split)"
+  },
+  "straight-bar-drag-curls-triset-garage-program": {
+   "oef": "0038",
+   "file": "animations/0038.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Drag Curl (family drag-curl split)"
+  },
+  "straight-bar-lat-pulldown-mid-grip-lat-focused": {
+   "oef": "0198",
+   "file": "animations/0198.webp",
+   "conf": "high",
+   "why": "same movement as Cable Pulldown (family lat-pulldown split)"
+  },
+  "strict-barbell-wall-curls": {
+   "oef": "0031",
+   "file": "animations/0031.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Curl (family barbell-curl split)"
+  },
+  "strict-hammer-curls": {
+   "oef": "0313",
+   "file": "animations/0313.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Hammer Curl (family hammer-curl split)"
+  },
+  "sumo-deadlift-grage-program": {
+   "oef": "0117",
+   "file": "animations/0117.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Sumo Deadlift (family sumo-deadlift split)"
+  },
+  "sumo-deadlifts-compound-garage-program": {
+   "oef": "0117",
+   "file": "animations/0117.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Sumo Deadlift (family sumo-deadlift split)"
+  },
+  "sumo-deadlifts-garage-2-0": {
+   "oef": "0117",
+   "file": "animations/0117.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Sumo Deadlift (family sumo-deadlift split)"
+  },
+  "sumo-deads-copy-ryan_humis514743": {
+   "oef": "1435",
+   "file": "animations/1435.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Low Bar Squat (family low-bar-squat split)"
+  },
+  "supinated-dumbbell-curl-externally-rotated-wide-grip": {
+   "oef": "0294",
+   "file": "animations/0294.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Biceps Curl (family dumbbell-curl split)"
+  },
+  "supinated-dumbbell-curls-garage-2-0": {
+   "oef": "0294",
+   "file": "animations/0294.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Biceps Curl (family dumbbell-curl split)"
+  },
+  "supinated-dumbbell-elbows-tucked-close-grip": {
+   "oef": "0294",
+   "file": "animations/0294.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Biceps Curl (family dumbbell-curl split)"
+  },
+  "t-bar-row-chest-supported": {
+   "oef": "0606",
+   "file": "animations/0606.webp",
+   "conf": "high",
+   "why": "same movement as Lever T Bar Row (family t-bar-row split)"
+  },
+  "tricep-push-ups-ryan_humis514743": {
+   "oef": "0259",
+   "file": "animations/0259.webp",
+   "conf": "high",
+   "why": "same movement as Close-Grip Push-Up (family triceps-push-ups split)"
+  },
+  "v-bar-lat-pulldowns-extreme-stretch": {
+   "oef": "2616",
+   "file": "animations/2616.webp",
+   "conf": "high",
+   "why": "same movement as Cable Lateral Pulldown With V-Bar (family close-grip-pulldown split)"
   },
   "v-handle-tricep-extensions-elbows-tucked": {
    "oef": "0241",
    "file": "animations/0241.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Cable Triceps Pushdown (v-Bar)"
   },
   "v-handle-tricep-push-downs": {
    "oef": "0241",
    "file": "animations/0241.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Cable Triceps Pushdown (v-Bar)"
+  },
+  "v-ups-garage-2-0": {
+   "oef": "0507",
+   "file": "animations/0507.webp",
+   "conf": "high",
+   "why": "same movement as Jackknife Sit-Up (family v-up split)"
+  },
+  "v-ups-ryan_humis514743": {
+   "oef": "0507",
+   "file": "animations/0507.webp",
+   "conf": "high",
+   "why": "same movement as Jackknife Sit-Up (family v-up split)"
+  },
+  "walking-lunges-garage-program": {
+   "oef": "1460",
+   "file": "animations/1460.webp",
+   "conf": "high",
+   "why": "same movement as Walking Lunge (family walking-lunge split)"
+  },
+  "walking-lunges-no-weight": {
+   "oef": "1460",
+   "file": "animations/1460.webp",
+   "conf": "high",
+   "why": "same movement as Walking Lunge (family walking-lunge split)"
+  },
+  "wall-dumbbell-curls-garage-program": {
+   "oef": "0294",
+   "file": "animations/0294.webp",
+   "conf": "high",
+   "why": "same movement as Dumbbell Biceps Curl (family dumbbell-curl split)"
   },
   "weight-crunch-garage-program": {
    "oef": "0832",
    "file": "animations/0832.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Weighted Crunch"
+  },
+  "weighted-straight-hyper-drop-start": {
+   "oef": "0489",
+   "file": "animations/0489.webp",
+   "conf": "high",
+   "why": "same movement as Hyperextension (family back-extension split)"
+  },
+  "weighted-straight-hyper-drop-start-copy": {
+   "oef": "0489",
+   "file": "animations/0489.webp",
+   "conf": "high",
+   "why": "same movement as Hyperextension (family back-extension split)"
+  },
+  "weighted-walking-lunges-heavy-copy-ryan_humis514743": {
+   "oef": "0489",
+   "file": "animations/0489.webp",
+   "conf": "high",
+   "why": "same movement as Hyperextension (family back-extension split)"
+  },
+  "weighted-walking-lunges-quad-dominant-short-steps": {
+   "oef": "1460",
+   "file": "animations/1460.webp",
+   "conf": "high",
+   "why": "same movement as Walking Lunge (family walking-lunge split)"
+  },
+  "wide-grip-lat-pulldown-clusterfuck-copy": {
+   "oef": "3017",
+   "file": "animations/3017.webp",
+   "conf": "high",
+   "why": "same movement as Barbell Pendlay Row (family pendlay-row split)"
+  },
+  "wide-grip-lat-pulldowns-copy": {
+   "oef": "2616",
+   "file": "animations/2616.webp",
+   "conf": "high",
+   "why": "same movement as Cable Lateral Pulldown With V-Bar (family close-grip-pulldown split)"
+  },
+  "wide-grip-lat-pulldowns-ryan_humis514743": {
+   "oef": "0198",
+   "file": "animations/0198.webp",
+   "conf": "high",
+   "why": "same movement as Cable Pulldown (family lat-pulldown split)"
+  },
+  "wide-grip-pull-up-shrugs-weighted": {
+   "oef": "0688",
+   "file": "animations/0688.webp",
+   "conf": "high",
+   "why": "same movement as Scapular Pull-Up (family hanging-scapular-shrug split)"
+  },
+  "wide-grip-pull-ups-copy-ryan_humis514743": {
+   "oef": "0652",
+   "file": "animations/0652.webp",
+   "conf": "high",
+   "why": "same movement as Pull-Up (family pull-up split)"
+  },
+  "wide-grip-pulldown-clusterfuck": {
+   "oef": "0198",
+   "file": "animations/0198.webp",
+   "conf": "high",
+   "why": "same movement as Cable Pulldown (family lat-pulldown split)"
   },
   "wide-grip-smith-upright-row": {
    "oef": "0775",
    "file": "animations/0775.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Smith Upright Row"
   },
   "wide-push-ups-garage-program": {
    "oef": "1311",
    "file": "animations/1311.webp",
-   "conf": "high"
+   "conf": "high",
+   "why": "exact match: Wide Hand Push Up"
+  }
+ },
+ "dropped_families": {
+  "ab-rollout": {
+   "rejected": "0857",
+   "why": "not every member is Wheel Rollout; kept 0/2 as slug entries"
+  },
+  "around-the-worlds": {
+   "rejected": "2143",
+   "why": "not every member is Dumbbell Standing Around World; kept 0/1 as slug entries"
+  },
+  "back-extension": {
+   "rejected": "0489",
+   "why": "not every member is Hyperextension; kept 7/8 as slug entries"
+  },
+  "bar-pushdown": {
+   "rejected": "0201",
+   "why": "not every member is Cable Pushdown; kept 5/9 as slug entries"
+  },
+  "barbell-curl": {
+   "rejected": "0031",
+   "why": "not every member is Barbell Curl; kept 5/13 as slug entries"
+  },
+  "barbell-overhead-press": {
+   "rejected": "pulse-0002",
+   "why": "not every member is Barbell Standing Overhead Press; kept 1/3 as slug entries"
+  },
+  "barbell-pullover": {
+   "rejected": "0073",
+   "why": "not every member is Barbell Pullover; kept 2/3 as slug entries"
+  },
+  "barbell-row": {
+   "rejected": "0027",
+   "why": "not every member is Barbell Bent Over Row; kept 6/7 as slug entries"
+  },
+  "bodyweight-triceps-extension": {
+   "rejected": "1771",
+   "why": "not every member is Bodyweight Kneeling Triceps Extension; kept 0/1 as slug entries"
+  },
+  "bulgarian-split-squat": {
+   "rejected": "0768",
+   "why": "not every member is Smith Single Leg Split Squat; kept 3/4 as slug entries"
+  },
+  "cable-crunch": {
+   "rejected": "0175",
+   "why": "not every member is Cable Kneeling Crunch; kept 1/2 as slug entries"
+  },
+  "cable-curl": {
+   "rejected": "0868",
+   "why": "not every member is Cable Curl; kept 6/10 as slug entries"
+  },
+  "cable-fly": {
+   "rejected": "0227",
+   "why": "not every member is Cable Standing Fly; kept 3/5 as slug entries"
+  },
+  "cable-lateral-raise": {
+   "rejected": "0192",
+   "why": "not every member is Cable One Arm Lateral Raise; kept 2/8 as slug entries"
+  },
+  "cable-overhead-extension": {
+   "rejected": "0194",
+   "why": "not every member is Cable Overhead Triceps Extension (rope Attachment); kept 1/4 as slug entries"
+  },
+  "cable-pullover": {
+   "rejected": "0238",
+   "why": "not every member is Cable Straight Arm Pulldown; kept 1/3 as slug entries"
+  },
+  "chest-supported-high-elbow-row": {
+   "rejected": "1328",
+   "why": "not every member is Dumbbell Lying Rear Delt Row; kept 0/5 as slug entries"
+  },
+  "chest-supported-row": {
+   "rejected": "0327",
+   "why": "not every member is Dumbbell Incline Row; kept 4/6 as slug entries"
+  },
+  "close-grip-press": {
+   "rejected": "0751",
+   "why": "not every member is Smith Close-Grip Bench Press; kept 4/12 as slug entries"
+  },
+  "close-grip-pulldown": {
+   "rejected": "2616",
+   "why": "not every member is Cable Lateral Pulldown With V-Bar; kept 2/3 as slug entries"
+  },
+  "crunch": {
+   "rejected": "0274",
+   "why": "not every member is Crunch Floor; kept 1/4 as slug entries"
+  },
+  "dead-skulls": {
+   "rejected": "0060",
+   "why": "not every member is Barbell Lying Triceps Extension Skull Crusher; kept 0/2 as slug entries"
+  },
+  "decline-crunch": {
+   "rejected": "0277",
+   "why": "not every member is Decline Crunch; kept 2/4 as slug entries"
+  },
+  "decline-press": {
+   "rejected": "0301",
+   "why": "not every member is Dumbbell Decline Bench Press; kept 1/3 as slug entries"
+  },
+  "dips-chest": {
+   "rejected": "0251",
+   "why": "not every member is Chest Dip; kept 10/11 as slug entries"
+  },
+  "drag-curl": {
+   "rejected": "0038",
+   "why": "not every member is Barbell Drag Curl; kept 2/6 as slug entries"
+  },
+  "dumbbell-curl": {
+   "rejected": "0294",
+   "why": "not every member is Dumbbell Biceps Curl; kept 9/12 as slug entries"
+  },
+  "dumbbell-fly": {
+   "rejected": "0308",
+   "why": "not every member is Dumbbell Fly; kept 4/6 as slug entries"
+  },
+  "dumbbell-lateral-raise": {
+   "rejected": "0334",
+   "why": "not every member is Dumbbell Lateral Raise; kept 10/21 as slug entries"
+  },
+  "dumbbell-pullover": {
+   "rejected": "0375",
+   "why": "not every member is Dumbbell Pullover; kept 2/4 as slug entries"
+  },
+  "dumbbell-shoulder-press": {
+   "rejected": "0405",
+   "why": "not every member is Dumbbell Seated Shoulder Press; kept 1/5 as slug entries"
+  },
+  "dumbbell-skull-crushers": {
+   "rejected": "0351",
+   "why": "not every member is Dumbbell Lying Triceps Extension; kept 2/9 as slug entries"
+  },
+  "finger-flexor-curl": {
+   "rejected": "0455",
+   "why": "not every member is Finger Curls; kept 1/4 as slug entries"
+  },
+  "forearm-pronation": {
+   "rejected": "0347",
+   "why": "not every member is Dumbbell Lying Pronation; kept 2/3 as slug entries"
+  },
+  "forearm-supination": {
+   "rejected": "0349",
+   "why": "not every member is Dumbbell Lying Supination; kept 1/2 as slug entries"
+  },
+  "french-press": {
+   "rejected": "1749",
+   "why": "not every member is Ez Bar Standing French Press; kept 1/9 as slug entries"
+  },
+  "front-squat": {
+   "rejected": "0042",
+   "why": "not every member is Barbell Front Squat; kept 2/4 as slug entries"
+  },
+  "glute-rdl": {
+   "rejected": "0085",
+   "why": "not every member is Barbell Romanian Deadlift; kept 0/5 as slug entries"
+  },
+  "good-morning": {
+   "rejected": "0044",
+   "why": "not every member is Barbell Good Morning; kept 1/3 as slug entries"
+  },
+  "hack-squat": {
+   "rejected": "0743",
+   "why": "not every member is Sled Hack Squat; kept 5/6 as slug entries"
+  },
+  "hammer-curl": {
+   "rejected": "0313",
+   "why": "not every member is Dumbbell Hammer Curl; kept 5/7 as slug entries"
+  },
+  "hamstring-hyper": {
+   "rejected": "0489",
+   "why": "not every member is Hyperextension; kept 4/5 as slug entries"
+  },
+  "hanging-knee-raise": {
+   "rejected": "0011",
+   "why": "not every member is Assisted Hanging Knee Raise; kept 1/5 as slug entries"
+  },
+  "hanging-leg-raise": {
+   "rejected": "0472",
+   "why": "not every member is Hanging Leg Raise; kept 2/8 as slug entries"
+  },
+  "hanging-scapular-shrug": {
+   "rejected": "0688",
+   "why": "not every member is Scapular Pull-Up; kept 2/4 as slug entries"
+  },
+  "high-bar-squat": {
+   "rejected": "1436",
+   "why": "not every member is Barbell High Bar Squat; kept 4/9 as slug entries"
+  },
+  "high-elbow-dumbbell-row": {
+   "rejected": "0377",
+   "why": "not every member is Dumbbell Rear Delt Row (shoulder); kept 1/5 as slug entries"
+  },
+  "hip-adduction": {
+   "rejected": "0598",
+   "why": "not every member is Lever Seated Hip Adduction; kept 0/1 as slug entries"
+  },
+  "hip-thrust": {
+   "rejected": "0756",
+   "why": "not every member is Smith Hip Raise; kept 1/3 as slug entries"
+  },
+  "incline-cable-extension": {
+   "rejected": "0173",
+   "why": "not every member is Cable Incline Triceps Extension; kept 6/7 as slug entries"
+  },
+  "incline-cable-fly": {
+   "rejected": "0171",
+   "why": "not every member is Cable Incline Fly; kept 2/3 as slug entries"
+  },
+  "incline-cable-pushdown": {
+   "rejected": "0172",
+   "why": "not every member is Cable Incline Pushdown; kept 0/2 as slug entries"
+  },
+  "incline-dumbbell-curl": {
+   "rejected": "0318",
+   "why": "not every member is Dumbbell Incline Curl; kept 5/6 as slug entries"
+  },
+  "incline-dumbbell-fly": {
+   "rejected": "0319",
+   "why": "not every member is Dumbbell Incline Fly; kept 3/6 as slug entries"
+  },
+  "incline-dumbbell-press": {
+   "rejected": "0314",
+   "why": "not every member is Dumbbell Incline Bench Press; kept 4/10 as slug entries"
+  },
+  "incline-lateral-raise": {
+   "rejected": "0323",
+   "why": "not every member is Dumbbell Incline One Arm Lateral Raise; kept 0/5 as slug entries"
+  },
+  "incline-shrug": {
+   "rejected": "0329",
+   "why": "not every member is Dumbbell Incline Shrug; kept 2/5 as slug entries"
+  },
+  "jm-press": {
+   "rejected": "0052",
+   "why": "not every member is Barbell Jm Bench Press; kept 0/5 as slug entries"
+  },
+  "kickback": {
+   "rejected": "0333",
+   "why": "not every member is Dumbbell Kickback; kept 0/1 as slug entries"
+  },
+  "lat-pulldown": {
+   "rejected": "0198",
+   "why": "not every member is Cable Pulldown; kept 5/6 as slug entries"
+  },
+  "lateral-lunge": {
+   "rejected": "1410",
+   "why": "not every member is Barbell Lateral Lunge; kept 0/3 as slug entries"
+  },
+  "low-bar-squat": {
+   "rejected": "1435",
+   "why": "not every member is Barbell Low Bar Squat; kept 2/3 as slug entries"
+  },
+  "machine-chest-press": {
+   "rejected": "0576",
+   "why": "not every member is Lever Chest Press; kept 4/6 as slug entries"
+  },
+  "machine-lateral-raise": {
+   "rejected": "0584",
+   "why": "not every member is Lever Lateral Raise; kept 3/4 as slug entries"
+  },
+  "machine-rear-delt-fly": {
+   "rejected": "0602",
+   "why": "not every member is Lever Seated Reverse Fly; kept 6/7 as slug entries"
+  },
+  "machine-row": {
+   "rejected": "1350",
+   "why": "not every member is Lever Seated Row; kept 3/5 as slug entries"
+  },
+  "one-arm-dumbbell-row": {
+   "rejected": "0292",
+   "why": "not every member is Dumbbell One Arm Bent-Over Row; kept 4/7 as slug entries"
+  },
+  "pendlay-row": {
+   "rejected": "3017",
+   "why": "not every member is Barbell Pendlay Row; kept 2/3 as slug entries"
+  },
+  "preacher-curl": {
+   "rejected": "0070",
+   "why": "not every member is Barbell Preacher Curl; kept 1/8 as slug entries"
+  },
+  "pull-up": {
+   "rejected": "0652",
+   "why": "not every member is Pull-Up; kept 4/6 as slug entries"
+  },
+  "push-ups": {
+   "rejected": "0662",
+   "why": "not every member is Push-Up; kept 3/11 as slug entries"
+  },
+  "quad-stretch": {
+   "rejected": "0613",
+   "why": "not every member is Lying (side) Quads Stretch; kept 0/1 as slug entries"
+  },
+  "rear-delt-cable-fly": {
+   "rejected": "0154",
+   "why": "not every member is Cable Cross-Over Reverse Fly; kept 2/5 as slug entries"
+  },
+  "rear-delt-fly": {
+   "rejected": "0602",
+   "why": "not every member is Lever Seated Reverse Fly; kept 1/2 as slug entries"
+  },
+  "rear-delt-raise": {
+   "rejected": "0380",
+   "why": "not every member is Dumbbell Rear Lateral Raise; kept 0/17 as slug entries"
+  },
+  "rear-delt-row": {
+   "rejected": "0203",
+   "why": "not every member is Cable Rear Delt Row (with Rope); kept 0/3 as slug entries"
+  },
+  "reverse-crunch": {
+   "rejected": "0872",
+   "why": "not every member is Reverse Crunch; kept 0/3 as slug entries"
+  },
+  "reverse-curl": {
+   "rejected": "0080",
+   "why": "not every member is Barbell Reverse Curl; kept 5/13 as slug entries"
+  },
+  "reverse-grip-press": {
+   "rejected": "0764",
+   "why": "not every member is Smith Reverse-Grip Press; kept 3/5 as slug entries"
+  },
+  "reverse-lunge": {
+   "rejected": "0381",
+   "why": "not every member is Dumbbell Rear Lunge; kept 1/7 as slug entries"
+  },
+  "romanian-deadlift": {
+   "rejected": "0085",
+   "why": "not every member is Barbell Romanian Deadlift; kept 2/14 as slug entries"
+  },
+  "seated-bicycle": {
+   "rejected": "0003",
+   "why": "not every member is Air Bike; kept 0/1 as slug entries"
+  },
+  "seated-cable-high-elbow-row": {
+   "rejected": "0218",
+   "why": "not every member is Cable Seated Wide-Grip Row; kept 0/4 as slug entries"
+  },
+  "seated-cable-row": {
+   "rejected": "0861",
+   "why": "not every member is Cable Seated Row; kept 3/7 as slug entries"
+  },
+  "seated-calf-raise": {
+   "rejected": "0594",
+   "why": "not every member is Lever Seated Calf Raise; kept 16/17 as slug entries"
+  },
+  "shrug": {
+   "rejected": "0406",
+   "why": "not every member is Dumbbell Shrug; kept 5/15 as slug entries"
+  },
+  "single-arm-cable-row": {
+   "rejected": "0214",
+   "why": "not every member is Cable Seated One Arm Alternate Row; kept 1/5 as slug entries"
+  },
+  "single-arm-overhead-extension": {
+   "rejected": "0362",
+   "why": "not every member is Dumbbell One Arm Triceps Extension (on Bench); kept 0/2 as slug entries"
+  },
+  "single-arm-pushdown": {
+   "rejected": "1723",
+   "why": "not every member is Cable One Arm Tricep Pushdown; kept 1/3 as slug entries"
+  },
+  "single-leg-rdl": {
+   "rejected": "1756",
+   "why": "not every member is Barbell Single Leg Deadlift; kept 0/2 as slug entries"
+  },
+  "single-leg-squat": {
+   "rejected": "1759",
+   "why": "not every member is Single Leg Squat (pistol); kept 0/2 as slug entries"
+  },
+  "sissy-squat": {
+   "rejected": "1489",
+   "why": "not every member is Sissy Squat; kept 2/10 as slug entries"
+  },
+  "skull-crushers": {
+   "rejected": "0060",
+   "why": "not every member is Barbell Lying Triceps Extension Skull Crusher; kept 1/6 as slug entries"
+  },
+  "smith-incline-press": {
+   "rejected": "0757",
+   "why": "not every member is Smith Incline Bench Press; kept 4/6 as slug entries"
+  },
+  "smith-shoulder-press": {
+   "rejected": "0766",
+   "why": "not every member is Smith Shoulder Press; kept 1/2 as slug entries"
+  },
+  "spider-curl": {
+   "rejected": "0454",
+   "why": "not every member is Ez Barbell Spider Curl; kept 3/9 as slug entries"
+  },
+  "split-squat": {
+   "rejected": "2368",
+   "why": "not every member is Split Squats; kept 3/12 as slug entries"
+  },
+  "standing-calf-raise": {
+   "rejected": "0605",
+   "why": "not every member is Lever Standing Calf Raise; kept 3/21 as slug entries"
+  },
+  "step-up": {
+   "rejected": "0431",
+   "why": "not every member is Dumbbell Step-Up; kept 1/4 as slug entries"
+  },
+  "sumo-deadlift": {
+   "rejected": "0117",
+   "why": "not every member is Barbell Sumo Deadlift; kept 4/5 as slug entries"
+  },
+  "sumo-squat": {
+   "rejected": "3142",
+   "why": "not every member is Smith Sumo Squat; kept 0/1 as slug entries"
+  },
+  "supinated-dumbbell-press": {
+   "rejected": "0405",
+   "why": "not every member is Dumbbell Seated Shoulder Press; kept 2/4 as slug entries"
+  },
+  "t-bar-row": {
+   "rejected": "0606",
+   "why": "not every member is Lever T Bar Row; kept 1/5 as slug entries"
+  },
+  "triceps-dips": {
+   "rejected": "0814",
+   "why": "not every member is Triceps Dip; kept 3/5 as slug entries"
+  },
+  "triceps-push-ups": {
+   "rejected": "0259",
+   "why": "not every member is Close-Grip Push-Up; kept 4/7 as slug entries"
+  },
+  "upright-row": {
+   "rejected": "0123",
+   "why": "not every member is Barbell Wide-Grip Upright Row; kept 0/6 as slug entries"
+  },
+  "v-up": {
+   "rejected": "0507",
+   "why": "not every member is Jackknife Sit-Up; kept 2/9 as slug entries"
+  },
+  "walking-lunge": {
+   "rejected": "1460",
+   "why": "not every member is Walking Lunge; kept 5/12 as slug entries"
+  },
+  "wrist-curl": {
+   "rejected": "0126",
+   "why": "not every member is Barbell Wrist Curl; kept 1/6 as slug entries"
+  },
+  "wrist-extension": {
+   "rejected": "0082",
+   "why": "not every member is Barbell Reverse Wrist Curl; kept 1/5 as slug entries"
+  },
+  "y-raise": {
+   "rejected": "3541",
+   "why": "not every member is Dumbbell Incline Y-Raise; kept 0/2 as slug entries"
   }
  }
 }
