@@ -1,7 +1,7 @@
 // Exercise library (grid; list | detail at ≥1000px) and the exercise page (#/ex/<slug>) incl. pain / joint flags.
 import { S, save } from "./store.js";
 import { $, $$, esc, ic, openSheet, closeSheet, toast, haptic, fmtDate, lineChart, indicate, selectIn } from "./ui.js";
-import { EX, BY, GROUPS, EQUIP, norm, hasEquip, byTier, swaps, history, bestOf, setsText, exerciseStats, weekStart, WEEK,
+import { EX, BY, GROUPS, EQUIP, searchEx, hasEquip, byTier, swaps, history, bestOf, setsText, exerciseStats, weekStart, WEEK,
   JOINTS, JOINT_IDS, avoidFor, flaggedJoints, jointFriendly, hurts, FAM } from "./data.js";
 import { MBY, bodySVG } from "./body.js";
 import { e1rm } from "./calc.js";
@@ -16,10 +16,9 @@ const L = (o) => (o && typeof o === "object" ? o[S.settings.lang || "en"] || o.e
 /* ================= LIBRARY ================= */
 export const lib = { q: "", group: "All", equip: "", tier: "", level: "", favs: false, machine: false, mine: true, scroll: 0 };
 function filtered() {
-  const words = norm(lib.q).split(/\s+/).filter(Boolean);
-  return EX.filter((e) => (lib.group === "All" || e.group === lib.group) && (!lib.equip || e.equipment.includes(lib.equip)) &&
+  return searchEx(lib.q, EX.filter((e) => (lib.group === "All" || e.group === lib.group) && (!lib.equip || e.equipment.includes(lib.equip)) &&
     (!lib.tier || (lib.tier === "SA" ? ["S", "A"].includes(e.tier) : e.tier === lib.tier)) && (!lib.level || e.level === lib.level) &&
-    (!lib.favs || isFav(e.slug)) && (!lib.machine || e.machine) && (!lib.mine || hasEquip(e)) && words.every((w) => e._q.includes(w))).sort(byTier);
+    (!lib.favs || isFav(e.slug)) && (!lib.machine || e.machine) && (!lib.mine || hasEquip(e))));
 }
 const TOGGLES = [["", "All tiers"], ["S", "S tier"], ["SA", "S + A"], ["fav", "Saved"], ["machine", "Machines"]];
 const tOn = (v) => (v === "fav" ? lib.favs : v === "machine" ? lib.machine : v === "mine" ? lib.mine : lib.tier === v && !lib.favs);
@@ -39,7 +38,7 @@ function wireLib(pick, cur) {
   const more = () => { const nx = list.slice(shown, shown + 40); grid.insertAdjacentHTML("beforeend", nx.map((e) => xcard(e, 0, pick?.selected.has(e.slug))).join("")); shown += nx.length; onImg(grid); markCur(cur); };
   const refresh = () => {
     list = filtered(); shown = 0; grid.innerHTML = "";
-    $("#count").textContent = `${list.length} exercise${list.length === 1 ? "" : "s"} · best tier first`;
+    $("#count").textContent = list.length && list.close === list.length ? `${list.length} close match${list.length === 1 ? "" : "es"} · check the spelling` : `${list.length} exercise${list.length === 1 ? "" : "s"} · best tier first`;
     if (!list.length) grid.innerHTML = `<div class="empty" style="grid-column:1/-1">${ic("search")}<br>No matches. Try fewer filters.</div>`;
     more();
   };

@@ -21,6 +21,72 @@ const GROUP_I18N = { Chest: "göğüs gogus صدر", "Upper Back": "üst sırt s
   Hamstrings: "arka bacak hamstring فخذ خلفي", Glutes: "kalça kalca popo مؤخرة أرداف", Calves: "baldır kalf سمانة", "Lower Back": "bel أسفل الظهر", Shins: "kaval قصبة", Groin: "iç bacak adduktor ضامة" };
 const EQUIP_I18N = { Dumbbell: "dambıl dumbel دمبل", Barbell: "halter bar بار", Cable: "kablo كابل", Machine: "makine جهاز", Bodyweight: "vücut ağırlığı وزن الجسم", Smith: "smith سميث", Band: "lastik bant مطاط", Kettlebell: "kettlebell كيتل" };
 
+/* ---- library search: TR/AR/shorthand words -> English, plus 1-typo tolerance ---- */
+// Keys are normalized with norm(); values are alternatives ("|"), any one may appear in e._q. Two-word keys match as a phrase.
+const QSYN_RAW = {
+  // Turkish
+  "pres": "press", "presi": "press", "presler": "press", "itis": "press|push", "itme": "press|push", "sehpa": "bench", "egimli": "incline", "ters egimli": "decline",
+  "sinav": "push up|push-up", "mekik": "crunch|sit up", "barfiks": "pull up|chin up", "comelme": "squat", "skuat": "squat", "olu kaldirma": "deadlift|stiff",
+  "kurek": "row", "cekis": "pull|row", "cekme": "pull|row", "lat cekis": "pulldown", "lat cekme": "pulldown", "acis": "fly|raise", "yan acis": "lateral raise|side lateral", "on acis": "front raise", "kaldirma": "raise|lift",
+  "bukme": "curl", "kol bukme": "curl", "uzatma": "extension", "acma": "extension|fly", "bacak": "leg", "hamle": "lunge", "ileri adim": "lunge", "baldir": "calf", "kalf": "calf",
+  "kalca itisi": "hip thrust", "tek": "one|single|1 arm", "tek kol": "one arm|single arm|1 arm", "oturarak": "seated", "ayakta": "standing", "yatarak": "lying", "dar": "close|narrow",
+  "genis": "wide", "tutus": "grip", "kopru": "bridge", "kol": "arm", "omuz": "shoulder", "gogus": "chest", "sirt": "back", "karin": "ab", "pazu": "bicep|curl", "arka kol": "tricep",
+  // Arabic
+  "ضغط": "press|push", "بنش": "bench", "بنج": "bench", "سكوات": "squat", "قرفصاء": "squat", "رفعه ميته": "deadlift|stiff", "ديدلفت": "deadlift", "تجديف": "row", "سحب": "pull|row",
+  "عقله": "pull up|chin up", "مائل": "incline", "رفرفه": "fly", "تفتيح": "fly", "رفع": "raise|lift", "رفع جانبي": "lateral raise|side lateral", "جانبي": "lateral|side", "امامي": "front",
+  "كيرل": "curl", "ثني": "curl", "تمديد": "extension", "مد": "extension", "ساق": "leg|calf", "ارجل": "leg", "رجل": "leg", "طعنه": "lunge", "اندفاع": "lunge", "دفع الورك": "hip thrust",
+  "ورك": "hip", "جالس": "seated", "واقف": "standing", "مستلقي": "lying", "بلانك": "plank", "جسر": "bridge", "ضيق": "close|narrow", "واسع": "wide", "قبضه": "grip", "بطن": "ab|crunch",
+  // English shorthand / spellings
+  "ohp": "shoulder press|overhead press|military", "rdl": "stiff|romanian", "db": "dumbbell", "bb": "barbell", "pullup": "pull up", "pullups": "pull up", "pushup": "push up",
+  "pushups": "push up", "chinup": "chin up", "chinups": "chin up", "flye": "fly", "flyes": "fly", "flys": "fly", "flies": "fly", "skullcrusher": "skull crusher", "skullcrushers": "skull crusher",
+  "military": "military|shoulder press", "abs": "ab", "glute": "glute", "lats": "lat",
+};
+let QSYN = null;
+const qsyn = () => QSYN ||= Object.fromEntries(Object.entries(QSYN_RAW).map(([k, v]) => [norm(k).trim(), v.split("|").map((x) => norm(x).trim())]));
+/** Query -> list of word groups; an exercise matches a group when any alternative is a substring of e._q. */
+function parseQuery(q) {
+  const t = norm(q).trim().split(" ").filter(Boolean), M = qsyn(), out = [];
+  for (let i = 0; i < t.length; i++) {
+    const two = t[i + 1] && M[t[i] + " " + t[i + 1]];
+    if (two) { out.push({ w: t[i] + " " + t[i + 1], alts: two }); i++; continue; }
+    const w = t[i], alts = [w, ...(M[w] || [])];
+    if (w.length > 3 && w.endsWith("s") && !w.endsWith("ss")) alts.push(w.slice(0, -1)); // curls -> curl
+    if (w.length > 4 && w.startsWith("ال")) alts.push(w.slice(2), ...(M[w.slice(2)] || [])); // Arabic article
+    out.push({ w, alts });
+  }
+  return out;
+}
+// Damerau edit distance <= 1 (one insert / delete / substitute / swap of neighbours).
+function near1(a, b) {
+  const la = a.length, lb = b.length; if (Math.abs(la - lb) > 1) return false;
+  let i = 0, j = 0, d = 0;
+  while (i < la && j < lb) {
+    if (a[i] === b[j]) { i++; j++; continue; }
+    if (++d > 1) return false;
+    if (la > lb) i++; else if (lb > la) j++; else if (a[i] === b[j + 1] && a[i + 1] === b[j]) { i += 2; j += 2; } else { i++; j++; }
+  }
+  return d + (la - i) + (lb - j) <= 1;
+}
+const nearWord = (w, words) => words.some((x) => near1(w, x) || (x.length > w.length && (near1(w, x.slice(0, w.length)) || near1(w, x.slice(0, w.length + 1)))));
+/** Filter + order: exact hits (every word found) first, then 1-typo hits; both by tier. A word gets typo tolerance only when it
+ *  has >= 4 letters and appears nowhere in the library as typed (so "calf" never pulls in "half…"). */
+export function searchEx(q, list) {
+  const groups = parseQuery(q);
+  if (!groups.length) return [...list].sort(byTier);
+  for (const g of groups) g.fuzzy = g.w.length >= 4 && !g.w.includes(" ") && !EX.some((e) => g.alts.some((a) => e._q.includes(a)));
+  const exact = [], close = [];
+  for (const e of list) {
+    let typo = false, ok = true;
+    for (const g of groups) {
+      if (g.alts.some((a) => e._q.includes(a))) continue;
+      if (g.fuzzy && nearWord(g.w, e._w ||= [...new Set(e._q.split(" "))].filter((x) => x.length >= 3))) { typo = true; continue; }
+      ok = false; break;
+    }
+    if (ok) (typo ? close : exact).push(e);
+  }
+  const out = [...exact.sort(byTier), ...close.sort(byTier)]; out.close = close.length; return out;
+}
+
 export let FAM = { families: {}, notes: {} };
 export async function loadExercises() {
   const lang = S.settings.lang || "en";
