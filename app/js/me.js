@@ -1,6 +1,6 @@
 // Me: progress tracking (week vs week, charts, PRs, heat map, bodyweight) + history. Settings page.
 import { S, save, persist, exportData, importData, flush } from "./store.js";
-import { $, $$, esc, ic, ask, askText, openSheet, toast, haptic, fmtDate, fmtDur, lineChart, vBars, delta, fmtKg, indicate, selectIn } from "./ui.js";
+import { $, $$, esc, ic, ask, askText, openSheet, closeSheet, toast, haptic, fmtDate, fmtDur, lineChart, vBars, delta, fmtKg, indicate, selectIn } from "./ui.js";
 import { EX, BY, EQUIP_PROFILES, bestOf, setsText, weeklyVolume, periodStats, exerciseStats, weekStart, WEEK, DAY, history, flaggedJoints, JOINTS } from "./data.js";
 import { MUSCLES, MBY } from "./body.js";
 import { e1rm } from "./calc.js";
@@ -166,6 +166,8 @@ export async function settingsView() {
       <div class="card pad" id="cloud">${cloudCard()}</div>
       <div class="card pad"><b>Backup file</b><p class="muted small" style="margin:4px 0 10px">Your data stays on this phone. Save a backup now and then.</p>
         <div class="row"><button class="btn sm grow" id="exp">${ic("share", "sm")} Export</button><label class="btn sm grow">${ic("download", "sm")} Import<input type="file" id="imp" accept=".json,application/json" hidden></label></div>
+        <div class="dim small" style="margin:12px 0 6px">Spreadsheet (CSV) — open in Excel, or move from another app</div>
+        <div class="row"><button class="btn sm grow" id="expCsv">${ic("share", "sm")} Export CSV</button><label class="btn sm grow">${ic("download", "sm")} From Strong / Hevy<input type="file" id="impCsv" accept=".csv,text/csv,text/plain" hidden></label></div>
         <div class="dim tiny" style="margin-top:8px" id="pst"></div></div>
       ${standalone() ? "" : `<button class="btn block" id="inst">${ic("phone", "sm")} Install app</button>`}
     </div></div>
@@ -199,10 +201,59 @@ export async function settingsView() {
     else { const a = document.createElement("a"); a.href = URL.createObjectURL(file); a.download = file.name; a.click(); }
     S.settings.lastBackup = Date.now(); save("settings");
   };
+  $("#expCsv").onclick = async () => {
+    await flush(); if (!S.sessions.length) return toast("No workouts to export yet");
+    const C = await import("./csv.js");
+    shareFile(new File(["\uFEFF" + C.exportCSV()], `gym-workouts-${new Date().toISOString().slice(0, 10)}.csv`, { type: "text/csv" }), "Gym workouts");
+  };
+  $("#impCsv").onchange = async (e) => {
+    const f = e.target.files[0]; e.target.value = ""; if (!f) return;
+    const C = await import("./csv.js"); let R;
+    try { R = C.readImport(await f.text()); } catch { return toast("Can't read this file. Export a CSV from Strong or Hevy and try again."); }
+    csvPreview(C, R);
+  };
   $("#imp").onchange = async (e) => {
     try { const txt = await e.target.files[0].text(); if (!(await ask("Replace your workouts and history with this backup?", { ok: "Replace", danger: true }))) return; await importData(txt); toast("Backup restored"); settingsView(); }
     catch { toast("Not a valid Gym backup"); }
   };
+}
+
+async function shareFile(file, title) {
+  if (navigator.canShare?.({ files: [file] })) { try { await navigator.share({ files: [file], title }); return; } catch (err) { if (err?.name === "AbortError") return; } }
+  const a = document.createElement("a"); a.href = URL.createObjectURL(file); a.download = file.name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+/* ---- CSV import preview: check / fix exercise matches, then add the workouts ---- */
+function csvPreview(C, R) {
+  const sets = R.workouts.reduce((a, w) => a + w.ex.reduce((b, x) => b + x.sets.length, 0), 0);
+  const md = { month: "short", year: "numeric" };
+  const row = (x, i) => `<div class="imp-r" data-i="${i}"><div class="grow"><div class="t">${esc(x.name)}</div>
+      <div class="small ${x.slug ? "muted" : "warn"}">${x.slug ? `${ic("check", "xs")} ${esc(BY[x.slug].name)}` : "Not matched — will be skipped"}</div></div>
+      <button class="btn sm" data-c="${i}">${x.slug ? "Change" : "Pick"}</button></div>`;
+  const draw = (el) => {
+    const n = R.names.filter((x) => x.slug).length;
+    $("#impList", el).innerHTML = R.names.map(row).join("");
+    $("#impSum", el).textContent = `${n} of ${R.names.length} exercises matched`;
+  };
+  openSheet(`<h3>Import from ${R.format}</h3>
+    <div class="muted small" style="margin:-2px 0 12px">${R.workouts.length} workouts · ${sets} sets · ${fmtDate(R.workouts[0].start, md)} – ${fmtDate(R.workouts.at(-1).start, md)}</div>
+    <div class="row" style="margin-bottom:6px"><b class="grow" id="impSum"></b></div>
+    <div id="impList" class="imp-list"></div>
+    <p class="dim small" style="margin:10px 0 12px">Workouts are added to your history; nothing is replaced. Already imported workouts are skipped.</p>
+    <button class="btn primary block" id="impGo">Import workouts</button>`, (el) => {
+    draw(el);
+    $("#impList", el).onclick = (ev) => { const b = ev.target.closest("[data-c]"); if (!b) return; const i = +b.dataset.c, x = R.names[i];
+      const box = b.closest(".imp-r"); if (box.nextElementSibling?.classList.contains("imp-pick")) return box.nextElementSibling.remove();
+      el.querySelectorAll(".imp-pick").forEach((p) => p.remove());
+      box.insertAdjacentHTML("afterend", `<div class="imp-pick"><div class="search">${ic("search", "sm")}<input type="search" value="${esc(x.name.replace(/\([^)]*\)/g, "").trim())}" aria-label="Search exercises"></div><div class="menu"></div></div>`);
+      const pk = box.nextElementSibling, inp = pk.querySelector("input"), list = pk.querySelector(".menu");
+      const fill = () => { const r = C.rank(inp.value || x.name, 6);
+        list.innerHTML = r.map(({ e }) => `<button data-s="${e.slug}">${esc(e.name)}<span class="dim small" style="margin-inline-start:auto">${esc(e.equipment[0] || "")}</span></button>`).join("") + `<button data-s="">${ic("close", "sm")}Skip this exercise</button>`; };
+      inp.oninput = fill; fill(); inp.focus(); inp.select();
+      list.onclick = (e2) => { const s = e2.target.closest("[data-s]"); if (!s) return; x.slug = s.dataset.s || null; haptic(); draw(el); };
+    };
+    $("#impGo", el).onclick = () => { const r = C.applyImport(R); closeSheet();
+      toast(r.added ? `Imported ${r.added} workouts (${r.sets} sets)${r.skipped ? ` · ${r.skipped} skipped` : ""}` : "Nothing new to import"); settingsView(); };
+  });
 }
 
 /* ---- cloud backup to the owner's private GitHub repo (see js/SYNC.md) ---- */
