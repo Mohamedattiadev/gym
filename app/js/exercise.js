@@ -289,6 +289,20 @@ function hero(e) {
   requestAnimationFrame(() => indicate(h));
 }
 
+/* ---- block 22: "Show" a common mistake — wrong vs right; visual = credited clip (data/mistakes.json) or the body map, never an unrelated picture ---- */
+let MK = null;
+const loadMistakes = () => (MK ??= fetch("data/mistakes.json").then((r) => (r.ok ? r.json() : {})).catch(() => ({})));
+async function mistakeSheet(e, i) {
+  const m = e.mistakes[i]; if (!m) return;
+  const c = ((await loadMistakes()).fam || {})[e.family]?.[i]?.clip, paint = paintBody(e);
+  const vis = c ? `<div class="yt mclip"><iframe src="https://www.youtube-nocookie.com/embed/${esc(c.yt)}?start=${c.start | 0}&end=${c.end | 0}&autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1" title="Mistake demo" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+      <p class="dim small mcred">Clip: ${esc(c.credit || "")} · <a href="https://www.youtube.com/watch?v=${esc(c.yt)}&t=${c.start | 0}s" target="_blank" rel="noopener">Original at ${mmss(c.start)}</a></p>`
+    : `<div class="mini-body mbody">${paint(bodySVG("front"))}${paint(bodySVG("back"))}</div><p class="dim small mcred">Done right, the highlighted muscles do the work.</p>`;
+  openSheet(`<h3>Common mistake</h3>
+    <div class="mwr"><div class="mw no"><div class="mwh">${ic("x", "sm")}Wrong</div><p>${esc(m.text)}</p></div>
+      <div class="mw ok"><div class="mwh">${ic("okc", "sm")}Right</div><p>${esc(m.fix || "Follow the steps and cues above.")}</p></div></div>${vis}`, null, { half: true });
+}
+
 /* ---- tab panels ---- */
 function panel(e) {
   const p = $("#dpanel"); p.style.animation = "none"; void p.offsetWidth; p.style.animation = "";
@@ -296,9 +310,9 @@ function panel(e) {
     p.innerHTML = `<div id="tgt"></div>${e.about ? `<p class="muted" style="margin-bottom:12px">${esc(e.about)}</p>` : ""}
       ${e.steps.length ? `<ol class="steps">${e.steps.map((s) => `<li><span>${esc(s)}</span></li>`).join("")}</ol>` : `<p class="dim">No written steps yet — follow the video.</p>`}
       ${e.cues.length ? `<div class="h4">Cues</div><ul class="bul ok">${e.cues.map((s) => `<li>${ic("okc", "sm")}<span>${esc(s)}</span></li>`).join("")}</ul>` : ""}
-      ${e.mistakes.length ? `<div class="h4">Common mistakes</div><ul class="bul no">${e.mistakes.map((s) => `<li>${ic("x", "sm")}<span>${esc(s)}</span></li>`).join("")}</ul>` : ""}
+      ${e.mistakes.length ? `<div class="h4">Common mistakes</div><ul class="bul no">${e.mistakes.map((m, i) => `<li>${ic("x", "sm")}<span>${esc(m.text)}</span><button class="mshow" data-mi="${i}" aria-label="Show the fix">Show</button></li>`).join("")}</ul>` : ""}
       ${e.vnote ? `<div class="h4">This variation</div><p class="muted">${esc(e.vnote)}</p>` : ""}`;
-    targets(e, p);
+    targets(e, p); $$(".mshow", p).forEach((b) => (b.onclick = () => { haptic(); mistakeSheet(e, +b.dataset.mi); }));
   } else if (dtab.cur === "stats") statsPanel(e, p);
   else rankPanel(e, p);
 }

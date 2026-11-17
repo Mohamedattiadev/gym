@@ -23,8 +23,14 @@
      "Take 2–3 seconds on the way down."
     ],
     "mistakes": [
-     "Swinging the torso to heave the weight up.",
-     "Shrugging so the upper traps take over the lift."
+     {
+      "text": "Swinging the torso to heave the weight up.",
+      "fix": "Keep the torso still and lead with the elbows."
+     },
+     {
+      "text": "Shrugging so the upper traps take over the lift.",
+      "fix": "Keep the shoulders down, away from the ears."
+     }
     ]
    },
    "tr": {
@@ -42,8 +48,14 @@
      "İnişi 2–3 saniyede yap."
     ],
     "mistakes": [
-     "Gövdeyi sallayarak ağırlığı savurmak.",
-     "Omuz silkip işi üst trapeze yaptırmak."
+     {
+      "text": "Gövdeyi sallayarak ağırlığı savurmak.",
+      "fix": "Gövdeyi sabit tut ve hareketi dirseklerle başlat."
+     },
+     {
+      "text": "Omuz silkip işi üst trapeze yaptırmak.",
+      "fix": "Omuzları kulaklardan uzak, aşağıda tut."
+     }
     ]
    },
    "ar": {
@@ -61,8 +73,14 @@
      "خذ 2–3 ثوانٍ في النزول."
     ],
     "mistakes": [
-     "أرجحة الجذع لرفع الوزن بالزخم.",
-     "رفع الكتفين نحو الأذنين فتتولى شبه المنحرفة العمل."
+     {
+      "text": "أرجحة الجذع لرفع الوزن بالزخم.",
+      "fix": "أبقِ الجذع ثابتًا وابدأ الحركة بالمرفقين."
+     },
+     {
+      "text": "رفع الكتفين نحو الأذنين فتتولى شبه المنحرفة العمل.",
+      "fix": "أبقِ كتفيك منخفضين بعيدًا عن أذنيك."
+     }
     ]
    }
   },
@@ -88,8 +106,14 @@
      "Stop before the shoulder starts to shrug."
     ],
     "mistakes": [
-     "Cutting the bottom of the range short.",
-     "Using a weight so heavy the torso rolls to help."
+     {
+      "text": "Cutting the bottom of the range short.",
+      "fix": "Lower slowly all the way back to the deep stretched position."
+     },
+     {
+      "text": "Using a weight so heavy the torso rolls to help.",
+      "fix": "Use a weight you can lift while staying braced and stable."
+     }
     ]
    },
    "tr": {
@@ -107,8 +131,14 @@
      "Omuz silkilmeye başlamadan dur."
     ],
     "mistakes": [
-     "Hareketin alt kısmını kısa kesmek.",
-     "Gövdeyi yuvarlatıp yardım alacak kadar ağır kilo kullanmak."
+     {
+      "text": "Hareketin alt kısmını kısa kesmek.",
+      "fix": "Derin gerilme pozisyonuna kadar yavaşça indir."
+     },
+     {
+      "text": "Gövdeyi yuvarlatıp yardım alacak kadar ağır kilo kullanmak.",
+      "fix": "Sabit ve sıkı kalarak kaldırabileceğin bir ağırlık kullan."
+     }
     ]
    },
    "ar": {
@@ -126,8 +156,14 @@
      "توقف قبل أن يبدأ الكتف بالارتفاع نحو الأذن."
     ],
     "mistakes": [
-     "اختصار الجزء السفلي من المدى.",
-     "استخدام وزن ثقيل يجعل الجذع يلتف للمساعدة."
+     {
+      "text": "اختصار الجزء السفلي من المدى.",
+      "fix": "أنزل ببطء حتى وضع التمدد العميق."
+     },
+     {
+      "text": "استخدام وزن ثقيل يجعل الجذع يلتف للمساعدة.",
+      "fix": "استخدم وزنًا ترفعه وأنت ثابت ومشدود."
+     }
     ]
    }
   },
@@ -153,8 +189,14 @@
      "Pause briefly at the top before a slow lowering."
     ],
     "mistakes": [
-     "Leaning away and using the body to move the weight.",
-     "Letting the stack slam between reps and losing tension."
+     {
+      "text": "Leaning away and using the body to move the weight.",
+      "fix": "Stand tall, brace, and move only the arm."
+     },
+     {
+      "text": "Letting the stack slam between reps and losing tension.",
+      "fix": "Return slowly and keep the cable taut between reps."
+     }
     ]
    },
    "tr": {
@@ -172,8 +214,14 @@
      "Tepede kısa dur, sonra yavaşça indir."
     ],
     "mistakes": [
-     "Yana yaslanıp vücutla ağırlığı hareket ettirmek.",
-     "Tekrarlar arasında ağırlığı bırakıp gerilimi kaybetmek."
+     {
+      "text": "Yana yaslanıp vücutla ağırlığı hareket ettirmek.",
+      "fix": "Dik dur, karnını sık ve sadece kolu hareket ettir."
+     },
+     {
+      "text": "Tekrarlar arasında ağırlığı bırakıp gerilimi kaybetmek.",
+      "fix": "Yavaşça geri dön ve tekrarlar arasında kabloyu gergin tut."
+     }
     ]
    },
    "ar": {
@@ -191,8 +239,14 @@
      "توقف لحظة في الأعلى ثم أنزل ببطء."
     ],
     "mistakes": [
-     "الميل بعيدًا واستخدام الجسم لتحريك الوزن.",
-     "ترك الأوزان ترتطم بين التكرارات وفقدان الشد."
+     {
+      "text": "الميل بعيدًا واستخدام الجسم لتحريك الوزن.",
+      "fix": "قف منتصبًا وشدّ بطنك وحرّك الذراع فقط."
+     },
+     {
+      "text": "ترك الأوزان ترتطم بين التكرارات وفقدان الشد.",
+      "fix": "عد ببطء وأبقِ الكابل مشدودًا بين التكرارات."
+     }
     ]
    }
   },
@@ -218,8 +272,14 @@
      "Control the negative for 2–3 seconds."
     ],
     "mistakes": [
-     "Setting the seat so the shoulder sits far from the pivot.",
-     "Shrugging the shoulders up at the top."
+     {
+      "text": "Setting the seat so the shoulder sits far from the pivot.",
+      "fix": "Set the seat so your shoulders line up with the machine's pivot."
+     },
+     {
+      "text": "Shrugging the shoulders up at the top.",
+      "fix": "Keep shoulders down and push through the elbows."
+     }
     ]
    },
    "tr": {
@@ -237,8 +297,14 @@
      "Negatifi 2–3 saniyede kontrol et."
     ],
     "mistakes": [
-     "Koltuğu omuz eksenden uzak kalacak şekilde ayarlamak.",
-     "Tepede omuzları kulaklara doğru silkmek."
+     {
+      "text": "Koltuğu omuz eksenden uzak kalacak şekilde ayarlamak.",
+      "fix": "Koltuğu omuzların dönme ekseniyle hizalanacak şekilde ayarla."
+     },
+     {
+      "text": "Tepede omuzları kulaklara doğru silkmek.",
+      "fix": "Omuzları aşağıda tut ve dirseklerle it."
+     }
     ]
    },
    "ar": {
@@ -256,8 +322,14 @@
      "تحكم في النزول لمدة 2–3 ثوانٍ."
     ],
     "mistakes": [
-     "ضبط المقعد بحيث يبتعد الكتف عن محور الجهاز.",
-     "رفع الكتفين نحو الأذنين في الأعلى."
+     {
+      "text": "ضبط المقعد بحيث يبتعد الكتف عن محور الجهاز.",
+      "fix": "اضبط المقعد ليحاذي كتفاك محور دوران الجهاز."
+     },
+     {
+      "text": "رفع الكتفين نحو الأذنين في الأعلى.",
+      "fix": "أبقِ كتفيك منخفضين وادفع بالمرفقين."
+     }
     ]
    }
   },
@@ -285,8 +357,14 @@
      "Keep the ribs down; do not arch the lower back."
     ],
     "mistakes": [
-     "Shrugging the shoulders toward the ears.",
-     "Arching the back to get the arms higher."
+     {
+      "text": "Shrugging the shoulders toward the ears.",
+      "fix": "Pull the shoulder blades slightly back and down as you lift."
+     },
+     {
+      "text": "Arching the back to get the arms higher.",
+      "fix": "Keep the ribs down and raise only as high as you can without arching."
+     }
     ]
    },
    "tr": {
@@ -304,8 +382,14 @@
      "Kaburgaları aşağıda tut, beli kavislendirme."
     ],
     "mistakes": [
-     "Omuzları kulaklara doğru silkmek.",
-     "Kolları yükseğe çıkarmak için beli kavislendirmek."
+     {
+      "text": "Omuzları kulaklara doğru silkmek.",
+      "fix": "Kaldırırken kürek kemiklerini hafifçe geri ve aşağı çek."
+     },
+     {
+      "text": "Kolları yükseğe çıkarmak için beli kavislendirmek.",
+      "fix": "Kaburgaları aşağıda tut, beli kavislendirmeden çıkabildiğin kadar kaldır."
+     }
     ]
    },
    "ar": {
@@ -323,8 +407,14 @@
      "أبقِ الأضلاع منخفضة ولا تقوّس أسفل الظهر."
     ],
     "mistakes": [
-     "رفع الكتفين نحو الأذنين.",
-     "تقويس الظهر لرفع الذراعين أعلى."
+     {
+      "text": "رفع الكتفين نحو الأذنين.",
+      "fix": "اسحب لوحي الكتف قليلًا للخلف والأسفل أثناء الرفع."
+     },
+     {
+      "text": "تقويس الظهر لرفع الذراعين أعلى.",
+      "fix": "أبقِ الأضلاع منخفضة وارفع فقط بقدر ما تستطيع دون تقويس."
+     }
     ]
    }
   },
@@ -351,8 +441,14 @@
      "Move slowly with light weight."
     ],
     "mistakes": [
-     "Shrugging the shoulders up toward the ears.",
-     "Lifting the chest off the pad to cheat the reps."
+     {
+      "text": "Shrugging the shoulders up toward the ears.",
+      "fix": "Keep shoulders down and pull the elbows back."
+     },
+     {
+      "text": "Lifting the chest off the pad to cheat the reps.",
+      "fix": "Keep the chest glued to the bench with light weight."
+     }
     ]
    },
    "tr": {
@@ -370,8 +466,14 @@
      "Hafif ağırlıkla yavaş çalış."
     ],
     "mistakes": [
-     "Omuzları kulaklara doğru silkmek.",
-     "Göğsü pedden kaldırıp hile yapmak."
+     {
+      "text": "Omuzları kulaklara doğru silkmek.",
+      "fix": "Omuzları aşağıda tut ve dirsekleri geri çek."
+     },
+     {
+      "text": "Göğsü pedden kaldırıp hile yapmak.",
+      "fix": "Hafif ağırlıkla göğsünü sehpadan ayırma."
+     }
     ]
    },
    "ar": {
@@ -389,8 +491,14 @@
      "تحرك ببطء وبوزن خفيف."
     ],
     "mistakes": [
-     "رفع الكتفين نحو الأذنين.",
-     "رفع الصدر عن المقعد للغش في التكرارات."
+     {
+      "text": "رفع الكتفين نحو الأذنين.",
+      "fix": "أبقِ الكتفين منخفضين واسحب المرفقين للخلف."
+     },
+     {
+      "text": "رفع الصدر عن المقعد للغش في التكرارات.",
+      "fix": "أبقِ صدرك ملتصقًا بالمقعد واستخدم وزنًا خفيفًا."
+     }
     ]
    }
   },
@@ -417,8 +525,14 @@
      "Move the rotation slowly and fully."
     ],
     "mistakes": [
-     "Leaning back to hold the weight up.",
-     "Letting the arms sink as fatigue sets in."
+     {
+      "text": "Leaning back to hold the weight up.",
+      "fix": "Brace the core so the torso stays still and upright."
+     },
+     {
+      "text": "Letting the arms sink as fatigue sets in.",
+      "fix": "Keep the plate at shoulder level for the whole set."
+     }
     ]
    },
    "tr": {
@@ -436,8 +550,14 @@
      "Dönüşü yavaş ve tam yap."
     ],
     "mistakes": [
-     "Ağırlığı tutmak için geriye yaslanmak.",
-     "Yoruldukça kolların aşağı düşmesine izin vermek."
+     {
+      "text": "Ağırlığı tutmak için geriye yaslanmak.",
+      "fix": "Gövde sabit ve dik kalsın diye karnını sık."
+     },
+     {
+      "text": "Yoruldukça kolların aşağı düşmesine izin vermek.",
+      "fix": "Set boyunca plakayı omuz hizasında tut."
+     }
     ]
    },
    "ar": {
@@ -455,8 +575,14 @@
      "نفّذ الدوران ببطء وبمدى كامل."
     ],
     "mistakes": [
-     "الميل للخلف لحمل الوزن.",
-     "ترك الذراعين تهبطان مع التعب."
+     {
+      "text": "الميل للخلف لحمل الوزن.",
+      "fix": "شدّ عضلات البطن ليبقى الجذع ثابتًا ومنتصبًا."
+     },
+     {
+      "text": "ترك الذراعين تهبطان مع التعب.",
+      "fix": "أبقِ القرص بمستوى الكتف طوال المجموعة."
+     }
     ]
    }
   },
@@ -483,8 +609,14 @@
      "Control the lowering for 2–3 seconds."
     ],
     "mistakes": [
-     "Swinging the weight up with the hips.",
-     "Lifting far above the head and shrugging."
+     {
+      "text": "Swinging the weight up with the hips.",
+      "fix": "Brace your core and keep the torso still; the arms do the work."
+     },
+     {
+      "text": "Lifting far above the head and shrugging.",
+      "fix": "Stop at about eye level with shoulders down."
+     }
     ]
    },
    "tr": {
@@ -502,8 +634,14 @@
      "İnişi 2–3 saniyede kontrol et."
     ],
     "mistakes": [
-     "Kalçayla ağırlığı savurmak.",
-     "Başın çok üstüne kaldırıp omuz silkmek."
+     {
+      "text": "Kalçayla ağırlığı savurmak.",
+      "fix": "Karnını sık ve gövdeyi sabit tut; işi kollar yapsın."
+     },
+     {
+      "text": "Başın çok üstüne kaldırıp omuz silkmek.",
+      "fix": "Omuzlar aşağıda, yaklaşık göz hizasında dur."
+     }
     ]
    },
    "ar": {
@@ -521,8 +659,14 @@
      "تحكم في النزول لمدة 2–3 ثوانٍ."
     ],
     "mistakes": [
-     "أرجحة الوزن بالوركين.",
-     "الرفع فوق الرأس كثيرًا مع رفع الكتفين."
+     {
+      "text": "أرجحة الوزن بالوركين.",
+      "fix": "شدّ بطنك وأبقِ الجذع ثابتًا ودع الذراعين تعملان."
+     },
+     {
+      "text": "الرفع فوق الرأس كثيرًا مع رفع الكتفين.",
+      "fix": "توقف عند مستوى العينين تقريبًا والكتفان منخفضان."
+     }
     ]
    }
   },
@@ -550,8 +694,14 @@
      "Use slow, deliberate reps."
     ],
     "mistakes": [
-     "Turning it into a fast, jerky press.",
-     "Arching the lower back to move heavier weight."
+     {
+      "text": "Turning it into a fast, jerky press.",
+      "fix": "Use slow, deliberate reps through the whole arc."
+     },
+     {
+      "text": "Arching the lower back to move heavier weight.",
+      "fix": "Use a lighter weight and keep your back neutral."
+     }
     ]
    },
    "tr": {
@@ -569,8 +719,14 @@
      "Yavaş ve kontrollü tekrarlar yap."
     ],
     "mistakes": [
-     "Hareketi hızlı ve kesik bir press'e çevirmek.",
-     "Daha ağır kaldırmak için beli kavislendirmek."
+     {
+      "text": "Hareketi hızlı ve kesik bir press'e çevirmek.",
+      "fix": "Tüm yay boyunca yavaş ve kontrollü tekrarlar yap."
+     },
+     {
+      "text": "Daha ağır kaldırmak için beli kavislendirmek.",
+      "fix": "Daha hafif ağırlık kullan ve sırtını nötr tut."
+     }
     ]
    },
    "ar": {
@@ -588,8 +744,14 @@
      "نفّذ تكرارات بطيئة ومتعمدة."
     ],
     "mistakes": [
-     "تحويلها إلى ضغط سريع ومتقطع.",
-     "تقويس أسفل الظهر لرفع وزن أثقل."
+     {
+      "text": "تحويلها إلى ضغط سريع ومتقطع.",
+      "fix": "نفّذ تكرارات بطيئة ومتعمدة طوال القوس."
+     },
+     {
+      "text": "تقويس أسفل الظهر لرفع وزن أثقل.",
+      "fix": "استخدم وزنًا أخف وأبقِ ظهرك محايدًا."
+     }
     ]
    }
   },
@@ -616,8 +778,14 @@
      "Use light weight to protect the shoulder joint."
     ],
     "mistakes": [
-     "Bending the elbows and turning it into a press.",
-     "Going heavy and losing control overhead."
+     {
+      "text": "Bending the elbows and turning it into a press.",
+      "fix": "Keep the elbows slightly bent and fixed through the circle."
+     },
+     {
+      "text": "Going heavy and losing control overhead.",
+      "fix": "Use light weight and move in one smooth, wide circle."
+     }
     ]
    },
    "tr": {
@@ -635,8 +803,14 @@
      "Omuz eklemini korumak için hafif ağırlık kullan."
     ],
     "mistakes": [
-     "Dirsekleri bükerek hareketi press'e çevirmek.",
-     "Ağır kilo alıp baş üstünde kontrolü kaybetmek."
+     {
+      "text": "Dirsekleri bükerek hareketi press'e çevirmek.",
+      "fix": "Daire boyunca dirsekleri hafif bükülü ve sabit tut."
+     },
+     {
+      "text": "Ağır kilo alıp baş üstünde kontrolü kaybetmek.",
+      "fix": "Hafif ağırlık kullan ve tek, akıcı, geniş bir daire çiz."
+     }
     ]
    },
    "ar": {
@@ -654,8 +828,14 @@
      "استخدم وزنًا خفيفًا لحماية مفصل الكتف."
     ],
     "mistakes": [
-     "ثني المرفقين وتحويلها إلى ضغط.",
-     "استخدام وزن ثقيل وفقدان التحكم فوق الرأس."
+     {
+      "text": "ثني المرفقين وتحويلها إلى ضغط.",
+      "fix": "أبقِ المرفقين مثنيين قليلًا وثابتين طوال الدائرة."
+     },
+     {
+      "text": "استخدام وزن ثقيل وفقدان التحكم فوق الرأس.",
+      "fix": "استخدم وزنًا خفيفًا وتحرك في دائرة واسعة وانسيابية."
+     }
     ]
    }
   },
@@ -684,8 +864,14 @@
      "Lower to full depth on every rep."
     ],
     "mistakes": [
-     "Leaning back hard and turning it into an incline press.",
-     "Flaring the elbows straight out to the sides."
+     {
+      "text": "Leaning back hard and turning it into an incline press.",
+      "fix": "Brace your core, squeeze your glutes and keep the ribs down."
+     },
+     {
+      "text": "Flaring the elbows straight out to the sides.",
+      "fix": "Keep the forearms vertical under the bar."
+     }
     ]
    },
    "tr": {
@@ -703,8 +889,14 @@
      "Her tekrarda tam derinliğe in."
     ],
     "mistakes": [
-     "Çok geriye yaslanıp hareketi incline press'e çevirmek.",
-     "Dirsekleri tamamen yanlara açmak."
+     {
+      "text": "Çok geriye yaslanıp hareketi incline press'e çevirmek.",
+      "fix": "Karnını sık, kalçanı kas ve kaburgaları aşağıda tut."
+     },
+     {
+      "text": "Dirsekleri tamamen yanlara açmak.",
+      "fix": "Ön kolları barın altında dik tut."
+     }
     ]
    },
    "ar": {
@@ -722,8 +914,14 @@
      "انزل إلى العمق الكامل في كل تكرار."
     ],
     "mistakes": [
-     "الميل للخلف بشدة وتحويلها إلى ضغط مائل.",
-     "فتح المرفقين للجانبين تمامًا."
+     {
+      "text": "الميل للخلف بشدة وتحويلها إلى ضغط مائل.",
+      "fix": "شدّ بطنك واعصر عضلات المؤخرة وأبقِ الأضلاع للأسفل."
+     },
+     {
+      "text": "فتح المرفقين للجانبين تمامًا.",
+      "fix": "أبقِ الساعدين عموديين تحت البار."
+     }
     ]
    }
   },
@@ -750,8 +948,14 @@
      "Press up and slightly in, without clanging the weights."
     ],
     "mistakes": [
-     "Stopping halfway down to lift heavier.",
-     "Arching off the bench to finish reps."
+     {
+      "text": "Stopping halfway down to lift heavier.",
+      "fix": "Lower to shoulder level or slightly below on every rep."
+     },
+     {
+      "text": "Arching off the bench to finish reps.",
+      "fix": "Plant your feet and keep your back against the pad."
+     }
     ]
    },
    "tr": {
@@ -769,8 +973,14 @@
      "Ağırlıkları çarpıştırmadan yukarı ve hafif içe it."
     ],
     "mistakes": [
-     "Daha ağır kaldırmak için yarıda durmak.",
-     "Tekrarları bitirmek için sırtı sehpadan kaldırmak."
+     {
+      "text": "Daha ağır kaldırmak için yarıda durmak.",
+      "fix": "Her tekrarda omuz hizasına ya da biraz altına indir."
+     },
+     {
+      "text": "Tekrarları bitirmek için sırtı sehpadan kaldırmak.",
+      "fix": "Ayaklarını yere bas ve sırtını pede yasla."
+     }
     ]
    },
    "ar": {
@@ -788,8 +998,14 @@
      "ادفع للأعلى وللداخل قليلًا دون أن تصطدم الأوزان."
     ],
     "mistakes": [
-     "التوقف في منتصف النزول لرفع وزن أثقل.",
-     "تقويس الظهر عن المقعد لإكمال التكرارات."
+     {
+      "text": "التوقف في منتصف النزول لرفع وزن أثقل.",
+      "fix": "أنزل إلى مستوى الكتف أو أسفل منه بقليل في كل تكرار."
+     },
+     {
+      "text": "تقويس الظهر عن المقعد لإكمال التكرارات.",
+      "fix": "ثبّت قدميك وأبقِ ظهرك على المسند."
+     }
     ]
    }
   },
@@ -816,8 +1032,14 @@
      "Keep elbows slightly in front of the torso."
     ],
     "mistakes": [
-     "Setting the seat too high and cutting the range.",
-     "Pushing the head forward and shrugging."
+     {
+      "text": "Setting the seat too high and cutting the range.",
+      "fix": "Set the seat so the handles start at or just below shoulder height."
+     },
+     {
+      "text": "Pushing the head forward and shrugging.",
+      "fix": "Keep your head back and shoulder blades against the pad."
+     }
     ]
    },
    "tr": {
@@ -835,8 +1057,14 @@
      "Dirsekler gövdenin biraz önünde olsun."
     ],
     "mistakes": [
-     "Koltuğu çok yüksek ayarlayıp hareket açıklığını kısaltmak.",
-     "Başı öne uzatıp omuz silkmek."
+     {
+      "text": "Koltuğu çok yüksek ayarlayıp hareket açıklığını kısaltmak.",
+      "fix": "Koltuğu tutamaklar omuz hizasında ya da biraz altında başlayacak şekilde ayarla."
+     },
+     {
+      "text": "Başı öne uzatıp omuz silkmek.",
+      "fix": "Başını geride, kürek kemiklerini pedde tut."
+     }
     ]
    },
    "ar": {
@@ -854,8 +1082,14 @@
      "أبقِ المرفقين أمام الجذع قليلًا."
     ],
     "mistakes": [
-     "ضبط المقعد مرتفعًا جدًا واختصار المدى.",
-     "دفع الرأس للأمام ورفع الكتفين."
+     {
+      "text": "ضبط المقعد مرتفعًا جدًا واختصار المدى.",
+      "fix": "اضبط المقعد لتبدأ المقابض عند مستوى الكتف أو أسفله قليلًا."
+     },
+     {
+      "text": "دفع الرأس للأمام ورفع الكتفين.",
+      "fix": "أبقِ رأسك للخلف ولوحي الكتف على المسند."
+     }
     ]
    }
   },
@@ -882,8 +1116,14 @@
      "Use the full range on every rep."
     ],
     "mistakes": [
-     "Positioning the bench so the bar hits your face.",
-     "Bouncing out of the bottom."
+     {
+      "text": "Positioning the bench so the bar hits your face.",
+      "fix": "Place the bench so the bar lowers to your upper chest."
+     },
+     {
+      "text": "Bouncing out of the bottom.",
+      "fix": "Lower slowly and press up smoothly from the bottom."
+     }
     ]
    },
    "tr": {
@@ -901,8 +1141,14 @@
      "Her tekrarda tam hareket açıklığını kullan."
     ],
     "mistakes": [
-     "Sehpayı bar yüzüne çarpacak şekilde koymak.",
-     "Alttan sektirerek kalkmak."
+     {
+      "text": "Sehpayı bar yüzüne çarpacak şekilde koymak.",
+      "fix": "Sehpayı bar üst göğsüne inecek şekilde yerleştir."
+     },
+     {
+      "text": "Alttan sektirerek kalkmak.",
+      "fix": "Yavaşça indir ve alttan akıcı şekilde yukarı it."
+     }
     ]
    },
    "ar": {
@@ -920,8 +1166,14 @@
      "استخدم المدى الكامل في كل تكرار."
     ],
     "mistakes": [
-     "وضع المقعد بحيث يصطدم البار بوجهك.",
-     "الارتداد من أسفل الحركة."
+     {
+      "text": "وضع المقعد بحيث يصطدم البار بوجهك.",
+      "fix": "ضع المقعد بحيث ينزل البار إلى أعلى صدرك."
+     },
+     {
+      "text": "الارتداد من أسفل الحركة.",
+      "fix": "أنزل ببطء وادفع للأعلى بسلاسة من الأسفل."
+     }
     ]
    }
   },
@@ -949,8 +1201,14 @@
      "Control the lowering phase."
     ],
     "mistakes": [
-     "Using leg drive to push the weight up.",
-     "Cutting the bottom of the press short."
+     {
+      "text": "Using leg drive to push the weight up.",
+      "fix": "Keep the legs still and press with the shoulders and arms."
+     },
+     {
+      "text": "Cutting the bottom of the press short.",
+      "fix": "Lower slowly all the way back to shoulder level."
+     }
     ]
    },
    "tr": {
@@ -968,8 +1226,14 @@
      "İniş fazını kontrol et."
     ],
     "mistakes": [
-     "Ağırlığı bacak gücüyle itmek.",
-     "Press'in alt kısmını kısa kesmek."
+     {
+      "text": "Ağırlığı bacak gücüyle itmek.",
+      "fix": "Bacakları sabit tut, omuzlar ve kollarla it."
+     },
+     {
+      "text": "Press'in alt kısmını kısa kesmek.",
+      "fix": "Yavaşça omuz hizasına kadar geri indir."
+     }
     ]
    },
    "ar": {
@@ -987,8 +1251,14 @@
      "تحكم في مرحلة النزول."
     ],
     "mistakes": [
-     "استخدام دفع الساقين لرفع الوزن.",
-     "اختصار الجزء السفلي من الضغط."
+     {
+      "text": "استخدام دفع الساقين لرفع الوزن.",
+      "fix": "ثبّت الساقين وادفع بالكتفين والذراعين."
+     },
+     {
+      "text": "اختصار الجزء السفلي من الضغط.",
+      "fix": "أنزل ببطء حتى مستوى الكتف."
+     }
     ]
    }
   },
@@ -1016,8 +1286,14 @@
      "Keep the bar close to the body."
     ],
     "mistakes": [
-     "Using a narrow grip and pulling the bar to the chin.",
-     "Jerking the weight up with the hips."
+     {
+      "text": "Using a narrow grip and pulling the bar to the chin.",
+      "fix": "Grip about 1.5 times shoulder width and stop at shoulder height."
+     },
+     {
+      "text": "Jerking the weight up with the hips.",
+      "fix": "Stand tall and pull smoothly, leading with the elbows."
+     }
     ]
    },
    "tr": {
@@ -1035,8 +1311,14 @@
      "Barı vücuda yakın tut."
     ],
     "mistakes": [
-     "Dar tutuşla barı çeneye kadar çekmek.",
-     "Ağırlığı kalçayla silkerek kaldırmak."
+     {
+      "text": "Dar tutuşla barı çeneye kadar çekmek.",
+      "fix": "Omuz genişliğinin yaklaşık 1,5 katı kavra ve omuz hizasında dur."
+     },
+     {
+      "text": "Ağırlığı kalçayla silkerek kaldırmak.",
+      "fix": "Dik dur ve dirseklerle öncülük ederek akıcı şekilde çek."
+     }
     ]
    },
    "ar": {
@@ -1054,8 +1336,14 @@
      "أبقِ البار قريبًا من الجسم."
     ],
     "mistakes": [
-     "استخدام قبضة ضيقة وسحب البار إلى الذقن.",
-     "رفع الوزن بدفعة من الوركين."
+     {
+      "text": "استخدام قبضة ضيقة وسحب البار إلى الذقن.",
+      "fix": "أمسك بعرض 1.5 ضعف الكتفين تقريبًا وتوقف عند مستوى الكتف."
+     },
+     {
+      "text": "رفع الوزن بدفعة من الوركين.",
+      "fix": "قف منتصبًا واسحب بسلاسة بقيادة المرفقين."
+     }
     ]
    }
   },
@@ -1082,8 +1370,14 @@
      "Use light weight and controlled tempo."
     ],
     "mistakes": [
-     "Rowing the weight with bent elbows so the back takes over.",
-     "Swinging the torso up to lift heavier."
+     {
+      "text": "Rowing the weight with bent elbows so the back takes over.",
+      "fix": "Keep a slight, fixed elbow bend and push the weights out wide."
+     },
+     {
+      "text": "Swinging the torso up to lift heavier.",
+      "fix": "Keep the torso still and use light weight."
+     }
     ]
    },
    "tr": {
@@ -1101,8 +1395,14 @@
      "Hafif ağırlık ve kontrollü tempo kullan."
     ],
     "mistakes": [
-     "Dirsekleri büküp row yaparak işi sırta yaptırmak.",
-     "Daha ağır kaldırmak için gövdeyi savurmak."
+     {
+      "text": "Dirsekleri büküp row yaparak işi sırta yaptırmak.",
+      "fix": "Dirseklerde hafif, sabit bükülme koru ve ağırlıkları geniş dışarı it."
+     },
+     {
+      "text": "Daha ağır kaldırmak için gövdeyi savurmak.",
+      "fix": "Gövdeyi sabit tut ve hafif ağırlık kullan."
+     }
     ]
    },
    "ar": {
@@ -1120,8 +1420,14 @@
      "استخدم وزنًا خفيفًا وإيقاعًا متحكمًا."
     ],
     "mistakes": [
-     "التجديف بمرفقين مثنيين فيتولى الظهر العمل.",
-     "أرجحة الجذع لرفع وزن أثقل."
+     {
+      "text": "التجديف بمرفقين مثنيين فيتولى الظهر العمل.",
+      "fix": "حافظ على ثني خفيف وثابت في المرفقين وادفع الأوزان للخارج."
+     },
+     {
+      "text": "أرجحة الجذع لرفع وزن أثقل.",
+      "fix": "أبقِ الجذع ثابتًا واستخدم وزنًا خفيفًا."
+     }
     ]
    }
   },
@@ -1148,8 +1454,14 @@
      "Keep the shoulder blade quiet rather than retracting hard."
     ],
     "mistakes": [
-     "Turning it into a row by bending the elbow.",
-     "Rotating the torso to help the weight move."
+     {
+      "text": "Turning it into a row by bending the elbow.",
+      "fix": "Keep the elbow angle fixed and move from the shoulder."
+     },
+     {
+      "text": "Rotating the torso to help the weight move.",
+      "fix": "Stand or sit tall and keep the torso still."
+     }
     ]
    },
    "tr": {
@@ -1167,8 +1479,14 @@
      "Kürek kemiğini sert sıkmak yerine sakin tut."
     ],
     "mistakes": [
-     "Dirseği büküp hareketi row'a çevirmek.",
-     "Ağırlığı taşımak için gövdeyi döndürmek."
+     {
+      "text": "Dirseği büküp hareketi row'a çevirmek.",
+      "fix": "Dirsek açısını sabit tut ve hareketi omuzdan yap."
+     },
+     {
+      "text": "Ağırlığı taşımak için gövdeyi döndürmek.",
+      "fix": "Dik dur ya da otur ve gövdeyi sabit tut."
+     }
     ]
    },
    "ar": {
@@ -1186,8 +1504,14 @@
      "أبقِ لوح الكتف هادئًا بدل عصره بقوة."
     ],
     "mistakes": [
-     "تحويلها إلى تجديف بثني المرفق.",
-     "تدوير الجذع لمساعدة الوزن على التحرك."
+     {
+      "text": "تحويلها إلى تجديف بثني المرفق.",
+      "fix": "ثبّت زاوية المرفق وتحرك من الكتف."
+     },
+     {
+      "text": "تدوير الجذع لمساعدة الوزن على التحرك.",
+      "fix": "قف أو اجلس منتصبًا وأبقِ الجذع ثابتًا."
+     }
     ]
    }
   },
@@ -1215,8 +1539,14 @@
      "Feel the back of the shoulder, not the neck."
     ],
     "mistakes": [
-     "Using too much weight and losing the arc.",
-     "Shrugging at the top of the circle."
+     {
+      "text": "Using too much weight and losing the arc.",
+      "fix": "Use light weight and keep a slow, smooth circle."
+     },
+     {
+      "text": "Shrugging at the top of the circle.",
+      "fix": "Keep shoulders down and feel the back of the shoulder, not the neck."
+     }
     ]
    },
    "tr": {
@@ -1234,8 +1564,14 @@
      "Boynu değil, omzun arkasını hisset."
     ],
     "mistakes": [
-     "Çok ağır kilo kullanıp yayı bozmak.",
-     "Dairenin tepesinde omuz silkmek."
+     {
+      "text": "Çok ağır kilo kullanıp yayı bozmak.",
+      "fix": "Hafif ağırlık kullan ve yavaş, akıcı bir daire çiz."
+     },
+     {
+      "text": "Dairenin tepesinde omuz silkmek.",
+      "fix": "Omuzları aşağıda tut, boynu değil omzun arkasını hisset."
+     }
     ]
    },
    "ar": {
@@ -1253,8 +1589,14 @@
      "اشعر بخلف الكتف لا بالرقبة."
     ],
     "mistakes": [
-     "استخدام وزن ثقيل وفقدان شكل القوس.",
-     "رفع الكتفين في أعلى الدائرة."
+     {
+      "text": "استخدام وزن ثقيل وفقدان شكل القوس.",
+      "fix": "استخدم وزنًا خفيفًا وارسم دائرة بطيئة وانسيابية."
+     },
+     {
+      "text": "رفع الكتفين في أعلى الدائرة.",
+      "fix": "أبقِ الكتفين منخفضين واشعر بخلف الكتف لا بالرقبة."
+     }
     ]
    }
   },
@@ -1281,8 +1623,14 @@
      "Lead with the back of the shoulder."
     ],
     "mistakes": [
-     "Rotating the torso open to lift the bar.",
-     "Bending the elbow and rowing the weight."
+     {
+      "text": "Rotating the torso open to lift the bar.",
+      "fix": "Keep the torso still and lead with the back of the shoulder."
+     },
+     {
+      "text": "Bending the elbow and rowing the weight.",
+      "fix": "Keep a slight, fixed elbow bend as you sweep the arm out."
+     }
     ]
    },
    "tr": {
@@ -1300,8 +1648,14 @@
      "Hareketi omzun arkasıyla başlat."
     ],
     "mistakes": [
-     "Barı kaldırmak için gövdeyi açarak döndürmek.",
-     "Dirseği büküp ağırlığı row'lamak."
+     {
+      "text": "Barı kaldırmak için gövdeyi açarak döndürmek.",
+      "fix": "Gövdeyi sabit tut ve hareketi omzun arkasıyla başlat."
+     },
+     {
+      "text": "Dirseği büküp ağırlığı row'lamak.",
+      "fix": "Kolu dışarı süpürürken dirsekte hafif, sabit bükülme koru."
+     }
     ]
    },
    "ar": {
@@ -1319,8 +1673,14 @@
      "ابدأ الحركة بخلف الكتف."
     ],
     "mistakes": [
-     "تدوير الجذع للخارج لرفع البار.",
-     "ثني المرفق وتجديف الوزن."
+     {
+      "text": "تدوير الجذع للخارج لرفع البار.",
+      "fix": "أبقِ الجذع ثابتًا وابدأ الحركة بخلف الكتف."
+     },
+     {
+      "text": "ثني المرفق وتجديف الوزن.",
+      "fix": "حافظ على ثني خفيف وثابت في المرفق أثناء تحريك الذراع للخارج."
+     }
     ]
    }
   },
@@ -1348,8 +1708,14 @@
      "Squeeze the back of the shoulders at the top."
     ],
     "mistakes": [
-     "Leaning forward to make the bar travel higher.",
-     "Bending the elbows and shrugging."
+     {
+      "text": "Leaning forward to make the bar travel higher.",
+      "fix": "Stay upright and move a short, strict range."
+     },
+     {
+      "text": "Bending the elbows and shrugging.",
+      "fix": "Keep the arms straight and shoulders down."
+     }
     ]
    },
    "tr": {
@@ -1367,8 +1733,14 @@
      "Tepede omuzların arkasını sık."
     ],
     "mistakes": [
-     "Barı daha yükseğe çıkarmak için öne eğilmek.",
-     "Dirsekleri büküp omuz silkmek."
+     {
+      "text": "Barı daha yükseğe çıkarmak için öne eğilmek.",
+      "fix": "Dik kal ve kısa, katı bir aralıkta çalış."
+     },
+     {
+      "text": "Dirsekleri büküp omuz silkmek.",
+      "fix": "Kolları düz, omuzları aşağıda tut."
+     }
     ]
    },
    "ar": {
@@ -1386,8 +1758,14 @@
      "اعصر خلف الكتفين في الأعلى."
     ],
     "mistakes": [
-     "الميل للأمام لجعل البار يرتفع أكثر.",
-     "ثني المرفقين ورفع الكتفين."
+     {
+      "text": "الميل للأمام لجعل البار يرتفع أكثر.",
+      "fix": "ابقَ منتصبًا وتحرك بمدى قصير وصارم."
+     },
+     {
+      "text": "ثني المرفقين ورفع الكتفين.",
+      "fix": "أبقِ الذراعين مستقيمتين والكتفين منخفضين."
+     }
     ]
    }
   },
@@ -1414,8 +1792,14 @@
      "Control the stretch on every rep."
     ],
     "mistakes": [
-     "Letting the weights slam and losing tension.",
-     "Leaning back off the pad to swing the weight."
+     {
+      "text": "Letting the weights slam and losing tension.",
+      "fix": "Return slowly and control the stretch on every rep."
+     },
+     {
+      "text": "Leaning back off the pad to swing the weight.",
+      "fix": "Keep your chest on the pad for the whole set."
+     }
     ]
    },
    "tr": {
@@ -1433,8 +1817,14 @@
      "Her tekrarda gerilmeyi kontrol et."
     ],
     "mistakes": [
-     "Ağırlıkları çarptırıp gerilimi kaybetmek.",
-     "Ağırlığı savurmak için peden geriye yaslanmak."
+     {
+      "text": "Ağırlıkları çarptırıp gerilimi kaybetmek.",
+      "fix": "Yavaşça geri dön ve her tekrarda gerilmeyi kontrol et."
+     },
+     {
+      "text": "Ağırlığı savurmak için peden geriye yaslanmak.",
+      "fix": "Set boyunca göğsünü pedde tut."
+     }
     ]
    },
    "ar": {
@@ -1452,8 +1842,14 @@
      "تحكم في التمدد في كل تكرار."
     ],
     "mistakes": [
-     "ترك الأوزان ترتطم وفقدان الشد.",
-     "الميل للخلف عن المسند لأرجحة الوزن."
+     {
+      "text": "ترك الأوزان ترتطم وفقدان الشد.",
+      "fix": "عد ببطء وتحكم في التمدد في كل تكرار."
+     },
+     {
+      "text": "الميل للخلف عن المسند لأرجحة الوزن.",
+      "fix": "أبقِ صدرك على المسند طوال المجموعة."
+     }
     ]
    }
   },
@@ -1481,8 +1877,14 @@
      "Pause briefly at the end of each pull."
     ],
     "mistakes": [
-     "Dropping the elbows so it becomes a lat row.",
-     "Leaning back and using body momentum."
+     {
+      "text": "Dropping the elbows so it becomes a lat row.",
+      "fix": "Keep the elbows high and flared, about 70–90 degrees."
+     },
+     {
+      "text": "Leaning back and using body momentum.",
+      "fix": "Keep the body still and pull with the back of the shoulders."
+     }
     ]
    },
    "tr": {
@@ -1500,8 +1902,14 @@
      "Her çekişin sonunda kısa dur."
     ],
     "mistakes": [
-     "Dirsekleri düşürüp hareketi lat row'a çevirmek.",
-     "Geriye yaslanıp vücut momentumu kullanmak."
+     {
+      "text": "Dirsekleri düşürüp hareketi lat row'a çevirmek.",
+      "fix": "Dirsekleri yüksek ve açık tut, yaklaşık 70–90 derece."
+     },
+     {
+      "text": "Geriye yaslanıp vücut momentumu kullanmak.",
+      "fix": "Vücudu sabit tut ve omzun arkasıyla çek."
+     }
     ]
    },
    "ar": {
@@ -1519,8 +1927,14 @@
      "توقف لحظة في نهاية كل سحبة."
     ],
     "mistakes": [
-     "إنزال المرفقين فتتحول إلى تجديف للظهر العريض.",
-     "الميل للخلف واستخدام زخم الجسم."
+     {
+      "text": "إنزال المرفقين فتتحول إلى تجديف للظهر العريض.",
+      "fix": "أبقِ المرفقين مرتفعين ومفتوحين بنحو 70–90 درجة."
+     },
+     {
+      "text": "الميل للخلف واستخدام زخم الجسم.",
+      "fix": "أبقِ الجسم ثابتًا واسحب بخلف الكتفين."
+     }
     ]
    }
   },
@@ -1548,8 +1962,14 @@
      "Stay upright; do not lean back."
     ],
     "mistakes": [
-     "Pulling to the chest with low elbows.",
-     "Using too much weight and yanking with the lower back."
+     {
+      "text": "Pulling to the chest with low elbows.",
+      "fix": "Keep elbows high and pull the rope toward your face."
+     },
+     {
+      "text": "Using too much weight and yanking with the lower back.",
+      "fix": "Use a lighter weight and stay upright."
+     }
     ]
    },
    "tr": {
@@ -1567,8 +1987,14 @@
      "Dik kal; geriye yaslanma."
     ],
     "mistakes": [
-     "Alçak dirseklerle göğse doğru çekmek.",
-     "Çok ağır kilo alıp belle asılmak."
+     {
+      "text": "Alçak dirseklerle göğse doğru çekmek.",
+      "fix": "Dirsekleri yüksek tut ve halatı yüzüne doğru çek."
+     },
+     {
+      "text": "Çok ağır kilo alıp belle asılmak.",
+      "fix": "Daha hafif ağırlık kullan ve dik kal."
+     }
     ]
    },
    "ar": {
@@ -1586,8 +2012,14 @@
      "ابقَ منتصبًا ولا تمل للخلف."
     ],
     "mistakes": [
-     "السحب نحو الصدر بمرفقين منخفضين.",
-     "استخدام وزن ثقيل والشد بأسفل الظهر."
+     {
+      "text": "السحب نحو الصدر بمرفقين منخفضين.",
+      "fix": "أبقِ المرفقين مرتفعين واسحب الحبل نحو وجهك."
+     },
+     {
+      "text": "استخدام وزن ثقيل والشد بأسفل الظهر.",
+      "fix": "استخدم وزنًا أخف وابقَ منتصبًا."
+     }
     ]
    }
   },
@@ -1614,8 +2046,14 @@
      "Control the return; do not let the cable yank you."
     ],
     "mistakes": [
-     "Pulling with the arms instead of rotating the torso.",
-     "Twisting fast and loose through the lower back."
+     {
+      "text": "Pulling with the arms instead of rotating the torso.",
+      "fix": "Keep the arms long and turn from the ribcage."
+     },
+     {
+      "text": "Twisting fast and loose through the lower back.",
+      "fix": "Brace the core and rotate slowly under control."
+     }
     ]
    },
    "tr": {
@@ -1633,8 +2071,14 @@
      "Dönüşü kontrol et; kablonun seni çekmesine izin verme."
     ],
     "mistakes": [
-     "Gövdeyi döndürmek yerine kollarla çekmek.",
-     "Belden hızlı ve gevşek şekilde burkulmak."
+     {
+      "text": "Gövdeyi döndürmek yerine kollarla çekmek.",
+      "fix": "Kolları uzun tut ve göğüs kafesinden dön."
+     },
+     {
+      "text": "Belden hızlı ve gevşek şekilde burkulmak.",
+      "fix": "Karnını sık ve kontrollü şekilde yavaşça dön."
+     }
     ]
    },
    "ar": {
@@ -1652,8 +2096,14 @@
      "تحكم في العودة ولا تدع الكابل يسحبك."
     ],
     "mistakes": [
-     "السحب بالذراعين بدل تدوير الجذع.",
-     "الالتواء بسرعة وارتخاء من أسفل الظهر."
+     {
+      "text": "السحب بالذراعين بدل تدوير الجذع.",
+      "fix": "أبقِ الذراعين ممدودتين ودُر من القفص الصدري."
+     },
+     {
+      "text": "الالتواء بسرعة وارتخاء من أسفل الظهر.",
+      "fix": "شدّ بطنك ودُر ببطء وبتحكم."
+     }
     ]
    }
   },
@@ -1680,8 +2130,14 @@
      "Use straps if grip limits the set."
     ],
     "mistakes": [
-     "Bouncing short reps without a full stretch at the bottom.",
-     "Rolling the shoulders, which adds nothing but strain."
+     {
+      "text": "Bouncing short reps without a full stretch at the bottom.",
+      "fix": "Let the shoulders drop for a full stretch before each shrug."
+     },
+     {
+      "text": "Rolling the shoulders, which adds nothing but strain.",
+      "fix": "Shrug straight up toward your ears, then straight down."
+     }
     ]
    },
    "tr": {
@@ -1699,8 +2155,14 @@
      "Kavrama yetmiyorsa kayış kullan."
     ],
     "mistakes": [
-     "Altta tam gerilme olmadan kısa, sektirmeli tekrarlar yapmak.",
-     "Omuzları döndürmek; fayda sağlamaz, sadece zorlar."
+     {
+      "text": "Altta tam gerilme olmadan kısa, sektirmeli tekrarlar yapmak.",
+      "fix": "Her tekrardan önce tam gerilme için omuzları aşağı bırak."
+     },
+     {
+      "text": "Omuzları döndürmek; fayda sağlamaz, sadece zorlar.",
+      "fix": "Omuzlarını dümdüz kulaklarına doğru kaldır, sonra düz indir."
+     }
     ]
    },
    "ar": {
@@ -1718,8 +2180,14 @@
      "استخدم الأحزمة إن كانت القبضة تحدّ من المجموعة."
     ],
     "mistakes": [
-     "تكرارات قصيرة مرتدة دون تمدد كامل في الأسفل.",
-     "تدوير الكتفين، ولا فائدة منه سوى الإجهاد."
+     {
+      "text": "تكرارات قصيرة مرتدة دون تمدد كامل في الأسفل.",
+      "fix": "اترك الكتفين ينخفضان لتمدد كامل قبل كل رفعة."
+     },
+     {
+      "text": "تدوير الكتفين، ولا فائدة منه سوى الإجهاد.",
+      "fix": "ارفع كتفيك مباشرة نحو أذنيك ثم أنزلهما مباشرة."
+     }
     ]
    }
   },
@@ -1747,8 +2215,14 @@
      "Pause at the top of each rep."
     ],
     "mistakes": [
-     "Turning the shrug into a row.",
-     "Lifting the chest off the bench to gain range."
+     {
+      "text": "Turning the shrug into a row.",
+      "fix": "Keep the arms long and move only the shoulders."
+     },
+     {
+      "text": "Lifting the chest off the bench to gain range.",
+      "fix": "Keep your chest on the bench throughout."
+     }
     ]
    },
    "tr": {
@@ -1766,8 +2240,14 @@
      "Her tekrarın tepesinde dur."
     ],
     "mistakes": [
-     "Shrug'ı row'a çevirmek.",
-     "Daha fazla açıklık için göğsü sehpadan kaldırmak."
+     {
+      "text": "Shrug'ı row'a çevirmek.",
+      "fix": "Kolları uzun tut, sadece omuzları hareket ettir."
+     },
+     {
+      "text": "Daha fazla açıklık için göğsü sehpadan kaldırmak.",
+      "fix": "Göğsünü hareket boyunca sehpada tut."
+     }
     ]
    },
    "ar": {
@@ -1785,8 +2265,14 @@
      "توقف في أعلى كل تكرار."
     ],
     "mistakes": [
-     "تحويل الحركة إلى تجديف.",
-     "رفع الصدر عن المقعد لزيادة المدى."
+     {
+      "text": "تحويل الحركة إلى تجديف.",
+      "fix": "أبقِ الذراعين ممدودتين وحرّك الكتفين فقط."
+     },
+     {
+      "text": "رفع الصدر عن المقعد لزيادة المدى.",
+      "fix": "أبقِ صدرك على المقعد طوال الحركة."
+     }
     ]
    }
   },
@@ -1814,8 +2300,14 @@
      "Use a full protraction-to-retraction range."
     ],
     "mistakes": [
-     "Bending the elbows and turning it into a row.",
-     "Rounding the lower back while hinged."
+     {
+      "text": "Bending the elbows and turning it into a row.",
+      "fix": "Keep the arms straight and move only the shoulder blades."
+     },
+     {
+      "text": "Rounding the lower back while hinged.",
+      "fix": "Keep a neutral spine and a stable hinge."
+     }
     ]
    },
    "tr": {
@@ -1833,8 +2325,14 @@
      "Tam açılmadan tam sıkışmaya kadar çalış."
     ],
     "mistakes": [
-     "Dirsekleri büküp hareketi row'a çevirmek.",
-     "Eğikken beli yuvarlamak."
+     {
+      "text": "Dirsekleri büküp hareketi row'a çevirmek.",
+      "fix": "Kolları düz tut, sadece kürek kemiklerini hareket ettir."
+     },
+     {
+      "text": "Eğikken beli yuvarlamak.",
+      "fix": "Nötr omurga ve sabit bir menteşe pozisyonu koru."
+     }
     ]
    },
    "ar": {
@@ -1852,8 +2350,14 @@
      "استخدم المدى الكامل من التباعد إلى الضم."
     ],
     "mistakes": [
-     "ثني المرفقين وتحويلها إلى تجديف.",
-     "تقوّس أسفل الظهر أثناء الانحناء."
+     {
+      "text": "ثني المرفقين وتحويلها إلى تجديف.",
+      "fix": "أبقِ الذراعين مستقيمتين وحرّك لوحي الكتف فقط."
+     },
+     {
+      "text": "تقوّس أسفل الظهر أثناء الانحناء.",
+      "fix": "حافظ على عمود فقري محايد وانحناء ثابت."
+     }
     ]
    }
   },
@@ -1881,8 +2385,14 @@
      "Hold the squeeze for a second."
     ],
     "mistakes": [
-     "Pulling a full row with the arms.",
-     "Shrugging straight up into the neck only."
+     {
+      "text": "Pulling a full row with the arms.",
+      "fix": "Barely bend the elbows and drive with the shoulder blades."
+     },
+     {
+      "text": "Shrugging straight up into the neck only.",
+      "fix": "Pull the shoulder blades back and only slightly up."
+     }
     ]
    },
    "tr": {
@@ -1900,8 +2410,14 @@
      "Sıkışmayı bir saniye tut."
     ],
     "mistakes": [
-     "Kollarla tam bir row çekmek.",
-     "Sadece boyna doğru dümdüz silkmek."
+     {
+      "text": "Kollarla tam bir row çekmek.",
+      "fix": "Dirsekleri çok az bük ve hareketi kürek kemikleriyle yap."
+     },
+     {
+      "text": "Sadece boyna doğru dümdüz silkmek.",
+      "fix": "Kürek kemiklerini geri ve sadece hafif yukarı çek."
+     }
     ]
    },
    "ar": {
@@ -1919,8 +2435,14 @@
      "اثبت على الانقباض ثانية."
     ],
     "mistakes": [
-     "سحب تجديف كامل بالذراعين.",
-     "الرفع مباشرة نحو الرقبة فقط."
+     {
+      "text": "سحب تجديف كامل بالذراعين.",
+      "fix": "اثنِ المرفقين بشكل بسيط جدًا وقُد الحركة بلوحي الكتف."
+     },
+     {
+      "text": "الرفع مباشرة نحو الرقبة فقط.",
+      "fix": "اسحب لوحي الكتف للخلف وللأعلى قليلًا فقط."
+     }
     ]
    }
   },
@@ -1948,8 +2470,14 @@
      "Pause at the top of each rep."
     ],
     "mistakes": [
-     "Bending the arms and doing a partial pull-up.",
-     "Swinging or kipping to move."
+     {
+      "text": "Bending the arms and doing a partial pull-up.",
+      "fix": "Keep the elbows straight and move only the shoulders."
+     },
+     {
+      "text": "Swinging or kipping to move.",
+      "fix": "Stay still and lower slowly to a full dead hang."
+     }
     ]
    },
    "tr": {
@@ -1967,8 +2495,14 @@
      "Her tekrarın tepesinde dur."
     ],
     "mistakes": [
-     "Kolları büküp yarım barfiks yapmak.",
-     "Sallanarak ya da kip yaparak hareket etmek."
+     {
+      "text": "Kolları büküp yarım barfiks yapmak.",
+      "fix": "Dirsekleri düz tut, sadece omuzları hareket ettir."
+     },
+     {
+      "text": "Sallanarak ya da kip yaparak hareket etmek.",
+      "fix": "Sabit kal ve yavaşça tam asılı pozisyona in."
+     }
     ]
    },
    "ar": {
@@ -1986,8 +2520,14 @@
      "توقف في أعلى كل تكرار."
     ],
     "mistakes": [
-     "ثني الذراعين وأداء عقلة جزئية.",
-     "التأرجح أو استخدام الزخم للتحرك."
+     {
+      "text": "ثني الذراعين وأداء عقلة جزئية.",
+      "fix": "أبقِ المرفقين مستقيمين وحرّك الكتفين فقط."
+     },
+     {
+      "text": "التأرجح أو استخدام الزخم للتحرك.",
+      "fix": "ابقَ ثابتًا وانزل ببطء إلى تعلق كامل."
+     }
     ]
    }
   },
@@ -2014,8 +2554,14 @@
      "Use a full up-and-down shoulder range."
     ],
     "mistakes": [
-     "Bending the elbows into a mini pulldown.",
-     "Leaning back to move more weight."
+     {
+      "text": "Bending the elbows into a mini pulldown.",
+      "fix": "Keep the arms straight; only the shoulders move."
+     },
+     {
+      "text": "Leaning back to move more weight.",
+      "fix": "Sit tall with a slight lean back at most."
+     }
     ]
    },
    "tr": {
@@ -2033,8 +2579,14 @@
      "Omuzların tam yukarı-aşağı açıklığını kullan."
     ],
     "mistakes": [
-     "Dirsekleri büküp mini pulldown yapmak.",
-     "Daha fazla kilo için geriye yaslanmak."
+     {
+      "text": "Dirsekleri büküp mini pulldown yapmak.",
+      "fix": "Kollar düz kalsın; sadece omuzlar hareket etsin."
+     },
+     {
+      "text": "Daha fazla kilo için geriye yaslanmak.",
+      "fix": "Dik otur, en fazla hafif geriye yaslan."
+     }
     ]
    },
    "ar": {
@@ -2052,8 +2604,14 @@
      "استخدم المدى الكامل لحركة الكتف للأعلى والأسفل."
     ],
     "mistakes": [
-     "ثني المرفقين وأداء سحب مصغّر.",
-     "الميل للخلف لتحريك وزن أكبر."
+     {
+      "text": "ثني المرفقين وأداء سحب مصغّر.",
+      "fix": "أبقِ الذراعين مستقيمتين ودع الكتفين فقط يتحركان."
+     },
+     {
+      "text": "الميل للخلف لتحريك وزن أكبر.",
+      "fix": "اجلس منتصبًا مع ميل خفيف للخلف كحد أقصى."
+     }
     ]
    }
   },
@@ -2077,8 +2635,14 @@
      "Higher reps (12–20) work well here."
     ],
     "mistakes": [
-     "Lifting the elbows or forearms to cheat the weight up.",
-     "Doing short, bouncy reps."
+     {
+      "text": "Lifting the elbows or forearms to cheat the weight up.",
+      "fix": "Keep the forearms pinned; only the wrists move."
+     },
+     {
+      "text": "Doing short, bouncy reps.",
+      "fix": "Use the full range, including the finger roll at the bottom."
+     }
     ]
    },
    "tr": {
@@ -2096,8 +2660,14 @@
      "Yüksek tekrarlar (12–20) burada iyi çalışır."
     ],
     "mistakes": [
-     "Ağırlığı kaldırmak için dirsekleri ya da ön kolları kaldırmak.",
-     "Kısa, sektirmeli tekrarlar yapmak."
+     {
+      "text": "Ağırlığı kaldırmak için dirsekleri ya da ön kolları kaldırmak.",
+      "fix": "Ön kollar sabit kalsın; sadece bilekler hareket etsin."
+     },
+     {
+      "text": "Kısa, sektirmeli tekrarlar yapmak.",
+      "fix": "Alttaki parmak yuvarlaması dahil tam açıklığı kullan."
+     }
     ]
    },
    "ar": {
@@ -2115,8 +2685,14 @@
      "التكرارات العالية (12–20) مناسبة هنا."
     ],
     "mistakes": [
-     "رفع المرفقين أو الساعدين للغش في الوزن.",
-     "تكرارات قصيرة ومرتدة."
+     {
+      "text": "رفع المرفقين أو الساعدين للغش في الوزن.",
+      "fix": "أبقِ الساعدين ثابتين والرسغان فقط يتحركان."
+     },
+     {
+      "text": "تكرارات قصيرة ومرتدة.",
+      "fix": "استخدم المدى الكامل بما فيه تدحرج الأصابع في الأسفل."
+     }
     ]
    }
   },
@@ -2140,8 +2716,14 @@
      "Pause briefly at the top."
     ],
     "mistakes": [
-     "Lifting the forearms off the support.",
-     "Dropping the weight quickly on the way down."
+     {
+      "text": "Lifting the forearms off the support.",
+      "fix": "Keep the forearms on the support; move only at the wrist."
+     },
+     {
+      "text": "Dropping the weight quickly on the way down.",
+      "fix": "Lower slowly to the stretched position."
+     }
     ]
    },
    "tr": {
@@ -2159,8 +2741,14 @@
      "Tepede kısa dur."
     ],
     "mistakes": [
-     "Ön kolları destekten kaldırmak.",
-     "İnişte ağırlığı hızla bırakmak."
+     {
+      "text": "Ön kolları destekten kaldırmak.",
+      "fix": "Ön kolları destekte tut; sadece bilekten hareket et."
+     },
+     {
+      "text": "İnişte ağırlığı hızla bırakmak.",
+      "fix": "Gerilmiş pozisyona yavaşça indir."
+     }
     ]
    },
    "ar": {
@@ -2178,8 +2766,14 @@
      "توقف لحظة في الأعلى."
     ],
     "mistakes": [
-     "رفع الساعدين عن الدعامة.",
-     "إسقاط الوزن بسرعة أثناء النزول."
+     {
+      "text": "رفع الساعدين عن الدعامة.",
+      "fix": "أبقِ الساعدين على الدعامة وتحرك من الرسغ فقط."
+     },
+     {
+      "text": "إسقاط الوزن بسرعة أثناء النزول.",
+      "fix": "أنزل ببطء إلى وضع التمدد."
+     }
     ]
    }
   },
@@ -2205,8 +2799,14 @@
      "Control the full lowering phase."
     ],
     "mistakes": [
-     "Letting the wrists collapse under the bar.",
-     "Using the hips to swing the bar up."
+     {
+      "text": "Letting the wrists collapse under the bar.",
+      "fix": "Keep the wrists neutral, not bent back."
+     },
+     {
+      "text": "Using the hips to swing the bar up.",
+      "fix": "Pin your elbows to your sides and keep the hips still."
+     }
     ]
    },
    "tr": {
@@ -2224,8 +2824,14 @@
      "Tüm iniş fazını kontrol et."
     ],
     "mistakes": [
-     "Bileklerin barın altında çökmesine izin vermek.",
-     "Barı kalçayla savurarak kaldırmak."
+     {
+      "text": "Bileklerin barın altında çökmesine izin vermek.",
+      "fix": "Bilekleri nötr tut, geriye bükülmesin."
+     },
+     {
+      "text": "Barı kalçayla savurarak kaldırmak.",
+      "fix": "Dirseklerini yanlarına sabitle ve kalçanı sabit tut."
+     }
     ]
    },
    "ar": {
@@ -2243,8 +2849,14 @@
      "تحكم في مرحلة النزول كاملة."
     ],
     "mistakes": [
-     "ترك الرسغين ينهاران تحت البار.",
-     "استخدام الوركين لأرجحة البار."
+     {
+      "text": "ترك الرسغين ينهاران تحت البار.",
+      "fix": "أبقِ الرسغين محايدين لا مثنيين للخلف."
+     },
+     {
+      "text": "استخدام الوركين لأرجحة البار.",
+      "fix": "ثبّت مرفقيك بجانبيك وأبقِ الوركين ثابتين."
+     }
     ]
    }
   },
@@ -2270,8 +2882,14 @@
      "Keep wrists firm and straight."
     ],
     "mistakes": [
-     "Letting the elbows drift forward like a normal curl.",
-     "Leaning back to heave the weight."
+     {
+      "text": "Letting the elbows drift forward like a normal curl.",
+      "fix": "Pull the elbows back and keep the weight close to your torso."
+     },
+     {
+      "text": "Leaning back to heave the weight.",
+      "fix": "Stand still and drag the weight up with your arms."
+     }
     ]
    },
    "tr": {
@@ -2289,8 +2907,14 @@
      "Bilekleri sıkı ve düz tut."
     ],
     "mistakes": [
-     "Dirseklerin normal curl gibi öne kaymasına izin vermek.",
-     "Ağırlığı kaldırmak için geriye yaslanmak."
+     {
+      "text": "Dirseklerin normal curl gibi öne kaymasına izin vermek.",
+      "fix": "Dirsekleri geriye çek ve ağırlığı gövdene yakın tut."
+     },
+     {
+      "text": "Ağırlığı kaldırmak için geriye yaslanmak.",
+      "fix": "Sabit dur ve ağırlığı kollarınla sürükleyerek kaldır."
+     }
     ]
    },
    "ar": {
@@ -2308,8 +2932,14 @@
      "أبقِ الرسغين ثابتين ومستقيمين."
     ],
     "mistakes": [
-     "ترك المرفقين يتقدمان كتمرين ثني عادي.",
-     "الميل للخلف لرفع الوزن بالقوة."
+     {
+      "text": "ترك المرفقين يتقدمان كتمرين ثني عادي.",
+      "fix": "اسحب المرفقين للخلف وأبقِ الوزن قريبًا من جذعك."
+     },
+     {
+      "text": "الميل للخلف لرفع الوزن بالقوة.",
+      "fix": "قف ثابتًا واسحب الوزن للأعلى بذراعيك."
+     }
     ]
    }
   },
@@ -2333,8 +2963,14 @@
      "Move slowly through the full rotation."
     ],
     "mistakes": [
-     "Moving the whole arm or shoulder to rotate.",
-     "Letting the weight flop over quickly."
+     {
+      "text": "Moving the whole arm or shoulder to rotate.",
+      "fix": "Keep the elbow still and twist from the forearm."
+     },
+     {
+      "text": "Letting the weight flop over quickly.",
+      "fix": "Rotate slowly in both directions."
+     }
     ]
    },
    "tr": {
@@ -2352,8 +2988,14 @@
      "Tam dönüş boyunca yavaş hareket et."
     ],
     "mistakes": [
-     "Döndürmek için tüm kolu ya da omzu hareket ettirmek.",
-     "Ağırlığın hızla devrilmesine izin vermek."
+     {
+      "text": "Döndürmek için tüm kolu ya da omzu hareket ettirmek.",
+      "fix": "Dirseği sabit tut ve ön koldan döndür."
+     },
+     {
+      "text": "Ağırlığın hızla devrilmesine izin vermek.",
+      "fix": "İki yönde de yavaşça döndür."
+     }
     ]
    },
    "ar": {
@@ -2371,8 +3013,14 @@
      "تحرك ببطء خلال الدوران الكامل."
     ],
     "mistakes": [
-     "تحريك الذراع كلها أو الكتف للدوران.",
-     "ترك الوزن ينقلب بسرعة."
+     {
+      "text": "تحريك الذراع كلها أو الكتف للدوران.",
+      "fix": "أبقِ المرفق ثابتًا ودوّر من الساعد."
+     },
+     {
+      "text": "ترك الوزن ينقلب بسرعة.",
+      "fix": "دوّر ببطء في الاتجاهين."
+     }
     ]
    }
   },
@@ -2398,8 +3046,14 @@
      "Control both directions."
     ],
     "mistakes": [
-     "Swinging the arm to finish the rotation.",
-     "Going too heavy and shortening the range."
+     {
+      "text": "Swinging the arm to finish the rotation.",
+      "fix": "Keep the elbow fixed at your side or on the support."
+     },
+     {
+      "text": "Going too heavy and shortening the range.",
+      "fix": "Use a light load and a full twist."
+     }
     ]
    },
    "tr": {
@@ -2417,8 +3071,14 @@
      "İki yönü de kontrol et."
     ],
     "mistakes": [
-     "Dönüşü tamamlamak için kolu savurmak.",
-     "Çok ağır alıp açıklığı kısaltmak."
+     {
+      "text": "Dönüşü tamamlamak için kolu savurmak.",
+      "fix": "Dirseği yanında ya da destek üzerinde sabit tut."
+     },
+     {
+      "text": "Çok ağır alıp açıklığı kısaltmak.",
+      "fix": "Hafif yük ve tam dönüş kullan."
+     }
     ]
    },
    "ar": {
@@ -2436,8 +3096,14 @@
      "تحكم في الاتجاهين."
     ],
     "mistakes": [
-     "أرجحة الذراع لإكمال الدوران.",
-     "استخدام وزن ثقيل جدًا واختصار المدى."
+     {
+      "text": "أرجحة الذراع لإكمال الدوران.",
+      "fix": "أبقِ المرفق ثابتًا بجانبك أو على الدعامة."
+     },
+     {
+      "text": "استخدام وزن ثقيل جدًا واختصار المدى.",
+      "fix": "استخدم حملًا خفيفًا ودورانًا كاملًا."
+     }
     ]
    }
   },
@@ -2461,8 +3127,14 @@
      "Use a full open-to-closed range."
     ],
     "mistakes": [
-     "Turning it into a wrist curl.",
-     "Using a load so heavy the weight slips from the fingers."
+     {
+      "text": "Turning it into a wrist curl.",
+      "fix": "Keep the wrist still; only the fingers move."
+     },
+     {
+      "text": "Using a load so heavy the weight slips from the fingers.",
+      "fix": "Use a load you can roll to the fingertips and back."
+     }
     ]
    },
    "tr": {
@@ -2480,8 +3152,14 @@
      "Tam açıktan tam kapalıya kadar çalış."
     ],
     "mistakes": [
-     "Hareketi wrist curl'e çevirmek.",
-     "Parmaklardan kayacak kadar ağır yük kullanmak."
+     {
+      "text": "Hareketi wrist curl'e çevirmek.",
+      "fix": "Bilek sabit kalsın; sadece parmaklar hareket etsin."
+     },
+     {
+      "text": "Parmaklardan kayacak kadar ağır yük kullanmak.",
+      "fix": "Parmak uçlarına yuvarlayıp geri alabileceğin bir yük kullan."
+     }
     ]
    },
    "ar": {
@@ -2499,8 +3177,14 @@
      "استخدم المدى الكامل من الفتح إلى الإغلاق."
     ],
     "mistakes": [
-     "تحويلها إلى تمرين ثني الرسغ.",
-     "استخدام حمل ثقيل ينزلق من الأصابع."
+     {
+      "text": "تحويلها إلى تمرين ثني الرسغ.",
+      "fix": "أبقِ الرسغ ثابتًا والأصابع فقط تتحرك."
+     },
+     {
+      "text": "استخدام حمل ثقيل ينزلق من الأصابع.",
+      "fix": "استخدم حملًا تستطيع دحرجته إلى أطراف الأصابع وإعادته."
+     }
     ]
    }
   },
@@ -2528,8 +3212,14 @@
      "Stay still; no swinging."
     ],
     "mistakes": [
-     "Bending the arms to make the hang easier.",
-     "Holding your breath during the hang."
+     {
+      "text": "Bending the arms to make the hang easier.",
+      "fix": "Keep your arms fully straight for the whole hang."
+     },
+     {
+      "text": "Holding your breath during the hang.",
+      "fix": "Keep a light core brace and breathe steadily."
+     }
     ]
    },
    "tr": {
@@ -2547,8 +3237,14 @@
      "Sabit kal; sallanma."
     ],
     "mistakes": [
-     "Asılmayı kolaylaştırmak için kolları bükmek.",
-     "Asılırken nefesi tutmak."
+     {
+      "text": "Asılmayı kolaylaştırmak için kolları bükmek.",
+      "fix": "Asılma boyunca kollarını tamamen düz tut."
+     },
+     {
+      "text": "Asılırken nefesi tutmak.",
+      "fix": "Karnını hafifçe sık ve düzenli nefes al."
+     }
     ]
    },
    "ar": {
@@ -2566,8 +3262,14 @@
      "ابقَ ثابتًا دون تأرجح."
     ],
     "mistakes": [
-     "ثني الذراعين لتسهيل التعلق.",
-     "حبس النفس أثناء التعلق."
+     {
+      "text": "ثني الذراعين لتسهيل التعلق.",
+      "fix": "أبقِ ذراعيك مستقيمتين تمامًا طوال التعلق."
+     },
+     {
+      "text": "حبس النفس أثناء التعلق.",
+      "fix": "شدّ بطنك قليلًا وتنفس بانتظام."
+     }
     ]
    }
   }

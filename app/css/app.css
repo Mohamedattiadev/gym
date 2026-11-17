@@ -782,3 +782,15 @@ body:has(#rov) .toast { bottom: auto; top: calc(var(--safe-t) + 16px); }
 .dhero .v3d-zoom { position: absolute; z-index: 2; inset-inline-end: 8px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; }
 .dhero .v3d-spd { width: auto; min-width: 32px; padding: 0 9px; font-weight: 750; font-size: 12.5px; }
 .dhero .v3d.zoomed { touch-action: none; cursor: move; }
+/* block 22: common mistakes — "Show" -> wrong vs right */
+.bul .mshow { margin-inline-start: auto; flex: none; position: relative; height: 30px; padding: 0 12px; border: 0; border-radius: var(--r-full); background: var(--s2); color: var(--accent-text); font: inherit; font-size: 13px; font-weight: 650; cursor: pointer; }
+.bul .mshow::after { content: ""; position: absolute; inset: -7px -4px; }
+.bul .mshow:active { transform: scale(.96); }
+.mwr { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.mw { border-radius: var(--r-md); padding: 12px; background: color-mix(in oklab, var(--danger) 9%, var(--s1, var(--bg))); }
+.mw.ok { background: color-mix(in oklab, var(--ok) 10%, var(--s1, var(--bg))); }
+.mwh { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 720; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; color: var(--danger); }
+.mw.ok .mwh { color: var(--ok); }
+.mw p { margin: 0; font-size: 15px; line-height: 1.4; color: var(--t1); }
+.mbody { gap: 18px; padding: 6px 0 2px; } .mbody .body-svg { width: 92px; }
+.mcred { margin-top: 8px; text-align: center; } .mcred a { color: var(--accent-text); font-weight: 650; }

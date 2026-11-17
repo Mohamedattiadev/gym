@@ -31,7 +31,7 @@ export async function loadExercises() {
   for (const e of EX) {
     e.video = e.v ? `media/video/${e.slug}.mp4` : null; e.poster = `media/poster/${e.slug}.jpg`;
     const oef = fig.s[e.slug] || fig.f[e.family]; e.figure = oef ? `media/figures/${oef}.webp` : null;
-    const f = FAM.families[e.family] || {}; e.steps = f.steps || []; e.cues = f.cues || []; e.mistakes = f.mistakes || []; e.about = f.about || "";
+    const f = FAM.families[e.family] || {}; e.steps = f.steps || []; e.cues = f.cues || []; e.mistakes = (f.mistakes || []).map((m) => (typeof m === "string" ? { text: m } : m)); e.about = f.about || "";
     e.vnote = e.note ? FAM.notes[e.slug] || "" : "";
     e.muscles = [...(e.primary || []), ...(e.secondary || [])]; e.aliases = [e.aliases, e.tr, e.ar].filter(Boolean).join(" ");
     e.tier ??= null; e.tierNote ??= ""; e.canonical = !!e.canonical;
