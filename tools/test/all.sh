@@ -7,7 +7,7 @@ if ! curl -sI localhost:8765 >/dev/null 2>&1; then
   (cd app && python3 -m http.server 8765 >/dev/null 2>&1 &); sleep 1.5
 fi
 step() { printf '\n== %s\n' "$1"; shift; if "$@"; then echo "-> ok"; else echo "-> FAIL"; fail=1; fi; }
-step "unit tests (calc, merge, sanitize, csv)" node --test tools/test/unit/*.test.mjs
+step "unit tests (calc, merge, sanitize, csv, search)" node --test tools/test/unit/*.test.mjs
 step "JS syntax (app/js, sw.js)" bash -c 'for f in app/js/*.js app/sw.js; do node --check "$f" || exit 1; done'
 step "sw.js precache files exist" node -e '
   const fs=require("fs"); const m=fs.readFileSync("app/sw.js","utf8").match(/SHELL_FILES\s*=\s*(\[[\s\S]*?\]);\n/);

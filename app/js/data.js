@@ -26,11 +26,11 @@ const EQUIP_I18N = { Dumbbell: "dambıl dumbel دمبل", Barbell: "halter bar �
 const QSYN_RAW = {
   // Turkish
   "pres": "press", "presi": "press", "presler": "press", "itis": "press|push", "itme": "press|push", "sehpa": "bench", "egimli": "incline", "ters egimli": "decline",
-  "sinav": "push up|push-up", "mekik": "crunch|sit up", "barfiks": "pull up|chin up", "comelme": "squat", "skuat": "squat", "olu kaldirma": "deadlift|stiff",
+  "sinav": "push up|push-up", "mekik": "crunch|sit up", "barfiks": "pull up|chin up", "barfix": "pull up|chin up", "barfik": "pull up|chin up", "comelme": "squat", "skuat": "squat", "olu kaldirma": "deadlift|stiff",
   "kurek": "row", "cekis": "pull|row", "cekme": "pull|row", "lat cekis": "pulldown", "lat cekme": "pulldown", "acis": "fly|raise", "yan acis": "lateral raise|side lateral", "on acis": "front raise", "kaldirma": "raise|lift",
   "bukme": "curl", "kol bukme": "curl", "uzatma": "extension", "acma": "extension|fly", "bacak": "leg", "hamle": "lunge", "ileri adim": "lunge", "baldir": "calf", "kalf": "calf",
   "kalca itisi": "hip thrust", "tek": "one|single|1 arm", "tek kol": "one arm|single arm|1 arm", "oturarak": "seated", "ayakta": "standing", "yatarak": "lying", "dar": "close|narrow",
-  "genis": "wide", "tutus": "grip", "kopru": "bridge", "kol": "arm", "omuz": "shoulder", "gogus": "chest", "sirt": "back", "karin": "ab", "pazu": "bicep|curl", "arka kol": "tricep",
+  "genis": "wide", "tutus": "grip", "kopru": "bridge", "kol": "arm", "omuz": "shoulder", "gogus": "chest", "sirt": "sirt", "karin": "crunch|abs", "pazu": "bicep|curl", "arka kol": "arka kol", "on kol": "on kol", "bilek": "wrist|on kol",
   // Arabic
   "ضغط": "press|push", "بنش": "bench", "بنج": "bench", "سكوات": "squat", "قرفصاء": "squat", "رفعه ميته": "deadlift|stiff", "ديدلفت": "deadlift", "تجديف": "row", "سحب": "pull|row",
   "عقله": "pull up|chin up", "مائل": "incline", "رفرفه": "fly", "تفتيح": "fly", "رفع": "raise|lift", "رفع جانبي": "lateral raise|side lateral", "جانبي": "lateral|side", "امامي": "front",
@@ -86,7 +86,9 @@ export function searchEx(q, list) {
   }
   // UT-4: exercises whose NAME holds every search word come first ("bench" -> bench presses before preacher curls on a bench), tier order inside
   const inName = (e) => groups.every((g) => g.alts.some((a) => (e._nm ??= norm(e.name + " " + (e.aliases || ""))).includes(a)));
-  const byName = (a, b) => inName(b) - inName(a) || byTier(a, b);
+  // UT-12: a muscle-group word ("karın", "sırt", "göğüs", "chest") puts that group's exercises first, then name hits
+  const inGroup = (e) => groups.every((g) => g.alts.some((a) => (e._gq ??= norm(e.group + " " + (GROUP_I18N[e.group] || ""))).includes(a)));
+  const byName = (a, b) => inGroup(b) - inGroup(a) || inName(b) - inName(a) || byTier(a, b);
   const out = [...exact.sort(byName), ...close.sort(byTier)]; out.close = close.length; return out;
 }
 
