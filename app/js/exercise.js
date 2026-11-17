@@ -229,7 +229,9 @@ const POSE3D = { "high-bar-squat": /heel|elevated|drops?\b|pause|safety|century/
   "dumbbell-row-bent-over": /wrap around|pronated/i,
   "pull-up": /dead|v-bar/i, "triceps-dips": /smith|straight bar/i, "cable-curl": /single|v-handle|extreme|elbows tucked/i,
   "rope-pushdown": /flared/i, "face-pull": /$^/, "cable-overhead-extension": /single|straight bar/i,
-  "seated-leg-curl": /$^/, "leg-extension": /single|partial|3\/4/i };
+  "seated-leg-curl": /$^/, "leg-extension": /single|partial|3\/4/i,
+  "hip-thrust": /smith/i, "one-arm-dumbbell-row": /pronated|prontated/i, "lying-leg-curl": /$^/, "seated-calf-raise": /single|partial|poor man/i,
+  "cable-lateral-raise": /single|behind|lying|incline/i, "back-extension": /single|poor man/i, "t-bar-row": /machine|chest supported/i, "sumo-deadlift": /dumbbell/i };
 export const move3d = (e) => { const m = MOVE3D[e.family]; if (m) return !NOT_SAME.test(e.name) ? m : null;
   const not = POSE3D[e.family]; return not && !not.test(e.name) ? "p:" + e.family : null; };
 /** prop in the hands for the 3D motion, from the exercise's equipment */

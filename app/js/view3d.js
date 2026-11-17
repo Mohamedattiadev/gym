@@ -121,6 +121,7 @@ function buildClip(model, P, eqProp = null) {
   tracks.push(new THREE.VectorKeyframeTrack(`${root.uuid}.position`, times, pv));
   const clip = new THREE.AnimationClip("pose", times.at(-1), tracks); clip.props = P.fixed || []; clip.eqProps = P.props || [];
   if (P.bar === "back" && eqProp === "bar") clip.props = [...clip.props, "backbar"];
+  if (P.one && eqProp === "db") { clip.props = [...clip.props, "db" + P.one]; clip.eqProps = clip.eqProps.filter((k) => k !== "db"); } // one dumbbell (single-arm moves)
   return clip;
 }
 
@@ -143,7 +144,7 @@ function makeProp(kinds, model, dark) {
     } else if (kind === "backbar" || kind === "lowbar") { const o = new THREE.Group(); o.add(cyl(.014, 1.8)); for (const x of [-.74, .74]) { const p = cyl(.1, .05); p.position.x = x; o.add(p); } g.add(o);
       const get = (n) => loc(bones[n], new THREE.Vector3()).clone();
       ups.push(() => { const k = backBar(get, kind === "lowbar"); o.position.copy(k.c); o.quaternion.setFromUnitVectors(X, k.left); });
-    } else if (kind === "db") for (let i = 0; i < 2; i++) { const o = new THREE.Group(); o.add(cyl(.016, .16)); for (const x of [-.09, .09]) { const p = cyl(.05, .05); p.position.x = x; o.add(p); } g.add(o);
+    } else if (/^db[LR]?$/.test(kind)) for (let i = 0; i < 2; i++) { if (kind !== "db" && i !== (kind === "dbR" ? 1 : 0)) continue; const o = new THREE.Group(); o.add(cyl(.016, .16)); for (const x of [-.09, .09]) { const p = cyl(.05, .05); p.position.x = x; o.add(p); } g.add(o);
       ups.push(() => { const h = hand[i]; o.position.copy(grip(h)); loc(h[0], a); loc(h[1], b); // handle across the palm
         const n = b.sub(a).normalize(), side = c.set(i ? -1 : 1, 0, 0); o.quaternion.setFromUnitVectors(X, side.sub(n.multiplyScalar(side.dot(n))).normalize()); });
     } else if (kind === "bench") { // pad under the back, pitched to follow the torso (flat or incline); seat block under the hips when inclined
@@ -158,6 +159,23 @@ function makeProp(kinds, model, dark) {
     } else if (kind === "seat") { const o = new THREE.Mesh(new THREE.BoxGeometry(.42, .08, .4), pad); const post = new THREE.Mesh(new THREE.BoxGeometry(.07, 1, .07), mat); o.add(post); g.add(o);
       ups.push(() => { const p = loc(bones.spine05, a), fl = Math.min(loc(bones.footL, c).y, loc(bones.footR, c).y) - .07, top = p.y - .14;
         o.position.set(p.x, top, p.z + .06); const h = Math.max(.1, top - fl); post.scale.y = h; post.position.set(0, -h / 2, 0); });
+    } else if (kind === "thrustbench") { // hip thrust: bench across the upper back (shoulder blades rest on its edge)
+      const o = new THREE.Mesh(new THREE.BoxGeometry(1, 1, .34), pad); g.add(o);
+      ups.push(() => { const s5 = loc(bones.spine05, a).clone(), nk = loc(bones.neck01, b).clone(), fl = Math.min(loc(bones.footL, c).y, loc(bones.footR, c).y) - .07;
+        const p = nk.clone().lerp(s5, .32), top = p.y - .12, h = Math.max(.1, top - fl); const hd = nk.clone().sub(s5).setY(0).normalize(); o.scale.y = h; o.position.set(p.x, top - h / 2, p.z).addScaledVector(hd, .1); o.rotation.y = Math.atan2(hd.x, hd.z); });
+    } else if (kind === "handbench") { // one-arm row: bench under the free (left) hand
+      const o = new THREE.Mesh(new THREE.BoxGeometry(.3, 1, .45), pad); g.add(o);
+      ups.push(() => { const p = grip(hand[0], .3), fl = Math.min(loc(bones.footL, c).y, loc(bones.footR, c).y) - .07, top = p.y - .03, h = Math.max(.1, top - fl);
+        o.scale.y = h; o.position.set(p.x, top - h / 2, p.z + .05); });
+    } else if (kind === "hyper") { // 45° back-extension bench: pad in front of the hips/thighs + roller behind the ankles + post
+      const o = new THREE.Mesh(new THREE.BoxGeometry(.36, .07, .42), pad), roll = cyl(.045, .4, pad), post = new THREE.Mesh(new THREE.BoxGeometry(.07, 1, .07), mat); g.add(o, roll, post);
+      const t = new THREE.Vector3(), l = new THREE.Vector3(), f = new THREE.Vector3(), M = new THREE.Matrix4();
+      ups.push(() => { const hip = loc(bones.upperleg01L, a).clone().add(loc(bones.upperleg01R, b)).multiplyScalar(.5), kn = loc(bones.lowerleg01L, a).clone().add(loc(bones.lowerleg01R, b)).multiplyScalar(.5);
+        const an = loc(bones.footL, a).clone().add(loc(bones.footR, b)).multiplyScalar(.5);
+        l.copy(loc(bones.upperleg01R, a)).sub(loc(bones.upperleg01L, b)).normalize(); t.subVectors(hip, kn).normalize(); f.crossVectors(l, t).normalize();
+        o.quaternion.setFromRotationMatrix(M.makeBasis(l, f, t)); o.position.copy(hip).lerp(kn, .3).addScaledVector(f, .12);
+        roll.position.copy(an).addScaledVector(f, -.08).addScaledVector(t, .02); roll.quaternion.setFromUnitVectors(X, l);
+        const fl = an.y - .12, h = Math.max(.1, o.position.y - fl); post.scale.y = h; post.position.set(o.position.x, o.position.y - h / 2, o.position.z); });
     } else if (kind === "dipbars") for (let i = 0; i < 2; i++) { const o = new THREE.Mesh(new THREE.CylinderGeometry(.02, .02, .6, 16), mat); o.rotation.x = Math.PI / 2; g.add(o);
       ups.push(() => { o.position.copy(grip(hand[i], .3)); o.position.y -= .02; });
     }
