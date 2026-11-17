@@ -175,6 +175,11 @@ function makeProp(kinds, model, dark) {
       ups.push(() => { const s5 = loc(bones.spine05, a).clone(), nk = loc(bones.neck01, b).clone(); t.subVectors(nk, s5).normalize();
         n.copy(UP).addScaledVector(t, -UP.dot(t)).normalize(); x.crossVectors(n, t); o.quaternion.setFromRotationMatrix(M.makeBasis(x, n, t));
         o.position.copy(s5).addScaledVector(n, -.13).addScaledVector(t, .5); legs.position.copy(o.position).addScaledVector(t, -.3); legs.position.y -= .45; });
+    } else if (kind === "flatbench") { // v-up: level pad under the hips and back that stays flat while the torso lifts off it
+      const o = new THREE.Mesh(new THREE.BoxGeometry(.3, .07, 1.2), pad), legs = new THREE.Mesh(new THREE.BoxGeometry(.08, .42, .08), mat); g.add(o, legs);
+      const hd = new THREE.Vector3();
+      ups.push(() => { const s5 = loc(bones.spine05, a).clone(), nk = loc(bones.neck01, b).clone(); hd.subVectors(nk, s5).setY(0).normalize();
+        o.position.set(s5.x, s5.y - .13, s5.z).addScaledVector(hd, .42); o.rotation.y = Math.atan2(hd.x, hd.z); legs.position.copy(o.position); legs.position.y -= .245; });
     } else if (kind === "seat") { const o = new THREE.Mesh(new THREE.BoxGeometry(.42, .08, .4), pad); const post = new THREE.Mesh(new THREE.BoxGeometry(.07, 1, .07), mat); o.add(post); g.add(o);
       ups.push(() => { const p = loc(bones.spine05, a), fl = Math.min(loc(bones.footL, c).y, loc(bones.footR, c).y) - .07, top = p.y - .14;
         o.position.set(p.x, top, p.z + .06); const h = Math.max(.1, top - fl); post.scale.y = h; post.position.set(0, -h / 2, 0); });

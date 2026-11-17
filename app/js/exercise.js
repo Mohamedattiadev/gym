@@ -267,7 +267,8 @@ const POSE3D = { "high-bar-squat": /heel|elevated|drops?\b|pause|safety|century/
   "rear-delt-fly": /machine/i, "glute-hyper": /single/i, "forearm-drag-curl": /pinwheel/i, "front-delt-around-the-world": /$^/, "reverse-hyper": /$^/,
   "meadows-row": /$^/, "bench-assisted-pull-up": /$^/, "ball-knee-tuck": /$^/,
   "bodyweight-row": /$^/, "bodyweight-curl": /$^/, "bodyweight-triceps-extension": /$^/,
-  "triceps-push-ups": /decline|incline/i, "deficit-push-ups": /$^/, "reverse-crunch": /pelvic|seated/i };
+  "triceps-push-ups": /decline|incline/i, "deficit-push-ups": /$^/, "reverse-crunch": /pelvic|seated/i,
+  "v-up": /bent knees/i, "ab-rollout": /$^/ };
 export const move3d = (e) => { const m = MOVE3D[e.family]; if (m) return !NOT_SAME.test(e.name) ? m : null;
   const not = POSE3D[e.family]; return not && !not.test(e.name) ? "p:" + e.family : null; };
 /** prop in the hands for the 3D motion, from the exercise's equipment */
