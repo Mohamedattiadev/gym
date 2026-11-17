@@ -7,7 +7,7 @@ const out = process.argv[2] || "/tmp/gym-routes"; mkdirSync(out, { recursive: tr
 const ex = JSON.parse(readFileSync(root + "app/data/exercises.json", "utf8"));
 const slug = (ex.find((e) => e.slug === "barbell-bench-press") || ex.find((e) => e.equipment.includes("Barbell")) || ex[0]).slug;
 const plan = (readFileSync(root + "app/js/train.js", "utf8").match(/\{ id: "([\w-]+)", level:/) || [, "beg-fb"])[1];
-const routes = ["#/", "#/lib", `#/ex/${slug}`, "#/body", "#/train", `#/plan/${plan}`, "#/plans", "#/me", "#/guide", "#/start",
+const routes = ["#/", "#/lib", `#/ex/${slug}`, "#/body", "#/train", `#/plan/${plan}`, "#/plans", "#/me", "#/guide", "#/start", "#/profile",
   "#/standards", "#/nutrition", "#/warmup", "#/videos", "#/settings", "#/timer", "#/pick"];
 // Must stay last: starts a session from a plan (needs data-use -> data-start), then the session + workout pages.
 const sessionSteps = [{ go: "#/train" }, { waitFor: "[data-use]" }, { click: "[data-use]", wait: 800 }, { waitFor: "[data-start]" },

@@ -32,14 +32,14 @@ function hideSplash() {
 const view = $("#view");
 
 /* ================= router ================= */
-const TAB_OF = { "": "home", lib: "lib", ex: "lib", body: "body", train: "train", workout: "train", session: "train", pick: "train", me: "me", videos: "home", settings: "settings", timer: "train", guide: "me", start: "train", standards: "me", nutrition: "me", plans: "train", plan: "train", warmup: "train" };
+const TAB_OF = { "": "home", lib: "lib", ex: "lib", body: "body", train: "train", workout: "train", session: "train", pick: "train", me: "me", videos: "home", settings: "settings", timer: "train", guide: "me", start: "train", profile: "me", standards: "me", nutrition: "me", plans: "train", plan: "train", warmup: "train" };
 let lastDepth = 0;
 function route(quiet) {
   if (quiet !== true) quiet = false;
   nextRoute();
   const [, a = "", b] = routeParts();
   const narrow = innerWidth < 768;
-  const depth = ["ex", "workout", "session", "pick", "videos", "guide", "start", "standards", "nutrition", "plans", "plan", "warmup"].includes(a) || ((a === "timer" || a === "settings") && narrow) ? 1 : 0;
+  const depth = ["ex", "workout", "session", "pick", "videos", "guide", "start", "profile", "standards", "nutrition", "plans", "plan", "warmup"].includes(a) || ((a === "timer" || a === "settings") && narrow) ? 1 : 0;
   const back = depth < lastDepth; lastDepth = depth;
   const keep = (a === "ex" || a === "lib") && innerWidth >= 1000 && !!$("#lpane"); // 2-pane library: only the detail pane changes
   view.onclick = null; view.oninput = null; view.onchange = null; if (!keep) view.className = "";
@@ -48,7 +48,7 @@ function route(quiet) {
   $$(".nav .navl").forEach((x) => x.classList.toggle("active", x.dataset.tab === tab || (narrow && tab === "settings" && x.dataset.tab === "me")));
   setTop({ back: depth > 0 });
   const fn = { "": homeView, lib: libraryView, ex: exerciseView, body: bodyMap, train: T.trainView, workout: T.workoutView, session: T.sessionView,
-    pick: libraryView, me: meView, guide: G("guideView"), start: G("startView"), standards: G("standardsView"), nutrition: G("nutritionView"), plans: G("plansView"), plan: G("plansView"), warmup: G("warmupView", "warmup"), videos, settings: settingsView, timer: (x) => timerView(setTop, view, x) }[a] || homeView;
+    pick: libraryView, me: meView, guide: G("guideView"), start: G("startView"), profile: G("profileView"), standards: G("standardsView"), nutrition: G("nutritionView"), plans: G("plansView"), plan: G("plansView"), warmup: G("warmupView", "warmup"), videos, settings: settingsView, timer: (x) => timerView(setTop, view, x) }[a] || homeView;
   try { fn(b); } catch (err) { console.error(err); view.innerHTML = `<div class="empty">Something went wrong.<br><small>${esc(err.message)}</small></div>`; }
   T.updateLiveDot(); fillIll(view);
   if (quiet) { hideSplash(); return; }
@@ -322,6 +322,8 @@ addEventListener("pointerdown", unlockAudio, { once: true });
   if (degraded) $(".app").insertAdjacentHTML("afterbegin", `<div class="notice warn storewarn" role="alert">${ic("alert", "sm")}<div class="grow"><b>Storage unavailable</b><div class="small">Changes may not be kept. Close the app fully and open it again.</div></div></div>`); try { Sync.initSync(); } catch (e) { console.warn(e); }
   try { await exP; } catch (e) { view.innerHTML = `<div class="empty">Couldn't load exercises.<br><small>${esc(e.message)}</small></div>`; hideSplash(); return; }
   initMedia(); initTimer();
+  // 26b: first open (nothing set up yet, landing on Home) -> onboarding; deep links are never hijacked
+  if (!S.profile?.onboarded && !S.settings.onboarded && !S.sessions.length && !S.workouts.length && /^#?\/?$/.test(location.hash)) history.replaceState(null, "", "#/start");
   route(); renderPill();
   if ("serviceWorker" in navigator) {
     // FE-3/PERF-5: a new version waits; "Reload" activates it and reloads once, so code never mixes versions

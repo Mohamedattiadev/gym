@@ -1,4 +1,4 @@
-// Guides: onboarding quiz (-> plan), strength standards, nutrition calculator + guide, plans explained.
+// Guides: onboarding (-> plan) + profile, strength standards, nutrition calculator + guide, plans explained.
 // Content lives in data/guide/*.json (en/tr/ar); this module is lazy-loaded by the router.
 import { S, save } from "./store.js";
 import { $, esc, ic, haptic, toast, selectIn, indicate } from "./ui.js";
@@ -23,57 +23,190 @@ const loading = () => (view().innerHTML = `<div class="empty">Loading…</div>`)
 export function guideView() {
   setTop({ title: "Guides", back: true });
   const t = (href, icn, c, b, s) => `<a class="itile" href="${href}" style="--c:${c}"><span class="ico">${ic(icn)}</span><div><b>${b}</b><span>${s}</span></div></a>`;
-  view().innerHTML = `<div class="itiles">${t("#/start", "user", "var(--accent)", "Find my plan", "5 quick questions")}
+  view().innerHTML = `<div class="itiles">${t("#/start", "user", "var(--accent)", "Find my plan", "Level, days, equipment")}
     ${t("#/plans", "layers", "var(--tier-A)", "Plans explained", "What, who, why")}
     ${t("#/standards", "trophy", "var(--tier-S)", "Strength goals", "Aim for at least…")}
     ${t("#/nutrition", "fire", "var(--info)", "Nutrition", "Calories & protein")}</div>`;
 }
 
-/* ---------------- onboarding quiz ---------------- */
-const quiz = { i: 0, a: {} };
+/* ---------------- onboarding (block 26b): level -> days + equipment -> body -> recommended plan ---------------- */
+// Shown once on the first open (main.js boot), re-run from Settings / Guides, edited in Me > Profile (#/profile).
+const LEVELS = [["beginner", "Beginner", "Training less than 1 year, or not consistent yet."], ["intermediate", "Intermediate", "1–3 years, you know the main lifts."], ["advanced", "Advanced", "3+ years, progress has slowed down."]];
+const NOT_SURE = [
+  ["How long have you trained without long breaks?", ["Less than 1 year", "1 to 3 years", "More than 3 years"]],
+  ["Do you know the main lifts (squat, bench press, row, deadlift)?", ["Not really", "Most of them", "Yes, with good form"]],
+  ["How often does the weight on your main lifts go up?", ["Most weeks", "Every month or so", "Only over many months"]],
+];
+const DAYS = [2, 3, 4, 5, 6];
+const LB = 2.2046, IN = 2.54;
+const ob = { i: 0, a: {}, ns: null, picked: false };
+const firstRun = () => !S.profile?.onboarded;
+const markOnboarded = () => { setProf({ onboarded: true }); if (!S.settings.onboarded) { S.settings.onboarded = true; save("settings"); } };
 export async function startView() {
-  setTop({ title: "Find my plan", back: true }); loading();
-  const rid = routeId(); const ob = await load("onboarding"); if (!live(rid)) return; const Q = ob.questions || [];
-  if (!quiz.started) { const p = prof(); quiz.a = { level: p.level, days: p.days, equip: S.settings.equip, goal: p.goal, sex: p.sex }; quiz.i = 0; quiz.started = true; }
-  const steps = [...Q, { id: "bw" }];
+  setTop({ title: firstRun() ? "Welcome" : "Find my plan", back: !firstRun() }); loading(); view().classList.add("obview");
+  const rid = routeId(); const od = await load("onboarding"); if (!live(rid)) return;
+  if (!ob.started) {
+    const p = prof(), n = p.nutri || {};
+    ob.a = { level: p.level, days: p.days || 3, equip: S.settings.equip || "gym" };
+    ob.b = { unit: S.settings.unit || "kg", hu: p.hu || "cm", w: lastBW() || "", h: n.h || "", age: n.age || "", sex: p.sex || n.sex || "" };
+    ob.i = 0; ob.ns = null; ob.picked = false; ob.started = true;
+  }
+  const equipQ = (od.questions || []).find((q) => q.id === "equip");
+  const dots = () => `<div class="obtop"><div class="obdots" role="img" aria-label="Step ${ob.i + 1} of 4">${[0, 1, 2, 3].map((k) => `<i class="${k < ob.i ? "done" : k === ob.i ? "on" : ""}"></i>`).join("")}</div>${ob.i === 1 || ob.i === 2 ? `<button class="btn ghost sm" id="obSkip">Skip</button>` : ""}</div>`;
+  const nav = (ok = true, label = "Next") => `<div class="row obnav">${ob.i ? `<button class="btn grow" id="obBack">${ic("back", "sm")} Back</button>` : ""}<button class="btn primary grow" id="obNext" ${ok ? "" : "disabled"}>${label}</button></div>`;
+  const step = (k) => { ob.i = k; draw(); window.scrollTo(0, 0); };
   const draw = () => {
-    if (quiz.i >= steps.length) return result(ob);
-    const q = steps[quiz.i], n = steps.length;
-    const head = `<div class="qprog"><i style="width:${(quiz.i / n) * 100}%"></i></div><div class="dim tiny" style="margin:10px 0 4px">Question ${quiz.i + 1} of ${n}</div>`;
-    const nav = `<div class="row" style="margin-top:16px">${quiz.i ? `<button class="btn grow" id="qBack">${ic("back", "sm")} Back</button>` : ""}<button class="btn primary grow" id="qNext" ${q.id === "bw" || quiz.a[q.id] != null ? "" : "disabled"}>Next</button></div>`;
-    if (q.id === "bw") {
-      view().innerHTML = `${head}<h2 class="qt">What do you weigh?</h2><div class="muted small">Used for strength goals and calories. Optional.</div>
-        <div class="field" style="margin-top:14px"><label for="qBw">Bodyweight (${S.settings.unit})</label><input id="qBw" type="number" inputmode="decimal" min="25" max="300" step="0.1" value="${lastBW() || ""}" placeholder="e.g. 75"></div>${nav}`;
+    if (ob.i >= 3) return result(od);
+    if (ob.ns) return notSure();
+    if (ob.i === 0) {
+      view().innerHTML = `${dots()}<h2 class="qt">What is your level?</h2><div class="muted small">Picks the right plan. You can change it any time.</div>
+        <div class="stack tight" style="margin-top:14px" id="obOpts">${LEVELS.map(([v, t, d]) => `<button class="qopt ${ob.a.level === v ? "on" : ""}" data-v="${v}"><b>${t}</b><span>${d}</span></button>`).join("")}</div>
+        ${ob.picked ? `<div class="small obnote">${ic("check", "sm")} Picked from your answers. Change it if it feels wrong.</div>` : ""}
+        <button class="btn ghost block" id="obNs" style="margin-top:8px">Not sure? Answer 3 quick questions</button>${nav(!!ob.a.level)}`;
+      $("#obOpts").onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b) return; haptic(); ob.a.level = b.dataset.v; ob.picked = false; setProf({ level: ob.a.level }); markOnboarded(); step(1); };
+      $("#obNs").onclick = () => { ob.ns = { i: 0, s: [] }; draw(); };
+    } else if (ob.i === 1) {
+      view().innerHTML = `${dots()}<h2 class="qt">How many days a week can you train?</h2>
+        <div class="obdays" id="obDays" role="group" aria-label="Days a week">${DAYS.map((d) => `<button class="${ob.a.days === d ? "on" : ""}" data-v="${d}"><b class="num">${d}</b><span>days</span></button>`).join("")}</div>
+        <h3 class="qt sm">Where do you train?</h3>
+        <div class="stack tight" id="obEq">${(equipQ?.options || []).map((o) => `<button class="qopt ${ob.a.equip === o.v ? "on" : ""}" data-v="${o.v}"><b>${esc(L(o.label))}</b>${o.desc ? `<span>${esc(L(o.desc))}</span>` : ""}</button>`).join("")}</div>${nav()}`;
+      $("#obDays").onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b) return; haptic(); ob.a.days = +b.dataset.v; selectIn(b); };
+      $("#obEq").onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b) return; haptic(); ob.a.equip = b.dataset.v; selectIn(b); };
     } else {
-      view().innerHTML = `${head}<h2 class="qt">${esc(L(q.title))}</h2>${q.help ? `<div class="muted small">${esc(L(q.help))}</div>` : ""}
-        <div class="stack tight" style="margin-top:14px" id="qOpts">${(q.options || []).map((o) => `<button class="qopt ${String(quiz.a[q.id]) === String(o.v) ? "on" : ""}" data-v="${o.v}"><b>${esc(L(o.label))}</b>${o.desc ? `<span>${esc(L(o.desc))}</span>` : ""}</button>`).join("")}</div>${nav}`;
-      $("#qOpts").onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b) return; haptic(); quiz.a[q.id] = q.id === "days" ? +b.dataset.v : b.dataset.v; quiz.i++; draw(); };
+      view().innerHTML = `${dots()}<h2 class="qt">About you</h2><div class="muted small">For strength goals and calories. You can add this later in Me.</div>
+        <div class="card pad" style="margin-top:14px" id="obBody">${bodyFields(ob.b)}</div>${nav()}`;
+      wireBody($("#obBody"), ob.b);
     }
-    const bk = $("#qBack"); if (bk) bk.onclick = () => { quiz.i--; draw(); };
-    $("#qNext").onclick = () => { if (q.id === "bw") { const w = +$("#qBw").value; if (w && (w < 25 || w > 300)) return toast("Enter a weight between 25 and 300"); quiz.a.bw = w; } quiz.i++; draw(); };
+    const bk = $("#obBack"); if (bk) bk.onclick = () => step(ob.i - 1);
+    const sk = $("#obSkip"); if (sk) sk.onclick = () => { if (ob.i === 1) saveDays({ days: prof().days || 3, equip: S.settings.equip || "gym" }); step(ob.i + 1); };
+    $("#obNext").onclick = () => {
+      if (ob.i === 0) { setProf({ level: ob.a.level }); markOnboarded(); return step(1); }
+      if (ob.i === 1) { saveDays(ob.a); return step(2); }
+      const b = readBody($("#obBody"), ob.b); if (!b) return; saveBody(b); step(3);
+    };
+  };
+  const notSure = () => {
+    const k = ob.ns.i, [q, opts] = NOT_SURE[k];
+    view().innerHTML = `${dots()}<div class="dim tiny" style="margin:2px 0 4px">Question ${k + 1} of 3</div><h2 class="qt">${q}</h2>
+      <div class="stack tight" style="margin-top:14px" id="obOpts">${opts.map((t, v) => `<button class="qopt" data-v="${v}"><b>${t}</b></button>`).join("")}</div>
+      <div class="row obnav"><button class="btn grow" id="obBack">${ic("back", "sm")} Back</button></div>`;
+    $("#obOpts").onclick = (e) => {
+      const b = e.target.closest("[data-v]"); if (!b) return; haptic(); ob.ns.s[k] = +b.dataset.v;
+      if (k < 2) { ob.ns.i++; return draw(); }
+      const sum = ob.ns.s.reduce((x, y) => x + y, 0); // 0–6: <= 2 beginner, 3–4 intermediate, 5+ advanced
+      ob.a.level = sum <= 2 ? "beginner" : sum <= 4 ? "intermediate" : "advanced"; ob.picked = true; ob.ns = null; draw();
+    };
+    $("#obBack").onclick = () => { if (ob.ns.i) ob.ns.i--; else ob.ns = null; draw(); };
   };
   draw();
 }
+const saveDays = ({ days, equip }) => { setProf({ days }); if (S.settings.equip !== equip) { S.settings.equip = equip; save("settings"); } };
+
+/* body fields (onboarding step 3 + Me > Profile). b = { unit kg|lb, hu cm|ft, w (in unit), h (cm), age, sex } */
+function bodyFields(b) {
+  const ft = b.h ? Math.floor(b.h / IN / 12) : "", inch = b.h ? Math.round(b.h / IN - ft * 12) : "";
+  return `<div class="obgrid">
+    <div class="field"><label for="bW">Weight</label><div class="row" style="gap:8px"><input id="bW" type="number" inputmode="decimal" step="0.1" value="${b.w || ""}" placeholder="${b.unit === "lb" ? "e.g. 165" : "e.g. 75"}">${seg("bWu", [["kg", "kg"], ["lb", "lb"]], b.unit)}</div></div>
+    <div class="field"><label for="${b.hu === "ft" ? "bFt" : "bH"}">Height</label><div class="row" style="gap:8px">${b.hu === "ft"
+      ? `<input id="bFt" type="number" inputmode="numeric" value="${ft}" placeholder="ft" aria-label="Feet"><input id="bIn" type="number" inputmode="numeric" value="${inch}" placeholder="in" aria-label="Inches">`
+      : `<input id="bH" type="number" inputmode="numeric" value="${b.h || ""}" placeholder="e.g. 175">`}${seg("bHu", [["cm", "cm"], ["ft", "ft"]], b.hu)}</div></div>
+    <div class="field"><label for="bAge">Age</label><input id="bAge" type="number" inputmode="numeric" value="${b.age || ""}" placeholder="e.g. 30"></div>
+    <div class="field"><label>Sex</label>${seg("bSex", [["male", "Male"], ["female", "Female"]], b.sex, "block")}</div></div>`;
+}
+/* reads the inputs into b (keeps the draft when a unit toggle re-renders); returns null + toast when a value is out of range */
+function readBody(host, b) {
+  const v = (id) => { const x = host.querySelector("#" + id); return x && x.value !== "" ? +x.value : ""; };
+  const w = v("bW"), h = b.hu === "ft" ? (v("bFt") !== "" || v("bIn") !== "" ? Math.round(((+v("bFt") || 0) * 12 + (+v("bIn") || 0)) * IN) : "") : v("bH"), age = v("bAge");
+  Object.assign(b, { w, h, age });
+  const [lo, hi] = b.unit === "lb" ? [55, 660] : [25, 300];
+  if (w !== "" && (w < lo || w > hi)) return toast(`Enter a weight between ${lo} and ${hi} ${b.unit}`), null;
+  if (h !== "" && (h < 120 || h > 230)) return toast(b.hu === "ft" ? "Enter a height between 4 ft 0 in and 7 ft 6 in" : "Enter a height between 120 and 230 cm"), null;
+  if (age !== "" && (age < 14 || age > 90)) return toast("Enter an age between 14 and 90"), null;
+  return b;
+}
+function wireBody(host, b, onChange) {
+  const redraw = () => { host.innerHTML = bodyFields(b); wireBody(host, b, onChange); };
+  segVal(host.querySelector("#bWu"), (u) => { readBody(host, b); if (u !== b.unit && b.w) b.w = Math.round((u === "lb" ? b.w * LB : b.w / LB) * 10) / 10; b.unit = u; redraw(); onChange?.(); });
+  segVal(host.querySelector("#bHu"), (u) => { readBody(host, b); b.hu = u; redraw(); onChange?.(); });
+  segVal(host.querySelector("#bSex"), (s) => { b.sex = s; onChange?.(); });
+  if (onChange) host.onchange = (e) => { if (e.target.matches("input")) onChange(); };
+}
+function saveBody(b) {
+  const p = prof(), n = (p.nutri = p.nutri || {});
+  if (S.settings.unit !== b.unit) { // unit change: convert the logged bodyweights too
+    const f = b.unit === "lb" ? LB : 1 / LB;
+    S.bodyweight = (S.bodyweight || []).map((x) => ({ ...x, w: Math.round(x.w * f * 10) / 10, updatedAt: Date.now() })); save("bodyweight");
+    S.settings.unit = b.unit; save("settings");
+  }
+  if (b.w && +b.w !== lastBW()) saveBW(+b.w);
+  if (b.h) n.h = b.h; if (b.age) n.age = b.age; if (b.sex) { p.sex = b.sex; n.sex = b.sex; }
+  delete n.w; p.hu = b.hu; save("profile");
+}
+
+/* nutrition numbers (shared by the Nutrition page and the onboarding result); w in kg */
+function nutriCalc(nu, n, w) {
+  const bmr = 10 * w + 6.25 * n.h - 5 * n.age + (n.sex === "female" ? -161 : 5);
+  const a = (nu.activity || []).find((x) => x.id === n.act) || { f: 1.55 }, g = (nu.goals || []).find((x) => x.id === n.goal) || { kcalPct: 0 };
+  const tdee = bmr * a.f, kcal = Math.round((tdee * (1 + g.kcalPct)) / 10) * 10;
+  const [p1, p2] = nu.protein?.gPerKg || [1.6, 2.2], prot = [Math.round(w * p1), Math.round(w * p2)];
+  const fat = Math.round((kcal * (nu.fat?.pctKcal?.[0] || 0.25)) / 9), carb = Math.max(0, Math.round((kcal - prot[1] * 4 - fat * 9) / 4));
+  return { tdee, kcal, prot, fat, carb, g };
+}
+const kgBW = () => (S.settings.unit === "lb" ? lastBW() / LB : lastBW());
+
 export const pickPlan = (a) => P.pickPlans(a)[0]?.p.id || "beg-fb";
-async function result(ob) {
-  const a = quiz.a;
-  setProf({ level: a.level, days: a.days, goal: a.goal, sex: a.sex });
-  if (a.equip) { S.settings.equip = a.equip; S.settings.onboarded = true; save("settings"); }
-  if (a.bw) saveBW(a.bw);
-  quiz.started = false;
-  const rid = routeId(), tx = await P.loadPlanText(); if (!live(rid)) return;
-  const picks = P.pickPlans(a), eq = EQUIP_PROFILES[a.equip]?.name;
+async function result() {
+  const a = ob.a, first = firstRun() || !S.workouts.length;
+  ob.started = false; markOnboarded();
+  const rid = routeId(), [tx, st, nu] = await Promise.all([P.loadPlanText(), load("standards"), load("nutrition")]); if (!live(rid)) return;
+  const picks = P.pickPlans(a), best = picks[0].p, eq = EQUIP_PROFILES[S.settings.equip]?.name;
   const why = (w) => L(tx.why?.[w])?.replace("{n}", a.days) || "";
-  view().innerHTML = `<div class="qprog"><i style="width:100%"></i></div><div class="eyebrow" style="margin-top:14px">${esc(L(ob.result?.title) || "Your plan")}</div>
-    <h2 class="qt">${esc(picks[0].p.name)}</h2><div class="muted small">${picks[0].p.days} days a week${eq ? ` · ${esc(eq)}` : ""}</div>
-    <div class="card pad" style="margin-top:12px">${esc(L(tx.plans?.[picks[0].p.id]?.best) || L(ob.result?.why?.[picks[0].p.id]))}</div>
-    <div class="row" style="margin-top:14px"><a class="btn grow" href="#/plan/${picks[0].p.id}">How it works</a><button class="btn primary grow" id="qUse">${ic("plus", "sm")} Use this plan</button></div>
-    ${picks.length > 1 ? `<div class="h4">Also good for you</div><div class="stack tight" id="qAlt">${picks.slice(1).map(({ p, why: w }) => T.planCard(p, { why: why(w) })).join("")}</div>` : ""}
+  const p = prof(), n = p.nutri || {}, bw = lastBW(), unit = S.settings.unit;
+  let targets = "";
+  if (bw) {
+    const li = { beginner: 0, intermediate: 1, advanced: 2 }[p.level] ?? 0, sex = p.sex || "male", r = 2.5;
+    const goals = (st.lifts || []).filter((l) => ["squat", "bench", "deadlift"].includes(l.id))
+      .map((l) => `${esc(L(l.name))} <b class="num">${Math.round(((l.ratios?.[sex] || [])[li] * bw) / r) * r} ${unit}</b>`).join(" · ");
+    const nn = n.h && n.age && (p.sex || n.sex) ? nutriCalc(nu, { sex: p.sex || n.sex, age: n.age, h: n.h, act: n.act || nu.activity?.[2]?.id, goal: n.goal || "maintain" }, kgBW()) : null;
+    targets = `<div class="card pad obtarget"><b>Your targets</b>
+      ${goals ? `<div class="small" style="margin-top:6px">Strength goals: ${goals}</div>` : ""}
+      ${nn ? `<div class="small" style="margin-top:4px">About <b class="num">${nn.kcal} kcal</b> a day to keep your weight · protein <b class="num">${nn.prot[0]}–${nn.prot[1]} g</b></div>` : `<div class="dim tiny" style="margin-top:4px">Add height and age in Me > Profile for calories.</div>`}
+      <div class="row small" style="margin-top:8px;gap:14px"><a href="#/standards" class="lnk">Strength goals</a><a href="#/nutrition" class="lnk">Nutrition</a></div></div>`;
+  }
+  view().innerHTML = `<div class="obtop"><div class="obdots" role="img" aria-label="Step 4 of 4"><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div></div>
+    <div class="eyebrow" style="margin-top:6px">${best.id === P.recommendedId(a.level, a.days) ? "Recommended for you" : "Your best fit"}</div>
+    <h2 class="qt">${esc(L(tx.plans?.[best.id]?.name) || best.name)}</h2><div class="muted small">${best.days} days a week${eq ? ` · ${esc(eq)}` : ""} · ${esc(p.level || best.level)}</div>
+    <div class="card pad" style="margin-top:12px"><div class="small">${esc(L(tx.plans?.[best.id]?.best) || L(tx.plans?.[best.id]?.line) || why(picks[0].why))}</div>
+      <a class="small lnk" href="#/plan/${best.id}" style="display:inline-block;margin-top:8px">How a week works</a></div>
+    <div class="row obnav"><a class="btn grow" href="#/plans">See other plans</a><button class="btn primary grow" id="qUse">${ic("plus", "sm")} Use this plan</button></div>
+    ${targets}
+    ${picks.length > 1 ? `<div class="h4">Also good for you</div><div class="stack tight" id="qAlt">${picks.slice(1).map(({ p: q, why: w }) => T.planCard(q, { why: why(w) })).join("")}</div>` : ""}
     <button class="btn ghost block" style="margin-top:10px" id="qAgain">Start over</button>`;
-  $("#qUse").onclick = async () => { if (await T.usePlan(picks[0].p, false)) go("#/train"); };
-  const alt = $("#qAlt"); if (alt) alt.onclick = (e) => { if (e.target.closest("[data-use]")) { e.preventDefault(); T.usePlan(P.planById(e.target.closest("[data-use]").dataset.use), false).then((ok) => ok && go("#/train")); } else T.planClicks(e); };
-  $("#qAgain").onclick = () => { quiz.i = 0; startView(); };
+  const done = (ok) => ok && go(first ? "#/" : "#/train");
+  $("#qUse").onclick = async () => done(await T.usePlan(best, false));
+  const alt = $("#qAlt"); if (alt) alt.onclick = (e) => { const u = e.target.closest("[data-use]"); if (u) { e.preventDefault(); T.usePlan(P.planById(u.dataset.use), false).then(done); } else T.planClicks(e); };
+  $("#qAgain").onclick = () => { ob.started = false; startView(); };
+  T.fillPlanLines?.(view());
   haptic("success");
+}
+
+/* ---------------- Me > Profile ---------------- */
+export async function profileView() {
+  setTop({ title: "Profile", back: true });
+  const p = prof(), n = p.nutri || {};
+  const b = { unit: S.settings.unit || "kg", hu: p.hu || "cm", w: lastBW() || "", h: n.h || "", age: n.age || "", sex: p.sex || n.sex || "" };
+  view().innerHTML = `<div class="cols"><div class="stack">
+      <div class="card pad"><div class="field"><label>Level</label>${seg("prLv", LEVELS.map(([v, t]) => [v, t]), p.level || "", "block")}</div>
+        <div class="field"><label>Days a week</label>${seg("prDays", DAYS.map((d) => [d, String(d)]), p.days || 3, "block")}</div>
+        <div class="field" style="margin-bottom:0"><label>Equipment</label>${seg("prEq", [["gym", "Full gym"], ["dumbbells", "Dumbbells"], ["home", "Home"]], S.settings.equip || "gym", "block")}</div></div>
+      <a class="btn block" href="#/start">${ic("user", "sm")} Find my plan again</a></div>
+    <div class="stack"><div class="card pad" id="prBody">${bodyFields(b)}</div>
+      <div class="row small" style="gap:14px;padding:0 4px"><a href="#/standards" class="lnk">Strength goals</a><a href="#/nutrition" class="lnk">Nutrition</a></div></div></div>`;
+  segVal($("#prLv"), (v) => setProf({ level: v, onboarded: true }));
+  segVal($("#prDays"), (v) => setProf({ days: +v }));
+  segVal($("#prEq"), (v) => { S.settings.equip = v; save("settings"); });
+  const host = $("#prBody"); wireBody(host, b, () => { if (readBody(host, b)) saveBody(b); });
+  requestAnimationFrame(() => indicate(view()));
 }
 
 /* ---------------- strength standards ---------------- */
@@ -114,12 +247,8 @@ export async function nutritionView() {
   const p = prof(), n = (p.nutri = p.nutri || {});
   n.sex = n.sex || p.sex || "male"; n.age = n.age || 25; n.h = n.h || 175; n.act = n.act || acts[2]?.id; n.goal = n.goal || (p.goal === "fatloss" ? "cut" : p.goal === "muscle" ? "lean-bulk" : "maintain");
   const draw = () => {
-    const kgW = S.settings.unit === "lb" ? lastBW() / 2.2046 : lastBW(), w = n.w || kgW || 75;
-    const bmr = 10 * w + 6.25 * n.h - 5 * n.age + (n.sex === "female" ? -161 : 5);
-    const a = acts.find((x) => x.id === n.act) || { f: 1.55 }, g = goals.find((x) => x.id === n.goal) || { kcalPct: 0 };
-    const tdee = bmr * a.f, kcal = Math.round((tdee * (1 + g.kcalPct)) / 10) * 10;
-    const [p1, p2] = nu.protein?.gPerKg || [1.6, 2.2], prot = [Math.round(w * p1), Math.round(w * p2)];
-    const fat = Math.round((kcal * (nu.fat?.pctKcal?.[0] || 0.25)) / 9), carb = Math.max(0, Math.round((kcal - prot[1] * 4 - fat * 9) / 4));
+    const w = n.w || kgBW() || 75;
+    const { tdee, kcal, prot, fat, carb, g } = nutriCalc(nu, n, w);
     view().innerHTML = `<div class="card pad nutri">
         <div class="kpis"><div class="kpi"><b class="num">${kcal}</b><span>kcal / day</span></div><div class="kpi"><b class="num">${prot[0]}–${prot[1]} g</b><span>Protein</span></div><div class="kpi"><b class="num">${fat} g</b><span>Fat (min)</span></div><div class="kpi"><b class="num">${carb} g</b><span>Carbs</span></div></div>
         <div class="dim tiny" style="margin-top:6px">Maintenance about ${Math.round(tdee / 10) * 10} kcal${g.rate ? ` · ${esc(L(g.rate))}` : ""}</div></div>

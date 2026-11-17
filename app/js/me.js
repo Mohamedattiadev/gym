@@ -22,6 +22,7 @@ export function meView() {
   view().innerHTML = `<div class="ptabs" id="mtabs">${[["progress", "Progress"], ["history", "History"]].map(([k, l]) => `<button data-k="${k}" class="${me.tab === k ? "on" : ""}">${l}</button>`).join("")}</div>
     <div class="tab-panel" id="mpanel"></div>
     <div class="card list-sep" style="margin-top:18px">
+      <a class="setrow-s" href="#/profile"><span class="ico">${ic("user", "sm")}</span><b class="grow">Profile</b><span class="v hide-s">Level, days, body</span>${ic("chev", "sm")}</a>
       <a class="setrow-s" href="#/guide"><span class="ico">${ic("info", "sm")}</span><b class="grow">Guides</b><span class="v hide-s">Plan quiz, strength goals, nutrition</span>${ic("chev", "sm")}</a>
       <a class="setrow-s" href="#/settings"><span class="ico">${ic("settings", "sm")}</span><b class="grow">Settings</b><span class="v hide-s">Theme, units, backup</span>${ic("chev", "sm")}</a></div>`;
   $("#mtabs").onclick = (e) => { const b = e.target.closest("button"); if (!b || b.classList.contains("on")) return; haptic(); me.tab = b.dataset.k; selectIn(b); panel(); };
@@ -154,6 +155,7 @@ export async function settingsView() {
       <div class="card list-sep">
         ${row(document.documentElement.dataset.theme === "light" ? "sun" : "moon", "Theme", segH("sTheme", [["light", "Light"], ["dark", "Dark"], ["system", "Auto"]], st.theme || "system"))}
         <div class="setrow-s wrap">${`<span class="ico">${ic("dumbbell", "sm")}</span><div class="grow"><b>Equipment</b><div class="dim tiny">Library, plans and swaps show only what you have</div></div>`}${segH("sEquip", [["gym", "Full gym"], ["dumbbells", "Dumbbells"], ["home", "Home"]], st.equip || "gym").replace('class="seg sm"', 'class="seg sm block"')}</div>
+        <a class="setrow-s" href="#/start"><span class="ico">${ic("user", "sm")}</span><div class="grow"><b>Set-up questions</b><div class="dim tiny">Level, days, equipment, body · picks a plan</div></div>${ic("chev", "sm")}</a>
         ${row("scale", "Units", segH("sUnit", [["kg", "kg"], ["lb", "lb"]], st.unit))}
         ${row("calc", "Bar weight", segH("sBar", [[20, "20"], [15, "15"], [10, "10"]], st.bar))}
       </div>
