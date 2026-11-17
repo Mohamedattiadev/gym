@@ -227,11 +227,22 @@ function hero(e) {
         <div class="v3d-bar"><div class="seg sm" id="v3dv">${["front", "side", "back"].map((k) => `<button data-v="${k}" class="${v3dView === k ? "on" : ""}">${k[0].toUpperCase() + k.slice(1)}</button>`).join("")}</div>
         ${mv ? `<button class="v3d-play" id="v3dp" aria-label="Pause">${ic("pause", "sm")}</button>` : ""}</div>
         <span class="cap"><i style="background:var(--accent)"></i>Main <i style="background:color-mix(in oklab, var(--accent) 50%, #b8b0a9)"></i>Helpers${mv ? "" : ` · <span class="dim">still pose</span>`} · <a class="dim" href="https://github.com/AssiamahS/opengym3d" target="_blank" rel="noopener">OpenGym3D</a></span>`
-    : mode === "video" ? `<video id="vid" src="${e.video}" poster="${e.poster}" autoplay muted loop playsinline preload="auto"></video><div class="ctl"><button id="spd" aria-label="Playback speed 1×">${ic("speed", "sm")}<b>1×</b></button></div>`
+    : mode === "video" ? `<video id="vid" src="${e.video}" poster="${e.poster}" autoplay muted loop playsinline preload="auto"></video><div class="ctl"><button id="spd" aria-label="Playback speed 1×">${ic("speed", "sm")}<b>1×</b></button><button id="fsb" class="sq" aria-label="Full screen">${ic("fs", "sm")}</button></div>`
       : `<div class="hmus${hasFig ? " withfig" : ""}">${hasFig ? `<img class="fig" src="${e.figure}" alt="Animated figure of this movement, worked muscles in red">` : ""}
           <div class="mini-body">${hasFig ? paint(bodySVG(backFirst(e) ? "back" : "front")) : paint(bodySVG("front")) + paint(bodySVG("back"))}</div>${musList(e)}</div>`}`;
   const v = $("#vid", h);
-  if (v) { const sp = [1, .5, .25]; let i = 0; const sb = $("#spd", h); sb.onclick = () => { i = (i + 1) % 3; v.playbackRate = sp[i]; $("b", sb).textContent = sp[i] + "×"; sb.setAttribute("aria-label", `Playback speed ${sp[i]}×`); haptic(); }; v.play().catch(() => {}); }
+  if (v) { const sp = [1, .5, .25]; let i = 0; const sb = $("#spd", h); sb.onclick = () => { i = (i + 1) % 3; v.playbackRate = sp[i]; $("b", sb).textContent = sp[i] + "×"; sb.setAttribute("aria-label", `Playback speed ${sp[i]}×`); haptic(); };
+    const fb = $("#fsb", h), isFs = () => document.fullscreenElement === h || document.webkitFullscreenElement === h;
+    const toggleFs = () => {
+      haptic();
+      if (isFs()) return (document.exitFullscreen || document.webkitExitFullscreen)?.call(document);
+      if (h.requestFullscreen) h.requestFullscreen({ navigationUI: "hide" }).then(() => { if (v.videoWidth > v.videoHeight) screen.orientation?.lock?.("landscape").catch(() => {}); }).catch(() => {});
+      else if (h.webkitRequestFullscreen) h.webkitRequestFullscreen();
+      else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen(); // iPhone Safari: native player only
+    };
+    fb.onclick = toggleFs;
+    v.ondblclick = toggleFs; let lt = 0; v.addEventListener("touchend", (ev) => { const t = Date.now(); if (t - lt < 300) { ev.preventDefault(); toggleFs(); lt = 0; } else lt = t; });
+    h.onfullscreenchange = h.onwebkitfullscreenchange = () => { const on = isFs(); h.classList.toggle("fs", on); fb.innerHTML = ic(on ? "fsx" : "fs", "sm"); fb.setAttribute("aria-label", on ? "Exit full screen" : "Full screen"); if (!on) screen.orientation?.unlock?.(); }; v.play().catch(() => {}); }
   if (mode === "3d") {
     const box = $("#v3d", h);
     import("./view3d.js").then((m) => m.mount3d(box, { primary: e.primary || [], secondary: e.secondary || [], move: mv, view: v3dView }))

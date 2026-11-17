@@ -1,6 +1,6 @@
 /* Offline support: app shell is precached (stale-while-revalidate); posters/videos are cached on first view
    (or all at once via Settings → Download all). Videos answer Range requests from cache. */
-const VERSION = "v17";
+const VERSION = "v18";
 const SHELL = `gym-shell-${VERSION}`;
 const MEDIA = "gym-media-v1"; // keep name stable so downloaded media survives app updates
 const SHELL_FILES = ["./", "index.html", "css/app.css", "fonts/Inter.woff2", "manifest.webmanifest",

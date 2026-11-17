@@ -117,8 +117,8 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 - ✅ **Exercise page declutter + equipment chips + Joint care sheet + 3 tabs** (owner, block 17, session 7)
 - ✅ **Human-looking body (18 ✅ session 5) + rotatable 3D muscle body for every exercise (19 ✅ session 6)** (owner: "looks like a stick man", "all angles")
 
-- ✅ **19a** readable hero controls (session 8) · ✅ **19e** UX benchmark Blok A (session 8)
-- ⬜ **19b–19d** 3D upgrade, fullscreen video, pro lock-screen rest timer (Media Session) — owner
+- ✅ **19a** readable hero controls · ✅ **19e** UX benchmark Blok A · ✅ **19c** fullscreen video (session 8)
+- ⬜ **19d, 19b** pro lock-screen rest timer (Media Session), 3D upgrade — owner
 - ⬜ **22b** quality polish + UX benchmark fixes (docs/ux_benchmark.md) — owner
 - ⬜ **25** printable PDF guide per level (en/tr/ar), generated from our data — owner
 
@@ -199,6 +199,7 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 ## Notes (2026-11-17, session 8)
 - 19a: hero pills are solid dark (#141414c4 + 1px light border + shadow), 36px seg, 38px speed button with `speed` icon + bold rate (46px hit area), top/bottom scrims only in video mode (`.dhero.isvid`). Letterbox-aware placement skipped: the scrims make it unnecessary.
 - 19e: topbar 95% opaque + hairline when scrolled; default theme `system` (Auto) in store/main/me/index.html — existing installs that stored "light" keep it; `--ctl` token (light #958B84 3.3:1, dark #7A706A 3.5:1) on inputs, search, steppers, check (outline until done); light `--warn` #8F5F0F (4.8:1); figure in Muscles hero: multiply + radial mask (light), invert+hue-rotate+screen (dark); all hero modes `min(40dvh,360px)`; sticky CTA labels in `.lbl` collapse to icon while scrolling down (`body.scroll-down`); manifest: no orientation, 3 shortcuts, screenshots app/icons/shot-{narrow,wide}.png; Train empty state = compact row; splash min 1.2 s first open of the day, else hides on first render; Install card at the bottom of Home, only after the first finished workout, hidden on desktop; Me > Strength: `topExercises()` now uses the same done-set rule as `history()`, <2 points = one-line hint.
+- 19c: fullscreen button next to speed (`#fsb`, icons fs/fsx); requestFullscreen on the hero box (keeps our speed + exit controls, seg hidden), landscape lock when the video is wide (Android), webkit prefix, iPhone Safari falls back to `video.webkitEnterFullscreen()` (native player); double-click / double-tap toggles. Not testable headless — owner checks on phone.
 - A13 checked: `hack-squat-toes-low-quad-copy` really is a Smith squat video (source CMS copy slugs; 60+ `-copy` slugs, names come from the real titles). Slugs are IDs in saved sessions — not renamed.
 
 ## Real-phone lessons (from the owner's Fluent365 Pocket test on Android) — apply to Gym
