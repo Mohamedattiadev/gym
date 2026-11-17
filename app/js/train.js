@@ -322,7 +322,7 @@ function entryHTML(en, ei) {
       ${pv ? `<button class="prev num" data-a="prev" data-w="${esc(pv.w)}" data-r="${esc(pv.r)}" aria-label="Same as last time: ${esc(wr(pv.w, pv.r, u))}">${esc(wr(pv.w, pv.r))}</button>` : `<span class="prev dim">—</span>`}
       <div class="stepper"><input data-k="w" inputmode="decimal" enterkeyhint="next"${barb ? ' title="Hold for plates"' : ""} placeholder="${esc(tg.w || "kg")}" value="${esc(s.w)}" aria-label="Weight"></div>
       <div class="stepper"><input data-k="r" inputmode="numeric" enterkeyhint="done" placeholder="${esc(tg.r || "—")}" value="${esc(s.r)}" aria-label="Reps"></div>
-      <button class="check" data-a="done" aria-label="Set done">${ic("check")}</button>
+      <button class="check" data-a="done" aria-pressed="${!!s.done}" aria-label="Set ${warm ? "warm-up" : n} done">${ic("check")}</button>
       <div class="stepline"><div><button data-a="w-" aria-label="Less weight">−</button><span>${wStep(e)} ${u}</span><button data-a="w+" aria-label="More weight">+</button></div>
         <div><button data-a="r-" aria-label="Fewer reps">−</button><span>1 rep</span><button data-a="r+" aria-label="More reps">+</button></div></div></div>`; }).join("")}</div>
     <div class="xtools"><button class="btn sm" data-a="add">${ic("plus", "sm")} Set</button><button class="btn sm" data-a="warm">${ic("flame", "sm")} Warm-up</button>

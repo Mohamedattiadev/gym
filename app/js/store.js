@@ -59,17 +59,32 @@ async function migrateFromV1() {
 const dirty = new Set(); let timer;
 export function save(...keys) {
   (keys.length ? keys : Object.keys(DEFAULTS)).forEach((k) => dirty.add(k));
-  clearTimeout(timer); timer = setTimeout(flush, 150);
+  clearTimeout(timer); timer = setTimeout(flushSafe, 150);
 }
+// FE-5: keys stay dirty until the write succeeds; one retry with a fresh connection (Safari drops it in the
+// background), then the user is told instead of silently losing the set.
+let warned = 0;
 export async function flush() {
   const keys = [...dirty]; dirty.clear();
   if (!keys.length) return;
-  if (!db) { try { localStorage.setItem("gymy2", JSON.stringify(S)); } catch {} return; }
-  await tx("readwrite", (st) => keys.forEach((k) => st.put(structuredClone(S[k]), k)));
+  if (!db) {
+    try { localStorage.setItem("gymy2", JSON.stringify(S)); } catch (e) { keys.forEach((k) => dirty.add(k)); fail(e); }
+    return;
+  }
+  const put = () => tx("readwrite", (st) => keys.forEach((k) => st.put(structuredClone(S[k]), k)));
+  try { await put(); } catch (e1) {
+    try { db = await idb(); await put(); } catch (e) { keys.forEach((k) => dirty.add(k)); fail(e); }
+  }
 }
+function fail(e) {
+  console.error("save failed", e);
+  if (Date.now() - warned < 30000) return; warned = Date.now();
+  import("./ui.js").then((u) => u.toast("Couldn't save — phone storage may be full", 4000)).catch(() => {});
+}
+const flushSafe = () => { flush().catch(() => {}); };
 async function saveAll() { Object.keys(DEFAULTS).concat("schema").forEach((k) => dirty.add(k)); await flush(); }
-addEventListener("pagehide", flush);
-document.addEventListener("visibilitychange", () => document.hidden && flush());
+addEventListener("pagehide", flushSafe);
+document.addEventListener("visibilitychange", () => document.hidden && flushSafe());
 
 export async function persist() {
   try {

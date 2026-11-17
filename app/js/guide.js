@@ -3,7 +3,7 @@
 import { S, save } from "./store.js";
 import { $, esc, ic, haptic, toast, selectIn, indicate } from "./ui.js";
 import { EX, bestOf, EQUIP_PROFILES } from "./data.js";
-import { setTop, go, redirect } from "./main.js";
+import { setTop, go, redirect, routeId, live } from "./main.js";
 import * as T from "./train.js";
 import * as Sync from "./sync.js";
 
@@ -33,7 +33,7 @@ export function guideView() {
 const quiz = { i: 0, a: {} };
 export async function startView() {
   setTop({ title: "Find my plan", back: true }); loading();
-  const ob = await load("onboarding"); const Q = ob.questions || [];
+  const rid = routeId(); const ob = await load("onboarding"); if (!live(rid)) return; const Q = ob.questions || [];
   if (!quiz.started) { const p = prof(); quiz.a = { level: p.level, days: p.days, equip: S.settings.equip, goal: p.goal, sex: p.sex }; quiz.i = 0; quiz.started = true; }
   const steps = [...Q, { id: "bw" }];
   const draw = () => {
@@ -79,7 +79,7 @@ function result(ob) {
 /* ---------------- strength standards ---------------- */
 export async function standardsView() {
   setTop({ title: "Strength goals", back: true }); loading();
-  const st = await load("standards"); const lifts = st.lifts || [], lv = st.levels || [];
+  const rid = routeId(); const st = await load("standards"); if (!live(rid)) return; const lifts = st.lifts || [], lv = st.levels || [];
   const unit = S.settings.unit;
   const best = (lift) => { // best e1RM among exercises whose name matches
     let re; try { re = new RegExp(lift.match, "i"); } catch { return null; }
@@ -110,7 +110,7 @@ export async function standardsView() {
 /* ---------------- nutrition ---------------- */
 export async function nutritionView() {
   setTop({ title: "Nutrition", back: true }); loading();
-  const nu = await load("nutrition"); const acts = nu.activity || [], goals = nu.goals || [];
+  const rid = routeId(); const nu = await load("nutrition"); if (!live(rid)) return; const acts = nu.activity || [], goals = nu.goals || [];
   const p = prof(), n = (p.nutri = p.nutri || {});
   n.sex = n.sex || p.sex || "male"; n.age = n.age || 25; n.h = n.h || 175; n.act = n.act || acts[2]?.id; n.goal = n.goal || (p.goal === "fatloss" ? "cut" : p.goal === "muscle" ? "lean-bulk" : "maintain");
   const draw = () => {
@@ -146,7 +146,7 @@ export async function nutritionView() {
 /* ---------------- plans explained ---------------- */
 export async function plansView(id) {
   setTop({ title: id ? "Plan" : "Plans explained", back: true }); loading();
-  const pl = await load("plans"); const C = pl.plans || {};
+  const rid = routeId(); const pl = await load("plans"); if (!live(rid)) return; const C = pl.plans || {};
   if (id) {
     const p = T.PLANS.find((x) => x.id === id), c = C[id] || {}; if (!p) return redirect("#/plans");
     setTop({ title: p.name, back: true });

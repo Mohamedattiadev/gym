@@ -1,8 +1,11 @@
-/* Offline support: app shell is precached (stale-while-revalidate); posters/videos are cached on first view
-   (or all at once via Settings → Download all). Videos answer Range requests from cache. */
-const VERSION = "v37";
+/* Offline support. Code (js/css/html) = cache-first from ONE versioned cache, so a page never mixes versions
+   (FE-3/PERF-5); a new version waits until the user taps "Reload" (or all windows close). data/*.json and
+   illustrations = stale-while-revalidate. 3D engine + model = cache-first in a stable cache that survives app
+   updates (PERF-4). Posters/videos are cached on first view (or Settings → Download all); videos answer Range. */
+const VERSION = "v38";
 const SHELL = `gym-shell-${VERSION}`;
 const MEDIA = "gym-media-v1"; // keep name stable so downloaded media survives app updates
+const THREE_D = "gym-3d-v1"; // vendor/three + 3d/body.glb + 3d/anim: bump ONLY when those files change
 const SHELL_FILES = ["./", "index.html", "css/app.css", "fonts/Inter.woff2", "manifest.webmanifest",
   ...["main", "ui", "store", "data", "calc", "body", "anatomy", "train", "timer", "sync", "home", "exercise", "me", "guide", "share", "view3d", "warmup", "media", "csv"].map((m) => `js/${m}.js`),
   "data/exercises.json", "data/families.en.json", "data/figures.json", "data/guide/heads.json", "data/guide/joints.json",
@@ -11,8 +14,10 @@ const SHELL_FILES = ["./", "index.html", "css/app.css", "fonts/Inter.woff2", "ma
   "icons/icon.svg", "icons/icon-192.png", "icons/icon-512.png"];
 
 self.addEventListener("install", (e) => {
-  e.waitUntil(caches.open(SHELL).then((c) => c.addAll(SHELL_FILES)).then(() => self.skipWaiting()));
+  // cache:"reload" bypasses the HTTP cache so a new version never precaches 10-minute-old copies (FE-4)
+  e.waitUntil(caches.open(SHELL).then((c) => c.addAll(SHELL_FILES.map((u) => new Request(u, { cache: "reload" })))));
 });
+self.addEventListener("message", (e) => { if (e.data === "skip") self.skipWaiting(); });
 
 self.addEventListener("activate", (e) => {
   e.waitUntil((async () => {
@@ -72,12 +77,14 @@ self.addEventListener("fetch", (e) => {
     return;
   }
 
-  // app shell & data: stale-while-revalidate → instant start even with weak gym signal; fresh copy next launch
+  const p = url.pathname, key = url.origin + p; // one entry per file (query strings ignored)
+  const is3d = /\/vendor\/three\/|\/3d\/(body\.glb|anim\/)/.test(p);
+  const swr = /\/data\/|\/illustrations\//.test(p);
   e.respondWith((async () => {
-    const cache = await caches.open(SHELL);
-    const hit = await cache.match(req, { ignoreSearch: true });
-    const net = fetch(req).then((r) => { if (r.ok) cache.put(req, r.clone()); return r; }).catch(() => null);
-    if (hit) { e.waitUntil(net); return hit; }
-    return (await net) || (req.mode === "navigate" ? cache.match("index.html") : new Response("", { status: 504 }));
+    const cache = await caches.open(is3d ? THREE_D : SHELL);
+    const hit = await cache.match(key) || (req.mode === "navigate" && await cache.match(new URL("./", location).href));
+    const net = fetch(req).then((r) => { if (r.ok && r.status === 200) cache.put(key, r.clone()); return r; }).catch(() => null);
+    if (hit) { if (swr) e.waitUntil(net); return hit; }
+    return (await net) || (req.mode === "navigate" ? cache.match(new URL("index.html", location).href) : new Response("", { status: 504 }));
   })());
 });

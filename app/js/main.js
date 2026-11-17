@@ -1,5 +1,5 @@
 // App shell: router, top bar, theme, shared exercise card, body map, Jeff's videos, boot.
-import { S, save, loadStore, persist } from "./store.js";
+import { S, save, loadStore, persist, flush } from "./store.js";
 import { $, $$, esc, ic, openSheet, closeSheet, initSheet, toast, haptic, unlockAudio, indicate, selectIn, RM } from "./ui.js";
 import { EX, searchEx, byTier, weeklyVolume, loadExercises, hasEquip, hurts, recovery } from "./data.js";
 import { MUSCLES, MBY, bodySVG, muscleBox, zoomTo, FULL, HEAT, CREDIT } from "./body.js";
@@ -31,11 +31,16 @@ export const MEDIA_CACHE = "gym-media-v1";
 /* ================= router ================= */
 const TAB_OF = { "": "home", lib: "lib", ex: "lib", body: "body", train: "train", workout: "train", session: "train", pick: "train", me: "me", videos: "home", settings: "settings", timer: "train", guide: "me", start: "train", standards: "me", nutrition: "me", plans: "train", plan: "train", warmup: "train" };
 let lastDepth = 0;
+// FE-2: every route() gets an id; async views check live(id) after each await so a late view never paints over the next page
+let routeSeq = 0;
+export const routeId = () => routeSeq;
+export const live = (id) => id === routeSeq;
 export function go(hash) { location.hash = hash; }
 // FE-1: guard redirects and "leave this page for good" replace the history entry (no Back trap)
 export function redirect(hash) { location.replace(hash); }
 export const routeParts = () => (location.hash.slice(1) || "/").split("?")[0].split("/");
 function route() {
+  routeSeq++;
   const [, a = "", b] = routeParts();
   const narrow = innerWidth < 768;
   const depth = ["ex", "workout", "session", "pick", "videos", "guide", "start", "standards", "nutrition", "plans", "plan", "warmup"].includes(a) || ((a === "timer" || a === "settings") && narrow) ? 1 : 0;
@@ -58,7 +63,7 @@ function route() {
 }
 addEventListener("hashchange", () => { closeSheet(); route(); });
 export const rerender = () => route();
-const G = (fn, mod = "guide") => (x) => import(`./${mod}.js`).then((m) => m[fn](x)).then(() => { fillIll(view); requestAnimationFrame(() => indicate(view)); }).catch((err) => { console.error(err); view.innerHTML = `<div class="empty">Could not load.</div>`; });
+const G = (fn, mod = "guide") => (x) => { const rid = routeSeq; return import(`./${mod}.js`).then((m) => live(rid) && m[fn](x)).then(() => { if (!live(rid)) return; fillIll(view); requestAnimationFrame(() => indicate(view)); }).catch((err) => { console.error(err); if (live(rid)) view.innerHTML = `<div class="empty">Could not load.</div>`; }); };
 
 /** Top bar. shy: the title only fades in once the page title has scrolled away (no duplicate titles). */
 export function setTop({ title = "", back = false, right = "", shy = false } = {}) {
@@ -394,9 +399,14 @@ addEventListener("pointerdown", unlockAudio, { once: true });
   initMedia(); initTimer();
   route(); renderPill();
   if ("serviceWorker" in navigator) {
+    // FE-3/PERF-5: a new version waits; "Reload" activates it and reloads once, so code never mixes versions
+    let reloading = false;
+    const offer = (w) => w && navigator.serviceWorker.controller && toast("New version ready", 8000, { label: "Reload", fn: async () => { reloading = true; await flush().catch(() => {}); w.postMessage("skip"); } });
+    navigator.serviceWorker.addEventListener("controllerchange", () => { if (reloading) location.reload(); });
     navigator.serviceWorker.register("sw.js").then((reg) => {
+      offer(reg.waiting);
       reg.addEventListener("updatefound", () => {
-        const nw = reg.installing; nw?.addEventListener("statechange", () => { if (nw.state === "installed" && navigator.serviceWorker.controller) toast("Update ready — reopen the app", 4000); });
+        const nw = reg.installing; nw?.addEventListener("statechange", () => { if (nw.state === "installed") offer(nw); });
       });
     }).catch(() => {});
   }

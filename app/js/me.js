@@ -153,10 +153,10 @@ export async function settingsView() {
         ${row("calc", "Bar weight", segH("sBar", [[20, "20"], [15, "15"], [10, "10"]], st.bar))}
       </div>
       <div class="card list-sep">
-        ${row("timer", "Auto rest timer", `<button class="switch ${st.autoRest ? "on" : ""}" data-k="autoRest" aria-label="Auto rest timer"></button>`, "Starts after every checked set")}
-        ${row("play", "Lock-screen rest timer", `<button class="switch ${st.lockTimer !== false ? "on" : ""}" data-k="lockTimer" aria-label="Lock-screen rest timer"></button>`, `Rest time and next set on the lock screen · <a href="#" id="lockHelp" style="color:var(--accent-text)">How it works</a>`)}
-        ${row("bolt", "Sound", `<button class="switch ${st.sound ? "on" : ""}" data-k="sound" aria-label="Sound"></button>`)}
-        ${row("phone", "Vibration", `<button class="switch ${st.haptics ? "on" : ""}" data-k="haptics" aria-label="Vibration"></button>`)}
+        ${row("timer", "Auto rest timer", `<button class="switch ${st.autoRest ? "on" : ""}" role="switch" aria-checked="${!!(st.autoRest)}" data-k="autoRest" aria-label="Auto rest timer"></button>`, "Starts after every checked set")}
+        ${row("play", "Lock-screen rest timer", `<button class="switch ${st.lockTimer !== false ? "on" : ""}" role="switch" aria-checked="${!!(st.lockTimer !== false)}" data-k="lockTimer" aria-label="Lock-screen rest timer"></button>`, `Rest time and next set on the lock screen · <a href="#" id="lockHelp" style="color:var(--accent-text)">How it works</a>`)}
+        ${row("bolt", "Sound", `<button class="switch ${st.sound ? "on" : ""}" role="switch" aria-checked="${!!(st.sound)}" data-k="sound" aria-label="Sound"></button>`)}
+        ${row("phone", "Vibration", `<button class="switch ${st.haptics ? "on" : ""}" role="switch" aria-checked="${!!(st.haptics)}" data-k="haptics" aria-label="Vibration"></button>`)}
       </div>
       ${joints.length ? `<div class="card pad"><div class="row"><span class="ico-t">${ic("bandage", "sm")}</span><div class="grow"><b>Pain flags</b><div class="dim small">${joints.map((j) => esc(JOINTS[j]?.name?.en || j)).join(", ")} · ${Object.keys(S.pain).length} exercises hidden</div></div><button class="btn sm" id="clrPain">Clear</button></div></div>` : ""}
     </div><div class="stack">
@@ -184,7 +184,7 @@ export async function settingsView() {
   seg("sTheme", (v) => { set("theme", v); applyTheme(); });
   seg("sEquip", (v) => { set("equip", v); lib.mine = true; toast(`Showing exercises for: ${EQUIP_PROFILES[v].name}`); });
   seg("sUnit", (v) => set("unit", v)); seg("sBar", (v) => set("bar", +v));
-  $$(".switch[data-k]").forEach((s) => (s.onclick = () => { s.classList.toggle("on"); set(s.dataset.k, s.classList.contains("on")); }));
+  $$(".switch[data-k]").forEach((s) => (s.onclick = () => { s.classList.toggle("on"); s.setAttribute("aria-checked", s.classList.contains("on")); set(s.dataset.k, s.classList.contains("on")); }));
   $("#lockHelp").onclick = (e) => { e.preventDefault(); openSheet(`<h3 style="margin:0 0 8px">Lock-screen rest timer</h3>
     <p class="muted small" style="margin:0 0 8px">During a workout the rest timer shows on the lock screen and in the notification player: time left, the next set and weight. Pause = pause rest, Next = skip rest, the seek buttons = +30 s / −15 s. When rest ends you hear a beep, the phone vibrates (Android) and a notification appears.</p>
     <p class="muted small" style="margin:0 0 8px"><b>Android:</b> works in Chrome and the installed app. It uses a silent audio track, so on some phones it pauses music from other apps — turn it off here if it does.</p>
@@ -265,7 +265,7 @@ function cloudCard() {
     <button class="btn primary sm block" id="cCon">Connect</button>`;
   return `<b>Cloud backup (GitHub)</b><p class="muted small" style="margin:4px 0 10px">Connected to <b>${esc(st.owner)}/${esc(st.repo)}</b> · last backup ${st.lastPush ? fmtDate(st.lastPush, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "never"}${st.pending ? " · pending" : ""}</p>
     ${st.error ? `<p class="small" style="color:var(--danger);margin:0 0 10px">${esc(st.error)}</p>` : ""}
-    <div class="row" style="margin-bottom:10px"><span class="grow small b">Auto backup after changes</span><button class="switch ${st.auto ? "on" : ""}" id="cAuto" aria-label="Auto backup"></button></div>
+    <div class="row" style="margin-bottom:10px"><span class="grow small b">Auto backup after changes</span><button class="switch ${st.auto ? "on" : ""}" role="switch" aria-checked="${!!(st.auto)}" id="cAuto" aria-label="Auto backup"></button></div>
     <div class="row wrap"><button class="btn sm primary" id="cPush">Back up now</button><button class="btn sm" id="cRest">Restore</button><button class="btn sm ghost danger" id="cDis">Disconnect</button></div>`;
 }
 function wireCloud() {

@@ -5,7 +5,7 @@ import { S, save } from "./store.js";
 import { $, esc, ic, haptic, beep, toast, selectIn, indicate, openSheet } from "./ui.js";
 import { BY, lastSets } from "./data.js";
 import { warmupSets } from "./calc.js";
-import { setTop, go, redirect, fillIll } from "./main.js";
+import { setTop, go, redirect, fillIll, routeId, live } from "./main.js";
 import * as T from "./train.js";
 
 const view = () => $("#view");
@@ -51,7 +51,7 @@ let Q = null; // current player queue {title, items, i, back, slugs, cool}
 export async function warmupView(arg) {
   const [, , sub, id] = (location.hash.slice(1) || "/").split("?")[0].split("/");
   view().innerHTML = `<div class="empty">Loading…</div>`;
-  const w = await load();
+  const rid = routeId(); const w = await load(); if (!live(rid)) return;
   if (!w.drills) { setTop({ title: "Warm-up", back: true }); view().innerHTML = `<div class="empty">Could not load.</div>`; return; }
   if (sub === "play") return Q ? player(w) : go("#/warmup");
   if (sub === "s" || sub === "w") {
