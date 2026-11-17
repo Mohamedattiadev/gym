@@ -19,6 +19,7 @@ import re,hashlib,base64,sys; h=open("app/index.html").read(); sc=re.findall(r"<
 ok=all("sha256-"+base64.b64encode(hashlib.sha256(s.encode()).digest()).decode() in h for s in sc) and "Content-Security-Policy" in h
 print(len(sc),"inline script(s)"); sys.exit(0 if ok else 1)'
 step "no inline on*= handlers in templates (CSP blocks them)" bash -c '! grep -nE " on[a-z]+=\"" app/js/*.js app/index.html'
+step "no module imports main.js (FE-12: no circular imports)" bash -c '! grep -nE "from \"\./main\.js\"|import\(\"\./main\.js\"\)" app/js/*.js'
 step "route smoke test (phone + desktop, light + dark)" node tools/test/routes.mjs "$OUT/routes"
 step "3D prop check" node tools/test/check3d.mjs
 echo; [ $fail = 0 ] && echo "ALL PASS" || echo "SOME CHECKS FAILED"; exit $fail

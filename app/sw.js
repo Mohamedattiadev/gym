@@ -2,12 +2,12 @@
    (FE-3/PERF-5); a new version waits until the user taps "Reload" (or all windows close). data/*.json and
    illustrations = stale-while-revalidate. 3D engine + model = cache-first in a stable cache that survives app
    updates (PERF-4). Posters/videos are cached on first view (or Settings → Download all); videos answer Range. */
-const VERSION = "v44";
+const VERSION = "v45";
 const SHELL = `gym-shell-${VERSION}`;
 const MEDIA = "gym-media-v1"; // keep name stable so downloaded media survives app updates
 const THREE_D = "gym-3d-v1"; // vendor/three + 3d/body.glb + 3d/anim: bump ONLY when those files change
 const SHELL_FILES = ["./", "index.html", "css/app.css", "fonts/Inter.woff2", "manifest.webmanifest",
-  ...["main", "ui", "store", "data", "calc", "body", "anatomy", "train", "timer", "sync", "home", "exercise", "me", "guide", "share", "view3d", "warmup", "media", "csv", "log", "sanitize"].map((m) => `js/${m}.js`),
+  ...["main", "nav", "components", "install", "ui", "store", "data", "calc", "body", "anatomy", "train", "timer", "sync", "home", "exercise", "me", "guide", "share", "view3d", "warmup", "media", "csv", "log", "sanitize"].map((m) => `js/${m}.js`),
   "data/exercises.json", "data/families.en.json", "data/figures.json", "data/guide/heads.json", "data/guide/joints.json",
   ...["plans", "nutrition", "standards", "onboarding", "equipment", "warmups"].map((n) => `data/guide/${n}.json`),
   ...["empty-history", "empty-workouts", "hero-start", "plan", "pr", "rest-recovery", "timer", "warmup"].map((n) => `illustrations/${n}.svg`),

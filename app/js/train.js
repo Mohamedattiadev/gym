@@ -3,7 +3,8 @@ import { S, save, tomb, persist } from "./store.js";
 import { $, $$, esc, ic, uid, ask, askText, openSheet, closeSheet, toast, haptic, beep, confetti, fmtDur, RM } from "./ui.js";
 import { EX, BY, byTier, hasEquip, hurts, history, lastSets, bestOf, setsText, swaps, LEVEL_N, WEEK } from "./data.js";
 import { e1rm, platesFor, plateColor, plateHeight, warmupSets, suggest } from "./calc.js";
-import { go, redirect, setTop, tierBadge, restText, fillIll } from "./main.js";
+import { go, redirect, setTop } from "./nav.js";
+import { tierBadge, restText, fillIll } from "./components.js";
 import * as Tm from "./timer.js";
 
 const view = () => $("#view");

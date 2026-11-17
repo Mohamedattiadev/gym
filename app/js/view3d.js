@@ -184,11 +184,16 @@ function makeProp(kinds, model, dark) {
 }
 
 /** CSS colour (any syntax, incl. color-mix) -> THREE.Color */
+// PERF-3: memoised per theme + accent (the 1x1 readback cost ~140 ms per call on phones)
+const colMemo = new Map(); let probeCtx;
+const themeKey = () => { const d = document.documentElement; return d.dataset.theme + "|" + getComputedStyle(d).getPropertyValue("--accent"); };
 function cssColor(expr) {
-  const c = document.createElement("canvas"); c.width = c.height = 1; const x = c.getContext("2d");
-  const probe = document.createElement("i"); probe.style.color = expr; document.body.appendChild(probe);
-  x.fillStyle = getComputedStyle(probe).color; probe.remove(); x.fillRect(0, 0, 1, 1);
-  const [r, g, b] = x.getImageData(0, 0, 1, 1).data; return new THREE.Color().setRGB(r / 255, g / 255, b / 255, THREE.SRGBColorSpace);
+  const k = themeKey() + "|" + expr; let c = colMemo.get(k); if (c) return c.clone();
+  if (!probeCtx) { const cv = document.createElement("canvas"); cv.width = cv.height = 1; probeCtx = cv.getContext("2d", { willReadFrequently: true }); }
+  const x = probeCtx, probe = document.createElement("i"); probe.style.color = expr; document.body.appendChild(probe);
+  x.clearRect(0, 0, 1, 1); x.fillStyle = getComputedStyle(probe).color; probe.remove(); x.fillRect(0, 0, 1, 1);
+  const [r, g, b] = x.getImageData(0, 0, 1, 1).data; c = new THREE.Color().setRGB(r / 255, g / 255, b / 255, THREE.SRGBColorSpace);
+  colMemo.set(k, c); return c.clone();
 }
 
 function adjacency(geo) {
@@ -200,7 +205,11 @@ function adjacency(geo) {
   return sets.map((s) => Int32Array.from(s));
 }
 
+// PERF-3: painted buffers are reused for the same muscles + theme (same family across exercises)
+const paintMemo = new Map();
 function paint(geo, labels, adj, primary, secondary) {
+  const pk = [...primary].sort() + "|" + [...secondary].sort() + "|" + themeKey(), hit = paintMemo.get(pk);
+  if (hit) { geo.setAttribute("color", new THREE.BufferAttribute(hit.col, 3)); geo.setAttribute("glow", new THREE.BufferAttribute(hit.glow, 1)); return; }
   const n = labels.length, P = new Float32Array(n), S = new Float32Array(n);
   for (let i = 0; i < n; i++) { const m = IDS[labels[i] - 1]; if (primary.includes(m)) P[i] = 1; else if (secondary.includes(m)) S[i] = 1; }
   for (const F of [P, S]) for (let r = 0; r < 4; r++) { const s = F.slice(); for (let i = 0; i < n; i++) { const a = adj[i]; if (!a.length) continue; let t = 0; for (let k = 0; k < a.length; k++) t += s[a[k]]; F[i] = .5 * s[i] + .5 * t / a.length; } }
@@ -211,6 +220,26 @@ function paint(geo, labels, adj, primary, secondary) {
   for (let i = 0; i < n; i++) { const p = ss(P[i]); c.copy(base).lerp(sec, ss(S[i])).lerp(pri, p); col.set([c.r, c.g, c.b], i * 3); glow[i] = p; }
   geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
   geo.setAttribute("glow", new THREE.BufferAttribute(glow, 1));
+  paintMemo.set(pk, { col, glow }); if (paintMemo.size > 24) paintMemo.delete(paintMemo.keys().next().value);
+}
+
+// PERF-3: WebGL renderers are pooled (no new context + shader compile per exercise, no forceContextLoss per page);
+// one shared body material keeps its compiled program. Contexts are only dropped on pagehide.
+const pool = []; let bodyMat;
+function takeRenderer() {
+  const r = pool.pop() || new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "low-power" });
+  r.outputColorSpace = THREE.SRGBColorSpace; r.setPixelRatio(Math.min(devicePixelRatio, 2)); return r;
+}
+function giveRenderer(r) { r.domElement.remove(); r.renderLists.dispose(); if (pool.length < 2) pool.push(r); else { r.dispose(); r.forceContextLoss(); } }
+addEventListener("pagehide", (e) => { if (e.persisted) return; pool.splice(0).forEach((r) => { r.dispose(); r.forceContextLoss(); }); });
+function getBodyMat() {
+  if (bodyMat) return bodyMat;
+  bodyMat = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: .62, metalness: 0 });
+  bodyMat.onBeforeCompile = (sh) => { // subtle self-glow on the main muscles (per-vertex "glow" attribute)
+    sh.vertexShader = sh.vertexShader.replace("#include <common>", "#include <common>\nattribute float glow;\nvarying float vGlow;").replace("#include <begin_vertex>", "#include <begin_vertex>\nvGlow = glow;");
+    sh.fragmentShader = sh.fragmentShader.replace("#include <common>", "#include <common>\nvarying float vGlow;").replace("#include <emissivemap_fragment>", "#include <emissivemap_fragment>\ntotalEmissiveRadiance += diffuseColor.rgb * vGlow * .32;");
+  };
+  return bodyMat;
 }
 
 export const VIEWS = { front: 0, side: -Math.PI / 2, back: Math.PI };
@@ -225,11 +254,7 @@ export async function mount3d(el, { primary = [], secondary = [], move = null, v
   mesh.geometry = mesh.geometry.clone(); mesh.frustumCulled = false; const la = mesh.geometry.attributes._muscle, labels = Uint8Array.from({ length: la.count }, (_, i) => Math.round(la.getX(i) * (la.normalized ? 255 : 1)));
   adjP ??= Promise.resolve(adjacency(mesh.geometry));
   paint(mesh.geometry, labels, await adjP, primary, secondary);
-  mesh.material = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: .62, metalness: 0 });
-  mesh.material.onBeforeCompile = (sh) => { // subtle self-glow on the main muscles (per-vertex "glow" attribute)
-    sh.vertexShader = sh.vertexShader.replace("#include <common>", "#include <common>\nattribute float glow;\nvarying float vGlow;").replace("#include <begin_vertex>", "#include <begin_vertex>\nvGlow = glow;");
-    sh.fragmentShader = sh.fragmentShader.replace("#include <common>", "#include <common>\nvarying float vGlow;").replace("#include <emissivemap_fragment>", "#include <emissivemap_fragment>\ntotalEmissiveRadiance += diffuseColor.rgb * vGlow * .32;");
-  };
+  mesh.material = getBodyMat();
   if (clip && !clip.tracks) { const P = clip; clip = buildClip(model, P, eqProp); if (P.yaw) model.rotation.y = THREE.MathUtils.degToRad(P.yaw); }
   const pivot = new THREE.Group(); pivot.add(model); scene3.add(pivot);
   scene3.add(new THREE.HemisphereLight(0xffffff, 0x8a7f78, 1.7));
@@ -251,8 +276,7 @@ export async function mount3d(el, { primary = [], secondary = [], move = null, v
   prop?.update();
   const size = box.getSize(new THREE.Vector3()); const reach = Math.max(size.x, size.z);
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "low-power" });
-  renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  const renderer = takeRenderer(), ac = new AbortController(), on = { signal: ac.signal };
   const cv = renderer.domElement; cv.className = "v3d-cv"; el.appendChild(cv);
   const cam = new THREE.PerspectiveCamera(28, 1, .05, 30);
   let yaw = VIEWS[view] ?? 0, yawT = yaw, pitch = .06, W = 0, H = 0, dirty = true, zoom = 1, zoomT = 1, panY = 0;
@@ -273,17 +297,17 @@ export async function mount3d(el, { primary = [], secondary = [], move = null, v
   const setZoom = (z) => { zoomT = Math.max(1, Math.min(ZMAX, z)); el.classList.toggle("zoomed", zoomT > 1.01); loop(); };
   cv.addEventListener("pointerdown", (e) => { pts.set(e.pointerId, e); cv.setPointerCapture(e.pointerId);
     if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch = { d: Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY), z: zoomT }; drag = null; }
-    else drag = { x: e.clientX, y: e.clientY, yaw: yawT, pitch, pan: panY }; });
+    else drag = { x: e.clientX, y: e.clientY, yaw: yawT, pitch, pan: panY }; }, on);
   cv.addEventListener("pointermove", (e) => { if (!pts.has(e.pointerId)) return; pts.set(e.pointerId, e);
     if (pinch && pts.size === 2) { const [a, b] = [...pts.values()]; setZoom(pinch.z * Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY) / pinch.d); return; }
     if (!drag) return; yawT = drag.yaw + (e.clientX - drag.x) * .012; yaw = yawT;
     if (zoomT > 1.01) panY = drag.pan + (e.clientY - drag.y) * size.y / H / zoom; else pitch = Math.max(-.25, Math.min(.6, drag.pitch + (e.clientY - drag.y) * .006));
-    fit(); });
+    fit(); }, on);
   const up = (e) => { pts.delete(e.pointerId); if (pts.size < 2) pinch = null; if (!pts.size) drag = null; };
-  cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
-  cv.addEventListener("wheel", (e) => { e.preventDefault(); setZoom(zoomT * Math.exp(-e.deltaY * .0015)); }, { passive: false });
+  cv.addEventListener("pointerup", up, on); cv.addEventListener("pointercancel", up, on);
+  cv.addEventListener("wheel", (e) => { e.preventDefault(); setZoom(zoomT * Math.exp(-e.deltaY * .0015)); }, { passive: false, signal: ac.signal });
   const reset = () => { zoomT = 1; panY = 0; pitch = .06; el.classList.remove("zoomed"); fit(); loop(); };
-  cv.addEventListener("dblclick", reset);
+  cv.addEventListener("dblclick", reset, on);
 
   let visible = true, raf = 0, last = performance.now(), dead = false;
   const io = new IntersectionObserver(([en]) => { visible = en.isIntersecting; if (visible) loop(); }); io.observe(el);
@@ -305,7 +329,8 @@ export async function mount3d(el, { primary = [], secondary = [], move = null, v
   loop();
   function dispose() {
     if (dead) return; dead = true; cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); document.removeEventListener("visibilitychange", onVis);
-    mesh.geometry.dispose(); mesh.material.dispose(); renderer.dispose(); renderer.forceContextLoss(); cv.remove();
+    ac.abort();
+    mesh.geometry.dispose(); prop?.g.traverse((o) => { o.geometry?.dispose(); o.material?.dispose(); }); giveRenderer(renderer);
   }
   return {
     setView(k) { const t = VIEWS[k] ?? 0; const d = Math.round((yawT - t) / (2 * Math.PI)); yawT = t + d * 2 * Math.PI; loop(); },

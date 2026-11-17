@@ -3,7 +3,9 @@ import { S } from "./store.js";
 import { $, esc, ic, fmtDate, fmtDur, haptic, delta, fmtKg } from "./ui.js";
 import { BY, EX, periodStats, weekStart, WEEK, DAY, lowMuscles, recovery, hurts } from "./data.js";
 import { MBY, bodySVG } from "./body.js";
-import { setTop, go, installBanner, wireInstall, xcard, onImg } from "./main.js";
+import { setTop, go } from "./nav.js";
+import { installBanner, wireInstall } from "./install.js";
+import { xcard, onImg } from "./components.js";
 import * as T from "./train.js";
 import * as Tm from "./timer.js";
 

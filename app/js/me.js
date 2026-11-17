@@ -4,7 +4,9 @@ import { $, $$, esc, ic, ask, askText, openSheet, closeSheet, toast, haptic, fmt
 import { EX, BY, EQUIP_PROFILES, bestOf, setsText, weeklyVolume, periodStats, exerciseStats, weekStart, WEEK, DAY, history, flaggedJoints, JOINTS } from "./data.js";
 import { MUSCLES, MBY } from "./body.js";
 import { e1rm } from "./calc.js";
-import { setTop, applyTheme, fillIll, installNow, standalone, MEDIA_CACHE, tierBadge } from "./main.js";
+import { setTop } from "./nav.js";
+import { installNow, standalone } from "./install.js";
+import { applyTheme, fillIll, MEDIA_CACHE, tierBadge } from "./components.js";
 import { lib } from "./exercise.js";
 import * as Sync from "./sync.js";
 import { readLog, clearLog } from "./log.js";

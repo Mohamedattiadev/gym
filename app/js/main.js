@@ -4,6 +4,9 @@ import { S, save, tomb, loadStore, persist, flush, degraded } from "./store.js";
 import { $, $$, esc, ic, openSheet, closeSheet, initSheet, toast, haptic, unlockAudio, indicate, selectIn, RM } from "./ui.js";
 import { EX, searchEx, byTier, weeklyVolume, loadExercises, hasEquip, hurts, recovery } from "./data.js";
 import { MUSCLES, MBY, bodySVG, muscleBox, zoomTo, FULL, HEAT, CREDIT } from "./body.js";
+import { nextRoute, routeId, live, go, routeParts, onRoute, setTop } from "./nav.js";
+import { MEDIA_CACHE, fillIll, applyTheme, tierBadge, onImg } from "./components.js";
+import "./install.js";
 import * as T from "./train.js";
 import { homeView } from "./home.js";
 import { libraryView, exerciseView } from "./exercise.js";
@@ -27,22 +30,13 @@ function hideSplash() {
 }
 
 const view = $("#view");
-export const MEDIA_CACHE = "gym-media-v1";
 
 /* ================= router ================= */
 const TAB_OF = { "": "home", lib: "lib", ex: "lib", body: "body", train: "train", workout: "train", session: "train", pick: "train", me: "me", videos: "home", settings: "settings", timer: "train", guide: "me", start: "train", standards: "me", nutrition: "me", plans: "train", plan: "train", warmup: "train" };
 let lastDepth = 0;
-// FE-2: every route() gets an id; async views check live(id) after each await so a late view never paints over the next page
-let routeSeq = 0;
-export const routeId = () => routeSeq;
-export const live = (id) => id === routeSeq;
-export function go(hash) { location.hash = hash; }
-// FE-1: guard redirects and "leave this page for good" replace the history entry (no Back trap)
-export function redirect(hash) { location.replace(hash); }
-export const routeParts = () => (location.hash.slice(1) || "/").split("?")[0].split("/");
 function route(quiet) {
   if (quiet !== true) quiet = false;
-  routeSeq++;
+  nextRoute();
   const [, a = "", b] = routeParts();
   const narrow = innerWidth < 768;
   const depth = ["ex", "workout", "session", "pick", "videos", "guide", "start", "standards", "nutrition", "plans", "plan", "warmup"].includes(a) || ((a === "timer" || a === "settings") && narrow) ? 1 : 0;
@@ -81,16 +75,9 @@ const refresh = () => {
 addEventListener("store:changed", () => { staleView = true; refresh(); });
 document.addEventListener("visibilitychange", refresh);
 document.addEventListener("focusout", () => setTimeout(refresh, 0));
-export const rerender = () => route();
-const G = (fn, mod = "guide") => (x) => { const rid = routeSeq; return import(`./${mod}.js`).then((m) => live(rid) && m[fn](x)).then(() => { if (!live(rid)) return; fillIll(view); requestAnimationFrame(() => indicate(view)); }).catch((err) => { console.error(err); if (live(rid)) view.innerHTML = `<div class="empty">Could not load.</div>`; }); };
+onRoute(route);
+const G = (fn, mod = "guide") => (x) => { const rid = routeId(); return import(`./${mod}.js`).then((m) => live(rid) && m[fn](x)).then(() => { if (!live(rid)) return; fillIll(view); requestAnimationFrame(() => indicate(view)); }).catch((err) => { console.error(err); if (live(rid)) view.innerHTML = `<div class="empty">Could not load.</div>`; }); };
 
-/** Top bar. shy: the title only fades in once the page title has scrolled away (no duplicate titles). */
-export function setTop({ title = "", back = false, right = "", shy = false } = {}) {
-  $("#tTitle").textContent = title; document.title = title ? `${title} · Gym` : "Gym";
-  const tb = $("#topbar");
-  $("#tBack").hidden = !back; tb.classList.toggle("sub", back); tb.classList.toggle("shy", shy); tb.classList.toggle("empty", !title && !back && !right);
-  $("#tRight").innerHTML = right;
-}
 let lastY = 0, scrollQ = 0;
 // PERF-2: one check per frame; scrollHeight (forces layout) is read only while scrolling down
 addEventListener("scroll", () => {
@@ -101,26 +88,6 @@ addEventListener("scroll", () => {
   });
 }, { passive: true });
 $("#tBack").onclick = () => (history.length > 1 ? history.back() : go("#/"));
-
-/* ================= inline illustrations (follow theme via currentColor) ================= */
-const illCache = {};
-export async function fillIll(root = document) {
-  for (const el of root.querySelectorAll("[data-ill]:empty")) {
-    const n = el.dataset.ill;
-    try { illCache[n] ??= await (await fetch(`illustrations/${n}.svg`)).text(); el.innerHTML = illCache[n]; } catch {}
-  }
-}
-
-/* ================= theme ================= */
-const lightMQ = matchMedia("(prefers-color-scheme: light)");
-export function applyTheme() {
-  const pref = S.settings.theme || "system";
-  const t = pref === "system" ? (lightMQ.matches ? "light" : "dark") : pref;
-  document.documentElement.dataset.theme = t;
-  $$('meta[name="theme-color"]').forEach((m) => m.setAttribute("content", t === "light" ? "#F2EFEC" : "#161413")); // app theme wins over OS scheme
-  try { localStorage.setItem("gym-theme", JSON.stringify(pref)); } catch {}
-}
-lightMQ.addEventListener("change", applyTheme);
 
 /* ================= keyboard shortcuts (desktop) ================= */
 addEventListener("keydown", (e) => {
@@ -162,81 +129,16 @@ function palette() {
   });
 }
 
-/* ================= shared bits ================= */
-export const tierBadge = (t, cls = "") => (t ? `<span class="tier ${t} ${cls}">${t}<small>tier</small></span>` : "");
-export const TIER_INFO = [["S", "Top pick", "One of the best choices for this muscle."], ["A", "Great", "Excellent, use it freely."],
-  ["B", "Good", "Solid, works fine."], ["C", "OK", "Works, but better options exist."]];
-/** One-tap explanation of Jeff Nippard's S/A/B/C tiers. */
-export function tierInfo() {
-  openSheet(`<h3>What do the tiers mean?</h3><p class="muted small" style="margin:-6px 0 12px">Jeff Nippard ranks exercises by how well they build muscle (S best, C weakest).</p>
-    <div class="list-sep">${TIER_INFO.map(([t, w, d]) => `<div class="lrow plain">${tierBadge(t)}<div class="grow"><div class="t">${w}</div><div class="s">${d}</div></div></div>`).join("")}</div>`);
-}
-const LVL = { beginner: [1, "Beginner"], intermediate: [2, "Intermediate"], advanced: [3, "Advanced"] };
-export const levelBars = (l) => { const [n, w] = LVL[l] || [0, ""]; return n ? `<span class="lvl l${n}" title="${w}"><i></i><i></i><i></i></span>${w}` : ""; };
-export const isFav = (s) => S.favorites.includes(s);
-export function toggleFav(s) { const off = isFav(s); S.favorites = off ? S.favorites.filter((x) => x !== s) : [...S.favorites, s]; tomb("favorites", s, !off); save("favorites"); haptic(); }
-export const restText = (sec) => (sec >= 120 ? `${sec / 60} min` : `${sec}s`);
-export function xcard(e, i = 0, sel = false, href = `#/ex/${e.slug}`) {
-  return `<a class="xcard${sel ? " sel" : ""}" href="${href}" data-slug="${e.slug}">
-    <div class="ph"><img data-fade loading="lazy" decoding="async" src="${e.poster}" alt="">${tierBadge(e.tier)}
-      ${isFav(e.slug) ? `<span class="fav">${ic("heart")}</span>` : ""}</div>
-    <div class="meta"><div class="name">${esc(e.name)}</div><div class="sub">${levelBars(e.level)}</div>
-      <div class="tags">${[e.group, e.equipment[0], e.machine && !e.machine.toLowerCase().includes((e.equipment[0] || "~").toLowerCase()) ? e.machine : ""].filter(Boolean).map((x) => `<span>${esc(x)}</span>`).join("")}</div></div></a>`;
-}
-export function onImg(root = document) {
-  $$("img[data-fade]", root).forEach((im) => {
-    if (im.complete && im.naturalWidth) im.classList.add("ok");
-    else { im.onload = () => im.classList.add("ok"); im.onerror = () => (im.style.visibility = "hidden"); }
-  });
-}
-
-/* ================= install ================= */
-let deferredPrompt = null;
-addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); deferredPrompt = e; if (location.hash.length < 3) route(); });
-export const standalone = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone;
-const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-export function installBanner() {
-  if (standalone() || !S.sessions.length || Date.now() - (S.settings.installDismissed || 0) < 3 * 864e5) return "";
-  if (!deferredPrompt && !isIOS()) return "";
-  return `<div class="install" id="install"><img src="icons/icon-192.png" alt="">
-    <div class="grow"><b>Install Gym</b><div class="dim small">Full screen, works offline.</div></div>
-    <button class="btn primary sm" id="doInstall">Install</button><button class="iconbtn sm" id="noInstall" aria-label="Dismiss">${ic("close", "sm")}</button></div>`;
-}
-export function wireInstall() {
-  const d = $("#doInstall"); if (d) d.onclick = installNow;
-  const n = $("#noInstall"); if (n) n.onclick = () => { S.settings.installDismissed = Date.now(); save("settings"); $("#install").remove(); };
-}
-export function installNow() {
-  if (deferredPrompt) {
-    const dp = deferredPrompt; deferredPrompt = null;
-    const fail = () => installNow(); // stale/used prompt -> show the menu steps instead
-    try { Promise.resolve(dp.prompt()).then(() => dp.userChoice).then((c) => { if (c.outcome === "accepted") { toast("Installed"); persist(); } route(); }, fail); } catch { fail(); }
-  } else if (isIOS()) {
-    openSheet(`<h3>Add to Home Screen</h3><ol class="steps">
-        <li><span>Tap the <b>Share</b> button at the bottom of Safari</span></li>
-        <li><span>Choose <b>Add to Home Screen</b></span></li><li><span>Tap <b>Add</b>, then open Gym from your home screen</span></li></ol>
-      <button class="btn primary block" style="margin-top:18px" id="gotIt">Got it</button>`, (el) => ($("#gotIt", el).onclick = closeSheet));
-  } else {
-    const desk = !matchMedia("(pointer: coarse)").matches;
-    openSheet(`<h3>Install Gym</h3><ol class="steps">
-        ${desk ? `<li><span>Click the <b>install icon</b> at the right of the address bar (Chrome / Edge)</span></li><li><span>Or open the browser menu <b>⋮</b> → <b>Install Gym</b></span></li>`
-          : `<li><span>Open the Chrome menu <b>⋮</b> (top right)</span></li><li><span>Tap <b>Install app</b> or <b>Add to Home screen</b></span></li><li><span>Open Gym from your home screen</span></li>`}</ol>
-      <p class="muted small" style="margin:14px 0 0">Just uninstalled it? Reload this page once, then try again. iPhone: Safari → <b>Share</b> → <b>Add to Home Screen</b>.</p>
-      <button class="btn primary block" style="margin-top:18px" id="gotIt">Got it</button>`, (el) => ($("#gotIt", el).onclick = closeSheet));
-  }
-}
-addEventListener("appinstalled", () => { deferredPrompt = null; S.settings.installDismissed = 0; save("settings"); if (location.hash.length < 3) route(); });
-
 /* ================= BODY MAP ================= */
 const bm = { view: "front", mode: "muscles" }; // mode: muscles | week | rec
 const Lg = (o) => (o && typeof o === "object" ? o[S.settings.lang || "en"] || o.en || "" : o || "");
 let HEADS = null;
 const loadHeads = () => (HEADS ??= fetch("data/guide/heads.json").then((r) => r.json()).catch(() => ({ muscles: {} })));
-export function exercisesFor(m) {
+function exercisesFor(m) {
   return EX.filter((e) => (m.regions ? m.regions.includes(e.region) : m.id === "obliques" ? /oblique|twist|side bend|wood ?chop|bicycle/i.test(e.name) : m.groups.includes(e.group)) && hasEquip(e)).sort(byTier);
 }
 /** Which head of muscle `hs` an exercise mainly hits (regex on name, else the default head). */
-export const headOf = (hs, e) => hs.find((h) => h.match && new RegExp(h.match, "i").test(e.name)) || hs.find((h) => h.default) || hs[0];
+const headOf = (hs, e) => hs.find((h) => h.match && new RegExp(h.match, "i").test(e.name)) || hs.find((h) => h.default) || hs[0];
 const heatOf = (m, vol) => HEAT[Math.min(4, Math.ceil(((vol[m.id] || 0) / (m.lm[1] ? m.lm[1] * .6 : 10)) * 4))];
 const recText = (r) => (!r ? "Ready" : r.state === "r" ? `Trained <24h · ~${r.left}h to go` : r.left ? `Needs ~${r.left} more hours` : "Ready");
 let BM = null; // live body-map controller (detail panel), null when the page is not shown
@@ -388,9 +290,6 @@ async function muscleDetail(m, vol, rec, svg, el, ctl) {
 }
 
 /* ================= VIDEOS ================= */
-export const JEFF_VID = { "fGm-ef-4PVk": "Best & Worst Chest Exercises", "jLvqKgW-_G8": "Best & Worst Back Exercises", "SgyUoY0IZ7A": "Best & Worst Shoulder Exercises",
-  "GNO4OtYoCYk": "Best & Worst Biceps Exercises", "OpRMRhr0Ycc": "Best & Worst Triceps Exercises", "kIXcoivzGf8": "Best & Worst Quad Exercises",
-  "3ryh7PNhz3E": "Best & Worst Glute Exercises", "S6rqpxVGKZ4": "The Only 25 Exercises You Need", "qpRGnTTcLpo": "7 Amazing S-Tier Exercises" };
 const VIDEOS = [
   ["Tier lists", [["fGm-ef-4PVk", "Chest"], ["jLvqKgW-_G8", "Back"], ["SgyUoY0IZ7A", "Shoulders"], ["GNO4OtYoCYk", "Biceps"], ["OpRMRhr0Ycc", "Triceps"], ["kIXcoivzGf8", "Quads"], ["3ryh7PNhz3E", "Glutes"]]],
   ["Best of Jeff", [["S6rqpxVGKZ4", "The Only 25 Exercises You Ever Need"], ["qpRGnTTcLpo", "7 Amazing Exercises No One Does (All S-Tier)"], ["928aRhhPP8I", "The Upper Body Workout (1-Year Transformation)"],

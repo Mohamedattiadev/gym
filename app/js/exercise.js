@@ -5,7 +5,8 @@ import { EX, BY, GROUPS, EQUIP, searchEx, hasEquip, byTier, swaps, history, best
   JOINTS, JOINT_IDS, avoidFor, flaggedJoints, jointFriendly, hurts, FAM } from "./data.js";
 import { MBY, bodySVG } from "./body.js";
 import { e1rm } from "./calc.js";
-import { setTop, go, tierBadge, tierInfo, levelBars, xcard, onImg, isFav, toggleFav, restText, JEFF_VID, fillIll, routeParts } from "./main.js";
+import { setTop, go, routeParts } from "./nav.js";
+import { tierBadge, tierInfo, levelBars, xcard, onImg, isFav, toggleFav, restText, JEFF_VID, fillIll } from "./components.js";
 import * as T from "./train.js";
 
 const view = () => $("#view");

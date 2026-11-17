@@ -3,7 +3,7 @@
 import { S, save } from "./store.js";
 import { $, esc, ic, haptic, toast, selectIn, indicate } from "./ui.js";
 import { EX, bestOf, EQUIP_PROFILES } from "./data.js";
-import { setTop, go, redirect, routeId, live } from "./main.js";
+import { setTop, go, redirect, routeId, live } from "./nav.js";
 import * as T from "./train.js";
 
 const view = () => $("#view");
