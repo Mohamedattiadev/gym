@@ -60,7 +60,7 @@ export function trainView() {
       <div class="stack tight stagger">${S.workouts.map((w) => `<div class="wrow"><a class="grow" href="#/workout/${w.id}">
           <img src="${BY[w.items[0]?.slug]?.poster || ""}" alt="" onerror="this.style.visibility='hidden'"><div class="grow"><div class="b ellip">${esc(w.name)}</div><div class="dim small">${w.items.length} exercises · ${w.items.reduce((a, it) => a + +it.sets, 0)} sets</div></div></a>
           <button class="go-btn" data-start="${w.id}" aria-label="Start ${esc(w.name)}">${ic("play")}</button></div>`).join("") ||
-        `<div class="card pad" style="text-align:center"><div class="ill" data-ill="empty-workouts" style="max-width:140px"></div><b>No workouts yet</b><div class="muted small">Use a plan for your level or create your own.</div></div>`}</div>
+        `<div class="card pad row" style="gap:14px;text-align:start"><div class="ill" data-ill="empty-workouts" style="width:84px;margin:0;flex:none"></div><div class="grow"><b>No workouts yet</b><div class="muted small">Use a plan for your level or create your own.</div></div></div>`}</div>
       ${S.active ? "" : `<button class="btn ghost block" id="quick" style="margin-top:6px">${ic("bolt", "sm")} Quick start — empty workout</button>`}
       <div class="sec"><h2>Tools</h2></div>
       <div class="itiles"><button class="itile" id="tPlates"><span class="ico">${ic("calc")}</span><div><b>Plates</b><span>What to load</span></div></button>

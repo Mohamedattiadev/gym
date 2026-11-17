@@ -70,7 +70,7 @@ function perExercise(w0) {
       return `<tr><td><a href="#/ex/${s}" class="b">${esc(BY[s].name)}</a></td><td class="n">${cell(l)}</td><td class="n">${cell(c)}${up ? ` <span class="d up" style="display:inline-flex">${ic("arrowUp", "xs")}</span>` : ""}</td></tr>`; }).join("")}</table></div>`;
 }
 function topExercises() {
-  const n = {}; S.sessions.forEach((s) => s.entries.forEach((en) => (n[en.slug] = (n[en.slug] || 0) + 1)));
+  const n = {}; S.sessions.forEach((s) => s.entries.forEach((en) => { if (en.sets.some((x) => x.done && x.type !== "w" && (+x.w || +x.r))) n[en.slug] = (n[en.slug] || 0) + 1; })); // same rule as history()
   return Object.keys(n).filter((s) => BY[s] && n[s] >= 2).sort((a, b) => n[b] - n[a]).slice(0, 6);
 }
 function progressChart() {
@@ -82,7 +82,7 @@ function progressChart() {
 }
 function plot(slug) {
   const h = history(slug); const pts = h.map((x) => Math.max(...x.sets.map((s) => e1rm(s.w, s.r))));
-  if (!pts.length) return "";
+  if (pts.length < 2) return `<p class="dim small" style="margin:8px 0 0">Log this exercise in two sessions to see the trend.</p>`;
   const b = bestOf(slug);
   return `${lineChart(pts)}<div class="chart-x"><span>${fmtDate(h[0].date, { month: "short", day: "numeric" })}</span><span>Best ${b?.e1rm ?? "—"}${u()}</span><span>${fmtDate(h.at(-1).date, { month: "short", day: "numeric" })}</span></div>`;
 }
@@ -147,7 +147,7 @@ export async function settingsView() {
   const row = (icn, label, ctl, sub = "") => `<div class="setrow-s"><span class="ico">${ic(icn, "sm")}</span><div class="grow"><b>${label}</b>${sub ? `<div class="dim tiny">${sub}</div>` : ""}</div>${ctl}</div>`;
   view().innerHTML = `<div class="cols"><div class="stack">
       <div class="card list-sep">
-        ${row(document.documentElement.dataset.theme === "light" ? "sun" : "moon", "Theme", segH("sTheme", [["light", "Light"], ["dark", "Dark"], ["system", "Auto"]], st.theme || "light"))}
+        ${row(document.documentElement.dataset.theme === "light" ? "sun" : "moon", "Theme", segH("sTheme", [["light", "Light"], ["dark", "Dark"], ["system", "Auto"]], st.theme || "system"))}
         <div class="setrow-s wrap">${`<span class="ico">${ic("dumbbell", "sm")}</span><div class="grow"><b>Equipment</b><div class="dim tiny">Library, plans and swaps show only what you have</div></div>`}${segH("sEquip", [["gym", "Full gym"], ["dumbbells", "Dumbbells"], ["home", "Home"]], st.equip || "gym").replace('class="seg sm"', 'class="seg sm block"')}</div>
         ${row("scale", "Units", segH("sUnit", [["kg", "kg"], ["lb", "lb"]], st.unit))}
         ${row("calc", "Bar weight", segH("sBar", [[20, "20"], [15, "15"], [10, "10"]], st.bar))}

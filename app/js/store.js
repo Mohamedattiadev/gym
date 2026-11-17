@@ -5,7 +5,7 @@ export const SCHEMA = 2;
 const DEFAULTS = {
   favorites: [], workouts: [], sessions: [], active: null, notes: {}, bodyweight: [], pain: {}, adjust: {},
   settings: { unit: "kg", restDefault: 90, autoRest: true, sound: true, haptics: true, bar: 20,
-    plates: [25, 20, 15, 10, 5, 2.5, 1.25], theme: "light", equip: "gym", installDismissed: 0, lastBackup: 0, onboarded: false },
+    plates: [25, 20, 15, 10, 5, 2.5, 1.25], theme: "system", equip: "gym", installDismissed: 0, lastBackup: 0, onboarded: false },
   profile: null, // {level, days, equipment, name}
 };
 

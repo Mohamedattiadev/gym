@@ -14,8 +14,8 @@ import * as Sync from "./sync.js";
    later opens only let the dumbbell snap together (~0.9 s) so the app stays quick. */
 const SPLASH_T0 = performance.now();
 const SPLASH_MIN = (() => {
-  try { const d = new Date().toDateString(); if (localStorage.getItem("gym-splash-day") !== d) { localStorage.setItem("gym-splash-day", d); return 2700; } } catch { /* storage blocked */ }
-  return 900;
+  try { const d = new Date().toDateString(); if (localStorage.getItem("gym-splash-day") !== d) { localStorage.setItem("gym-splash-day", d); return 1200; } } catch { /* storage blocked */ }
+  return 0; // 19e: hide as soon as the first view is ready
 })();
 function hideSplash() {
   const el = document.getElementById("splash");
@@ -39,7 +39,7 @@ function route() {
   const back = depth < lastDepth; lastDepth = depth;
   const keep = (a === "ex" || a === "lib") && innerWidth >= 1000 && !!$("#lpane"); // 2-pane library: only the detail pane changes
   view.onclick = null; view.oninput = null; view.onchange = null; if (!keep) view.className = "";
-  document.body.classList.remove("has-cta");
+  document.body.classList.remove("has-cta", "scroll-down");
   const tab = TAB_OF[a] || "home";
   $$(".nav .navl").forEach((x) => x.classList.toggle("active", x.dataset.tab === tab || (narrow && tab === "settings" && x.dataset.tab === "me")));
   setTop({ back: depth > 0 });
@@ -64,7 +64,11 @@ export function setTop({ title = "", back = false, right = "", shy = false } = {
   $("#tBack").hidden = !back; tb.classList.toggle("sub", back); tb.classList.toggle("shy", shy); tb.classList.toggle("empty", !title && !back && !right);
   $("#tRight").innerHTML = right;
 }
-addEventListener("scroll", () => $("#topbar").classList.toggle("scrolled", scrollY > 56), { passive: true });
+let lastY = 0;
+addEventListener("scroll", () => {
+  $("#topbar").classList.toggle("scrolled", scrollY > 56);
+  const dy = scrollY - lastY; if (Math.abs(dy) > 6) { document.body.classList.toggle("scroll-down", dy > 0 && scrollY > 120 && innerHeight + scrollY < document.documentElement.scrollHeight - 40); lastY = scrollY; }
+}, { passive: true });
 $("#tBack").onclick = () => (history.length > 1 ? history.back() : go("#/"));
 
 /* ================= inline illustrations (follow theme via currentColor) ================= */
@@ -79,7 +83,7 @@ export async function fillIll(root = document) {
 /* ================= theme ================= */
 const lightMQ = matchMedia("(prefers-color-scheme: light)");
 export function applyTheme() {
-  const pref = S.settings.theme || "light";
+  const pref = S.settings.theme || "system";
   const t = pref === "system" ? (lightMQ.matches ? "light" : "dark") : pref;
   document.documentElement.dataset.theme = t;
   $$('meta[name="theme-color"]').forEach((m) => m.setAttribute("content", t === "light" ? "#F2EFEC" : "#161413")); // app theme wins over OS scheme
@@ -129,7 +133,7 @@ addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); deferredPro
 export const standalone = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone;
 const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 export function installBanner() {
-  if (standalone() || Date.now() - (S.settings.installDismissed || 0) < 3 * 864e5) return "";
+  if (standalone() || !S.sessions.length || Date.now() - (S.settings.installDismissed || 0) < 3 * 864e5) return "";
   if (!deferredPrompt && !isIOS()) return "";
   return `<div class="install" id="install"><img src="icons/icon-192.png" alt="">
     <div class="grow"><b>Install Gym</b><div class="dim small">Full screen, works offline.</div></div>

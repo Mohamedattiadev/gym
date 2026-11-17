@@ -63,7 +63,6 @@ export function homeView() {
   view().innerHTML = `
     <div class="hello"><div class="grow"><div class="eyebrow">${fmtDate(Date.now(), { weekday: "long", month: "long", day: "numeric" })}</div><h1>${greeting()}${S.profile?.name ? ", " + esc(S.profile.name) : ""}</h1></div>
       <a class="iconbtn filled" href="#/settings" aria-label="Settings">${ic("settings", "sm")}</a></div>
-    ${installBanner()}
     <div class="cols stagger">
       <div class="stack">${heroCard()}${timerCard()}</div>
       <div class="stack">${S.sessions.length ? weekCard() : ""}
@@ -73,7 +72,8 @@ export function homeView() {
           <a class="itile" href="#/videos" style="--c:var(--tier-S)"><span class="ico">${ic("yt")}</span><div><b>Jeff's tier lists</b><span>Watch rankings</span></div></a></div>`}
       </div></div>
     <div class="sec"><h2>Top S-tier picks</h2><a href="#/lib" id="seeS">See all</a></div>
-    <div class="grid">${top.map((e) => xcard(e)).join("")}</div>`;
+    <div class="grid">${top.map((e) => xcard(e)).join("")}</div>
+    ${installBanner()}`;
   onImg(view());
   const sn = $("#startNext"); if (sn) sn.onclick = () => T.startSession(T.nextWorkout());
   $("#presets").onclick = (e) => { const b = e.target.closest("[data-s]"); if (!b) return; haptic(); Tm.startCountdown(+b.dataset.s, { kind: "rest", label: "Rest" }); };

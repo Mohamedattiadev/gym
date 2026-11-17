@@ -132,7 +132,7 @@ function detail(slug, root) {
         <div class="ptabs fit" id="dtabs" style="margin-top:12px">${[["how", "How to"], ["stats", "Stats"], ["rank", "Ranking & alternatives"]].map(([k, l]) => `<button data-k="${k}" class="${dtab.cur === k ? "on" : ""}">${l}</button>`).join("")}</div>
         <div class="tab-panel" id="dpanel"></div>
       </div></div>
-    <div class="sticky-cta"><button class="btn primary" id="addTo">${ic("plus", "sm")} Add to workout</button>${S.active ? `<button class="btn" id="addNow">${ic("bolt", "sm")} Add now</button>` : ""}</div>`;
+    <div class="sticky-cta"><button class="btn primary" id="addTo">${ic("plus", "sm")}<span class="lbl">Add to workout</span></button>${S.active ? `<button class="btn" id="addNow">${ic("bolt", "sm")}<span class="lbl">Add now</span></button>` : ""}</div>`;
   if (!inPane) document.body.classList.add("has-cta");
   hero(e);
   panel(e);
@@ -144,7 +144,7 @@ function detail(slug, root) {
   const ti = $("#tierInfo", root); if (ti) ti.onclick = () => { haptic(); show("rank"); tabs.scrollIntoView({ behavior: "smooth", block: "start" }); };
   const pc = $("#painChip", root); if (pc) pc.onclick = () => { haptic(); jointCare(e); };
   const vq = $("#eqv", root); if (vq) vq.onclick = (ev) => { const b = ev.target.closest("[data-s]"); if (!b || b.classList.contains("on")) return; haptic();
-    history.replaceState(null, "", `#/ex/${b.dataset.s}`); rerenderDetail(b.dataset.s); };
+    window.history.replaceState(null, "", `#/ex/${b.dataset.s}`); rerenderDetail(b.dataset.s); };
   $("#addTo").onclick = () => T.addToWorkoutSheet(slug);
   const an = $("#addNow"); if (an) an.onclick = () => { T.addToSession(slug); toast("Added to current workout"); };
 }
@@ -171,7 +171,7 @@ function variants(e) {
 }
 function variantsHTML(e) {
   const v = variants(e); if (!v.length) return "";
-  return `<div class="chips eqv" id="eqv">${v.map(({ k, x, on, sim }) => `<button class="chip ${on ? "on" : ""}" data-s="${x.slug}" title="${esc(x.name)}">${esc(KIND_NAME[k] || k)}${sim ? `<span class="n">similar</span>` : ""}</button>`).join("")}</div>`;
+  return `<div class="chips eqv" id="eqv">${v.map(({ k, x, on, sim }) => `<button class="chip ${on ? "on" : ""}" data-s="${x.slug}" title="${esc(x.name)}">${esc(KIND_NAME[k] || k)}${sim ? `<span class="n">alt</span>` : ""}</button>`).join("")}</div>`;
 }
 
 /* ---- Joint care sheet (opened from the pain chip) ---- */
