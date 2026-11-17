@@ -216,7 +216,15 @@ const MOVE3D = { "barbell-row": "bent_over_row", "dumbbell-curl": "bicep_curl", 
   "dumbbell-lateral-raise": "lateral_raise", "good-morning": "good_morning", "push-ups": "push_up", "reverse-lunge": "reverse_lunge",
   "walking-lunge": "lunge", "romanian-deadlift": "romanian_deadlift", "sumo-squat": "sumo_squat" };
 const NOT_SAME = /twist|reverse grip|partial|pause|drops?\b|holds?|incline|decline|seated|elevated|single arm|one arm|1 arm|lying|kneeling|smith|cable|landmine|machine|3 way|deficit|spider|preacher|high elbow|lateral lunge|static|split|band|plate|lean/i;
-export const move3d = (e) => { const m = MOVE3D[e.family]; return m && !NOT_SAME.test(e.name) ? m : null; };
+/* 19b: our own keyframe motions (app/3d/poses/<family>.json); value = names that are NOT this exact movement */
+const POSE3D = { "high-bar-squat": /heel|elevated|drops?\b|pause/i, "shrug": NOT_SAME, "barbell-curl": /rocking|wall|cluster/i, "reverse-curl": /cable|seated|concentration|single|incline|wall|tri ?set|cluster/i,
+  "upright-row": NOT_SAME, "rear-delt-raise": /barbell|partial|single|supinated|incline|lying|seated/i, "dips-chest": /hold|hs drop|rocking|between knees/i,
+  "hanging-knee-raise": /rotation|straps|barbell/i, "hanging-leg-raise": /dip|roman|straps/i, "close-grip-press": /smith|coffin|elbows flared|tri-fecta/i,
+  "sissy-squat": /heel|landmine|assisted|barbell sissy squat on/i, "split-squat": /heel|smith|landmine|drops?\b/i };
+export const move3d = (e) => { const m = MOVE3D[e.family]; if (m) return !NOT_SAME.test(e.name) ? m : null;
+  const not = POSE3D[e.family]; return not && !not.test(e.name) ? "p:" + e.family : null; };
+/** prop in the hands for the 3D motion, from the exercise's equipment */
+const prop3d = (e) => { const q = [].concat(e.equipment || []).join(" "); return /dumbbell/i.test(q) ? "db" : /barbell|ez bar|plate/i.test(q) ? "bar" : null; };
 let v3d = null, v3dView = "front";
 /** Main / Helpers muscle names; doubles as the colour legend of the hero body. */
 const musList = (e) => { const pri = e.primary || [], sec = e.secondary || [];
@@ -263,7 +271,7 @@ function hero(e) {
     h.onfullscreenchange = h.onwebkitfullscreenchange = () => { const on = isFs(); h.classList.toggle("fs", on); fb.innerHTML = ic(on ? "fsx" : "fs", "sm"); fb.setAttribute("aria-label", on ? "Exit full screen" : "Full screen"); if (!on) screen.orientation?.unlock?.(); }; v.play().catch(() => {}); }
   if (mode === "3d") {
     const box = $("#v3d", h);
-    import("./view3d.js").then((m) => m.mount3d(box, { primary: e.primary || [], secondary: e.secondary || [], move: mv, view: v3dView }))
+    import("./view3d.js").then((m) => m.mount3d(box, { primary: e.primary || [], secondary: e.secondary || [], move: mv, view: v3dView, prop: prop3d(e) }))
       .then((c) => { if (!box.isConnected) return c.dispose(); v3d = c; $(".v3d-load", box)?.remove(); })
       .catch(() => { box.innerHTML = `<span class="v3d-load muted small">3D view is not available on this device.</span>`; });
     $("#v3dv", h).onclick = (ev) => { const b = ev.target.closest("button"); if (!b) return; v3dView = b.dataset.v; $$("#v3dv button", h).forEach((x) => x.classList.toggle("on", x === b)); indicate(h); v3d?.setView(v3dView); haptic(); };

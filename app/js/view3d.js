@@ -11,7 +11,113 @@ const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
 let bodyP = null, adjP = null;
 const anims = {};
 const getBody = () => (bodyP ??= loader.loadAsync("3d/body.glb"));
-const getAnim = (id) => (anims[id] ??= loader.loadAsync(`3d/anim/${id}.glb`).then((g) => g.animations[0]));
+const getAnim = (id) => (anims[id] ??= id.startsWith("p:") ? fetch(`3d/poses/${id.slice(2)}.json`).then((r) => r.json()) : loader.loadAsync(`3d/anim/${id}.glb`).then((g) => g.animations[0]));
+
+/* ---- authored motions (19b): app/3d/poses/<family>.json ----
+   {base:{...}, keys:[start, (mid), end], ecc:"out"|"back"}  — each key = segment directions in body space
+   (x = the body's LEFT/outward for sided segments (mirrored for the right side), y = up, z = forward),
+   e.g. "uarm":[0,-1,0.2], "farmR":[...]; "tw":{"farm":deg} twists a segment about its own axis;
+   "frame":deg pitches the whole body (-90 = lying on the back, author as if standing); "plant":false = feet not planted.
+   Interpolated per sample (directions slerped), so planted feet stay put; eccentric half is slower. */
+const SEG = { torso: ["spine05", "neck01"], neck: ["neck01", "head"], clav: ["clavicle", "upperarm01"], uarm: ["upperarm01", "lowerarm01"],
+  farm: ["lowerarm01", "wrist"], hand: ["wrist", "finger3-1"], thigh: ["upperleg01", "lowerleg01"], shin: ["lowerleg01", "foot"], foot: ["foot", "toe3-1"] };
+const SIDED = new Set(["clav", "uarm", "farm", "hand", "thigh", "shin", "foot"]);
+const ORDER = ["torso", "neck", ...["clav", "uarm", "farm", "hand", "thigh", "shin", "foot"].flatMap((k) => [k + "L", k + "R"])];
+const ezs = (u) => u * u * (3 - 2 * u);
+function resolve(spec) { // {uarm:[..]} -> {uarmL:[..], uarmR:[-x..]}; explicit L/R win
+  const d = {}, tw = {};
+  for (const [k, v] of Object.entries(spec)) {
+    if (k === "tw") { for (const [s, deg] of Object.entries(v)) { if (SIDED.has(s)) { tw[s + "L"] ??= deg; tw[s + "R"] ??= -deg; } else tw[s] = deg; } continue; }
+    if (!SEG[k.replace(/[LR]$/, "")] || !Array.isArray(v)) continue;
+    if (SIDED.has(k)) { d[k + "L"] ??= v; d[k + "R"] ??= [-v[0], v[1], v[2]]; } else d[k] = v;
+  }
+  for (const [k, v] of Object.entries(spec.tw || {})) if (/[LR]$/.test(k)) tw[k] = v;
+  for (const [k, v] of Object.entries(spec)) if (/[LR]$/.test(k) && SEG[k.slice(0, -1)]) d[k] = v;
+  return { d, tw, frame: spec.frame || 0, pos: spec.pos || [0, 0, 0] };
+}
+function buildClip(model, P) {
+  const bones = {}; model.traverse((o) => { if (o.isBone) bones[o.name] = o; });
+  const B = (n, side = "") => bones[(n + side).replace(/[.-]/g, "")] || bones[n + side];
+  const seg = {}; for (const k of ORDER) { const side = /[LR]$/.test(k) && SIDED.has(k.slice(0, -1)) ? k.slice(-1) : ""; const [a, b] = SEG[side ? k.slice(0, -1) : k]; seg[k] = [B(a, side), B(b, side)]; }
+  const root = bones.root, all = Object.values(bones), rest = all.map((b) => b.quaternion.clone()), rootPos = root.position.clone();
+  const V = () => new THREE.Vector3(), Q = () => new THREE.Quaternion();
+  model.updateMatrixWorld(true);
+  const pw = (b) => b.getWorldPosition(V()), dir = (k) => pw(seg[k][1]).sub(pw(seg[k][0])).normalize();
+  const restDir = { footL: dir("footL"), footR: dir("footR") };
+  const keys = P.keys.map((k) => resolve({ ...P.base, ...k }));
+  const plant = P.plant ?? "feet", pb = plant === "hands" ? ["handL", "handR"] : ["footL", "footR"]; let anchor = null;
+  const pose = (r) => {
+    all.forEach((b, i) => b.quaternion.copy(rest[i])); root.position.copy(rootPos);
+    const F = Q().setFromAxisAngle(new THREE.Vector3(1, 0, 0), THREE.MathUtils.degToRad(r.frame));
+    if (r.frame) { root.quaternion.premultiply(F); }
+    model.updateMatrixWorld(true);
+    const target = { ...r.d }; if (plant === "feet") { target.footL ??= restDir.footL.toArray(); target.footR ??= restDir.footR.toArray(); }
+    for (const k of ORDER) {
+      const [b, e] = seg[k]; if (!b || !e || (!target[k] && r.tw[k] == null)) continue;
+      const bw = b.getWorldQuaternion(Q()), par = b.parent.getWorldQuaternion(Q()).invert();
+      if (target[k]) { const t = new THREE.Vector3(...target[k]).normalize(); if (!(k in restDir) || r.d[k]) t.applyQuaternion(F); bw.premultiply(Q().setFromUnitVectors(dir(k), t)); }
+      b.quaternion.copy(par.multiply(bw)); b.updateMatrixWorld(true);
+      if (r.tw[k]) { const tq = Q().setFromAxisAngle(dir(k), THREE.MathUtils.degToRad(r.tw[k])); b.quaternion.copy(b.parent.getWorldQuaternion(Q()).invert().multiply(tq.multiply(b.getWorldQuaternion(Q())))); b.updateMatrixWorld(true); }
+    }
+    root.position.add(new THREE.Vector3(...r.pos));
+    if (plant) { model.updateMatrixWorld(true); const f = pw(seg[pb[0]][0]).add(pw(seg[pb[1]][0])).multiplyScalar(.5);
+      if (!anchor) anchor = new THREE.Vector3(f.x, plant === "feet" ? restDir.y0 : f.y, f.z); root.position.add(anchor.clone().sub(f)); }
+    model.updateMatrixWorld(true);
+  };
+  { model.updateMatrixWorld(true); restDir.y0 = (pw(seg.footL[0]).y + pw(seg.footR[0]).y) / 2; }
+  const lerpR = (a, b, u) => { const d = {}; for (const k of new Set([...Object.keys(a.d), ...Object.keys(b.d)])) {
+      const va = new THREE.Vector3(...(a.d[k] || b.d[k])).normalize(), vb = new THREE.Vector3(...(b.d[k] || a.d[k])).normalize();
+      d[k] = va.clone().applyQuaternion(Q().slerp(Q().setFromUnitVectors(va, vb), u)).toArray(); }
+    const tw = {}; for (const k of new Set([...Object.keys(a.tw), ...Object.keys(b.tw)])) tw[k] = (a.tw[k] || 0) * (1 - u) + (b.tw[k] || 0) * u;
+    return { d, tw, frame: a.frame + (b.frame - a.frame) * u, pos: a.pos.map((x, i) => x + (b.pos[i] - x) * u) }; };
+  const at = (u) => { const n = keys.length - 1, x = Math.min(n - 1e-6, u * n), i = Math.floor(x); return lerpR(keys[i], keys[i + 1], x - i); };
+  const ecc = P.ecc === "out", T1 = ecc ? 1.6 : 1.0, T2 = ecc ? 1.0 : 1.6, H0 = .35, H1 = .25, N = 18;
+  const times = [], samples = [];
+  const push = (t, u) => { times.push(t); samples.push(u); };
+  push(0, 0); push(H0, 0);
+  for (let i = 1; i <= N; i++) push(H0 + T1 * i / N, ezs(i / N));
+  push(H0 + T1 + H1, 1);
+  for (let i = 1; i <= N; i++) push(H0 + T1 + H1 + T2 * i / N, 1 - ezs(i / N));
+  const moved = [root, ...new Set(Object.values(seg).map((s) => s[0]).filter(Boolean))];
+  const qv = moved.map(() => []), pv = [];
+  pose(keys[0]); // fixes the anchor at the start pose
+  for (const u of samples) { pose(at(u)); moved.forEach((b, i) => qv[i].push(...b.quaternion.toArray())); pv.push(...root.position.toArray()); }
+  all.forEach((b, i) => b.quaternion.copy(rest[i])); root.position.copy(rootPos); model.updateMatrixWorld(true);
+  const tracks = moved.map((b, i) => new THREE.QuaternionKeyframeTrack(`${b.uuid}.quaternion`, times, qv[i]));
+  tracks.push(new THREE.VectorKeyframeTrack(`${root.uuid}.position`, times, pv));
+  const clip = new THREE.AnimationClip("pose", times.at(-1), tracks); clip.props = P.fixed || []; clip.eqProps = P.props || []; return clip;
+}
+
+/** Simple props: "bar" between the palms, "db" in each hand, "pullbar" above the hands, "bench" under the back (lying moves). */
+function makeProp(kinds, model, dark) {
+  kinds = kinds.filter(Boolean); if (!kinds.length) return null;
+  const bones = {}; model.traverse((o) => { if (o.isBone) bones[o.name] = o; });
+  const hand = ["L", "R"].map((s) => [bones["wrist" + s], bones["finger3-1" + s] || bones["finger31" + s]]);
+  const mat = new THREE.MeshStandardMaterial({ color: dark ? 0x5a5c60 : 0x3b3d42, roughness: .45, metalness: .6 });
+  const pad = new THREE.MeshStandardMaterial({ color: dark ? 0x3a3c40 : 0x55585e, roughness: .8 });
+  const cyl = (r, l, m = mat) => { const o = new THREE.Mesh(new THREE.CylinderGeometry(r, r, l, 20), m); o.rotation.z = Math.PI / 2; return o; };
+  const g = new THREE.Group(), ups = [];
+  const inv = new THREE.Matrix4(), a = new THREE.Vector3(), b = new THREE.Vector3(), c = new THREE.Vector3(), X = new THREE.Vector3(1, 0, 0);
+  const loc = (bone, v) => bone.getWorldPosition(v).applyMatrix4(inv);
+  const grip = (h, f = .35) => loc(h[0], a).lerp(loc(h[1], b), f).clone();
+  for (const kind of kinds) {
+    if (kind === "bar" || kind === "pullbar") { const o = new THREE.Group(); o.add(cyl(kind === "bar" ? .014 : .018, kind === "bar" ? 1.8 : 1.3));
+      if (kind === "bar") for (const x of [-.74, .74]) { const p = cyl(.17, .05); p.position.x = x; o.add(p); } g.add(o);
+      ups.push(() => { const L = grip(hand[0], kind === "bar" ? .35 : .5), R = grip(hand[1], kind === "bar" ? .35 : .5); o.position.copy(L).add(R).multiplyScalar(.5); o.quaternion.setFromUnitVectors(X, c.copy(L).sub(R).normalize()); });
+    } else if (kind === "db") for (let i = 0; i < 2; i++) { const o = new THREE.Group(); o.add(cyl(.016, .16)); for (const x of [-.09, .09]) { const p = cyl(.05, .05); p.position.x = x; o.add(p); } g.add(o);
+      ups.push(() => { const h = hand[i]; o.position.copy(grip(h)); loc(h[0], a); loc(h[1], b); // handle across the palm
+        const n = b.sub(a).normalize(), side = c.set(i ? -1 : 1, 0, 0); o.quaternion.setFromUnitVectors(X, side.sub(n.multiplyScalar(side.dot(n))).normalize()); });
+    } else if (kind === "bench") { const o = new THREE.Mesh(new THREE.BoxGeometry(.3, .07, 1.2), pad); const legs = new THREE.Mesh(new THREE.BoxGeometry(.08, 1, .08), mat); o.add(legs); g.add(o);
+      ups.push(() => { const s5 = loc(bones.spine05, a), nk = loc(bones.neck01, b), top = Math.min(s5.y, nk.y) - .13;
+        const fl = Math.min(loc(bones.footL, c).y, loc(bones.footR, c).y) - .07; // floor = under the feet
+        const dx = nk.x - s5.x, dz = nk.z - s5.z, l = Math.hypot(dx, dz) || 1; o.rotation.y = Math.atan2(dx, dz);
+        o.position.set(s5.x + dx / 2 - dx / l * .1, top, s5.z + dz / 2 - dz / l * .1); const h = Math.max(.1, top - fl); legs.scale.y = h; legs.position.set(0, -h / 2, 0); });
+    } else if (kind === "dipbars") for (let i = 0; i < 2; i++) { const o = new THREE.Mesh(new THREE.CylinderGeometry(.02, .02, .6, 16), mat); o.rotation.x = Math.PI / 2; g.add(o);
+      ups.push(() => { o.position.copy(grip(hand[i], .3)); o.position.y -= .02; });
+    }
+  }
+  return { g, update() { if (g.parent) { g.parent.updateMatrixWorld(true); inv.copy(g.parent.matrixWorld).invert(); } ups.forEach((f) => f()); } };
+}
 
 /** CSS colour (any syntax, incl. color-mix) -> THREE.Color */
 function cssColor(expr) {
@@ -46,8 +152,8 @@ function paint(geo, labels, adj, primary, secondary) {
 export const VIEWS = { front: 0, side: -Math.PI / 2, back: Math.PI };
 
 /** Mount into `el`. opts: {primary, secondary, move (anim id or null), view}. Returns {setView, dispose}. */
-export async function mount3d(el, { primary = [], secondary = [], move = null, view = "front" } = {}) {
-  const [gltf, clip] = await Promise.all([getBody(), move ? getAnim(move).catch(() => null) : null]);
+export async function mount3d(el, { primary = [], secondary = [], move = null, view = "front", at = null, prop: eqProp = null } = {}) {
+  let [gltf, clip] = await Promise.all([getBody(), move ? getAnim(move).catch(() => null) : null]);
   if (!el.isConnected) return { setView() {}, dispose() {} };
   // each mount gets its own copy of the scene (shared geometry is repainted per exercise, so clone it)
   const src = gltf.scene; const scene3 = new THREE.Scene(); const model = cloneSkinned(src);
@@ -60,21 +166,25 @@ export async function mount3d(el, { primary = [], secondary = [], move = null, v
     sh.vertexShader = sh.vertexShader.replace("#include <common>", "#include <common>\nattribute float glow;\nvarying float vGlow;").replace("#include <begin_vertex>", "#include <begin_vertex>\nvGlow = glow;");
     sh.fragmentShader = sh.fragmentShader.replace("#include <common>", "#include <common>\nvarying float vGlow;").replace("#include <emissivemap_fragment>", "#include <emissivemap_fragment>\ntotalEmissiveRadiance += diffuseColor.rgb * vGlow * .32;");
   };
+  if (clip && !clip.tracks) { const P = clip; clip = buildClip(model, P); if (P.yaw) model.rotation.y = THREE.MathUtils.degToRad(P.yaw); }
   const pivot = new THREE.Group(); pivot.add(model); scene3.add(pivot);
   scene3.add(new THREE.HemisphereLight(0xffffff, 0x8a7f78, 1.7));
   const key = new THREE.DirectionalLight(0xffffff, 1.9); key.position.set(1.2, 2.4, 3); scene3.add(key);
   const rim = new THREE.DirectionalLight(0xffffff, .9); rim.position.set(-2, 1.5, -2.5); scene3.add(rim);
 
   const mixer = clip ? new THREE.AnimationMixer(model) : null;
+  const prop = makeProp(clip ? [...(clip.props || []), (clip.eqProps || []).includes(eqProp) ? eqProp : null] : [], model, document.documentElement.dataset.theme === "dark"); if (prop) pivot.add(prop.g);
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const act = mixer ? mixer.clipAction(clip) : null;
-  if (act) { act.play(); if (reduce) act.paused = true; }
+  if (act) { act.play(); if (reduce || at != null) act.paused = true; }
 
   // framing: union of bone positions over the clip (or rest pose)
   const box = new THREE.Box3(), v = new THREE.Vector3();
-  const sample = () => { model.updateMatrixWorld(true); mesh.skeleton.bones.forEach((b) => { if (!/finger|toe|oris|tongue|levator|special|eye|oculi|orbic|tempor|risor|jaw/.test(b.name)) box.expandByPoint(b.getWorldPosition(v)); }); };
-  if (mixer) { const t0 = mixer.time; for (let i = 0; i <= 8; i++) { mixer.setTime(clip.duration * i / 8); sample(); } mixer.setTime(reduce ? clip.duration / 2 : t0); } else sample();
+  const sample = () => { model.updateMatrixWorld(true); mesh.skeleton.bones.forEach((b) => { if (!/finger|toe|oris|tongue|levator|special|eye|oculi|orbic|tempor|risor|jaw/.test(b.name)) box.expandByPoint(b.getWorldPosition(v)); }); if (prop) { prop.update(); prop.g.updateMatrixWorld(true); const pb = new THREE.Box3().setFromObject(prop.g); pb.min.y = Math.max(pb.min.y, box.min.y - .05); box.union(pb); } };
+  const seek = (t) => { act.time = t; mixer.update(0); };
+  if (mixer) { for (let i = 0; i <= 8; i++) { seek(clip.duration * i / 8); sample(); } seek(at != null ? clip.duration * at : reduce ? clip.duration / 2 : 0); prop?.update(); } else sample();
   box.expandByScalar(.04); const ctr = box.getCenter(new THREE.Vector3()); model.position.sub(new THREE.Vector3(ctr.x, 0, ctr.z));
+  prop?.update();
   const size = box.getSize(new THREE.Vector3()); const reach = Math.max(size.x, size.z);
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "low-power" });
@@ -121,7 +231,7 @@ export async function mount3d(el, { primary = [], secondary = [], move = null, v
       if (Math.abs(yawT - yaw) > 1e-3) { yaw += (yawT - yaw) * Math.min(1, dt * 9); dirty = true; } else yaw = yawT;
       if (Math.abs(zoomT - zoom) > 1e-3) { zoom += (zoomT - zoom) * Math.min(1, dt * 12); fit(); } else if (zoom !== zoomT) { zoom = zoomT; fit(); }
       pivot.rotation.y = yaw;
-      if (act && !act.paused) { mixer.update(dt); dirty = true; }
+      if (act && !act.paused) { mixer.update(dt); prop?.update(); dirty = true; }
       if (dirty) { renderer.render(scene3, cam); dirty = false; }
       if (visible && !document.hidden) loop();
     });
