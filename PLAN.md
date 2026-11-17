@@ -118,7 +118,7 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 - ✅ **Human-looking body (18 ✅ session 5) + rotatable 3D muscle body for every exercise (19 ✅ session 6)** (owner: "looks like a stick man", "all angles")
 
 - ✅ **19a** readable hero controls · ✅ **19e** UX benchmark Blok A · ✅ **19c** fullscreen video (session 8) · ✅ **19a-fix** hero fits video + compact controls · ✅ **19a-chips** canonical alt pick (session 9)
-- ✅ **19d** pro lock-screen rest timer (session 10) · 🟡 **19b** 3D upgrade — viewer done (session 10), motion engine + 12 authored families (session 11), coverage 27/179 families; more families open — owner
+- ✅ **19d** pro lock-screen rest timer (session 10) · 🟡 **19b** 3D upgrade — viewer done (session 10), motion engine + 16 authored families (session 11), coverage 31/179 families; more families open — owner
 - ⬜ **22b** quality polish + UX benchmark fixes (docs/ux_benchmark.md) — owner
 - ⬜ **25** printable PDF guide per level (en/tr/ar), generated from our data — owner
 
@@ -215,8 +215,9 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 
 ## Notes (2026-11-17, session 11)
 - 19b motions: `app/js/view3d.js` buildClip() turns `app/3d/poses/<family>.json` into a looping AnimationClip. Pose format: `{ecc:"out"|"back", plant:"feet"|"hands"|false, yaw, props:[bar|db] (picked by exercise equipment via exercise.js prop3d), fixed:[pullbar|dipbars|bench], base:{...}, keys:[start,(mid),end]}`; each key = segment directions in body space (x = left/outward, mirrored for R; y up; z forward): torso, neck, clav, uarm, farm, hand, thigh, shin, foot (+L/R overrides), `tw` twists, `frame:-90` = lying (author as if standing). Directions are slerped per sample (18/phase, smoothstep), feet re-aimed flat + planted every sample; eccentric 1.6 s, concentric 1.0 s, holds .35/.25 s. Props are simple meshes that follow the hands (makeProp). `mount3d(..., {at})` freezes at a fraction (for screenshots).
-- Families with authored motion (12): high-bar-squat, shrug, barbell-curl, reverse-curl, upright-row, rear-delt-raise, dips-chest, hanging-knee-raise, hanging-leg-raise, close-grip-press, sissy-squat, split-squat. Each has its own NOT regex in `POSE3D` (exercise.js) so variants that differ (smith, heel elevated, seated, single arm…) keep the still pose. Coverage: 27/179 families have motion (15 opengym3d + 12 ours). Verified at 3 frames front + side (scratchpad screenshots) and in-app phone light/dark + desktop. sw v23.
+- Families with authored motion (12): high-bar-squat, shrug, barbell-curl, reverse-curl, upright-row, rear-delt-raise, dips-chest, hanging-knee-raise, hanging-leg-raise, close-grip-press, sissy-squat, split-squat, + skull-crushers, dumbbell-skull-crushers, lat-pulldown, close-grip-pulldown (props `seat` added). Each has its own NOT regex in `POSE3D` (exercise.js) so variants that differ (smith, heel elevated, seated, single arm…) keep the still pose. Coverage: 31/179 families have motion (15 opengym3d + 16 ours). Verified at 3 frames front + side (scratchpad screenshots) and in-app phone light/dark + desktop. sw v23.
 - Authoring tip: render a pose sheet with `mount3d(div, {move:"p:<family>", at, view, prop})` for at = 0 / .36 / .65 (start / mid-eccentric / bottom when ecc:"out").
+- Lying moves use `yaw:90`, so "Front" shows the profile and "Side" the feet end (intended: profile is the readable view).
 - Known: sissy-squat hip line could be straighter; shrug front view shows forearms as Main (traps paint is on the back) — check muscle data.
 
 ## Real-phone lessons (from the owner's Fluent365 Pocket test on Android) — apply to Gym
