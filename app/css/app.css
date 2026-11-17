@@ -45,7 +45,7 @@
 
 [hidden] { display: none !important; }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html { background: var(--bg); }
+html { background: var(--bg); overscroll-behavior-y: none; }
 body { margin: 0; min-height: 100dvh; color: var(--t1); background: var(--bg); font: 450 15.5px/1.45 var(--font);
   -webkit-font-smoothing: antialiased; overscroll-behavior-y: none; }
 button, input, select, textarea { font: inherit; color: inherit; }

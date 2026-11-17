@@ -6,7 +6,7 @@ import { mkdirSync, writeFileSync, readFileSync, rmSync } from "node:fs";
 const [out = "shots", scriptArg = "-", base = "http://localhost:8765/"] = process.argv.slice(2);
 mkdirSync(out, { recursive: true });
 const steps = JSON.parse(scriptArg === "-" ? readFileSync(0, "utf8") : readFileSync(scriptArg, "utf8"));
-const VP = { phone: [390, 844, 3, true], ipad: [820, 1180, 2, true], desktop: [1440, 900, 1, false] };
+const VP = { phone: [390, 844, 3, true], ipad: [820, 1180, 2, true], desktop: [1440, 900, 1, false], laptop: [1366, 768, 1, false] };
 const port = 9300 + Math.floor(Math.random() * 500);
 const prof = `/tmp/gymshot-${port}`;
 const chrome = spawn("chromium", ["--headless=new", `--remote-debugging-port=${port}`, `--user-data-dir=${prof}`, "--no-first-run",
@@ -33,7 +33,8 @@ try {
   let loaded = false, vpName = "phone";
   for (const s of steps) {
     if (s.vp) { vpName = s.vp; const [w, h, dpr, mobile] = VP[s.vp]; await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: dpr, mobile }); await send("Emulation.setTouchEmulationEnabled", { enabled: mobile }); }
-    if (s.scheme) await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-color-scheme", value: s.scheme }] });
+    if (s.scheme || s.display) await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-color-scheme", value: s.scheme || "light" }, ...(s.display ? [{ name: "display-mode", value: s.display }] : [])] });
+    if (s.safe) { try { await send("Emulation.setSafeAreaInsetsOverride", { insets: { top: s.safe[0], bottom: s.safe[1] } }); } catch (e) { errors.push("SAFE " + e.message); } }
     if (s.go !== undefined) { if (!loaded || s.reload) { await send("Page.navigate", { url: base + s.go }); loaded = true; await sleep(s.wait ?? 1200); } else { await ev(`location.hash=${JSON.stringify(s.go)}`); await sleep(s.wait ?? 600); } continue; }
     if (s.waitFor) { const t0 = Date.now(); let ok = false; while (Date.now() - t0 < (s.timeout || 20000)) { if (await ev(`!!document.querySelector(${JSON.stringify(s.waitFor)})`)) { ok = true; break; } await sleep(150); } if (!ok) errors.push("TIMEOUT waitFor " + s.waitFor); else if (s.log) console.log("waitFor", s.waitFor, Date.now() - t0, "ms"); await sleep(250); continue; }
     if (s.click) { const ok = await ev(`(()=>{const e=document.querySelector(${JSON.stringify(s.click)});if(!e)return false;e.click();return true})()`); if (!ok) errors.push("NOCLICK " + s.click); await sleep(s.wait ?? 450); continue; }
