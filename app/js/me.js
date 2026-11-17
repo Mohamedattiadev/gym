@@ -1,6 +1,6 @@
 // Me: progress tracking (week vs week, charts, PRs, heat map, bodyweight) + history. Settings page.
 import { S, save, persist, exportData, importData, flush } from "./store.js";
-import { $, $$, esc, ic, ask, askText, toast, haptic, fmtDate, fmtDur, lineChart, vBars, delta, fmtKg, indicate, selectIn } from "./ui.js";
+import { $, $$, esc, ic, ask, askText, openSheet, toast, haptic, fmtDate, fmtDur, lineChart, vBars, delta, fmtKg, indicate, selectIn } from "./ui.js";
 import { EX, BY, EQUIP_PROFILES, bestOf, setsText, weeklyVolume, periodStats, exerciseStats, weekStart, WEEK, DAY, history, flaggedJoints, JOINTS } from "./data.js";
 import { MUSCLES, MBY } from "./body.js";
 import { e1rm } from "./calc.js";
@@ -154,6 +154,7 @@ export async function settingsView() {
       </div>
       <div class="card list-sep">
         ${row("timer", "Auto rest timer", `<button class="switch ${st.autoRest ? "on" : ""}" data-k="autoRest" aria-label="Auto rest timer"></button>`, "Starts after every checked set")}
+        ${row("play", "Lock-screen rest timer", `<button class="switch ${st.lockTimer !== false ? "on" : ""}" data-k="lockTimer" aria-label="Lock-screen rest timer"></button>`, `Rest time and next set on the lock screen · <a href="#" id="lockHelp" style="color:var(--accent-text)">How it works</a>`)}
         ${row("bolt", "Sound", `<button class="switch ${st.sound ? "on" : ""}" data-k="sound" aria-label="Sound"></button>`)}
         ${row("phone", "Vibration", `<button class="switch ${st.haptics ? "on" : ""}" data-k="haptics" aria-label="Vibration"></button>`)}
       </div>
@@ -182,6 +183,11 @@ export async function settingsView() {
   seg("sEquip", (v) => { set("equip", v); lib.mine = true; toast(`Showing exercises for: ${EQUIP_PROFILES[v].name}`); });
   seg("sUnit", (v) => set("unit", v)); seg("sBar", (v) => set("bar", +v));
   $$(".switch[data-k]").forEach((s) => (s.onclick = () => { s.classList.toggle("on"); set(s.dataset.k, s.classList.contains("on")); }));
+  $("#lockHelp").onclick = (e) => { e.preventDefault(); openSheet(`<h3 style="margin:0 0 8px">Lock-screen rest timer</h3>
+    <p class="muted small" style="margin:0 0 8px">During a workout the rest timer shows on the lock screen and in the notification player: time left, the next set and weight. Pause = pause rest, Next = skip rest, the seek buttons = +30 s / −15 s. When rest ends you hear a beep, the phone vibrates (Android) and a notification appears.</p>
+    <p class="muted small" style="margin:0 0 8px"><b>Android:</b> works in Chrome and the installed app. It uses a silent audio track, so on some phones it pauses music from other apps — turn it off here if it does.</p>
+    <p class="muted small" style="margin:0 0 8px"><b>iPhone:</b> the lock-screen player works in Safari; notifications only in the app added to the Home Screen (iOS 16.4+). iOS stops web apps soon after locking, so the beep at rest end may not play while locked. No vibration on iPhone.</p>
+    <p class="muted small" style="margin-bottom:0"><b>Later:</b> a real Live Activity / Dynamic Island needs a native app wrapper (Capacitor). Not built yet.</p>`, null, { half: true }); };
   const cp = $("#clrPain"); if (cp) cp.onclick = async () => { if (await ask("Clear all pain flags?", { ok: "Clear" })) { S.pain = {}; save("pain"); Sync.autoPush(); settingsView(); } };
   $("#dlAll").onclick = () => downloadMedia(urls(false), stat);
   $("#dlTop").onclick = () => downloadMedia(urls(true), stat);

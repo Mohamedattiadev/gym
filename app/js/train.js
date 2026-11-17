@@ -336,12 +336,21 @@ function gymGo(i) {
   const c = $("#entries .cur"); if (c && !RM.matches) c.animate([{ opacity: 0, transform: `translateX(${dir * 24}px)` }, { opacity: 1, transform: "none" }], { duration: 220, easing: "cubic-bezier(.2,0,0,1)" });
   window.scrollTo(0, 0);
 }
-function nextLabel(ei, si) {
-  const a = S.active; const en = a.entries[ei]; const nx = en.sets[si + 1];
-  if (nx) return `Next: set ${si + 2}${nx.w ? ` · ${nx.w}${S.settings.unit}` : ""}`;
-  const ne = a.entries[ei + 1]; return ne ? `Next: ${BY[ne.slug]?.name}` : "Last set — finish strong";
+/* the next undone set from entry ei / set index `from` on: { text, slug, name, set, of, w, r } (w/r = typed, else last time, else target) */
+function nextInfo(ei, from) {
+  const a = S.active;
+  for (let i = ei; i < a.entries.length; i++) {
+    const en = a.entries[i], k = en.sets.findIndex((x, j) => j >= (i === ei ? from : 0) && !x.done); if (k < 0) continue;
+    const s = en.sets[k], warm = s.type === "w", work = en.sets.filter((x) => x.type !== "w"), last = lastSets(en.slug), tr = parseRange(en.target);
+    const n = warm ? 0 : en.sets.slice(0, k + 1).filter((x) => x.type !== "w").length;
+    const w = warm ? s.w : s.w || (last?.sets[n - 1]?.w ?? last?.sets.at(-1)?.w ?? ""), r = warm ? s.r : s.r || (last?.sets[n - 1]?.r ?? last?.sets.at(-1)?.r ?? (tr ? tr[1] : ""));
+    const name = BY[en.slug]?.name || en.slug, u = S.settings.unit;
+    const text = `Next: ${i === ei ? "" : `${name} · `}${warm ? "warm-up set" : `set ${n} of ${work.length}`}${r ? ` · ${w ? `${w} ${u} × ` : ""}${r}` : ""}`;
+    return { text, slug: en.slug, name, set: warm ? "" : n, of: work.length, w: String(w || ""), r: String(r || "") };
+  }
+  return { text: "Last set — finish strong" };
 }
-function ssBackLabel(pi) { const p = S.active.entries[pi]; const k = p.sets.findIndex((x) => !x.done && x.type !== "w"); return k < 0 ? nextLabel(pi + 1, 1e9) : `Next: ${BY[p.slug]?.name} · set ${k + 1}`; }
+const nextLabel = (ei, si) => nextInfo(ei, si + 1), ssBackLabel = (pi) => nextInfo(pi, 0);
 function isPR(slug, s) { const b = bestOf(slug); const v = e1rm(s.w, s.r); return v > 0 && b && v > b.e1rm; }
 function swapSheet(ei) {
   const en = S.active.entries[ei]; const ex = BY[en.slug]; const alts = swaps(ex, 10);
@@ -391,7 +400,7 @@ async function finishSession() {
 }
 
 /* ---------------- rest timer (global timer + floating pill) ---------------- */
-export function startRest(sec, next = "") { Tm.startCountdown(sec, { kind: "rest", label: "Rest", next }); }
+export function startRest(sec, nx = {}) { Tm.startCountdown(sec, { kind: "rest", label: "Rest", next: nx.text || "", nx }); }
 export function stopRest() { if (Tm.T.mode === "countdown" && Tm.T.kind === "rest") Tm.stop(); }
 
 /* ---------------- tools ---------------- */

@@ -8,6 +8,7 @@ import { homeView } from "./home.js";
 import { libraryView, exerciseView } from "./exercise.js";
 import { meView, settingsView } from "./me.js";
 import { timerView, initTimer, renderPill } from "./timer.js";
+import { initMedia } from "./media.js";
 import * as Sync from "./sync.js";
 
 /* Opening screen: the first open of the day plays the whole animation (assemble + one rep, ~2.7 s);
@@ -276,7 +277,7 @@ addEventListener("pointerdown", unlockAudio, { once: true });
   const exP = loadExercises(); // fetch data in parallel with IndexedDB
   await loadStore(); applyTheme(); try { Sync.initSync(); } catch (e) { console.warn(e); }
   try { await exP; } catch (e) { view.innerHTML = `<div class="empty">Couldn't load exercises.<br><small>${esc(e.message)}</small></div>`; hideSplash(); return; }
-  initTimer();
+  initMedia(); initTimer();
   route(); renderPill();
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js").then((reg) => {

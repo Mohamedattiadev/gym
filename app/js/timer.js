@@ -1,5 +1,6 @@
 // One global timer (stopwatch | countdown | intervals) shared by the Timer page, rest timer and the floating pill.
 import { $, esc, ic, haptic, beep, toast, fmtDur } from "./ui.js";
+import { S } from "./store.js";
 
 const KEY = "gym-timer";
 const now = () => Date.now();
@@ -16,7 +17,9 @@ function tick() {
   if (T.mode === "countdown" && T.running) {
     const left = T.end - now(); const sec = Math.ceil(left / 1000);
     if (sec <= 3 && sec > 0 && sec !== lastBeep) { lastBeep = sec; beep([[660, .08]], .12); }
-    if (left <= 0) { const wasRest = T.kind === "rest"; stop(); haptic("rest"); beep([[880, .15], [880, .15], [1320, .3]]); toast(wasRest ? "Rest over — next set" : "Time is up"); return; }
+    if (left <= 0) { const { kind, nx } = T; stop(); haptic("rest"); beep([[880, .15], [880, .15], [1320, .3]]);
+      toast(kind === "rest" ? (nx?.name ? `Go: ${nx.name}${nx.set ? ` · set ${nx.set}` : ""}` : "Rest over — next set") : "Time is up");
+      dispatchEvent(new CustomEvent("gym:timerend", { detail: { kind, nx } })); return; }
   }
   if (T.mode === "interval" && T.running) {
     let left = T.end - now();
@@ -29,7 +32,7 @@ function tick() {
     const sec = Math.ceil(left / 1000); if (sec <= 3 && sec > 0 && sec !== lastBeep) { lastBeep = sec; beep([[660, .06]], .1); }
   }
   listeners.forEach((fn) => fn(view()));
-  renderPill();
+  renderOverlay(); renderPill();
 }
 
 /* ---- derived view of the timer ---- */
@@ -47,8 +50,9 @@ export const fmtMs = (ms) => { const s = Math.floor(ms / 1000); return `${fmtDur
 
 /* ---- actions ---- */
 export function startStopwatch() { T = { mode: "stopwatch", running: true, t0: now(), acc: 0, laps: [] }; persist(); loop(); }
-export function startCountdown(sec, { kind = "timer", label = "", next = "" } = {}) {
-  T = { mode: "countdown", kind, running: true, total: sec * 1000, end: now() + sec * 1000, left: sec * 1000, label, next }; lastBeep = -1; persist(); loop();
+/* nx (rest only) = { text, slug, name, set, of, w, r } — the next set, shown on the overlay and the lock screen */
+export function startCountdown(sec, { kind = "timer", label = "", next = "", nx = null } = {}) {
+  T = { mode: "countdown", kind, running: true, total: sec * 1000, end: now() + sec * 1000, left: sec * 1000, label, next, nx }; lastBeep = -1; persist(); loop();
 }
 export function startIntervals(work, rest, rounds, label = "") {
   T = { mode: "interval", running: true, work, rest, rounds, round: 1, phase: "work", end: now() + work * 1000, left: work * 1000, label }; lastBeep = -1;
@@ -71,7 +75,8 @@ export function add(sec) {
   if (T.running) T.end += sec * 1000; else T.left = Math.max(0, T.left + sec * 1000);
   T.total = Math.max(1000, T.total + sec * 1000); persist(); tick();
 }
-export function stop() { T = { mode: null }; persist(); clearInterval(iv); listeners.forEach((fn) => fn(view())); renderPill(); }
+export function stop() { T = { mode: null }; persist(); clearInterval(iv); listeners.forEach((fn) => fn(view())); renderOverlay(); renderPill(); }
+export const isRest = () => T.mode === "countdown" && T.kind === "rest";
 export const active = () => !!T.mode;
 
 /* ---- floating pill (hidden on the Timer page) ---- */
@@ -79,14 +84,14 @@ const C = 2 * Math.PI * 11;
 export function renderPill() {
   let p = $("#tpill");
   const onTimerPage = location.hash.startsWith("#/timer");
-  if (!T.mode || onTimerPage) { p?.remove(); return; }
+  if (!T.mode || onTimerPage || $("#rov")) { p?.remove(); return; }
   const v = view();
   if (!p) {
     p = document.createElement("div"); p.id = "tpill"; p.className = "tpill"; p.setAttribute("role", "timer");
     p.innerHTML = `<a href="#/timer" class="row" style="gap:6px" aria-label="Open timer"><svg class="ring" viewBox="0 0 28 28"><circle class="bg" cx="14" cy="14" r="11"/><circle class="fg" cx="14" cy="14" r="11" stroke-dasharray="${C}"/></svg><span class="tm num"></span></a>
-      <button data-p="toggle" aria-label="Pause or resume"></button><button data-p="plus" hidden>+15</button><button data-p="stop" aria-label="Stop">${ic("close", "xs")}</button>`;
+      <button data-p="toggle" aria-label="Pause or resume"></button><button data-p="plus" hidden>+30</button><button data-p="stop" aria-label="Stop">${ic("close", "xs")}</button>`;
     p.onclick = (e) => { const b = e.target.closest("[data-p]"); if (!b) return; haptic();
-      if (b.dataset.p === "toggle") toggle(); if (b.dataset.p === "plus") add(15); if (b.dataset.p === "stop") stop(); };
+      if (b.dataset.p === "toggle") toggle(); if (b.dataset.p === "plus") add(30); if (b.dataset.p === "stop") stop(); };
     document.body.appendChild(p);
   }
   p.querySelector(".tm").textContent = v.mode === "interval" ? `${v.phase === "work" ? "Work" : "Rest"} ${v.text}` : v.text;
@@ -95,7 +100,36 @@ export function renderPill() {
   if (tg.dataset.i !== icn) { tg.dataset.i = icn; tg.innerHTML = ic(icn, "xs"); }
   p.querySelector('[data-p="plus"]').hidden = v.mode !== "countdown";
 }
-addEventListener("hashchange", renderPill);
+addEventListener("hashchange", () => { renderOverlay(); renderPill(); });
+
+/* ---- full-screen rest overlay: big ring, the next set, −15 / +30 / Skip; minimise = back to the pill ---- */
+const RR = 46, RC = 2 * Math.PI * RR;
+export function showOverlay() { if (isRest()) { T.min = false; persist(); tick(); } }
+function renderOverlay() {
+  let o = $("#rov");
+  const want = isRest() && !T.min && !location.hash.startsWith("#/timer");
+  if (!want) { if (o) { o.remove(); document.removeEventListener("keydown", onKey); } return; }
+  const v = view(), nx = T.nx || {};
+  if (!o) {
+    o = document.createElement("div"); o.id = "rov"; o.className = "rov"; o.setAttribute("role", "dialog"); o.setAttribute("aria-label", "Rest");
+    const u = S.settings.unit, load = nx.r ? `${nx.w ? `${nx.w} ${u} × ` : ""}${nx.r} reps` : "";
+    o.innerHTML = `<div class="rov-in"><div class="rov-top"><span class="lbl">Rest</span><button class="iconbtn" data-r="min" aria-label="Minimise">${ic("down")}</button></div>
+      <div class="ringwrap"><svg viewBox="0 0 100 100"><circle class="track" cx="50" cy="50" r="${RR}"/><circle class="fill" cx="50" cy="50" r="${RR}" stroke-dasharray="${RC}"/></svg>
+        <button class="big num" data-r="toggle" aria-label="Pause or resume"></button><div class="sub2 rov-st"></div></div>
+      ${nx.name ? `<div class="rov-next">${nx.slug ? `<img src="media/poster/${esc(nx.slug)}.jpg" alt="">` : ""}<div class="grow"><div class="dim tiny">Next</div><b>${esc(nx.name)}</b>
+        <div class="muted small">${[nx.set ? `Set ${nx.set}${nx.of ? ` of ${nx.of}` : ""}` : "", load].filter(Boolean).join(" · ")}</div></div></div>`
+        : nx.text ? `<div class="rov-next"><b class="grow">${esc(nx.text)}</b></div>` : ""}
+      <div class="rov-btns"><button class="btn lg" data-r="m15">−15 s</button><button class="btn lg" data-r="p30">+30 s</button></div>
+      <button class="btn lg primary block" data-r="skip">Skip rest</button></div>`;
+    o.onclick = (e) => { const b = e.target.closest("[data-r]"); if (!b) return; haptic(); const k = b.dataset.r;
+      if (k === "min") { T.min = true; persist(); tick(); } if (k === "toggle") toggle(); if (k === "m15") add(-15); if (k === "p30") add(30); if (k === "skip") stop(); };
+    document.body.appendChild(o); document.addEventListener("keydown", onKey);
+  }
+  $(".big", o).textContent = v.text;
+  $(".fill", o).setAttribute("stroke-dashoffset", RC * (1 - v.pct));
+  $(".rov-st", o).textContent = v.running ? "" : "Paused — tap to resume";
+}
+function onKey(e) { if (e.key === "Escape" && isRest()) { T.min = true; persist(); tick(); } }
 
 /* ---- Timer page ---- */
 const PRESETS = [30, 60, 90, 120, 180, 300];

@@ -762,3 +762,20 @@ body:has(.tpill) .toast { bottom: calc(var(--tab-h) + var(--safe-b) + 70px); }
 .jcdrills .s { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .jcdrills .lrow { min-height: 48px; padding-block: 6px; }
 @media (min-width: 1000px) { .yt { max-width: 560px; } }
+
+/* ---- full-screen rest overlay (timer.js renderOverlay) ---- */
+.rov { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; background: var(--bg); padding: calc(var(--safe-t, 0px) + 12px) var(--gut) calc(var(--safe-b) + 16px); animation: rovIn 220ms var(--ease-out); }
+.rov-in { width: min(100%, 420px); display: flex; flex-direction: column; gap: 14px; }
+.rov-top { display: flex; align-items: center; justify-content: space-between; }
+.rov-top .lbl { font-size: 13px; color: var(--t3); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.rov .ringwrap { width: min(70vw, 300px); margin: 0 auto; }
+.rov .ringwrap .big { position: relative; border: 0; background: none; color: var(--t1); font-size: clamp(56px, 18vw, 76px); font-weight: 760; letter-spacing: -.03em; padding: 0 10px; min-height: 64px; }
+.rov .ringwrap .sub2 { bottom: 24%; font-size: 13px; }
+.rov-next { display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: var(--r-lg, 16px); background: var(--s1); box-shadow: var(--raise-sm); }
+.rov-next img { width: 56px; height: 56px; border-radius: 12px; object-fit: cover; background: var(--s2); flex: none; }
+.rov-next b { display: block; font-size: 16px; line-height: 1.25; }
+.rov-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@keyframes rovIn { from { opacity: 0; transform: translateY(12px); } }
+@media (min-width: 768px) { .rov { background: color-mix(in oklab, var(--bg) 82%, transparent); backdrop-filter: blur(8px); } .rov-in { background: var(--bg); padding: 20px; border-radius: 24px; box-shadow: var(--raise); } }
+@media (prefers-reduced-motion: reduce) { .rov { animation: none; } }
+body:has(#rov) .toast { bottom: auto; top: calc(var(--safe-t) + 16px); }
