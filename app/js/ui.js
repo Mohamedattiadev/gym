@@ -99,8 +99,13 @@ export const fmtKg = (v) => (v >= 10000 ? (v / 1000).toFixed(1) + "t" : Math.rou
 
 /* ---- sheet ---- */
 const sheet = () => $("#sheet");
+/* FE-9: a sheet opened while the previous one is still closing (190 ms) or open cancels the pending close and
+   settles the previous content's "close" listeners (ask() promises) at once, so they never leak onto the new one */
+let closeT = 0;
 export function openSheet(html, mount, { dlg = false, half = false } = {}) {
   const d = sheet();
+  clearTimeout(closeT);
+  if (d.open) d.dispatchEvent(new Event("close"));
   d.classList.toggle("dlg", dlg); d.classList.toggle("half", half);
   $("#sheetBody").innerHTML = html;
   d.classList.remove("closing");
@@ -111,7 +116,7 @@ export function openSheet(html, mount, { dlg = false, half = false } = {}) {
 export function closeSheet() {
   const d = sheet(); if (!d.open) return;
   d.classList.add("closing");
-  setTimeout(() => { d.close(); d.classList.remove("closing"); }, 190);
+  clearTimeout(closeT); closeT = setTimeout(() => { d.close(); d.classList.remove("closing"); }, 190);
 }
 export function initSheet() {
   const d = sheet();

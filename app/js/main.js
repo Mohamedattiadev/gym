@@ -426,4 +426,21 @@ addEventListener("pointerdown", unlockAudio, { once: true });
       });
     }).catch(() => {});
   }
+  setTimeout(precachePosters, 4000);
 })();
+/* Owner: all posters (~21 MB) are saved once, quietly, after the app has settled — lists and pages then show
+   pictures offline at once. Videos are saved the first time an exercise is opened (sw.js); Settings > Download
+   all still saves every video. Skipped on Data Saver; resumes where it stopped (only missing files are fetched). */
+async function precachePosters() {
+  try {
+    if (localStorage.getItem("gym-posters") === "1" || navigator.connection?.saveData || !navigator.onLine || !("caches" in self)) return;
+    const cache = await caches.open(MEDIA_CACHE);
+    const have = new Set((await cache.keys()).map((r) => new URL(r.url).pathname));
+    const todo = [...new Set(EX.map((e) => e.poster).filter(Boolean))].map((x) => new URL(x, location.href)).filter((x) => !have.has(x.pathname));
+    let i = 0, fail = 0, ok = 0;
+    // the service worker stores each poster as it passes through (one download); stop early if the host has no media
+    const worker = async () => { while (i < todo.length && (ok || i < 6)) { const x = todo[i++]; try { const r = await fetch(x.href); if (r.ok) { ok++; await r.arrayBuffer(); } else if (r.status !== 404) fail++; } catch { fail++; } } };
+    await Promise.all([worker(), worker()]);
+    if (!fail && ok && i >= todo.length) localStorage.setItem("gym-posters", "1");
+  } catch {}
+}

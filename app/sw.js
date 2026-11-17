@@ -2,7 +2,7 @@
    (FE-3/PERF-5); a new version waits until the user taps "Reload" (or all windows close). data/*.json and
    illustrations = stale-while-revalidate. 3D engine + model = cache-first in a stable cache that survives app
    updates (PERF-4). Posters/videos are cached on first view (or Settings → Download all); videos answer Range. */
-const VERSION = "v41";
+const VERSION = "v42";
 const SHELL = `gym-shell-${VERSION}`;
 const MEDIA = "gym-media-v1"; // keep name stable so downloaded media survives app updates
 const THREE_D = "gym-3d-v1"; // vendor/three + 3d/body.glb + 3d/anim: bump ONLY when those files change
@@ -67,7 +67,14 @@ self.addEventListener("fetch", (e) => {
       const key = url.origin + url.pathname;
       const hit = await cache.match(key);
       if (!hit) {
-        // PERF-1: stream the network response now (playback starts after the first ~100 KB); cache the whole file in the background
+        // a whole-file request (poster, Download all) is fetched once and stored as it streams through
+        if (!req.headers.get("range")) {
+          const r = await fetch(key).catch(() => null);
+          if (r && r.ok && r.status === 200) e.waitUntil(cache.put(key, r.clone()).catch(() => {}));
+          return r || new Response("", { status: 504 });
+        }
+        // PERF-1: video Range request — stream the network response now (playback starts after the first ~100 KB);
+        // cache the whole file in the background
         e.waitUntil(fetch(key).then((r) => r.ok && cache.put(key, r)).catch(() => {}));
         return fetch(req).catch(() => new Response("", { status: 504 }));
       }

@@ -95,7 +95,7 @@ export async function loadExercises() {
   [EX, FAM, fig, JOINTS] = await Promise.all([fetch("data/exercises.json").then((r) => r.json()), get(`data/families.${lang}.json`, null).then((x) => x || get("data/families.en.json", { families: {}, notes: {} })),
     get("data/figures.json", { f: {}, s: {} }), get("data/guide/joints.json", { joints: {} }).then((j) => j.joints || {})]);
   for (const e of EX) {
-    e.video = e.v ? `media/video/${e.slug}.mp4` : null; e.poster = `media/poster/${e.slug}.jpg`;
+    e.video = e.v ? `media/video/${e.slug}.mp4` : null; e.poster = e.v ? `media/poster/${e.slug}.jpg` : ""; // no video = no poster file
     const oef = fig.s[e.slug] || fig.f[e.family]; e.figure = oef ? `media/figures/${oef}.webp` : null;
     const f = FAM.families[e.family] || {}; e.steps = f.steps || []; e.cues = f.cues || []; e.mistakes = (f.mistakes || []).map((m) => (typeof m === "string" ? { text: m } : m)); e.about = f.about || "";
     e.vnote = e.note ? FAM.notes[e.slug] || "" : "";
