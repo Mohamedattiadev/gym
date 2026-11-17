@@ -117,7 +117,7 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 - ✅ **Exercise page declutter + equipment chips + Joint care sheet + 3 tabs** (owner, block 17, session 7)
 - ✅ **Human-looking body (18 ✅ session 5) + rotatable 3D muscle body for every exercise (19 ✅ session 6)** (owner: "looks like a stick man", "all angles")
 
-- ✅ **19a** readable hero controls · ✅ **19e** UX benchmark Blok A · ✅ **19c** fullscreen video (session 8)
+- ✅ **19a** readable hero controls · ✅ **19e** UX benchmark Blok A · ✅ **19c** fullscreen video (session 8) · ✅ **19a-fix** hero fits video + compact controls · ✅ **19a-chips** canonical alt pick (session 9)
 - ⬜ **19d, 19b** pro lock-screen rest timer (Media Session), 3D upgrade — owner
 - ⬜ **22b** quality polish + UX benchmark fixes (docs/ux_benchmark.md) — owner
 - ⬜ **25** printable PDF guide per level (en/tr/ar), generated from our data — owner
@@ -203,6 +203,10 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 - 19e: topbar 95% opaque + hairline when scrolled; default theme `system` (Auto) in store/main/me/index.html — existing installs that stored "light" keep it; `--ctl` token (light #958B84 3.3:1, dark #7A706A 3.5:1) on inputs, search, steppers, check (outline until done); light `--warn` #8F5F0F (4.8:1); figure in Muscles hero: multiply + radial mask (light), invert+hue-rotate+screen (dark); all hero modes `min(40dvh,360px)`; sticky CTA labels in `.lbl` collapse to icon while scrolling down (`body.scroll-down`); manifest: no orientation, 3 shortcuts, screenshots app/icons/shot-{narrow,wide}.png; Train empty state = compact row; splash min 1.2 s first open of the day, else hides on first render; Install card at the bottom of Home, only after the first finished workout, hidden on desktop; Me > Strength: `topExercises()` now uses the same done-set rule as `history()`, <2 points = one-line hint.
 - 19c: fullscreen button next to speed (`#fsb`, icons fs/fsx); requestFullscreen on the hero box (keeps our speed + exit controls, seg hidden), landscape lock when the video is wide (Android), webkit prefix, iPhone Safari falls back to `video.webkitEnterFullscreen()` (native player); double-click / double-tap toggles. Not testable headless — owner checks on phone.
 - A13 checked: `hack-squat-toes-low-quad-copy` really is a Smith squat video (source CMS copy slugs; 60+ `-copy` slugs, names come from the real titles). Slugs are IDs in saved sessions — not renamed.
+
+## Notes (2026-11-17, session 9)
+- 19a-fix: `fitHero()` in exercise.js sets `--ar` (h/w) on `#hero` from the poster's natural size, then the video's `loadedmetadata`; cached per slug (ASPECT map) so Muscles/3D keep the video height. CSS `.dhero.fit` = full width + `aspect-ratio: 1/var(--ar)`, max `min(55dvh,560px)`, min 200px; desktop split heights unchanged. Switcher 32px visual (26px buttons, 13px, auto-width columns, 44% of 390), speed 30px pill + fullscreen 30px square bottom-right, ::after 44px hit areas, scrims 52px. All 832 library videos are 720×720 (portrait/landscape verified by forcing `--ar`). sw v19.
+- 19a-chips (b): `variants()` (now exported) sorts by canonical > oddity (NOVEL words = +10, modifier words/brackets +1 each) > byTier; non-family "alt" picks skip novelty and names that mention another equipment kind. Library has NO Barbell Back Squat — Smith Squat → Barbell alt is now Barbell Front Squat (owner may want a back squat clip added). 22 S/A spot-checks look sane. sw v20.
 
 ## Real-phone lessons (from the owner's Fluent365 Pocket test on Android) — apply to Gym
 - ✅ **System bars match the theme**: Android nav bar/status bar stayed white under a dark app. Set `<meta name="theme-color">` at runtime from the theme (done in `applyTheme`), add `media`-specific theme-color metas for light/dark, and pick manifest `theme_color`/`background_color` that don't flash; note installed WebAPK may need reinstall to update.
