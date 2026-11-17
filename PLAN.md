@@ -168,7 +168,7 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 - 19b batch 21 (e8c4e45, +4 with wrong variants; positions from local video frames): rear-delt-fly (incline chest-supported, hang -> arms out and slightly back; Machine variant still; wrong 0 = shoulder blades squeezed back, 1 = torso swing), glute-hyper (hamstring-hyper base, wider stance, toes out; "Single Leg" still; wrong 0 = lower back hyperextension at the top, 1 = fast swing), forearm-drag-curl (drag-curl motion, barbell; Pinwheel Drag still; wrong 0 = elbows forward, 1 = lean back), front-delt-around-the-world (standing, chest on a steep incline, 3 keys hang -> front raise -> out to the sides; wrong 0 = bent elbows press, 1 = too high + fast). CONTENT NIT: families.en front-delt-around-the-world steps say "Lie back on an incline bench" but the video is chest-supported (facing the bench) — the pose follows the video; fix the text (en/tr/ar) in block 21.
 - 19b batch 22 (+1): reverse-hyper (prone, new `hipbench` prop = flat pad that ends at the hips + post, legs hang -> lift to a straight line; wrong 0 = fast and too high, 1 = arched lower back).
 - Skipped: bus-driver (plate steering = forearm roll, no hand-roll in the pose format, no plate prop), rear-cable-fly-protraction (crossed high cables on an incline — needs cable props), front-raise (Plate Supinated Raise has no local video).
-- check3d 406/406; coverage 145/180. sw v73. all.sh ALL PASS.
+- check3d 406/406; coverage 145/180. sw v74 (a parallel session took v72 + v73 for its Train/plan release). all.sh ALL PASS.
 
 ## Notes (session 42) — 19b batch 19 + 20
 - Session 41 deploy verified (v68 live).
