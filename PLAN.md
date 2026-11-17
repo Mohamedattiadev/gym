@@ -117,6 +117,10 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 - ⬜ **Exercise page declutter + equipment chips + Joint care sheet + 3 tabs** (owner, block 17) — spec in NEXT_SESSION.md
 - ✅ **Human-looking body (18 ✅ session 5) + rotatable 3D muscle body for every exercise (19 ✅ session 6)** (owner: "looks like a stick man", "all angles")
 
+- ⬜ **19a–19d** readable hero controls, fullscreen video, pro lock-screen rest timer (Media Session) — owner
+- ⬜ **22b** quality polish + UX benchmark fixes (docs/ux_benchmark.md) — owner
+- ⬜ **25** printable PDF guide per level (en/tr/ar), generated from our data — owner
+
 ## 9b. Voice guidance (later phase — yes, possible)
 - ⬜ **Narrate the movement explanations** too: about, numbered how-to steps, cues, common mistakes, warm-up drills, plan explanations (a play button on every explanation + hands-free mode during a session)
 - ⬜ Read steps & cues aloud, announce "set 2 of 3", rep count, rest countdown "10 seconds… 3, 2, 1, go"
