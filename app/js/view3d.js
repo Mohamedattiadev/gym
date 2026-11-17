@@ -333,7 +333,7 @@ export async function mount3d(el, { primary = [], secondary = [], move = null, v
     W = el.clientWidth; H = el.clientHeight || 300; renderer.setSize(W, H, false); cam.aspect = W / H;
     // keep the body inside the free band between the top toggle and the bottom controls
     const [pt, pb] = pad, band = Math.max(.4, (H - pt - pb) / H), tn = Math.tan(THREE.MathUtils.degToRad(cam.fov) / 2);
-    const need = (Math.max(size.y / 2 / tn / band, reach / 2 / tn / cam.aspect / .96) + reach / 9) / zoom;
+    const need = (Math.max(size.y / 2 / tn / band, reach / 2 / tn / cam.aspect / .86) + reach / 9) / zoom;
     panY = Math.max(-halfH * (1 - 1 / zoom), Math.min(halfH * (1 - 1 / zoom), panY)); const ty = ctr.y + panY;
     cam.position.set(0, ty + Math.sin(pitch) * need, Math.cos(pitch) * need); cam.lookAt(0, ty, 0);
     cam.setViewOffset(W, H, 0, (pb - pt) / 2, W, H); cam.updateProjectionMatrix(); dirty = true;
