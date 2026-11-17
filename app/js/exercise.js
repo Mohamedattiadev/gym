@@ -226,7 +226,10 @@ const POSE3D = { "high-bar-squat": /heel|elevated|drops?\b|pause|safety|century/
   "flat-dumbbell-press": /rotating/i, "dumbbell-fly": /low|decline/i, "incline-dumbbell-press": /high incline|hammer|slight|hold|tucked/i,
   "incline-dumbbell-fly": /high|slight|clavicular/i, "barbell-incline-press": /slight/i, "incline-dumbbell-curl": /single|high/i,
   "seated-cable-row": /pronated|lat row|flexion|rolled/i, "bar-pushdown": /partials|over top/i, "cable-fly": /high to low|seated|cross midline/i,
-  "dumbbell-row-bent-over": /wrap around|pronated/i };
+  "dumbbell-row-bent-over": /wrap around|pronated/i,
+  "pull-up": /dead|v-bar/i, "triceps-dips": /smith|straight bar/i, "cable-curl": /single|v-handle|extreme|elbows tucked/i,
+  "rope-pushdown": /flared/i, "face-pull": /$^/, "cable-overhead-extension": /single|straight bar/i,
+  "seated-leg-curl": /$^/, "leg-extension": /single|partial|3\/4/i };
 export const move3d = (e) => { const m = MOVE3D[e.family]; if (m) return !NOT_SAME.test(e.name) ? m : null;
   const not = POSE3D[e.family]; return not && !not.test(e.name) ? "p:" + e.family : null; };
 /** prop in the hands for the 3D motion, from the exercise's equipment */
