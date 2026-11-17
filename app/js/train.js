@@ -243,7 +243,9 @@ function entryHTML(en, ei) {
   const lastW = (si) => last?.sets[si]?.w ?? last?.sets.at(-1)?.w ?? "", lastR = (si) => last?.sets[si]?.r ?? last?.sets.at(-1)?.r ?? "";
   const tr = parseRange(en.target);
   let n = 0;
-  return `<div class="xblock ${allDone ? "done-all" : ""}" data-ei="${ei}">
+  const ssIn = S.active.entries[ei - 1]?.ss, ssOut = en.ss && S.active.entries[ei + 1];
+  return `<div class="xblock ${allDone ? "done-all" : ""} ${ssOut ? "ss-out" : ""} ${ssIn ? "ss-in" : ""}" data-ei="${ei}">
+    ${ssOut ? `<div class="ss-tag">${ic("swap", "xs")} Superset with next — no rest between</div>` : ""}
     <div class="xhead"><a href="#/ex/${en.slug}"><img src="${e?.poster || ""}" alt=""></a>
       <div class="grow"><div class="t">${esc(e?.name || en.slug)}</div>
         <div class="hint">${tierBadge(e?.tier)}<span>${esc(en.target || "")} reps · rest ${e ? restText(e.rest) : ""}</span></div>
@@ -285,7 +287,9 @@ function wireSession() {
         haptic("success");
         const nx = en.sets[si + 1]; if (nx && !nx.w && nx.type === s.type) nx.w = s.w;
         if (s.type !== "w" && isPR(en.slug, s)) { confetti(); toast(`New PR: ${s.w}${S.settings.unit} × ${s.r}`); beep([[660, .1], [880, .1], [1175, .2]]); }
-        if (S.settings.autoRest && s.type !== "w") startRest(ex?.rest || S.settings.restDefault, nextLabel(ei, si));
+        const ssNext = en.ss && a.entries[ei + 1];
+        if (s.type !== "w" && ssNext) toast(`Superset: now ${BY[ssNext.slug]?.name || "next exercise"}`);
+        else if (S.settings.autoRest && s.type !== "w") startRest(ex?.rest || S.settings.restDefault, a.entries[ei - 1]?.ss ? ssBackLabel(ei - 1) : nextLabel(ei, si));
         else if (s.type === "w") startRest(45, nextLabel(ei, si));
       }
       rerender(ei); refreshStats(); return;
@@ -310,6 +314,7 @@ function nextLabel(ei, si) {
   if (nx) return `Next: set ${si + 2}${nx.w ? ` · ${nx.w}${S.settings.unit}` : ""}`;
   const ne = a.entries[ei + 1]; return ne ? `Next: ${BY[ne.slug]?.name}` : "Last set — finish strong";
 }
+function ssBackLabel(pi) { const p = S.active.entries[pi]; const k = p.sets.findIndex((x) => !x.done && x.type !== "w"); return k < 0 ? nextLabel(pi + 1, 1e9) : `Next: ${BY[p.slug]?.name} · set ${k + 1}`; }
 function isPR(slug, s) { const b = bestOf(slug); const v = e1rm(s.w, s.r); return v > 0 && b && v > b.e1rm; }
 function swapSheet(ei) {
   const en = S.active.entries[ei]; const ex = BY[en.slug]; const alts = swaps(ex, 10);
@@ -322,6 +327,7 @@ function entryMenu(ei) {
   const a = S.active; const en = a.entries[ei];
   openSheet(`<h3>${esc(BY[en.slug]?.name)}</h3><div class="menu">
     <button data-m="up" ${ei ? "" : "disabled"}>${ic("up", "sm")}Move up</button><button data-m="down" ${ei < a.entries.length - 1 ? "" : "disabled"}>${ic("down", "sm")}Move down</button>
+    <button data-m="ss" ${ei < a.entries.length - 1 ? "" : "disabled"}>${ic("swap", "sm")}${en.ss ? "Unlink superset" : "Superset with next exercise"}</button>
     <button data-m="delset">${ic("minus", "sm")}Remove last set</button><a href="#/ex/${en.slug}">${ic("book", "sm")}How to do it</a>
     <button class="danger" data-m="rm">${ic("trash", "sm")}Remove exercise</button></div>`, (el) => {
     el.onclick = (e) => {
@@ -329,7 +335,9 @@ function entryMenu(ei) {
       if (m === "up" && ei > 0) [a.entries[ei - 1], a.entries[ei]] = [a.entries[ei], a.entries[ei - 1]];
       if (m === "down" && ei < a.entries.length - 1) [a.entries[ei + 1], a.entries[ei]] = [a.entries[ei], a.entries[ei + 1]];
       if (m === "delset" && en.sets.length > 1) en.sets.pop();
-      if (m === "rm") a.entries.splice(ei, 1);
+      if (m === "ss") { en.ss = !en.ss; toast(en.ss ? "Superset: no rest until both are done" : "Superset removed"); }
+      if (m === "rm") { a.entries.splice(ei, 1); if (ei && !a.entries[ei]) a.entries[ei - 1].ss = false; }
+      if (m === "up" || m === "down") a.entries.forEach((x) => (x.ss = false));
       save("active"); closeSheet(); sessionView();
     };
   });

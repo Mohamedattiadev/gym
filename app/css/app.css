@@ -603,3 +603,7 @@ body:has(.tpill) .toast { bottom: calc(var(--tab-h) + var(--safe-b) + 70px); }
 .hmus .mini-body { display: flex; gap: 6px; height: 100%; } .hmus .mini-body svg { height: 100%; width: auto; }
 .hmus.withfig .mini-body { max-width: 46%; }
 .dhero .cap i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin: 0 4px 0 8px; }
+.xblock.ss-out { border-end-start-radius: 6px; border-end-end-radius: 6px; box-shadow: inset 3px 0 0 var(--accent), var(--raise-sm); }
+.xblock.ss-in { margin-top: -8px !important; border-start-start-radius: 6px; border-start-end-radius: 6px; box-shadow: inset 3px 0 0 var(--accent), var(--raise-sm); }
+.ss-tag { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: var(--accent-text); margin: -2px 0 8px; }
+.ss-tag svg.i { width: 13px; height: 13px; }
