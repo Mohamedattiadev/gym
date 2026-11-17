@@ -15,7 +15,7 @@ Legend: ✅ done · 🟡 partly done / needs test · ⬜ todo
 - ✅ Merge content into `exercises.json` at build time (family, primary, secondary, i18n, note)
 - ✅ Fix wrong groups reported by content agents (rear-delt "abduction" moves in Glutes; "Machine Single Arm Sides" → Shoulders; "Seated Single Arm Dumbbell Press (Hammer)" → Shoulders; Roman chair knees-to-chest / Cable Rotations / Knee Tucks → Abs). Slugs ≠ names (`-copy`) is fine: trust `name`.
 - ✅ Machine detection → `machine` field + filter chip (Hammer Strength, Smith, Pec Deck, Leg Press, Hack Squat, Pendulum, Belt Squat, Cable Station, Lat Pulldown, Seated Row, Leg Curl/Extension, Abductor/Adductor, Chest Press machine, Assisted Pull-up, Reverse Hyper, Roman Chair, Preacher bench, T-Bar, Landmine, TRX)
-- ⬜ `tierStart` seconds from Jeff transcripts → "Jeff's take" opens the video at that moment
+- ✅ (session 7, app/data/jeff.json) `tierStart` seconds from Jeff transcripts → "Jeff's take" opens the video at that moment
 
 ## 1. Muscle animations (research done — item 4)
 Goal: besides the real video, show a **neutral mannequin/skeleton-style body with the worked muscle colored**, ideally from more than one angle.
@@ -63,7 +63,7 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
   "Add to workout" as a small sticky bottom button (not a huge block); then tabs: **How to | Muscles | Stats | Notes**
 - ✅ Numbered how-to: **1. … 2. … 3. …** + cues + common mistakes + variant note (from content files, user's language)
 - ✅ Muscles worked: mini body/mannequin with primary (strong color) + secondary (light) + list
-- 🟡 Jeff tier card (one-line expandable + YouTube link; timestamp pending), your stats (best e1RM, last week vs this week, sparkline), notes, alternatives
+- ✅ Jeff tier card (Ranking tab, in-app embed at the timestamp), your stats (best e1RM, last week vs this week, sparkline), notes, alternatives
 
 ## 5. Body map
 - ✅ Replace hand-drawn SVG with a **realistic muscular open-source anatomy SVG** (license must allow public use; credit it)
@@ -114,7 +114,7 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 
 - ⬜ **Common mistakes shown, not just told** (owner, block 22): WRONG vs RIGHT clip / 3D per mistake, credited, exact movement only — spec in NEXT_SESSION.md
 
-- ⬜ **Exercise page declutter + equipment chips + Joint care sheet + 3 tabs** (owner, block 17) — spec in NEXT_SESSION.md
+- ✅ **Exercise page declutter + equipment chips + Joint care sheet + 3 tabs** (owner, block 17, session 7)
 - ✅ **Human-looking body (18 ✅ session 5) + rotatable 3D muscle body for every exercise (19 ✅ session 6)** (owner: "looks like a stick man", "all angles")
 
 - ⬜ **19a–19d** readable hero controls, fullscreen video, pro lock-screen rest timer (Media Session) — owner
@@ -187,6 +187,13 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 - Entry points: Home "Up next" → Warm up button; Train → Tools "Warm-up"; session banner "Warm up first" until the first set is done (S.active.warmed / noWarm); finish sheet → "Cool-down stretches (optional)".
 - Content `app/data/guide/warmups.json` (35 drills en/tr/ar, 7 areas, muscleArea map, sources Jeff/SBS/RP/3DMJ/Squat University). 19 drills have an exact oef figure (copied to media/figures); 13 have `clip` {q,start,end,by}.
 - Clips: yt-dlp download was blocked (YouTube 403 and the auto-mode permission check), so clips use the fallback: tap "Watch demo" → youtube-nocookie embed of only start–end + credit link. To host offline later: put `media/clips/<file>.mp4` and set `clip.file` — the player already prefers it.
+
+## Notes (2026-11-17, session 7)
+- Merged `warmups` (block 20) into main, worktree removed. sw v15.
+- Block 17 exercise page: hero → equipment chips (`variants()`: same family, else same group+pattern+primary[0] marked "similar"; hides pain-flagged / not-owned; tap = history.replaceState + rerender) → title → plain line (tier badge = opens Ranking tab, level, warm pain chip) → grey line reps · rest · type → tabs How to | Stats | Ranking & alternatives. Muscles tab removed: hero Muscles shows Main/Helpers list (one body view when a figure exists); "Targets: <head>" expandable at top of How to.
+- Pain chip → Joint care sheet: joint-friendly hcards, "Do these first" (warmups.json area drills, JOINT_AREA map) + Start → `playDrills()` export in warmup.js (timer player), tips, physio note, remove flag.
+- Ranking tab: tier + Jeff note + "#k of N <group>", youtube-nocookie embed (click thumbnail → iframe with start=), offline = "Needs internet" + link; alternatives as `.hcards`; My notes.
+- `app/data/jeff.json` (subagent; rebuild with `python3 -I tools/jeff/build.py .`): fam[family][videoId]=sec → 509/705 ranked exercises at their own tier video (+55 via another Jeff video of the same family, used as fallback); ex[slug] backup for 72/137 unranked (Jeff 63, RP 5, Jeremy Ethier 3, Squat University 1). Rest skipped on purpose (no exact match). YouTube 429 blocked 3 leads (SquatU reverse hyper / back extension, RP shrug mistakes) — retry later.
 
 ## Real-phone lessons (from the owner's Fluent365 Pocket test on Android) — apply to Gym
 - ✅ **System bars match the theme**: Android nav bar/status bar stayed white under a dark app. Set `<meta name="theme-color">` at runtime from the theme (done in `applyTheme`), add `media`-specific theme-color metas for light/dark, and pick manifest `theme_color`/`background_color` that don't flash; note installed WebAPK may need reinstall to update.

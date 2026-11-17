@@ -281,11 +281,12 @@ async function rankPanel(e, p) {
   const J = await loadJeff(); const fam = FAM.families?.[e.family]?.title;
   let top = "";
   if (e.tierVideo) {
-    const t = J.fam?.[e.family]?.[e.tierVideo] || 0; const title = JEFF_VID[e.tierVideo] || "Jeff Nippard";
+    const fv = J.fam?.[e.family] || {}; const vid = fv[e.tierVideo] != null ? e.tierVideo : Object.keys(fv)[0] || e.tierVideo;
+    const t = fv[vid] || 0; const title = JEFF_VID[vid] || "Jeff Nippard";
     const group = EX.filter((x) => x.group === e.group && x.tier).sort(byTier); const k = group.indexOf(e) + 1;
     top = `<div class="rank">${tierBadge(e.tier)}<div class="grow"><b>${TIER_WORD[e.tier]}</b> <span class="dim small">· Jeff Nippard</span>${k ? `<div class="dim small">#${k} of ${group.length} ${esc(e.group.toLowerCase())} exercises</div>` : ""}</div><button class="linkbtn small" id="tierHelp">${ic("info", "xs")} Tiers</button></div>
       ${e.tierNote ? `<p class="muted" style="margin:8px 0 10px">${esc(e.tierNote)}</p>` : ""}
-      ${ytBox(e.tierVideo, t, title)}<div class="dim small ytcap">${esc(title)}${t && fam && !e.canonical ? ` · Jeff ranks the ${esc(fam)} version` : ""}</div>`;
+      ${ytBox(vid, t, title)}<div class="dim small ytcap">${esc(title)}${t && fam && !e.canonical ? ` · Jeff ranks the ${esc(fam)} version` : ""}</div>`;
   } else if (J.ex?.[e.slug]) {
     const b = J.ex[e.slug];
     top = `<div class="rank"><div class="grow"><b>Not ranked by Jeff</b><div class="dim small">Technique from ${esc(b.by)}</div></div></div>${ytBox(b.yt, b.t, b.title)}<div class="dim small ytcap">${esc(b.title)} · ${esc(b.by)}</div>`;
