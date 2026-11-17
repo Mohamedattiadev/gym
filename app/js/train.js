@@ -1,7 +1,8 @@
 // Workouts, level-based plans, workout editor, live session logger (beat last week + plateau auto-adjust), tools.
 import { S, save, tomb, persist } from "./store.js";
-import { $, $$, esc, ic, uid, ask, askText, openSheet, closeSheet, toast, haptic, beep, confetti, fmtDur, RM } from "./ui.js";
-import { EX, BY, byTier, hasEquip, hurts, history, lastSets, bestOf, setsText, swaps, LEVEL_N, WEEK } from "./data.js";
+import { $, $$, esc, ic, uid, ask, askText, choose, openSheet, closeSheet, toast, haptic, beep, confetti, fmtDur, RM } from "./ui.js";
+import { BY, history, lastSets, bestOf, setsText, swaps, WEEK } from "./data.js";
+import { PLANS, planById, buildPlan, pickPlans, recommendedId, planOpts, planSlots, minutesOf, freqOf, FOCUS, loadPlanText } from "./plans.js";
 import { e1rm, platesFor, plateColor, plateHeight, warmupSets, suggest } from "./calc.js";
 import { go, redirect, setTop } from "./nav.js";
 import { tierBadge, restText, fillIll } from "./components.js";
@@ -11,39 +12,9 @@ const view = () => $("#view");
 export let pickMode = null;
 const store = save; // FE-10: sync pushes from the save hook
 
-/* ---------------- plans by level (slot-based, filled from S/A canonical exercises) ---------------- */
-const SLOT = (group, pattern, sets, reps) => ({ group, pattern, sets, reps });
-export const PLANS = [
-  { id: "beg-fb", level: "beginner", name: "Full Body", days: 3, desc: "3 days a week · 2–3 sets · learn the movements", workouts: [
-    ["Full Body A", [SLOT("Quads", "squat", 3, "6-10"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Lats", "v-pull", 3, "8-12"), SLOT("Hamstrings", "curl", 2, "10-12"), SLOT("Shoulders", "raise", 2, "12-15"), SLOT("Abs", "core", 2, "10-15")]],
-    ["Full Body B", [SLOT("Hamstrings", "hinge", 3, "8-10"), SLOT("Shoulders", "v-push", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Quads", "lunge", 2, "10-12"), SLOT("Biceps", "curl", 2, "10-15"), SLOT("Triceps", "ext", 2, "10-15")]],
-  ] },
-  { id: "int-ul", level: "intermediate", name: "Upper / Lower", days: 4, desc: "4 days a week · each muscle twice a week", workouts: [
-    ["Upper A", [SLOT("Chest", "h-push", 3, "6-10"), SLOT("Lats", "v-pull", 3, "8-12"), SLOT("Shoulders", "v-push", 2, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Shoulders", "raise", 3, "12-15"), SLOT("Biceps", "curl", 2, "10-12"), SLOT("Triceps", "ext", 2, "10-12")]],
-    ["Lower A", [SLOT("Quads", "squat", 3, "6-10"), SLOT("Hamstrings", "hinge", 3, "8-10"), SLOT("Quads", "ext", 2, "10-15"), SLOT("Hamstrings", "curl", 3, "10-12"), SLOT("Calves", "calf", 3, "10-15"), SLOT("Abs", "core", 3, "10-15")]],
-    ["Upper B", [SLOT("Chest", "h-push", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Lats", "v-pull", 3, "10-12"), SLOT("Chest", "fly", 2, "10-15"), SLOT("Shoulders", "fly", 3, "12-15"), SLOT("Triceps", "ext", 2, "10-15"), SLOT("Biceps", "curl", 2, "10-15")]],
-    ["Lower B", [SLOT("Quads", "lunge", 3, "8-12"), SLOT("Glutes", "hinge", 3, "8-12"), SLOT("Hamstrings", "curl", 3, "10-12"), SLOT("Glutes", "raise", 2, "12-20"), SLOT("Calves", "calf", 3, "10-15"), SLOT("Abs", "core", 2, "10-15")]],
-  ] },
-  { id: "adv-ppl", level: "advanced", name: "Push / Pull / Legs", days: 6, desc: "6 days a week (or 3) · more volume · isolations to failure", workouts: [
-    ["Push", [SLOT("Chest", "h-push", 3, "6-10"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Shoulders", "v-push", 3, "8-12"), SLOT("Chest", "fly", 3, "10-15"), SLOT("Shoulders", "raise", 4, "12-20"), SLOT("Triceps", "ext", 3, "10-15")]],
-    ["Pull", [SLOT("Lats", "v-pull", 3, "6-10"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Lats", "h-pull", 3, "10-12"), SLOT("Shoulders", "fly", 3, "12-20"), SLOT("Biceps", "curl", 3, "8-12"), SLOT("Biceps", "curl", 2, "12-15")]],
-    ["Legs", [SLOT("Quads", "squat", 4, "6-10"), SLOT("Hamstrings", "hinge", 3, "8-10"), SLOT("Quads", "lunge", 3, "8-12"), SLOT("Hamstrings", "curl", 3, "10-15"), SLOT("Quads", "ext", 3, "12-15"), SLOT("Calves", "calf", 4, "10-15")]],
-  ] },
-];
+/* ---------------- plans (block 26: definitions + picker in plans.js) ---------------- */
+export { PLANS, buildPlan };
 const LEVEL_C = { beginner: "var(--ok)", intermediate: "var(--tier-B)", advanced: "var(--tier-A)" };
-function fillSlot(slot, used, level) {
-  const lv = LEVEL_N[level] || 2;
-  const ok = (e) => e.video && hasEquip(e) && !hurts(e) && !used.has(e.slug);
-  const pool = EX.filter((e) => ok(e) && e.group === slot.group && e.pattern === slot.pattern && (LEVEL_N[e.level] || 1) <= Math.max(lv, 2));
-  const best = pool.filter((e) => e.canonical).sort(byTier)[0] || pool.sort(byTier)[0] || EX.filter((e) => ok(e) && e.group === slot.group).sort(byTier)[0];
-  if (best) used.add(best.slug);
-  return best;
-}
-export function buildPlan(p) {
-  const used = new Set();
-  return p.workouts.map(([name, slots]) => ({ id: uid(), name, plan: p.id, updatedAt: Date.now(),
-    items: slots.map((s) => [s, fillSlot(s, used, p.level)]).filter(([, e]) => e).map(([s, e]) => ({ slug: e.slug, sets: s.sets, reps: s.reps })) }));
-}
 
 /* ---------------- train tab ---------------- */
 export function nextWorkout() {
@@ -69,31 +40,75 @@ export function trainView() {
         <a class="itile" href="#/timer/interval" style="--c:var(--tier-A)"><span class="ico">${ic("bolt")}</span><div><b>Intervals</b><span>Tabata / EMOM</span></div></a>
         <a class="itile" href="#/warmup" style="--c:var(--accent)"><span class="ico">${ic("flame")}</span><div><b>Warm-up</b><span>Ramp-up, primers</span></div></a></div>
     </div><div>
-      <div class="sec"><h2>Plans by level</h2><a href="#/start">Find my plan</a></div>
-      <div class="stack tight stagger">${PLANS.map((p) => `<div class="plan-card"><div class="row"><span class="tag" style="color:${LEVEL_C[p.level]};background:color-mix(in oklab, ${LEVEL_C[p.level]} 14%, transparent)">${p.level}</span><span class="dim small grow">${p.workouts.length} workouts</span><a class="link small" href="#/plan/${p.id}" style="color:var(--accent-text);font-weight:600">How it works</a></div>
-          <b>${p.name}</b><div class="muted small">${p.desc}</div>
-          <div class="row" style="margin-top:6px"><button class="btn sm grow" data-preview="${p.id}">Preview</button><button class="btn sm primary grow" data-use="${p.id}">Use plan</button></div></div>`).join("")}</div>
+      <div class="sec"><h2>Plans for you</h2><a href="#/plans">All ${PLANS.length} plans</a></div>
+      <div class="stack tight stagger" id="planCards">${pickPlans({ level: S.profile?.level || "beginner", days: S.profile?.days || 3 }).map(({ p }) => planCard(p)).join("")}</div>
+      <a class="btn ghost block" href="#/start" style="margin-top:6px">${ic("layers", "sm")} Find my plan — 3 questions</a>
     </div></div>`;
   view().onclick = (e) => {
     const st = e.target.closest("[data-start]"); if (st) return startSession(S.workouts.find((w) => w.id === st.dataset.start));
-    const pv = e.target.closest("[data-preview]"); if (pv) return previewPlan(PLANS.find((p) => p.id === pv.dataset.preview));
-    const us = e.target.closest("[data-use]"); if (us) return usePlan(PLANS.find((p) => p.id === us.dataset.use));
+    planClicks(e);
   };
   $("#newW").onclick = newWorkout;
   const q = $("#quick"); if (q) q.onclick = () => startSession(null);
+  fillPlanLines(view());
   $("#tPlates").onclick = () => plateSheet(100); $("#t1rm").onclick = oneRmSheet;
 }
 async function newWorkout() { const n = await askText("New workout", { value: "Push Day", ok: "Create" }); if (!n) return null; const w = { id: uid(), name: n, items: [], updatedAt: Date.now() }; S.workouts.push(w); store("workouts"); go(`#/workout/${w.id}`); return w; }
-function previewPlan(p) {
-  const ws = buildPlan(p);
-  openSheet(`<h3>${p.name}</h3><p class="muted small" style="margin:-6px 0 8px">${p.desc}</p>${ws.map((w) => `<div class="h4">${esc(w.name)}</div><div class="stack tight">
-    ${w.items.map((it) => `<div class="lrow"><img src="${BY[it.slug].poster}" alt=""><div class="grow"><div class="t">${esc(BY[it.slug].name)}</div><div class="s">${it.sets} × ${it.reps}</div></div>${tierBadge(BY[it.slug].tier)}</div>`).join("")}</div>`).join("")}
-    <button class="btn primary block" style="margin-top:16px" id="usePv">Use this plan</button>`, (el) => ($("#usePv", el).onclick = () => { closeSheet(); usePlan(p); }));
+const LEVEL_T = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
+/** plan card: level tag, Recommended badge, name, days · minutes · frequency, one line (filled from plans.json) */
+export function planCard(p, { why = "" } = {}) {
+  const rec = p.id === recommendedId(), f = freqOf(p), mins = Math.max(...planSlots(p, planOpts()).map(minutesOf));
+  return `<div class="plan-card${rec ? " rec" : ""}"><div class="row"><span class="tag" style="color:${LEVEL_C[p.level]};background:color-mix(in oklab, ${LEVEL_C[p.level]} 14%, transparent)">${LEVEL_T[p.level]}</span>${rec ? `<span class="tag rec-b">${ic("check", "sm")} Recommended</span>` : ""}<span class="grow"></span><a class="link small" href="#/plan/${p.id}" style="color:var(--accent-text);font-weight:600">How it works</a></div>
+    <b>${esc(p.name)}</b><div class="dim small num">${p.days} days a week · ~${mins} min · each muscle ${f}× a week</div>
+    <div class="muted small" data-pline="${p.id}">${why ? esc(why) : ""}</div>
+    <div class="row" style="margin-top:6px"><button class="btn sm grow" data-preview="${p.id}">Preview</button><button class="btn sm primary grow" data-use="${p.id}">Use plan</button></div></div>`;
 }
-export function usePlan(p, redraw = true) {
-  const ws = buildPlan(p);
-  S.workouts.push(...ws); S.profile = { ...(S.profile || {}), level: p.level }; store("workouts", "profile");
-  haptic("success"); toast(`Added ${ws.length} workouts`); if (redraw) { trainView(); fillIll(view()); }
+/** fill the one-line texts after plans.json arrives */
+export async function fillPlanLines(root) {
+  const t = await loadPlanText(), lang = S.settings.lang || "en", L = (o) => (o && (o[lang] || o.en)) || "";
+  root.querySelectorAll("[data-pline]").forEach((el) => { if (!el.textContent.trim()) el.textContent = L(t.plans?.[el.dataset.pline]?.line); });
+}
+/** wire Preview / Use plan buttons inside root */
+export function planClicks(e) {
+  const pv = e.target.closest("[data-preview]"); if (pv) { previewPlan(planById(pv.dataset.preview)); return true; }
+  const us = e.target.closest("[data-use]"); if (us) { usePlan(planById(us.dataset.use)); return true; }
+  return false;
+}
+export function previewPlan(p) {
+  const o = planOpts();
+  const draw = (el) => {
+    const ws = buildPlan(p, o), sl = planSlots(p, o);
+    const seg = (id, opts, cur) => `<div class="seg sm" id="${id}" role="group">${opts.map(([v, t]) => `<button class="${String(v) === String(cur) ? "on" : ""}" data-v="${v}">${t}</button>`).join("")}</div>`;
+    el.innerHTML = `<h3>${esc(p.name)}</h3><p class="muted small" style="margin:-6px 0 10px">${p.days} days a week · ${ws.length} workouts</p>
+      <div class="pv-opts"><div class="row between"><span class="small b">Session length</span>${seg("pvMin", [[45, "45 min"], [60, "60 min"], [75, "75 min"]], o.min)}</div>
+        <div><span class="small b">Extra focus</span><div class="gchips" id="pvFocus" style="margin-top:6px">${[["", "None"], ...Object.entries(FOCUS).map(([k, v]) => [k, v.name])].map(([k, t]) => `<button class="chip ${k === o.focus ? "on" : ""}" data-v="${k}">${t}</button>`).join("")}</div>${o.focus ? `<div class="dim tiny" style="margin-top:4px">Adds a few sets for ${esc(FOCUS[o.focus].name.toLowerCase())} to two workouts.</div>` : ""}</div></div>
+      ${ws.map((w, i) => `<div class="h4">${esc(w.name)} <span class="dim tiny num">~${minutesOf(sl[i])} min</span></div><div class="stack tight">
+      ${w.items.map((it) => `<div class="lrow"><img src="${BY[it.slug].poster}" alt=""><div class="grow"><div class="t">${esc(BY[it.slug].name)}</div><div class="s">${it.sets} × ${it.reps}</div></div>${tierBadge(BY[it.slug].tier)}</div>`).join("")}</div>`).join("")}
+      <button class="btn primary block" style="margin-top:16px" id="usePv">Use this plan</button>`;
+    $("#pvMin", el).onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b) return; haptic(); o.min = +b.dataset.v; draw(el); };
+    $("#pvFocus", el).onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b) return; haptic(); o.focus = b.dataset.v; draw(el); };
+    $("#usePv", el).onclick = () => { closeSheet(); usePlan(p, true, o); };
+  };
+  openSheet(`<div id="pvBody"></div>`, (el) => draw($("#pvBody", el)));
+}
+/** UT-6: using a plan again (or a second plan) asks Replace / Keep both instead of silently duplicating */
+export async function usePlan(p, redraw = true, opt = planOpts()) {
+  const old = S.workouts.filter((w) => w.plan), same = old.some((w) => w.plan === p.id);
+  let mode = "add";
+  if (old.length) {
+    const cur = planById(old[0].plan)?.name || "your plan";
+    mode = await choose(same ? "You already use this plan" : `Switch from ${cur}?`, same ? "Replace its workouts with fresh ones, or keep both copies." : `Replace the ${old.length} workouts from ${cur}, or keep them next to the new ones.`,
+      same ? [["replace", "Replace"], ["add", "Keep both"]] : [["replace", `Replace ${cur}`], ["add", "Keep both"]]);
+    if (!mode) return false;
+  }
+  if (mode === "replace") for (const w of old) { tomb("workouts", w.id); S.workouts.splice(S.workouts.indexOf(w), 1); }
+  const ws = buildPlan(p, opt);
+  S.workouts.push(...ws);
+  S.settings.planMin = opt.min; S.settings.planFocus = opt.focus;
+  S.profile = { ...(S.profile || {}), level: S.profile?.level || p.level, plan: p.id };
+  store("workouts", "profile", "settings");
+  haptic("success"); toast(mode === "replace" ? `Plan replaced · ${ws.length} workouts` : `Added ${ws.length} workouts`); if (redraw && location.hash.startsWith("#/train")) { trainView(); fillIll(view()); }
+  return true;
 }
 
 /* ---------------- workout editor ---------------- */

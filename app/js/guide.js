@@ -5,6 +5,7 @@ import { $, esc, ic, haptic, toast, selectIn, indicate } from "./ui.js";
 import { EX, bestOf, EQUIP_PROFILES } from "./data.js";
 import { setTop, go, redirect, routeId, live } from "./nav.js";
 import * as T from "./train.js";
+import * as P from "./plans.js";
 
 const view = () => $("#view");
 const L = (o) => (o && typeof o === "object" ? o[S.settings.lang || "en"] || o.en || "" : o ?? "");
@@ -53,24 +54,24 @@ export async function startView() {
   };
   draw();
 }
-export function pickPlan({ level = "beginner", days = 3 } = {}) {
-  if (days <= 3) return level === "advanced" && days === 3 ? "adv-ppl" : "beg-fb";
-  if (days >= 6 && level !== "beginner") return "adv-ppl";
-  return "int-ul";
-}
-function result(ob) {
-  const a = quiz.a, id = pickPlan(a), p = T.PLANS.find((x) => x.id === id);
+export const pickPlan = (a) => P.pickPlans(a)[0]?.p.id || "beg-fb";
+async function result(ob) {
+  const a = quiz.a;
   setProf({ level: a.level, days: a.days, goal: a.goal, sex: a.sex });
   if (a.equip) { S.settings.equip = a.equip; S.settings.onboarded = true; save("settings"); }
   if (a.bw) saveBW(a.bw);
   quiz.started = false;
-  const eq = EQUIP_PROFILES[a.equip]?.name;
+  const rid = routeId(), tx = await P.loadPlanText(); if (!live(rid)) return;
+  const picks = P.pickPlans(a), eq = EQUIP_PROFILES[a.equip]?.name;
+  const why = (w) => L(tx.why?.[w])?.replace("{n}", a.days) || "";
   view().innerHTML = `<div class="qprog"><i style="width:100%"></i></div><div class="eyebrow" style="margin-top:14px">${esc(L(ob.result?.title) || "Your plan")}</div>
-    <h2 class="qt">${esc(p.name)}</h2><div class="muted small">${esc(p.desc)}${eq ? ` · ${esc(eq)}` : ""}</div>
-    <div class="card pad" style="margin-top:12px">${esc(L(ob.result?.why?.[id]))}</div>
-    <div class="row" style="margin-top:14px"><a class="btn grow" href="#/plan/${id}">How it works</a><button class="btn primary grow" id="qUse">${ic("plus", "sm")} Use this plan</button></div>
-    <button class="btn ghost block" style="margin-top:6px" id="qAgain">Start over</button>`;
-  $("#qUse").onclick = () => { T.usePlan(p, false); go("#/train"); };
+    <h2 class="qt">${esc(picks[0].p.name)}</h2><div class="muted small">${picks[0].p.days} days a week${eq ? ` · ${esc(eq)}` : ""}</div>
+    <div class="card pad" style="margin-top:12px">${esc(L(tx.plans?.[picks[0].p.id]?.best) || L(ob.result?.why?.[picks[0].p.id]))}</div>
+    <div class="row" style="margin-top:14px"><a class="btn grow" href="#/plan/${picks[0].p.id}">How it works</a><button class="btn primary grow" id="qUse">${ic("plus", "sm")} Use this plan</button></div>
+    ${picks.length > 1 ? `<div class="h4">Also good for you</div><div class="stack tight" id="qAlt">${picks.slice(1).map(({ p, why: w }) => T.planCard(p, { why: why(w) })).join("")}</div>` : ""}
+    <button class="btn ghost block" style="margin-top:10px" id="qAgain">Start over</button>`;
+  $("#qUse").onclick = async () => { if (await T.usePlan(picks[0].p, false)) go("#/train"); };
+  const alt = $("#qAlt"); if (alt) alt.onclick = (e) => { if (e.target.closest("[data-use]")) { e.preventDefault(); T.usePlan(P.planById(e.target.closest("[data-use]").dataset.use), false).then((ok) => ok && go("#/train")); } else T.planClicks(e); };
   $("#qAgain").onclick = () => { quiz.i = 0; startView(); };
   haptic("success");
 }
@@ -142,24 +143,41 @@ export async function nutritionView() {
   draw();
 }
 
-/* ---------------- plans explained ---------------- */
+/* ---------------- plans explained (block 26) ---------------- */
+const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+let plansDays = 0; // filter on the Plans page (kept while the app is open)
+const TARGET = { beginner: [6, 10], intermediate: [10, 16], advanced: [12, 20] };
 export async function plansView(id) {
-  setTop({ title: id ? "Plan" : "Plans explained", back: true }); loading();
-  const rid = routeId(); const pl = await load("plans"); if (!live(rid)) return; const C = pl.plans || {};
+  setTop({ title: id ? "Plan" : "Plans", back: true }); loading();
+  const rid = routeId(); const pl = await P.loadPlanText(); if (!live(rid)) return; const C = pl.plans || {};
   if (id) {
-    const p = T.PLANS.find((x) => x.id === id), c = C[id] || {}; if (!p) return redirect("#/plans");
-    setTop({ title: p.name, back: true });
+    const p = P.planById(id), c = C[id] || {}; if (!p) return redirect("#/plans");
+    setTop({ title: L(c.name) || p.name, back: true });
     const blk = (t, v) => (v ? `<div class="h4">${t}</div><p class="small">${esc(L(v))}</p>` : "");
-    view().innerHTML = `<div class="card pad"><div class="eyebrow">${esc(p.level)} · ${p.days} days</div><p class="small" style="margin:6px 0 0">${esc(L(c.what) || p.desc)}</p></div>
-      ${blk("Who it's for", c.who)}${blk("Why it works", c.why)}
-      ${(c.schedule || []).length ? `<div class="h4">Your week</div><div class="sched">${c.schedule.map((d) => `<div><b>${esc(L(d.day))}</b><span>${esc(L(d.focus))}</span></div>`).join("")}</div>` : ""}
-      ${blk("Sets per muscle", c.setsPerMuscle)}${blk("How to progress", c.progression)}
-      ${(c.tips || []).length ? `<div class="h4">Tips</div><ul class="small glist">${c.tips.map((x) => `<li>${esc(L(x))}</li>`).join("")}</ul>` : ""}
-      <button class="btn primary block" style="margin-top:16px" id="pUse">${ic("plus", "sm")} Use this plan</button>`;
-    $("#pUse").onclick = () => { T.usePlan(p, false); go("#/train"); };
+    const list = (t, xs, cls) => ((xs || []).length ? `<div class="h4">${t}</div><ul class="small glist ${cls}">${xs.map((x) => `<li>${esc(L(x))}</li>`).join("")}</ul>` : "");
+    const ws = P.weeklySets(p), [lo, hi] = TARGET[p.level], max = Math.max(hi, ...Object.values(ws));
+    const rec = p.id === P.recommendedId();
+    view().innerHTML = `<div class="card pad"><div class="eyebrow">${esc(p.level)} · ${p.days} days a week${rec ? " · Recommended for you" : ""}</div><p class="small" style="margin:6px 0 0">${esc(L(c.what))}</p>${c.best ? `<p class="dim small" style="margin:6px 0 0">${esc(L(c.best))}</p>` : ""}</div>
+      <div class="h4">Your week</div><div class="sched">${p.week.map((i, d) => `<div class="${i == null ? "off" : ""}"><b>${DAYS[d]}</b><span>${i == null ? "Rest" : esc(p.workouts[i][0])}</span></div>`).join("")}</div>
+      ${blk("Who it's for", c.who)}${blk("Why it works", c.why)}${list("Good", c.pros, "pros")}${list("Keep in mind", c.cons, "cons")}
+      <div class="h4">Hard sets per muscle per week</div><div class="wsets">${P.MAIN.map((g) => [g, ws[g] || 0]).map(([g, n]) => `<div><span>${esc(g)}</span><i><u style="inset-inline-start:${(lo / max) * 100}%;width:${((hi - lo) / max) * 100}%"></u><b style="width:${(n / max) * 100}%" class="${n < lo ? "lo" : ""}"></b></i><em class="num">${n}</em></div>`).join("")}</div>
+      <div class="dim tiny" style="margin-top:6px">Green band = a good weekly range for this level (${lo}–${hi} sets). Presses count half a set for triceps, rows and pulldowns half a set for biceps.${(() => { const o = Object.entries(ws).filter(([g]) => !P.MAIN.includes(g)); return o.length ? ` Also: ${o.map(([g, n]) => `${esc(g)} ${n}`).join(" · ")}.` : ""; })()}</div>
+      ${blk("How to progress", c.progression)}${list("Tips", c.tips, "")}
+      <div class="row" style="margin-top:16px"><button class="btn grow" id="pPv">Preview</button><button class="btn primary grow" id="pUse">${ic("plus", "sm")} Use this plan</button></div>`;
+    $("#pPv").onclick = () => T.previewPlan(p);
+    $("#pUse").onclick = async () => { if (await T.usePlan(p, false)) go("#/train"); };
     return;
   }
-  view().innerHTML = `<div class="stack tight">${T.PLANS.map((p) => `<a class="lrow" href="#/plan/${p.id}"><span class="ico-t">${ic("layers", "sm")}</span><div class="grow"><div class="t">${esc(p.name)}</div><div class="s">${esc(p.level)} · ${esc(p.desc)}</div></div>${ic("chev", "sm")}</a>`).join("")}</div>
-    ${(pl.splits || []).length ? `<div class="h4">Splits</div><div class="stack tight">${pl.splits.map((s) => `<div class="card pad"><div class="row between"><b>${esc(L(s.name))}</b><span class="dim tiny">${esc(s.days)} days</span></div><div class="small muted">${esc(L(s.about))}</div></div>`).join("")}</div>` : ""}
-    ${pl.progression ? `<details class="gsec" open><summary>${esc(L(pl.progression.title))}${ic("chev", "sm")}</summary><ul>${(pl.progression.points || []).map((x) => `<li>${esc(L(x))}</li>`).join("")}</ul></details>` : ""}`;
+  const rec = P.recommendedId();
+  const draw = () => {
+    const d = plansDays, ps = P.PLANS.filter((p) => !d || p.days === d).sort((a, b) => (b.id === rec) - (a.id === rec) || a.days - b.days);
+    view().innerHTML = `<div class="gchips" id="pDays" role="group" aria-label="Days a week">${[[0, "All"], [2, "2 days"], [3, "3 days"], [4, "4 days"], [5, "5 days"], [6, "6 days"]].map(([v, t]) => `<button class="chip ${v === d ? "on" : ""}" data-v="${v}">${t}</button>`).join("")}</div>
+      <div class="stack tight" style="margin-top:10px" id="pList">${ps.map((p) => T.planCard(p)).join("")}</div>
+      <a class="btn ghost block" href="#/start" style="margin-top:8px">${ic("layers", "sm")} Not sure? Find my plan</a>
+      ${pl.progression ? `<details class="gsec"><summary>${esc(L(pl.progression.title))}${ic("chev", "sm")}</summary><ul>${(pl.progression.points || []).map((x) => `<li>${esc(L(x))}</li>`).join("")}</ul></details>` : ""}`;
+    segVal($("#pDays"), (v) => { plansDays = +v; draw(); });
+    $("#pList").onclick = (e) => T.planClicks(e);
+    T.fillPlanLines(view());
+  };
+  draw();
 }

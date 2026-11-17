@@ -164,6 +164,11 @@ export function ask(msg, { title = "", ok = "OK", cancel = "Cancel", danger = fa
     <div class="row"><button class="btn grow" data-v="0">${esc(cancel)}</button><button class="btn grow ${danger ? "dark danger" : "primary"}" data-v="1">${esc(ok)}</button></div>`,
     (el, finish) => { el.onclick = (e) => { const b = e.target.closest("[data-v]"); if (b) finish(b.dataset.v === "1"); }; setTimeout(() => $('[data-v="1"]', el)?.focus(), 60); }).then((v) => !!v);
 }
+/** choose("Title", "Message", [["replace","Replace"],["add","Keep both"]]) → Promise<value|null>; first option = primary */
+export function choose(title, msg, opts) {
+  return dialogP(`<h3>${esc(title)}</h3>${msg ? `<p class="muted" style="margin:0 0 16px">${esc(msg)}</p>` : ""}<div class="stack tight">${opts.map(([v, t], i) => `<button class="btn block ${i ? "" : "primary"}" data-c="${esc(v)}">${esc(t)}</button>`).join("")}<button class="btn ghost block" data-c="">Cancel</button></div>`,
+    (el, finish) => { el.onclick = (e) => { const b = e.target.closest("[data-c]"); if (b) finish(b.dataset.c || null); }; setTimeout(() => $("[data-c]", el)?.focus(), 60); });
+}
 /** askText("Workout name", {value:"Push Day"}) → Promise<string|null> */
 export function askText(title, { value = "", ok = "Save", placeholder = "", type = "text", inputmode = "" } = {}) {
   return dialogP(`<h3>${esc(title)}</h3><form id="dlgF"><input class="input" id="dlgI" type="${type}" ${inputmode ? `inputmode="${inputmode}"` : ""} value="${esc(value)}" placeholder="${esc(placeholder)}" autocomplete="off" enterkeyhint="done">

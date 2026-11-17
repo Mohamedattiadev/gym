@@ -63,7 +63,7 @@ export function sanitize(d, { keys, schema, uid }) {
   if (out.settings && typeof out.settings === "object") {
     const st = out.settings;
     if (!["kg", "lb"].includes(st.unit)) delete st.unit;
-    for (const k of ["restDefault", "bar", "installDismissed", "lastBackup"]) if (k in st && !Number.isFinite(st[k])) delete st[k];
+    for (const k of ["restDefault", "bar", "installDismissed", "lastBackup", "planMin"]) if (k in st && !Number.isFinite(st[k])) delete st[k];
     if ("plates" in st && !(Array.isArray(st.plates) && st.plates.every(Number.isFinite))) delete st.plates;
     if ("restEx" in st) st.restEx = slugMap(st.restEx);
   } else delete out.settings;
