@@ -51,7 +51,7 @@ export function withWrong(P, W) {
   if (!W) return P;
   const keys = P.keys.map((k, i) => ({ ...k, ...(W.all || {}), ...(W.keys?.[i] || {}) }));
   if (W.insert) { const [i, k] = W.insert; keys.splice(i, 0, { ...keys[i - 1], ...k }); }
-  return { ...P, base: { ...P.base, ...(W.base || {}) }, keys, range: W.range, tempo: W.tempo };
+  return { ...P, base: { ...P.base, ...(W.base || {}) }, keys, range: W.range, tempo: W.tempo || P.tempo };
 }
 function buildClip(model, P, eqProp = null) {
   if (P.bar === "back" && eqProp === "bar") P = { ...P, ik: P.ik || "backbar", props: (P.props || []).map((k) => (k === "bar" ? "backbar" : k)) };
