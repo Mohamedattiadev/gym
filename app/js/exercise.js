@@ -156,16 +156,23 @@ const jointsOf = (e) => { const pain = S.pain?.[e.slug] || []; return [...new Se
 const KINDS = ["Machine", "Smith", "Cable", "Barbell", "EZ Bar", "Dumbbell", "Bodyweight"];
 const KIND_NAME = { Smith: "Smith", "EZ Bar": "EZ bar" };
 const kindOf = (x) => KINDS.find((k) => x.equipment.includes(k)) || null;
-function variants(e) {
+/* alt pick = the common, canonical movement, never a novelty variant (19a-chips b) */
+const NOVEL = /\b(partials?|copy|1\.5|1 ?¼|tempo|giant|cluster|myo|drop ?sets?|drops|iso(metric)?|holds?|pause[ds]?|lengthened|stretch|somersault|sissy|extreme|banded|band resisted|chains?|deficit|anderson|pin|board|spoto|zercher|jefferson|landmine|kas|frog|reverse grip|single|1 arm|one arm|unilateral|kneeling|half)\b/i;
+const MODS = /[("]|\b(heel|elevated|wide|narrow|close|neutral|incline|decline|seated|lying|standing|high|low|mid|bar|grip|stance|cambered|safety|ssb|fat|thick)\b/gi;
+const oddity = (x) => (NOVEL.test(x.name) ? 10 : 0) + (x.name.match(MODS)?.length || 0);
+/** the name names another equipment kind (data says Barbell, name says "Dumbbell …") → not a fair pick for chip k */
+const clash = (x, k) => !new RegExp(`\\b${k}\\b`, "i").test(x.name) && KINDS.some((o) => o !== k && new RegExp(`\\b${o}\\b`, "i").test(x.name));
+const altSort = (a, b) => (b.canonical - a.canonical) || oddity(a) - oddity(b) || byTier(a, b);
+export function variants(e) {
   const own = kindOf(e); if (!own) return [];
   const ok = (x) => x.slug !== e.slug && x.video && hasEquip(x) && !hurts(x);
-  const fam = EX.filter((x) => x.family === e.family && ok(x)).sort(byTier);
-  const sim = EX.filter((x) => x.family !== e.family && ok(x) && x.group === e.group && x.pattern === e.pattern && x.primary?.[0] && x.primary[0] === e.primary?.[0]).sort(byTier);
+  const fam = EX.filter((x) => x.family === e.family && ok(x)).sort(altSort);
+  const sim = EX.filter((x) => x.family !== e.family && ok(x) && !/\b(copy|partials?|1\.5|tempo|giant)\b/i.test(x.name + " " + x.slug.replace(/-/g, " ").replace(/copy$/, "")) && x.group === e.group && x.pattern === e.pattern && x.primary?.[0] && x.primary[0] === e.primary?.[0]).sort(altSort);
   const out = [];
   for (const k of KINDS) {
     if (k === own) { out.push({ k, x: e, on: true }); continue; }
-    const f = fam.find((x) => kindOf(x) === k); if (f) { out.push({ k, x: f }); continue; }
-    const s = sim.find((x) => kindOf(x) === k); if (s) out.push({ k, x: s, sim: true });
+    const f = fam.find((x) => kindOf(x) === k && !clash(x, k)); if (f) { out.push({ k, x: f }); continue; }
+    const s = sim.find((x) => kindOf(x) === k && !clash(x, k) && oddity(x) < 10); if (s) out.push({ k, x: s, sim: true });
   }
   return out.length > 1 ? out : [];
 }
