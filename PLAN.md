@@ -128,6 +128,7 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 
 - ✅ **28 Visual de-slop** (session 21) (owner-approved 2026-11-17): flat cards (hairline border, no neumorphism --raise/--inset), shadow only on floating layers, no coloured glow on buttons/chips, flat inputs — spec in NEXT_SESSION.md; after 27 session A, before 26
 
+- 🟡 **19b-all** (owner, session 31): every exercise's 3D tab must move (now 57/179 families; the rest show "Still pose") — big 19b batches, see NEXT_SESSION (2b).
 - 🟡 **26 Plans 2.0**: ~10 splits + filters + visual week scenario on the body (owner) — spec in NEXT_SESSION.md. Part 1 DONE session 30: 10 splits, recommended rules, picker, plan cards, time/focus options, weekly sets bars. Part 2 DONE session 31: scenario player on #/plan/<id> (tappable week, body with recovery colours, Play week, 4-week progression, desktop compare) + Home Recommended card. Open: Preview sheet with the scenario (optional).
 - ✅ **26b Onboarding** (session 32): 4 steps (level required + 'Not sure?' 3 questions, days + equipment, body kg/lb cm/ft, Recommended plan + strength/calorie targets), first open only, Me > Profile, Settings > Set-up questions.
 
