@@ -397,6 +397,12 @@ function wireSession() {
     if (act === "prev" || act === "done") {
       if (act === "prev") { s.w = b.dataset.w || ""; s.r = b.dataset.r || ""; if (s.done) { save("active"); rerender(ei); refreshStats(); return; } }
       if (!s.w) s.w = ph(row, "w"); if (!s.r) s.r = ph(row, "r");
+      if (!s.done) { // UT-2: nothing typed and no target to copy (first time) -> ask for the number instead of logging 0
+        const bw = (ex?.equipment || []).length && ex.equipment.every((q) => /body/i.test(q));
+        const miss = !s.r ? "r" : !s.w && !bw ? "w" : null;
+        if (miss) { const inp = row.querySelector(`[data-k="${miss}"]`); inp.focus(); inp.classList.add("need"); setTimeout(() => inp.classList.remove("need"), 1600);
+          toast(miss === "w" ? "Type the weight first (0 = bodyweight)" : "Type the reps first"); return; }
+      }
       s.done = !s.done; save("active");
       if (s.done) {
         haptic("success");
