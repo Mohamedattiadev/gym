@@ -1,0 +1,77 @@
+{
+  "activity": [
+    {"id": "sed", "f": 1.2, "name": {"en": "Sedentary", "tr": "Hareketsiz", "ar": "خامل"}, "desc": {"en": "Desk job, little walking, no training.", "tr": "Masa başı iş, az yürüyüş, antrenman yok.", "ar": "عمل مكتبي ومشي قليل وبلا تدريب."}},
+    {"id": "light", "f": 1.375, "name": {"en": "Lightly active", "tr": "Az aktif", "ar": "نشاط خفيف"}, "desc": {"en": "Desk job plus 2–3 workouts a week or daily walks.", "tr": "Masa başı iş artı haftada 2–3 antrenman veya günlük yürüyüş.", "ar": "عمل مكتبي مع 2–3 حصص أسبوعيًا أو مشي يومي."}},
+    {"id": "mod", "f": 1.55, "name": {"en": "Moderately active", "tr": "Orta aktif", "ar": "نشاط متوسط"}, "desc": {"en": "3–5 workouts a week and about 7,000–10,000 steps a day.", "tr": "Haftada 3–5 antrenman ve günde yaklaşık 7.000–10.000 adım.", "ar": "3–5 حصص أسبوعيًا ونحو 7,000–10,000 خطوة يوميًا."}},
+    {"id": "high", "f": 1.725, "name": {"en": "Very active", "tr": "Çok aktif", "ar": "نشاط عالٍ"}, "desc": {"en": "Hard training 6 days a week or an on-your-feet job.", "tr": "Haftada 6 gün yoğun antrenman veya ayakta geçen bir iş.", "ar": "تدريب شاق 6 أيام أسبوعيًا أو عمل يتطلب الوقوف والحركة."}},
+    {"id": "very", "f": 1.9, "name": {"en": "Extremely active", "tr": "Aşırı aktif", "ar": "نشاط مرتفع جدًا"}, "desc": {"en": "Physical labor plus daily training, or twice-a-day sessions.", "tr": "Bedensel iş artı günlük antrenman veya günde iki seans.", "ar": "عمل بدني مع تدريب يومي، أو حصتان في اليوم."}}
+  ],
+  "goals": [
+    {"id": "cut", "name": {"en": "Lose fat", "tr": "Yağ kaybı", "ar": "خسارة الدهون"}, "kcalPct": -0.2, "desc": {"en": "Eat about 20% below maintenance while lifting hard to keep muscle.", "tr": "Kasını korumak için ağır antrenman yaparken korumanın yaklaşık %20 altında ye.", "ar": "تناول أقل من احتياجك بنحو 20% مع تدريب قوي للحفاظ على العضلات."}, "rate": {"en": "Lose about 0.5–1% of bodyweight per week.", "tr": "Haftada vücut ağırlığının yaklaşık %0,5–1'ini kaybet.", "ar": "اخسر نحو 0.5–1% من وزن جسمك أسبوعيًا."}},
+    {"id": "maintain", "name": {"en": "Maintain", "tr": "Koru", "ar": "الحفاظ على الوزن"}, "kcalPct": 0, "desc": {"en": "Eat at maintenance. Good for a break from dieting or a busy period.", "tr": "Koruma kalorisinde ye. Diyete ara vermek veya yoğun dönemler için iyi.", "ar": "تناول ما يساوي احتياجك. مناسب لاستراحة من الحمية أو لفترة مزدحمة."}, "rate": {"en": "Weekly average stays within about 0.5 kg.", "tr": "Haftalık ortalama yaklaşık 0,5 kg içinde kalır.", "ar": "يبقى المتوسط الأسبوعي ضمن نحو 0.5 كغ."}},
+    {"id": "lean-bulk", "name": {"en": "Lean bulk", "tr": "Temiz bulk", "ar": "تضخيم نظيف"}, "kcalPct": 0.1, "desc": {"en": "A small surplus, about 10% above maintenance, to build muscle without much fat.", "tr": "Fazla yağ almadan kas yapmak için korumanın yaklaşık %10 üstünde küçük bir fazlalık.", "ar": "فائض صغير بنحو 10% فوق الاحتياج لبناء العضلات دون دهون كثيرة."}, "rate": {"en": "Gain about 0.25–0.5% of bodyweight per week (beginners can aim higher).", "tr": "Haftada vücut ağırlığının yaklaşık %0,25–0,5'i kadar al (yeni başlayanlar biraz daha fazla hedefleyebilir).", "ar": "زد نحو 0.25–0.5% من وزنك أسبوعيًا (يمكن للمبتدئ أن يستهدف أكثر قليلًا)."}},
+    {"id": "recomp", "name": {"en": "Recomposition", "tr": "Rekompozisyon", "ar": "إعادة تشكيل الجسم"}, "kcalPct": -0.05, "desc": {"en": "Lose fat and gain muscle at the same time, slowly. Works best for beginners and people returning to training.", "tr": "Aynı anda, yavaşça yağ kaybedip kas kazanmak. En iyi yeni başlayanlarda ve antrenmana dönenlerde işe yarar.", "ar": "خسارة الدهون وكسب العضلات معًا ببطء. ينجح أكثر مع المبتدئين والعائدين للتدريب."}, "rate": {"en": "Weight barely changes. Watch your waist and your lifts instead.", "tr": "Kilo neredeyse değişmez. Bunun yerine bel ölçüne ve kaldırdıklarına bak.", "ar": "الوزن بالكاد يتغير، فراقب محيط خصرك وأوزانك في التمارين بدلًا منه."}}
+  ],
+  "protein": {
+    "gPerKg": [1.6, 2.2],
+    "note": {"en": "Aim for 1.6–2.2 g per kg of bodyweight each day. Go toward the top when cutting. Spread it over 3–5 meals of about 20–40 g.", "tr": "Günde vücut ağırlığının kilogramı başına 1,6–2,2 g hedefle. Yağ yakarken üst sınıra yaklaş. 20–40 g'lık 3–5 öğüne yay.", "ar": "استهدف 1.6–2.2 غ لكل كغ من وزنك يوميًا، واقترب من الحد الأعلى أثناء التنشيف. وزّعه على 3–5 وجبات بنحو 20–40 غ لكل منها."}
+  },
+  "fat": {
+    "pctKcal": [0.2, 0.35],
+    "note": {"en": "Keep fat at 20–35% of calories. Going much lower can hurt hormones and make the diet hard to stick to.", "tr": "Yağı kalorilerin %20–35'inde tut. Çok daha aşağı inmek hormonlara zarar verebilir ve diyeti sürdürmeyi zorlaştırır.", "ar": "اجعل الدهون 20–35% من السعرات. النزول كثيرًا تحت ذلك قد يضر الهرمونات ويصعّب الالتزام بالحمية."}
+  },
+  "guide": [
+    {"id": "energy", "title": {"en": "Energy balance", "tr": "Enerji dengesi", "ar": "توازن الطاقة"}, "points": [
+      {"en": "Maintenance is the calories that keep your weight steady.", "tr": "Koruma kalorisi, kilonu sabit tutan kalori miktarıdır.", "ar": "سعرات الاحتياج هي التي تُبقي وزنك ثابتًا."},
+      {"en": "Eat less than that to lose fat, more to gain muscle more easily.", "tr": "Yağ kaybı için bundan az, daha kolay kas kazanmak için fazla ye.", "ar": "كُل أقل منها لتخسر الدهون، وأكثر منها لتكسب العضلات بسهولة أكبر."},
+      {"en": "The app's number is an estimate. Your scale over 2–3 weeks tells the truth.", "tr": "Uygulamadaki sayı bir tahmindir. Gerçeği 2–3 haftalık tartı sonuçları söyler.", "ar": "رقم التطبيق تقدير فقط، والميزان على مدى 2–3 أسابيع يخبرك بالحقيقة."}
+    ]},
+    {"id": "protein", "title": {"en": "Protein", "tr": "Protein", "ar": "البروتين"}, "points": [
+      {"en": "Protein builds and protects muscle. It also keeps you full.", "tr": "Protein kası yapar ve korur. Ayrıca tok tutar.", "ar": "البروتين يبني العضلات ويحميها، ويمنحك الشبع أيضًا."},
+      {"en": "Good sources: meat, fish, eggs, dairy, legumes, tofu, protein powder.", "tr": "İyi kaynaklar: et, balık, yumurta, süt ürünleri, baklagiller, tofu, protein tozu.", "ar": "مصادر جيدة: اللحوم والسمك والبيض ومنتجات الألبان والبقوليات والتوفو ومسحوق البروتين."},
+      {"en": "Include a protein food in every meal. That makes the daily target easy.", "tr": "Her öğüne bir protein kaynağı ekle. Bu günlük hedefi kolaylaştırır.", "ar": "أضف مصدر بروتين في كل وجبة، فيسهل بلوغ الهدف اليومي."}
+    ]},
+    {"id": "carbs-fats", "title": {"en": "Carbs and fats", "tr": "Karbonhidrat ve yağ", "ar": "الكربوهيدرات والدهون"}, "points": [
+      {"en": "After protein and fat, fill the rest of your calories with carbs.", "tr": "Protein ve yağdan sonra kalan kaloriyi karbonhidratla doldur.", "ar": "بعد البروتين والدهون، أكمل باقي السعرات من الكربوهيدرات."},
+      {"en": "Carbs fuel hard training. Pick mostly whole foods: rice, oats, potatoes, fruit.", "tr": "Karbonhidrat zorlu antrenmanın yakıtıdır. Çoğunlukla doğal besinler seç: pirinç, yulaf, patates, meyve.", "ar": "الكربوهيدرات وقود التدريب الشاق. اختر غالبًا أطعمة كاملة: أرز وشوفان وبطاطس وفواكه."},
+      {"en": "Fruit, vegetables and fiber help health and hunger. Aim for some at most meals.", "tr": "Meyve, sebze ve lif sağlığa ve tokluğa yardım eder. Çoğu öğünde biraz olsun.", "ar": "الفواكه والخضار والألياف تفيد الصحة وتقلل الجوع، فاجعل منها شيئًا في معظم الوجبات."}
+    ]},
+    {"id": "timing", "title": {"en": "Meal timing", "tr": "Öğün zamanlaması", "ar": "توقيت الوجبات"}, "points": [
+      {"en": "Timing matters much less than your daily totals.", "tr": "Zamanlama, günlük toplamlardan çok daha az önemlidir.", "ar": "التوقيت أقل أهمية بكثير من مجموعك اليومي."},
+      {"en": "Eating a meal with protein a few hours before and after training is enough.", "tr": "Antrenmandan birkaç saat önce ve sonra proteinli bir öğün yemek yeterli.", "ar": "يكفي تناول وجبة فيها بروتين قبل التدريب وبعده بساعات قليلة."},
+      {"en": "Pick a meal pattern you can keep. Breakfast or not is your choice.", "tr": "Sürdürebileceğin bir öğün düzeni seç. Kahvaltı yapıp yapmamak senin tercihin.", "ar": "اختر نمط وجبات تستطيع الاستمرار عليه. تناول الفطور أو تركه قرارك."}
+    ]},
+    {"id": "cutting", "title": {"en": "Cutting tips", "tr": "Yağ yakma ipuçları", "ar": "نصائح التنشيف"}, "points": [
+      {"en": "Keep lifting heavy. It tells your body to keep muscle.", "tr": "Ağır kaldırmaya devam et. Bu vücuduna kası korumasını söyler.", "ar": "استمر في رفع الأوزان الثقيلة، فهذا يدفع جسمك للحفاظ على العضلات."},
+      {"en": "Fill up on high-volume foods: vegetables, fruit, lean protein, soups.", "tr": "Hacimli besinlerle doy: sebze, meyve, yağsız protein, çorba.", "ar": "اشبع من الأطعمة كبيرة الحجم قليلة السعرات: الخضار والفواكه والبروتين قليل الدهن والشوربات."},
+      {"en": "Walk more. Daily steps add up and do not hurt recovery.", "tr": "Daha çok yürü. Günlük adımlar birikir ve toparlanmayı bozmaz.", "ar": "امشِ أكثر. الخطوات اليومية تتراكم ولا تضر التعافي."}
+    ]},
+    {"id": "bulking", "title": {"en": "Bulking tips", "tr": "Bulk ipuçları", "ar": "نصائح التضخيم"}, "points": [
+      {"en": "Keep the surplus small. A faster gain mostly adds fat.", "tr": "Fazlalığı küçük tut. Daha hızlı kilo almak çoğunlukla yağ ekler.", "ar": "اجعل الفائض صغيرًا، فالزيادة الأسرع تضيف دهونًا في الغالب."},
+      {"en": "If eating enough is hard, use calorie-dense foods: nuts, olive oil, milk, rice.", "tr": "Yeterince yemek zorsa kalorisi yoğun besinler kullan: kuruyemiş, zeytinyağı, süt, pirinç.", "ar": "إن صعب عليك الأكل الكافي، فاختر أطعمة غنية بالسعرات: المكسرات وزيت الزيتون والحليب والأرز."},
+      {"en": "Make sure your lifts are going up. Extra food only helps if training improves.", "tr": "Kaldırdıklarının arttığından emin ol. Ekstra yemek ancak antrenman gelişirse işe yarar.", "ar": "تأكد أن أوزانك في التمارين ترتفع، فالطعام الزائد لا يفيد إلا مع تحسّن التدريب."}
+    ]},
+    {"id": "tracking", "title": {"en": "Tracking and adjusting", "tr": "Takip ve ayarlama", "ar": "المتابعة والتعديل"}, "points": [
+      {"en": "Weigh yourself every morning after the bathroom, before eating.", "tr": "Her sabah tuvaletten sonra, yemekten önce tartıl.", "ar": "قِس وزنك كل صباح بعد دخول الحمام وقبل الأكل."},
+      {"en": "Daily weight jumps around from water and salt. Compare weekly averages only.", "tr": "Günlük kilo su ve tuz yüzünden oynar. Sadece haftalık ortalamaları karşılaştır.", "ar": "الوزن اليومي يتذبذب بسبب الماء والملح، فقارن المتوسطات الأسبوعية فقط."},
+      {"en": "If the trend is off for 2 weeks, change daily calories by 100–200 kcal.", "tr": "Eğilim 2 hafta boyunca hedefin dışındaysa günlük kaloriyi 100–200 kcal değiştir.", "ar": "إن انحرف الاتجاه عن هدفك أسبوعين، فعدّل سعراتك اليومية بمقدار 100–200 سعرة."}
+    ]},
+    {"id": "supplements", "title": {"en": "Supplements that matter", "tr": "İşe yarayan takviyeler", "ar": "المكملات المفيدة فعلًا"}, "points": [
+      {"en": "Creatine monohydrate, 3–5 g every day, any time. It is well studied and safe for healthy people.", "tr": "Kreatin monohidrat, her gün 3–5 g, herhangi bir saatte. İyi araştırılmış ve sağlıklı kişiler için güvenli.", "ar": "كرياتين مونوهيدرات 3–5 غ يوميًا في أي وقت. مدروس جيدًا وآمن للأصحاء."},
+      {"en": "Caffeine before training can boost performance. Avoid it within about 8 hours of bed.", "tr": "Antrenman öncesi kafein performansı artırabilir. Yatmadan önceki yaklaşık 8 saatte alma.", "ar": "الكافيين قبل التدريب قد يحسّن الأداء. تجنّبه قبل النوم بنحو 8 ساعات."},
+      {"en": "Vitamin D only if you are low (get a blood test). Protein powder is just convenient food. Most other products are not needed.", "tr": "D vitamini sadece eksikse (kan testi yaptır). Protein tozu sadece pratik bir besindir. Diğer ürünlerin çoğuna gerek yok.", "ar": "فيتامين د فقط إن كان لديك نقص (أجرِ تحليل دم). مسحوق البروتين مجرد طعام عملي. ومعظم المنتجات الأخرى غير ضرورية."}
+    ]},
+    {"id": "sleep-alcohol", "title": {"en": "Sleep and alcohol", "tr": "Uyku ve alkol", "ar": "النوم والكحول"}, "points": [
+      {"en": "Aim for 7–9 hours of sleep. Poor sleep raises hunger and slows recovery.", "tr": "7–9 saat uyumayı hedefle. Kötü uyku açlığı artırır ve toparlanmayı yavaşlatır.", "ar": "استهدف 7–9 ساعات نوم. قلة النوم تزيد الجوع وتبطئ التعافي."},
+      {"en": "Alcohol adds empty calories and hurts sleep and recovery. Less is better.", "tr": "Alkol boş kalori ekler, uykuyu ve toparlanmayı bozar. Ne kadar az o kadar iyi.", "ar": "الكحول يضيف سعرات فارغة ويضر النوم والتعافي، والأقل أفضل."},
+      {"en": "Keep a regular bed and wake time, even on weekends.", "tr": "Hafta sonları dahil düzenli yatma ve kalkma saati tut.", "ar": "حافظ على موعد ثابت للنوم والاستيقاظ حتى في عطلة نهاية الأسبوع."}
+    ]}
+  ],
+  "disclaimer": {"en": "General education, not medical advice. If you have a health condition, are pregnant, or have a history of eating disorders, talk to a doctor or dietitian first.", "tr": "Genel bilgilendirmedir, tıbbi tavsiye değildir. Bir sağlık sorunun varsa, hamileysen veya yeme bozukluğu geçmişin varsa önce bir doktor ya da diyetisyenle konuş.", "ar": "هذه معلومات عامة وليست نصيحة طبية. إن كانت لديك حالة صحية أو كنتِ حاملًا أو لديك تاريخ مع اضطرابات الأكل، فاستشر طبيبًا أو أخصائي تغذية أولًا."},
+  "sources": [
+    {"title": "Jeff Nippard (YouTube channel)", "url": "https://www.youtube.com/@JeffNippard"},
+    {"title": "ISSN position stand: protein and exercise (Jäger et al., 2017)", "url": "https://pubmed.ncbi.nlm.nih.gov/28642676/"},
+    {"title": "Protein supplementation and muscle gains: meta-analysis (Morton et al., 2018)", "url": "https://pubmed.ncbi.nlm.nih.gov/28698222/"},
+    {"title": "ISSN position stand: creatine safety and efficacy (Kreider et al., 2017)", "url": "https://doi.org/10.1186/s12970-017-0173-z"}
+  ]
+}

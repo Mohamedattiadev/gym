@@ -1,0 +1,205 @@
+{
+ "note": {
+  "en": "These numbers are rough guides, not targets. They compare your estimated one-rep max (1RM, the most you could lift once) to your bodyweight. Age, height and training history all matter. Use them to spot weak lifts, not to judge yourself.",
+  "tr": "Bu sayılar hedef değil, kaba bir rehberdir. Tahmini tek tekrar maksimumunu (1RM, bir kez kaldırabileceğin en fazla ağırlık) vücut ağırlığınla karşılaştırır. Yaş, boy ve antrenman geçmişi de etkilidir. Kendini yargılamak için değil, zayıf hareketleri görmek için kullan.",
+  "ar": "هذه الأرقام إرشادات تقريبية وليست أهدافًا. فهي تقارن أقصى وزن تقديري لتكرار واحد (1RM، أي أثقل وزن ترفعه مرة واحدة) بوزن جسمك. العمر والطول وتاريخ التدريب كلها مؤثرة. استخدمها لتكتشف التمارين الضعيفة، لا لتحكم على نفسك."
+ },
+ "levels": [
+  "novice",
+  "intermediate",
+  "advanced",
+  "elite"
+ ],
+ "levelNames": {
+  "novice": {
+   "en": "Novice",
+   "tr": "Acemi",
+   "ar": "مبتدئ"
+  },
+  "intermediate": {
+   "en": "Intermediate",
+   "tr": "Orta seviye",
+   "ar": "متوسط"
+  },
+  "advanced": {
+   "en": "Advanced",
+   "tr": "İleri seviye",
+   "ar": "متقدم"
+  },
+  "elite": {
+   "en": "Elite",
+   "tr": "Elit",
+   "ar": "نخبة"
+  }
+ },
+ "lifts": [
+  {
+   "id": "squat",
+   "name": {
+    "en": "Back squat",
+    "tr": "Squat",
+    "ar": "القرفصاء بالبار"
+   },
+   "match": "^(barbell )?(back |high[- ]bar |low[- ]bar )?squats?$",
+   "ratios": {
+    "male": [
+     0.75,
+     1.25,
+     1.75,
+     2.25
+    ],
+    "female": [
+     0.5,
+     0.85,
+     1.25,
+     1.6
+    ]
+   },
+   "note": {
+    "en": "Barbell on the back, hips at least to knee height.",
+    "tr": "Halter sırtta, kalça en az diz hizasına iner.",
+    "ar": "البار على الظهر، والورك ينزل إلى مستوى الركبة على الأقل."
+   }
+  },
+  {
+   "id": "bench",
+   "name": {
+    "en": "Bench press",
+    "tr": "Bench press",
+    "ar": "ضغط البنش"
+   },
+   "match": "^(flat |slight incline )?(barbell )?bench( press)?$|^close grip bench press$|^slight incline barbell bench press$",
+   "ratios": {
+    "male": [
+     0.5,
+     1.0,
+     1.4,
+     1.75
+    ],
+    "female": [
+     0.3,
+     0.6,
+     0.85,
+     1.1
+    ]
+   },
+   "note": {
+    "en": "Flat barbell bench, bar touches the chest each rep.",
+    "tr": "Düz sehpada halter, her tekrarda bar göğse değer.",
+    "ar": "بنش مستوٍ بالبار، ويلمس البار الصدر في كل تكرار."
+   }
+  },
+  {
+   "id": "deadlift",
+   "name": {
+    "en": "Deadlift",
+    "tr": "Deadlift",
+    "ar": "الرفعة الميتة"
+   },
+   "match": "^(barbell |conventional |sumo )?deadlifts?$",
+   "ratios": {
+    "male": [
+     1.0,
+     1.5,
+     2.0,
+     2.75
+    ],
+    "female": [
+     0.6,
+     1.0,
+     1.5,
+     2.0
+    ]
+   },
+   "note": {
+    "en": "Conventional or sumo, from the floor to standing tall.",
+    "tr": "Klasik ya da sumo, yerden dik duruşa kadar.",
+    "ar": "تقليدية أو سومو، من الأرض حتى الوقوف مستقيمًا."
+   }
+  },
+  {
+   "id": "ohp",
+   "name": {
+    "en": "Overhead press",
+    "tr": "Overhead press",
+    "ar": "الضغط فوق الرأس"
+   },
+   "match": "^(standing )?(barbell )?(overhead|shoulder|military) press$",
+   "ratios": {
+    "male": [
+     0.35,
+     0.6,
+     0.85,
+     1.1
+    ],
+    "female": [
+     0.2,
+     0.4,
+     0.55,
+     0.75
+    ]
+   },
+   "note": {
+    "en": "Standing barbell press, no leg drive.",
+    "tr": "Ayakta halterle pres, bacaktan itme yok.",
+    "ar": "ضغط بالبار وقوفًا، دون دفع من الساقين."
+   }
+  },
+  {
+   "id": "row",
+   "name": {
+    "en": "Barbell row",
+    "tr": "Barbell row",
+    "ar": "التجديف بالبار"
+   },
+   "match": "^((bent[- ]over )?barbell rows?|pendlay rows?)$",
+   "ratios": {
+    "male": [
+     0.5,
+     0.8,
+     1.1,
+     1.4
+    ],
+    "female": [
+     0.3,
+     0.5,
+     0.7,
+     0.9
+    ]
+   },
+   "note": {
+    "en": "Torso roughly flat to 45 degrees, little body swing.",
+    "tr": "Gövde yaklaşık yatay ile 45 derece arasında, az sallanma.",
+    "ar": "الجذع أفقي تقريبًا حتى 45 درجة، مع أقل تأرجح للجسم."
+   }
+  },
+  {
+   "id": "pullup",
+   "name": {
+    "en": "Pull-up",
+    "tr": "Barfiks",
+    "ar": "العقلة"
+   },
+   "match": "^((wide|mid|close|neutral) grip |weighted )?pull-?ups?( \"lat focused\")?$|^chin-?ups?$",
+   "ratios": {
+    "male": [
+     1.0,
+     1.25,
+     1.5,
+     1.75
+    ],
+    "female": [
+     0.75,
+     1.0,
+     1.2,
+     1.4
+    ]
+   },
+   "note": {
+    "en": "Here the ratio is (bodyweight + added weight) divided by bodyweight. 1.0 means one clean rep with no extra weight. Below that, use assisted versions.",
+    "tr": "Burada oran (vücut ağırlığı + ek ağırlık) / vücut ağırlığıdır. 1.0, ek ağırlık olmadan bir temiz tekrar demektir. Altındaysan destekli versiyonları kullan.",
+    "ar": "النسبة هنا هي (وزن الجسم + الوزن المضاف) مقسومًا على وزن الجسم. القيمة 1.0 تعني تكرارًا نظيفًا واحدًا بلا وزن إضافي. إن كنت دون ذلك فاستخدم النسخ المساعدة."
+   }
+  }
+ ]
+}

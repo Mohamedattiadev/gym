@@ -607,3 +607,47 @@ body:has(.tpill) .toast { bottom: calc(var(--tab-h) + var(--safe-b) + 70px); }
 .xblock.ss-in { margin-top: -8px !important; border-start-start-radius: 6px; border-start-end-radius: 6px; box-shadow: inset 3px 0 0 var(--accent), var(--raise-sm); }
 .ss-tag { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: var(--accent-text); margin: -2px 0 8px; }
 .ss-tag svg.i { width: 13px; height: 13px; }
+
+/* ---- guides: quiz, strength goals, nutrition, plans ---- */
+.qprog { height: 6px; border-radius: var(--r-full); background: var(--s2); box-shadow: var(--inset); overflow: hidden; }
+.qprog i { display: block; height: 100%; background: var(--accent); border-radius: inherit; transition: width 320ms var(--ease-out); }
+.qt { font-size: 21px; font-weight: 740; letter-spacing: -.02em; margin: 2px 0 4px; }
+.qopt { position: relative; display: grid; gap: 2px; width: 100%; min-height: 56px; padding: 12px 14px; border: 2px solid transparent; border-radius: var(--r-md); background: var(--s1); box-shadow: var(--raise-sm); text-align: start; color: inherit; font: inherit; }
+.qopt b { font-size: 15.5px; font-weight: 650; } .qopt span { font-size: 13px; color: var(--t3); line-height: 1.35; }
+.qopt.on { border-color: var(--accent); }
+.qopt:active { transform: scale(.985); }
+.stdbar { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 3px; margin: 10px 0 8px; }
+.stdbar span { display: grid; gap: 1px; padding: 6px 4px; border-radius: 8px; background: var(--s2); text-align: center; }
+.stdbar span.on { background: var(--accent-soft); color: var(--accent-text); }
+.stdbar b { font-size: 14px; font-weight: 700; } .stdbar small { font-size: 11px; color: var(--t3); }
+.stdbar i { position: absolute; top: -4px; bottom: -4px; width: 3px; margin-inline-start: -1.5px; border-radius: 2px; background: var(--accent); }
+.nutri .kpis { grid-template-columns: repeat(2, 1fr); }
+.nrow { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 10px; }
+@media (min-width: 700px) { .nutri .kpis { grid-template-columns: repeat(4, 1fr); } .nrow { grid-template-columns: repeat(4, 1fr); } }
+.gsec { margin-top: 10px; border-radius: var(--r-md); background: var(--s1); box-shadow: var(--raise-sm); }
+.gsec summary { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 48px; padding: 0 14px; font-weight: 650; cursor: pointer; list-style: none; }
+.gsec summary::-webkit-details-marker { display: none; }
+.gsec summary svg { transition: transform var(--dur) var(--ease); transform: rotate(90deg); }
+.gsec[open] summary svg { transform: rotate(-90deg); }
+.gsec ul, .glist { margin: 0; padding: 0 14px 12px 32px; display: grid; gap: 6px; font-size: 14px; line-height: 1.45; }
+.glist { padding: 0 0 0 18px; }
+.sched { display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 6px; }
+.sched div { display: grid; gap: 2px; padding: 8px 10px; border-radius: 10px; background: var(--s1); box-shadow: var(--raise-sm); }
+.sched b { font-size: 12px; color: var(--t3); text-transform: uppercase; letter-spacing: .04em; } .sched span { font-size: 13.5px; font-weight: 600; }
+
+/* ---- Gym mode: one exercise per screen, big targets ---- */
+.sess-head .btn { align-self: center; }
+.gnav { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 4px 0 12px; }
+.gnav b { font-size: 15px; font-weight: 700; }
+.gnav .fwd svg { transform: scaleX(-1); }
+[dir="rtl"] .gnav .iconbtn svg { transform: scaleX(-1); } [dir="rtl"] .gnav .fwd svg { transform: none; }
+.gym #entries > .xblock:not(.cur) { display: none; }
+.gym #entries { touch-action: pan-y; }
+.gym .xhead img { width: 72px; height: 72px; }
+.gym .xhead .t { font-size: 19px; }
+.gym .set-hdr, .gym .setrow { grid-template-columns: 34px 1fr 1fr 56px; gap: 6px; }
+.gym .stepper { height: 54px; } .gym .stepper button { width: 34px; font-size: 24px; } .gym .stepper input { font-size: 20px; }
+.gym .setrow .check { width: 56px; height: 54px; }
+.gym .setrow .n { width: 34px; height: 38px; font-size: 15px; }
+.btn.big { height: 56px; font-size: 17px; margin-top: 12px; }
+.gchips { display: flex; flex-wrap: wrap; gap: 6px; }

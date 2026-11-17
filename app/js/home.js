@@ -29,8 +29,8 @@ function heroCard() {
       <div class="thumbs">${next.items.slice(0, 6).map((it) => `<img src="${BY[it.slug]?.poster || ""}" alt="" onerror="this.style.visibility='hidden'">`).join("")}</div>
       <div class="row"><button class="btn primary grow" id="startNext">${ic("play", "sm")} Start workout</button><a class="btn" href="#/workout/${next.id}" aria-label="Edit">${ic("edit", "sm")}</a></div></div>`;
   return `<div class="hero-card has-ill"><div class="txt"><div class="eyebrow">Get started</div><h3>Build your first workout</h3>
-      <div class="muted small" style="margin-bottom:12px">Pick a ready plan for your level, or make your own from S-tier exercises.</div>
-      <a class="btn primary" href="#/train">${ic("dumbbell", "sm")} Choose a plan</a></div><div class="ill" data-ill="hero-start"></div></div>`;
+      <div class="muted small" style="margin-bottom:12px">Answer 5 quick questions and get a ready plan for your level.</div>
+      <a class="btn primary" href="#/start">${ic("dumbbell", "sm")} Find my plan</a></div><div class="ill" data-ill="hero-start"></div></div>`;
 }
 function timerCard() {
   return `<div class="card pad"><div class="row" style="margin-bottom:10px"><span class="ico-t">${ic("timer", "sm")}</span><b class="grow">Rest timer</b><a class="link small" href="#/timer" style="color:var(--accent-text);font-weight:600">Open timer</a></div>

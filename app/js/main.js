@@ -28,14 +28,14 @@ const view = $("#view");
 export const MEDIA_CACHE = "gym-media-v1";
 
 /* ================= router ================= */
-const TAB_OF = { "": "home", lib: "lib", ex: "lib", body: "body", train: "train", workout: "train", session: "train", pick: "train", me: "me", videos: "home", settings: "settings", timer: "train" };
+const TAB_OF = { "": "home", lib: "lib", ex: "lib", body: "body", train: "train", workout: "train", session: "train", pick: "train", me: "me", videos: "home", settings: "settings", timer: "train", guide: "me", start: "train", standards: "me", nutrition: "me", plans: "train", plan: "train" };
 let lastDepth = 0;
 export function go(hash) { location.hash = hash; }
 export const routeParts = () => (location.hash.slice(1) || "/").split("?")[0].split("/");
 function route() {
   const [, a = "", b] = routeParts();
   const narrow = innerWidth < 768;
-  const depth = ["ex", "workout", "session", "pick", "videos"].includes(a) || ((a === "timer" || a === "settings") && narrow) ? 1 : 0;
+  const depth = ["ex", "workout", "session", "pick", "videos", "guide", "start", "standards", "nutrition", "plans", "plan"].includes(a) || ((a === "timer" || a === "settings") && narrow) ? 1 : 0;
   const back = depth < lastDepth; lastDepth = depth;
   const keep = (a === "ex" || a === "lib") && innerWidth >= 1000 && !!$("#lpane"); // 2-pane library: only the detail pane changes
   view.onclick = null; view.oninput = null; view.onchange = null; if (!keep) view.className = "";
@@ -44,7 +44,7 @@ function route() {
   $$(".nav .navl").forEach((x) => x.classList.toggle("active", x.dataset.tab === tab || (narrow && tab === "settings" && x.dataset.tab === "me")));
   setTop({ back: depth > 0 });
   const fn = { "": homeView, lib: libraryView, ex: exerciseView, body: bodyMap, train: T.trainView, workout: T.workoutView, session: T.sessionView,
-    pick: libraryView, me: meView, videos, settings: settingsView, timer: (x) => timerView(setTop, view, x) }[a] || homeView;
+    pick: libraryView, me: meView, guide: G("guideView"), start: G("startView"), standards: G("standardsView"), nutrition: G("nutritionView"), plans: G("plansView"), plan: G("plansView"), videos, settings: settingsView, timer: (x) => timerView(setTop, view, x) }[a] || homeView;
   try { fn(b); } catch (err) { console.error(err); view.innerHTML = `<div class="empty">Something went wrong.<br><small>${esc(err.message)}</small></div>`; }
   T.updateLiveDot(); fillIll(view);
   if (!["pick", "lib", "ex"].includes(a) || (a === "ex" && innerWidth < 1000)) window.scrollTo(0, 0);
@@ -55,6 +55,7 @@ function route() {
 }
 addEventListener("hashchange", () => { closeSheet(); route(); });
 export const rerender = () => route();
+const G = (fn) => (x) => import("./guide.js").then((m) => m[fn](x)).then(() => { fillIll(view); requestAnimationFrame(() => indicate(view)); }).catch((err) => { console.error(err); view.innerHTML = `<div class="empty">Could not load.</div>`; });
 
 /** Top bar. shy: the title only fades in once the page title has scrolled away (no duplicate titles). */
 export function setTop({ title = "", back = false, right = "", shy = false } = {}) {

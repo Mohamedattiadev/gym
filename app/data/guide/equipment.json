@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "gym": {
+      "name": {"en": "Full gym", "tr": "Tam donanımlı salon", "ar": "صالة رياضية كاملة"},
+      "desc": {"en": "Barbells, dumbbells, cables and machines. Every exercise in the app is available.", "tr": "Halter, dambıl, kablo ve makineler. Uygulamadaki tüm hareketler kullanılabilir.", "ar": "بار حديد ودمبلز وكابلات وأجهزة. كل تمارين التطبيق متاحة لك."}
+    },
+    "dumbbells": {
+      "name": {"en": "Dumbbells and bench", "tr": "Dambıl ve sehpa", "ar": "دمبلز ومقعد"},
+      "desc": {"en": "A pair of dumbbells (ideally adjustable) and a bench. Machine and barbell moves are swapped for dumbbell versions.", "tr": "Bir çift dambıl (tercihen ayarlanabilir) ve bir sehpa. Makine ve halter hareketleri dambıl versiyonlarıyla değiştirilir.", "ar": "زوج من الدمبلز (ويفضل القابل للتعديل) ومقعد. تُستبدل تمارين الأجهزة والبار بنسخ الدمبلز."}
+    },
+    "home": {
+      "name": {"en": "Home, little equipment", "tr": "Evde, az ekipman", "ar": "في المنزل بأدوات قليلة"},
+      "desc": {"en": "Bodyweight, a pull-up bar and resistance bands. Make sets harder with slower reps, pauses and more reps.", "tr": "Vücut ağırlığı, barfiks barı ve direnç bantları. Setleri yavaş tekrar, duraklama ve daha fazla tekrarla zorlaştır.", "ar": "وزن الجسم وعارضة عقلة وأشرطة مقاومة. اجعل المجموعات أصعب بإبطاء التكرار والتوقف وزيادة العدد."}
+    }
+  }
+}

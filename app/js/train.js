@@ -1,6 +1,6 @@
 // Workouts, level-based plans, workout editor, live session logger (beat last week + plateau auto-adjust), tools.
 import { S, save, persist } from "./store.js";
-import { $, $$, esc, ic, uid, ask, askText, openSheet, closeSheet, toast, haptic, beep, confetti, fmtDur } from "./ui.js";
+import { $, $$, esc, ic, uid, ask, askText, openSheet, closeSheet, toast, haptic, beep, confetti, fmtDur, RM } from "./ui.js";
 import { EX, BY, byTier, hasEquip, hurts, history, lastSets, bestOf, setsText, swaps, LEVEL_N, WEEK } from "./data.js";
 import { e1rm, platesFor, plateColor, plateHeight, warmupSets, suggest } from "./calc.js";
 import { go, setTop, tierBadge, restText, fillIll } from "./main.js";
@@ -13,7 +13,7 @@ const store = (...k) => { save(...k); if (k.some((x) => x !== "active")) autoPus
 
 /* ---------------- plans by level (slot-based, filled from S/A canonical exercises) ---------------- */
 const SLOT = (group, pattern, sets, reps) => ({ group, pattern, sets, reps });
-const PLANS = [
+export const PLANS = [
   { id: "beg-fb", level: "beginner", name: "Full Body", days: 3, desc: "3 days a week · 2–3 sets · learn the movements", workouts: [
     ["Full Body A", [SLOT("Quads", "squat", 3, "6-10"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Lats", "v-pull", 3, "8-12"), SLOT("Hamstrings", "curl", 2, "10-12"), SLOT("Shoulders", "raise", 2, "12-15"), SLOT("Abs", "core", 2, "10-15")]],
     ["Full Body B", [SLOT("Hamstrings", "hinge", 3, "8-10"), SLOT("Shoulders", "v-push", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Quads", "lunge", 2, "10-12"), SLOT("Biceps", "curl", 2, "10-15"), SLOT("Triceps", "ext", 2, "10-15")]],
@@ -68,8 +68,8 @@ export function trainView() {
         <a class="itile" href="#/timer/countdown" style="--c:var(--info)"><span class="ico">${ic("timer")}</span><div><b>Timer</b><span>Rest countdown</span></div></a>
         <a class="itile" href="#/timer/interval" style="--c:var(--tier-A)"><span class="ico">${ic("flame")}</span><div><b>Intervals</b><span>Tabata / EMOM</span></div></a></div>
     </div><div>
-      <div class="sec"><h2>Plans by level</h2><span class="dim small">S/A-tier picks</span></div>
-      <div class="stack tight stagger">${PLANS.map((p) => `<div class="plan-card"><div class="row"><span class="tag" style="color:${LEVEL_C[p.level]};background:color-mix(in oklab, ${LEVEL_C[p.level]} 14%, transparent)">${p.level}</span><span class="dim small">${p.workouts.length} workouts</span></div>
+      <div class="sec"><h2>Plans by level</h2><a href="#/start">Find my plan</a></div>
+      <div class="stack tight stagger">${PLANS.map((p) => `<div class="plan-card"><div class="row"><span class="tag" style="color:${LEVEL_C[p.level]};background:color-mix(in oklab, ${LEVEL_C[p.level]} 14%, transparent)">${p.level}</span><span class="dim small grow">${p.workouts.length} workouts</span><a class="link small" href="#/plan/${p.id}" style="color:var(--accent-text);font-weight:600">How it works</a></div>
           <b>${p.name}</b><div class="muted small">${p.desc}</div>
           <div class="row" style="margin-top:6px"><button class="btn sm grow" data-preview="${p.id}">Preview</button><button class="btn sm primary grow" data-use="${p.id}">Use plan</button></div></div>`).join("")}</div>
     </div></div>`;
@@ -89,10 +89,10 @@ function previewPlan(p) {
     ${w.items.map((it) => `<div class="lrow"><img src="${BY[it.slug].poster}" alt=""><div class="grow"><div class="t">${esc(BY[it.slug].name)}</div><div class="s">${it.sets} × ${it.reps}</div></div>${tierBadge(BY[it.slug].tier)}</div>`).join("")}</div>`).join("")}
     <button class="btn primary block" style="margin-top:16px" id="usePv">Use this plan</button>`, (el) => ($("#usePv", el).onclick = () => { closeSheet(); usePlan(p); }));
 }
-function usePlan(p) {
+export function usePlan(p, redraw = true) {
   const ws = buildPlan(p);
   S.workouts.push(...ws); S.profile = { ...(S.profile || {}), level: p.level }; store("workouts", "profile");
-  haptic("success"); toast(`Added ${ws.length} workouts`); trainView(); fillIll(view());
+  haptic("success"); toast(`Added ${ws.length} workouts`); if (redraw) { trainView(); fillIll(view()); }
 }
 
 /* ---------------- workout editor ---------------- */
@@ -211,7 +211,7 @@ export async function startSession(w) {
     } }), 350);
   }
 }
-let clockT, wakeLock;
+let clockT, wakeLock, gi = 0; // gi = current exercise in Gym mode
 async function keepAwake() { try { wakeLock = await navigator.wakeLock?.request("screen"); } catch {} }
 document.addEventListener("visibilitychange", () => { if (!document.hidden && S.active && location.hash === "#/session") keepAwake(); });
 
@@ -224,10 +224,14 @@ export function sessionView() {
   const a = S.active; if (!a) return go("#/train");
   keepAwake();
   setTop({ title: a.name, back: true, right: `<button class="btn sm primary" id="finTop">Finish</button>` });
-  const st = stats(), u = S.settings.unit;
+  const st = stats(), u = S.settings.unit, gym = !!S.settings.gym && a.entries.length > 0;
+  if (gym) { gi = Math.min(gi, a.entries.length - 1); if (a.entries[gi]?.sets.every((x) => x.done)) { const k = a.entries.findIndex((en) => en.sets.some((x) => !x.done)); if (k >= 0) gi = k; } }
+  view().classList.toggle("gym", gym);
   view().innerHTML = `
     <div class="sess-head"><div><div class="eyebrow">Time</div><div class="sess-clock num" id="clock">0:00</div></div>
-      <div class="sess-stats"><div><b class="num" id="stSets">${st.sets}</b>sets</div><div><b class="num" id="stVol">${st.vol}</b>${u}</div></div></div>
+      <div class="sess-stats"><div><b class="num" id="stSets">${st.sets}</b>sets</div><div><b class="num" id="stVol">${st.vol}</b>${u}</div></div>
+      <button class="btn sm ${gym ? "primary" : ""}" id="gymT" aria-pressed="${gym}">${ic("phone", "sm")} Gym mode</button></div>
+    ${gym ? `<div class="gnav"><button class="iconbtn filled" id="gPrev" aria-label="Previous exercise" ${gi ? "" : "disabled"}>${ic("back")}</button><b class="num">Exercise ${gi + 1} of ${a.entries.length}</b><button class="iconbtn filled fwd" id="gNext" aria-label="Next exercise" ${gi < a.entries.length - 1 ? "" : "disabled"}>${ic("back")}</button></div>` : ""}
     <div class="stack" id="entries">${a.entries.map((en, ei) => entryHTML(en, ei)).join("") || `<div class="card pad" style="text-align:center"><div class="ill" data-ill="hero-start" style="max-width:140px"></div><b>Empty workout</b><div class="muted small">Add your first exercise.</div></div>`}</div>
     <button class="btn block" id="addEx" style="margin-top:12px">${ic("plus", "sm")} Add exercise</button>
     <div class="row" style="margin-top:10px"><button class="btn ghost grow danger" id="disc">Discard</button><button class="btn primary grow" id="fin">${ic("check", "sm")} Finish workout</button></div>`;
@@ -244,7 +248,7 @@ function entryHTML(en, ei) {
   const tr = parseRange(en.target);
   let n = 0;
   const ssIn = S.active.entries[ei - 1]?.ss, ssOut = en.ss && S.active.entries[ei + 1];
-  return `<div class="xblock ${allDone ? "done-all" : ""} ${ssOut ? "ss-out" : ""} ${ssIn ? "ss-in" : ""}" data-ei="${ei}">
+  return `<div class="xblock ${allDone ? "done-all" : ""} ${S.settings.gym && ei === gi ? "cur" : ""} ${ssOut ? "ss-out" : ""} ${ssIn ? "ss-in" : ""}" data-ei="${ei}">
     ${ssOut ? `<div class="ss-tag">${ic("swap", "xs")} Superset with next — no rest between</div>` : ""}
     <div class="xhead"><a href="#/ex/${en.slug}"><img src="${e?.poster || ""}" alt=""></a>
       <div class="grow"><div class="t">${esc(e?.name || en.slug)}</div>
@@ -259,7 +263,8 @@ function entryHTML(en, ei) {
       <div class="stepper"><button data-a="r-" aria-label="Fewer reps">−</button><input data-k="r" inputmode="numeric" placeholder="${esc(s.type === "w" ? "—" : lastR(si) || (tr ? tr[1] : "—"))}" value="${esc(s.r)}" aria-label="Reps"><button data-a="r+" aria-label="More reps">+</button></div>
       <button class="check" data-a="done" aria-label="Set done">${ic("check")}</button></div>`; }).join("")}</div>
     <div class="xtools"><button class="btn sm" data-a="add">${ic("plus", "sm")} Set</button><button class="btn sm" data-a="warm">${ic("flame", "sm")} Warm-up</button>
-      ${barb ? `<button class="btn sm" data-a="plates">${ic("calc", "sm")} Plates</button>` : ""}<button class="btn sm" data-a="swap">${ic("swap", "sm")} Swap</button></div></div>`;
+      ${barb ? `<button class="btn sm" data-a="plates">${ic("calc", "sm")} Plates</button>` : ""}<button class="btn sm" data-a="swap">${ic("swap", "sm")} Swap</button></div>
+    ${S.settings.gym && allDone && ei < S.active.entries.length - 1 ? `<button class="btn primary block big" data-a="next">Next exercise ${ic("chev", "sm")}</button>` : ""}</div>`;
 }
 function wireSession() {
   const a = S.active; const box = $("#entries");
@@ -292,8 +297,15 @@ function wireSession() {
         else if (S.settings.autoRest && s.type !== "w") startRest(ex?.rest || S.settings.restDefault, a.entries[ei - 1]?.ss ? ssBackLabel(ei - 1) : nextLabel(ei, si));
         else if (s.type === "w") startRest(45, nextLabel(ei, si));
       }
-      rerender(ei); refreshStats(); return;
+      rerender(ei); refreshStats();
+      if (S.settings.gym && s.done && s.type !== "w") { // follow supersets; move on when the exercise is finished
+        const ssPrev = a.entries[ei - 1]?.ss && a.entries[ei - 1].sets.some((x) => !x.done && x.type !== "w");
+        if (en.ss && a.entries[ei + 1]?.sets.some((x) => !x.done)) setTimeout(() => gymGo(ei + 1), 500);
+        else if (ssPrev) setTimeout(() => gymGo(ei - 1), 500);
+      }
+      return;
     }
+    if (act === "next") return gymGo(ei + 1);
     if (act === "add") { const l = en.sets.at(-1); en.sets.push({ w: l?.w || "", r: "", done: false, type: "n" }); save("active"); rerender(ei); return; }
     if (act === "warm") {
       const work = en.sets.find((x) => x.type !== "w" && +x.w)?.w || lastSets(en.slug)?.sets[0]?.w || await askText(`Working weight (${S.settings.unit})`, { inputmode: "decimal", ok: "Add warm-up" }); if (!+work) return;
@@ -305,9 +317,21 @@ function wireSession() {
     if (act === "swap") return swapSheet(ei);
     if (act === "menu") return entryMenu(ei);
   };
+  $("#gymT").onclick = () => { S.settings.gym = !S.settings.gym; save("settings"); haptic(); sessionView(); };
+  const gp = $("#gPrev"), gn = $("#gNext"); if (gp) gp.onclick = () => gymGo(gi - 1); if (gn) gn.onclick = () => gymGo(gi + 1);
+  if (S.settings.gym) { let x0 = null, y0 = 0; // swipe left/right between exercises
+    box.ontouchstart = (e) => { if (e.target.closest("input,.stepper")) return; x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; };
+    box.ontouchend = (e) => { if (x0 == null) return; const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
+      if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.5) gymGo(gi + (dx < 0 ? 1 : -1) * (document.dir === "rtl" ? -1 : 1)); }; }
   $("#addEx").onclick = () => { pickMode = { toSession: true, selected: new Set() }; go("#/pick"); };
   $("#fin").onclick = finishSession; $("#finTop").onclick = finishSession;
   $("#disc").onclick = async () => { if (await ask("Discard this workout? Nothing will be saved.", { ok: "Discard", danger: true })) { S.active = null; save("active"); stopRest(); wakeLock?.release?.(); go("#/train"); } };
+}
+function gymGo(i) {
+  const n = S.active?.entries.length || 0; if (i < 0 || i >= n || i === gi) return;
+  const dir = i > gi ? 1 : -1; gi = i; haptic(); sessionView();
+  const c = $("#entries .cur"); if (c && !RM.matches) c.animate([{ opacity: 0, transform: `translateX(${dir * 24}px)` }, { opacity: 1, transform: "none" }], { duration: 220, easing: "cubic-bezier(.2,0,0,1)" });
+  window.scrollTo(0, 0);
 }
 function nextLabel(ei, si) {
   const a = S.active; const en = a.entries[ei]; const nx = en.sets[si + 1];
@@ -356,7 +380,10 @@ async function finishSession() {
   setTimeout(() => openSheet(`<div style="text-align:center"><div class="ill" data-ill="${prs.length ? "pr" : "rest-recovery"}" style="max-width:150px"></div><h3 style="margin:4px 0 2px">Workout complete</h3><div class="muted small">${esc(a.name)} · ${fmtDur(a.endedAt - a.startedAt)}</div></div>
     <div class="kpis" style="margin:16px 0"><div class="kpi"><b class="num">${st.sets}</b><span>Sets</span></div><div class="kpi"><b class="num">${st.vol}</b><span>${S.settings.unit} volume</span></div><div class="kpi"><b class="num">${prs.length}</b><span>New PRs</span></div></div>
     ${prs.length ? `<div class="stack tight">${prs.map((p) => `<div class="lrow"><img src="${BY[p.slug]?.poster}" alt=""><div class="grow"><div class="t">${esc(BY[p.slug]?.name)}</div><div class="s">${p.w}${S.settings.unit} × ${p.r}</div></div>${ic("trophy")}</div>`).join("")}</div>` : ""}
-    <button class="btn primary block" style="margin-top:16px" id="done">Done</button>`, (el) => { fillIll(el); $("#done", el).onclick = closeSheet; }), 120);
+    <div class="row" style="margin-top:16px"><button class="btn grow" id="shareW">${ic("share", "sm")} Share</button><button class="btn primary grow" id="done">Done</button></div>`, (el) => {
+      fillIll(el); $("#done", el).onclick = closeSheet;
+      $("#shareW", el).onclick = () => import("./share.js").then((m) => m.shareSession(a, st, prs)).catch((e) => { console.error(e); toast("Could not share"); });
+    }), 120);
 }
 
 /* ---------------- rest timer (global timer + floating pill) ---------------- */

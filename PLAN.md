@@ -74,11 +74,11 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 ## 6. Training & tracking
 - 🟡 `app/js/train.js` (workouts, level plans, live logger, warm-up sets, PR confetti, rest timer, plate & 1RM calc, intervals, swap, summary) — **needs end-to-end test**
 - ✅ **Better tracking**: per exercise show *last week vs this week* (sets × reps × kg), per-set details, weekly totals (kg lifted, reps, sets per muscle), progress charts, PR list, calendar heatmap, bodyweight log
-- ⬜ **Plans explained** (Jeff-based): for every plan show *what it is, who it's for, why it works, weekly schedule, sets per muscle, how to progress*, categorized (Beginner / Intermediate / Advanced; Full Body / Upper-Lower / PPL / Specialization)
+- ✅ **Plans explained** (Jeff-based): for every plan show *what it is, who it's for, why it works, weekly schedule, sets per muscle, how to progress*, categorized (Beginner / Intermediate / Advanced; Full Body / Upper-Lower / PPL / Specialization)
 - ✅ **Timer page** `#/timer`: stopwatch (start/pause/lap/reset), countdown (set mm:ss, presets, start/pause/stop, ring), intervals (editable work/rest/rounds, Tabata/EMOM); keeps running across pages with a floating pill
-- ⬜ Strength standards by bodyweight ("you weigh X → aim for at least Y" per main lift and level)
-- ⬜ Warm-up section + warm-up player; onboarding quiz (level, days, equipment → plan)
-- ⬜ Nutrition: calorie & protein calculator + diet guidance from Jeff Nippard's nutrition videos (paraphrased, linked)
+- ✅ Strength standards by bodyweight ("you weigh X → aim for at least Y" per main lift and level)
+- 🟡 Warm-up section + warm-up player (block 20); ✅ onboarding quiz (level, days, equipment, goal, sex, bodyweight → plan)
+- ✅ Nutrition: calorie & protein calculator + diet guidance from Jeff Nippard's nutrition videos (paraphrased, linked)
 
 ## 6b. WARM-UPS — major section (user: very important)
 - ⬜ Own entry point (Home card + tab inside Train + auto-offer before every workout)
@@ -104,10 +104,10 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 - ⬜ Ask owner, then `gh repo create gym --public`, push, enable Pages, verify on phone (install + offline)
 
 ## 9. Extra ideas (approved by owner — implement)
-- **Gym mode**: one exercise per screen, huge buttons, swipe to next exercise, screen stays on
+- ✅ **Gym mode**: one exercise per screen, huge buttons, swipe to next exercise, screen stays on
 - ✅ **Auto-fill** last week's weights + "beat last week" target per set
 - ✅ **Weekly muscle balance**: warns if a muscle got < 10 sets
-- **Share card**: workout summary as an image
+- ✅ **Share card**: workout summary as an image
 - ✅ **Search in any language** (Turkish/Arabic aliases for exercise names)
 - **Quick swap** when a machine is busy (exists — make it more visible)
 - **Sound/vibration** cues on rest end, with settings (exists — verify on iOS)
@@ -153,6 +153,13 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 - Hero "Muscles" now always shows front + back body map (primary accent, secondary light); the exact figure sits beside it when available. 3D tab still open (block 19).
 - Superset: session entry "⋯" → "Superset with next exercise"; `en.ss` flag; no rest after the first of the pair, rest after the second with "Next: <first> · set k". Move up/down clears links.
 - Session handoff: tools/handoff.sh opens a new kitty window with a fresh session reading NEXT_SESSION.md. sw VERSION now v10.
+
+## Notes (2026-11-17, session 4)
+- New lazy module `app/js/guide.js` (routes #/guide hub, #/start quiz, #/standards, #/nutrition, #/plans, #/plan/<id>); content in app/data/guide/{plans,nutrition,standards,onboarding,equipment}.json (en/tr/ar, written by a content subagent; nutrition sources = Jeff channel + 3 papers). Entry points: Me → Guides, Home "Find my plan", Train "Find my plan" + "How it works" per plan.
+- Quiz → `pickPlan()` (≤3 days beg-fb, 6 days adv-ppl unless beginner, else int-ul); saves S.profile {level, days, goal, sex, nutri}, S.settings.equip, bodyweight log.
+- Strength goals: e1RM from logged sets whose names match `standards.json` regex; library has no plain flat barbell bench, so bench uses close-grip/slight-incline barbell.
+- Gym mode: session head "Gym mode" toggle (S.settings.gym), one exercise at a time, prev/next + swipe, bigger steppers, "Next exercise" button when done, follows supersets. Wake lock already existed.
+- Share: finish sheet "Share" → `share.js` renders a 1080×1350 PNG (Web Share files, else download). sw VERSION v11.
 
 ## Real-phone lessons (from the owner's Fluent365 Pocket test on Android) — apply to Gym
 - ✅ **System bars match the theme**: Android nav bar/status bar stayed white under a dark app. Set `<meta name="theme-color">` at runtime from the theme (done in `applyTheme`), add `media`-specific theme-color metas for light/dark, and pick manifest `theme_color`/`background_color` that don't flash; note installed WebAPK may need reinstall to update.

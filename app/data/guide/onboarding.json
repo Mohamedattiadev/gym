@@ -1,0 +1,65 @@
+{
+  "intro": {
+    "title": {"en": "Let's find your plan", "tr": "Sana uygun programı bulalım", "ar": "لنجد البرنامج المناسب لك"},
+    "text": {"en": "Five quick questions. Your answers pick a starting plan. You can change it any time.", "tr": "Beş kısa soru. Cevapların bir başlangıç programı seçer. İstediğin zaman değiştirebilirsin.", "ar": "خمسة أسئلة سريعة. إجاباتك تختار برنامجًا للبداية، ويمكنك تغييره في أي وقت."}
+  },
+  "questions": [
+    {
+      "id": "level",
+      "title": {"en": "How much have you trained?", "tr": "Ne kadar antrenman yaptın?", "ar": "ما مقدار خبرتك في التدريب؟"},
+      "help": {"en": "Count only steady training with weights. Breaks of many months do not count.", "tr": "Sadece düzenli ağırlık antrenmanını say. Aylarca süren aralar sayılmaz.", "ar": "احسب فقط التدريب المنتظم بالأوزان. فترات الانقطاع الطويلة لا تُحسب."},
+      "options": [
+        {"v": "beginner", "label": {"en": "Beginner", "tr": "Başlangıç", "ar": "مبتدئ"}, "desc": {"en": "Under about 1 year of consistent training. You still add weight most weeks.", "tr": "Yaklaşık 1 yıldan az düzenli antrenman. Hâlâ çoğu hafta ağırlık ekleyebiliyorsun.", "ar": "أقل من سنة تقريبًا من التدريب المنتظم. ما زلت تزيد الوزن في معظم الأسابيع."}},
+        {"v": "intermediate", "label": {"en": "Intermediate", "tr": "Orta seviye", "ar": "متوسط"}, "desc": {"en": "About 1 to 3 years. Progress now comes month to month, not every week.", "tr": "Yaklaşık 1-3 yıl. İlerleme artık her hafta değil, aydan aya geliyor.", "ar": "من سنة إلى ثلاث سنوات تقريبًا. التقدم الآن شهري وليس أسبوعيًا."}},
+        {"v": "advanced", "label": {"en": "Advanced", "tr": "İleri seviye", "ar": "متقدم"}, "desc": {"en": "3+ years and close to your potential. Gains are slow and need careful planning.", "tr": "3 yıldan fazla ve potansiyeline yakınsın. Gelişim yavaş ve dikkatli plan gerektiriyor.", "ar": "أكثر من 3 سنوات وقريب من أقصى إمكاناتك. المكاسب بطيئة وتحتاج تخطيطًا دقيقًا."}}
+      ]
+    },
+    {
+      "id": "days",
+      "title": {"en": "How many days a week can you train?", "tr": "Haftada kaç gün antrenman yapabilirsin?", "ar": "كم يومًا في الأسبوع يمكنك التدريب؟"},
+      "options": [
+        {"v": 2, "label": {"en": "2 days", "tr": "2 gün", "ar": "يومان"}},
+        {"v": 3, "label": {"en": "3 days", "tr": "3 gün", "ar": "3 أيام"}},
+        {"v": 4, "label": {"en": "4 days", "tr": "4 gün", "ar": "4 أيام"}},
+        {"v": 5, "label": {"en": "5 days", "tr": "5 gün", "ar": "5 أيام"}},
+        {"v": 6, "label": {"en": "6 days", "tr": "6 gün", "ar": "6 أيام"}}
+      ]
+    },
+    {
+      "id": "equip",
+      "title": {"en": "What equipment do you have?", "tr": "Hangi ekipmanlara sahipsin?", "ar": "ما المعدات المتوفرة لديك؟"},
+      "options": [
+        {"v": "gym", "label": {"en": "Full gym", "tr": "Tam donanımlı salon", "ar": "صالة رياضية كاملة"}, "desc": {"en": "Barbells, dumbbells, cables and machines.", "tr": "Halter, dambıl, kablo ve makineler.", "ar": "بار ودمبلز وكابلات وأجهزة."}},
+        {"v": "dumbbells", "label": {"en": "Dumbbells and bench", "tr": "Dambıl ve sehpa", "ar": "دمبلز ومقعد"}, "desc": {"en": "Home or small gym with dumbbells.", "tr": "Dambıllı ev veya küçük salon.", "ar": "منزل أو صالة صغيرة فيها دمبلز."}},
+        {"v": "home", "label": {"en": "Little or none", "tr": "Az ya da hiç", "ar": "قليلة أو لا شيء"}, "desc": {"en": "Bodyweight, bands, maybe a pull-up bar.", "tr": "Vücut ağırlığı, bantlar, belki bir barfiks barı.", "ar": "وزن الجسم وأشرطة مقاومة، وربما عارضة عقلة."}}
+      ]
+    },
+    {
+      "id": "goal",
+      "title": {"en": "What is your main goal?", "tr": "Ana hedefin ne?", "ar": "ما هدفك الأساسي؟"},
+      "options": [
+        {"v": "muscle", "label": {"en": "Build muscle", "tr": "Kas yapmak", "ar": "بناء العضلات"}, "desc": {"en": "Look bigger and more defined.", "tr": "Daha iri ve belirgin görünmek.", "ar": "مظهر أضخم وأكثر تحديدًا."}},
+        {"v": "strength", "label": {"en": "Get stronger", "tr": "Güçlenmek", "ar": "زيادة القوة"}, "desc": {"en": "Lift more on the big lifts.", "tr": "Temel hareketlerde daha fazla kaldırmak.", "ar": "رفع أوزان أثقل في التمارين الأساسية."}},
+        {"v": "fatloss", "label": {"en": "Lose fat", "tr": "Yağ yakmak", "ar": "خسارة الدهون"}, "desc": {"en": "Get leaner while keeping your muscle.", "tr": "Kasını koruyarak daha zayıf olmak.", "ar": "أن تصبح أنحف مع الحفاظ على عضلاتك."}},
+        {"v": "health", "label": {"en": "Health and fitness", "tr": "Sağlık ve form", "ar": "الصحة واللياقة"}, "desc": {"en": "Feel better, move better, stay consistent.", "tr": "Daha iyi hissetmek, daha iyi hareket etmek, düzenli kalmak.", "ar": "أن تشعر وتتحرك بشكل أفضل وتلتزم بانتظام."}}
+      ]
+    },
+    {
+      "id": "sex",
+      "title": {"en": "Sex", "tr": "Cinsiyet", "ar": "الجنس"},
+      "help": {"en": "Used only for strength standards and calorie estimates. It stays on your device.", "tr": "Sadece güç standartları ve kalori tahmini için kullanılır. Cihazında kalır.", "ar": "يُستخدم فقط لمعايير القوة وتقدير السعرات، ويبقى على جهازك."},
+      "options": [
+        {"v": "male", "label": {"en": "Male", "tr": "Erkek", "ar": "ذكر"}},
+        {"v": "female", "label": {"en": "Female", "tr": "Kadın", "ar": "أنثى"}}
+      ]
+    }
+  ],
+  "result": {
+    "title": {"en": "Your starting plan", "tr": "Başlangıç programın", "ar": "برنامجك للبداية"},
+    "why": {
+      "beg-fb": {"en": "You train every muscle 3 times a week with simple lifts. Beginners grow fastest from frequent practice and steady weight increases.", "tr": "Her kası basit hareketlerle haftada 3 kez çalıştırırsın. Yeni başlayanlar en hızlı sık pratik ve düzenli ağırlık artışıyla gelişir.", "ar": "تدرّب كل عضلة 3 مرات أسبوعيًا بتمارين بسيطة. المبتدئ يتطور أسرع بالممارسة المتكررة وزيادة الوزن تدريجيًا."},
+      "int-ul": {"en": "Four days fits more work per muscle while still hitting each one twice a week. That is a sweet spot for most lifters past their first year.", "tr": "Dört gün, her kası haftada iki kez çalıştırırken kas başına daha fazla iş sağlar. İlk yılını geçen çoğu kişi için ideal denge.", "ar": "أربعة أيام تتيح عملًا أكثر لكل عضلة مع تدريب كل منها مرتين أسبوعيًا. هذا توازن مثالي لمعظم من تجاوزوا سنتهم الأولى."},
+      "adv-ppl": {"en": "Splitting pushing, pulling and legs lets you add more hard sets without long sessions. Advanced lifters need that extra work to keep growing.", "tr": "İtme, çekme ve bacak günlerini ayırmak, uzun seanslar olmadan daha fazla zor set eklemeni sağlar. İleri seviyedekiler gelişmek için bu ekstra işe ihtiyaç duyar.", "ar": "فصل تمارين الدفع والسحب والساقين يسمح بزيادة المجموعات الصعبة دون حصص طويلة. المتقدم يحتاج هذا العمل الإضافي ليستمر في النمو."}
+    }
+  }
+}
