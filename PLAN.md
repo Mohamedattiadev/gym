@@ -124,6 +124,8 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 - ✅ **22b** quality polish + UX benchmark fixes (docs/ux_benchmark.md) — owner · part 1 session logger (session 16), part 2 plates long-press + exercise history, part 3a CSV export/import (session 17), 3b search typo/TR/AR + 4a keyboard entry + Cmd+K (session 18), 4b desktop 2-column session + iPad 2-pane exercise page + blurred video letterbox + tighter cards + theme check (session 19) — done
 - ⬜ **25** printable PDF guide per level (en/tr/ar), generated from our data — owner
 
+- ⬜ **28 Visual de-slop** (owner-approved 2026-11-17): flat cards (hairline border, no neumorphism --raise/--inset), shadow only on floating layers, no coloured glow on buttons/chips, flat inputs — spec in NEXT_SESSION.md; after 27 session A, before 26
+
 - ⬜ **26 Plans 2.0**: ~10 splits + filters + visual week scenario on the body (owner) — spec in NEXT_SESSION.md
 
 ## 9b. Voice guidance (later phase — yes, possible)
