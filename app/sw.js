@@ -2,7 +2,7 @@
    (FE-3/PERF-5); a new version waits until the user taps "Reload" (or all windows close). data/*.json and
    illustrations = stale-while-revalidate. 3D engine + model = cache-first in a stable cache that survives app
    updates (PERF-4). Posters/videos are cached on first view (or Settings → Download all); videos answer Range. */
-const VERSION = "v39";
+const VERSION = "v40";
 const SHELL = `gym-shell-${VERSION}`;
 const MEDIA = "gym-media-v1"; // keep name stable so downloaded media survives app updates
 const THREE_D = "gym-3d-v1"; // vendor/three + 3d/body.glb + 3d/anim: bump ONLY when those files change

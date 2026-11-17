@@ -484,6 +484,8 @@ function entryMenu(ei) {
 async function finishSession() {
   const a = S.active; const st = stats();
   if (!st.sets && !(await ask("No sets are checked. Finish anyway?", { ok: "Finish" }))) return;
+  const left = a.entries.reduce((n, en) => n + en.sets.filter((s) => !s.done).length, 0); // UT-1: never drop unticked sets silently
+  if (st.sets && left && !(await ask(`${left} ${left === 1 ? "set is" : "sets are"} not checked and won't be saved. Finish anyway?`, { ok: "Finish", cancel: "Keep going" }))) return;
   const prs = [];
   a.entries.forEach((en) => { const b = bestOf(en.slug); en.sets.forEach((s) => { if (s.done && s.type !== "w") { const v = e1rm(s.w, s.r); if (v && (!b || v > b.e1rm) && !prs.find((p) => p.slug === en.slug)) prs.push({ slug: en.slug, w: s.w, r: s.r }); } }); });
   a.endedAt = Date.now();

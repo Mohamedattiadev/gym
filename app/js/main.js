@@ -1,5 +1,5 @@
 // App shell: router, top bar, theme, shared exercise card, body map, Jeff's videos, boot.
-import { S, save, loadStore, persist, flush } from "./store.js";
+import { S, save, loadStore, persist, flush, degraded } from "./store.js";
 import { $, $$, esc, ic, openSheet, closeSheet, initSheet, toast, haptic, unlockAudio, indicate, selectIn, RM } from "./ui.js";
 import { EX, searchEx, byTier, weeklyVolume, loadExercises, hasEquip, hurts, recovery } from "./data.js";
 import { MUSCLES, MBY, bodySVG, muscleBox, zoomTo, FULL, HEAT, CREDIT } from "./body.js";
@@ -39,7 +39,8 @@ export function go(hash) { location.hash = hash; }
 // FE-1: guard redirects and "leave this page for good" replace the history entry (no Back trap)
 export function redirect(hash) { location.replace(hash); }
 export const routeParts = () => (location.hash.slice(1) || "/").split("?")[0].split("/");
-function route() {
+function route(quiet) {
+  if (quiet !== true) quiet = false;
   routeSeq++;
   const [, a = "", b] = routeParts();
   const narrow = innerWidth < 768;
@@ -55,6 +56,7 @@ function route() {
     pick: libraryView, me: meView, guide: G("guideView"), start: G("startView"), standards: G("standardsView"), nutrition: G("nutritionView"), plans: G("plansView"), plan: G("plansView"), warmup: G("warmupView", "warmup"), videos, settings: settingsView, timer: (x) => timerView(setTop, view, x) }[a] || homeView;
   try { fn(b); } catch (err) { console.error(err); view.innerHTML = `<div class="empty">Something went wrong.<br><small>${esc(err.message)}</small></div>`; }
   T.updateLiveDot(); fillIll(view);
+  if (quiet) { hideSplash(); return; }
   if (!["pick", "lib", "ex"].includes(a) || (a === "ex" && innerWidth < 1000)) window.scrollTo(0, 0);
   document.documentElement.classList.toggle("back-nav", back);
   if (!keep) { view.classList.remove("page"); void view.offsetWidth; view.classList.add("page"); }
@@ -62,6 +64,16 @@ function route() {
   hideSplash();
 }
 addEventListener("hashchange", () => { closeSheet(); route(); });
+// BE-2: another tab saved -> show its data here; never re-render under the user's fingers or a hidden tab
+let staleView = false;
+const refresh = () => {
+  if (!staleView) return;
+  if (document.hidden || document.activeElement?.matches?.("input, textarea, select")) return;
+  staleView = false; const y = scrollY; applyTheme(); route(true); renderPill(); scrollTo(0, y);
+};
+addEventListener("store:changed", () => { staleView = true; refresh(); });
+document.addEventListener("visibilitychange", refresh);
+document.addEventListener("focusout", () => setTimeout(refresh, 0));
 export const rerender = () => route();
 const G = (fn, mod = "guide") => (x) => { const rid = routeSeq; return import(`./${mod}.js`).then((m) => live(rid) && m[fn](x)).then(() => { if (!live(rid)) return; fillIll(view); requestAnimationFrame(() => indicate(view)); }).catch((err) => { console.error(err); if (live(rid)) view.innerHTML = `<div class="empty">Could not load.</div>`; }); };
 
@@ -394,7 +406,8 @@ addEventListener("pointerdown", unlockAudio, { once: true });
 (async () => {
   initSheet(); net();
   const exP = loadExercises(); // fetch data in parallel with IndexedDB
-  await loadStore(); applyTheme(); try { Sync.initSync(); } catch (e) { console.warn(e); }
+  await loadStore(); applyTheme();
+  if (degraded) $(".app").insertAdjacentHTML("afterbegin", `<div class="notice warn storewarn" role="alert">${ic("alert", "sm")}<div class="grow"><b>Storage unavailable</b><div class="small">Changes may not be kept. Close the app fully and open it again.</div></div></div>`); try { Sync.initSync(); } catch (e) { console.warn(e); }
   try { await exP; } catch (e) { view.innerHTML = `<div class="empty">Couldn't load exercises.<br><small>${esc(e.message)}</small></div>`; hideSplash(); return; }
   initMedia(); initTimer();
   route(); renderPill();

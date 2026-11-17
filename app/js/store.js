@@ -26,20 +26,56 @@ const tx = (mode, fn) => new Promise((res, rej) => {
   t.onabort = () => rej(t.error || new DOMException("aborted", "AbortError")); // BE-1: quota abort must reject, not hang
 });
 
+// BE-4: storage that failed to open is retried once, then the app says so (S.degraded) instead of looking empty
+export let degraded = false;
 export async function loadStore() {
   try {
-    db = await idb();
+    try { db = await idb(); } catch { await new Promise((r) => setTimeout(r, 300)); db = await idb(); }
+    db.onversionchange = () => { db.close(); db = null; };
     const keys = await tx("readonly", (st) => st.getAllKeys());
     const vals = await tx("readonly", (st) => st.getAll());
     keys.forEach((k, i) => { S[k] = vals[i]; });
     S.settings = { ...DEFAULTS.settings, ...(S.settings || {}) };
     if (!keys.includes("schema")) await migrateFromV1();
+    await adoptFallback();
   } catch (e) {
     console.warn("IndexedDB unavailable, falling back to localStorage", e);
-    db = null;
+    db = null; degraded = true;
     try { Object.assign(S, JSON.parse(localStorage.getItem("gymy2") || "{}")); } catch {}
   }
+  initChannel();
   return S;
+}
+// work saved to the localStorage fallback in a degraded session is merged back on the next good load
+async function adoptFallback() {
+  let fb = null; try { fb = JSON.parse(localStorage.getItem("gymy2") || "null"); } catch {}
+  if (!fb) return;
+  const { merge } = await import("./sync.js");
+  const m = merge(Object.fromEntries(Object.keys(DEFAULTS).map((k) => [k, S[k]])), { ...fb, sync: undefined });
+  for (const k of Object.keys(DEFAULTS)) if (k !== "settings" && k !== "active") S[k] = m[k];
+  S.active ??= fb.active ?? null;
+  await saveAll();
+  try { localStorage.removeItem("gymy2"); } catch {}
+}
+
+/* BE-2: several tabs/windows. After a write, the others re-read those keys (unless they have their own unsaved
+   change to that key) and fire "store:changed" so the open page re-renders with fresh data. */
+const TAB = Math.random().toString(36).slice(2);
+let bc;
+function initChannel() {
+  if (!("BroadcastChannel" in globalThis) || bc) return;
+  bc = new BroadcastChannel("gymy");
+  bc.onmessage = async ({ data }) => {
+    if (data?.t !== "changed" || data.from === TAB || !db) return;
+    const keys = data.keys.filter((k) => !dirty.has(k));
+    if (!keys.length) return;
+    try {
+      const vals = await tx("readonly", (st) => { const out = {}; keys.forEach((k) => { const r = st.get(k); r.onsuccess = () => { out[k] = r.result; }; }); return { get result() { return out; } }; });
+      keys.forEach((k) => { if (vals[k] !== undefined) S[k] = vals[k]; });
+      if (keys.includes("settings")) S.settings = { ...DEFAULTS.settings, ...(S.settings || {}) };
+      dispatchEvent(new CustomEvent("store:changed", { detail: keys }));
+    } catch (e) { console.warn("reload from other tab failed", e); }
+  };
 }
 
 async function migrateFromV1() {
@@ -74,8 +110,9 @@ export async function flush() {
   }
   const put = () => tx("readwrite", (st) => keys.forEach((k) => st.put(structuredClone(S[k]), k)));
   try { await put(); } catch (e1) {
-    try { db = await idb(); await put(); } catch (e) { keys.forEach((k) => dirty.add(k)); fail(e); }
+    try { db = await idb(); await put(); } catch (e) { keys.forEach((k) => dirty.add(k)); fail(e); return; }
   }
+  try { bc?.postMessage({ t: "changed", from: TAB, keys }); } catch {}
 }
 function fail(e) {
   console.error("save failed", e);

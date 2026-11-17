@@ -155,8 +155,16 @@ export function toast(msg, ms = 1900, action) {
   $$(".toast").forEach((t) => t.remove());
   const t = document.createElement("div"); t.className = "toast"; t.setAttribute("role", "status");
   const sp = document.createElement("span"); sp.textContent = msg; t.appendChild(sp);
-  if (action) { const b = document.createElement("button"); b.textContent = action.label; b.onclick = () => { t.remove(); action.fn(); }; t.appendChild(b); ms = Math.max(ms, 5000); }
-  document.body.appendChild(t); setTimeout(() => t.remove(), ms);
+  let off = () => {};
+  const rm = () => { t.remove(); off(); };
+  if (action) {
+    const b = document.createElement("button"); b.textContent = action.label; b.onclick = () => { rm(); action.fn(); }; t.appendChild(b); ms = Math.max(ms, 5000);
+    // UT-3: an action toast can be closed and never sits over a box the user is typing in
+    const x = document.createElement("button"); x.className = "tx"; x.setAttribute("aria-label", "Close"); x.innerHTML = ic("close", "sm"); x.onclick = rm; t.appendChild(x);
+    const onF = (e) => { if (e.target.matches?.("input, textarea, select")) rm(); };
+    document.addEventListener("focusin", onF); off = () => document.removeEventListener("focusin", onF);
+  }
+  document.body.appendChild(t); setTimeout(rm, ms);
 }
 
 /* ---- haptics + sound ---- */

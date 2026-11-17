@@ -106,7 +106,8 @@ function mergeBodyweight(loc = [], rem = []) {
 export function merge(local = {}, remote = {}, opts = {}) {
   local = local || {}; remote = remote || {};
   const out = {};
-  for (const k of new Set([...Object.keys(remote), ...Object.keys(local)])) out[k] = local[k] !== undefined && local[k] !== null ? local[k] : remote[k];
+  const empty = (v) => v == null || (typeof v === "object" && Object.keys(v).length === 0); // BE-3: default {} / [] must not beat real cloud data
+  for (const k of new Set([...Object.keys(remote), ...Object.keys(local)])) out[k] = empty(local[k]) ? remote[k] : local[k];
 
   out.sessions = mergeById(local.sessions, remote.sessions, (l, r) => (stamp(r) > stamp(l) ? r : l));
   out.workouts = mergeById(local.workouts, remote.workouts, (l, r) => {
@@ -117,6 +118,16 @@ export function merge(local = {}, remote = {}, opts = {}) {
   out.favorites = [...new Set([...(local.favorites || []), ...(remote.favorites || [])])];
   out.notes = mergeNotes(local.notes, remote.notes);
   out.bodyweight = mergeBodyweight(local.bodyweight, remote.bodyweight);
+  // pain flags: union per exercise; plateau adjust: newest entry per exercise wins
+  const lp = local.pain || {}, rp = remote.pain || {};
+  out.pain = {};
+  for (const k of new Set([...Object.keys(rp), ...Object.keys(lp)])) {
+    const l = lp[k], r = rp[k];
+    out.pain[k] = Array.isArray(l) || Array.isArray(r) ? [...new Set([...(Array.isArray(r) ? r : []), ...(Array.isArray(l) ? l : [])])] : (l ?? r);
+  }
+  const la = local.adjust || {}, ra = remote.adjust || {};
+  out.adjust = { ...ra };
+  for (const k of Object.keys(la)) if (!ra[k] || t(la[k]?.at) >= t(ra[k]?.at)) out.adjust[k] = la[k];
 
   const ls = local.settings || {}, rs = remote.settings || {};
   out.settings = opts.preferRemoteSettings ? { ...ls, ...rs } : { ...rs, ...ls };
