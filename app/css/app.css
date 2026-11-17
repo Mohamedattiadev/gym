@@ -671,3 +671,26 @@ body:has(.tpill) .toast { bottom: calc(var(--tab-h) + var(--safe-b) + 70px); }
 .gym .setrow .n { width: 34px; height: 38px; font-size: 15px; }
 .btn.big { height: 56px; font-size: 17px; margin-top: 12px; }
 .gchips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* ---------- warm-ups (block 20) ---------- */
+.rsets { display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 6px; }
+.rsets > div { display: grid; gap: 0; padding: 6px 8px; border-radius: var(--r-md); background: var(--s2); box-shadow: var(--inset); }
+.rsets > div b { font-size: 15.5px; font-weight: 720; }
+.rsets > div span:last-child { font-size: 13px; color: var(--t2); }
+.rsets > .go { background: var(--accent-soft); box-shadow: none; }
+.srcs { margin-top: 14px; } .srcs summary { cursor: pointer; } .srcs a { color: var(--accent-text); }
+.wplay { display: grid; gap: 12px; }
+.wvis { position: relative; display: grid; place-items: center; height: min(34vh, 260px); border-radius: var(--r-xl); background: #f4f4f2; overflow: hidden; box-shadow: var(--raise-sm); }
+.wvis .wfig, .wvis .wclip { width: 100%; height: 100%; object-fit: contain; }
+.wvis .wclip { object-fit: cover; background: #000; }
+.wvis .wfill { width: 60%; margin: 0; }
+.wcred { position: absolute; inset-inline-end: 8px; bottom: 8px; display: inline-flex; align-items: center; gap: 4px; padding: 4px 9px; border-radius: var(--r-full); background: rgb(0 0 0 / .55); color: #fff; font-size: 12px; font-weight: 600; }
+.wcue { font-size: 19px; font-weight: 700; color: var(--accent-text); margin: 4px 0 4px; }
+.wctl { margin-top: 6px; }
+.ringwrap.sm { width: min(40vw, 150px); margin: 6px auto 10px; }
+.ringwrap.sm .big { font-size: 32px; }
+.iconbtn.fwd svg { transform: scaleX(-1); }
+@media (min-width: 768px) { .wplay { grid-template-columns: 1.1fr 1fr; align-items: center; } .wvis { height: min(60vh, 420px); } }
+.wvis iframe.wclip { border: 0; }
+.wvis .wdemo { position: absolute; bottom: 10px; inset-inline-start: 50%; transform: translateX(-50%); white-space: nowrap; }
+[dir="rtl"] .wvis .wdemo { transform: translateX(50%); }
