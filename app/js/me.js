@@ -1,5 +1,5 @@
 // Me: progress tracking (week vs week, charts, PRs, heat map, bodyweight) + history. Settings page.
-import { S, save, persist, exportData, importData, flush } from "./store.js";
+import { S, save, tomb, persist, exportData, importData, flush } from "./store.js";
 import { $, $$, esc, ic, ask, askText, openSheet, closeSheet, toast, haptic, fmtDate, fmtDur, lineChart, vBars, delta, fmtKg, indicate, selectIn } from "./ui.js";
 import { EX, BY, EQUIP_PROFILES, bestOf, setsText, weeklyVolume, periodStats, exerciseStats, weekStart, WEEK, DAY, history, flaggedJoints, JOINTS } from "./data.js";
 import { MUSCLES, MBY } from "./body.js";
@@ -119,7 +119,7 @@ function wireBW(p) {
     const w = parseFloat(String(v || "").replace(",", ".")); if (!w || w < 20 || w > 400) { if (v) toast("Enter a number like 78.5"); return; }
     const d = new Date().toISOString().slice(0, 10);
     S.bodyweight = [...(S.bodyweight || []).filter((x) => x.d !== d), { d, w, updatedAt: Date.now() }];
-    save("bodyweight"); Sync.autoPush(); haptic("success"); toast("Saved"); panel();
+    save("bodyweight"); haptic("success"); toast("Saved"); panel();
   };
 }
 
@@ -135,8 +135,8 @@ function historyPanel(p) {
     const b = e.target.closest("[data-del]"); if (!b) return;
     const old = S.sessions;
     if (await ask("Delete this workout from your history?", { ok: "Delete", danger: true })) {
-      S.sessions = S.sessions.filter((x) => x.id !== b.dataset.del); save("sessions"); Sync.autoPush(); panel();
-      toast("Workout deleted", 1900, { label: "Undo", fn: () => { S.sessions = old; save("sessions"); Sync.autoPush(); panel(); } });
+      S.sessions = S.sessions.filter((x) => x.id !== b.dataset.del); tomb("sessions", b.dataset.del); save("sessions"); panel();
+      toast("Workout deleted", 1900, { label: "Undo", fn: () => { S.sessions = old; tomb("sessions", b.dataset.del, true); save("sessions"); panel(); } });
     }
   };
 }
@@ -182,7 +182,7 @@ export async function settingsView() {
   stat(); wireCloud();
   (async () => { const pe = await (navigator.storage?.persisted?.() ?? false); const est = await (navigator.storage?.estimate?.() ?? {}); const el = $("#pst"); if (el) el.innerHTML = `Storage ${pe ? "protected" : `<a href="#" id="persist" style="color:var(--accent-text)">not protected — tap to protect</a>`}${est.usage ? ` · ${(est.usage / 1e6).toFixed(0)} MB used` : ""}`;
     const pp = $("#persist"); if (pp) pp.onclick = async (e) => { e.preventDefault(); toast((await persist()) ? "Storage protected" : "Install the app first, then try again"); }; })();
-  const set = (k, v) => { st[k] = v; save("settings"); Sync.autoPush(); haptic(); };
+  const set = (k, v) => { st[k] = v; save("settings"); haptic(); };
   const seg = (id, fn) => ($(`#${id}`).onclick = (e) => { const b = e.target.closest("button"); if (!b || b.classList.contains("on")) return; selectIn(b); fn(b.dataset.v); });
   seg("sTheme", (v) => { set("theme", v); applyTheme(); });
   seg("sEquip", (v) => { set("equip", v); lib.mine = true; toast(`Showing exercises for: ${EQUIP_PROFILES[v].name}`); });
@@ -193,7 +193,7 @@ export async function settingsView() {
     <p class="muted small" style="margin:0 0 8px"><b>Android:</b> works in Chrome and the installed app. It uses a silent audio track, so on some phones it pauses music from other apps — turn it off here if it does.</p>
     <p class="muted small" style="margin:0 0 8px"><b>iPhone:</b> the lock-screen player works in Safari; notifications only in the app added to the Home Screen (iOS 16.4+). iOS stops web apps soon after locking, so the beep at rest end may not play while locked. No vibration on iPhone.</p>
     <p class="muted small" style="margin-bottom:0"><b>Later:</b> a real Live Activity / Dynamic Island needs a native app wrapper (Capacitor). Not built yet.</p>`, null, { half: true }); };
-  const cp = $("#clrPain"); if (cp) cp.onclick = async () => { if (await ask("Clear all pain flags?", { ok: "Clear" })) { S.pain = {}; save("pain"); Sync.autoPush(); settingsView(); } };
+  const cp = $("#clrPain"); if (cp) cp.onclick = async () => { if (await ask("Clear all pain flags?", { ok: "Clear" })) { S.pain = {}; save("pain"); settingsView(); } };
   $("#dlAll").onclick = () => downloadMedia(urls(false), stat);
   $("#dlTop").onclick = () => downloadMedia(urls(true), stat);
   const ins = $("#inst"); if (ins) ins.onclick = installNow;

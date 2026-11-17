@@ -21,3 +21,22 @@ test("merge: local non-empty values still win, active stays local", () => {
   const out = merge({ profile: { level: "adv" }, active: { id: 1 } }, { profile: { level: "beg" }, active: { id: 2 } });
   assert.equal(out.profile.level, "adv"); assert.equal(out.active.id, 1);
 });
+
+// FE-7: tombstones
+const NOW = 1_800_000_000_000, DAY = 864e5;
+test("merge: a session deleted on another device does not come back", () => {
+  const s = { id: "s1", startedAt: NOW - 3 * DAY, endedAt: NOW - 3 * DAY };
+  const out = merge({ sessions: [s] }, { sessions: [], deleted: { sessions: { s1: NOW - DAY } } }, { now: NOW });
+  assert.equal(out.sessions.length, 0); assert.equal(out.deleted.sessions.s1, NOW - DAY);
+});
+test("merge: a workout edited after the remote delete survives; undo (negative) wins over an older delete", () => {
+  const w = { id: "w1", name: "A", updatedAt: NOW - 1000, items: [] }, w2 = { id: "w2", name: "B", updatedAt: NOW - 5 * DAY, items: [] };
+  const out = merge({ workouts: [w, w2], deleted: { workouts: { w2: -(NOW - DAY) } } },
+                    { workouts: [w, w2], deleted: { workouts: { w1: NOW - 2 * DAY, w2: NOW - 2 * DAY } } }, { now: NOW });
+  assert.deepEqual(out.workouts.map((x) => x.id), ["w1", "w2"]); assert.equal(out.deleted.workouts.w2, -(NOW - DAY));
+});
+test("merge: un-favourite sticks, re-favourite after it wins, old tombstones expire", () => {
+  const out = merge({ favorites: ["a", "b", "c"], deleted: { favorites: { b: -(NOW - 10), z: NOW - 200 * DAY } } },
+                    { favorites: ["a", "b"], deleted: { favorites: { a: NOW - 5, b: NOW - 20 } } }, { now: NOW });
+  assert.deepEqual(out.favorites, ["b", "c"]); assert.ok(!("z" in out.deleted.favorites));
+});

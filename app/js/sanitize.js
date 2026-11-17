@@ -52,6 +52,12 @@ export function sanitize(d, { keys, schema, uid }) {
     .map((s) => ({ ...s, entries: entries(s.entries) }));
   if (Array.isArray(out.favorites)) out.favorites = out.favorites.filter((s) => typeof s === "string" && SLUG.test(s));
   for (const k of ["notes", "pain", "adjust"]) if (k in out) out[k] = slugMap(out[k]);
+  if ("deleted" in out) { // FE-7 tombstones: known kinds, plain id keys, numeric stamps only
+    const dl = out.deleted && typeof out.deleted === "object" && !Array.isArray(out.deleted) ? out.deleted : {};
+    out.deleted = {};
+    for (const kind of ["sessions", "workouts", "favorites"]) if (dl[kind] && typeof dl[kind] === "object")
+      out.deleted[kind] = Object.fromEntries(Object.entries(dl[kind]).filter(([k, v]) => ID.test(k) && typeof v === "number"));
+  }
   if (out.bodyweight && !Array.isArray(out.bodyweight)) out.bodyweight = [];
   if (out.profile !== undefined && out.profile !== null && (typeof out.profile !== "object" || Array.isArray(out.profile))) out.profile = null;
   if (out.settings && typeof out.settings === "object") {

@@ -107,11 +107,30 @@ export function openSheet(html, mount, { dlg = false, half = false } = {}) {
   clearTimeout(closeT);
   if (d.open) d.dispatchEvent(new Event("close"));
   d.classList.toggle("dlg", dlg); d.classList.toggle("half", half);
+  /* A11Y-11: remember who opened the sheet (kept across content swaps) so focus goes back there on close */
+  const a = document.activeElement;
+  if (!d.open || !opener?.isConnected) opener = a && a !== document.body && !d.contains(a) ? a : opener?.isConnected ? opener : null;
+  if (!d.open) openHash = location.hash;
   $("#sheetBody").innerHTML = html;
   d.classList.remove("closing");
   if (!d.open) d.showModal();
   mount && mount($("#sheetBody"));
+  labelSheet();
   requestAnimationFrame(() => indicate($("#sheetBody")));
+}
+let opener = null, openHash = "";
+/* A11Y-11: the dialog is named by its first heading (or, for a bare ask(), its message) */
+function labelSheet() {
+  const d = sheet(), b = $("#sheetBody"), h = b.querySelector("h1,h2,h3,h4") || (d.classList.contains("dlg") ? b.querySelector("p") : null);
+  if (h) { h.id ||= "sheetT"; d.setAttribute("aria-labelledby", h.id); d.removeAttribute("aria-label"); }
+  else { d.removeAttribute("aria-labelledby"); d.setAttribute("aria-label", "Details"); }
+}
+function restoreFocus() {
+  const o = opener; opener = null;
+  if (!o?.isConnected || location.hash !== openHash) return; // the page changed: A11Y-9 focuses its heading
+  const a = document.activeElement;
+  if (a && a !== document.body && a !== o && !sheet().contains(a)) return; // something else already took focus
+  o.focus({ preventScroll: true });
 }
 export function closeSheet() {
   const d = sheet(); if (!d.open) return;
@@ -122,6 +141,7 @@ export function initSheet() {
   const d = sheet();
   d.addEventListener("click", (e) => { if (e.target === d) closeSheet(); });
   d.addEventListener("cancel", (e) => { e.preventDefault(); closeSheet(); });
+  d.addEventListener("close", () => { if (!d.open) restoreFocus(); });
   // drag to dismiss
   let y0 = null, dy = 0;
   d.addEventListener("touchstart", (e) => { if ($("#sheetBody").scrollTop <= 0) { y0 = e.touches[0].clientY; dy = 0; } }, { passive: true });

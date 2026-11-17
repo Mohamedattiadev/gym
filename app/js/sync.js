@@ -1,11 +1,12 @@
 // Optional cloud backup to the owner's OWN PRIVATE GitHub repo (see SYNC.md).
 // The token stays on this device (IndexedDB key "sync") and is NEVER written into the backup file.
 // Talks only to https://api.github.com. No libraries.
-import { S, save, flush, exportData, clean as cleanData } from "./store.js";
+import { S, save, onSave, flush, exportData, clean as cleanData } from "./store.js";
 
 const API = "https://api.github.com";
 const DEBOUNCE_MS = 20000;
 const DEFAULT_PATH = "gym-backup.json";
+const TOMB_KEEP = 180 * 864e5; // FE-7: tombstones older than this are dropped
 
 let lastError = null;   // human-readable message of the last failure (null = fine)
 let busy = null;        // promise of the running push/pull (serialises network work)
@@ -100,7 +101,8 @@ function mergeBodyweight(loc = [], rem = []) {
 }
 
 /**
- * Merge two `data` objects (the `data` part of an exportData() payload). Never drops records.
+ * Merge two `data` objects (the `data` part of an exportData() payload). Never drops records, except ones another
+ * device deleted after their last change (FE-7 tombstones in data.deleted).
  * opts.preferRemoteSettings: used by restore() on a fresh phone so cloud settings come back.
  */
 export function merge(local = {}, remote = {}, opts = {}) {
@@ -116,6 +118,21 @@ export function merge(local = {}, remote = {}, opts = {}) {
     return ru > lu ? r : l;
   });
   out.favorites = [...new Set([...(local.favorites || []), ...(remote.favorites || [])])];
+  // FE-7: tombstones (union, newest |ts| per id, expire after 180 days) remove what another device deleted
+  const now = opts.now ?? Date.now(), ld = local.deleted || {}, rd = remote.deleted || {};
+  out.deleted = {};
+  for (const kind of new Set([...Object.keys(rd), ...Object.keys(ld)])) {
+    const m = {};
+    for (const src of [rd[kind] || {}, ld[kind] || {}]) for (const [id, v] of Object.entries(src)) {
+      if (typeof v !== "number" || Math.abs(v) < now - TOMB_KEEP) continue;
+      if (!(id in m) || Math.abs(v) >= Math.abs(m[id])) m[id] = v;
+    }
+    if (Object.keys(m).length) out.deleted[kind] = m;
+  }
+  const gone = (kind, id, st) => { const v = out.deleted[kind]?.[id]; return v > 0 && v >= st; };
+  out.sessions = out.sessions.filter((x) => !x || x.id == null || !gone("sessions", x.id, stamp(x)));
+  out.workouts = out.workouts.filter((x) => !x || x.id == null || !gone("workouts", String(x.id).replace(/-cloud$/, ""), t(x.updatedAt)));
+  out.favorites = out.favorites.filter((s) => !gone("favorites", s, 0));
   out.notes = mergeNotes(local.notes, remote.notes);
   out.bodyweight = mergeBodyweight(local.bodyweight, remote.bodyweight);
   // pain flags: union per exercise; plateau adjust: newest entry per exercise wins
@@ -236,7 +253,8 @@ async function applyData(d) {
     if (k === "sync" || k === "active") continue;
     S[k] = structuredClone(v);
   }
-  save(...Object.keys(d).filter((k) => k !== "sync" && k !== "active"), "sync");
+  applying = true; // our own write of merged/pulled data is not a local change to push
+  try { save(...Object.keys(d).filter((k) => k !== "sync" && k !== "active"), "sync"); } finally { applying = false; }
   await flush();
 }
 
@@ -339,7 +357,7 @@ export async function restore() {
   return { ok: true, sessions: S.sessions.length, workouts: S.workouts.length, exportedAt: r.exportedAt };
 }
 
-// Call after every save() of user data. Safe to call any time (no-op when not connected / auto off).
+// Runs after every save() of user data (initSync hook). Safe to call any time (no-op when not connected / auto off).
 export function autoPush() {
   const c = cfg(); if (!c || c.auto === false) return;
   if (!c.dirty) { c.dirty = true; save("sync"); }
@@ -355,8 +373,11 @@ function waitOnline() {
   addEventListener("online", () => { waiting = false; if (cfg()?.dirty) autoPush(); }, { once: true });
 }
 
-// Call once after loadStore(): resumes an upload that was pending when the app was closed.
+// Call once after loadStore(): pushes after every save of user data (FE-10) and resumes an upload that was
+// pending when the app was closed.
+let applying = false, hooked = false;
 export function initSync() {
+  if (!hooked) { hooked = true; onSave((keys) => { if (!applying && keys.some((k) => k !== "active" && k !== "sync")) autoPush(); }); }
   const c = cfg(); if (!c) return;
   lastError = c.lastError || null;
   if (c.dirty && c.auto !== false) autoPush();

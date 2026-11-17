@@ -1,6 +1,6 @@
 // App shell: router, top bar, theme, shared exercise card, body map, Jeff's videos, boot.
 import "./log.js"; // FE-6: first, so boot errors are caught too
-import { S, save, loadStore, persist, flush, degraded } from "./store.js";
+import { S, save, tomb, loadStore, persist, flush, degraded } from "./store.js";
 import { $, $$, esc, ic, openSheet, closeSheet, initSheet, toast, haptic, unlockAudio, indicate, selectIn, RM } from "./ui.js";
 import { EX, searchEx, byTier, weeklyVolume, loadExercises, hasEquip, hurts, recovery } from "./data.js";
 import { MUSCLES, MBY, bodySVG, muscleBox, zoomTo, FULL, HEAT, CREDIT } from "./body.js";
@@ -174,7 +174,7 @@ export function tierInfo() {
 const LVL = { beginner: [1, "Beginner"], intermediate: [2, "Intermediate"], advanced: [3, "Advanced"] };
 export const levelBars = (l) => { const [n, w] = LVL[l] || [0, ""]; return n ? `<span class="lvl l${n}" title="${w}"><i></i><i></i><i></i></span>${w}` : ""; };
 export const isFav = (s) => S.favorites.includes(s);
-export function toggleFav(s) { S.favorites = isFav(s) ? S.favorites.filter((x) => x !== s) : [...S.favorites, s]; save("favorites"); Sync.autoPush(); haptic(); }
+export function toggleFav(s) { const off = isFav(s); S.favorites = off ? S.favorites.filter((x) => x !== s) : [...S.favorites, s]; tomb("favorites", s, !off); save("favorites"); haptic(); }
 export const restText = (sec) => (sec >= 120 ? `${sec / 60} min` : `${sec}s`);
 export function xcard(e, i = 0, sel = false, href = `#/ex/${e.slug}`) {
   return `<a class="xcard${sel ? " sel" : ""}" href="${href}" data-slug="${e.slug}">

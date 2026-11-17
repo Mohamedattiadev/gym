@@ -7,7 +7,6 @@ import { MBY, bodySVG } from "./body.js";
 import { e1rm } from "./calc.js";
 import { setTop, go, tierBadge, tierInfo, levelBars, xcard, onImg, isFav, toggleFav, restText, JEFF_VID, fillIll, routeParts } from "./main.js";
 import * as T from "./train.js";
-import { autoPush } from "./sync.js";
 
 const view = () => $("#view");
 const wide = () => innerWidth >= 1000;
@@ -206,7 +205,7 @@ async function jointCare(e) {
     <p class="dim small" style="margin-top:12px">${ic("alert", "xs")} ${esc(L(J[0]?.physio) || "If pain persists or is sharp, stop and see a physiotherapist.")}</p>
     ${pain.length ? `<button class="btn sm ghost" id="rmPain" style="margin-top:4px">Remove pain flag</button>` : ""}`, (el) => {
     const g = $("#jcGo", el); if (g) g.onclick = () => { closeSheet(); import("./warmup.js").then((m) => m.playDrills(`Joint warm-up · ${L(JOINTS[joints[0]]?.name)}`, drills.map((d) => d.id), location.hash)); };
-    const rm = $("#rmPain", el); if (rm) rm.onclick = () => { delete S.pain[e.slug]; save("pain"); autoPush(); toast("Flag removed"); closeSheet(); rerenderDetail(e.slug); };
+    const rm = $("#rmPain", el); if (rm) rm.onclick = () => { delete S.pain[e.slug]; save("pain"); toast("Flag removed"); closeSheet(); rerenderDetail(e.slug); };
     el.querySelectorAll(".hcard").forEach((a) => a.addEventListener("click", () => closeSheet()));
   });
 }
@@ -371,7 +370,7 @@ async function rankPanel(e, p) {
   const th = $("#tierHelp", p); if (th) th.onclick = () => { haptic(); tierInfo(); };
   const y = $(".yt[data-yt]", p); if (y) y.onclick = () => { haptic();
     y.outerHTML = `<div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/${y.dataset.yt}?start=${y.dataset.t}&autoplay=1&playsinline=1&rel=0&modestbranding=1" title="YouTube video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`; };
-  let nt; $("#note", p).oninput = (ev) => { clearTimeout(nt); nt = setTimeout(() => { S.notes[e.slug] = ev.target.value; save("notes"); autoPush(); }, 400); };
+  let nt; $("#note", p).oninput = (ev) => { clearTimeout(nt); nt = setTimeout(() => { S.notes[e.slug] = ev.target.value; save("notes"); }, 400); };
 }
 function statsPanel(e, p) {
   p.innerHTML = historyHTML(e.slug); fillIll(p); wireHistory(p, e.slug);
@@ -418,7 +417,7 @@ function moreMenu(slug) {
       const b = ev.target.closest("[data-j]"); if (!b) return; haptic(); const j = b.dataset.j;
       cur.has(j) ? cur.delete(j) : cur.add(j);
       S.pain ||= {}; if (cur.size) S.pain[slug] = [...cur]; else delete S.pain[slug];
-      save("pain"); autoPush(); b.classList.toggle("on", cur.has(j)); b.querySelector("svg").outerHTML = ic(cur.has(j) ? "check" : "bandage", "sm ck");
+      save("pain"); b.classList.toggle("on", cur.has(j)); b.querySelector("svg").outerHTML = ic(cur.has(j) ? "check" : "bandage", "sm ck");
     };
     $("#mAdd", el).onclick = () => { closeSheet(); setTimeout(() => T.addToWorkoutSheet(slug), 220); };
     $("#sheet").addEventListener("close", () => { if (BY[slug] && location.hash.includes(slug)) { rerenderDetail(slug); } }, { once: true });

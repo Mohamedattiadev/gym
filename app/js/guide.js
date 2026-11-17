@@ -5,14 +5,13 @@ import { $, esc, ic, haptic, toast, selectIn, indicate } from "./ui.js";
 import { EX, bestOf, EQUIP_PROFILES } from "./data.js";
 import { setTop, go, redirect, routeId, live } from "./main.js";
 import * as T from "./train.js";
-import * as Sync from "./sync.js";
 
 const view = () => $("#view");
 const L = (o) => (o && typeof o === "object" ? o[S.settings.lang || "en"] || o.en || "" : o ?? "");
 const G = {};
 const load = (n) => G[n] || (G[n] = fetch(`data/guide/${n}.json`).then((r) => (r.ok ? r.json() : {})).catch(() => ({})));
 const prof = () => (S.profile = S.profile || {});
-const setProf = (o) => { Object.assign(prof(), o); save("profile"); Sync.autoPush(); };
+const setProf = (o) => { Object.assign(prof(), o); save("profile"); };
 const lastBW = () => { const l = (S.bodyweight || []).filter((x) => +x.w).sort((a, b) => String(a.d).localeCompare(String(b.d))); return l.length ? +l[l.length - 1].w : 0; };
 const saveBW = (w) => { const d = new Date().toISOString().slice(0, 10); S.bodyweight = [...(S.bodyweight || []).filter((x) => x.d !== d), { d, w, updatedAt: Date.now() }]; save("bodyweight"); };
 const seg = (id, opts, cur, cls = "") => `<div class="seg sm ${cls}" id="${id}">${opts.map(([v, l]) => `<button data-v="${v}" class="${String(cur) === String(v) ? "on" : ""}">${esc(l)}</button>`).join("")}</div>`;
@@ -102,7 +101,7 @@ export async function standardsView() {
       ${bw ? `<div class="stack tight" style="margin-top:10px">${rows}</div>` : `<div class="empty">Enter your bodyweight to see your targets.</div>`}
       <p class="dim small" style="margin-top:12px">Your number is your best estimated 1-rep max from logged sets.${st.note ? ` ${esc(L(st.note))}` : ""}</p>`;
     segVal($("#sSex"), (v) => { setProf({ sex: v }); draw(); });
-    $("#sBw").onclick = async () => { const { askText } = await import("./ui.js"); const v = await askText("Bodyweight", { value: bw || "", ok: "Save", type: "number", inputmode: "decimal" }); const w = +v; if (!w) return; if (w < 25 || w > 300) return toast("Enter a weight between 25 and 300"); saveBW(w); Sync.autoPush(); draw(); };
+    $("#sBw").onclick = async () => { const { askText } = await import("./ui.js"); const v = await askText("Bodyweight", { value: bw || "", ok: "Save", type: "number", inputmode: "decimal" }); const w = +v; if (!w) return; if (w < 25 || w > 300) return toast("Enter a weight between 25 and 300"); saveBW(w); draw(); };
   };
   draw();
 }

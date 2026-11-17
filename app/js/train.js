@@ -1,15 +1,14 @@
 // Workouts, level-based plans, workout editor, live session logger (beat last week + plateau auto-adjust), tools.
-import { S, save, persist } from "./store.js";
+import { S, save, tomb, persist } from "./store.js";
 import { $, $$, esc, ic, uid, ask, askText, openSheet, closeSheet, toast, haptic, beep, confetti, fmtDur, RM } from "./ui.js";
 import { EX, BY, byTier, hasEquip, hurts, history, lastSets, bestOf, setsText, swaps, LEVEL_N, WEEK } from "./data.js";
 import { e1rm, platesFor, plateColor, plateHeight, warmupSets, suggest } from "./calc.js";
 import { go, redirect, setTop, tierBadge, restText, fillIll } from "./main.js";
 import * as Tm from "./timer.js";
-import { autoPush } from "./sync.js";
 
 const view = () => $("#view");
 export let pickMode = null;
-const store = (...k) => { save(...k); if (k.some((x) => x !== "active")) autoPush(); };
+const store = save; // FE-10: sync pushes from the save hook
 
 /* ---------------- plans by level (slot-based, filled from S/A canonical exercises) ---------------- */
 const SLOT = (group, pattern, sets, reps) => ({ group, pattern, sets, reps });
@@ -127,7 +126,7 @@ export function workoutView(id) {
   $("#wMore").onclick = () => openSheet(`<h3>${esc(w.name)}</h3><div class="menu"><button id="ren">${ic("edit", "sm")}Rename</button><button id="dup">${ic("copy", "sm")}Duplicate</button><button class="danger" id="del">${ic("trash", "sm")}Delete workout</button></div>`, (el) => {
     $("#ren", el).onclick = async () => { const n = await askText("Rename workout", { value: w.name }); if (n) { w.name = n; touch(); workoutView(id); } };
     $("#dup", el).onclick = () => { S.workouts.push({ ...structuredClone(w), id: uid(), name: w.name + " (copy)", updatedAt: Date.now() }); store("workouts"); closeSheet(); toast("Duplicated"); };
-    $("#del", el).onclick = async () => { if (await ask(`Delete “${w.name}”?`, { ok: "Delete", danger: true })) { const old = S.workouts; S.workouts = S.workouts.filter((x) => x !== w); store("workouts"); go("#/train"); toast("Workout deleted", 1900, { label: "Undo", fn: () => { S.workouts = old; store("workouts"); go(`#/workout/${w.id}`); } }); } };
+    $("#del", el).onclick = async () => { if (await ask(`Delete “${w.name}”?`, { ok: "Delete", danger: true })) { const old = S.workouts; S.workouts = S.workouts.filter((x) => x !== w); tomb("workouts", w.id); store("workouts"); go("#/train"); toast("Workout deleted", 1900, { label: "Undo", fn: () => { S.workouts = old; tomb("workouts", w.id, true); store("workouts"); go(`#/workout/${w.id}`); } }); } };
   });
 }
 export function finishPick() {

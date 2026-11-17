@@ -7,6 +7,7 @@ const DEFAULTS = {
   settings: { unit: "kg", restDefault: 90, autoRest: true, sound: true, haptics: true, bar: 20,
     plates: [25, 20, 15, 10, 5, 2.5, 1.25], theme: "system", equip: "gym", installDismissed: 0, lastBackup: 0, onboarded: false, lockTimer: true },
   profile: null, // {level, days, equipment, name}
+  deleted: {}, // FE-7 tombstones {sessions|workouts|favorites: {id: ts}}; ts < 0 = brought back (undo / re-favourite) at -ts
 };
 
 import { sanitize } from "./sanitize.js";
@@ -97,8 +98,18 @@ async function migrateFromV1() {
 }
 
 const dirty = new Set(); let timer;
+/* FE-7: remember a removal (or its undo) so a cloud merge does not bring the record back */
+export function tomb(kind, id, back = false) {
+  const m = ((S.deleted ||= {})[kind] ||= {});
+  if (back) { if (!m[id]) return; m[id] = -Date.now(); } else m[id] = Date.now();
+  save("deleted");
+}
+/* FE-10: listeners told about every save (sync.js pushes user data from here, so no call site can forget) */
+const subs = new Set();
+export const onSave = (fn) => subs.add(fn);
 export function save(...keys) {
   (keys.length ? keys : Object.keys(DEFAULTS)).forEach((k) => dirty.add(k));
+  subs.forEach((fn) => { try { fn(keys.length ? keys : Object.keys(DEFAULTS)); } catch (e) { console.warn(e); } });
   clearTimeout(timer); timer = setTimeout(flushSafe, 150);
 }
 // FE-5: keys stay dirty until the write succeeds; one retry with a fresh connection (Safari drops it in the
@@ -123,7 +134,7 @@ function fail(e) {
   import("./ui.js").then((u) => u.toast("Couldn't save — phone storage may be full", 4000)).catch(() => {});
 }
 const flushSafe = () => { flush().catch(() => {}); };
-async function saveAll() { Object.keys(DEFAULTS).concat("schema").forEach((k) => dirty.add(k)); await flush(); }
+async function saveAll() { Object.keys(DEFAULTS).concat("schema").forEach((k) => dirty.add(k)); subs.forEach((fn) => { try { fn(Object.keys(DEFAULTS)); } catch {} }); await flush(); }
 addEventListener("pagehide", flushSafe);
 document.addEventListener("visibilitychange", () => document.hidden && flushSafe());
 
