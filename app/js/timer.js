@@ -10,6 +10,7 @@ function load() { try { const s = JSON.parse(localStorage.getItem(KEY) || "null"
 function persist() { try { localStorage.setItem(KEY, JSON.stringify(T)); } catch {} }
 const listeners = new Set();
 export const onTick = (fn) => { listeners.add(fn); return () => listeners.delete(fn); };
+let offView = null; // FE-15: the timer page's tick listener
 
 let iv = null, lastBeep = -1;
 function loop() { clearInterval(iv); if (T.mode && T.running) iv = setInterval(tick, 200); tick(); }
@@ -187,7 +188,8 @@ export function timerView(setTop, root, arg) {
   };
   draw();
   let last = { running: T.running, mode: T.mode, phase: T.phase };
-  const off = onTick((v) => {
+  offView?.(); /* FE-15: one listener, however often #/timer is opened */
+  const off = offView = onTick((v) => {
     if (!root.isConnected || !location.hash.startsWith("#/timer")) return off();
     if (v.running !== last.running || T.mode !== last.mode || T.phase !== last.phase) { last = { running: T.running, mode: T.mode, phase: T.phase }; draw(); return; }
     const t = $("#tmT", root); if (t && T.mode === tab) t.textContent = v.text;

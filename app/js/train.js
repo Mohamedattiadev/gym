@@ -514,7 +514,7 @@ async function finishSession() {
     ${prs.length ? `<div class="stack tight">${prs.map((p) => `<div class="lrow"><img src="${BY[p.slug]?.poster}" alt=""><div class="grow"><div class="t">${esc(BY[p.slug]?.name)}</div><div class="s">${p.w}${S.settings.unit} × ${p.r}</div></div>${ic("trophy")}</div>`).join("")}</div>` : ""}
     <div class="row" style="margin-top:16px"><button class="btn grow" id="shareW">${ic("share", "sm")} Share</button><button class="btn primary grow" id="done">Done</button></div>
     <a class="btn ghost block" href="#/warmup/cool" id="coolW" style="margin-top:6px">${ic("timer", "sm")} Cool-down stretches (optional)</a>`, (el) => {
-      fillIll(el); $("#done", el).onclick = closeSheet;
+      fillIll(el); $("#done", el).onclick = closeSheet; setTimeout(() => $("#done", el)?.focus({ focusVisible: false }), 60); /* UT-13: not a red ring on Share */
       $("#shareW", el).onclick = () => import("./share.js").then((m) => m.shareSession(a, st, prs)).catch((e) => { console.error(e); toast("Could not share"); });
     }), 120);
 }

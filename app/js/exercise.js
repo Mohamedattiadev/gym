@@ -49,7 +49,8 @@ function wireLib(pick, cur) {
     more();
   };
   refresh();
-  new IntersectionObserver((en) => { if (en[0].isIntersecting && shown < list.length) more(); }, { root: pane && wide() ? pane : null, rootMargin: "900px" }).observe($("#sentinel"));
+  libIO?.disconnect(); /* FE-16 */
+  libIO = new IntersectionObserver((en) => { if (en[0].isIntersecting && shown < list.length) more(); }, { root: pane && wide() ? pane : null, rootMargin: "900px" }).observe($("#sentinel"));
   let t; $("#q").oninput = (e) => { clearTimeout(t); t = setTimeout(() => { lib.q = e.target.value; refresh(); }, 120); };
   $("#groups").onclick = (e) => { const b = e.target.closest(".chip"); if (!b) return; haptic(); lib.group = b.dataset.g; $$("#groups .chip").forEach((c) => c.classList.toggle("on", c === b)); b.scrollIntoView({ inline: "center", block: "nearest" }); refresh(); };
   $("#tiers").onclick = (e) => {
@@ -212,6 +213,7 @@ async function jointCare(e) {
 }
 
 /* ---- hero: Video | Muscles (mannequin animation) ---- */
+let libIO = null; // FE-16: library infinite-scroll observer
 let heroMode = "video";
 const paintBody = (e) => { const pri = e.primary || [], sec = e.secondary || [];
   return (svg) => svg.replace(/<path class="m" data-m="([^"]+)"/g, (m0, id) => `<path class="m ${pri.includes(id) ? "sel" : sec.includes(id) ? "sec" : ""}" data-m="${id}"`); };
