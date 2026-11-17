@@ -244,11 +244,14 @@ function csvPreview(C, R) {
   };
   openSheet(`<h3>Import from ${R.format}</h3>
     <div class="muted small" style="margin:-2px 0 12px">${R.workouts.length} workouts · ${sets} sets · ${fmtDate(R.workouts[0].start, md)} – ${fmtDate(R.workouts.at(-1).start, md)}</div>
+    ${R.unitUnknown ? `<div class="row" style="margin-bottom:12px"><span class="grow small">Weights in this file are in</span><div class="seg sm" id="impU">${["kg", "lb"].map((u) => `<button data-u="${u}" class="${R.fileUnit === u ? "on" : ""}">${u}</button>`).join("")}</div></div>` : ""}
+    ${R.dropped ? `<div class="muted small" style="margin:-6px 0 12px">${R.dropped} timed or distance set${R.dropped === 1 ? "" : "s"} (planks, cardio) won't be imported.</div>` : ""}
     <div class="row" style="margin-bottom:6px"><b class="grow" id="impSum"></b></div>
     <div id="impList" class="imp-list"></div>
     <p class="dim small" style="margin:10px 0 12px">Workouts are added to your history; nothing is replaced. Already imported workouts are skipped.</p>
     <button class="btn primary block" id="impGo">Import workouts</button>`, (el) => {
     draw(el);
+    const iu = $("#impU", el); if (iu) iu.onclick = (ev) => { const b = ev.target.closest("[data-u]"); if (!b) return; haptic(); R.fileUnit = b.dataset.u; selectIn(b); };
     $("#impList", el).onclick = (ev) => { const b = ev.target.closest("[data-c]"); if (!b) return; const i = +b.dataset.c, x = R.names[i];
       const box = b.closest(".imp-r"); if (box.nextElementSibling?.classList.contains("imp-pick")) return box.nextElementSibling.remove();
       el.querySelectorAll(".imp-pick").forEach((p) => p.remove());

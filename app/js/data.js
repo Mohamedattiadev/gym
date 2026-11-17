@@ -84,7 +84,10 @@ export function searchEx(q, list) {
     }
     if (ok) (typo ? close : exact).push(e);
   }
-  const out = [...exact.sort(byTier), ...close.sort(byTier)]; out.close = close.length; return out;
+  // UT-4: exercises whose NAME holds every search word come first ("bench" -> bench presses before preacher curls on a bench), tier order inside
+  const inName = (e) => groups.every((g) => g.alts.some((a) => (e._nm ??= norm(e.name + " " + (e.aliases || ""))).includes(a)));
+  const byName = (a, b) => inName(b) - inName(a) || byTier(a, b);
+  const out = [...exact.sort(byName), ...close.sort(byTier)]; out.close = close.length; return out;
 }
 
 export let FAM = { families: {}, notes: {} };

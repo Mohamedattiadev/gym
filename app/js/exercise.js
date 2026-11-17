@@ -35,7 +35,13 @@ function libHTML(pick) {
 }
 function wireLib(pick, cur) {
   let list = [], shown = 0; const grid = $("#grid"); const pane = $("#lpane");
-  const more = () => { const nx = list.slice(shown, shown + 40); grid.insertAdjacentHTML("beforeend", nx.map((e) => xcard(e, 0, pick?.selected.has(e.slug))).join("")); shown += nx.length; onImg(grid); markCur(cur); };
+  // PERF-2: only the new cards get image hooks + the "current" mark (was O(n²) over the whole grid)
+  const more = () => {
+    const nx = list.slice(shown, shown + 40); const tp = document.createElement("template");
+    tp.innerHTML = nx.map((e) => xcard(e, 0, pick?.selected.has(e.slug))).join(""); shown += nx.length;
+    onImg(tp.content); if (cur) tp.content.querySelectorAll(".xcard").forEach((c) => c.classList.toggle("cur", c.dataset.slug === cur));
+    grid.append(tp.content);
+  };
   const refresh = () => {
     list = filtered(); shown = 0; grid.innerHTML = "";
     $("#count").textContent = list.length && list.close === list.length ? `${list.length} close match${list.length === 1 ? "" : "es"} · check the spelling` : `${list.length} exercise${list.length === 1 ? "" : "s"} · best tier first`;

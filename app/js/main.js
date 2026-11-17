@@ -62,8 +62,12 @@ function route(quiet) {
   document.documentElement.classList.toggle("back-nav", back);
   if (!keep) { view.classList.remove("page"); void view.offsetWidth; view.classList.add("page"); }
   requestAnimationFrame(() => indicate(view));
+  // A11Y-9: move focus to the new page heading (screen readers announce it; :focus-visible keeps pointer users ring-free)
+  if (!keep && routeFocus && !view.contains(document.activeElement)) { const h = $("#view h1, #view h2, #tTitle"); if (h) { if (!h.hasAttribute("tabindex")) h.tabIndex = -1; h.focus({ preventScroll: true }); } }
+  routeFocus = true;
   hideSplash();
 }
+let routeFocus = false; // not on the first load (focus starts at the top anyway)
 addEventListener("hashchange", () => { closeSheet(); route(); });
 // SEC-4: no inline onerror (CSP) — thumbnails marked data-hide-broken hide themselves when the file is missing
 addEventListener("error", (e) => { if (e.target?.hasAttribute?.("data-hide-broken")) e.target.style.visibility = "hidden"; }, true);
@@ -87,10 +91,14 @@ export function setTop({ title = "", back = false, right = "", shy = false } = {
   $("#tBack").hidden = !back; tb.classList.toggle("sub", back); tb.classList.toggle("shy", shy); tb.classList.toggle("empty", !title && !back && !right);
   $("#tRight").innerHTML = right;
 }
-let lastY = 0;
+let lastY = 0, scrollQ = 0;
+// PERF-2: one check per frame; scrollHeight (forces layout) is read only while scrolling down
 addEventListener("scroll", () => {
-  $("#topbar").classList.toggle("scrolled", scrollY > 56);
-  const dy = scrollY - lastY; if (Math.abs(dy) > 6) { document.body.classList.toggle("scroll-down", dy > 0 && scrollY > 120 && innerHeight + scrollY < document.documentElement.scrollHeight - 40); lastY = scrollY; }
+  if (scrollQ) return;
+  scrollQ = requestAnimationFrame(() => {
+    scrollQ = 0; $("#topbar").classList.toggle("scrolled", scrollY > 56);
+    const dy = scrollY - lastY; if (Math.abs(dy) > 6) { document.body.classList.toggle("scroll-down", dy > 0 && scrollY > 120 && innerHeight + scrollY < document.documentElement.scrollHeight - 40); lastY = scrollY; }
+  });
 }, { passive: true });
 $("#tBack").onclick = () => (history.length > 1 ? history.back() : go("#/"));
 

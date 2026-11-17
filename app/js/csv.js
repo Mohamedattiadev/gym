@@ -97,14 +97,15 @@ export function readImport(text) {
   if (c.date < 0 || c.ex < 0 || c.r < 0) throw new Error("format");
   const myU = S.settings.unit, conv = (w, from) => (!from || from === myU ? w : from === "kg" ? Math.round(w * 2.20462 * 4) / 4 : Math.round(w / 2.20462 * 4) / 4);
   const hevyU = hevy ? (H[c.w] === "weight_lbs" ? "lb" : "kg") : null;
-  const W = new Map(), names = new Map();
+  const unitUnknown = !hevy && c.unit < 0; // BE-5: Strong exports only "Weight" -> the user says kg or lb (applyImport converts)
+  const W = new Map(), names = new Map(); let dropped = 0;
   for (const r of rows.slice(1)) {
     const t = parseDate(r[c.date]), exn = (r[c.ex] || "").trim(); if (!isFinite(t) || !exn) continue;
     const ord = String(r[c.order] ?? "").trim(), typ = String(hevy ? r[c.type] : r[col("set type")] ?? "").toLowerCase();
     if (!hevy && ord && !/^\d+$/.test(ord) && !/^[wdf]$/i.test(ord)) continue; // Strong "Rest Timer" rows etc.
     const warm = /^w$/i.test(ord) || typ.startsWith("warm"), reps = num(r[c.r]);
     let w = num(r[c.w]); const u = hevy ? hevyU : (String(r[c.unit] ?? "").toLowerCase().startsWith("lb") ? "lb" : String(r[c.unit] ?? "").toLowerCase().startsWith("kg") ? "kg" : null); w = conv(w, u);
-    if (!reps && !w) continue;
+    if (!reps && !w) { dropped++; continue; } // timed / distance sets (plank, cardio) — counted, shown in the preview
     const key = t + "|" + (r[c.wname] || "");
     let wk = W.get(key); if (!wk) { const end = hevy ? parseDate(r[c.end]) : t + (durMin(r[c.dur]) || 60) * 6e4; W.set(key, (wk = { start: t, end: isFinite(end) && end > t ? end : t + 36e5, name: (r[c.wname] || "Workout").trim(), ex: [] })); }
     let en = wk.ex.at(-1); if (!en || en.name !== exn) wk.ex.push((en = { name: exn, id: own ? r[c.id] : "", sets: [] }));
@@ -113,7 +114,7 @@ export function readImport(text) {
   }
   if (!W.size) throw new Error("nodata");
   const ids = new Map(); for (const wk of W.values()) for (const en of wk.ex) if (en.id && BY[en.id]) ids.set(en.name, en.id);
-  return { format: hevy ? "Hevy" : own ? "Gym" : "Strong", workouts: [...W.values()].sort((a, b) => a.start - b.start),
+  return { format: hevy ? "Hevy" : own ? "Gym" : "Strong", unitUnknown, fileUnit: unitUnknown ? myU : null, dropped, workouts: [...W.values()].sort((a, b) => a.start - b.start),
     names: [...names].map(([name, count]) => ({ name, count, slug: ids.get(name) || matchExercise(name) })).sort((a, b) => (!!a.slug - !!b.slug) || b.count - a.count) };
 }
 
@@ -123,8 +124,10 @@ export function applyImport(R) {
   S.settings.csvMap ||= {}; for (const x of R.names) if (x.slug) S.settings.csvMap[norm(x.name).trim()] = x.slug;
   const have = new Set(S.sessions.map((s) => Math.round((s.startedAt || 0) / 6e4)));
   let added = 0, skipped = 0, sets = 0;
+  const myU = S.settings.unit, f = R.fileUnit && R.fileUnit !== myU ? (R.fileUnit === "lb" ? 1 / 2.20462 : 2.20462) : 0;
+  const cv = (st) => (f && st.w ? { ...st, w: String(Math.round(+st.w * f * 4) / 4) } : st);
   for (const wk of R.workouts) {
-    const entries = wk.ex.filter((en) => map[en.name]).map((en) => ({ slug: map[en.name], sets: en.sets }));
+    const entries = wk.ex.filter((en) => map[en.name]).map((en) => ({ slug: map[en.name], sets: en.sets.map(cv) }));
     if (!entries.length) { skipped++; continue; }
     if (have.has(Math.round(wk.start / 6e4))) { skipped++; continue; }
     S.sessions.push({ id: `imp-${wk.start.toString(36)}`, name: wk.name, startedAt: wk.start, endedAt: wk.end, entries, imported: R.format });

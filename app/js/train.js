@@ -102,7 +102,7 @@ export function workoutView(id) {
   setTop({ title: w.name, back: true, right: `<button class="iconbtn" id="wMore" aria-label="More">${ic("more")}</button>` });
   const touch = () => { w.updatedAt = Date.now(); store("workouts"); };
   view().innerHTML = `<div class="stack tight stagger" id="items">${w.items.map((it, i) => { const e = BY[it.slug]; return `<div class="edrow" data-i="${i}">
-      <a href="#/ex/${it.slug}"><img src="${e?.poster || ""}" alt=""></a>
+      <a href="#/ex/${it.slug}" aria-label="How to do ${esc(e?.name || it.slug)}"><img src="${e?.poster || ""}" alt=""></a>
       <div style="min-width:0"><div class="t clamp2">${esc(e?.name || it.slug)} ${tierBadge(e?.tier)}</div>
         <div class="row dim small" style="gap:6px;margin-top:6px"><input class="mini-in num" data-k="sets" value="${esc(it.sets)}" inputmode="numeric" aria-label="Sets"> sets ×
           <input class="mini-in w num" data-k="reps" value="${esc(it.reps)}" aria-label="Reps"> reps</div></div>
@@ -309,7 +309,7 @@ function entryHTML(en, ei) {
   const ssIn = S.active.entries[ei - 1]?.ss, ssOut = en.ss && S.active.entries[ei + 1];
   return `<div class="xblock ${allDone ? "done-all" : ""} ${S.settings.gym && ei === gi ? "cur" : ""} ${ssOut ? "ss-out" : ""} ${ssIn ? "ss-in" : ""}" data-ei="${ei}">
     ${ssOut ? `<div class="ss-tag">${ic("swap", "xs")} Superset with next — no rest between</div>` : ""}
-    <div class="xhead"><a href="#/ex/${en.slug}"><img src="${e?.poster || ""}" alt=""></a>
+    <div class="xhead"><a href="#/ex/${en.slug}" aria-label="How to do ${esc(e?.name || en.slug)}"><img src="${e?.poster || ""}" alt=""></a>
       <div class="grow"><div class="t">${esc(e?.name || en.slug)}</div>
         <div class="hint">${tierBadge(e?.tier)}<span>${esc(en.target || "")} reps ·</span><button class="restb" data-a="rest" aria-label="Change rest time">rest ${restLbl(restOf(en))}</button></div>
         ${last ? `<div class="hint"><span class="beat">${ic("target")}Today: ${wr(t1.w, t1.r, u)}</span><span class="dim">(last: ${wr(P.top.w, P.top.r)})</span></div>` : `<div class="hint">First time — pick a weight you can do ${P.tr ? P.tr[1] : 10} times with good form.</div>`}
