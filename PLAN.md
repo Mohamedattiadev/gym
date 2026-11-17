@@ -124,7 +124,7 @@ Approved (implement):
 - ✅ **Pain / joint flag** (joints.json en/tr/ar; prehab drills shown as text, animations pending): mark an exercise "hurts my shoulder/knee/elbow/back" → hidden from suggestions, shows joint-friendly alternatives (same muscle, tier-sorted), plus warm-up / prehab drills for that joint (animation or timestamped expert video). Short disclaimer: "if pain persists, see a physio".
 - ✅ **Equipment profile** (full gym / dumbbells only / home): library, plans and swaps only show what you have (one setting, chosen in onboarding)
 Low-clutter additions (no new screens):
-- **Superset** (ask owner once) — only inside the exercise "⋯" menu in a session; rest timer starts after the pair
+- ✅ **Superset** (owner: yes, menu only) — only inside the exercise "⋯" menu in a session; rest timer starts after the pair
 - ✅ **Plateau auto-adjust** (approved): if no e1RM/rep progress for 3 weeks, the app **automatically** changes the rep range (e.g. 6–8 → 10–12) or swaps to the next-best same-muscle exercise for the next session, shows a small notice with Undo; deload hint after long stalls
 - **Recovery on the Body map** (approved): after each finished workout, worked muscles are colored by remaining recovery time — **red** (fresh damage, <24h), **yellow** (recovering), **green** (ready). Recovery window 48–72h by muscle size & sets done. Tapping a muscle's Info shows "needs ~X more hours before training again". Also a small recovery body on Home
 Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
@@ -146,6 +146,13 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 - Pain flags: S.pain, joints.json (avoid wins over prefer). autoPush after notes/favorites/bodyweight/settings/pain/workouts.
 - Perf: modulepreload all modules + data preload, SW stale-while-revalidate (v8), inline splash.
 - Open: Superset (ask owner), i18n, anatomy SVG, 3D, warm-ups, media into app/media when the download finishes (842/853 videos at end of session), voice later.
+
+## Notes (2026-11-17, session 3)
+- Feedback round done: tab "Notes & alternatives" (alternatives first, then my notes); tier badge shows "S tier" everywhere + facts row "Jeff: S tier · Top pick (i)" and a "Tiers" link in the library → explainer sheet (`tierInfo()` in main.js); cards show level bars + Beginner/Intermediate/Advanced and up to 3 tags (group, equipment, machine).
+- Figures re-audited (exact movement only: family + equipment + body position): 765 → 470 exercises with a figure; `tools/figures_map.json` has `why` per entry and `dropped_families`; scripts in tools/figure_audit/ (decide.py, apply.py --write).
+- Hero "Muscles" now always shows front + back body map (primary accent, secondary light); the exact figure sits beside it when available. 3D tab still open (block 19).
+- Superset: session entry "⋯" → "Superset with next exercise"; `en.ss` flag; no rest after the first of the pair, rest after the second with "Next: <first> · set k". Move up/down clears links.
+- Session handoff: tools/handoff.sh opens a new kitty window with a fresh session reading NEXT_SESSION.md. sw VERSION now v10.
 
 ## Real-phone lessons (from the owner's Fluent365 Pocket test on Android) — apply to Gym
 - ✅ **System bars match the theme**: Android nav bar/status bar stayed white under a dark app. Set `<meta name="theme-color">` at runtime from the theme (done in `applyTheme`), add `media`-specific theme-color metas for light/dark, and pick manifest `theme_color`/`background_color` that don't flash; note installed WebAPK may need reinstall to update.
