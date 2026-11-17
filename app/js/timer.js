@@ -85,7 +85,8 @@ const C = 2 * Math.PI * 11;
 export function renderPill() {
   let p = $("#tpill");
   const onTimerPage = location.hash.startsWith("#/timer");
-  if (!T.mode || onTimerPage || $("#rov")) { p?.remove(); return; }
+  const show = !(!T.mode || onTimerPage || $("#rov")); document.body.classList.toggle("has-pill", show); // UT-7: room below the page so the pill covers nothing
+  if (!show) { p?.remove(); return; }
   const v = view();
   if (!p) {
     p = document.createElement("div"); p.id = "tpill"; p.className = "tpill"; p.setAttribute("role", "timer");

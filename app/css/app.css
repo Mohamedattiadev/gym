@@ -566,6 +566,7 @@ button.prev:active { background: var(--s3); color: var(--t1); }
 .tpill button { height: 34px; min-width: 34px; padding: 0 10px; border-radius: var(--r-full); border: 0; background: color-mix(in oklab, var(--bg) 14%, transparent); color: inherit; font-weight: 700; font-size: 13px; }
 .tpill button.go { background: var(--accent); color: var(--accent-ink); }
 .tpill svg.ring { width: 28px; height: 28px; }
+body.has-pill #view::after { content: ""; display: block; height: 60px; }
 .tpill svg.ring circle { stroke-width: 3.5; } .tpill .ring .bg { stroke: color-mix(in oklab, var(--bg) 25%, transparent); } .tpill .ring .fg { transition: stroke-dashoffset 250ms linear; }
 @media (min-width: 768px) { .tpill { bottom: 18px; inset-inline-end: 24px; } }
 body:has(.tpill) main#view { padding-bottom: 64px; }

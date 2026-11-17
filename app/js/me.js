@@ -162,7 +162,7 @@ export async function settingsView() {
       <div class="card list-sep">
         ${row("timer", "Auto rest timer", `<button class="switch ${st.autoRest ? "on" : ""}" role="switch" aria-checked="${!!(st.autoRest)}" data-k="autoRest" aria-label="Auto rest timer"></button>`, "Starts after every checked set")}
         ${row("play", "Lock-screen rest timer", `<button class="switch ${st.lockTimer !== false ? "on" : ""}" role="switch" aria-checked="${!!(st.lockTimer !== false)}" data-k="lockTimer" aria-label="Lock-screen rest timer"></button>`, `Rest time and next set on the lock screen · <a href="#" id="lockHelp" style="color:var(--accent-text)">How it works</a>`)}
-        ${row("bolt", "Sound", `<button class="switch ${st.sound ? "on" : ""}" role="switch" aria-checked="${!!(st.sound)}" data-k="sound" aria-label="Sound"></button>`)}
+        ${row("sound", "Sound", `<button class="switch ${st.sound ? "on" : ""}" role="switch" aria-checked="${!!(st.sound)}" data-k="sound" aria-label="Sound"></button>`)}
         ${row("phone", "Vibration", `<button class="switch ${st.haptics ? "on" : ""}" role="switch" aria-checked="${!!(st.haptics)}" data-k="haptics" aria-label="Vibration"></button>`)}
       </div>
       ${joints.length ? `<div class="card pad"><div class="row"><span class="ico-t">${ic("bandage", "sm")}</span><div class="grow"><b>Pain flags</b><div class="dim small">${joints.map((j) => esc(JOINTS[j]?.name?.en || j)).join(", ")} · ${Object.keys(S.pain).length} exercises hidden</div></div><button class="btn sm" id="clrPain">Clear</button></div></div>` : ""}
@@ -247,7 +247,7 @@ function csvPreview(C, R) {
     $("#impSum", el).textContent = `${n} of ${R.names.length} exercises matched`;
   };
   openSheet(`<h3>Import from ${R.format}</h3>
-    <div class="muted small" style="margin:-2px 0 12px">${R.workouts.length} workouts · ${sets} sets · ${fmtDate(R.workouts[0].start, md)} – ${fmtDate(R.workouts.at(-1).start, md)}</div>
+    <div class="muted small" style="margin:-2px 0 12px">${R.workouts.length} workout${R.workouts.length === 1 ? "" : "s"} · ${sets} set${sets === 1 ? "" : "s"} · ${fmtDate(R.workouts[0].start, md)} – ${fmtDate(R.workouts.at(-1).start, md)}</div>
     ${R.unitUnknown ? `<div class="row" style="margin-bottom:12px"><span class="grow small">Weights in this file are in</span><div class="seg sm" id="impU">${["kg", "lb"].map((u) => `<button data-u="${u}" class="${R.fileUnit === u ? "on" : ""}">${u}</button>`).join("")}</div></div>` : ""}
     ${R.dropped ? `<div class="muted small" style="margin:-6px 0 12px">${R.dropped} timed or distance set${R.dropped === 1 ? "" : "s"} (planks, cardio) won't be imported.</div>` : ""}
     <div class="row" style="margin-bottom:6px"><b class="grow" id="impSum"></b></div>
@@ -267,7 +267,7 @@ function csvPreview(C, R) {
       list.onclick = (e2) => { const s = e2.target.closest("[data-s]"); if (!s) return; x.slug = s.dataset.s || null; haptic(); draw(el); };
     };
     $("#impGo", el).onclick = () => { const r = C.applyImport(R); closeSheet();
-      toast(r.added ? `Imported ${r.added} workouts (${r.sets} sets)${r.skipped ? ` · ${r.skipped} skipped` : ""}` : "Nothing new to import"); settingsView(); };
+      toast(r.added ? `Imported ${r.added} workout${r.added === 1 ? "" : "s"} (${r.sets} set${r.sets === 1 ? "" : "s"})${r.skipped ? ` · ${r.skipped} skipped` : ""}` : "Nothing new to import"); settingsView(); };
   });
 }
 
