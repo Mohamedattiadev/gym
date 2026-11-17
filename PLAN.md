@@ -128,7 +128,7 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 
 - ✅ **28 Visual de-slop** (session 21) (owner-approved 2026-11-17): flat cards (hairline border, no neumorphism --raise/--inset), shadow only on floating layers, no coloured glow on buttons/chips, flat inputs — spec in NEXT_SESSION.md; after 27 session A, before 26
 
-- 🟡 **19b-all** (owner, session 31): every exercise's 3D tab must move (session 36: 91/179 families; the rest show "Still pose") — big 19b batches, see NEXT_SESSION (2b).
+- 🟡 **19b-all** (owner, session 31): every exercise's 3D tab must move (session 37: 98/179 families; the rest show "Still pose") — big 19b batches, see NEXT_SESSION (2b).
 - 🟡 **26 Plans 2.0**: ~10 splits + filters + visual week scenario on the body (owner) — spec in NEXT_SESSION.md. Part 1 DONE session 30: 10 splits, recommended rules, picker, plan cards, time/focus options, weekly sets bars. Part 2 DONE session 31: scenario player on #/plan/<id> (tappable week, body with recovery colours, Play week, 4-week progression, desktop compare) + Home Recommended card. Open: Preview sheet with the scenario (optional).
 - ✅ **26b Onboarding** (session 32): 4 steps (level required + 'Not sure?' 3 questions, days + equipment, body kg/lb cm/ft, Recommended plan + strength/calorie targets), first open only, Me > Profile, Settings > Set-up questions.
 
@@ -162,6 +162,10 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
   - P1 open, bigger (M): A11Y-7/8 200% zoom + rem fonts [ASK: visible change] · **SEC-2 [ASK]** shared *.github.io origin (PAT readable by the owner's 9 other Pages sites) -> custom domain/subdomain or separate account.
   - P2: UT-5 no flat Barbell Bench Press [ASK add] · ✅ UT-6 "Use plan" twice duplicates (session 30: Replace / Keep both) · ✅ UT-7 rest pill (session 32: body.has-pill adds 60 px under the page) · ✅ UT-8 gap under sticky session header (session 34) · UT-9 Me "↓ 6,275" reads as error [ASK wording] · ✅ UT-10 Settings icons (session 32: sound + scale icons) · UT-11 selected segment hard to see [ASK look] · ✅ UT-12 TR "barfix", "karın", "ön kol", "sırt" (session 35) · ✅ UT-13 red focus ring on Share in Finish sheet (session 34) · BE-6..10 (migration ladder, onversionchange, single read tx, notes merge, compact cloud JSON, restore lock) · SEC-5..7 (token hint, iframe referrerpolicy, Inter OFL + credits) · FE-13..24, FE-26/27 · PERF-6..16 (PERF-10/12 [ASK]) · A11Y-11..26 · FE-19 [ASK] language setting vs dropping tr/ar · FE-21 [ASK] breakpoints.
 - ⬜ Concept checklist leftovers not covered above: Lighthouse mobile number (block 23), visual baseline screenshots, GitHub Action for all.sh, sw VERSION bump script (FE-27).
+
+## Notes (session 37) — 19b batch 10
+- Session 36 deploy verified (v59 live).
+- 19b batch 10 (f05afbb, +7 families with wrong variants): neutral-dumbbell-press + supinated-dumbbell-press (seated, elbows forward / tucked; new pose option `"hold":"neutral"` -> prop `dbn` = dumbbell handle front-to-back (hammer grip), works with `one`; slightly supinated also uses dbn — a diagonal handle is not drawn), machine-curl (seat + preacher pad, less sloped; mistake 0 seat height -> own video), machine-fly (pec deck, hands meet at mid-chest; wrong 0 = shoulders rolling forward via clav protraction), machine-rear-delt-fly (seat + chestpad, arms forward -> out; wrong 1 = leaning back off the pad), drag-curl (elbows back, bar slides up the torso; wrong 0 = normal curl, wrong 1 = lean back), floor-press (lying, no bench, knees bent, elbows stop at floor level; wrong 0 = bounce). Single-arm / tilted / partial / cable / smith names stay still. check3d 272/272; coverage 98/179 (15 opengym3d + 83 ours); 3D wrong variants 149. sw v60; all.sh ALL PASS.
 
 ## Notes (session 36) — 19b batch 8 + 9
 - Session 35 deploy verified (v57 live).
