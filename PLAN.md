@@ -25,7 +25,7 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
   3. openlift (MIT, static GLB poses with muscle highlight shells) — fallback for still 3D poses.
   - Rejected: movement-lab (no license), ExerciseDB / "Gym visual" GIF datasets (media not openly licensed), mannequin.js (GPL-3.0).
 - ⬜ Download open-exercise-figures animations, convert to optimized WebP if needed, match to our movement families (name + equipment + pattern fuzzy match, manual overrides) → `figure` field
-- ✅ Exercise page: segmented toggle **Video | Muscles** (mannequin animation). Where opengym3d has the movement, add **3D** tab (drag to rotate, lazy-load three.js only on that tab)
+- ✅ Exercise page: segmented toggle **Video | Muscles** (mannequin animation). **3D** tab for every exercise (✅ session 6: drag to rotate, Front/Side/Back, lazy three.js; motion only for exact matches)
 - ⬜ Credit both projects in About (even though CC0 needs none)
 
 ## 2. Design & UX
@@ -115,7 +115,7 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 - ⬜ **Common mistakes shown, not just told** (owner, block 22): WRONG vs RIGHT clip / 3D per mistake, credited, exact movement only — spec in NEXT_SESSION.md
 
 - ⬜ **Exercise page declutter + equipment chips + Joint care sheet + 3 tabs** (owner, block 17) — spec in NEXT_SESSION.md
-- 🟡 **Human-looking body (18 ✅ session 5) + rotatable 3D muscle body for every exercise (19)** (owner: "looks like a stick man", "all angles")
+- ✅ **Human-looking body (18 ✅ session 5) + rotatable 3D muscle body for every exercise (19 ✅ session 6)** (owner: "looks like a stick man", "all angles")
 
 ## 9b. Voice guidance (later phase — yes, possible)
 - ⬜ **Narrate the movement explanations** too: about, numbered how-to steps, cues, common mistakes, warm-up drills, plan explanations (a play button on every explanation + hands-free mode during a session)
@@ -170,6 +170,12 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 - Body map (block 18): `app/js/anatomy.js` (VIEWBOX 216×424, `path.m[data-m][data-h]`, `.base`) from react-native-body-highlighter v3.2.0 (MIT, HichamELBSI), polygonised, grown, heads split by us (chest 3 bands, biceps long/short, delts, lats, traps mid/lower, rhomboids synthesized). Generator + source in tools/anatomy/ (build.py src.json out.js 4.5 2). body.js now only MUSCLES + helpers; mirror shapes gone.
 - Body map modes Muscles | This week | Recovery; sheet tabs Info (fn, week sets, recovery text, Parts list → tap highlights head `hsel`) | Exercises (grouped by head via `headOf()` in main.js, equipment chips). On <1000px the sheet is `half` (54dvh) and the zoom keeps the muscle in the top part. Credit link under the map.
 - Content fix: 2-part-high-elbow-row → family chest-supported-high-elbow-row, equipment Dumbbell (also in build_data.py). sw v12.
+
+## Notes (2026-11-17, session 6)
+- Block 19: hero toggle is now Video | Muscles | 3D. `app/js/view3d.js` (lazy, imported only on the 3D tab) renders the OpenGym3D MakeHuman body (MIT) with vendored three.js r170 (`app/vendor/three/`, GLTFLoader + meshopt decoder, imports rewritten to relative paths). Drag = yaw (+ small tilt), Front/Side/Back seg, pause button when animated, reduced-motion = paused. Hero is taller in 3D mode (`.dhero.is3d`).
+- Assets in `app/3d/` built by `tools/og3d/build.mjs` from raw/og3d_pack (deps: `npm i @gltf-transform/core@4.1.1 @gltf-transform/functions@4.1.1 @gltf-transform/extensions@4.1.1 meshoptimizer@0.22.0` somewhere, symlink its node_modules to tools/og3d/node_modules): body.glb 272 KB (mesh + skin, carries `_MUSCLE` vertex attribute = our 19 MUSCLES ids, painted from dominant skin bone + front/back + height bands, ported from og3d paint_muscles), anim/<id>.glb ~100 KB x24 (skeleton + clip, face bones dropped). Labels MUST stay a vertex attribute (meshopt reorders vertices).
+- Exact-movement map `MOVE3D` (family -> anim) + `NOT_SAME` name filter in exercise.js; everything else = still A-pose with muscles painted ("still pose" in caption). Credits: caption link + Me/About. sw v13 (view3d.js in shell; 3D assets cached on first view).
+- Polish ideas: chest band still touches the collarbone; delt split front/side is approximate; squats have no motion (og3d squat is bodyweight with arms forward, not a back squat).
 
 ## Real-phone lessons (from the owner's Fluent365 Pocket test on Android) — apply to Gym
 - ✅ **System bars match the theme**: Android nav bar/status bar stayed white under a dark app. Set `<meta name="theme-color">` at runtime from the theme (done in `applyTheme`), add `media`-specific theme-color metas for light/dark, and pick manifest `theme_color`/`background_color` that don't flash; note installed WebAPK may need reinstall to update.

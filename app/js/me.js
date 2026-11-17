@@ -170,7 +170,7 @@ export async function settingsView() {
     </div></div>
     <div class="credits card soft pad" style="margin-top:16px">
       <p>© Mohamed Attia — all rights reserved. ${EX.length} exercises.</p>
-      <p>Exercise rankings & coaching ideas: <a href="https://www.youtube.com/@JeffNippard" target="_blank" rel="noopener">Jeff Nippard</a>. Demo videos © their creators. Muscle animations: <a href="https://github.com/AbanoubAmir/open-exercise-figures" target="_blank" rel="noopener">open-exercise-figures</a> (CC0).</p></div>`;
+      <p>Exercise rankings & coaching ideas: <a href="https://www.youtube.com/@JeffNippard" target="_blank" rel="noopener">Jeff Nippard</a>. Demo videos © their creators. Muscle animations: <a href="https://github.com/AbanoubAmir/open-exercise-figures" target="_blank" rel="noopener">open-exercise-figures</a> (CC0). 3D body & motions: <a href="https://github.com/AssiamahS/opengym3d" target="_blank" rel="noopener">OpenGym3D</a> (MIT, MakeHuman mesh), rendered with <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> (MIT).</p></div>`;
   const urls = (onlyTop) => EX.filter((e) => !onlyTop || ["S", "A"].includes(e.tier)).flatMap((e) => [e.poster, e.video].filter(Boolean));
   const stat = async () => { let n = 0; try { n = (await (await caches.open(MEDIA_CACHE)).keys()).length; } catch {} const c = $("#cstat"); if (c) { c.textContent = `${n} / ${total} files on this device`; $("#bar").style.width = `${Math.min(100, (n / total) * 100)}%`; } };
   stat(); wireCloud();

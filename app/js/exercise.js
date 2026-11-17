@@ -153,16 +153,39 @@ const jName = (j) => (L(JOINTS[j]?.name) || j).toLowerCase();
 let heroMode = "video";
 const paintBody = (e) => { const pri = e.primary || [], sec = e.secondary || [];
   return (svg) => svg.replace(/<path class="m" data-m="([^"]+)"/g, (m0, id) => `<path class="m ${pri.includes(id) ? "sel" : sec.includes(id) ? "sec" : ""}" data-m="${id}"`); };
+/* exact-movement matches with an OpenGym3D motion (family -> anim id); everything else shows the still 3D body */
+const MOVE3D = { "barbell-row": "bent_over_row", "dumbbell-curl": "bicep_curl", "hammer-curl": "hammer_curl", "standing-calf-raise": "calf_raise",
+  "crunch": "crunch", "deadlift": "deadlift", "dumbbell-shoulder-press": "dumbbell_shoulder_press", "barbell-overhead-press": "overhead_press",
+  "dumbbell-lateral-raise": "lateral_raise", "good-morning": "good_morning", "push-ups": "push_up", "reverse-lunge": "reverse_lunge",
+  "walking-lunge": "lunge", "romanian-deadlift": "romanian_deadlift", "sumo-squat": "sumo_squat" };
+const NOT_SAME = /twist|reverse grip|partial|pause|drops?\b|holds?|incline|decline|seated|elevated|single arm|one arm|1 arm|lying|kneeling|smith|cable|landmine|machine|3 way|deficit|spider|preacher|high elbow|lateral lunge|static|split|band|plate|lean/i;
+export const move3d = (e) => { const m = MOVE3D[e.family]; return m && !NOT_SAME.test(e.name) ? m : null; };
+let v3d = null, v3dView = "front";
 function hero(e) {
   const h = $("#hero"); const hasFig = !!e.figure; const paint = paintBody(e);
-  const mode = heroMode === "fig" || !e.video ? "fig" : "video";
-  h.innerHTML = `${e.video ? `<div class="seg sm" id="hseg"><button data-m="video" class="${mode === "video" ? "on" : ""}">Video</button><button data-m="fig" class="${mode === "fig" ? "on" : ""}">Muscles</button></div>` : ""}
-    ${mode === "video" ? `<video id="vid" src="${e.video}" poster="${e.poster}" autoplay muted loop playsinline preload="auto"></video><div class="ctl"><button id="spd" aria-label="Playback speed">1×</button></div>`
+  if (v3d) { v3d.dispose(); v3d = null; }
+  const mode = heroMode === "3d" ? "3d" : heroMode === "fig" || !e.video ? "fig" : "video";
+  const mv = move3d(e);
+  h.classList.toggle("is3d", mode === "3d");
+  h.innerHTML = `<div class="seg sm" id="hseg">${e.video ? `<button data-m="video" class="${mode === "video" ? "on" : ""}">Video</button>` : ""}<button data-m="fig" class="${mode === "fig" ? "on" : ""}">Muscles</button><button data-m="3d" class="${mode === "3d" ? "on" : ""}">3D</button></div>
+    ${mode === "3d" ? `<div class="v3d" id="v3d"><span class="v3d-load muted small">Loading 3D…</span></div>
+        <div class="v3d-bar"><div class="seg sm" id="v3dv">${["front", "side", "back"].map((k) => `<button data-v="${k}" class="${v3dView === k ? "on" : ""}">${k[0].toUpperCase() + k.slice(1)}</button>`).join("")}</div>
+        ${mv ? `<button class="v3d-play" id="v3dp" aria-label="Pause">${ic("pause", "sm")}</button>` : ""}</div>
+        <span class="cap"><i style="background:var(--accent)"></i>Main <i style="background:color-mix(in oklab, var(--accent) 50%, #b8b0a9)"></i>Helpers${mv ? "" : ` · <span class="dim">still pose</span>`} · <a class="dim" href="https://github.com/AssiamahS/opengym3d" target="_blank" rel="noopener">OpenGym3D</a></span>`
+    : mode === "video" ? `<video id="vid" src="${e.video}" poster="${e.poster}" autoplay muted loop playsinline preload="auto"></video><div class="ctl"><button id="spd" aria-label="Playback speed">1×</button></div>`
       : `<div class="hmus${hasFig ? " withfig" : ""}">${hasFig ? `<img class="fig" src="${e.figure}" alt="Animated figure of this movement, worked muscles in red">` : ""}
           <div class="mini-body">${paint(bodySVG("front"))}${paint(bodySVG("back"))}</div></div>
         <span class="cap"><i style="background:var(--accent)"></i>Main <i style="background:var(--mus-2)"></i>Helpers</span>`}`;
   const v = $("#vid", h);
   if (v) { const sp = [1, .5, .25]; let i = 0; $("#spd", h).onclick = () => { i = (i + 1) % 3; v.playbackRate = sp[i]; $("#spd", h).textContent = sp[i] + "×"; haptic(); }; v.play().catch(() => {}); }
+  if (mode === "3d") {
+    const box = $("#v3d", h);
+    import("./view3d.js").then((m) => m.mount3d(box, { primary: e.primary || [], secondary: e.secondary || [], move: mv, view: v3dView }))
+      .then((c) => { if (!box.isConnected) return c.dispose(); v3d = c; $(".v3d-load", box)?.remove(); })
+      .catch(() => { box.innerHTML = `<span class="v3d-load muted small">3D view is not available on this device.</span>`; });
+    $("#v3dv", h).onclick = (ev) => { const b = ev.target.closest("button"); if (!b) return; v3dView = b.dataset.v; $$("#v3dv button", h).forEach((x) => x.classList.toggle("on", x === b)); indicate(h); v3d?.setView(v3dView); haptic(); };
+    const pb = $("#v3dp", h); if (pb) pb.onclick = () => { if (!v3d) return; const on = v3d.togglePlay(); pb.innerHTML = ic(on ? "pause" : "play", "sm"); pb.setAttribute("aria-label", on ? "Pause" : "Play"); haptic(); };
+  }
   const s = $("#hseg", h); if (s) s.onclick = (ev) => { const b = ev.target.closest("button"); if (!b || b.classList.contains("on")) return; heroMode = b.dataset.m; haptic(); hero(e); };
   requestAnimationFrame(() => indicate(h));
 }

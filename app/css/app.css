@@ -305,6 +305,15 @@ svg.ring circle { fill: none; stroke-width: 4; } svg.ring .bg { stroke: var(--s3
 .dhero .ctl { position: absolute; bottom: 10px; inset-inline-end: 10px; z-index: 2; display: flex; gap: 6px; }
 .dhero .ctl button { height: 30px; min-width: 30px; padding: 0 10px; border-radius: var(--r-full); border: 0; background: #000a; color: #fff; font-weight: 700; font-size: 13px; backdrop-filter: blur(8px); }
 .dhero .cap { position: absolute; bottom: 10px; inset-inline-start: 10px; z-index: 2; font-size: 11.5px; color: #333; background: #fffc; padding: 3px 8px; border-radius: 6px; }
+.dhero.is3d { height: min(46dvh, 420px); }
+.dhero .v3d { position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 40%, var(--s2), var(--s3)); touch-action: pan-y; cursor: grab; }
+.dhero .v3d-cv { width: 100%; height: 100%; display: block; animation: fadeIn 260ms var(--ease) backwards; }
+.dhero .v3d-load { position: absolute; inset: 0; display: grid; place-items: center; }
+.dhero .v3d-bar { position: absolute; bottom: 38px; inset-inline-start: 10px; inset-inline-end: 10px; z-index: 2; display: flex; justify-content: space-between; align-items: center; pointer-events: none; }
+.dhero .v3d-bar > * { pointer-events: auto; }
+.dhero .v3d-bar .seg { position: static; }
+.dhero .v3d-play { height: 30px; width: 30px; display: grid; place-items: center; border-radius: var(--r-full); border: 0; background: #0009; color: #fff; backdrop-filter: blur(8px); }
+.dhero .cap a { color: inherit; }
 .dhero .msg { position: absolute; inset: 0; display: grid; place-items: center; color: #fffa; font-size: 14px; text-align: center; padding: 20px; }
 .dtitle { margin: 12px 0 8px; font-size: 21px; font-weight: 740; letter-spacing: -.02em; line-height: 1.2; }
 .facts { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 9px 12px; border-radius: var(--r-md); background: var(--s1); box-shadow: var(--raise-sm); font-size: 14.5px; font-weight: 650; color: var(--t1); }
