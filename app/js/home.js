@@ -30,7 +30,7 @@ function heroCard() {
   if (next) return `<div class="hero-card"><div class="eyebrow">Up next</div><h3>${esc(next.name)}</h3>
       <div class="muted small">${next.items.length} exercises · about ${Math.max(10, Math.round(next.items.reduce((a, it) => a + +it.sets * 2.6, 0) / 5) * 5)} min</div>
       <div class="thumbs">${next.items.slice(0, 6).map((it) => `<img src="${BY[it.slug]?.poster || ""}" alt="" data-hide-broken>`).join("")}</div>
-      <div class="row"><button class="btn primary grow" id="startNext">${ic("play", "sm")} Start workout</button><a class="btn" href="#/warmup/w/${next.id}">${ic("flame", "sm")} Warm up</a><a class="btn" href="#/workout/${next.id}" aria-label="Edit">${ic("edit", "sm")}</a></div></div>`;
+      <div class="row"><button class="btn primary grow" id="startNext">${ic("play", "sm")} Start workout</button><a class="btn" href="#/warmup/w/${next.id}" aria-label="Warm up">${ic("flame", "sm")}<span class="wl"> Warm up</span></a><a class="btn" href="#/workout/${next.id}" aria-label="Edit">${ic("edit", "sm")}</a></div></div>`;
   const p = planById(recommendedId());
   return `<div class="hero-card has-ill rec"><div class="txt"><div class="eyebrow">Recommended for ${S.profile?.level ? "you" : "beginners"}</div><h3>${esc(p.name)} · ${p.days} days</h3>
       <div class="muted small" style="margin-bottom:14px">Each muscle ${freqOf(p)}× a week, about ${Math.max(...planSlots(p, planOpts()).map(minutesOf))} min a session. ${S.profile?.level ? "" : "Not a beginner? "}<a href="#/start" style="color:var(--accent-text);font-weight:600">${S.profile?.level ? "Find another plan" : "Find my plan"}</a></div>
