@@ -5,7 +5,7 @@ import { S, save } from "./store.js";
 import { $, esc, ic, haptic, beep, toast, selectIn, indicate, openSheet } from "./ui.js";
 import { BY, lastSets } from "./data.js";
 import { warmupSets } from "./calc.js";
-import { setTop, go, fillIll } from "./main.js";
+import { setTop, go, redirect, fillIll } from "./main.js";
 import * as T from "./train.js";
 
 const view = () => $("#view");
@@ -56,7 +56,7 @@ export async function warmupView(arg) {
   if (sub === "play") return Q ? player(w) : go("#/warmup");
   if (sub === "s" || sub === "w") {
     const src = sub === "s" ? S.active : S.workouts.find((x) => x.id === id);
-    if (!src) return go("#/warmup");
+    if (!src) return redirect("#/warmup");
     const slugs = sub === "s" ? src.entries.map((e) => e.slug) : src.items.map((it) => it.slug);
     return play(buildFor(w, slugs, src.name), sub === "s" ? "#/session" : `#/workout/${src.id}`, true);
   }

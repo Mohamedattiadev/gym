@@ -3,7 +3,7 @@
 import { S, save } from "./store.js";
 import { $, esc, ic, haptic, toast, selectIn, indicate } from "./ui.js";
 import { EX, bestOf, EQUIP_PROFILES } from "./data.js";
-import { setTop, go } from "./main.js";
+import { setTop, go, redirect } from "./main.js";
 import * as T from "./train.js";
 import * as Sync from "./sync.js";
 
@@ -148,7 +148,7 @@ export async function plansView(id) {
   setTop({ title: id ? "Plan" : "Plans explained", back: true }); loading();
   const pl = await load("plans"); const C = pl.plans || {};
   if (id) {
-    const p = T.PLANS.find((x) => x.id === id), c = C[id] || {}; if (!p) return go("#/plans");
+    const p = T.PLANS.find((x) => x.id === id), c = C[id] || {}; if (!p) return redirect("#/plans");
     setTop({ title: p.name, back: true });
     const blk = (t, v) => (v ? `<div class="h4">${t}</div><p class="small">${esc(L(v))}</p>` : "");
     view().innerHTML = `<div class="card pad"><div class="eyebrow">${esc(p.level)} · ${p.days} days</div><p class="small" style="margin:6px 0 0">${esc(L(c.what) || p.desc)}</p></div>

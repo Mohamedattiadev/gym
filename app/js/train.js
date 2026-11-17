@@ -3,7 +3,7 @@ import { S, save, persist } from "./store.js";
 import { $, $$, esc, ic, uid, ask, askText, openSheet, closeSheet, toast, haptic, beep, confetti, fmtDur, RM } from "./ui.js";
 import { EX, BY, byTier, hasEquip, hurts, history, lastSets, bestOf, setsText, swaps, LEVEL_N, WEEK } from "./data.js";
 import { e1rm, platesFor, plateColor, plateHeight, warmupSets, suggest } from "./calc.js";
-import { go, setTop, tierBadge, restText, fillIll } from "./main.js";
+import { go, redirect, setTop, tierBadge, restText, fillIll } from "./main.js";
 import * as Tm from "./timer.js";
 import { autoPush } from "./sync.js";
 
@@ -98,7 +98,7 @@ export function usePlan(p, redraw = true) {
 
 /* ---------------- workout editor ---------------- */
 export function workoutView(id) {
-  const w = S.workouts.find((x) => x.id === id); if (!w) return go("#/train");
+  const w = S.workouts.find((x) => x.id === id); if (!w) return redirect("#/train");
   setTop({ title: w.name, back: true, right: `<button class="iconbtn" id="wMore" aria-label="More">${ic("more")}</button>` });
   const touch = () => { w.updatedAt = Date.now(); store("workouts"); };
   view().innerHTML = `<div class="stack tight stagger" id="items">${w.items.map((it, i) => { const e = BY[it.slug]; return `<div class="edrow" data-i="${i}">
@@ -222,7 +222,7 @@ function stats() {
   return { sets, vol: Math.round(vol) };
 }
 export function sessionView() {
-  const a = S.active; if (!a) return go("#/train");
+  const a = S.active; if (!a) return redirect("#/train");
   keepAwake();
   setTop({ title: a.name, back: true, right: `<button class="btn sm primary" id="finTop">Finish</button>` });
   const st = stats(), u = S.settings.unit, gym = !!S.settings.gym && a.entries.length > 0;
@@ -320,7 +320,7 @@ function entryHTML(en, ei) {
       return `<div class="setrow ${s.done ? "done" : ""} ${si === act ? "act" : ""}" data-si="${si}">
       <button class="n ${warm ? "w" : ""}" data-a="type" aria-label="Set type">${warm ? "W" : n}</button>
       ${pv ? `<button class="prev num" data-a="prev" data-w="${esc(pv.w)}" data-r="${esc(pv.r)}" aria-label="Same as last time: ${esc(wr(pv.w, pv.r, u))}">${esc(wr(pv.w, pv.r))}</button>` : `<span class="prev dim">—</span>`}
-      <div class="stepper"><input data-k="w" inputmode="decimal" enterkeyhint="next"${barb ? ' title="Hold for plates"' : ""} placeholder="${esc(tg.w || "—")}" value="${esc(s.w)}" aria-label="Weight"></div>
+      <div class="stepper"><input data-k="w" inputmode="decimal" enterkeyhint="next"${barb ? ' title="Hold for plates"' : ""} placeholder="${esc(tg.w || "kg")}" value="${esc(s.w)}" aria-label="Weight"></div>
       <div class="stepper"><input data-k="r" inputmode="numeric" enterkeyhint="done" placeholder="${esc(tg.r || "—")}" value="${esc(s.r)}" aria-label="Reps"></div>
       <button class="check" data-a="done" aria-label="Set done">${ic("check")}</button>
       <div class="stepline"><div><button data-a="w-" aria-label="Less weight">−</button><span>${wStep(e)} ${u}</span><button data-a="w+" aria-label="More weight">+</button></div>
@@ -420,7 +420,7 @@ function wireSession() {
       if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.5) gymGo(gi + (dx < 0 ? 1 : -1) * (document.dir === "rtl" ? -1 : 1)); }; }
   $("#addEx").onclick = () => { pickMode = { toSession: true, selected: new Set() }; go("#/pick"); };
   $("#fin").onclick = finishSession; $("#finTop").onclick = finishSession;
-  $("#disc").onclick = async () => { if (await ask("Discard this workout? Nothing will be saved.", { ok: "Discard", danger: true })) { S.active = null; save("active"); stopRest(); wakeLock?.release?.(); go("#/train"); } };
+  $("#disc").onclick = async () => { if (await ask("Discard this workout? Nothing will be saved.", { ok: "Discard", danger: true })) { S.active = null; save("active"); stopRest(); wakeLock?.release?.(); redirect("#/train"); } };
 }
 function gymGo(i) {
   const n = S.active?.entries.length || 0; if (i < 0 || i >= n || i === gi) return;
@@ -491,7 +491,7 @@ async function finishSession() {
   S.sessions.push(a); S.active = null; store("sessions", "active"); stopRest(); wakeLock?.release?.(); clearInterval(clockT);
   if (S.sessions.length === 1) persist();
   haptic("success"); beep([[523, .1], [659, .1], [784, .25]]); if (prs.length) confetti();
-  go("#/");
+  redirect("#/");
   setTimeout(() => openSheet(`<div style="text-align:center"><div class="ill" data-ill="${prs.length ? "pr" : "rest-recovery"}" style="max-width:150px"></div><h3 style="margin:4px 0 2px">Workout complete</h3><div class="muted small">${esc(a.name)} · ${fmtDur(a.endedAt - a.startedAt)}</div></div>
     <div class="kpis" style="margin:16px 0"><div class="kpi"><b class="num">${st.sets}</b><span>Sets</span></div><div class="kpi"><b class="num">${st.vol}</b><span>${S.settings.unit} volume</span></div><div class="kpi"><b class="num">${prs.length}</b><span>New PRs</span></div></div>
     ${prs.length ? `<div class="stack tight">${prs.map((p) => `<div class="lrow"><img src="${BY[p.slug]?.poster}" alt=""><div class="grow"><div class="t">${esc(BY[p.slug]?.name)}</div><div class="s">${p.w}${S.settings.unit} × ${p.r}</div></div>${ic("trophy")}</div>`).join("")}</div>` : ""}

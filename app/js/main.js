@@ -32,6 +32,8 @@ export const MEDIA_CACHE = "gym-media-v1";
 const TAB_OF = { "": "home", lib: "lib", ex: "lib", body: "body", train: "train", workout: "train", session: "train", pick: "train", me: "me", videos: "home", settings: "settings", timer: "train", guide: "me", start: "train", standards: "me", nutrition: "me", plans: "train", plan: "train", warmup: "train" };
 let lastDepth = 0;
 export function go(hash) { location.hash = hash; }
+// FE-1: guard redirects and "leave this page for good" replace the history entry (no Back trap)
+export function redirect(hash) { location.replace(hash); }
 export const routeParts = () => (location.hash.slice(1) || "/").split("?")[0].split("/");
 function route() {
   const [, a = "", b] = routeParts();

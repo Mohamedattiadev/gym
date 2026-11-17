@@ -1,6 +1,6 @@
 /* Offline support: app shell is precached (stale-while-revalidate); posters/videos are cached on first view
    (or all at once via Settings → Download all). Videos answer Range requests from cache. */
-const VERSION = "v36";
+const VERSION = "v37";
 const SHELL = `gym-shell-${VERSION}`;
 const MEDIA = "gym-media-v1"; // keep name stable so downloaded media survives app updates
 const SHELL_FILES = ["./", "index.html", "css/app.css", "fonts/Inter.woff2", "manifest.webmanifest",
@@ -60,15 +60,11 @@ self.addEventListener("fetch", (e) => {
     e.respondWith((async () => {
       const cache = await caches.open(MEDIA);
       const key = url.origin + url.pathname;
-      let hit = await cache.match(key);
+      const hit = await cache.match(key);
       if (!hit) {
-        try {
-          const full = await fetch(key); // fetch whole file (no Range) so it can be cached
-          if (full.ok) { await cache.put(key, full.clone()); hit = full; }
-          else return full;
-        } catch {
-          return new Response("", { status: 504 });
-        }
+        // PERF-1: stream the network response now (playback starts after the first ~100 KB); cache the whole file in the background
+        e.waitUntil(fetch(key).then((r) => r.ok && cache.put(key, r)).catch(() => {}));
+        return fetch(req).catch(() => new Response("", { status: 504 }));
       }
       const range = req.headers.get("range");
       return range ? rangeResponse(hit, range) : hit;
