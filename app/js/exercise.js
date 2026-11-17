@@ -366,18 +366,35 @@ async function rankPanel(e, p) {
   let nt; $("#note", p).oninput = (ev) => { clearTimeout(nt); nt = setTimeout(() => { S.notes[e.slug] = ev.target.value; save("notes"); autoPush(); }, 400); };
 }
 function statsPanel(e, p) {
-  const best = bestOf(e.slug), hist = history(e.slug), u = S.settings.unit;
-  if (!hist.length) { p.innerHTML = `<div class="empty"><div class="ill" data-ill="pr" style="max-width:150px"></div>Log this exercise in a workout to see your best lift and progress.</div>`; fillIll(p); return; }
-  const w0 = weekStart(), cur = exerciseStats(w0, Date.now() + 1)[e.slug], prev = exerciseStats(w0 - WEEK, w0)[e.slug];
-  const cell = (o) => (o ? `${o.sets} × ${Math.round(o.reps / o.sets)} · ${o.best ? `${o.best.w}${u}` : "—"}` : `<span class="dim">—</span>`);
-  const pts = hist.map((h) => Math.max(...h.sets.map((s) => e1rm(s.w, s.r))));
-  p.innerHTML = `<div class="row"><div class="grow"><div class="eyebrow">Best est. 1RM</div><div class="num" style="font-size:28px;font-weight:780">${best.e1rm}${u}</div>
-      <div class="dim small">${best.w}${u} × ${best.r} · ${fmtDate(best.date)}</div></div>${ic("trophy")}</div>
-    ${pts.length > 1 ? lineChart(pts, { h: 72, cls: "chart spark" }) : ""}
-    <table class="cmp" style="margin-top:10px"><tr><th></th><th>Sets × reps · top</th><th class="n">Volume</th></tr>
-      <tr><td>Last week</td><td>${cell(prev)}</td><td class="n">${prev ? Math.round(prev.kg) + u : "—"}</td></tr>
-      <tr><td><b>This week</b></td><td>${cell(cur)}</td><td class="n">${cur ? Math.round(cur.kg) + u : "—"}</td></tr></table>
-    <div class="dim small" style="margin-top:10px">Last session: ${esc(setsText(hist.at(-1).sets))}</div>`;
+  p.innerHTML = historyHTML(e.slug); fillIll(p); wireHistory(p, e.slug);
+}
+/** Exercise history: e1RM chart + PRs + past sessions. Shared by the Stats tab and the session "History" sheet. */
+export function historyHTML(slug) {
+  const hist = history(slug), u = S.settings.unit;
+  if (!hist.length) return `<div class="empty hist-empty"><div class="ill" data-ill="pr" style="max-width:120px"></div><div>No history yet. Log this exercise in a workout to see your records and progress here.</div></div>`;
+  const best = bestOf(slug); let heavy = null, reps = null;
+  for (const h of hist) for (const s of h.sets) {
+    if (+s.w && (!heavy || +s.w > heavy.w || (+s.w === heavy.w && +s.r > heavy.r))) heavy = { w: +s.w, r: +s.r };
+    if (+s.r && (!reps || +s.r > reps.r || (+s.r === reps.r && +s.w > reps.w))) reps = { w: +s.w, r: +s.r };
+  }
+  let rec = 0; const rows = hist.map((h) => { const v = Math.max(...h.sets.map((s) => e1rm(s.w, s.r))); const pr = v > rec; if (pr) rec = v; return { ...h, v, pr }; });
+  const pts = rows.map((r) => r.v).filter(Boolean);
+  const wr = (s) => (+s.w ? `${+s.w} × ${s.r || 0}` : `${s.r || 0} reps`);
+  const tile = (l, v, sub) => `<div class="pr-t"><span>${l}</span><b class="num">${v}</b><small>${sub}</small></div>`;
+  const list = [...rows].reverse();
+  return `<div class="pr-row">${best ? tile("Best est. 1RM", `${best.e1rm}<i>${u}</i>`, `${best.w} × ${best.r}`) : tile("Best est. 1RM", "—", "bodyweight")}
+      ${tile("Heaviest", heavy ? `${heavy.w}<i>${u}</i>` : "—", heavy ? `× ${heavy.r}` : "no weight")}
+      ${tile("Most reps", reps ? `${reps.r}` : "—", reps && reps.w ? `at ${reps.w} ${u}` : "reps")}</div>
+    ${pts.length > 1 ? `<div class="hist-ch"><div class="eyebrow">Est. 1RM · ${pts.length} sessions</div>${lineChart(pts, { h: 84, cls: "chart" })}
+      <div class="chart-x"><span>${fmtDate(rows.find((r) => r.v).date, { month: "short", day: "numeric" })}</span><span>${fmtDate(rows.at(-1).date, { month: "short", day: "numeric" })}</span></div></div>` : ""}
+    <div class="eyebrow" style="margin-top:14px">Past sessions</div>
+    <div class="hist-list">${list.map((r, i) => `<div class="hist-r ${i >= 5 ? "more" : ""}"><span class="d">${fmtDate(r.date)}</span><span class="s num">${esc(r.sets.map(wr).join(", "))}${r.pr && r.v ? ` <em title="Record at the time">PR</em>` : ""}</span></div>`).join("")}</div>
+    ${list.length > 5 ? `<button class="btn sm ghost block" data-h="all" style="margin-top:6px">Show all ${list.length}</button>` : ""}`;
+}
+export function wireHistory(el) {
+  el.addEventListener("click", (ev) => { const b = ev.target.closest("[data-h]"); if (!b) return;
+    if (b.dataset.h === "all") { el.querySelector(".hist-list")?.classList.add("open"); b.remove(); }
+  });
 }
 function rerenderDetail(slug) { if (wide() && $("#rpane")) splitView(slug); else exerciseView(slug); }
 

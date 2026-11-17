@@ -283,7 +283,7 @@ function entryHTML(en, ei) {
       return `<div class="setrow ${s.done ? "done" : ""} ${si === act ? "act" : ""}" data-si="${si}">
       <button class="n ${warm ? "w" : ""}" data-a="type" aria-label="Set type">${warm ? "W" : n}</button>
       ${pv ? `<button class="prev num" data-a="prev" data-w="${esc(pv.w)}" data-r="${esc(pv.r)}" aria-label="Same as last time: ${esc(wr(pv.w, pv.r, u))}">${esc(wr(pv.w, pv.r))}</button>` : `<span class="prev dim">—</span>`}
-      <div class="stepper"><input data-k="w" inputmode="decimal" placeholder="${esc(tg.w || "—")}" value="${esc(s.w)}" aria-label="Weight"></div>
+      <div class="stepper"><input data-k="w" inputmode="decimal"${barb ? ' title="Hold for plates"' : ""} placeholder="${esc(tg.w || "—")}" value="${esc(s.w)}" aria-label="Weight"></div>
       <div class="stepper"><input data-k="r" inputmode="numeric" placeholder="${esc(tg.r || "—")}" value="${esc(s.r)}" aria-label="Reps"></div>
       <button class="check" data-a="done" aria-label="Set done">${ic("check")}</button>
       <div class="stepline"><div><button data-a="w-" aria-label="Less weight">−</button><span>${wStep(e)} ${u}</span><button data-a="w+" aria-label="More weight">+</button></div>
@@ -292,6 +292,7 @@ function entryHTML(en, ei) {
       ${barb ? `<button class="btn sm" data-a="plates">${ic("calc", "sm")} Plates</button>` : ""}<button class="btn sm" data-a="swap">${ic("swap", "sm")} Swap</button></div>
     ${S.settings.gym && allDone && ei < S.active.entries.length - 1 ? `<button class="btn primary block big" data-a="next">Next exercise ${ic("chev", "sm")}</button>` : ""}</div>`;
 }
+let lpFired = 0;
 function wireSession() {
   const a = S.active; const box = $("#entries");
   const refreshStats = () => { const st = stats(); $("#stSets").textContent = st.sets; $("#stVol").textContent = st.vol; };
@@ -303,6 +304,18 @@ function wireSession() {
   };
   box.addEventListener("focusin", (e) => { const row = e.target.closest(".setrow"); if (!row || row.classList.contains("act")) return;
     row.parentElement.querySelectorAll(".setrow.act").forEach((x) => x.classList.remove("act")); row.classList.add("act"); });
+  let lp = null; // long-press the kg box on barbell/Smith lifts -> plate calculator
+  const lpEnd = () => { if (lp) { clearTimeout(lp.t); lp = null; } };
+  box.addEventListener("pointerdown", (e) => {
+    const inp = e.target.closest('input[data-k="w"]'); if (!inp || (e.pointerType === "mouse" && e.button)) return;
+    const ex = BY[a.entries[+inp.closest("[data-ei]").dataset.ei]?.slug]; if (!ex || !(ex.equipment.includes("Barbell") || ex.equipment.includes("Smith"))) return;
+    lpEnd(); lp = { x: e.clientX, y: e.clientY, t: setTimeout(() => { lp = null; lpFired = Date.now(); haptic(); inp.blur(); window.getSelection?.()?.removeAllRanges();
+      plateSheet(+(inp.value.replace(",", ".")) || +ph(inp.closest(".setrow"), "w") || 60); }, 500) };
+  });
+  box.addEventListener("pointermove", (e) => { if (lp && Math.hypot(e.clientX - lp.x, e.clientY - lp.y) > 10) lpEnd(); });
+  ["pointerup", "pointercancel", "pointerleave"].forEach((t) => box.addEventListener(t, lpEnd));
+  box.addEventListener("scroll", lpEnd, { passive: true, capture: true });
+  box.addEventListener("contextmenu", (e) => { if (Date.now() - lpFired < 900 && e.target.closest('input[data-k="w"]')) e.preventDefault(); });
   const ph = (row, k) => { const v = row.querySelector(`[data-k="${k}"]`).placeholder; return /^\d+([.,]\d+)?$/.test(v) ? v : ""; };
   box.onclick = async (e) => {
     const b = e.target.closest("button[data-a]"); if (!b) return;
@@ -401,10 +414,11 @@ function entryMenu(ei) {
   openSheet(`<h3>${esc(BY[en.slug]?.name)}</h3><div class="menu">
     <button data-m="up" ${ei ? "" : "disabled"}>${ic("up", "sm")}Move up</button><button data-m="down" ${ei < a.entries.length - 1 ? "" : "disabled"}>${ic("down", "sm")}Move down</button>
     <button data-m="ss" ${ei < a.entries.length - 1 ? "" : "disabled"}>${ic("swap", "sm")}${en.ss ? "Unlink superset" : "Superset with next exercise"}</button>
-    <button data-m="delset">${ic("minus", "sm")}Remove last set</button><a href="#/ex/${en.slug}">${ic("book", "sm")}How to do it</a>
+    <button data-m="delset">${ic("minus", "sm")}Remove last set</button><button data-m="hist">${ic("chart", "sm")}History</button><a href="#/ex/${en.slug}">${ic("book", "sm")}How to do it</a>
     <button class="danger" data-m="rm">${ic("trash", "sm")}Remove exercise</button></div>`, (el) => {
     el.onclick = (e) => {
       const b = e.target.closest("[data-m]"); if (!b) return; const m = b.dataset.m;
+      if (m === "hist") { closeSheet(); setTimeout(() => historySheet(en.slug), 220); return; }
       if (m === "up" && ei > 0) [a.entries[ei - 1], a.entries[ei]] = [a.entries[ei], a.entries[ei - 1]];
       if (m === "down" && ei < a.entries.length - 1) [a.entries[ei + 1], a.entries[ei]] = [a.entries[ei], a.entries[ei + 1]];
       if (m === "delset" && en.sets.length > 1) en.sets.pop();
@@ -441,6 +455,10 @@ export function startRest(sec, nx = {}) { Tm.startCountdown(sec, { kind: "rest",
 export function stopRest() { if (Tm.T.mode === "countdown" && Tm.T.kind === "rest") Tm.stop(); }
 
 /* ---------------- tools ---------------- */
+async function historySheet(slug) {
+  const X = await import("./exercise.js");
+  openSheet(`<h3>${esc(BY[slug]?.name || slug)}</h3><div class="dim small" style="margin:-4px 0 12px">History</div>${X.historyHTML(slug)}`, (el) => { fillIll(el); X.wireHistory(el, slug); });
+}
 export function plateSheet(total) {
   const u = S.settings.unit;
   const draw = (el) => {
