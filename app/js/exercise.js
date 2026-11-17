@@ -222,7 +222,11 @@ const POSE3D = { "high-bar-squat": /heel|elevated|drops?\b|pause/i, "shrug": NOT
   "hanging-knee-raise": /rotation|straps|barbell/i, "hanging-leg-raise": /dip|roman|straps/i, "close-grip-press": /smith|coffin|elbows flared|tri-fecta/i,
   "sissy-squat": /heel|landmine|assisted|barbell sissy squat on/i, "split-squat": /heel|smith|landmine|drops?\b/i,
   "skull-crushers": /incline|reverse|45|tri-fecta|extreme/i, "dumbbell-skull-crushers": /incline|45|tri-fecta|full stretch/i,
-  "lat-pulldown": /single arm|fixed elbow|straight bar/i, "close-grip-pulldown": /extreme/i };
+  "lat-pulldown": /single arm|fixed elbow|straight bar/i, "close-grip-pulldown": /extreme/i,
+  "flat-dumbbell-press": /rotating/i, "dumbbell-fly": /low|decline/i, "incline-dumbbell-press": /high incline|hammer|slight|hold|tucked/i,
+  "incline-dumbbell-fly": /high|slight|clavicular/i, "barbell-incline-press": /slight/i, "incline-dumbbell-curl": /single|high/i,
+  "seated-cable-row": /pronated|lat row|flexion|rolled/i, "bar-pushdown": /partials|over top/i, "cable-fly": /high to low|seated|cross midline/i,
+  "dumbbell-row-bent-over": /wrap around|pronated/i };
 export const move3d = (e) => { const m = MOVE3D[e.family]; if (m) return !NOT_SAME.test(e.name) ? m : null;
   const not = POSE3D[e.family]; return not && !not.test(e.name) ? "p:" + e.family : null; };
 /** prop in the hands for the 3D motion, from the exercise's equipment */

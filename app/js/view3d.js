@@ -88,7 +88,7 @@ function buildClip(model, P) {
   const clip = new THREE.AnimationClip("pose", times.at(-1), tracks); clip.props = P.fixed || []; clip.eqProps = P.props || []; return clip;
 }
 
-/** Simple props: "bar" between the palms, "db" in each hand, "pullbar" above the hands, "bench" under the back (lying moves). */
+/** Simple props: "bar" between the palms, "cbar" short cable handle, "db" in each hand, "pullbar" above the hands, "bench" under the back (lying moves). */
 function makeProp(kinds, model, dark) {
   kinds = kinds.filter(Boolean); if (!kinds.length) return null;
   const bones = {}; model.traverse((o) => { if (o.isBone) bones[o.name] = o; });
@@ -101,17 +101,21 @@ function makeProp(kinds, model, dark) {
   const loc = (bone, v) => bone.getWorldPosition(v).applyMatrix4(inv);
   const grip = (h, f = .35) => loc(h[0], a).lerp(loc(h[1], b), f).clone();
   for (const kind of kinds) {
-    if (kind === "bar" || kind === "pullbar") { const o = new THREE.Group(); o.add(cyl(kind === "bar" ? .014 : .018, kind === "bar" ? 1.8 : 1.3));
+    if (kind === "bar" || kind === "pullbar" || kind === "cbar") { const o = new THREE.Group(); o.add(cyl(kind === "pullbar" ? .018 : .014, kind === "bar" ? 1.8 : kind === "cbar" ? .5 : 1.3));
       if (kind === "bar") for (const x of [-.74, .74]) { const p = cyl(.17, .05); p.position.x = x; o.add(p); } g.add(o);
       ups.push(() => { const L = grip(hand[0], kind === "bar" ? .35 : .5), R = grip(hand[1], kind === "bar" ? .35 : .5); o.position.copy(L).add(R).multiplyScalar(.5); o.quaternion.setFromUnitVectors(X, c.copy(L).sub(R).normalize()); });
     } else if (kind === "db") for (let i = 0; i < 2; i++) { const o = new THREE.Group(); o.add(cyl(.016, .16)); for (const x of [-.09, .09]) { const p = cyl(.05, .05); p.position.x = x; o.add(p); } g.add(o);
       ups.push(() => { const h = hand[i]; o.position.copy(grip(h)); loc(h[0], a); loc(h[1], b); // handle across the palm
         const n = b.sub(a).normalize(), side = c.set(i ? -1 : 1, 0, 0); o.quaternion.setFromUnitVectors(X, side.sub(n.multiplyScalar(side.dot(n))).normalize()); });
-    } else if (kind === "bench") { const o = new THREE.Mesh(new THREE.BoxGeometry(.3, .07, 1.2), pad); const legs = new THREE.Mesh(new THREE.BoxGeometry(.08, 1, .08), mat); o.add(legs); g.add(o);
-      ups.push(() => { const s5 = loc(bones.spine05, a), nk = loc(bones.neck01, b), top = Math.min(s5.y, nk.y) - .13;
-        const fl = Math.min(loc(bones.footL, c).y, loc(bones.footR, c).y) - .07; // floor = under the feet
-        const dx = nk.x - s5.x, dz = nk.z - s5.z, l = Math.hypot(dx, dz) || 1; o.rotation.y = Math.atan2(dx, dz);
-        o.position.set(s5.x + dx / 2 - dx / l * .1, top, s5.z + dz / 2 - dz / l * .1); const h = Math.max(.1, top - fl); legs.scale.y = h; legs.position.set(0, -h / 2, 0); });
+    } else if (kind === "bench") { // pad under the back, pitched to follow the torso (flat or incline); seat block under the hips when inclined
+      const o = new THREE.Mesh(new THREE.BoxGeometry(.3, .07, 1.2), pad), seat = new THREE.Mesh(new THREE.BoxGeometry(.3, .07, .38), pad), legs = new THREE.Mesh(new THREE.BoxGeometry(.08, 1, .08), mat); g.add(o, seat, legs);
+      const t = new THREE.Vector3(), n = new THREE.Vector3(), x = new THREE.Vector3(), M = new THREE.Matrix4(), UP = new THREE.Vector3(0, 1, 0);
+      ups.push(() => { const s5 = loc(bones.spine05, a).clone(), nk = loc(bones.neck01, b).clone(); t.subVectors(nk, s5).normalize();
+        n.copy(UP).addScaledVector(t, -UP.dot(t)).normalize(); x.crossVectors(n, t); o.quaternion.setFromRotationMatrix(M.makeBasis(x, n, t));
+        const fl = Math.min(loc(bones.footL, c).y, loc(bones.footR, c).y) - .07, inc = t.y > .3;
+        o.position.copy(s5).lerp(nk, .5).addScaledVector(n, -.13).addScaledVector(t, inc ? .28 : -.28);
+        seat.visible = inc; const sy = s5.y - .15; seat.position.set(s5.x, sy, s5.z); seat.rotation.y = Math.atan2(t.x, t.z);
+        const base = inc ? sy : o.position.y, h = Math.max(.1, base - fl); legs.scale.y = h; legs.position.set(inc ? s5.x : o.position.x, base - h / 2, inc ? s5.z : o.position.z); });
     } else if (kind === "seat") { const o = new THREE.Mesh(new THREE.BoxGeometry(.42, .08, .4), pad); const post = new THREE.Mesh(new THREE.BoxGeometry(.07, 1, .07), mat); o.add(post); g.add(o);
       ups.push(() => { const p = loc(bones.spine05, a), fl = Math.min(loc(bones.footL, c).y, loc(bones.footR, c).y) - .07, top = p.y - .14;
         o.position.set(p.x, top, p.z + .06); const h = Math.max(.1, top - fl); post.scale.y = h; post.position.set(0, -h / 2, 0); });

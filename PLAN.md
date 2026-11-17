@@ -118,7 +118,7 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 - ✅ **Human-looking body (18 ✅ session 5) + rotatable 3D muscle body for every exercise (19 ✅ session 6)** (owner: "looks like a stick man", "all angles")
 
 - ✅ **19a** readable hero controls · ✅ **19e** UX benchmark Blok A · ✅ **19c** fullscreen video (session 8) · ✅ **19a-fix** hero fits video + compact controls · ✅ **19a-chips** canonical alt pick (session 9)
-- ✅ **19d** pro lock-screen rest timer (session 10) · 🟡 **19b** 3D upgrade — viewer done (session 10), motion engine + 16 authored families (session 11), coverage 31/179 families; more families open — owner
+- ✅ **19d** pro lock-screen rest timer (session 10) · 🟡 **19b** 3D upgrade — viewer done (session 10), motion engine + 16 authored families (session 11), +10 families (session 12), coverage 41/179 families; more families open — owner
 - ⬜ **22b** quality polish + UX benchmark fixes (docs/ux_benchmark.md) — owner
 - ⬜ **25** printable PDF guide per level (en/tr/ar), generated from our data — owner
 
@@ -219,6 +219,12 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 - Authoring tip: render a pose sheet with `mount3d(div, {move:"p:<family>", at, view, prop})` for at = 0 / .36 / .65 (start / mid-eccentric / bottom when ecc:"out").
 - Lying moves use `yaw:90`, so "Front" shows the profile and "Side" the feet end (intended: profile is the readable view).
 - Known: sissy-squat hip line could be straighter; shrug front view shows forearms as Main (traps paint is on the back) — check muscle data.
+
+## Notes (2026-11-17, session 12)
+- 19b batch 2 (+10 families): flat-dumbbell-press, dumbbell-fly, incline-dumbbell-press, incline-dumbbell-fly, barbell-incline-press, incline-dumbbell-curl (lying/incline, `frame:-90` / `frame:-55`), seated-cable-row (seat + cbar), bar-pushdown (cbar), cable-fly (no prop), dumbbell-row-bent-over (db). Coverage 41/179 (15 opengym3d + 26 ours). sw v24.
+- view3d.js: `bench` now pitches with the torso (spine05->neck) and shows a seat block under the hips when inclined (t.y > .3); flat bench shifted toward the hips (-.28) so the glutes are on the pad. New prop `cbar` = short cable handle (0.5 m, no plates) — use as `fixed` for cable moves (equipment "Barbell" on cable pushdowns must not show a full bar).
+- Lying poses now share better legs (feet flat on the floor, toes away from the head): `"thigh":[0.24,-0.72,-0.66],"shin":[0.04,-0.05,-1],"foot":[0,-1,0.05]` — also applied to close-grip-press and both skull-crushers. Incline seated legs (frame -55): `"thigh":[0.16,-0.82,0.57],"shin":[0.04,-0.57,-0.82],"foot":[0,-0.82,0.57]` (world directions rotated by +55° about x).
+- Strict NOT regexes keep variants still (slight/high incline, single arm, pronated wide-grip rows, high-to-low / seated cable fly, partials). Lying bars still look like a big disc in the profile view (plate faces the camera) — acceptable.
 
 ## Real-phone lessons (from the owner's Fluent365 Pocket test on Android) — apply to Gym
 - ✅ **System bars match the theme**: Android nav bar/status bar stayed white under a dark app. Set `<meta name="theme-color">` at runtime from the theme (done in `applyTheme`), add `media`-specific theme-color metas for light/dark, and pick manifest `theme_color`/`background_color` that don't flash; note installed WebAPK may need reinstall to update.
