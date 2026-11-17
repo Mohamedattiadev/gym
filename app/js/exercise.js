@@ -217,7 +217,7 @@ const MOVE3D = { "barbell-row": "bent_over_row", "dumbbell-curl": "bicep_curl", 
   "walking-lunge": "lunge", "romanian-deadlift": "romanian_deadlift", "sumo-squat": "sumo_squat" };
 const NOT_SAME = /twist|reverse grip|partial|pause|drops?\b|holds?|incline|decline|seated|elevated|single arm|one arm|1 arm|lying|kneeling|smith|cable|landmine|machine|3 way|deficit|spider|preacher|high elbow|lateral lunge|static|split|band|plate|lean/i;
 /* 19b: our own keyframe motions (app/3d/poses/<family>.json); value = names that are NOT this exact movement */
-const POSE3D = { "high-bar-squat": /heel|elevated|drops?\b|pause/i, "shrug": NOT_SAME, "barbell-curl": /rocking|wall|cluster/i, "reverse-curl": /cable|seated|concentration|single|incline|wall|tri ?set|cluster/i,
+const POSE3D = { "high-bar-squat": /heel|elevated|drops?\b|pause|safety|century/i, "shrug": NOT_SAME, "barbell-curl": /rocking|wall|cluster/i, "reverse-curl": /cable|seated|concentration|single|incline|wall|tri ?set|cluster/i,
   "upright-row": NOT_SAME, "rear-delt-raise": /barbell|partial|single|supinated|incline|lying|seated/i, "dips-chest": /hold|hs drop|rocking|between knees/i,
   "hanging-knee-raise": /rotation|straps|barbell/i, "hanging-leg-raise": /dip|roman|straps/i, "close-grip-press": /smith|coffin|elbows flared|tri-fecta/i,
   "sissy-squat": /heel|landmine|assisted|barbell sissy squat on/i, "split-squat": /heel|smith|landmine|drops?\b/i,

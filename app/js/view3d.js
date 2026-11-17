@@ -23,7 +23,16 @@ const SEG = { torso: ["spine05", "neck01"], neck: ["neck01", "head"], clav: ["cl
   farm: ["lowerarm01", "wrist"], hand: ["wrist", "finger3-1"], thigh: ["upperleg01", "lowerleg01"], shin: ["lowerleg01", "foot"], foot: ["foot", "toe3-1"] };
 const SIDED = new Set(["clav", "uarm", "farm", "hand", "thigh", "shin", "foot"]);
 const ORDER = ["torso", "neck", ...["clav", "uarm", "farm", "hand", "thigh", "shin", "foot"].flatMap((k) => [k + "L", k + "R"])];
+const CURL_AXIS = new THREE.Vector3(0, 0, 1); // finger bones bend about their local z (left +, right -)
 const ezs = (u) => u * u * (3 - 2 * u);
+/** Bar resting on the upper traps behind the neck (high-bar back squat). get(boneName) -> Vector3 in one space. */
+function backBar(get, low = false) {
+  const nk = get("neck01"), s5 = get("spine05"), cl = get("clavicleL"), cr = get("clavicleR");
+  const up = nk.clone().sub(s5).normalize(), left = cl.clone().sub(cr); left.addScaledVector(up, -left.dot(up)).normalize();
+  const fwd = new THREE.Vector3().crossVectors(left, up).normalize();
+  const c = nk.clone().addScaledVector(up, low ? -.12 : -.055).addScaledVector(fwd, low ? -.1 : -.085);
+  return { c, up, fwd, left };
+}
 function resolve(spec) { // {uarm:[..]} -> {uarmL:[..], uarmR:[-x..]}; explicit L/R win
   const d = {}, tw = {};
   for (const [k, v] of Object.entries(spec)) {
@@ -35,7 +44,8 @@ function resolve(spec) { // {uarm:[..]} -> {uarmL:[..], uarmR:[-x..]}; explicit 
   for (const [k, v] of Object.entries(spec)) if (/[LR]$/.test(k) && SEG[k.slice(0, -1)]) d[k] = v;
   return { d, tw, frame: spec.frame || 0, pos: spec.pos || [0, 0, 0] };
 }
-function buildClip(model, P) {
+function buildClip(model, P, eqProp = null) {
+  if (P.bar === "back" && eqProp === "bar") P = { ...P, ik: P.ik || "backbar", props: (P.props || []).map((k) => (k === "bar" ? "backbar" : k)) };
   const bones = {}; model.traverse((o) => { if (o.isBone) bones[o.name] = o; });
   const B = (n, side = "") => bones[(n + side).replace(/[.-]/g, "")] || bones[n + side];
   const seg = {}; for (const k of ORDER) { const side = /[LR]$/.test(k) && SIDED.has(k.slice(0, -1)) ? k.slice(-1) : ""; const [a, b] = SEG[side ? k.slice(0, -1) : k]; seg[k] = [B(a, side), B(b, side)]; }
@@ -63,7 +73,31 @@ function buildClip(model, P) {
     if (plant) { model.updateMatrixWorld(true); const f = pw(seg[pb[0]][0]).add(pw(seg[pb[1]][0])).multiplyScalar(.5);
       if (!anchor) anchor = new THREE.Vector3(f.x, plant === "feet" ? restDir.y0 : f.y, f.z); root.position.add(anchor.clone().sub(f)); }
     model.updateMatrixWorld(true);
+    if (P.ik === "backbar" || P.ik === "lowbar") { // hands grip the bar on the traps just outside the shoulders, elbows down/back
+      const g = backBar((n) => pw(bones[n]), P.ik === "lowbar");
+      for (const sd of ["L", "R"]) {
+        const sgn = sd === "L" ? 1 : -1, S = pw(seg["uarm" + sd][0]);
+        const grip = g.c.clone().addScaledVector(g.left, sgn * (P.gripW ?? .29));
+        const T = grip.clone().addScaledVector(g.up, -.045).addScaledVector(g.fwd, .025); // wrist sits just under/in front of the bar
+        const a = ulen[sd], b = flen[sd]; let D = T.clone().sub(S); const d = Math.min(D.length(), a + b - 1e-3); const u = D.normalize();
+        const pole = g.up.clone().multiplyScalar(-1).addScaledVector(g.fwd, -.35).addScaledVector(g.left, sgn * .45);
+        const perp = pole.addScaledVector(u, -pole.dot(u)).normalize();
+        const x = (a * a - b * b + d * d) / (2 * d), h = Math.sqrt(Math.max(0, a * a - x * x));
+        const E = S.clone().addScaledVector(u, x).addScaledVector(perp, h), W = S.clone().addScaledVector(u, d);
+        aimW("uarm" + sd, E.clone().sub(S).normalize()); aimW("farm" + sd, W.clone().sub(E).normalize());
+        aimW("hand" + sd, g.up.clone().addScaledVector(g.fwd, -.55).normalize());
+      }
+    }
+    if (grip) curl();
   };
+  const aimW = (k, t) => { const [b] = seg[k]; const bw = b.getWorldQuaternion(Q()), par = b.parent.getWorldQuaternion(Q()).invert();
+    bw.premultiply(Q().setFromUnitVectors(dir(k), t)); b.quaternion.copy(par.multiply(bw)); b.updateMatrixWorld(true); };
+  const ulen = {}, flen = {};
+  for (const sd of ["L", "R"]) { ulen[sd] = pw(seg["uarm" + sd][0]).distanceTo(pw(seg["uarm" + sd][1])); flen[sd] = pw(seg["farm" + sd][0]).distanceTo(pw(seg["farm" + sd][1])); }
+  // closed grip: curl the fingers (and the thumb a bit) when something is held
+  const held = [...(P.props || []), ...(P.fixed || [])].some((k) => /bar|db|cbar|pullbar|dipbars/.test(k)), grip = P.grip ?? held;
+  const fingers = []; for (const sd of ["L", "R"]) for (let f = 1; f <= 5; f++) for (let j = 1; j <= 3; j++) { const fb = B(`finger${f}-${j}`, sd); if (fb) fingers.push([fb, f, j, sd]); }
+  const curl = () => { for (const [fb, f, j, sd] of fingers) fb.quaternion.multiply(Q().setFromAxisAngle(CURL_AXIS, (f === 1 ? (j === 1 ? .2 : .45) : j === 1 ? 1.25 : j === 2 ? 1.35 : .9) * (sd === "L" ? 1 : -1))); };
   { model.updateMatrixWorld(true); restDir.y0 = (pw(seg.footL[0]).y + pw(seg.footR[0]).y) / 2; }
   const lerpR = (a, b, u) => { const d = {}; for (const k of new Set([...Object.keys(a.d), ...Object.keys(b.d)])) {
       const va = new THREE.Vector3(...(a.d[k] || b.d[k])).normalize(), vb = new THREE.Vector3(...(b.d[k] || a.d[k])).normalize();
@@ -78,14 +112,16 @@ function buildClip(model, P) {
   for (let i = 1; i <= N; i++) push(H0 + T1 * i / N, ezs(i / N));
   push(H0 + T1 + H1, 1);
   for (let i = 1; i <= N; i++) push(H0 + T1 + H1 + T2 * i / N, 1 - ezs(i / N));
-  const moved = [root, ...new Set(Object.values(seg).map((s) => s[0]).filter(Boolean))];
+  const moved = [root, ...new Set(Object.values(seg).map((s) => s[0]).filter(Boolean)), ...(grip ? fingers.map((x) => x[0]) : [])];
   const qv = moved.map(() => []), pv = [];
   pose(keys[0]); // fixes the anchor at the start pose
   for (const u of samples) { pose(at(u)); moved.forEach((b, i) => qv[i].push(...b.quaternion.toArray())); pv.push(...root.position.toArray()); }
   all.forEach((b, i) => b.quaternion.copy(rest[i])); root.position.copy(rootPos); model.updateMatrixWorld(true);
   const tracks = moved.map((b, i) => new THREE.QuaternionKeyframeTrack(`${b.uuid}.quaternion`, times, qv[i]));
   tracks.push(new THREE.VectorKeyframeTrack(`${root.uuid}.position`, times, pv));
-  const clip = new THREE.AnimationClip("pose", times.at(-1), tracks); clip.props = P.fixed || []; clip.eqProps = P.props || []; return clip;
+  const clip = new THREE.AnimationClip("pose", times.at(-1), tracks); clip.props = P.fixed || []; clip.eqProps = P.props || [];
+  if (P.bar === "back" && eqProp === "bar") clip.props = [...clip.props, "backbar"];
+  return clip;
 }
 
 /** Simple props: "bar" between the palms, "cbar" short cable handle, "db" in each hand, "pullbar" above the hands, "bench" under the back (lying moves). */
@@ -104,6 +140,9 @@ function makeProp(kinds, model, dark) {
     if (kind === "bar" || kind === "pullbar" || kind === "cbar") { const o = new THREE.Group(); o.add(cyl(kind === "pullbar" ? .018 : .014, kind === "bar" ? 1.8 : kind === "cbar" ? .5 : 1.3));
       if (kind === "bar") for (const x of [-.74, .74]) { const p = cyl(.17, .05); p.position.x = x; o.add(p); } g.add(o);
       ups.push(() => { const L = grip(hand[0], kind === "bar" ? .35 : .5), R = grip(hand[1], kind === "bar" ? .35 : .5); o.position.copy(L).add(R).multiplyScalar(.5); o.quaternion.setFromUnitVectors(X, c.copy(L).sub(R).normalize()); });
+    } else if (kind === "backbar" || kind === "lowbar") { const o = new THREE.Group(); o.add(cyl(.014, 1.8)); for (const x of [-.74, .74]) { const p = cyl(.1, .05); p.position.x = x; o.add(p); } g.add(o);
+      const get = (n) => loc(bones[n], new THREE.Vector3()).clone();
+      ups.push(() => { const k = backBar(get, kind === "lowbar"); o.position.copy(k.c); o.quaternion.setFromUnitVectors(X, k.left); });
     } else if (kind === "db") for (let i = 0; i < 2; i++) { const o = new THREE.Group(); o.add(cyl(.016, .16)); for (const x of [-.09, .09]) { const p = cyl(.05, .05); p.position.x = x; o.add(p); } g.add(o);
       ups.push(() => { const h = hand[i]; o.position.copy(grip(h)); loc(h[0], a); loc(h[1], b); // handle across the palm
         const n = b.sub(a).normalize(), side = c.set(i ? -1 : 1, 0, 0); o.quaternion.setFromUnitVectors(X, side.sub(n.multiplyScalar(side.dot(n))).normalize()); });
@@ -173,7 +212,7 @@ export async function mount3d(el, { primary = [], secondary = [], move = null, v
     sh.vertexShader = sh.vertexShader.replace("#include <common>", "#include <common>\nattribute float glow;\nvarying float vGlow;").replace("#include <begin_vertex>", "#include <begin_vertex>\nvGlow = glow;");
     sh.fragmentShader = sh.fragmentShader.replace("#include <common>", "#include <common>\nvarying float vGlow;").replace("#include <emissivemap_fragment>", "#include <emissivemap_fragment>\ntotalEmissiveRadiance += diffuseColor.rgb * vGlow * .32;");
   };
-  if (clip && !clip.tracks) { const P = clip; clip = buildClip(model, P); if (P.yaw) model.rotation.y = THREE.MathUtils.degToRad(P.yaw); }
+  if (clip && !clip.tracks) { const P = clip; clip = buildClip(model, P, eqProp); if (P.yaw) model.rotation.y = THREE.MathUtils.degToRad(P.yaw); }
   const pivot = new THREE.Group(); pivot.add(model); scene3.add(pivot);
   scene3.add(new THREE.HemisphereLight(0xffffff, 0x8a7f78, 1.7));
   const key = new THREE.DirectionalLight(0xffffff, 1.9); key.position.set(1.2, 2.4, 3); scene3.add(key);
@@ -266,4 +305,48 @@ function cloneSkinned(source) {
   clone.traverse((n) => { if (!n.isSkinnedMesh) return; let s = null; for (const [k, v] of map) if (v === n) s = k;
     n.skeleton = s.skeleton.clone(); n.skeleton.bones = s.skeleton.bones.map((b) => map.get(b)); n.bind(n.skeleton, s.bindMatrix); });
   return clone;
+}
+
+/** 19b-QA: geometric check of an authored motion (no rendering). Samples the clip and returns the failures:
+    prop away from the hands / back, prop through the head or torso, hands inside the torso, odd grip width. */
+export async function qa3d(move, eqProp = null, N = 24) {
+  const [gltf, P] = await Promise.all([getBody(), getAnim(move)]);
+  const model = cloneSkinned(gltf.scene), clip = buildClip(model, P, eqProp); if (P.yaw) model.rotation.y = THREE.MathUtils.degToRad(P.yaw);
+  const kinds = [...(clip.props || []), (clip.eqProps || []).includes(eqProp) ? eqProp : null].filter(Boolean);
+  const prop = makeProp(kinds, model, false), mixer = new THREE.AnimationMixer(model), act = mixer.clipAction(clip); act.play();
+  const bones = {}; model.traverse((o) => { if (o.isBone) bones[o.name] = o; });
+  const W = (n) => bones[n].getWorldPosition(new THREE.Vector3());
+  const segDist = (p, a, b) => { const ab = b.clone().sub(a), t = Math.max(0, Math.min(1, p.clone().sub(a).dot(ab) / ab.lengthSq())); return a.clone().addScaledVector(ab, t).distanceTo(p); };
+  const fails = new Set(), worst = {};
+  const note = (k, v, bad) => { worst[k] = worst[k] == null ? v : (bad === "lt" ? Math.min(worst[k], v) : Math.max(worst[k], v)); };
+  for (let i = 0; i < N; i++) {
+    act.time = clip.duration * i / N; mixer.update(0); model.updateMatrixWorld(true); prop?.update(); prop?.g.updateMatrixWorld(true);
+    const grip = ["L", "R"].map((s) => W("wrist" + s).lerp(W("finger3-1" + s), .35));
+    const head = W("head").add(W("head").sub(W("neck01")).normalize().multiplyScalar(.09)), s5 = W("spine05"), nk = W("neck01");
+    const torsoD = (p) => segDist(p, s5, nk);
+    for (const g of grip) note("handTorso", torsoD(g), "lt");
+    if (!prop) continue;
+    const k = kinds.find((x) => /bar|db/.test(x));
+    prop.g.children.forEach((o) => {
+      const cyl = o.children?.[0]; if (cyl?.geometry?.type !== "CylinderGeometry") return;
+      const len = cyl.geometry.parameters.height, c = o.getWorldPosition(new THREE.Vector3()), ax = new THREE.Vector3(1, 0, 0).applyQuaternion(o.getWorldQuaternion(new THREE.Quaternion()));
+      const a = c.clone().addScaledVector(ax, -len / 2), b = c.clone().addScaledVector(ax, len / 2), inner = len > 1 ? .5 : len / 2; // plates/collars excluded from body checks
+      const ia = c.clone().addScaledVector(ax, -inner), ib = c.clone().addScaledVector(ax, inner);
+      const hd = Math.min(...grip.map((g) => segDist(g, a, b)));
+      note("propHand", len > .3 ? Math.max(...grip.map((g) => segDist(g, a, b))) : hd); // bars: both hands on it; dumbbell: its own hand
+      note("propHead", segDist(head, ia, ib), "lt");
+      if (!/backbar|lowbar/.test(k)) note("propTorso", Math.min(...[0, .25, .5, .75, 1].map((t) => torsoD(ia.clone().lerp(ib, t)))), "lt");
+      else note("barNeck", c.distanceTo(nk));
+    });
+    if (kinds.some((k) => /^(bar|backbar|lowbar)$/.test(k))) note("gripW", grip[0].distanceTo(grip[1]));
+  }
+  const fixedHands = (P.fixed || []).some((k) => /pullbar|dipbars|cbar/.test(k)) || kinds.length;
+  if (worst.handTorso < .06) fails.add(`hand inside torso (${worst.handTorso.toFixed(3)})`);
+  if (worst.propHand > .09 && fixedHands) fails.add(`prop away from hands (${worst.propHand.toFixed(3)})`);
+  if (worst.propHead < .12) fails.add(`prop through head (${worst.propHead.toFixed(3)})`);
+  if (worst.propTorso < .07) fails.add(`prop through torso (${worst.propTorso.toFixed(3)})`);
+  if (worst.barNeck > .17) fails.add(`bar not on the back (${worst.barNeck.toFixed(3)})`);
+  if (worst.gripW != null && (worst.gripW > 1.05)) fails.add(`grip too wide (${worst.gripW.toFixed(3)})`);
+  for (const k in worst) worst[k] = +worst[k].toFixed(3);
+  return { move, prop: kinds, fails: [...fails], worst };
 }

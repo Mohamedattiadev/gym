@@ -1,4 +1,4 @@
-{"ecc":"back","plant":false,"fixed":["seat"],
+{"ecc":"back","plant":false,"fixed":["seat","cbar"],
  "base":{"neck":[0,1,0.05],"thigh":[0.12,-0.05,1],"shin":[0.05,-1,0.05]},
  "keys":[
   {"torso":[0,1,-0.1],"uarm":[0.12,1,0.12],"farm":[-0.05,1,0.05]},
