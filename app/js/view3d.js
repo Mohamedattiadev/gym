@@ -169,6 +169,12 @@ function makeProp(kinds, model, dark) {
         o.position.copy(s5).lerp(nk, .5).addScaledVector(n, -.13).addScaledVector(t, inc ? .28 : -.28);
         seat.visible = inc; const sy = s5.y - .15; seat.position.set(s5.x, sy, s5.z); seat.rotation.y = Math.atan2(t.x, t.z);
         const base = inc ? sy : o.position.y, h = Math.max(.1, base - fl); legs.scale.y = h; legs.position.set(inc ? s5.x : o.position.x, base - h / 2, inc ? s5.z : o.position.z); });
+    } else if (kind === "hipbench") { // reverse hyper: flat pad under the torso that ends at the hips, so the legs hang free
+      const o = new THREE.Mesh(new THREE.BoxGeometry(.3, .07, 1.1), pad), legs = new THREE.Mesh(new THREE.BoxGeometry(.08, .85, .08), mat); g.add(o, legs);
+      const t = new THREE.Vector3(), n = new THREE.Vector3(), x = new THREE.Vector3(), M = new THREE.Matrix4(), UP = new THREE.Vector3(0, 1, 0);
+      ups.push(() => { const s5 = loc(bones.spine05, a).clone(), nk = loc(bones.neck01, b).clone(); t.subVectors(nk, s5).normalize();
+        n.copy(UP).addScaledVector(t, -UP.dot(t)).normalize(); x.crossVectors(n, t); o.quaternion.setFromRotationMatrix(M.makeBasis(x, n, t));
+        o.position.copy(s5).addScaledVector(n, -.13).addScaledVector(t, .5); legs.position.copy(o.position).addScaledVector(t, -.3); legs.position.y -= .45; });
     } else if (kind === "seat") { const o = new THREE.Mesh(new THREE.BoxGeometry(.42, .08, .4), pad); const post = new THREE.Mesh(new THREE.BoxGeometry(.07, 1, .07), mat); o.add(post); g.add(o);
       ups.push(() => { const p = loc(bones.spine05, a), fl = Math.min(loc(bones.footL, c).y, loc(bones.footR, c).y) - .07, top = p.y - .14;
         o.position.set(p.x, top, p.z + .06); const h = Math.max(.1, top - fl); post.scale.y = h; post.position.set(0, -h / 2, 0); });
