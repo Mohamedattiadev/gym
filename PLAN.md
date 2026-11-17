@@ -156,6 +156,7 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 
 ## Real-phone lessons (from the owner's Fluent365 Pocket test on Android) — apply to Gym
 - ✅ **System bars match the theme**: Android nav bar/status bar stayed white under a dark app. Set `<meta name="theme-color">` at runtime from the theme (done in `applyTheme`), add `media`-specific theme-color metas for light/dark, and pick manifest `theme_color`/`background_color` that don't flash; note installed WebAPK may need reinstall to update.
+- ✅ **Animated opening screen (owner-approved, 2026-11-17)**: the dumbbell assembles (bar, then plates snap on from four sides), does one strong rep, then a smaller rep loops while loading; full ~2.7 s on the first open of the day, ~0.9 s later; still logo with reduced motion (`#splash` in index.html, CSS at the end of app.css, `hideSplash()` in main.js).
 - ✅ **Opening screen**: no blank/white frame and no plain text — inline splash in index.html with the logo, themed from the first frame (theme read inline before JS), removed when the first view renders (boot currently ~5 s → splash is essential).
 - ✅ **Action bars**: stacked buttons need a gap; side-by-side when they fit; nothing may overlap the floating timer pill, sticky "Add to workout"/"Start" buttons or the bottom tab bar (reserve space / offset the pill above sticky CTAs).
 - ⬜ **Compact on 390 px**: small margins, compact chips/cards, minimal scrolling — but tap targets ≥ 44 px.

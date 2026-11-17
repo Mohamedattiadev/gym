@@ -10,12 +10,17 @@ import { meView, settingsView } from "./me.js";
 import { timerView, initTimer, renderPill } from "./timer.js";
 import * as Sync from "./sync.js";
 
-/* Opening screen: let the dumbbell at least snap together (~0.9 s) before fading out. */
+/* Opening screen: the first open of the day plays the whole animation (assemble + one rep, ~2.7 s);
+   later opens only let the dumbbell snap together (~0.9 s) so the app stays quick. */
 const SPLASH_T0 = performance.now();
+const SPLASH_MIN = (() => {
+  try { const d = new Date().toDateString(); if (localStorage.getItem("gym-splash-day") !== d) { localStorage.setItem("gym-splash-day", d); return 2700; } } catch { /* storage blocked */ }
+  return 900;
+})();
 function hideSplash() {
   const el = document.getElementById("splash");
   if (!el || el.classList.contains("out")) return;
-  const wait = Math.max(0, 900 - (performance.now() - SPLASH_T0));
+  const wait = Math.max(0, SPLASH_MIN - (performance.now() - SPLASH_T0));
   setTimeout(() => { el.classList.add("out"); setTimeout(() => el.remove(), 280); }, wait);
 }
 
