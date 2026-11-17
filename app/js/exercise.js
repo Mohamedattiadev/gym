@@ -159,7 +159,7 @@ const kindOf = (x) => KINDS.find((k) => x.equipment.includes(k)) || null;
 /* alt pick = the common, canonical movement, never a novelty variant (19a-chips b) */
 const NOVEL = /\b(partials?|copy|1\.5|1 ?¼|tempo|giant|cluster|myo|drop ?sets?|drops|iso(metric)?|holds?|pause[ds]?|lengthened|stretch|somersault|sissy|extreme|banded|band resisted|chains?|deficit|anderson|pin|board|spoto|zercher|jefferson|landmine|kas|frog|reverse grip|single|1 arm|one arm|unilateral|kneeling|half)\b/i;
 const MODS = /[("]|\b(heel|elevated|wide|narrow|close|neutral|incline|decline|seated|lying|standing|high|low|mid|bar|grip|stance|cambered|safety|ssb|fat|thick)\b/gi;
-const oddity = (x) => (NOVEL.test(x.name) ? 10 : 0) + (x.name.match(MODS)?.length || 0);
+const oddity = (x) => { const n = x.name.replace(/\b(high|low)[- ]bar\b/gi, ""); return (NOVEL.test(n) ? 10 : 0) + (n.match(MODS)?.length || 0); }; // "High Bar Squats" = the plain back squat
 /** the name names another equipment kind (data says Barbell, name says "Dumbbell …") → not a fair pick for chip k */
 const clash = (x, k) => !new RegExp(`\\b${k}\\b`, "i").test(x.name) && KINDS.some((o) => o !== k && new RegExp(`\\b${o}\\b`, "i").test(x.name));
 const altSort = (a, b) => (b.canonical - a.canonical) || oddity(a) - oddity(b) || byTier(a, b);
@@ -241,8 +241,9 @@ function hero(e) {
   h.innerHTML = `<div class="seg sm" id="hseg">${e.video ? `<button data-m="video" class="${mode === "video" ? "on" : ""}">Video</button>` : ""}<button data-m="fig" class="${mode === "fig" ? "on" : ""}">Muscles</button><button data-m="3d" class="${mode === "3d" ? "on" : ""}">3D</button></div>
     ${mode === "3d" ? `<div class="v3d" id="v3d"><span class="v3d-load muted small">Loading 3D…</span></div>
         <div class="v3d-bar"><div class="seg sm" id="v3dv">${["front", "side", "back"].map((k) => `<button data-v="${k}" class="${v3dView === k ? "on" : ""}">${k[0].toUpperCase() + k.slice(1)}</button>`).join("")}</div>
-        ${mv ? `<button class="v3d-play" id="v3dp" aria-label="Pause">${ic("pause", "sm")}</button>` : ""}</div>
-        <span class="cap"><i style="background:var(--accent)"></i>Main <i style="background:color-mix(in oklab, var(--accent) 50%, #b8b0a9)"></i>Helpers${mv ? "" : ` · <span class="dim">still pose</span>`} · <a class="dim" href="https://github.com/AssiamahS/opengym3d" target="_blank" rel="noopener">OpenGym3D</a></span>`
+        ${mv ? `<div class="row" style="gap:8px"><button class="v3d-play v3d-spd" id="v3ds" aria-label="Speed 1×">1×</button><button class="v3d-play" id="v3dp" aria-label="Pause">${ic("pause", "sm")}</button></div>` : ""}</div>
+        <div class="v3d-zoom"><button class="v3d-play" data-z="1.4" aria-label="Zoom in">${ic("plus", "sm")}</button><button class="v3d-play" data-z="0.7" aria-label="Zoom out">${ic("minus", "sm")}</button></div>
+        <span class="cap"><i style="background:var(--accent)"></i>Main <i style="background:color-mix(in oklab, var(--accent) 42%, #cdc7c2)"></i>Helpers${mv ? "" : ` · <span class="dim">still pose</span>`} · <a class="dim" href="https://github.com/AssiamahS/opengym3d" target="_blank" rel="noopener">OpenGym3D</a></span>`
     : mode === "video" ? `<video id="vid" src="${e.video}" poster="${e.poster}" autoplay muted loop playsinline preload="auto"></video><div class="ctl"><button id="spd" aria-label="Playback speed 1×">${ic("speed", "sm")}<b>1×</b></button><button id="fsb" class="sq" aria-label="Full screen">${ic("fs", "sm")}</button></div>`
       : `<div class="hmus${hasFig ? " withfig" : ""}">${hasFig ? `<img class="fig" src="${e.figure}" alt="Animated figure of this movement, worked muscles in red">` : ""}
           <div class="mini-body">${hasFig ? paint(bodySVG(backFirst(e) ? "back" : "front")) : paint(bodySVG("front")) + paint(bodySVG("back"))}</div>${musList(e)}</div>`}`;
@@ -266,6 +267,8 @@ function hero(e) {
       .then((c) => { if (!box.isConnected) return c.dispose(); v3d = c; $(".v3d-load", box)?.remove(); })
       .catch(() => { box.innerHTML = `<span class="v3d-load muted small">3D view is not available on this device.</span>`; });
     $("#v3dv", h).onclick = (ev) => { const b = ev.target.closest("button"); if (!b) return; v3dView = b.dataset.v; $$("#v3dv button", h).forEach((x) => x.classList.toggle("on", x === b)); indicate(h); v3d?.setView(v3dView); haptic(); };
+    $(".v3d-zoom", h).onclick = (ev) => { const b = ev.target.closest("[data-z]"); if (b) { v3d?.zoomBy(+b.dataset.z); haptic(); } };
+    const sb3 = $("#v3ds", h); if (sb3) sb3.onclick = () => { const r = sb3.textContent === "1×" ? .5 : 1; v3d?.setSpeed(r); sb3.textContent = `${r}×`; sb3.setAttribute("aria-label", `Speed ${r}×`); haptic(); };
     const pb = $("#v3dp", h); if (pb) pb.onclick = () => { if (!v3d) return; const on = v3d.togglePlay(); pb.innerHTML = ic(on ? "pause" : "play", "sm"); pb.setAttribute("aria-label", on ? "Pause" : "Play"); haptic(); };
   }
   const s = $("#hseg", h); if (s) s.onclick = (ev) => { const b = ev.target.closest("button"); if (!b || b.classList.contains("on")) return; heroMode = b.dataset.m; haptic(); hero(e); };

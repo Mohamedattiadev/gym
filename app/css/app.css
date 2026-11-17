@@ -779,3 +779,6 @@ body:has(.tpill) .toast { bottom: calc(var(--tab-h) + var(--safe-b) + 70px); }
 @media (min-width: 768px) { .rov { background: color-mix(in oklab, var(--bg) 82%, transparent); backdrop-filter: blur(8px); } .rov-in { background: var(--bg); padding: 20px; border-radius: 24px; box-shadow: var(--raise); } }
 @media (prefers-reduced-motion: reduce) { .rov { animation: none; } }
 body:has(#rov) .toast { bottom: auto; top: calc(var(--safe-t) + 16px); }
+.dhero .v3d-zoom { position: absolute; z-index: 2; inset-inline-end: 8px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; }
+.dhero .v3d-spd { width: auto; min-width: 32px; padding: 0 9px; font-weight: 750; font-size: 12.5px; }
+.dhero .v3d.zoomed { touch-action: none; cursor: move; }
