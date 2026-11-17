@@ -133,6 +133,7 @@ function buildClip(model, P, eqProp = null) {
   const clip = new THREE.AnimationClip("pose", times.at(-1), tracks); clip.props = P.fixed || []; clip.eqProps = P.props || [];
   if (P.bar === "back" && eqProp === "bar") clip.props = [...clip.props, "backbar"];
   if (P.one && eqProp === "db") { clip.props = [...clip.props, "db" + P.one]; clip.eqProps = clip.eqProps.filter((k) => k !== "db"); } // one dumbbell (single-arm moves)
+  if (P.hold === "neutral" && eqProp === "db") { clip.props = [...clip.props.filter((k) => !/^db[LR]$/.test(k)), "dbn" + (P.one || "")]; clip.eqProps = clip.eqProps.filter((k) => k !== "db"); } // hammer grip: handle front-to-back
   return clip;
 }
 
@@ -156,9 +157,9 @@ function makeProp(kinds, model, dark) {
     } else if (kind === "backbar" || kind === "lowbar") { const o = new THREE.Group(); o.add(cyl(.014, 1.8)); for (const x of [-.74, .74]) { const p = cyl(.1, .05); p.position.x = x; o.add(p); } g.add(o);
       const get = (n) => loc(bones[n], new THREE.Vector3()).clone();
       ups.push(() => { const k = backBar(get, kind === "lowbar"); o.position.copy(k.c); o.quaternion.setFromUnitVectors(X, k.left); });
-    } else if (/^db[LR]?$/.test(kind)) for (let i = 0; i < 2; i++) { if (kind !== "db" && i !== (kind === "dbR" ? 1 : 0)) continue; const o = new THREE.Group(); o.add(cyl(.016, .16)); for (const x of [-.09, .09]) { const p = cyl(.05, .05); p.position.x = x; o.add(p); } g.add(o);
+    } else if (/^dbn?[LR]?$/.test(kind)) for (let i = 0; i < 2; i++) { if (/[LR]$/.test(kind) && i !== (kind.endsWith("R") ? 1 : 0)) continue; const nt = kind.startsWith("dbn"); const o = new THREE.Group(); o.add(cyl(.016, .16)); for (const x of [-.09, .09]) { const p = cyl(.05, .05); p.position.x = x; o.add(p); } g.add(o);
       ups.push(() => { const h = hand[i]; o.position.copy(grip(h)); loc(h[0], a); loc(h[1], b); // handle across the palm
-        const n = b.sub(a).normalize(), side = c.set(i ? -1 : 1, 0, 0); o.quaternion.setFromUnitVectors(X, side.sub(n.multiplyScalar(side.dot(n))).normalize()); });
+        const n = b.sub(a).normalize(), side = nt ? c.set(0, 0, 1) : c.set(i ? -1 : 1, 0, 0); o.quaternion.setFromUnitVectors(X, side.sub(n.multiplyScalar(side.dot(n))).normalize()); });
     } else if (kind === "bench") { // pad under the back, pitched to follow the torso (flat or incline); seat block under the hips when inclined
       const o = new THREE.Mesh(new THREE.BoxGeometry(.3, .07, 1.2), pad), seat = new THREE.Mesh(new THREE.BoxGeometry(.3, .07, .38), pad), legs = new THREE.Mesh(new THREE.BoxGeometry(.08, 1, .08), mat); g.add(o, seat, legs);
       const t = new THREE.Vector3(), n = new THREE.Vector3(), x = new THREE.Vector3(), M = new THREE.Matrix4(), UP = new THREE.Vector3(0, 1, 0);

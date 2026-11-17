@@ -1,0 +1,7 @@
+{"ecc":"back","plant":false,"grip":true,"fixed":["seat","chestpad"],"base":{"torso":[0,1,0.05],"neck":[0,1,0.1],"thigh":[0.16,-0.05,1],"shin":[0.05,-1,0.05]},
+ "keys":[
+  {"uarm":[0.18,-0.08,1],"farm":[0.1,-0.05,1]},
+  {"uarm":[1,-0.08,-0.15],"farm":[1,-0.05,-0.05]}],
+ "wrong":{
+  "0":{"tempo":{"ecc":0.45,"bottom":0}},
+  "1":{"keys":[null,{"torso":[0,1,-0.35],"neck":[0,1,-0.2]}],"view":"side"}}}
