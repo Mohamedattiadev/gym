@@ -146,9 +146,13 @@ Low-clutter additions (no new screens):
 Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 
 ## 11. Expert review + quality audit (block 27 — owner, 2026-11-17)
-- ⬜ Persona reviews (25-year frontend, backend/data, architect, performance, accessibility/UX, security) + normal testers (beginner, mid-workout lifter, 55+ weak eyesight, TR/AR speaker, iPhone Safari, desktop keyboard user). Full brief in NEXT_SESSION.md block 27.
-- ⬜ Concept checklist, measured: dead code, caching/SW, performance, availability/resilience, reliability, testing (tools/test/all.sh), maintainability, SEO/manifest, legal.
-- ⬜ Review backlog (merged, P0/P1/P2) goes here after the review; fix P0 + cheap P1 first.
+- 🟡 Persona reviews — session A done (session 20): frontend+architect, performance, accessibility/UX reports in docs/review/; session B open: backend/data, security + normal testers. (25-year frontend, backend/data, architect, performance, accessibility/UX, security) + normal testers (beginner, mid-workout lifter, 55+ weak eyesight, TR/AR speaker, iPhone Safari, desktop keyboard user). Full brief in NEXT_SESSION.md block 27.
+- ⬜ Concept checklist, measured: dead code, caching/SW, performance, availability/resilience, reliability, testing (✅ tools/test/all.sh: calc unit tests, JS syntax, precache list, 19 routes x phone/desktop x light/dark, check3d — session 20), maintainability, SEO/manifest, legal.
+- ⬜ Review backlog (merged, P0/P1/P2) goes here after session B; fix P0 + cheap P1 first. Preliminary P0 from session A:
+  - FE-1 Back stuck on #/train after finishing/discarding a workout (guard redirects push history) -> location.replace in train.js:101,225,494, guide.js:151, warmup.js:59.
+  - PERF-1 sw.js:58-75 video cache miss downloads the whole file before playback (~3.5 s avg on gym signal) -> return network response, cache in background.
+  - A11Y-1 no aria-checked/pressed/selected on switches/segments/tabs/chips/set-done; A11Y-2 rest overlay not modal + no live region; A11Y-3 light tier badges + --ok text < 4.5:1 (new tokens in the report); A11Y-4 session placeholders 3.3:1 [ask owner]; A11Y-5 looping autoplay videos with no pause, ignore reduced motion.
+  - Strong P1: FE-2 async route race (route counter), FE-3/4/PERF-4/5 SW version mixing + 3D not precached (update via toast, separate 3D cache), FE-5 store flush loses failed writes, FE-7 sync merge resurrects deletions, FE-6 global error log, PERF-2 library list 11k nodes (content-visibility), PERF-3 one WebGL renderer, A11Y-6 tap targets < 44 px, A11Y-7/8 200% zoom + px fonts, A11Y-9/10 focus after route + unnamed thumb links. Dead: app/data/content/ (835 KB never fetched), showOverlay, rerender, duplicate onImg, each_side.
 
 ## Notes (2026-11-17 session)
 - Steps 1-8 of the cheap-first order done (also: equipment profile, balance warning, timer.js + floating pill, rest timer uses it) (rename, git+Pages workflow, theme+settings, emoji/dialogs, machine filter + TR/AR search). No commit yet.
