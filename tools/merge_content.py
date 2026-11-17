@@ -35,7 +35,10 @@ def merge(final):
         c = json.loads(Path(f).read_text())
         fam.update(c["families"]); mp.update(c["map"]); vn.update(c.get("variantNotes", {}))
     changed = 0
+    broken = set((ROOT / "tools/broken_videos.txt").read_text().split()) if (ROOT / "tools/broken_videos.txt").exists() else set()
     for x in final:
+        if x["slug"] in broken:  # source stream is a single logo frame → treat as no video
+            x["video"] = None
         fid = mp.get(x["slug"])
         f = fam.get(fid) if fid else None
         if f:
