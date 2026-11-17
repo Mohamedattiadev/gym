@@ -187,6 +187,20 @@ function makeProp(kinds, model, dark) {
         o.quaternion.setFromRotationMatrix(M.makeBasis(l, f, t)); o.position.copy(hip).lerp(kn, .3).addScaledVector(f, .12);
         roll.position.copy(an).addScaledVector(f, -.08).addScaledVector(t, .02); roll.quaternion.setFromUnitVectors(X, l);
         const fl = an.y - .12, h = Math.max(.1, o.position.y - fl); post.scale.y = h; post.position.set(o.position.x, o.position.y - h / 2, o.position.z); });
+    } else if (kind === "preacher") { // preacher pad under the upper arms (top edge in the armpits), sloping with the arms + post
+      const o = new THREE.Mesh(new THREE.BoxGeometry(.5, .06, .32), pad), post = new THREE.Mesh(new THREE.BoxGeometry(.07, 1, .07), mat); g.add(o, post);
+      const t = new THREE.Vector3(), n = new THREE.Vector3(), x = new THREE.Vector3(), M = new THREE.Matrix4(), UP = new THREE.Vector3(0, 1, 0);
+      ups.push(() => { const sh = loc(bones.upperarm01L, a).clone().add(loc(bones.upperarm01R, b)).multiplyScalar(.5), el = loc(bones.lowerarm01L, a).clone().add(loc(bones.lowerarm01R, b)).multiplyScalar(.5);
+        t.subVectors(el, sh).normalize(); n.copy(UP).addScaledVector(t, -UP.dot(t)).normalize(); x.crossVectors(n, t);
+        o.quaternion.setFromRotationMatrix(M.makeBasis(x, n, t)); o.position.copy(sh).lerp(el, .62).addScaledVector(n, -.08);
+        const fl = Math.min(loc(bones.footL, c).y, loc(bones.footR, c).y) - .07, lo = o.position.clone().addScaledVector(t, .13).addScaledVector(n, -.03), h = Math.max(.1, lo.y - fl);
+        post.scale.y = h; post.position.set(lo.x, lo.y - h / 2, lo.z); });
+    } else if (kind === "sled") { // leg press foot plate: square plate under the soles, facing the hips
+      const o = new THREE.Mesh(new THREE.BoxGeometry(.62, .62, .04), pad); g.add(o);
+      const d = new THREE.Vector3(), Z = new THREE.Vector3(0, 0, 1);
+      ups.push(() => { const hip = loc(bones.upperleg01L, a).clone().add(loc(bones.upperleg01R, b)).multiplyScalar(.5);
+        const ft = loc(bones.footL, a).clone().add(loc(bones.footR, b)).multiplyScalar(.5), toe = loc(bones["toe3-1L"] || bones.toe31L, a).clone().add(loc(bones["toe3-1R"] || bones.toe31R, b)).multiplyScalar(.5);
+        d.subVectors(ft, hip).normalize(); o.quaternion.setFromUnitVectors(Z, d); o.position.copy(ft).lerp(toe, .45).addScaledVector(d, .06); });
     } else if (kind === "dipbars") for (let i = 0; i < 2; i++) { const o = new THREE.Mesh(new THREE.CylinderGeometry(.02, .02, .6, 16), mat); o.rotation.x = Math.PI / 2; g.add(o);
       ups.push(() => { o.position.copy(grip(hand[i], .3)); o.position.y -= .02; });
     }
