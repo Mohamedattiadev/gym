@@ -258,7 +258,8 @@ const POSE3D = { "high-bar-squat": /heel|elevated|drops?\b|pause|safety|century/
   "reverse-grip-press": /incline/i, "incline-lateral-raise": /hybrid|seated|facing bench/i, "incline-shrug": /bent|one arm|45 degree/i, "mid-trap-shrug": /1 arm|landmine|smith/i, "french-press": /3 way|standing|tri-f|dumbbell|incline/i,
   "hamstring-hyper": /barbell|single leg/i, "hanging-scapular-shrug": /v-bar|low trap/i, "pulldown-scapular-shrug": /v-bar/i, "incline-cable-fly": /slight|extreme/i,
   "hip-adduction": /$^/, "rear-delt-row": /lying|trx/i, "high-elbow-shrug": /machine/i, "cable-pullover": /incline|single/i, "kickback": /$^/,
-  "lying-cable-curl": /$^/, "single-arm-pushdown": /internally|lateral head/i, "single-arm-overhead-extension": /pressed|bench/i };
+  "lying-cable-curl": /$^/, "single-arm-pushdown": /internally|lateral head/i, "single-arm-overhead-extension": /pressed|bench/i,
+  "tibialis-raise": /plate/i, "glute-rdl": /stance|landmine|belt|split|twist/i, "incline-cable-pushdown": /$^/, "forearm-supination": /strap|cable/i };
 export const move3d = (e) => { const m = MOVE3D[e.family]; if (m) return !NOT_SAME.test(e.name) ? m : null;
   const not = POSE3D[e.family]; return not && !not.test(e.name) ? "p:" + e.family : null; };
 /** prop in the hands for the 3D motion, from the exercise's equipment */
