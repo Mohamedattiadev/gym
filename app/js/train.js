@@ -265,7 +265,7 @@ function side() {
     now = `<b>${warm ? "Warm-up set" : `Set ${n} of ${work.length}`}</b>${r ? `<span class="num">${w ? `${esc(w)} ${u} × ${esc(r)}` : `${esc(r)} reps`}</span>` : ""}`; }
   if (sideSlug !== en.slug || !el.firstElementChild) {
     sideSlug = en.slug;
-    el.innerHTML = `<div class="card sside"><a class="sv" href="#/ex/${en.slug}" aria-label="How to do ${esc(e?.name || en.slug)}">${e?.poster ? `<img class="hbg" src="${e.poster}" alt="">` : ""}${e?.video ? `<video src="${e.video}" poster="${e?.poster || ""}" autoplay muted loop playsinline preload="metadata"></video>` : e?.poster ? `<img src="${e.poster}" alt="">` : ""}</a>
+    el.innerHTML = `<div class="card sside"><a class="sv" href="#/ex/${en.slug}" aria-label="How to do ${esc(e?.name || en.slug)}">${e?.poster ? `<img class="hbg" src="${e.poster}" alt="">` : ""}${e?.video ? `<video src="${e.video}" poster="${e?.poster || ""}"${RM.matches ? "" : " autoplay"} muted loop playsinline preload="metadata"></video>` : e?.poster ? `<img src="${e.poster}" alt="">` : ""}</a>
       <div class="sbody"><div class="eyebrow">Now</div><div class="st">${esc(e?.name || en.slug)}</div><div class="snow" id="snow"></div>
         <div class="row" style="gap:8px;margin-top:10px"><a class="btn sm" href="#/ex/${en.slug}">${ic("info", "sm")} How to</a><button class="btn sm" data-go="${ei}">${ic("chev", "sm")} Go to sets</button></div></div></div>
       <div class="card sprog"><div class="eyebrow">Workout</div><div id="slist"></div></div>`;

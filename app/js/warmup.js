@@ -2,7 +2,7 @@
 // session (#/warmup/w/<id>, #/warmup/s), muscle primers, ramp-up calculator, cool-down (#/warmup/cool).
 // Content: data/guide/warmups.json (en/tr/ar). Lazy-loaded by the router.
 import { S, save } from "./store.js";
-import { $, esc, ic, haptic, beep, toast, selectIn, indicate, openSheet } from "./ui.js";
+import { $, esc, ic, haptic, beep, toast, selectIn, indicate, openSheet, RM } from "./ui.js";
 import { BY, lastSets } from "./data.js";
 import { warmupSets } from "./calc.js";
 import { setTop, go, redirect, fillIll, routeId, live } from "./main.js";
@@ -117,7 +117,7 @@ const sec = (t) => String(t || "0").split(":").reduce((a, x) => a * 60 + +x, 0);
 const ytId = (u) => (String(u).match(/[?&]v=([\w-]{11})/) || String(u).match(/youtu\.be\/([\w-]{11})/) || [])[1];
 function visual(d) {
   if (d.fig) return `<img class="wfig" src="media/figures/${esc(d.fig)}.webp" alt="">`;
-  if (d.clip?.file) return `<video class="wclip" src="media/clips/${esc(d.clip.file)}" autoplay muted loop playsinline preload="metadata"></video>
+  if (d.clip?.file) return `<video class="wclip" src="media/clips/${esc(d.clip.file)}"${RM.matches ? " controls" : " autoplay"} muted loop playsinline preload="metadata"></video>
     <a class="wcred" href="${esc(d.clip.q)}" target="_blank" rel="noopener">${ic("yt", "xs")} ${esc(d.clip.by || "Original")}</a>`;
   if (d.clip?.q && ytId(d.clip.q)) return `<div class="ill wfill" data-ill="warmup"></div>
     <button class="btn sm wdemo" id="wpDemo">${ic("play", "sm")} Watch demo · ${esc(d.clip.by || "")}</button>`;

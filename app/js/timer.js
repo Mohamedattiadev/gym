@@ -18,7 +18,8 @@ function tick() {
     const left = T.end - now(); const sec = Math.ceil(left / 1000);
     if (sec <= 3 && sec > 0 && sec !== lastBeep) { lastBeep = sec; beep([[660, .08]], .12); }
     if (left <= 0) { const { kind, nx } = T; stop(); haptic("rest"); beep([[880, .15], [880, .15], [1320, .3]]);
-      toast(kind === "rest" ? (nx?.name ? `Go: ${nx.name}${nx.set ? ` · set ${nx.set}` : ""}` : "Rest over — next set") : "Time is up");
+      const msg = kind === "rest" ? (nx?.name ? `Go: ${nx.name}${nx.set ? ` · set ${nx.set}` : ""}` : "Rest over — next set") : "Time is up";
+      toast(msg); say(kind === "rest" ? `Rest over. ${msg}` : msg);
       dispatchEvent(new CustomEvent("gym:timerend", { detail: { kind, nx } })); return; }
   }
   if (T.mode === "interval" && T.running) {
@@ -104,18 +105,28 @@ addEventListener("hashchange", () => { renderOverlay(); renderPill(); });
 
 /* ---- full-screen rest overlay: big ring, the next set, −15 / +30 / Skip; minimise = back to the pill ---- */
 const RR = 46, RC = 2 * Math.PI * RR;
+/* A11Y-2: assertive live region (rest end), focus + inert while the overlay is open */
+function say(t) {
+  let l = $("#srLive"); if (!l) { l = document.createElement("div"); l.id = "srLive"; l.className = "sr"; l.setAttribute("aria-live", "assertive"); document.body.appendChild(l); }
+  l.textContent = ""; setTimeout(() => (l.textContent = t), 60);
+}
+let rovFocus = null;
+const setInert = (on) => { const a = $(".app"); if (a) a.inert = on; };
 export function showOverlay() { if (isRest()) { T.min = false; persist(); tick(); } }
 function renderOverlay() {
   let o = $("#rov");
   const want = isRest() && !T.min && !location.hash.startsWith("#/timer");
-  if (!want) { if (o) { o.remove(); document.removeEventListener("keydown", onKey); } return; }
+  if (!want) {
+    if (o) { o.remove(); document.removeEventListener("keydown", onKey); setInert(false); if (rovFocus?.isConnected) rovFocus.focus({ preventScroll: true }); rovFocus = null; }
+    return;
+  }
   const v = view(), nx = T.nx || {};
   if (!o) {
-    o = document.createElement("div"); o.id = "rov"; o.className = "rov"; o.setAttribute("role", "dialog"); o.setAttribute("aria-label", "Rest");
+    o = document.createElement("div"); o.id = "rov"; o.className = "rov"; o.setAttribute("role", "dialog"); o.setAttribute("aria-modal", "true"); o.setAttribute("aria-label", "Rest");
     const u = S.settings.unit, load = nx.r ? `${nx.w ? `${nx.w} ${u} × ` : ""}${nx.r} reps` : "";
     o.innerHTML = `<div class="rov-in"><div class="rov-top"><span class="lbl">Rest</span><button class="iconbtn" data-r="min" aria-label="Minimise">${ic("down")}</button></div>
       <div class="ringwrap"><svg viewBox="0 0 100 100"><circle class="track" cx="50" cy="50" r="${RR}"/><circle class="fill" cx="50" cy="50" r="${RR}" stroke-dasharray="${RC}"/></svg>
-        <button class="big num" data-r="toggle" aria-label="Pause or resume"></button><div class="sub2 rov-st"></div></div>
+        <button class="big num" data-r="toggle"></button><div class="sub2 rov-st"></div></div>
       ${nx.name ? `<div class="rov-next">${nx.slug ? `<img src="media/poster/${esc(nx.slug)}.jpg" alt="">` : ""}<div class="grow"><div class="dim tiny">Next</div><b>${esc(nx.name)}</b>
         <div class="muted small">${[nx.set ? `Set ${nx.set}${nx.of ? ` of ${nx.of}` : ""}` : "", load].filter(Boolean).join(" · ")}</div></div></div>`
         : nx.text ? `<div class="rov-next"><b class="grow">${esc(nx.text)}</b></div>` : ""}
@@ -123,9 +134,13 @@ function renderOverlay() {
       <button class="btn lg primary block" data-r="skip">Skip rest</button></div>`;
     o.onclick = (e) => { const b = e.target.closest("[data-r]"); if (!b) return; haptic(); const k = b.dataset.r;
       if (k === "min") { T.min = true; persist(); tick(); } if (k === "toggle") toggle(); if (k === "m15") add(-15); if (k === "p30") add(30); if (k === "skip") stop(); };
-    document.body.appendChild(o); document.addEventListener("keydown", onKey);
+    rovFocus = document.activeElement; document.body.appendChild(o); document.addEventListener("keydown", onKey);
+    setInert(true); $('[data-r="skip"]', o).focus({ preventScroll: true, focusVisible: false });
   }
-  $(".big", o).textContent = v.text;
+  const big = $(".big", o); big.textContent = v.text;
+  // spoken name: remaining time in 15 s steps (not every second) + what a tap does
+  const step = `${Math.ceil(v.ms / 15000) * 15 || 0}`, lab = `${v.text} rest left, tap to ${v.running ? "pause" : "resume"}`;
+  if (big.dataset.s !== step + v.running) { big.dataset.s = step + v.running; big.setAttribute("aria-label", lab); }
   $(".fill", o).setAttribute("stroke-dashoffset", RC * (1 - v.pct));
   $(".rov-st", o).textContent = v.running ? "" : "Paused — tap to resume";
 }

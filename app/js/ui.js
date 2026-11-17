@@ -60,6 +60,24 @@ export function indicate(root = document) {
 export function selectIn(b) { if (!b) return; [...b.parentElement.children].forEach((x) => x.tagName === "BUTTON" && x.classList.toggle("on", x === b)); indicate(b.parentElement.parentElement || document); }
 addEventListener("resize", () => indicate());
 
+/* A11Y-1: selected state for assistive tech, derived from the `.on` class everywhere (one place, no call sites):
+   .seg / chip buttons -> aria-pressed, .ptabs -> role=tab + aria-selected, .switch -> role=switch + aria-checked. */
+function ariaOf(b) {
+  if (b.tagName !== "BUTTON") return;
+  const on = String(b.classList.contains("on")), p = b.parentElement;
+  if (b.classList.contains("switch")) { b.setAttribute("role", "switch"); if (b.getAttribute("aria-checked") !== on) b.setAttribute("aria-checked", on); }
+  else if (p?.classList.contains("ptabs")) { p.setAttribute("role", "tablist"); b.setAttribute("role", "tab"); if (b.getAttribute("aria-selected") !== on) b.setAttribute("aria-selected", on); }
+  else if (p?.classList.contains("seg") || b.classList.contains("chip")) { if (b.getAttribute("aria-pressed") !== on) b.setAttribute("aria-pressed", on); }
+}
+const ARIA_SEL = ".switch, .ptabs > button, .seg > button, button.chip";
+export function ariaSync(root = document) { if (root.matches?.(ARIA_SEL)) ariaOf(root); root.querySelectorAll?.(ARIA_SEL).forEach(ariaOf); }
+new MutationObserver((ms) => {
+  for (const m of ms) {
+    if (m.type === "attributes") { if (m.target.matches(ARIA_SEL)) ariaOf(m.target); }
+    else m.addedNodes.forEach((n) => n.nodeType === 1 && ariaSync(n));
+  }
+}).observe(document.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ["class"] });
+
 /* ---- tiny SVG charts ---- */
 /** Line chart; pts = numbers. opts: {h, area, dots} */
 export function lineChart(pts, { h = 120, area = true, dots = true, cls = "chart" } = {}) {

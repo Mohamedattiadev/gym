@@ -1,6 +1,6 @@
 // Exercise library (grid; list | detail at ≥1000px) and the exercise page (#/ex/<slug>) incl. pain / joint flags.
 import { S, save } from "./store.js";
-import { $, $$, esc, ic, openSheet, closeSheet, toast, haptic, fmtDate, lineChart, indicate, selectIn } from "./ui.js";
+import { $, $$, esc, ic, openSheet, closeSheet, toast, haptic, fmtDate, lineChart, indicate, selectIn, RM } from "./ui.js";
 import { EX, BY, GROUPS, EQUIP, searchEx, hasEquip, byTier, swaps, history, bestOf, setsText, exerciseStats, weekStart, WEEK,
   JOINTS, JOINT_IDS, avoidFor, flaggedJoints, jointFriendly, hurts, FAM } from "./data.js";
 import { MBY, bodySVG } from "./body.js";
@@ -262,12 +262,15 @@ function hero(e) {
         ${mv ? `<div class="row" style="gap:8px"><button class="v3d-play v3d-spd" id="v3ds" aria-label="Speed 1×">1×</button><button class="v3d-play" id="v3dp" aria-label="Pause">${ic("pause", "sm")}</button></div>` : ""}</div>
         <div class="v3d-zoom"><button class="v3d-play" data-z="1.4" aria-label="Zoom in">${ic("plus", "sm")}</button><button class="v3d-play" data-z="0.7" aria-label="Zoom out">${ic("minus", "sm")}</button></div>
         <span class="cap"><i style="background:var(--accent)"></i>Main <i style="background:color-mix(in oklab, var(--accent) 42%, #cdc7c2)"></i>Helpers${mv ? "" : ` · <span class="dim">still pose</span>`} · <a class="dim" href="https://github.com/AssiamahS/opengym3d" target="_blank" rel="noopener">OpenGym3D</a></span>`
-    : mode === "video" ? `${e.poster ? `<img class="hbg" src="${e.poster}" alt="">` : ""}<video id="vid" src="${e.video}" poster="${e.poster}" autoplay muted loop playsinline preload="auto"></video><div class="ctl"><button id="spd" aria-label="Playback speed 1×">${ic("speed", "sm")}<b>1×</b></button><button id="fsb" class="sq" aria-label="Full screen">${ic("fs", "sm")}</button></div>`
+    : mode === "video" ? `${e.poster ? `<img class="hbg" src="${e.poster}" alt="">` : ""}<video id="vid" src="${e.video}" poster="${e.poster}"${RM.matches ? "" : " autoplay"} muted loop playsinline preload="${RM.matches ? "metadata" : "auto"}"></video><div class="ctl"><button id="ppb" class="sq" aria-label="${RM.matches ? "Play" : "Pause"}">${ic(RM.matches ? "play" : "pause", "sm")}</button><button id="spd" aria-label="Playback speed 1×">${ic("speed", "sm")}<b>1×</b></button><button id="fsb" class="sq" aria-label="Full screen">${ic("fs", "sm")}</button></div>`
       : `<div class="hmus${hasFig ? " withfig" : ""}">${hasFig ? `<img class="fig" src="${e.figure}" alt="Animated figure of this movement, worked muscles in red">` : ""}
           <div class="mini-body">${hasFig ? paint(bodySVG(backFirst(e) ? "back" : "front")) : paint(bodySVG("front")) + paint(bodySVG("back"))}</div>${musList(e)}</div>`}`;
   const v = $("#vid", h); const setAR = fitHero(h, e);
   if (v && setAR) v.addEventListener("loadedmetadata", () => v.videoWidth && setAR(v.videoHeight / v.videoWidth), { once: true });
-  if (v) { const sp = [1, .5, .25]; let i = 0; const sb = $("#spd", h); sb.onclick = () => { i = (i + 1) % 3; v.playbackRate = sp[i]; $("b", sb).textContent = sp[i] + "×"; sb.setAttribute("aria-label", `Playback speed ${sp[i]}×`); haptic(); };
+  if (v) { // A11Y-5: pause/play (WCAG 2.2.2); no autoplay under reduced motion
+    const pb = $("#ppb", h), syncP = () => { pb.innerHTML = ic(v.paused ? "play" : "pause", "sm"); pb.setAttribute("aria-label", v.paused ? "Play" : "Pause"); };
+    pb.onclick = () => { haptic(); v.paused ? v.play().catch(() => {}) : v.pause(); }; v.onplay = v.onpause = syncP;
+    const sp = [1, .5, .25]; let i = 0; const sb = $("#spd", h); sb.onclick = () => { i = (i + 1) % 3; v.playbackRate = sp[i]; $("b", sb).textContent = sp[i] + "×"; sb.setAttribute("aria-label", `Playback speed ${sp[i]}×`); haptic(); };
     const fb = $("#fsb", h), isFs = () => document.fullscreenElement === h || document.webkitFullscreenElement === h;
     const toggleFs = () => {
       haptic();
@@ -278,7 +281,7 @@ function hero(e) {
     };
     fb.onclick = toggleFs;
     v.ondblclick = toggleFs; let lt = 0; v.addEventListener("touchend", (ev) => { const t = Date.now(); if (t - lt < 300) { ev.preventDefault(); toggleFs(); lt = 0; } else lt = t; });
-    h.onfullscreenchange = h.onwebkitfullscreenchange = () => { const on = isFs(); h.classList.toggle("fs", on); fb.innerHTML = ic(on ? "fsx" : "fs", "sm"); fb.setAttribute("aria-label", on ? "Exit full screen" : "Full screen"); if (!on) screen.orientation?.unlock?.(); }; v.play().catch(() => {}); }
+    h.onfullscreenchange = h.onwebkitfullscreenchange = () => { const on = isFs(); h.classList.toggle("fs", on); fb.innerHTML = ic(on ? "fsx" : "fs", "sm"); fb.setAttribute("aria-label", on ? "Exit full screen" : "Full screen"); if (!on) screen.orientation?.unlock?.(); }; if (!RM.matches) v.play().catch(() => {}); }
   if (mode === "3d") {
     const box = $("#v3d", h);
     import("./view3d.js").then((m) => m.mount3d(box, { primary: e.primary || [], secondary: e.secondary || [], move: mv, view: v3dView, prop: prop3d(e) }))

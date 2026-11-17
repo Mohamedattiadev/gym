@@ -23,6 +23,7 @@ function idb() {
 const tx = (mode, fn) => new Promise((res, rej) => {
   const t = db.transaction(STORE, mode); const st = t.objectStore(STORE);
   const out = fn(st); t.oncomplete = () => res(out && out.result); t.onerror = () => rej(t.error);
+  t.onabort = () => rej(t.error || new DOMException("aborted", "AbortError")); // BE-1: quota abort must reject, not hang
 });
 
 export async function loadStore() {
