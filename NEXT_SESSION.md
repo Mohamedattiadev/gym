@@ -9,6 +9,8 @@ TOKEN RULE (owner): be economical. Do 2–3 blocks per session; then update PLAN
 
 Other sessions may commit in parallel: always `git add` specific files.
 
+COMMIT RULE (owner, 2026-11-18): NO "Co-Authored-By: Claude" trailer and no Claude attribution in commit messages or PRs — the owner does not want Claude listed as a GitHub contributor. Plain messages only.
+
 DONE (session 4): 14–16 (guides, quiz, Gym mode, share). DONE (session 5): 18 realistic human body map — app/js/anatomy.js from react-native-body-highlighter (MIT, credited; generator in tools/anatomy/), used everywhere bodySVG is (home recovery, exercise hero Muscles, body map); heads `data-h`, Info/Exercises tabs grouped by head, modes Muscles | This week | Recovery, half sheet on phone; "2 Part High Elbow Row" content bug fixed. See PLAN "Notes (session 5)". Owner should look at the new body; possible polish: light-theme Muscles mode still pale-ish, rhomboids/biceps long-short splits are synthesized.
 
 DONE (session 6): 19 3D view — hero Video | Muscles | 3D for every exercise (app/js/view3d.js, vendored three.js, app/3d/ from OpenGym3D MIT; motion only for 15 exact families via MOVE3D/NOT_SAME in exercise.js). See PLAN "Notes (session 6)". Owner should try it on the phone (drag, Front/Side/Back).
