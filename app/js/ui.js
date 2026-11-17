@@ -29,7 +29,7 @@ const P = {
   moon: '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>', chev: '<path d="M9 6l6 6-6 6"/>',
   chart: '<path d="M3 3v18h18M7 15l4-4 3 3 6-6"/>', book: '<path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4zM20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/>',
   bolt: '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>', share: '<path d="M12 3v13M7 8l5-5 5 5M5 21h14"/>', note: '<path d="M4 4h16v12l-4 4H4zM16 20v-4h4"/>',
-  pause: '<path d="M8 5v14M16 5v14" stroke-width="3"/>',
+  pause: '<path d="M8 5v14M16 5v14" stroke-width="3"/>', speed: '<path d="M4 18a8 8 0 1 1 16 0"/><path d="M12 18l4-5"/>',
   calendar: '<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/>',
   phone: '<rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/>',
   reps: '<path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/>',

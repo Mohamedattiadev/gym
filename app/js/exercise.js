@@ -221,17 +221,17 @@ function hero(e) {
   if (v3d) { v3d.dispose(); v3d = null; }
   const mode = heroMode === "3d" ? "3d" : heroMode === "fig" || !e.video ? "fig" : "video";
   const mv = move3d(e);
-  h.classList.toggle("is3d", mode === "3d");
+  h.classList.toggle("is3d", mode === "3d"); h.classList.toggle("isvid", mode === "video");
   h.innerHTML = `<div class="seg sm" id="hseg">${e.video ? `<button data-m="video" class="${mode === "video" ? "on" : ""}">Video</button>` : ""}<button data-m="fig" class="${mode === "fig" ? "on" : ""}">Muscles</button><button data-m="3d" class="${mode === "3d" ? "on" : ""}">3D</button></div>
     ${mode === "3d" ? `<div class="v3d" id="v3d"><span class="v3d-load muted small">Loading 3D…</span></div>
         <div class="v3d-bar"><div class="seg sm" id="v3dv">${["front", "side", "back"].map((k) => `<button data-v="${k}" class="${v3dView === k ? "on" : ""}">${k[0].toUpperCase() + k.slice(1)}</button>`).join("")}</div>
         ${mv ? `<button class="v3d-play" id="v3dp" aria-label="Pause">${ic("pause", "sm")}</button>` : ""}</div>
         <span class="cap"><i style="background:var(--accent)"></i>Main <i style="background:color-mix(in oklab, var(--accent) 50%, #b8b0a9)"></i>Helpers${mv ? "" : ` · <span class="dim">still pose</span>`} · <a class="dim" href="https://github.com/AssiamahS/opengym3d" target="_blank" rel="noopener">OpenGym3D</a></span>`
-    : mode === "video" ? `<video id="vid" src="${e.video}" poster="${e.poster}" autoplay muted loop playsinline preload="auto"></video><div class="ctl"><button id="spd" aria-label="Playback speed">1×</button></div>`
+    : mode === "video" ? `<video id="vid" src="${e.video}" poster="${e.poster}" autoplay muted loop playsinline preload="auto"></video><div class="ctl"><button id="spd" aria-label="Playback speed 1×">${ic("speed", "sm")}<b>1×</b></button></div>`
       : `<div class="hmus${hasFig ? " withfig" : ""}">${hasFig ? `<img class="fig" src="${e.figure}" alt="Animated figure of this movement, worked muscles in red">` : ""}
           <div class="mini-body">${hasFig ? paint(bodySVG(backFirst(e) ? "back" : "front")) : paint(bodySVG("front")) + paint(bodySVG("back"))}</div>${musList(e)}</div>`}`;
   const v = $("#vid", h);
-  if (v) { const sp = [1, .5, .25]; let i = 0; $("#spd", h).onclick = () => { i = (i + 1) % 3; v.playbackRate = sp[i]; $("#spd", h).textContent = sp[i] + "×"; haptic(); }; v.play().catch(() => {}); }
+  if (v) { const sp = [1, .5, .25]; let i = 0; const sb = $("#spd", h); sb.onclick = () => { i = (i + 1) % 3; v.playbackRate = sp[i]; $("b", sb).textContent = sp[i] + "×"; sb.setAttribute("aria-label", `Playback speed ${sp[i]}×`); haptic(); }; v.play().catch(() => {}); }
   if (mode === "3d") {
     const box = $("#v3d", h);
     import("./view3d.js").then((m) => m.mount3d(box, { primary: e.primary || [], secondary: e.secondary || [], move: mv, view: v3dView }))
