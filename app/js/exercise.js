@@ -1,6 +1,6 @@
 // Exercise library (grid; list | detail at ≥1000px) and the exercise page (#/ex/<slug>) incl. pain / joint flags.
 import { S, save } from "./store.js";
-import { $, $$, esc, ic, openSheet, closeSheet, toast, haptic, fmtDate, lineChart, indicate, selectIn, RM } from "./ui.js";
+import { $, BP, $$, esc, ic, openSheet, closeSheet, toast, haptic, fmtDate, lineChart, indicate, selectIn, RM } from "./ui.js";
 import { EX, BY, GROUPS, EQUIP, searchEx, hasEquip, byTier, swaps, history, bestOf, setsText, exerciseStats, weekStart, WEEK,
   JOINTS, JOINT_IDS, avoidFor, flaggedJoints, jointFriendly, hurts, FAM } from "./data.js";
 import { MBY, bodySVG, panZoom } from "./body.js";
@@ -10,7 +10,7 @@ import { tierBadge, tierInfo, levelBars, xcard, onImg, isFav, toggleFav, restTex
 import * as T from "./train.js";
 
 const view = () => $("#view");
-const wide = () => innerWidth >= 1000;
+const wide = () => innerWidth >= BP.wide;
 const L = (o) => (o && typeof o === "object" ? o[S.settings.lang || "en"] || o.en || "" : o || "");
 
 /* ================= LIBRARY ================= */
@@ -86,7 +86,7 @@ export function libraryView() {
   wireLib(null);
   requestAnimationFrame(() => scrollTo(0, lib.scroll));
 }
-addEventListener("hashchange", (e) => { if (/#\/(lib)?$/.test(new URL(e.oldURL).hash || "#/") && innerWidth < 1000) lib.scroll = scrollY; });
+addEventListener("hashchange", (e) => { if (/#\/(lib)?$/.test(new URL(e.oldURL).hash || "#/") && innerWidth < BP.wide) lib.scroll = scrollY; });
 
 /** ≥1000px: list on the left stays mounted, detail on the right. */
 function splitView(slug) {
@@ -266,7 +266,8 @@ const POSE3D = { "high-bar-squat": /heel|elevated|drops?\b|pause|safety|century/
   "barrel-press": /incline/i, "viking-press": /poor man/i, "rear-delt-around-the-world": /fixed elbow/i, "single-leg-rdl": /$^/, "lateral-lunge": /elevated/i,
   "rear-delt-fly": /machine/i, "glute-hyper": /single/i, "forearm-drag-curl": /pinwheel/i, "front-delt-around-the-world": /$^/, "reverse-hyper": /$^/,
   "meadows-row": /$^/, "bench-assisted-pull-up": /$^/, "ball-knee-tuck": /$^/,
-  "bodyweight-row": /$^/, "bodyweight-curl": /$^/, "bodyweight-triceps-extension": /$^/ };
+  "bodyweight-row": /$^/, "bodyweight-curl": /$^/, "bodyweight-triceps-extension": /$^/,
+  "triceps-push-ups": /decline|incline/i, "deficit-push-ups": /$^/, "reverse-crunch": /pelvic|seated/i };
 export const move3d = (e) => { const m = MOVE3D[e.family]; if (m) return !NOT_SAME.test(e.name) ? m : null;
   const not = POSE3D[e.family]; return not && !not.test(e.name) ? "p:" + e.family : null; };
 /** prop in the hands for the 3D motion, from the exercise's equipment */
