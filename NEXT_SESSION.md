@@ -5,7 +5,7 @@ Test: `node tools/test/shot.mjs <outDir> <steps.json>` (phone/ipad/desktop, wait
 
 TOKEN RULE (owner): be economical. Do 2–3 blocks per session; then update PLAN.md statuses, rewrite this file (done / remaining / exact next step), commit, run `tools/handoff.sh` (opens a fresh session in a new kitty window) and stop. Accounts rotate automatically on rate limit via ~/.local/bin/ccx. Use few, focused subagents; avoid re-reading big files.
 
-CAUTION: app/index.html still has uncommitted splash-screen markup (animated dumbbell, `sp-*` classes — CSS for it is already committed) that sessions 3–4 did NOT make. Don't revert it; session 4 asked the owner in its final report whether to commit it — if the owner answered, follow that; otherwise leave it out of commits (git add specific files).
+Splash screen: committed by another session (bff4a2f) — resolved. Other sessions may commit in parallel: always `git add` specific files.
 
 DONE (session 3): feedback 1–5, Superset. DONE (session 4): 14 strength goals + nutrition calculator/guide + onboarding quiz (guide.js, data/guide/*.json), 15 plans explained, 16 Gym mode + share workout image. See PLAN "Notes (session 4)".
 
