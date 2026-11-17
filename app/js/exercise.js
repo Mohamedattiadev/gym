@@ -239,7 +239,10 @@ const POSE3D = { "high-bar-squat": /heel|elevated|drops?\b|pause|safety|century/
   "cable-lateral-raise": /single|behind|lying|incline/i, "back-extension": /single|poor man/i, "t-bar-row": /machine|chest supported/i, "sumo-deadlift": /dumbbell/i,
   "low-bar-squat": /safety/i, "smith-squat": /heel/i, "preacher-curl": /flat side|poor man|single|tilt/i,
   "chest-supported-row": /one arm|tucked|90 degrees|lat row/i, "spider-curl": /high|hammer|^dumbbell spider curls$|^ez bar spider|^dumbbell spider "/i,
-  "machine-chest-press": /decline|single/i, "machine-shoulder-press": /single/i, "leg-press": /single/i };
+  "machine-chest-press": /decline|single/i, "machine-shoulder-press": /single/i, "leg-press": /single/i,
+  "leg-press-calf-raise": /single/i, "chest-supported-high-elbow-row": /one arm|2 part|seal/i, "high-elbow-dumbbell-row": /bent over|wall/i,
+  "concentration-curl": /$^/, "rear-delt-cable-fly": /seated|single|partial/i, "dumbbell-leg-curl": /kneeling|ground|hamstring curls/i,
+  "behind-body-cable-curl": /incline|face out/i };
 export const move3d = (e) => { const m = MOVE3D[e.family]; if (m) return !NOT_SAME.test(e.name) ? m : null;
   const not = POSE3D[e.family]; return not && !not.test(e.name) ? "p:" + e.family : null; };
 /** prop in the hands for the 3D motion, from the exercise's equipment */

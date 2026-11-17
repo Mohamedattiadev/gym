@@ -195,12 +195,12 @@ function makeProp(kinds, model, dark) {
         o.quaternion.setFromRotationMatrix(M.makeBasis(x, n, t)); o.position.copy(sh).lerp(el, .62).addScaledVector(n, -.08);
         const fl = Math.min(loc(bones.footL, c).y, loc(bones.footR, c).y) - .07, lo = o.position.clone().addScaledVector(t, .13).addScaledVector(n, -.03), h = Math.max(.1, lo.y - fl);
         post.scale.y = h; post.position.set(lo.x, lo.y - h / 2, lo.z); });
-    } else if (kind === "sled") { // leg press foot plate: square plate under the soles, facing the hips
+    } else if (kind === "sled" || kind === "sledtoe") { // leg press foot plate: square plate under the soles, facing the hips (sledtoe = under the balls of the feet, calf raise)
       const o = new THREE.Mesh(new THREE.BoxGeometry(.62, .62, .04), pad); g.add(o);
       const d = new THREE.Vector3(), Z = new THREE.Vector3(0, 0, 1);
       ups.push(() => { const hip = loc(bones.upperleg01L, a).clone().add(loc(bones.upperleg01R, b)).multiplyScalar(.5);
         const ft = loc(bones.footL, a).clone().add(loc(bones.footR, b)).multiplyScalar(.5), toe = loc(bones["toe3-1L"] || bones.toe31L, a).clone().add(loc(bones["toe3-1R"] || bones.toe31R, b)).multiplyScalar(.5);
-        d.subVectors(ft, hip).normalize(); o.quaternion.setFromUnitVectors(Z, d); o.position.copy(ft).lerp(toe, .45).addScaledVector(d, .06); });
+        d.subVectors(ft, hip).normalize(); o.quaternion.setFromUnitVectors(Z, d); o.position.copy(ft).lerp(toe, kind === "sled" ? .45 : 1).addScaledVector(d, kind === "sled" ? .06 : .035); });
     } else if (kind === "dipbars") for (let i = 0; i < 2; i++) { const o = new THREE.Mesh(new THREE.CylinderGeometry(.02, .02, .6, 16), mat); o.rotation.x = Math.PI / 2; g.add(o);
       ups.push(() => { o.position.copy(grip(hand[i], .3)); o.position.y -= .02; });
     }
