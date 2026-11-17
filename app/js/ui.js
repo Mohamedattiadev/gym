@@ -93,7 +93,12 @@ export function lineChart(pts, { h = 120, area = true, dots = true, cls = "chart
 /** Vertical bars; items = [[label, value, isCurrent]] */
 export const vBars = (items) => { const mx = Math.max(1, ...items.map((x) => x[1]));
   return `<div class="vbars">${items.map(([l, v, cur]) => `<div class="${cur ? "cur" : ""}" title="${esc(String(v))}"><i style="height:${Math.max(3, Math.round((v / mx) * 84))}px"></i><span>${esc(l)}</span></div>`).join("")}</div>`; };
+/** FE-21: layout breakpoints (px) used by JS — keep in sync with the @media rules in app.css (comment at its top).
+ * tablet = bottom tab bar -> side nav, panel = body map side panel, wide = 2-pane library / exercise, xl = 2-column workout */
+export const BP = { tablet: 768, panel: 820, wide: 1000, xl: 1200 };
+// UT-9: nothing yet this week = a neutral "6,275 last week", not a red loss
 export const delta = (a, b, fmt = (x) => x) => { const d = a - b; if (!b && !a) return `<span class="d same">–</span>`;
+  if (!a) return `<span class="d same">${fmt(b)} last week</span>`;
   return d > 0 ? `<span class="d up">${ic("arrowUp", "xs")}${fmt(d)}</span>` : d < 0 ? `<span class="d down">${ic("arrowDown", "xs")}${fmt(-d)}</span>` : `<span class="d same">same</span>`; };
 export const fmtKg = (v) => (v >= 10000 ? (v / 1000).toFixed(1) + "t" : Math.round(v).toLocaleString());
 

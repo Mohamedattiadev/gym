@@ -1,5 +1,5 @@
 // One global timer (stopwatch | countdown | intervals) shared by the Timer page, rest timer and the floating pill.
-import { $, esc, ic, haptic, beep, toast, fmtDur } from "./ui.js";
+import { $, BP, esc, ic, haptic, beep, toast, fmtDur } from "./ui.js";
 import { S } from "./store.js";
 
 const KEY = "gym-timer";
@@ -153,7 +153,7 @@ const PRESETS = [30, 60, 90, 120, 180, 300];
 const IPRESETS = [["Tabata", 20, 10, 8], ["EMOM", 60, 0, 10], ["40 / 20", 40, 20, 10], ["30 / 30", 30, 30, 12]];
 let tab = null, cdSet = { m: 1, s: 30 }, iSet = { w: 40, r: 20, n: 10 };
 export function timerView(setTop, root, arg) {
-  setTop({ title: "Timer", back: innerWidth < 768 });
+  setTop({ title: "Timer", back: innerWidth < BP.tablet });
   if (arg && ["stopwatch", "countdown", "interval"].includes(arg)) tab = arg;
   if (T.mode) tab = T.mode; tab ||= "countdown";
   const R = 46, CC = 2 * Math.PI * R;

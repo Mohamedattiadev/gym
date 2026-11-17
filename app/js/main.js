@@ -1,7 +1,7 @@
 // App shell: router, top bar, theme, shared exercise card, body map, Jeff's videos, boot.
 import "./log.js"; // FE-6: first, so boot errors are caught too
 import { S, save, tomb, loadStore, persist, flush, degraded } from "./store.js";
-import { $, $$, esc, ic, openSheet, closeSheet, initSheet, toast, haptic, unlockAudio, indicate, selectIn, RM } from "./ui.js";
+import { $, BP, $$, esc, ic, openSheet, closeSheet, initSheet, toast, haptic, unlockAudio, indicate, selectIn, RM } from "./ui.js";
 import { EX, searchEx, byTier, weeklyVolume, loadExercises, hasEquip, hurts, recovery } from "./data.js";
 import { MUSCLES, MBY, bodySVG, muscleBox, zoomTo, panZoom, FULL, HEAT, CREDIT } from "./body.js";
 import { nextRoute, routeId, live, go, routeParts, onRoute, setTop } from "./nav.js";
@@ -19,8 +19,9 @@ import * as Sync from "./sync.js";
    later opens only let the dumbbell snap together (~0.9 s) so the app stays quick. */
 const SPLASH_T0 = performance.now();
 const SPLASH_MIN = (() => {
-  try { const d = new Date().toDateString(); if (localStorage.getItem("gym-splash-day") !== d) { localStorage.setItem("gym-splash-day", d); return 1200; } } catch { /* storage blocked */ }
-  return 0; // 19e: hide as soon as the first view is ready
+  // PERF-10: the full splash animation only on the very first launch; afterwards hide as soon as the first view is ready
+  try { if (!localStorage.getItem("gym-splash-seen")) { localStorage.setItem("gym-splash-seen", "1"); return 1200; } } catch { /* storage blocked */ }
+  return 0;
 })();
 function hideSplash() {
   const el = document.getElementById("splash");
@@ -32,27 +33,27 @@ function hideSplash() {
 const view = $("#view");
 
 /* ================= router ================= */
-const TAB_OF = { "": "home", lib: "lib", ex: "lib", body: "body", train: "train", workout: "train", session: "train", pick: "train", me: "me", videos: "home", settings: "settings", timer: "train", guide: "me", start: "train", profile: "me", standards: "me", nutrition: "me", plans: "train", plan: "train", warmup: "train" };
+const TAB_OF = { "": "home", lib: "lib", ex: "lib", body: "body", train: "train", workout: "train", session: "train", pick: "train", me: "me", videos: "home", settings: "me", timer: "train", guide: "me", start: "train", profile: "me", standards: "me", nutrition: "me", plans: "train", plan: "train", warmup: "train" };
 let lastDepth = 0;
 function route(quiet) {
   if (quiet !== true) quiet = false;
   nextRoute();
   const [, a = "", b] = routeParts();
-  const narrow = innerWidth < 768;
-  const depth = ["ex", "workout", "session", "pick", "videos", "guide", "start", "profile", "standards", "nutrition", "plans", "plan", "warmup"].includes(a) || ((a === "timer" || a === "settings") && narrow) ? 1 : 0;
+  const narrow = innerWidth < BP.tablet;
+  const depth = ["ex", "workout", "session", "pick", "videos", "guide", "start", "profile", "standards", "nutrition", "plans", "plan", "warmup"].includes(a) || (a === "timer" && narrow) ? 1 : 0;
   const back = depth < lastDepth; lastDepth = depth;
-  const keep = (a === "ex" || a === "lib") && innerWidth >= 1000 && !!$("#lpane"); // 2-pane library: only the detail pane changes
+  const keep = (a === "ex" || a === "lib") && innerWidth >= BP.wide && !!$("#lpane"); // 2-pane library: only the detail pane changes
   view.onclick = null; view.oninput = null; view.onchange = null; if (!keep) view.className = "";
   document.body.classList.remove("has-cta", "scroll-down", "bm-open"); BM = null;
   const tab = TAB_OF[a] || "home";
-  $$(".nav .navl").forEach((x) => x.classList.toggle("active", x.dataset.tab === tab || (narrow && tab === "settings" && x.dataset.tab === "me")));
+  $$(".nav .navl").forEach((x) => x.classList.toggle("active", x.dataset.tab === tab));
   setTop({ back: depth > 0 });
   const fn = { "": homeView, lib: libraryView, ex: exerciseView, body: bodyMap, train: T.trainView, workout: T.workoutView, session: T.sessionView,
     pick: libraryView, me: meView, guide: G("guideView"), start: G("startView"), profile: G("profileView"), standards: G("standardsView"), nutrition: G("nutritionView"), plans: G("plansView"), plan: G("plansView"), warmup: G("warmupView", "warmup"), videos, settings: settingsView, timer: (x) => timerView(setTop, view, x) }[a] || homeView;
   try { fn(b); } catch (err) { console.error(err); view.innerHTML = `<div class="empty">Something went wrong.<br><small>${esc(err.message)}</small></div>`; }
   T.updateLiveDot(); fillIll(view);
   if (quiet) { hideSplash(); return; }
-  if (!["pick", "lib", "ex"].includes(a) || (a === "ex" && innerWidth < 1000)) window.scrollTo(0, 0);
+  if (!["pick", "lib", "ex"].includes(a) || (a === "ex" && innerWidth < BP.wide)) window.scrollTo(0, 0);
   document.documentElement.classList.toggle("back-nav", back);
   if (!keep) { view.classList.remove("page"); void view.offsetWidth; view.classList.add("page"); }
   requestAnimationFrame(() => indicate(view));
@@ -142,7 +143,7 @@ const headOf = (hs, e) => hs.find((h) => h.match && new RegExp(h.match, "i").tes
 const heatOf = (m, vol) => HEAT[Math.min(4, Math.ceil(((vol[m.id] || 0) / (m.lm[1] ? m.lm[1] * .6 : 10)) * 4))];
 const recText = (r) => (!r ? "Ready" : r.state === "r" ? `Trained <24h · ~${r.left}h to go` : r.left ? `Needs ~${r.left} more hours` : "Ready");
 let BM = null; // live body-map controller (detail panel), null when the page is not shown
-const wide = () => innerWidth >= 820;
+const wide = () => innerWidth >= BP.panel;
 addEventListener("popstate", () => { if (BM && location.hash.startsWith("#/body")) BM.sync(); });
 addEventListener("keydown", (e) => { if (e.key === "Escape" && BM?.open && !$("#sheet").open) { e.preventDefault(); BM.close(); } });
 function bodyMap() {
@@ -181,7 +182,7 @@ function bodyMap() {
     svg.style.height = Math.max(150, Math.min(svg._nat, ctl.full ? svg._nat : avail)) + "px";
   };
   const sheetH = () => Math.round(innerHeight * .45);
-  const fullH = () => innerHeight - ($("#topbar")?.offsetHeight || 56) - (innerWidth < 768 ? ($(".nav")?.offsetHeight || 64) : 0);
+  const fullH = () => innerHeight - ($("#topbar")?.offsetHeight || 56) - (innerWidth < BP.tablet ? ($(".nav")?.offsetHeight || 64) : 0);
   const setH = (h, anim = true) => { det.style.transition = anim ? "" : "none"; det.style.height = h + "px"; };
   const zoom = (id) => {
     if (!$(`path.m[data-m="${id}"]`, svg)) return zoomTo(svg, FULL, dur());

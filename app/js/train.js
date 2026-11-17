@@ -1,6 +1,6 @@
 // Workouts, level-based plans, workout editor, live session logger (beat last week + plateau auto-adjust), tools.
 import { S, save, tomb, persist } from "./store.js";
-import { $, $$, esc, ic, uid, ask, askText, choose, openSheet, closeSheet, toast, haptic, beep, confetti, fmtDur, RM } from "./ui.js";
+import { $, BP, $$, esc, ic, uid, ask, askText, choose, openSheet, closeSheet, toast, haptic, beep, confetti, fmtDur, RM } from "./ui.js";
 import { BY, history, lastSets, bestOf, setsText, swaps, WEEK } from "./data.js";
 import { PLANS, planById, buildPlan, pickPlans, recommendedId, planOpts, planSlots, minutesOf, freqOf, FOCUS, loadPlanText } from "./plans.js";
 import { e1rm, platesFor, plateColor, plateHeight, warmupSets, suggest } from "./calc.js";
@@ -268,7 +268,7 @@ export function sessionView() {
   wireSession(); sideCur = -1; side();
 }
 /* 22b part 4b: wide screens (>= 1200 px) — sticky right column: current exercise video, next set, workout progress */
-const WIDE = matchMedia("(min-width: 1200px)");
+const WIDE = matchMedia(`(min-width: ${BP.xl}px)`);
 let sideCur = -1, sideSlug = "";
 function curEntry() {
   const en = S.active?.entries || []; if (!en.length) return -1;

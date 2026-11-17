@@ -1,10 +1,11 @@
-// Me: progress tracking (week vs week, charts, PRs, heat map, bodyweight) + history. Settings page.
+// Me: three tabs — Progress (week vs week, charts, PRs, bodyweight), Workouts (16-week calendar + past sessions), Settings.
+// Routes: #/me, #/me/workouts, #/me/settings (#/settings opens the Settings tab).
 import { S, save, tomb, persist, exportData, importData, flush } from "./store.js";
 import { $, $$, esc, ic, ask, askText, openSheet, closeSheet, toast, haptic, fmtDate, fmtDur, lineChart, vBars, delta, fmtKg, indicate, selectIn } from "./ui.js";
 import { EX, BY, EQUIP_PROFILES, bestOf, setsText, weeklyVolume, periodStats, exerciseStats, weekStart, WEEK, DAY, history, flaggedJoints, JOINTS } from "./data.js";
 import { MUSCLES, MBY } from "./body.js";
 import { e1rm } from "./calc.js";
-import { setTop } from "./nav.js";
+import { setTop, routeParts } from "./nav.js";
 import { installNow, standalone } from "./install.js";
 import { applyTheme, fillIll, MEDIA_CACHE, tierBadge } from "./components.js";
 import { lib } from "./exercise.js";
@@ -13,26 +14,28 @@ import { readLog, clearLog } from "./log.js";
 
 const view = () => $("#view");
 const me = { tab: "progress", ex: null };
+const TABS = [["progress", "Progress"], ["workouts", "Workouts"], ["settings", "Settings"]];
 const u = () => S.settings.unit;
 
 // FE-6: shown only when something actually went wrong
 const errLog = () => { const n = readLog().length; return n ? `<div class="dim tiny errlog" style="margin-top:6px">${n} app error${n > 1 ? "s" : ""} logged · <a href="#" id="copyLog" style="color:var(--accent-text)">Copy debug log</a> · <a href="#" id="clearLog" style="color:var(--accent-text)">Clear</a></div>` : ""; };
 export function meView() {
+  const [, a, b] = routeParts();
+  me.tab = a === "settings" ? "settings" : TABS.some(([k]) => k === b) ? b : "progress";
   setTop({ title: "Me" });
-  view().innerHTML = `<div class="ptabs" id="mtabs">${[["progress", "Progress"], ["history", "History"]].map(([k, l]) => `<button data-k="${k}" class="${me.tab === k ? "on" : ""}">${l}</button>`).join("")}</div>
-    <div class="tab-panel" id="mpanel"></div>
-    <div class="card list-sep" style="margin-top:18px">
-      <a class="setrow-s" href="#/profile"><span class="ico">${ic("user", "sm")}</span><b class="grow">Profile</b><span class="v hide-s">Level, days, body</span>${ic("chev", "sm")}</a>
-      <a class="setrow-s" href="#/guide"><span class="ico">${ic("info", "sm")}</span><b class="grow">Guides</b><span class="v hide-s">Plan quiz, strength goals, nutrition</span>${ic("chev", "sm")}</a>
-      <a class="setrow-s" href="#/settings"><span class="ico">${ic("settings", "sm")}</span><b class="grow">Settings</b><span class="v hide-s">Theme, units, backup</span>${ic("chev", "sm")}</a></div>`;
-  $("#mtabs").onclick = (e) => { const b = e.target.closest("button"); if (!b || b.classList.contains("on")) return; haptic(); me.tab = b.dataset.k; selectIn(b); panel(); };
+  view().innerHTML = `<div class="ptabs" id="mtabs" role="tablist">${TABS.map(([k, l]) => `<button data-k="${k}" role="tab" class="${me.tab === k ? "on" : ""}">${l}</button>`).join("")}</div>
+    <div class="tab-panel" id="mpanel"></div>`;
+  $("#mtabs").onclick = (e) => { const b = e.target.closest("button"); if (!b || b.classList.contains("on")) return; haptic(); me.tab = b.dataset.k;
+    window.history.replaceState(window.history.state, "", me.tab === "progress" ? "#/me" : `#/me/${me.tab}`); selectIn(b); panel(); };
   panel();
 }
 function panel() {
-  const p = $("#mpanel"); p.style.animation = "none"; void p.offsetWidth; p.style.animation = "";
-  me.tab === "history" ? historyPanel(p) : progressPanel(p);
+  const p = $("#mpanel"); p.style.animation = "none"; void p.offsetWidth; p.style.animation = ""; p.onclick = null;
+  me.tab === "workouts" ? historyPanel(p) : me.tab === "settings" ? settingsPanel(p) : progressPanel(p);
   fillIll(p); requestAnimationFrame(() => indicate(p));
 }
+/** #/settings (keyboard ",", old links) = the Settings tab of Me */
+export function settingsView() { me.tab = "settings"; window.history.replaceState(window.history.state, "", "#/me/settings"); meView(); }
 
 /* ---------------- progress ---------------- */
 function progressPanel(p) {
@@ -51,7 +54,7 @@ function progressPanel(p) {
   p.innerHTML = `<div class="cols">
     <div class="stack">
       <div class="card pad"><div class="row between"><b>This week</b><span class="dim tiny">vs last week</span></div>
-        <div class="kpis" style="margin-top:10px">${kpi(fmtKg(cur.kg), `Volume ${u()}`, delta(cur.kg, prev.kg, fmtKg))}${kpi(cur.sets, "Hard sets", delta(cur.sets, prev.sets))}${kpi(cur.reps, "Reps", delta(cur.reps, prev.reps))}</div></div>
+        <div class="kpis" style="margin-top:10px">${kpi(fmtKg(cur.kg), `Volume ${u()}`, delta(cur.kg, prev.kg, fmtKg))}${kpi(cur.sets, "Sets", delta(cur.sets, prev.sets))}${kpi(cur.reps, "Reps", delta(cur.reps, prev.reps))}</div></div>
       <div class="card pad"><div class="row between" style="margin-bottom:10px"><b>Weekly volume</b><span class="dim tiny">${u()} lifted · 8 weeks</span></div>${vBars(weeks.map(([l, v, c]) => [l, v, c]))}</div>
       <div class="card pad"><div class="row between" style="margin-bottom:10px"><b>Sets per muscle</b><span class="dim tiny">last 7 days · aim 10+</span></div>
         <div class="bars">${mus.map(([m, n]) => `<div><span class="ellip">${m.name}</span><div class="b"><i class="${n < 10 && m.lm[0] > 0 ? "low" : ""}" style="width:${(n / mx) * 100}%"></i></div><span class="v num">${n}</span></div>`).join("")}</div></div>
@@ -60,7 +63,6 @@ function progressPanel(p) {
       ${progressChart()}
       ${perExercise(w0)}
       ${prList()}
-      <div class="card pad"><div class="row between" style="margin-bottom:10px"><b>Last 16 weeks</b><span class="dim tiny">${S.sessions.filter((s) => s.endedAt > now - 112 * DAY).length} workouts</span></div>${heatMap()}</div>
       ${bodyweightCard()}
     </div></div>`;
   wireChart(p); wireBW(p);
@@ -128,8 +130,9 @@ function wireBW(p) {
 
 /* ---------------- history ---------------- */
 function historyPanel(p) {
-  const ss = [...S.sessions].reverse();
-  p.innerHTML = ss.length ? `<div class="stack tight stagger">${ss.slice(0, 60).map((s) => `<div class="card pad">
+  const ss = [...S.sessions].reverse(), now = Date.now();
+  p.innerHTML = ss.length ? `<div class="card pad" style="margin-bottom:12px"><div class="row between" style="margin-bottom:10px"><b>Last 16 weeks</b><span class="dim tiny">${S.sessions.filter((s) => s.endedAt > now - 112 * DAY).length} workouts</span></div>${heatMap()}</div>
+    <div class="stack tight stagger">${ss.slice(0, 60).map((s) => `<div class="card pad">
       <div class="row"><div class="grow"><b>${esc(s.name)}</b><div class="dim small">${fmtDate(s.endedAt)} · ${fmtDur(s.endedAt - s.startedAt)} · ${s.entries.reduce((a, en) => a + en.sets.length, 0)} sets</div></div>
       <button class="iconbtn sm" data-del="${esc(s.id)}" aria-label="Delete" style="color:var(--t3)">${ic("trash", "sm")}</button></div>
       ${s.entries.map((en) => `<div class="small" style="margin-top:6px"><b class="b">${esc(BY[en.slug]?.name || en.slug)}</b> <span class="dim">${esc(setsText(en.sets))}</span></div>`).join("")}</div>`).join("")}</div>`
@@ -146,16 +149,20 @@ function historyPanel(p) {
 
 /* ================= SETTINGS ================= */
 const segH = (id, opts, cur) => `<div class="seg sm" id="${id}">${opts.map(([v, l]) => `<button data-v="${v}" class="${String(cur) === String(v) ? "on" : ""}">${l}</button>`).join("")}</div>`;
-export async function settingsView() {
-  setTop({ title: "Settings", back: innerWidth < 768 });
+async function settingsPanel(host) {
+  const rerun = () => settingsPanel(host);
   const total = EX.reduce((n, e) => n + (e.video ? 2 : 1), 0);
   const st = S.settings, joints = flaggedJoints();
   const row = (icn, label, ctl, sub = "") => `<div class="setrow-s"><span class="ico">${ic(icn, "sm")}</span><div class="grow"><b>${label}</b>${sub ? `<div class="dim tiny">${sub}</div>` : ""}</div>${ctl}</div>`;
-  view().innerHTML = `<div class="cols"><div class="stack">
+  host.innerHTML = `<div class="cols"><div class="stack">
+      <div class="card list-sep">
+        <a class="setrow-s" href="#/profile"><span class="ico">${ic("user", "sm")}</span><div class="grow"><b>Profile</b><div class="dim tiny">Level, days, body</div></div>${ic("chev", "sm")}</a>
+        <a class="setrow-s" href="#/guide"><span class="ico">${ic("info", "sm")}</span><div class="grow"><b>Guides</b><div class="dim tiny">Plan quiz, strength goals, nutrition</div></div>${ic("chev", "sm")}</a>
+        <a class="setrow-s" href="#/start"><span class="ico">${ic("user", "sm")}</span><div class="grow"><b>Set-up questions</b><div class="dim tiny">Level, days, equipment, body · picks a plan</div></div>${ic("chev", "sm")}</a>
+      </div>
       <div class="card list-sep">
         ${row(document.documentElement.dataset.theme === "light" ? "sun" : "moon", "Theme", segH("sTheme", [["light", "Light"], ["dark", "Dark"], ["system", "Auto"]], st.theme || "system"))}
         <div class="setrow-s wrap">${`<span class="ico">${ic("dumbbell", "sm")}</span><div class="grow"><b>Equipment</b><div class="dim tiny">Library, plans and swaps show only what you have</div></div>`}${segH("sEquip", [["gym", "Full gym"], ["dumbbells", "Dumbbells"], ["home", "Home"]], st.equip || "gym").replace('class="seg sm"', 'class="seg sm block"')}</div>
-        <a class="setrow-s" href="#/start"><span class="ico">${ic("user", "sm")}</span><div class="grow"><b>Set-up questions</b><div class="dim tiny">Level, days, equipment, body · picks a plan</div></div>${ic("chev", "sm")}</a>
         ${row("scale", "Units", segH("sUnit", [["kg", "kg"], ["lb", "lb"]], st.unit))}
         ${row("calc", "Bar weight", segH("sBar", [[20, "20"], [15, "15"], [10, "10"]], st.bar))}
       </div>
@@ -198,7 +205,7 @@ export async function settingsView() {
     <p class="muted small" style="margin:0 0 8px"><b>Android:</b> works in Chrome and the installed app. It uses a silent audio track, so on some phones it pauses music from other apps — turn it off here if it does.</p>
     <p class="muted small" style="margin:0 0 8px"><b>iPhone:</b> the lock-screen player works in Safari; notifications only in the app added to the Home Screen (iOS 16.4+). iOS stops web apps soon after locking, so the beep at rest end may not play while locked. No vibration on iPhone.</p>
     <p class="muted small" style="margin-bottom:0"><b>Later:</b> a real Live Activity / Dynamic Island needs a native app wrapper (Capacitor). Not built yet.</p>`, null, { half: true }); };
-  const cp = $("#clrPain"); if (cp) cp.onclick = async () => { if (await ask("Clear all pain flags?", { ok: "Clear" })) { S.pain = {}; save("pain"); settingsView(); } };
+  const cp = $("#clrPain"); if (cp) cp.onclick = async () => { if (await ask("Clear all pain flags?", { ok: "Clear" })) { S.pain = {}; save("pain"); rerun(); } };
   $("#dlAll").onclick = () => downloadMedia(urls(false), stat);
   $("#dlTop").onclick = () => downloadMedia(urls(true), stat);
   const ins = $("#inst"); if (ins) ins.onclick = installNow;
@@ -226,7 +233,7 @@ export async function settingsView() {
     csvPreview(C, R);
   };
   $("#imp").onchange = async (e) => {
-    try { const txt = await e.target.files[0].text(); if (!(await ask("Replace your workouts and history with this backup?", { ok: "Replace", danger: true }))) return; await importData(txt); toast("Backup restored"); settingsView(); }
+    try { const txt = await e.target.files[0].text(); if (!(await ask("Replace your workouts and history with this backup?", { ok: "Replace", danger: true }))) return; await importData(txt); toast("Backup restored"); rerun(); }
     catch { toast("Not a valid Gym backup"); }
   };
 }
