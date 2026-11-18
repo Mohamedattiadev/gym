@@ -80,6 +80,11 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus { outline: 0; } /* A11Y-9 route
 .restb, .tierbtn, .linkbtn, a.link, .sec .link, .sec a, .setrow .n { position: relative; }
 .restb::after, .tierbtn::after, .linkbtn::after, a.link::after, .sec .link::after, .sec a::after { content: ""; position: absolute; inset: -10px -4px; }
 .setrow .n::after { content: ""; position: absolute; inset: -7px; }
+/* Q0d: small text links get a 44 px hit area too */
+.cmp td a, a.lnk, #lockHelp, #persist, .srcs a { position: relative; }
+.cmp td a::after, a.lnk::after, #lockHelp::after, #persist::after, .srcs a::after { content: ""; position: absolute; inset: -12px -4px; }
+.srcs summary { padding: 12px 0; margin: -12px 0; }
+.mzoom button:disabled, .zctl button:disabled { opacity: .35; cursor: default; }
 .iconbtn.on { color: var(--accent); } .iconbtn.on svg { fill: currentColor; }
 .iconbtn::before, .btn::before, .chip::before, .lrow::before, .navl::before, .itile::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: currentColor; opacity: 0; transition: opacity var(--dur) var(--ease); pointer-events: none; }
 @media (hover: hover) { .iconbtn:hover::before, .btn:hover::before, .chip:hover::before, a.lrow:hover::before, button.lrow:hover::before, .itile:hover::before { opacity: .06; } }

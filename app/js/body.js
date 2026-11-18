@@ -74,7 +74,8 @@ export function panZoom(host, svgs, { minW = FULL[2] / 5, signal } = {}) {
     return [cl(cx, w, FULL[0], FULL[2]) - w / 2, cl(cy, h, FULL[1], FULL[3]) - h / 2, w, h];
   };
   const zoomed = (v = vb()) => v[3] < maxH(asp()) * .97;
-  const mark = () => host.classList.toggle("zoomed", zoomed());
+  /* Q0d: Zoom out / Full body are disabled while the whole body is already shown */
+  const mark = () => { const z = zoomed(); host.classList.toggle("zoomed", z); host.querySelectorAll('[data-z="0.7"], [data-z="0"]').forEach((b) => (b.disabled = !z)); };
   svgs.forEach((s) => (s._pz = mark));
   const apply = (v) => { svgs.forEach((s) => { cancelAnimationFrame(s._raf); s.setAttribute("viewBox", v.map((n) => n.toFixed(2)).join(" ")); }); mark(); };
   const go = (v, ms = 320) => { v = fit(v); if (matchMedia("(prefers-reduced-motion: reduce)").matches) return apply(v); svgs.forEach((s) => zoomTo(s, v, ms)); };
@@ -90,7 +91,7 @@ export function panZoom(host, svgs, { minW = FULL[2] / 5, signal } = {}) {
   let lastA = 0; const ro = new ResizeObserver(() => requestAnimationFrame(() => {
     if (!s0.isConnected) return ro.disconnect(); const a = asp(); if (Math.abs(a - lastA) < .01) return; lastA = a;
     if (framed) api.frame(framed, 0); else if (zoomed()) apply(fit(vb())); }));
-  ro.observe(s0); signal?.addEventListener("abort", () => ro.disconnect());
+  ro.observe(s0); signal?.addEventListener("abort", () => ro.disconnect()); requestAnimationFrame(mark);
   host.addEventListener("pointerdown", (e) => { framed = null;
     if (e.button > 0 || e.target.closest("button, a")) return;
     pts.set(e.pointerId, { x: e.clientX, y: e.clientY });

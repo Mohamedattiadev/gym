@@ -15,6 +15,7 @@ const ex = JSON.parse(readFileSync(root + "app/data/exercises.json", "utf8"));
 const slug = (ex.find((e) => e.slug === "barbell-bench-press") || ex[0]).slug;
 const ROUTES = ["#/", "#/lib", `#/ex/${slug}`, "#/body", "#/train", "#/plan/ulf3", "#/plans", "#/me", "#/guide", "#/start", "#/profile",
   "#/standards", "#/nutrition", "#/warmup", "#/videos", "#/settings", "#/timer", "#/pick", "#/session"];
+const ONLY = process.env.ONLY?.split(","); // e.g. ONLY="#/me,#/settings" = just these routes
 const PER_KIND = 3, SHEET_MAX = 14;
 const SKIP_TEXT = /^(sign out|log out|disconnect)/i; // never pressed
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -168,7 +169,7 @@ async function run(vpName, scheme, { clicks, routes = ROUTES }) {
 
 const combos = quick ? [["phone", "light", true]] : [["phone", "light", true], ["desktop", "dark", true], ["small", "dark", false], ["laptop", "light", false]];
 const results = [];
-for (const [vp, sc, clicks] of combos) { console.log(`== ${vp} ${sc}${clicks ? "" : " (layout only)"}`); results.push(await run(vp, sc, { clicks })); }
+for (const [vp, sc, clicks] of combos) { console.log(`== ${vp} ${sc}${clicks ? "" : " (layout only)"}`); results.push(await run(vp, sc, { clicks, routes: ONLY ? ROUTES.filter((r) => ONLY.includes(r)) : ROUTES })); }
 writeFileSync(`${out}/clickthrough.json`, JSON.stringify(results, null, 1));
 
 // ---- summary ----
