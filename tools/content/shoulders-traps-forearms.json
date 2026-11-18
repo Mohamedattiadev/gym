@@ -765,15 +765,15 @@
    ],
    "en": {
     "title": "Incline Front Delt Around The World",
-    "about": "Takes the front delts through a long overhead arc for a big range of motion.",
+    "about": "Takes the front delts through a long arc for a big range of motion.",
     "steps": [
-     "Lie back on an incline bench holding light dumbbells at your hips.",
-     "Keep the elbows slightly bent and palms facing up.",
-     "Sweep the arms out and up in a wide arc until overhead.",
-     "Reverse the arc slowly back down to your hips."
+     "Stand facing a steep incline bench and lean your chest on the pad, light dumbbells hanging at your sides.",
+     "Keep the elbows slightly bent and the thumbs pointing forward.",
+     "Raise the arms in front of you to head height, then sweep them out to the sides in a wide arc.",
+     "Reverse the arc slowly back down to your sides."
     ],
     "cues": [
-     "Keep the lower back on the bench.",
+     "Keep your chest on the pad.",
      "Move in one smooth, wide circle.",
      "Use light weight to protect the shoulder joint."
     ],
@@ -783,22 +783,22 @@
       "fix": "Keep the elbows slightly bent and fixed through the circle."
      },
      {
-      "text": "Going heavy and losing control overhead.",
+      "text": "Going heavy and losing control at the top.",
       "fix": "Use light weight and move in one smooth, wide circle."
      }
     ]
    },
    "tr": {
     "title": "Incline Front Delt Around The World",
-    "about": "Ön omzu uzun bir baş üstü yayla geniş hareket açıklığında çalıştırır.",
+    "about": "Ön omzu uzun bir yayla geniş hareket açıklığında çalıştırır.",
     "steps": [
-     "Hafif dumbbell'lar kalçanın yanında, eğimli sehpaya sırt üstü uzan.",
-     "Dirsekleri hafif bükülü, avuçları yukarı bakar tut.",
-     "Kolları geniş bir yayla dışarı ve yukarı, baş üstüne kadar süpür.",
-     "Yayı yavaşça tersine çevirip kalçaya indir."
+     "Dik eğimli sehpaya yüzün dönük dur ve göğsünü pede daya; hafif dumbbell'lar yanlarında sarkık.",
+     "Dirsekleri hafif bükülü, başparmakları öne bakar tut.",
+     "Kolları önden baş hizasına kaldır, sonra geniş bir yayla yanlara aç.",
+     "Yayı yavaşça tersine çevirip kolları yanlarına indir."
     ],
     "cues": [
-     "Belini sehpada tut.",
+     "Göğsünü pedde tut.",
      "Tek, akıcı ve geniş bir daire çiz.",
      "Omuz eklemini korumak için hafif ağırlık kullan."
     ],
@@ -808,22 +808,22 @@
       "fix": "Daire boyunca dirsekleri hafif bükülü ve sabit tut."
      },
      {
-      "text": "Ağır kilo alıp baş üstünde kontrolü kaybetmek.",
+      "text": "Ağır kilo alıp en üstte kontrolü kaybetmek.",
       "fix": "Hafif ağırlık kullan ve tek, akıcı, geniş bir daire çiz."
      }
     ]
    },
    "ar": {
     "title": "Incline Front Delt Around The World",
-    "about": "يأخذ الدالية الأمامية في قوس طويل فوق الرأس لمدى حركة كبير.",
+    "about": "يأخذ الدالية الأمامية في قوس طويل لمدى حركة كبير.",
     "steps": [
-     "استلقِ على مقعد مائل ممسكًا دمبلز خفيفة بجانب وركيك.",
-     "أبقِ المرفقين مثنيين قليلًا والراحتين للأعلى.",
-     "حرّك الذراعين في قوس واسع للخارج والأعلى حتى فوق الرأس.",
-     "اعكس القوس ببطء نزولًا إلى الوركين."
+     "قف مواجهًا مقعدًا شديد الميل وأسند صدرك على الوسادة، والدمبلز الخفيفة متدلية بجانبيك.",
+     "أبقِ المرفقين مثنيين قليلًا والإبهامين متجهين للأمام.",
+     "ارفع الذراعين أمامك حتى مستوى الرأس، ثم افتحهما للجانبين في قوس واسع.",
+     "اعكس القوس ببطء نزولًا إلى جانبيك."
     ],
     "cues": [
-     "أبقِ أسفل ظهرك على المقعد.",
+     "أبقِ صدرك على الوسادة.",
      "تحرك في دائرة واسعة وانسيابية.",
      "استخدم وزنًا خفيفًا لحماية مفصل الكتف."
     ],
@@ -833,7 +833,7 @@
       "fix": "أبقِ المرفقين مثنيين قليلًا وثابتين طوال الدائرة."
      },
      {
-      "text": "استخدام وزن ثقيل وفقدان التحكم فوق الرأس.",
+      "text": "استخدام وزن ثقيل وفقدان التحكم في الأعلى.",
       "fix": "استخدم وزنًا خفيفًا وتحرك في دائرة واسعة وانسيابية."
      }
     ]
