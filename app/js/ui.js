@@ -250,9 +250,5 @@ export const ring = (pct, r = 16) => {
   return `<svg class="ring" viewBox="0 0 ${r * 2 + 6} ${r * 2 + 6}"><circle class="bg" cx="${r + 3}" cy="${r + 3}" r="${r}"/>
     <circle class="fg" cx="${r + 3}" cy="${r + 3}" r="${r}" stroke-dasharray="${c}" stroke-dashoffset="${c * (1 - pct)}"/></svg>`;
 };
-export function onImg(root = document) {
-  $$("img[data-fade]", root).forEach((im) => {
-    if (im.complete && im.naturalWidth) im.classList.add("ok");
-    else { im.onload = () => im.classList.add("ok"); im.onerror = () => im.remove(); }
-  });
-}
+/** FE-17: the one bilingual-field reader ({en, tr, ar} or a plain string) */
+export const L = (o) => (o && typeof o === "object" ? o[S.settings.lang || "en"] || o.en || "" : o ?? "");

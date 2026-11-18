@@ -1,6 +1,6 @@
 // Me: three tabs — Progress (week vs week, charts, PRs, bodyweight), Workouts (16-week calendar + past sessions), Settings.
 // Routes: #/me, #/me/workouts, #/me/settings (#/settings opens the Settings tab).
-import { S, save, tomb, persist, exportData, importData, flush } from "./store.js";
+import { S, save, tomb, persist, exportData, importData, undoImport, flush } from "./store.js";
 import { $, $$, esc, ic, ask, askText, openSheet, closeSheet, toast, haptic, fmtDate, fmtDur, lineChart, vBars, delta, fmtKg, indicate, selectIn } from "./ui.js";
 import { EX, BY, EQUIP_PROFILES, bestOf, setsText, weeklyVolume, periodStats, exerciseStats, weekStart, WEEK, DAY, history, flaggedJoints, JOINTS } from "./data.js";
 import { MUSCLES, MBY } from "./body.js";
@@ -234,7 +234,7 @@ async function settingsPanel(host) {
     csvPreview(C, R);
   };
   $("#imp").onchange = async (e) => {
-    try { const txt = await e.target.files[0].text(); if (!(await ask("Replace your workouts and history with this backup?", { ok: "Replace", danger: true }))) return; await importData(txt); toast("Backup restored"); rerun(); }
+    try { const txt = await e.target.files[0].text(); if (!(await ask("Replace your workouts and history with this backup?", { ok: "Replace", danger: true }))) return; await importData(txt); rerun(); toast("Backup restored", 8000, { label: "Undo", fn: async () => { if (await undoImport()) { toast("Your earlier data is back"); rerun(); } } }); }
     catch { toast("Not a valid Gym backup"); }
   };
 }
@@ -281,13 +281,19 @@ function csvPreview(C, R) {
 }
 
 /* ---- cloud backup to the owner's private GitHub repo (see js/SYNC.md) ---- */
+// SEC-5: GitHub tokens expire; after ~80 days remind the owner where a stopped backup comes from
+function tokenAge(t) {
+  if (!t) return "";
+  const d = Math.floor((Date.now() - t) / DAY);
+  return d < 80 ? "" : `<br>Token added ${d} days ago. If backup stops, make a new token and connect again.`;
+}
 function cloudCard() {
   const st = Sync.status();
   if (!st.connected) return `<b>Cloud backup (GitHub)</b><p class="muted small" style="margin:4px 0 10px">Back up to your own private GitHub repository. Your token stays on this device.</p>
     <div class="field"><label for="cRepo">Repository</label><input id="cRepo" placeholder="yourname/gym-data" autocomplete="off" autocapitalize="off"></div>
     <div class="field"><label for="cTok">Token</label><input id="cTok" type="password" placeholder="github_pat_…" autocomplete="off"></div>
     <button class="btn primary sm block" id="cCon">Connect</button>`;
-  return `<b>Cloud backup (GitHub)</b><p class="muted small" style="margin:4px 0 10px">Connected to <b>${esc(st.owner)}/${esc(st.repo)}</b> · last backup ${st.lastPush ? fmtDate(st.lastPush, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "never"}${st.pending ? " · pending" : ""}</p>
+  return `<b>Cloud backup (GitHub)</b><p class="muted small" style="margin:4px 0 10px">Connected to <b>${esc(st.owner)}/${esc(st.repo)}</b> · last backup ${st.lastPush ? fmtDate(st.lastPush, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "never"}${st.pending ? " · pending" : ""}${tokenAge(st.connectedAt)}</p>
     ${st.error ? `<p class="small" style="color:var(--danger);margin:0 0 10px">${esc(st.error)}</p>` : ""}
     <div class="row" style="margin-bottom:10px"><span class="grow small b">Auto backup after changes</span><button class="switch ${st.auto ? "on" : ""}" role="switch" aria-checked="${!!(st.auto)}" id="cAuto" aria-label="Auto backup"></button></div>
     <div class="row wrap"><button class="btn sm primary" id="cPush">Back up now</button><button class="btn sm" id="cRest">Restore</button><button class="btn sm ghost danger" id="cDis">Disconnect</button></div>`;

@@ -114,7 +114,6 @@ function say(t) {
 }
 let rovFocus = null;
 const setInert = (on) => { const a = $(".app"); if (a) a.inert = on; };
-export function showOverlay() { if (isRest()) { T.min = false; persist(); tick(); } }
 function renderOverlay() {
   let o = $("#rov");
   const want = isRest() && !T.min && !location.hash.startsWith("#/timer");

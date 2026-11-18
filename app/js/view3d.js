@@ -380,7 +380,7 @@ export async function mount3d(el, { primary = [], secondary = [], move = null, v
     cam.position.set(0, ty + Math.sin(pitch) * need, Math.cos(pitch) * need); cam.lookAt(0, ty, 0);
     cam.setViewOffset(W, H, 0, (pb - pt) / 2, W, H); cam.updateProjectionMatrix(); dirty = true;
   };
-  const ro = new ResizeObserver(fit); ro.observe(el); fit();
+  const ro = new ResizeObserver(() => { fit(); loop(); }); ro.observe(el); fit();
 
   // drag = rotate (vertical drag tilts; when zoomed in it moves up/down the body), pinch / wheel / +− = zoom, double-tap = reset
   let drag = null; const pts = new Map(); let pinch = null;
@@ -392,7 +392,7 @@ export async function mount3d(el, { primary = [], secondary = [], move = null, v
     if (pinch && pts.size === 2) { const [a, b] = [...pts.values()]; setZoom(pinch.z * Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY) / pinch.d); return; }
     if (!drag) return; yawT = drag.yaw + (e.clientX - drag.x) * .012; yaw = yawT;
     if (zoomT > 1.01) panY = drag.pan + (e.clientY - drag.y) * size.y / H / zoom; else pitch = Math.max(-.25, Math.min(.6, drag.pitch + (e.clientY - drag.y) * .006));
-    fit(); }, on);
+    fit(); loop(); }, on);
   const up = (e) => { pts.delete(e.pointerId); if (pts.size < 2) pinch = null; if (!pts.size) drag = null; };
   cv.addEventListener("pointerup", up, on); cv.addEventListener("pointercancel", up, on);
   cv.addEventListener("wheel", (e) => { e.preventDefault(); setZoom(zoomT * Math.exp(-e.deltaY * .0015)); }, { passive: false, signal: ac.signal });
@@ -411,7 +411,9 @@ export async function mount3d(el, { primary = [], secondary = [], move = null, v
       pivot.rotation.y = yaw;
       if (act && !act.paused) { mixer.update(dt); prop?.update(); dirty = true; }
       if (dirty) { renderer.render(scene3, cam); dirty = false; }
-      if (visible && !document.hidden) loop();
+      // PERF-11: sleep when nothing moves (paused, no easing); input, setView, play and resize wake it with loop()
+      const busy = yaw !== yawT || zoom !== zoomT || (act && !act.paused);
+      if (busy && visible && !document.hidden) loop();
     });
   }
   const onVis = () => { if (!document.hidden) { last = performance.now(); loop(); } };

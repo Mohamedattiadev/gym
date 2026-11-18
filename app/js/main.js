@@ -1,7 +1,7 @@
 // App shell: router, top bar, theme, shared exercise card, body map, Jeff's videos, boot.
 import "./log.js"; // FE-6: first, so boot errors are caught too
 import { S, save, tomb, loadStore, persist, flush, degraded } from "./store.js";
-import { $, BP, $$, esc, ic, openSheet, closeSheet, initSheet, toast, haptic, unlockAudio, indicate, selectIn, RM } from "./ui.js";
+import { $, BP, $$, esc, ic, openSheet, closeSheet, initSheet, toast, haptic, unlockAudio, indicate, selectIn, RM, L } from "./ui.js";
 import { EX, searchEx, byTier, weeklyVolume, loadExercises, hasEquip, hurts, recovery } from "./data.js";
 import { MUSCLES, MBY, bodySVG, muscleBox, zoomTo, panZoom, FULL, HEAT, CREDIT } from "./body.js";
 import { nextRoute, routeId, live, go, routeParts, onRoute, setTop } from "./nav.js";
@@ -132,7 +132,6 @@ function palette() {
 
 /* ================= BODY MAP ================= */
 const bm = { view: "front", mode: "muscles" }; // mode: muscles | week | rec
-const Lg = (o) => (o && typeof o === "object" ? o[S.settings.lang || "en"] || o.en || "" : o || "");
 let HEADS = null;
 const loadHeads = () => (HEADS ??= fetch("data/guide/heads.json").then((r) => r.json()).catch(() => ({ muscles: {} })));
 function exercisesFor(m) {
@@ -257,7 +256,7 @@ async function muscleDetail(m, vol, rec, svg, el, ctl) {
     let html;
     if (hs.length > 1) {
       const by = Object.fromEntries(hs.map((h) => [h.id, []])); l.forEach((e) => by[headOf(hs, e).id].push(e));
-      html = hs.filter((h) => by[h.id].length).map((h) => `<div class="h4 hd-h" data-h="${h.id}">${esc(Lg(h.name))} <span class="dim tiny">${by[h.id].length}</span></div>${by[h.id].slice(0, 12).map(exRow).join("")}`).join("");
+      html = hs.filter((h) => by[h.id].length).map((h) => `<div class="h4 hd-h" data-h="${h.id}">${esc(L(h.name))} <span class="dim tiny">${by[h.id].length}</span></div>${by[h.id].slice(0, 12).map(exRow).join("")}`).join("");
     } else html = l.slice(0, 40).map(exRow).join("");
     $("#mlist", el).innerHTML = html || `<div class="empty">No exercises</div>`;
   };
@@ -266,7 +265,7 @@ async function muscleDetail(m, vol, rec, svg, el, ctl) {
     <div class="card soft pad row"><div class="grow"><div class="eyebrow">This week</div><b class="num" style="font-size:22px">${done}</b> <span class="dim">/ ${mev || 4}–${mav} sets</span></div>
       <div style="width:110px" class="progress"><div style="width:${Math.min(100, (done / (mav || 10)) * 100)}%"></div></div></div>
     <div class="row small" style="gap:8px;margin:10px 2px"><i class="rdot" style="background:var(--rec-${r?.state || "g"})"></i><span>${recText(r)}</span></div>
-    ${hs.length > 1 ? `<div class="h4">Parts</div><div class="list-sep" id="hlist">${hs.map((h) => `<button class="lrow plain hd-row" data-h="${h.id}"><span class="hdot"></span><div class="grow"><div class="t">${esc(Lg(h.name))} <span class="dim tiny">${esc(h.latin || "")}</span></div><div class="s" style="color:var(--t2)">${esc(Lg(h.about))}</div>${shown.has(h.id) ? "" : `<div class="dim tiny">Deep or not visible from this side</div>`}</div></button>`).join("")}</div>` : ""}`;
+    ${hs.length > 1 ? `<div class="h4">Parts</div><div class="list-sep" id="hlist">${hs.map((h) => `<button class="lrow plain hd-row" data-h="${h.id}"><span class="hdot"></span><div class="grow"><div class="t">${esc(L(h.name))} <span class="dim tiny">${esc(h.latin || "")}</span></div><div class="s" style="color:var(--t2)">${esc(L(h.about))}</div>${shown.has(h.id) ? "" : `<div class="dim tiny">Deep or not visible from this side</div>`}</div></button>`).join("")}</div>` : ""}`;
   el.innerHTML = `<button class="mgrab" aria-label="Expand or collapse"></button>
     <div class="mhd"><button class="iconbtn" id="mback" aria-label="Back to muscles">${ic(wide() ? "back" : "x")}</button><h3>${m.name}</h3></div>
     <div class="mbd"><div class="ptabs fit" id="mtabs"><button data-k="info" class="${ctl.tab === "info" ? "on" : ""}">Info</button><button data-k="ex" class="${ctl.tab === "ex" ? "on" : ""}">Exercises <span class="dim tiny">${list.length}</span></button></div>

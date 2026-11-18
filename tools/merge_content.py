@@ -31,7 +31,7 @@ MACHINES_C = [(l, re.compile(rx, re.I)) for l, rx in MACHINES]
 
 def merge(final):
     fam, mp, vn = {}, {}, {}
-    for f in sorted(glob.glob(str(ROOT / "app/data/content/*.json"))):
+    for f in sorted(glob.glob(str(ROOT / "tools/content/*.json"))):
         c = json.loads(Path(f).read_text())
         fam.update(c["families"]); mp.update(c["map"]); vn.update(c.get("variantNotes", {}))
     changed = 0

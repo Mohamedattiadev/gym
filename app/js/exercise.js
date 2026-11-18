@@ -1,6 +1,6 @@
 // Exercise library (grid; list | detail at ≥1000px) and the exercise page (#/ex/<slug>) incl. pain / joint flags.
 import { S, save } from "./store.js";
-import { $, BP, $$, esc, ic, openSheet, closeSheet, toast, haptic, fmtDate, lineChart, indicate, selectIn, RM } from "./ui.js";
+import { $, BP, $$, esc, ic, openSheet, closeSheet, toast, haptic, fmtDate, lineChart, indicate, selectIn, RM, L } from "./ui.js";
 import { EX, BY, GROUPS, EQUIP, searchEx, hasEquip, byTier, swaps, history, bestOf, setsText, exerciseStats, weekStart, WEEK,
   JOINTS, JOINT_IDS, avoidFor, flaggedJoints, jointFriendly, hurts, FAM } from "./data.js";
 import { MBY, bodySVG, panZoom } from "./body.js";
@@ -11,7 +11,6 @@ import * as T from "./train.js";
 
 const view = () => $("#view");
 const wide = () => innerWidth >= BP.wide;
-const L = (o) => (o && typeof o === "object" ? o[S.settings.lang || "en"] || o.en || "" : o || "");
 
 /* ================= LIBRARY ================= */
 export const lib = { q: "", group: "All", equip: "", tier: "", level: "", favs: false, machine: false, mine: true, scroll: 0 };

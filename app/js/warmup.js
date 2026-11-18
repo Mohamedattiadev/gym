@@ -2,7 +2,7 @@
 // session (#/warmup/w/<id>, #/warmup/s), muscle primers, ramp-up calculator, cool-down (#/warmup/cool).
 // Content: data/guide/warmups.json (en/tr/ar). Lazy-loaded by the router.
 import { S, save } from "./store.js";
-import { $, esc, ic, haptic, beep, toast, selectIn, indicate, openSheet, RM } from "./ui.js";
+import { $, esc, ic, haptic, beep, toast, selectIn, indicate, openSheet, RM, L } from "./ui.js";
 import { BY, lastSets } from "./data.js";
 import { warmupSets } from "./calc.js";
 import { setTop, go, redirect, routeId, live } from "./nav.js";
@@ -10,7 +10,6 @@ import { fillIll } from "./components.js";
 import * as T from "./train.js";
 
 const view = () => $("#view");
-const L = (o) => (o && typeof o === "object" ? o[S.settings.lang || "en"] || o.en || "" : o ?? "");
 let W = null;
 const load = () => W || (W = fetch("data/guide/warmups.json").then((r) => (r.ok ? r.json() : {})).catch(() => ({})));
 const mins = (s) => `${Math.max(1, Math.round(s / 60))} min`;

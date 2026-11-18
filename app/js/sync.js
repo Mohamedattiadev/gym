@@ -289,7 +289,7 @@ export async function connect({ owner, repo, token } = {}) {
     if (remote) { try { remoteUpdatedAt = parseBackup(remote.text).exportedAt; } catch { remoteUpdatedAt = null; } }
     // sha deliberately left null: the first push() will merge the cloud copy in before overwriting it.
     S.sync = { ...c, lastPush: S.sync?.lastPush || 0, lastPull: S.sync?.lastPull || 0, sha: null,
-      auto: S.sync?.auto ?? true, dirty: false, lastError: null };
+      auto: S.sync?.auto ?? true, dirty: false, lastError: null, connectedAt: Date.now() }; // SEC-5: token age hint
     ok(); save("sync"); await flush(); emit();
     return { ok: true, remoteExists: !!remote, remoteUpdatedAt };
   } catch (e) {
@@ -404,6 +404,6 @@ export async function disconnect() {
 export function status() {
   const c = cfg();
   return { connected: !!c, owner: c?.owner || null, repo: c?.repo || null, auto: c ? c.auto !== false : false,
-    pending: !!c?.dirty, lastPush: c?.lastPush || 0, lastPull: c?.lastPull || 0, lastMerge: c?.lastMerge || 0, error: lastError,
+    pending: !!c?.dirty, lastPush: c?.lastPush || 0, lastPull: c?.lastPull || 0, lastMerge: c?.lastMerge || 0, connectedAt: c?.connectedAt || 0, error: lastError,
     busy: !!busy };
 }

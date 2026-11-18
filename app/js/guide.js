@@ -1,14 +1,13 @@
 // Guides: onboarding (-> plan) + profile, strength standards, nutrition calculator + guide, plans explained.
 // Content lives in data/guide/*.json (en/tr/ar); this module is lazy-loaded by the router.
 import { S, save } from "./store.js";
-import { $, esc, ic, haptic, toast, selectIn, indicate } from "./ui.js";
+import { $, esc, ic, haptic, toast, selectIn, indicate, L } from "./ui.js";
 import { EX, bestOf, EQUIP_PROFILES } from "./data.js";
 import { setTop, go, redirect, routeId, live } from "./nav.js";
 import * as T from "./train.js";
 import * as P from "./plans.js";
 
 const view = () => $("#view");
-const L = (o) => (o && typeof o === "object" ? o[S.settings.lang || "en"] || o.en || "" : o ?? "");
 const G = {};
 const load = (n) => G[n] || (G[n] = fetch(`data/guide/${n}.json`).then((r) => (r.ok ? r.json() : {})).catch(() => ({})));
 const prof = () => (S.profile = S.profile || {});

@@ -152,8 +152,6 @@ main#view.page { animation: pageIn 220ms var(--ease) backwards; }
 .card.accent { background: var(--accent-soft); box-shadow: none; }
 .card + .card { margin-top: 12px; }
 .stack > .card + .card, .cols > .card + .card { margin-top: 0; }
-.hr { height: 1px; background: var(--line); margin: 12px 0; border: 0; }
-.clamp1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
 .clamp2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .ellip { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
@@ -343,9 +341,6 @@ svg.ring circle { fill: none; stroke-width: 4; } svg.ring .bg { stroke: var(--s3
 .dhero .cap a { color: inherit; }
 .dhero .msg { position: absolute; inset: 0; display: grid; place-items: center; color: #fffa; font-size: .875rem; text-align: center; padding: 20px; }
 .dtitle { margin: 12px 0 8px; font-size: 1.3125rem; font-weight: 740; letter-spacing: -.02em; line-height: 1.2; }
-.facts { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 9px 12px; border-radius: var(--r-md); background: var(--s1); box-shadow: var(--raise-sm); font-size: .9062rem; font-weight: 650; color: var(--t1); }
-.facts > span { display: inline-flex; align-items: center; gap: 6px; }
-.facts svg.i { width: 17px; height: 17px; color: var(--accent-text); }
 .jeff { display: flex; gap: 8px; align-items: center; margin-top: 8px; padding: 8px 12px; border-radius: var(--r-md); background: var(--s2); font-size: .875rem; color: var(--t2); width: 100%; border: 0; text-align: start; }
 .jeff b { color: var(--t1); font-weight: 650; } .jeff .txt { flex: 1; min-width: 0; }
 .jeff:not(.open) .txt { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -376,7 +371,6 @@ svg.ring circle { fill: none; stroke-width: 4; } svg.ring .bg { stroke: var(--s3
 .cmp th { text-align: start; font-size: .75rem; color: var(--t3); font-weight: 650; padding: 6px 4px; text-transform: uppercase; letter-spacing: .04em; }
 .cmp td { padding: 8px 4px; border-top: 1px solid var(--line); vertical-align: top; }
 .cmp td.n, .cmp th.n { text-align: end; white-space: nowrap; }
-.spark { width: 100%; height: 64px; display: block; margin-top: 8px; }
 @media (min-width: 1000px) {
   .dsplit { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 24px; align-items: start; }
   .dsplit .dhero, .dsplit .dhero.fit { width: auto; margin: 8px 0 0; border-radius: var(--r-xl); height: 420px; aspect-ratio: auto; max-height: none; position: sticky; top: calc(var(--top-h) + 8px); }
@@ -578,7 +572,6 @@ body:has(.tpill) main#view { padding-bottom: 64px; }
 .has-cta .tpill { bottom: 72px; } }
 
 /* ============ me / tracking ============ */
-.avatar { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-text); font-weight: 760; font-size: 1.25rem; flex: none; }
 .heat { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 1fr); grid-auto-columns: 1fr; gap: 3px; }
 .heat i { aspect-ratio: 1; border-radius: 3px; background: var(--s3); min-width: 0; }
 .heat i.l1 { background: color-mix(in oklab, var(--accent) 35%, var(--s3)); } .heat i.l2 { background: color-mix(in oklab, var(--accent) 65%, var(--s3)); } .heat i.l3 { background: var(--accent); }
@@ -634,8 +627,6 @@ dialog.sheet.dlg.closing { animation: fadeOut 160ms ease-in both; }
 .kv { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .kv > div { padding: 10px; border-radius: var(--r-md); background: var(--s2); text-align: center; }
 .kv b { display: block; font-size: 1.125rem; } .kv span { font-size: .75rem; color: var(--t3); }
-.opt { display: flex; align-items: center; gap: 12px; padding: 13px 14px; border-radius: var(--r-md); border: 1.5px solid transparent; background: var(--s1); box-shadow: var(--raise-sm); width: 100%; text-align: start; font-weight: 600; font-size: .9688rem; transition: border-color var(--dur), background var(--dur); }
-.opt.on { border-color: var(--accent); background: var(--accent-soft); }
 
 /* ============ motion (Fluent365) ============ */
 @keyframes pageIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }

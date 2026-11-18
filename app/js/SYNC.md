@@ -19,7 +19,7 @@ There is no Gym server: the app talks directly to `api.github.com` with a token 
 2. Left sidebar, at the bottom → **Developer settings**.
 3. **Personal access tokens** → **Fine-grained tokens** → **Generate new token**.
 4. **Token name**: `Gym backup`. **Resource owner**: your account.
-5. **Expiration**: choose a date (e.g. 1 year; put a reminder in your calendar). When it expires, backup stops with "GitHub rejected the token" and you repeat this step.
+5. **Expiration**: choose a date (90 days is a good choice; the app reminds you after 80 days). When it expires, backup stops with "GitHub rejected the token" and you repeat this step.
 6. **Repository access** → **Only select repositories** → pick `gym-data`. (Never "All repositories".)
 7. **Permissions** → **Repository permissions** → **Contents** → **Read and write**.
    GitHub adds **Metadata: Read-only** automatically. Leave everything else at **No access**.
@@ -51,4 +51,4 @@ the newer edit wins). A workout deleted on one phone can reappear if the other p
   GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → the token → **Delete**.
 - Keep the repo **private**. Do not share the token, paste it in chats, or commit it anywhere.
 - The data is stored unencrypted inside your private repo (GitHub encrypts it at rest, but GitHub can technically read it).
-- Use an expiration date; rotating the token yearly is good hygiene.
+- Use an expiration date; rotating the token every 90 days is good hygiene.

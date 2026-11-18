@@ -38,14 +38,14 @@ export async function loadStore() {
     db.onversionchange = () => { db.close(); db = null; };
     // BE-7: keys and values from ONE transaction (another tab adding a key in between would shift them)
     const [keys, vals] = await tx("readonly", (st) => { const k = st.getAllKeys(), v = st.getAll(); return { get result() { return [k.result, v.result]; } }; });
-    keys.forEach((k, i) => { S[k] = vals[i]; });
+    keys.forEach((k, i) => { if (k !== "preImport") S[k] = vals[i]; }); // preImport = FE-20 undo slot, not app state
     S.settings = { ...DEFAULTS.settings, ...(S.settings || {}) };
     if (!keys.includes("schema")) await migrateFromV1();
     await adoptFallback();
   } catch (e) {
     console.warn("IndexedDB unavailable, falling back to localStorage", e);
     db = null; degraded = true;
-    try { Object.assign(S, JSON.parse(localStorage.getItem("gymy2") || "{}")); } catch {}
+    try { const fb = JSON.parse(localStorage.getItem("gymy2") || "{}"); Object.assign(S, fb, { settings: { ...DEFAULTS.settings, ...(fb.settings || {}) } }); } catch {} // FE-26: new default settings kept
   }
   initChannel();
   return S;
@@ -119,7 +119,8 @@ export async function flush() {
   const keys = [...dirty]; dirty.clear();
   if (!keys.length) return;
   if (!db) {
-    try { localStorage.setItem("gymy2", JSON.stringify(S)); } catch (e) { keys.forEach((k) => dirty.add(k)); fail(e); }
+    // FE-26 / SEC-5: the sync token never goes into localStorage (it stays in memory for this degraded session only)
+    try { localStorage.setItem("gymy2", JSON.stringify({ ...S, sync: S.sync ? { ...S.sync, token: undefined } : S.sync })); } catch (e) { keys.forEach((k) => dirty.add(k)); fail(e); }
     return;
   }
   const put = () => tx("readwrite", (st) => keys.forEach((k) => st.put(structuredClone(S[k]), k)));
@@ -155,6 +156,20 @@ export async function importData(text) {
   if (!raw || !Array.isArray(raw.workouts) || !Array.isArray(raw.sessions)) throw new Error("Not a Gym backup");
   raw.sessions = raw.sessions.map((s) => ({ ...s, startedAt: s?.startedAt || s?.start, endedAt: s?.endedAt || s?.end }));
   const d = clean(raw);
+  // FE-20: one undo slot — what was here before the import (restored by undoImport)
+  if (db) await tx("readwrite", (st) => { st.put(exportData(), "preImport"); });
+  else try { localStorage.setItem("gymy_preImport", exportData()); } catch {}
   Object.assign(S, structuredClone(DEFAULTS), d, { settings: { ...DEFAULTS.settings, ...(d.settings || {}) }, active: S.active, sync: S.sync });
   await saveAll();
+}
+export async function undoImport() {
+  let txt = null;
+  if (db) txt = await tx("readonly", (st) => st.get("preImport"));
+  else try { txt = localStorage.getItem("gymy_preImport"); } catch {}
+  if (!txt) return false;
+  const d = clean(JSON.parse(txt).data);
+  Object.assign(S, structuredClone(DEFAULTS), d, { settings: { ...DEFAULTS.settings, ...(d.settings || {}) }, active: S.active, sync: S.sync });
+  await saveAll();
+  if (db) await tx("readwrite", (st) => { st.delete("preImport"); }); else try { localStorage.removeItem("gymy_preImport"); } catch {}
+  return true;
 }
