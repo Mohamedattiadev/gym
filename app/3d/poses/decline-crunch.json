@@ -1,0 +1,7 @@
+{"ecc":"back","plant":false,"yaw":90,"fixed":["declinebench"],"base":{"frame":-110,"thigh":[0.06,-0.55,0.84],"shin":[0.05,-0.6,-0.8],"foot":[0,-0.8,0.6],"uarm":[0.35,-0.45,0.6],"farm":[-0.92,0.3,0.25]},
+ "keys":[
+  {"torso":[0,1,0],"neck":[0,1,0.12]},
+  {"torso":[0,0.82,0.57],"neck":[0,0.45,0.89]}],
+ "wrong":{
+  "0":{"tempo":{"ecc":0.4,"bottom":0}},
+  "1":{"keys":[null,{"torso":[0,0.35,0.94],"neck":[0,0.35,0.94]}],"view":"front"}}}

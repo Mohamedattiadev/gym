@@ -180,6 +180,14 @@ function makeProp(kinds, model, dark) {
       const hd = new THREE.Vector3();
       ups.push(() => { const s5 = loc(bones.spine05, a).clone(), nk = loc(bones.neck01, b).clone(); hd.subVectors(nk, s5).setY(0).normalize();
         o.position.set(s5.x, s5.y - .13, s5.z).addScaledVector(hd, .42); o.rotation.y = Math.atan2(hd.x, hd.z); legs.position.copy(o.position); legs.position.y -= .245; });
+    } else if (kind === "declinebench") { // decline crunch: pad pitched head-down that stays put while the torso curls off it, + post and a foot roller at the high end
+      const A = .35, o = new THREE.Mesh(new THREE.BoxGeometry(.3, .07, 1.2), pad), post = new THREE.Mesh(new THREE.BoxGeometry(.08, 1, .08), mat), roll = new THREE.Mesh(new THREE.CylinderGeometry(.06, .06, .34, 16), pad); roll.rotation.z = Math.PI / 2; g.add(o, post, roll);
+      const hd = new THREE.Vector3(), ax = new THREE.Vector3(), n = new THREE.Vector3();
+      ups.push(() => { const s5 = loc(bones.spine05, a).clone(), nk = loc(bones.neck01, b).clone(), sh = loc(bones.footL, c).clone().add(loc(bones.footR, c)).multiplyScalar(.5); hd.subVectors(nk, s5).setY(0).normalize();
+        ax.copy(hd).multiplyScalar(Math.cos(A)).setY(-Math.sin(A)); n.copy(hd).multiplyScalar(Math.sin(A)).setY(Math.cos(A));
+        o.position.copy(s5).addScaledVector(n, -.13).addScaledVector(ax, .3); o.rotation.set(A, Math.atan2(hd.x, hd.z), 0, "YXZ");
+        const lo = o.position.clone().addScaledVector(ax, -.5), h = .5; post.scale.y = h; post.position.set(lo.x, lo.y - h / 2, lo.z);
+        roll.position.copy(sh).addScaledVector(n, .08); roll.rotation.set(0, Math.atan2(hd.x, hd.z), Math.PI / 2, "YXZ"); });
     } else if (kind === "seat") { const o = new THREE.Mesh(new THREE.BoxGeometry(.42, .08, .4), pad); const post = new THREE.Mesh(new THREE.BoxGeometry(.07, 1, .07), mat); o.add(post); g.add(o);
       ups.push(() => { const p = loc(bones.spine05, a), fl = Math.min(loc(bones.footL, c).y, loc(bones.footR, c).y) - .07, top = p.y - .14;
         o.position.set(p.x, top, p.z + .06); const h = Math.max(.1, top - fl); post.scale.y = h; post.position.set(0, -h / 2, 0); });
