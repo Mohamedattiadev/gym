@@ -22,4 +22,6 @@ step "no inline on*= handlers in templates (CSP blocks them)" bash -c '! grep -n
 step "no module imports main.js (FE-12: no circular imports)" bash -c '! grep -nE "from \"\./main\.js\"|import\(\"\./main\.js\"\)" app/js/*.js'
 step "route smoke test (phone + desktop, light + dark)" node tools/test/routes.mjs "$OUT/routes"
 step "3D prop check" node tools/test/check3d.mjs
+# Q0b: every button on every page (phone light, ~8 min). SKIP_CLICK=1 skips it; the full 4-viewport run = node tools/test/clickthrough.mjs <dir>
+[ -n "$SKIP_CLICK" ] || step "click-through (every button, phone light)" node tools/test/clickthrough.mjs "$OUT/click" --quick
 echo; [ $fail = 0 ] && echo "ALL PASS" || echo "SOME CHECKS FAILED"; exit $fail
