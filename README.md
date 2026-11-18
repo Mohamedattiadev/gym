@@ -67,6 +67,8 @@ desktop in both themes, and an automatic check of every 3D motion.
 ln -s ../media app/media                  # once: videos and posters
 cd app && python3 -m http.server 8765     # http://localhost:8765
 bash tools/test/all.sh                    # all checks (needs Chromium + Node)
+bash tools/test/fast.sh                   # quick checks without a browser (CI runs these on every push)
+bash tools/bump-sw.sh                     # new service worker VERSION: needed for every change under app/
 ```
 
 ```
