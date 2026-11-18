@@ -245,7 +245,7 @@ const POSE3D = { "high-bar-squat": /heel|elevated|drops?\b|pause|safety|century/
   "leg-press-calf-raise": /single/i, "chest-supported-high-elbow-row": /one arm|2 part|seal/i, "high-elbow-dumbbell-row": /bent over|wall/i,
   "concentration-curl": /$^/, "rear-delt-cable-fly": /seated|single|partial/i, "dumbbell-leg-curl": /kneeling|ground|hamstring curls/i,
   "behind-body-cable-curl": /incline|face out/i,
-  "hack-squat": /pendulum|elevated|wide|cluster/i, "bulgarian-split-squat": /twist|leaned|glute focused/i, "nordic-curl": /tucked|use your hands|angled/i,
+  "hack-squat": /pendulum|elevated|wide|cluster/i, "bulgarian-split-squat": /twist|leaned|glute focused/i, "front-squat": /dumbbell/i, "single-leg-squat": /landmine|hack/i, "nordic-curl": /tucked|use your hands|angled/i,
   "single-arm-cable-row": /bent|kneeling|high|pronated/i, "machine-row": /single|high elbow|roll/i, "incline-cable-extension": /slight|ez bar|elbows (back|high)/i,
   "assisted-pull-up": /close/i,
   "smith-incline-press": /slight|high|pause|tucked/i, "machine-incline-press": /single/i, "decline-press": /slight/i, "smith-shoulder-press": /60 degree/i,

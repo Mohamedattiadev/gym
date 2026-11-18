@@ -1,0 +1,7 @@
+{"ecc":"out","fixed":["frontbar"],"ik":"frontbar","base":{"neck":[0,1,0.1]},
+ "keys":[
+  {"torso":[0,1,0.02],"thigh":[0.08,-1,0.02],"shin":[0.08,-1,-0.02]},
+  {"torso":[0,1,0.3],"thigh":[0.3,0.05,1],"shin":[0.12,-1,-0.72]}],
+ "wrong":{
+  "0":{"elbows":-1.4,"keys":[null,{"torso":[0,1,0.75]}],"view":"side"},
+  "1":{"range":[0,0.5],"view":"side"}}}

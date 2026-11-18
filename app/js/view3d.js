@@ -26,11 +26,13 @@ const ORDER = ["torso", "neck", ...["clav", "uarm", "farm", "hand", "thigh", "sh
 const CURL_AXIS = new THREE.Vector3(0, 0, 1); // finger bones bend about their local z (left +, right -)
 const ezs = (u) => u * u * (3 - 2 * u);
 /** Bar resting on the upper traps behind the neck (high-bar back squat). get(boneName) -> Vector3 in one space. */
-function backBar(get, low = false) {
+export const FB = { up: -.07, fwd: .1, grip: .31, wu: -.01, wf: -.03, pu: .15, pl: 0, hb: .5 };
+function backBar(get, mode = false) { // mode: false = high bar, true = low bar, "front" = front rack on the front delts
+  const low = mode === true, front = mode === "front";
   const nk = get("neck01"), s5 = get("spine05"), cl = get("clavicleL"), cr = get("clavicleR");
   const up = nk.clone().sub(s5).normalize(), left = cl.clone().sub(cr); left.addScaledVector(up, -left.dot(up)).normalize();
   const fwd = new THREE.Vector3().crossVectors(left, up).normalize();
-  const c = nk.clone().addScaledVector(up, low ? -.12 : -.055).addScaledVector(fwd, low ? -.1 : -.085);
+  const c = front ? nk.clone().addScaledVector(up, FB.up).addScaledVector(fwd, FB.fwd) : nk.clone().addScaledVector(up, low ? -.12 : -.055).addScaledVector(fwd, low ? -.1 : -.085);
   return { c, up, fwd, left };
 }
 function resolve(spec) { // {uarm:[..]} -> {uarmL:[..], uarmR:[-x..]}; explicit L/R win
@@ -51,7 +53,7 @@ export function withWrong(P, W) {
   if (!W) return P;
   const keys = P.keys.map((k, i) => ({ ...k, ...(W.all || {}), ...(W.keys?.[i] || {}) }));
   if (W.insert) { const [i, k] = W.insert; keys.splice(i, 0, { ...keys[i - 1], ...k }); }
-  return { ...P, base: { ...P.base, ...(W.base || {}) }, keys, range: W.range, tempo: W.tempo || P.tempo };
+  return { ...P, base: { ...P.base, ...(W.base || {}) }, keys, range: W.range, tempo: W.tempo || P.tempo, elbows: W.elbows ?? P.elbows };
 }
 function buildClip(model, P, eqProp = null) {
   if (P.bar === "back" && eqProp === "bar") P = { ...P, ik: P.ik || "backbar", props: (P.props || []).map((k) => (k === "bar" ? "backbar" : k)) };
@@ -82,6 +84,20 @@ function buildClip(model, P, eqProp = null) {
     if (plant) { model.updateMatrixWorld(true); const f = pw(seg[pb[0]][0]).add(pw(seg[pb[1]][0])).multiplyScalar(.5);
       if (!anchor) anchor = new THREE.Vector3(f.x, onFeet ? restDir.y0 : f.y, f.z); root.position.add(anchor.clone().sub(f)); }
     model.updateMatrixWorld(true);
+    if (P.ik === "frontbar") { // front rack: hands just outside the shoulders under the bar, elbows high and forward
+      const g = backBar((n) => pw(bones[n]), "front");
+      for (const sd of ["L", "R"]) {
+        const sgn = sd === "L" ? 1 : -1, S = pw(seg["uarm" + sd][0]);
+        const T = g.c.clone().addScaledVector(g.left, sgn * (P.gripW ?? FB.grip)).addScaledVector(g.up, FB.wu).addScaledVector(g.fwd, FB.wf);
+        const a = ulen[sd], b = flen[sd]; const D = T.clone().sub(S); const d = Math.min(D.length(), a + b - 1e-3); const u = D.normalize();
+        const pole = g.fwd.clone().addScaledVector(g.up, P.elbows ?? FB.pu).addScaledVector(g.left, sgn * FB.pl); // elbows forward and high
+        const perp = pole.addScaledVector(u, -pole.dot(u)).normalize();
+        const x = (a * a - b * b + d * d) / (2 * d), h = Math.sqrt(Math.max(0, a * a - x * x));
+        const E = S.clone().addScaledVector(u, x).addScaledVector(perp, h), W = S.clone().addScaledVector(u, d);
+        aimW("uarm" + sd, E.clone().sub(S).normalize()); aimW("farm" + sd, W.clone().sub(E).normalize());
+        aimW("hand" + sd, g.fwd.clone().multiplyScalar(-1).addScaledVector(g.up, FB.hb).addScaledVector(g.left, -sgn * .3).normalize()); // palm up, fingers back toward the shoulder
+      }
+    }
     if (P.ik === "backbar" || P.ik === "lowbar") { // hands grip the bar on the traps just outside the shoulders, elbows down/back
       const g = backBar((n) => pw(bones[n]), P.ik === "lowbar");
       for (const sd of ["L", "R"]) {
@@ -154,9 +170,9 @@ function makeProp(kinds, model, dark) {
     if (kind === "bar" || kind === "pullbar" || kind === "cbar") { const o = new THREE.Group(); o.add(cyl(kind === "pullbar" ? .018 : .014, kind === "bar" ? 1.8 : kind === "cbar" ? .5 : 1.3));
       if (kind === "bar") for (const x of [-.74, .74]) { const p = cyl(.17, .05); p.position.x = x; o.add(p); } g.add(o);
       ups.push(() => { const L = grip(hand[0], kind === "bar" ? .35 : .5), R = grip(hand[1], kind === "bar" ? .35 : .5); o.position.copy(L).add(R).multiplyScalar(.5); o.quaternion.setFromUnitVectors(X, c.copy(L).sub(R).normalize()); });
-    } else if (kind === "backbar" || kind === "lowbar") { const o = new THREE.Group(); o.add(cyl(.014, 1.8)); for (const x of [-.74, .74]) { const p = cyl(.1, .05); p.position.x = x; o.add(p); } g.add(o);
+    } else if (kind === "backbar" || kind === "lowbar" || kind === "frontbar") { const o = new THREE.Group(); o.add(cyl(.014, 1.8)); for (const x of [-.74, .74]) { const p = cyl(.1, .05); p.position.x = x; o.add(p); } g.add(o);
       const get = (n) => loc(bones[n], new THREE.Vector3()).clone();
-      ups.push(() => { const k = backBar(get, kind === "lowbar"); o.position.copy(k.c); o.quaternion.setFromUnitVectors(X, k.left); });
+      ups.push(() => { const k = backBar(get, kind === "frontbar" ? "front" : kind === "lowbar"); o.position.copy(k.c); o.quaternion.setFromUnitVectors(X, k.left); });
     } else if (/^dbn?[LR]?$/.test(kind)) for (let i = 0; i < 2; i++) { if (/[LR]$/.test(kind) && i !== (kind.endsWith("R") ? 1 : 0)) continue; const nt = kind.startsWith("dbn"); const o = new THREE.Group(); o.add(cyl(.016, .16)); for (const x of [-.09, .09]) { const p = cyl(.05, .05); p.position.x = x; o.add(p); } g.add(o);
       ups.push(() => { const h = hand[i]; o.position.copy(grip(h)); loc(h[0], a); loc(h[1], b); // handle across the palm
         const n = b.sub(a).normalize(), side = nt ? c.set(0, 0, 1) : c.set(i ? -1 : 1, 0, 0); o.quaternion.setFromUnitVectors(X, side.sub(n.multiplyScalar(side.dot(n))).normalize()); });
@@ -236,6 +252,9 @@ function makeProp(kinds, model, dark) {
       const o = new THREE.Mesh(new THREE.BoxGeometry(.36, 1, .4), pad); g.add(o);
       ups.push(() => { const an = loc(bones.footR, a).clone(), toe = loc(bones["toe3-1R"] || bones.toe31R, b).clone(), fl = loc(bones.footL, c).y - .07, top = Math.min(an.y, toe.y) - .035, p = an.lerp(toe, .5), h = Math.max(.1, top - fl);
         o.scale.y = h; o.position.set(p.x, top - h / 2, p.z); });
+    } else if (kind === "sitbox") { // modified pistol: box behind the planted (left) foot to sit down onto
+      const o = new THREE.Mesh(new THREE.BoxGeometry(.42, .42, .4), pad); g.add(o);
+      ups.push(() => { const an = loc(bones.footL, a).clone(); o.position.set(an.x - .17, an.y - .07 + .21 - .035, an.z - .42); });
     } else if (kind === "stepbox") { // step-up: box (.42 m) under the front (left) foot, which stays planted
       const o = new THREE.Mesh(new THREE.BoxGeometry(.75, .42, .4), pad); g.add(o);
       ups.push(() => { const an = loc(bones.footL, a).clone(), toe = loc(bones["toe3-1L"] || bones.toe31L, b).clone(), p = an.lerp(toe, .45); o.position.set(p.x - .15, Math.min(an.y, toe.y) - .035 - .21, p.z); });
@@ -451,10 +470,10 @@ export async function qa3d(move, eqProp = null, N = 24, wrong = null) {
       const hd = Math.min(...grip.map((g) => segDist(g, a, b)));
       note("propHand", len > .3 ? Math.max(...grip.map((g) => segDist(g, a, b))) : hd); // bars: both hands on it; dumbbell: its own hand
       note("propHead", segDist(head, ia, ib), "lt");
-      if (!/backbar|lowbar/.test(k)) note("propTorso", Math.min(...[0, .25, .5, .75, 1].map((t) => torsoD(ia.clone().lerp(ib, t)))), "lt");
+      if (!/backbar|lowbar|frontbar/.test(k)) note("propTorso", Math.min(...[0, .25, .5, .75, 1].map((t) => torsoD(ia.clone().lerp(ib, t)))), "lt");
       else note("barNeck", c.distanceTo(nk));
     });
-    if (kinds.some((k) => /^(bar|backbar|lowbar)$/.test(k))) note("gripW", grip[0].distanceTo(grip[1]));
+    if (kinds.some((k) => /^(bar|backbar|lowbar|frontbar)$/.test(k))) note("gripW", grip[0].distanceTo(grip[1]));
   }
   const fixedHands = (P.fixed || []).some((k) => /pullbar|dipbars|cbar/.test(k)) || kinds.length;
   if (worst.handTorso < .06) fails.add(`hand inside torso (${worst.handTorso.toFixed(3)})`);
