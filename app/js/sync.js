@@ -1,7 +1,7 @@
 // Optional cloud backup to the owner's OWN PRIVATE GitHub repo (see SYNC.md).
 // The token stays on this device (IndexedDB key "sync") and is NEVER written into the backup file.
 // Talks only to https://api.github.com. No libraries.
-import { S, save, onSave, flush, exportData, clean as cleanData } from "./store.js";
+import { S, SCHEMA, save, onSave, flush, exportData, clean as cleanData } from "./store.js";
 
 const API = "https://api.github.com";
 const DEBOUNCE_MS = 20000;
@@ -76,10 +76,16 @@ function mergeById(loc = [], rem = [], pick) {
   return out;
 }
 
-function mergeNotes(loc = {}, rem = {}) {
-  const out = { ...(rem || {}), ...(loc || {}) };
-  for (const k of Object.keys(rem || {})) {
-    const l = (loc || {})[k], r = rem[k];
+// BE-8: a note edited (or cleared) on one device wins by its edit time (notesAt); text from both sides is only
+// joined for old notes that have no edit time on either side
+function mergeNotes(loc = {}, rem = {}, lat = {}, rat = {}) {
+  loc ||= {}; rem ||= {}; lat ||= {}; rat ||= {};
+  const out = { ...rem, ...loc };
+  for (const k of new Set([...Object.keys(rem), ...Object.keys(loc)])) {
+    const la = +lat[k] || 0, ra = +rat[k] || 0;
+    if (la || ra) { out[k] = ra > la ? rem[k] ?? "" : loc[k] ?? ""; if (out[k] === "") delete out[k]; continue; }
+    if (!(k in rem)) continue;
+    const l = loc[k], r = rem[k];
     if (l == null || l === "") { out[k] = r; continue; }
     if (typeof l !== "string" || typeof r !== "string" || !r || l === r || l.includes(r)) continue;
     out[k] = r.includes(l) ? r : `${l}\n— ${r}`; // never drop either text
@@ -133,7 +139,9 @@ export function merge(local = {}, remote = {}, opts = {}) {
   out.sessions = out.sessions.filter((x) => !x || x.id == null || !gone("sessions", x.id, stamp(x)));
   out.workouts = out.workouts.filter((x) => !x || x.id == null || !gone("workouts", String(x.id).replace(/-cloud$/, ""), t(x.updatedAt)));
   out.favorites = out.favorites.filter((s) => !gone("favorites", s, 0));
-  out.notes = mergeNotes(local.notes, remote.notes);
+  out.notes = mergeNotes(local.notes, remote.notes, local.notesAt, remote.notesAt);
+  out.notesAt = { ...(remote.notesAt || {}) };
+  for (const [k, v] of Object.entries(local.notesAt || {})) if (!(+out.notesAt[k] >= +v)) out.notesAt[k] = v;
   out.bodyweight = mergeBodyweight(local.bodyweight, remote.bodyweight);
   // pain flags: union per exercise; plateau adjust: newest entry per exercise wins
   const lp = local.pain || {}, rp = remote.pain || {};
@@ -222,6 +230,7 @@ function parseBackup(text) {
   try { j = JSON.parse(text); } catch { throw new SyncError("The backup file in the repo is not valid JSON.", "corrupt"); }
   const d = j && j.app === "gymy" ? j.data : j;
   if (!d || !Array.isArray(d.sessions) || !Array.isArray(d.workouts)) throw new SyncError("The file in the repo is not a Gym backup.", "corrupt");
+  if (+(d.schema ?? j.schema) > SCHEMA) throw new SyncError("The cloud backup was saved by a newer version of the app. Update this app first (reload the page).", "newer"); // BE-6: never mix shapes
   return { exportedAt: j.exportedAt || null, data: d };
 }
 
@@ -311,7 +320,7 @@ async function pushOnce(c, retried) {
       c.sha = r.sha; c.lastPull = c.lastMerge = Date.now(); // UI may want to re-render (see onStatus)
     }
   }
-  const payload = JSON.stringify(buildBackup(), null, 1);
+  const payload = JSON.stringify(buildBackup()); // BE-9: compact (indented JSON doubles the size; the downloaded file stays indented)
   if (c.token && payload.includes(c.token)) throw new SyncError("Refusing to upload: the token was found inside the backup.", "leak");
   const body = { message: `backup ${new Date().toISOString()}`, content: b64encode(payload), branch: c.branch || "main", ...(c.sha ? { sha: c.sha } : {}) };
   let res;
@@ -347,9 +356,9 @@ export function push() {
 export async function restore() {
   const r = await pull();
   if (!r) throw fail(new SyncError("No backup found in the repository yet.", "notfound", 404));
-  const local = buildBackup().data;
-  const fresh = !(local.sessions || []).length && !(local.workouts || []).length;
   await exclusive(async () => {
+    const local = buildBackup().data; // BE-10: snapshot inside the lock, after any queued push
+    const fresh = !(local.sessions || []).length && !(local.workouts || []).length;
     await applyData(merge(local, r.data, { preferRemoteSettings: fresh }));
     S.sync.sha = r.sha; save("sync"); await flush();
   });

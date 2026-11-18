@@ -3,7 +3,7 @@ const DB_NAME = "gymy", DB_VER = 1, STORE = "kv";
 export const SCHEMA = 2;
 
 const DEFAULTS = {
-  favorites: [], workouts: [], sessions: [], active: null, notes: {}, bodyweight: [], pain: {}, adjust: {},
+  favorites: [], workouts: [], sessions: [], active: null, notes: {}, notesAt: {}, bodyweight: [], pain: {}, adjust: {},
   settings: { unit: "kg", restDefault: 90, autoRest: true, sound: true, haptics: true, bar: 20,
     plates: [25, 20, 15, 10, 5, 2.5, 1.25], theme: "system", equip: "gym", installDismissed: 0, lastBackup: 0, onboarded: false, lockTimer: true },
   profile: null, // {level, days, equipment, name}
@@ -36,8 +36,8 @@ export async function loadStore() {
   try {
     try { db = await idb(); } catch { await new Promise((r) => setTimeout(r, 300)); db = await idb(); }
     db.onversionchange = () => { db.close(); db = null; };
-    const keys = await tx("readonly", (st) => st.getAllKeys());
-    const vals = await tx("readonly", (st) => st.getAll());
+    // BE-7: keys and values from ONE transaction (another tab adding a key in between would shift them)
+    const [keys, vals] = await tx("readonly", (st) => { const k = st.getAllKeys(), v = st.getAll(); return { get result() { return [k.result, v.result]; } }; });
     keys.forEach((k, i) => { S[k] = vals[i]; });
     S.settings = { ...DEFAULTS.settings, ...(S.settings || {}) };
     if (!keys.includes("schema")) await migrateFromV1();

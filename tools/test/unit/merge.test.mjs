@@ -40,3 +40,17 @@ test("merge: un-favourite sticks, re-favourite after it wins, old tombstones exp
                     { favorites: ["a", "b"], deleted: { favorites: { a: NOW - 5, b: NOW - 20 } } }, { now: NOW });
   assert.deepEqual(out.favorites, ["b", "c"]); assert.ok(!("z" in out.deleted.favorites));
 });
+
+// BE-8: notes win by edit time
+test("merge: newer note edit wins instead of joining both texts", () => {
+  const out = merge({ notes: { bench: "elbows in" }, notesAt: { bench: 20 } }, { notes: { bench: "elbows tucked 45deg" }, notesAt: { bench: 10 } });
+  assert.equal(out.notes.bench, "elbows in"); assert.equal(out.notesAt.bench, 20);
+});
+test("merge: a note cleared on another device stays cleared", () => {
+  const out = merge({ notes: { bench: "old cue" }, notesAt: { bench: 10 } }, { notes: {}, notesAt: { bench: 30 } });
+  assert.equal("bench" in out.notes, false); assert.equal(out.notesAt.bench, 30);
+});
+test("merge: old notes without edit times are still joined, never dropped", () => {
+  const out = merge({ notes: { row: "a" } }, { notes: { row: "b", curl: "c" } });
+  assert.equal(out.notes.row, "a\n— b"); assert.equal(out.notes.curl, "c");
+});

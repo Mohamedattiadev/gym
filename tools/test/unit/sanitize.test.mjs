@@ -33,3 +33,7 @@ test("sanitize: newer schema is refused, non-object refused", () => {
   assert.throws(() => sanitize({ schema: 3 }, opt), /newer version/);
   assert.throws(() => sanitize([], opt), /Not a Gym/);
 });
+test("sanitize: notesAt keeps only slug keys with finite numbers (BE-8)", () => {
+  const out = sanitize({ sessions: [], workouts: [], notesAt: { bench: 5, "<x>": 3, row: "7", curl: Infinity } }, { ...opt, keys: [...KEYS, "notesAt"] });
+  assert.deepEqual(out.notesAt, { bench: 5 });
+});

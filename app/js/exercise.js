@@ -439,7 +439,7 @@ async function rankPanel(e, p) {
   const th = $("#tierHelp", p); if (th) th.onclick = () => { haptic(); tierInfo(); };
   const y = $(".yt[data-yt]", p); if (y) y.onclick = () => { haptic();
     y.outerHTML = `<div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/${y.dataset.yt}?start=${y.dataset.t}&autoplay=1&playsinline=1&rel=0&modestbranding=1" title="YouTube video" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`; };
-  let nt; $("#note", p).oninput = (ev) => { clearTimeout(nt); nt = setTimeout(() => { S.notes[e.slug] = ev.target.value; save("notes"); }, 400); };
+  let nt; $("#note", p).oninput = (ev) => { clearTimeout(nt); nt = setTimeout(() => { S.notes[e.slug] = ev.target.value; (S.notesAt ||= {})[e.slug] = Date.now(); save("notes", "notesAt"); }, 400); };
 }
 function statsPanel(e, p) {
   p.innerHTML = historyHTML(e.slug); fillIll(p); wireHistory(p, e.slug);
