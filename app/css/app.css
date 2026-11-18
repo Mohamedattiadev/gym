@@ -130,7 +130,8 @@ main#view.page { animation: pageIn 220ms var(--ease) backwards; }
 }
 
 /* ============ type & layout primitives ============ */
-.hello { display: flex; align-items: center; gap: 10px; margin: 4px 0 12px; }
+.hello { display: flex; align-items: baseline; gap: 12px; margin: 4px 0 12px; }
+.hello h1 { min-width: 0; } .hello .eyebrow { flex: none; white-space: nowrap; }
 .hello h1 { font-size: 1.375rem; font-weight: 740; letter-spacing: -.025em; line-height: 1.15; }
 .eyebrow { font-size: .75rem; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; color: var(--t3); }
 .sec { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 18px 0 8px; }

@@ -61,8 +61,7 @@ export function homeView() {
   const low = lowMuscles();
   const top = EX.filter((e) => e.tier === "S" && e.canonical && !hurts(e)).slice(0, 4);
   view().innerHTML = `
-    <div class="hello"><div class="grow"><div class="eyebrow">${fmtDate(Date.now(), { weekday: "long", month: "long", day: "numeric" })}</div><h1>${greeting()}${S.profile?.name ? ", " + esc(S.profile.name) : ""}</h1></div>
-      <a class="iconbtn filled" href="#/settings" aria-label="Settings">${ic("settings", "sm")}</a></div>
+    <div class="hello"><h1 class="grow">${greeting()}${S.profile?.name ? ", " + esc(S.profile.name) : ""}</h1><div class="eyebrow">${fmtDate(Date.now(), { weekday: "short", month: "short", day: "numeric" })}</div></div>
     ${installBanner()}
     <div class="cols stagger">
       <div class="stack">${heroCard()}</div>
