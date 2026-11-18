@@ -83,18 +83,22 @@ export function planClicks(e) {
 }
 export function previewPlan(p) {
   const o = planOpts();
-  const draw = (el) => {
+  let tab = "list";
+  const draw = async (el) => {
     const ws = buildPlan(p, o), sl = planSlots(p, o);
     const seg = (id, opts, cur) => `<div class="seg sm" id="${id}" role="group">${opts.map(([v, t]) => `<button class="${String(v) === String(cur) ? "on" : ""}" data-v="${v}">${t}</button>`).join("")}</div>`;
     el.innerHTML = `<h3>${esc(p.name)}</h3><p class="muted small" style="margin:-6px 0 10px">${p.days} days a week · ${ws.length} workouts</p>
+      <div class="seg sm block" id="pvTab" role="group" style="margin-bottom:12px"><button class="${tab === "list" ? "on" : ""}" data-v="list">Workouts</button><button class="${tab === "week" ? "on" : ""}" data-v="week">How a week works</button></div>
       <div class="pv-opts"><div class="row between"><span class="small b">Session length</span>${seg("pvMin", [[45, "45 min"], [60, "60 min"], [75, "75 min"]], o.min)}</div>
         <div><span class="small b">Extra focus</span><div class="gchips" id="pvFocus" style="margin-top:6px">${[["", "None"], ...Object.entries(FOCUS).map(([k, v]) => [k, v.name])].map(([k, t]) => `<button class="chip ${k === o.focus ? "on" : ""}" data-v="${k}">${t}</button>`).join("")}</div>${o.focus ? `<div class="dim tiny" style="margin-top:4px">Adds a few sets for ${esc(FOCUS[o.focus].name.toLowerCase())} to two workouts.</div>` : ""}</div></div>
-      ${ws.map((w, i) => `<div class="h4">${esc(w.name)} <span class="dim tiny num">~${minutesOf(sl[i])} min</span></div><div class="stack tight">
+      ${tab === "week" ? `<div id="pvScn" style="margin-top:12px"></div>` : ws.map((w, i) => `<div class="h4">${esc(w.name)} <span class="dim tiny num">~${minutesOf(sl[i])} min</span></div><div class="stack tight">
       ${w.items.map((it) => `<div class="lrow"><img src="${BY[it.slug].poster}" alt=""><div class="grow"><div class="t">${esc(BY[it.slug].name)}</div><div class="s">${it.sets} × ${it.reps}</div></div>${tierBadge(BY[it.slug].tier)}</div>`).join("")}</div>`).join("")}
       <button class="btn primary block" style="margin-top:16px" id="usePv">Use this plan</button>`;
+    $("#pvTab", el).onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b || b.dataset.v === tab) return; haptic(); tab = b.dataset.v; draw(el); };
     $("#pvMin", el).onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b) return; haptic(); o.min = +b.dataset.v; draw(el); };
     $("#pvFocus", el).onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b) return; haptic(); o.focus = b.dataset.v; draw(el); };
     $("#usePv", el).onclick = () => { closeSheet(); usePlan(p, true, o).then((ok) => { if (ok && !location.hash.startsWith("#/train")) go("#/train"); }); };
+    if (tab === "week") { const host = $("#pvScn", el), sc = await import("./scenario.js"); if (host.isConnected) sc.mountScenario(host, p, { opt: { ...o } }); }
   };
   openSheet(`<div id="pvBody"></div>`, (el) => draw($("#pvBody", el)));
 }

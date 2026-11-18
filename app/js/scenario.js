@@ -56,9 +56,9 @@ function progression(built) {
     <p class="dim tiny" style="margin-top:6px">Example: ${esc(BY[it.slug]?.name || "")}, ${it.sets} sets of ${esc(it.reps)}. Add reps until every set reaches ${top}, then add weight and start again at ${lo}. Every few weeks take one lighter week (about 60% of the weight, one set less).</p>`;
 }
 
-/** mount into host; returns nothing. opts.compare = second plan id (desktop) */
-export function mountScenario(host, p, { compare = "" } = {}) {
-  const unit = S.settings.unit, opt = P.planOpts();
+/** mount into host; returns nothing. opts.compare = second plan id (desktop), opts.opt = plan options (Preview sheet) */
+export function mountScenario(host, p, { compare = "", opt = P.planOpts() } = {}) {
+  const unit = S.settings.unit;
   const plans = [p, compare && P.planById(compare)].filter(Boolean);
   const built = plans.map((q) => P.buildPlan(q, opt)), mus = built.map(musclesOf);
   let d = Math.max(0, p.week.findIndex((i) => i != null)), timer = 0;
