@@ -246,7 +246,7 @@ function stats() {
 export function sessionView() {
   const a = S.active; if (!a) return redirect("#/train");
   keepAwake();
-  setTop({ title: a.name, back: true, right: `<button class="btn sm primary" id="finTop">Finish</button>` });
+  setTop({ title: a.name, back: true, right: `<button class="iconbtn" id="sMore" aria-label="Workout options">${ic("more")}</button><button class="btn sm primary" id="finTop">Finish</button>` });
   const st = stats(), u = S.settings.unit, gym = !!S.settings.gym && a.entries.length > 0;
   if (gym) { gi = Math.min(gi, a.entries.length - 1); if (a.entries[gi]?.sets.every((x) => x.done)) { const k = a.entries.findIndex((en) => en.sets.some((x) => !x.done)); if (k >= 0) gi = k; } }
   view().classList.toggle("gym", gym);
@@ -448,7 +448,12 @@ function wireSession() {
       if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.5) gymGo(gi + (dx < 0 ? 1 : -1) * (document.dir === "rtl" ? -1 : 1)); }; }
   $("#addEx").onclick = () => { pickMode = { toSession: true, selected: new Set() }; go("#/pick"); };
   $("#fin").onclick = finishSession; $("#finTop").onclick = finishSession;
-  $("#disc").onclick = async () => { if (await ask("Discard this workout? Nothing will be saved.", { ok: "Discard", danger: true })) { S.active = null; save("active"); stopRest(); wakeLock?.release?.(); redirect("#/train"); } };
+  const discard = async () => { if (await ask("Discard this workout? Nothing will be saved.", { ok: "Discard", danger: true })) { closeSheet(); S.active = null; save("active"); stopRest(); wakeLock?.release?.(); redirect("#/train"); } };
+  $("#disc").onclick = discard;
+  $("#sMore").onclick = () => openSheet(`<h3>${esc(a.name)}</h3><div class="menu"><button id="sAdd">${ic("plus", "sm")}Add exercise</button><button class="danger" id="sDisc">${ic("trash", "sm")}Discard workout</button></div>`, (el) => {
+    $("#sAdd", el).onclick = () => { closeSheet(); $("#addEx").click(); };
+    $("#sDisc", el).onclick = discard;
+  });
 }
 function gymGo(i) {
   const n = S.active?.entries.length || 0; if (i < 0 || i >= n || i === gi) return;
