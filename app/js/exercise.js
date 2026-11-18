@@ -24,12 +24,13 @@ const tOn = (v) => (v === "fav" ? lib.favs : v === "machine" ? lib.machine : v =
 
 function libHTML(pick) {
   const counts = {}; EX.forEach((e) => (counts[e.group] = (counts[e.group] || 0) + 1));
-  return `<div class="libbar"><div class="search">${ic("search", "sm")}<input id="q" type="search" enterkeyhint="search" placeholder="Search ${EX.length} exercises" value="${esc(lib.q)}" autocomplete="off"></div>
+  return `<div class="libbar"><div class="search">${ic("search", "sm")}<input id="q" type="search" aria-label="Search exercises" enterkeyhint="search" placeholder="Search ${EX.length} exercises" value="${esc(lib.q)}" autocomplete="off"></div>
       <div class="chips" id="tiers" style="padding-top:10px">${[...TOGGLES, ...(S.settings.equip !== "gym" ? [["mine", "My equipment"]] : [])].map(([v, l]) => `<button class="chip ${tOn(v) ? "on" : ""}" data-t="${v}">${l}</button>`).join("")}
         <select class="chip ${lib.equip ? "on" : ""}" id="equip" aria-label="Equipment"><option value="">Equipment</option>${EQUIP.map((q) => `<option ${q === lib.equip ? "selected" : ""}>${esc(q)}</option>`).join("")}</select>
         <select class="chip ${lib.level ? "on" : ""}" id="level" aria-label="Level"><option value="">Level</option>${["beginner", "intermediate", "advanced"].map((l) => `<option value="${l}" ${l === lib.level ? "selected" : ""}>${l[0].toUpperCase() + l.slice(1)}</option>`).join("")}</select></div>
       <div class="chips" id="groups" style="padding-top:0">${["All", ...GROUPS].map((g) => `<button class="chip ${lib.group === g ? "on" : ""}" data-g="${esc(g)}">${esc(g)}${g !== "All" ? ` <span class="n">${counts[g]}</span>` : ""}</button>`).join("")}</div></div>
     <div class="row"><div class="count grow" id="count"></div><button class="linkbtn small" id="tierHelp">${ic("info", "xs")} Tiers</button></div>
+    ${S.settings.tierSeen ? "" : `<div class="tierhint dim small" id="tierHint"><span class="grow">S, A, B… is Jeff Nippard's ranking. S is the best pick.</span><button class="linkbtn small" id="tierOk">Got it</button></div>`}
     <div class="grid ${pick ? "pick" : ""}" id="grid"></div><div id="sentinel" style="height:1px"></div>`;
 }
 function wireLib(pick, cur) {
@@ -58,7 +59,9 @@ function wireLib(pick, cur) {
     $$("#tiers button.chip").forEach((c) => c.classList.toggle("on", tOn(c.dataset.t))); refresh();
   };
   $("#equip").onchange = (e) => { lib.equip = e.target.value; e.target.classList.toggle("on", !!lib.equip); refresh(); };
-  $("#tierHelp").onclick = () => { haptic(); tierInfo(); };
+  const tierSeen = () => { if (S.settings.tierSeen) return; S.settings.tierSeen = 1; save("settings"); $("#tierHint")?.remove(); }; // A11Y-26 first-run tier line
+  $("#tierHelp").onclick = () => { haptic(); tierSeen(); tierInfo(); };
+  const tok = $("#tierOk"); if (tok) tok.onclick = () => { haptic(); tierSeen(); };
   $("#level").onchange = (e) => { lib.level = e.target.value; e.target.classList.toggle("on", !!lib.level); refresh(); };
   if (pick) {
     grid.onclick = (e) => {
@@ -183,7 +186,7 @@ export function variants(e) {
 }
 function variantsHTML(e) {
   const v = variants(e); if (!v.length) return "";
-  return `<div class="chips eqv" id="eqv">${v.map(({ k, x, on, sim }) => `<button class="chip ${on ? "on" : ""}" data-s="${x.slug}" title="${esc(x.name)}">${esc(KIND_NAME[k] || k)}${sim ? `<span class="n">alt</span>` : ""}</button>`).join("")}</div>`;
+  return `<div class="chips eqv" id="eqv">${v.map(({ k, x, on, sim }) => `<button class="chip ${on ? "on" : ""}" data-s="${x.slug}" title="${esc(x.name)}"${sim ? ` aria-label="${esc(KIND_NAME[k] || k)}, alternative"` : ""}>${esc(KIND_NAME[k] || k)}${sim ? `<span class="n">alt</span>` : ""}</button>`).join("")}</div>`;
 }
 
 /* ---- Joint care sheet (opened from the pain chip) ---- */

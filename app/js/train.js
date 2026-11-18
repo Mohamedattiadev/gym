@@ -332,6 +332,7 @@ function entryHTML(en, ei) {
   const act = en.sets.findIndex((s) => !s.done);
   const t1 = P.tgt(1);
   let n = 0;
+  const xn = esc(e?.name || en.slug);
   const ssIn = S.active.entries[ei - 1]?.ss, ssOut = en.ss && S.active.entries[ei + 1];
   return `<div class="xblock ${allDone ? "done-all" : ""} ${S.settings.gym && ei === gi ? "cur" : ""} ${ssOut ? "ss-out" : ""} ${ssIn ? "ss-in" : ""}" data-ei="${ei}">
     ${ssOut ? `<div class="ss-tag">${ic("swap", "xs")} Superset with next — no rest between</div>` : ""}
@@ -341,14 +342,14 @@ function entryHTML(en, ei) {
         ${last ? `<div class="hint"><span class="beat">${ic("target")}Today: ${wr(t1.w, t1.r, u)}</span><span class="dim">(last: ${wr(P.top.w, P.top.r)})</span></div>` : `<div class="hint">First time — pick a weight you can do ${P.tr ? P.tr[1] : 10} times with good form.</div>`}
         ${en.deload ? `<div class="hint" style="color:var(--warn)">${ic("alert", "xs")}<span class="grow">Stalled 5+ weeks — deload: ~60% weight today, then build back up.</span></div>` : ""}</div>
       <button class="iconbtn sm" data-a="menu" aria-label="Options">${ic("more")}</button></div>
-    <div class="set-hdr"><span>Set</span><span>Previous</span><span>${u}</span><span>Reps</span><span></span></div>
+    <div class="set-hdr"><span>Set</span><span>Last<span class="lt"> time</span></span><span>${u}</span><span>Reps</span><span></span></div>
     <div class="sets">${en.sets.map((s, si) => { const warm = s.type === "w"; if (!warm) n++; const pv = warm ? null : P.prev(n), tg = warm ? { w: "", r: "" } : P.tgt(n);
       return `<div class="setrow ${s.done ? "done" : ""} ${si === act ? "act" : ""}" data-si="${si}">
-      <button class="n ${warm ? "w" : ""}" data-a="type" aria-label="Set type">${warm ? "W" : n}</button>
+      <button class="n ${warm ? "w" : ""}" data-a="type" aria-label="Set ${warm ? "warm-up" : n} type, ${xn}">${warm ? "W" : n}</button>
       ${pv ? `<button class="prev num" data-a="prev" data-w="${esc(pv.w)}" data-r="${esc(pv.r)}" aria-label="Same as last time: ${esc(wr(pv.w, pv.r, u))}">${esc(wr(pv.w, pv.r))}</button>` : `<span class="prev dim">—</span>`}
-      <div class="stepper"><input data-k="w" inputmode="decimal" enterkeyhint="next"${barb ? ' title="Hold for plates"' : ""} placeholder="${esc(tg.w || "kg")}" value="${esc(s.w)}" aria-label="Weight"></div>
-      <div class="stepper"><input data-k="r" inputmode="numeric" enterkeyhint="done" placeholder="${esc(tg.r || "—")}" value="${esc(s.r)}" aria-label="Reps"></div>
-      <button class="check" data-a="done" aria-pressed="${!!s.done}" aria-label="Set ${warm ? "warm-up" : n} done">${ic("check")}</button>
+      <div class="stepper"><input data-k="w" inputmode="decimal" enterkeyhint="next"${barb ? ' title="Hold for plates"' : ""} placeholder="${esc(tg.w || "kg")}" value="${esc(s.w)}" aria-label="Set ${warm ? "warm-up" : n} weight, ${xn}"></div>
+      <div class="stepper"><input data-k="r" inputmode="numeric" enterkeyhint="done" placeholder="${esc(tg.r || "—")}" value="${esc(s.r)}" aria-label="Set ${warm ? "warm-up" : n} reps, ${xn}"></div>
+      <button class="check" data-a="done" aria-pressed="${!!s.done}" aria-label="Set ${warm ? "warm-up" : n} done, ${xn}">${ic("check")}</button>
       <div class="stepline"><div><button data-a="w-" aria-label="Less weight">−</button><span>${wStep(e)} ${u}</span><button data-a="w+" aria-label="More weight">+</button></div>
         <div><button data-a="r-" aria-label="Fewer reps">−</button><span>1 rep</span><button data-a="r+" aria-label="More reps">+</button></div></div></div>`; }).join("")}</div>
     <div class="xtools"><button class="btn sm" data-a="add">${ic("plus", "sm")} Set</button><button class="btn sm" data-a="warm">${ic("flame", "sm")} Warm-up</button>

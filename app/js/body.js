@@ -27,7 +27,7 @@ import { VIEWBOX, ANATOMY } from "./anatomy.js";
 export { CREDIT } from "./anatomy.js";
 
 export function bodySVG(view) {
-  return `<svg class="body-svg" viewBox="${VIEWBOX.join(" ")}" data-view="${view}" xmlns="http://www.w3.org/2000/svg"><g class="muscles">${ANATOMY[view]}</g></svg>`;
+  return `<svg class="body-svg" aria-hidden="true" viewBox="${VIEWBOX.join(" ")}" data-view="${view}" xmlns="http://www.w3.org/2000/svg"><g class="muscles">${ANATOMY[view]}</g></svg>`;
 }
 /** Union bbox of both sides of a muscle. */
 export function muscleBox(svg, id, attr = "m") {

@@ -22,17 +22,17 @@ function weekDots() {
 function heroCard() {
   if (S.active) {
     const n = S.active.entries.reduce((a, en) => a + en.sets.filter((s) => s.done).length, 0);
-    return `<a class="hero-card live" href="#/session"><div class="eyebrow">In progress</div><h3>${esc(S.active.name)}</h3>
+    return `<a class="hero-card live" href="#/session"><div class="eyebrow">In progress</div><h2>${esc(S.active.name)}</h2>
       <div class="muted small">${fmtDur(Date.now() - S.active.startedAt)} · ${n} sets done · tap to resume</div></a>`;
   }
   const next = T.nextWorkout();
   const pl = T.currentPlan();
-  if (next) return `<div class="hero-card"><div class="eyebrow">Up next${pl ? ` · ${esc(pl.name)} plan` : ""}</div><h3>${esc(next.name)}</h3>
+  if (next) return `<div class="hero-card"><div class="eyebrow">Up next${pl ? ` · ${esc(pl.name)} plan` : ""}</div><h2>${esc(next.name)}</h2>
       <div class="muted small">${next.items.length} exercises · about ${Math.max(10, Math.round(next.items.reduce((a, it) => a + +it.sets * 2.6, 0) / 5) * 5)} min</div>
       <div class="thumbs">${next.items.slice(0, 6).map((it) => `<img src="${BY[it.slug]?.poster || ""}" alt="" data-hide-broken>`).join("")}</div>
       <div class="row"><button class="btn primary grow" id="startNext">${ic("play", "sm")} Start workout</button><a class="btn" href="#/warmup/w/${next.id}" aria-label="Warm up">${ic("flame", "sm")}<span class="wl"> Warm up</span></a><a class="btn" href="#/workout/${next.id}" aria-label="Edit">${ic("edit", "sm")}</a></div></div>`;
   const p = planById(recommendedId());
-  return `<div class="hero-card has-ill rec"><div class="txt"><div class="eyebrow">Recommended for ${S.profile?.level ? "you" : "beginners"}</div><h3>${esc(p.name)} · ${p.days} days</h3>
+  return `<div class="hero-card has-ill rec"><div class="txt"><div class="eyebrow">Recommended for ${S.profile?.level ? "you" : "beginners"}</div><h2>${esc(p.name)} · ${p.days} days</h2>
       <div class="muted small" style="margin-bottom:14px">Each muscle ${freqOf(p)}× a week, about ${Math.max(...planSlots(p, planOpts()).map(minutesOf))} min a session. ${S.profile?.level ? "" : "Not a beginner? "}<a href="#/start" style="color:var(--accent-text);font-weight:600">${S.profile?.level ? "Find another plan" : "Find my plan"}</a></div>
       </div><div class="row"><button class="btn primary grow" id="useRec">${ic("plus", "sm")} Use this plan</button><a class="btn grow" href="#/plan/${p.id}">How it works</a></div><div class="ill" data-ill="hero-start"></div></div>`;
 }

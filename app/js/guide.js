@@ -307,7 +307,7 @@ export async function plansView(id) {
       <a class="btn ghost block" href="#/start" style="margin-top:8px">${ic("layers", "sm")} Not sure? Find my plan</a>
       ${pl.progression ? `<details class="gsec"><summary>${esc(L(pl.progression.title))}${ic("chev", "sm")}</summary><ul>${(pl.progression.points || []).map((x) => `<li>${esc(L(x))}</li>`).join("")}</ul></details>` : ""}`;
     segVal($("#pDays"), (v) => { plansDays = +v; draw(); });
-    $("#pList").onclick = (e) => T.planClicks(e);
+    $("#pList").onclick = (e) => { T.planClicks(e); }; // never return false: that cancels the "How it works" link
     T.fillPlanLines(view());
   };
   draw();

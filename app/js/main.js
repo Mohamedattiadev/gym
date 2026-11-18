@@ -52,18 +52,21 @@ function route(quiet) {
     pick: libraryView, me: meView, guide: G("guideView"), start: G("startView"), profile: G("profileView"), standards: G("standardsView"), nutrition: G("nutritionView"), plans: G("plansView"), plan: G("plansView"), warmup: G("warmupView", "warmup"), videos, settings: settingsView, timer: (x) => timerView(setTop, view, x) }[a] || homeView;
   try { fn(b); } catch (err) { console.error(err); view.innerHTML = `<div class="empty">Something went wrong.<br><small>${esc(err.message)}</small></div>`; }
   T.updateLiveDot(); fillIll(view);
+  $("#tTitle").toggleAttribute("aria-hidden", !!view.querySelector("h1")); // A11Y-14 one h1 per page for screen readers
   if (quiet) { hideSplash(); return; }
   if (!["pick", "lib", "ex"].includes(a) || (a === "ex" && innerWidth < BP.wide)) window.scrollTo(0, 0);
   document.documentElement.classList.toggle("back-nav", back);
   if (!keep) { view.classList.remove("page"); void view.offsetWidth; view.classList.add("page"); }
   requestAnimationFrame(() => indicate(view));
   // A11Y-9: move focus to the new page heading (screen readers announce it; :focus-visible keeps pointer users ring-free)
-  if (!keep && routeFocus && !view.contains(document.activeElement)) { const h = $("#view h1, #view h2, #tTitle"); if (h) { if (!h.hasAttribute("tabindex")) h.tabIndex = -1; h.focus({ preventScroll: true }); } }
+  if (!keep && routeFocus && !view.contains(document.activeElement)) { const h = $("#view h1") || $("#view h2") || $("#tTitle"); if (h) { if (!h.hasAttribute("tabindex")) h.tabIndex = -1; h.focus({ preventScroll: true }); } }
   routeFocus = true;
   hideSplash();
 }
 let routeFocus = false; // not on the first load (focus starts at the top anyway)
 addEventListener("hashchange", () => { closeSheet(); route(); });
+// A11Y-18 skip link: the hash is the router, so focus the content instead of following "#view"
+$(".skip").onclick = (e) => { e.preventDefault(); $("#view").focus(); };
 // SEC-4: no inline onerror (CSP) — thumbnails marked data-hide-broken hide themselves when the file is missing
 addEventListener("error", (e) => { if (e.target?.hasAttribute?.("data-hide-broken")) e.target.style.visibility = "hidden"; }, true);
 // BE-2: another tab saved -> show its data here; never re-render under the user's fingers or a hidden tab
@@ -163,7 +166,7 @@ function bodyMap() {
       <div class="body-wrap" id="bwrap">${bodySVG(bm.view)}<div class="zctl"><button class="iconbtn" data-z="1.4" aria-label="Zoom in">${ic("plus", "sm")}</button><button class="iconbtn" data-z="0.7" aria-label="Zoom out">${ic("minus", "sm")}</button></div></div>
       <div class="dim tiny bm-credit"><button class="linkbtn" id="credit">Anatomy art credit</button></div></div>
     <div class="bm-side"><div id="bmlist"><div class="sec"><h2>Muscles</h2></div>
-      <div class="mgrid stagger" id="legend">${list.map((m) => `<button data-m="${m.id}" style="--hm:${dot(m)}"><i></i>${m.name}<span class="c">${cnt(m)}</span></button>`).join("")}</div></div>
+      <div class="mgrid stagger" id="legend">${list.map((m) => `<button data-m="${m.id}" style="--hm:${dot(m)}" aria-label="${m.name}, ${cnt(m)} exercises"><i></i>${m.name}<span class="c">${cnt(m)}</span></button>`).join("")}</div></div>
       <section class="mdet" id="mdet" hidden aria-label="Muscle details"></section></div></div>`;
   const svg = $(".body-svg"), det = $("#mdet"), dur = () => (RM.matches ? 1 : 520);
   $$("path.m", svg).forEach((p) => { const m = MBY[p.dataset.m]; if (!m) return;
@@ -250,14 +253,14 @@ async function muscleDetail(m, vol, rec, svg, el, ctl) {
   const done = Math.round(vol[m.id] || 0); const [mev, mav] = m.lm; const r = rec[m.id];
   let eq = "", picked = null;
   const pickHead = (hid) => { svg.classList.toggle("hpick", !!hid); $$(`path.m[data-m="${m.id}"]`, svg).forEach((p) => p.classList.toggle("hsel", p.dataset.h === hid)); };
-  const exRow = (e) => `<a class="lrow" href="#/ex/${e.slug}"><img src="${e.poster}" alt="" loading="lazy"><div class="grow"><div class="t">${esc(e.name)}</div><div class="s">${esc(e.equipment.join(" · ") || e.group)}</div></div>${tierBadge(e.tier)}</a>`;
+  const exRow = (e, hid) => `<a class="lrow" href="#/ex/${e.slug}"${hid ? ` data-h="${hid}"` : ""}><img src="${e.poster}" alt="" loading="lazy"><div class="grow"><div class="t">${esc(e.name)}</div><div class="s">${esc(e.equipment.join(" · ") || e.group)}</div></div>${tierBadge(e.tier)}</a>`;
   const drawEx = () => {
     const l = eq ? list.filter((e) => e.equipment.includes(eq)) : list;
     let html;
     if (hs.length > 1) {
       const by = Object.fromEntries(hs.map((h) => [h.id, []])); l.forEach((e) => by[headOf(hs, e).id].push(e));
-      html = hs.filter((h) => by[h.id].length).map((h) => `<div class="h4 hd-h" data-h="${h.id}">${esc(L(h.name))} <span class="dim tiny">${by[h.id].length}</span></div>${by[h.id].slice(0, 12).map(exRow).join("")}`).join("");
-    } else html = l.slice(0, 40).map(exRow).join("");
+      html = hs.filter((h) => by[h.id].length).map((h) => `<div class="h4 hd-h" data-h="${h.id}">${esc(L(h.name))} <span class="dim tiny">${by[h.id].length}</span></div>${by[h.id].slice(0, 12).map((e) => exRow(e, h.id)).join("")}`).join("");
+    } else html = l.slice(0, 40).map((e) => exRow(e)).join("");
     $("#mlist", el).innerHTML = html || `<div class="empty">No exercises</div>`;
   };
   const eqs = [...new Set(list.flatMap((e) => e.equipment))].slice(0, 8);
@@ -282,7 +285,7 @@ async function muscleDetail(m, vol, rec, svg, el, ctl) {
       drawEx();
       $("#meq", el).onclick = (e) => { const b = e.target.closest(".chip"); if (!b) return; eq = b.dataset.q; $$("#meq .chip", el).forEach((c) => c.classList.toggle("on", c === b)); drawEx(); };
       $("#mlist", el).onclick = (e) => { const h = e.target.closest(".hd-h"); if (h) { picked = h.dataset.h; pickHead(picked); } };
-      if (hover) { $("#mlist", el).onmouseover = (e) => { const h = e.target.closest(".hd-h"); if (h) pickHead(h.dataset.h); }; $("#mlist", el).onmouseleave = () => pickHead(picked); }
+      if (hover) { $("#mlist", el).onmouseover = (e) => { const h = e.target.closest("[data-h]"); if (h) pickHead(h.dataset.h); }; /* a part's heading AND its exercise rows light that part */ $("#mlist", el).onmouseleave = () => pickHead(picked); }
     }
   };
   panel();

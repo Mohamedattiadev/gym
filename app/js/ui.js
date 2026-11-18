@@ -40,7 +40,8 @@ const P = {
   edit: '<path d="M4 20h4L19 9l-4-4L4 16z"/>', copy: '<rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>',
   link: '<path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/>',
 };
-export const ic = (n, cls = "") => `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${P[n] || ""}</svg>`;
+const DIR = new Set(["chev", "back"]);
+export const ic = (n, cls = "") => `<svg class="i ${cls}${DIR.has(n) ? " dir" : ""}" viewBox="0 0 24 24" aria-hidden="true">${P[n] || ""}</svg>`;
 
 export const RM = matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -193,13 +194,24 @@ export function toast(msg, ms = 1900, action) {
   let off = () => {};
   const rm = () => { t.remove(); off(); };
   if (action) {
-    const b = document.createElement("button"); b.textContent = action.label; b.onclick = () => { rm(); action.fn(); }; t.appendChild(b); ms = Math.max(ms, 5000);
+    const b = document.createElement("button"); b.textContent = action.label; b.onclick = () => { rm(); action.fn(); }; t.appendChild(b); ms = Math.max(ms, 8000);
     // UT-3: an action toast can be closed and never sits over a box the user is typing in
     const x = document.createElement("button"); x.className = "tx"; x.setAttribute("aria-label", "Close"); x.innerHTML = ic("close", "sm"); x.onclick = rm; t.appendChild(x);
     const onF = (e) => { if (e.target.matches?.("input, textarea, select")) rm(); };
     document.addEventListener("focusin", onF); off = () => document.removeEventListener("focusin", onF);
   }
-  document.body.appendChild(t); setTimeout(rm, ms);
+  t.removeAttribute("role"); if (!action) t.setAttribute("aria-hidden", "true"); say(action ? `${msg}. ${action.label} button available.` : msg);
+  let tm = setTimeout(rm, ms);
+  if (action) { const hold = () => clearTimeout(tm), go = () => { clearTimeout(tm); tm = setTimeout(rm, 4000); };
+    t.addEventListener("pointerenter", hold); t.addEventListener("focusin", hold); t.addEventListener("pointerleave", go); t.addEventListener("focusout", go); }
+  document.body.appendChild(t);
+}
+/* A11Y-12: one persistent polite live region; cleared first so a repeated message is announced again */
+export function say(msg) {
+  const l = document.getElementById("live"); if (!l) return;
+  // a modal sheet makes everything outside it inert -> keep the region inside the open dialog
+  const host = document.querySelector("dialog[open]") || document.body; if (l.parentNode !== host) host.appendChild(l);
+  l.textContent = ""; requestAnimationFrame(() => { l.textContent = msg; });
 }
 
 /* ---- haptics + sound ---- */

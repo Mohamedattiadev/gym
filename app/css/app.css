@@ -185,7 +185,7 @@ select.chip { appearance: none; padding-inline-end: 14px; }
 .chip:active { transform: scale(.96); }
 .chip .n { font-size: .75rem; color: var(--t3); }
 .chip.on { background: var(--accent); color: var(--accent-ink); box-shadow: none; }
-.chip.on .n { color: color-mix(in oklab, var(--accent-ink) 75%, transparent); }
+.chip.on .n { color: var(--accent-ink); font-weight: 500; }
 
 /* segmented control with sliding indicator (ui.js indicate()) */
 .seg { position: relative; display: inline-grid; grid-auto-flow: column; grid-auto-columns: 1fr; padding: 3px; border-radius: var(--r-full); background: var(--s2); box-shadow: var(--inset); }
@@ -279,9 +279,9 @@ svg.ring circle { fill: none; stroke-width: 4; } svg.ring .bg { stroke: var(--s3
 
 /* ============ home ============ */
 .hero-card { position: relative; overflow: hidden; padding: 16px; border-radius: var(--r-xl); background: var(--s1); box-shadow: var(--raise); }
-.hero-card h3 { margin: 2px 0 2px; font-size: 1.1875rem; font-weight: 720; letter-spacing: -.015em; }
+.hero-card h2, .hero-card h3 { margin: 2px 0 2px; font-size: 1.1875rem; font-weight: 720; letter-spacing: -.015em; }
 .hero-card.live { background: var(--accent); color: var(--accent-ink); box-shadow: none; }
-.hero-card.live .eyebrow, .hero-card.live .muted { color: color-mix(in oklab, var(--accent-ink) 82%, transparent); }
+.hero-card.live .eyebrow, .hero-card.live .muted { color: var(--accent-ink); }
 .hero-card .ill { position: absolute; inset-inline-end: 10px; bottom: 6px; width: 132px; margin: 0; opacity: .95; pointer-events: none; }
 .hero-card.has-ill .txt { padding-inline-end: 128px; }
 @media (max-width: 399px) { .hero-card .wl { display: none; } }
@@ -498,7 +498,7 @@ svg.ring circle { fill: none; stroke-width: 4; } svg.ring .bg { stroke: var(--s3
 .pr-t { background: var(--s2); border: 1px solid var(--line); border-radius: 14px; padding: 10px 10px 9px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .pr-t span { font-size: .7188rem; font-weight: 650; color: var(--t3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pr-t b { font-size: 1.375rem; font-weight: 780; line-height: 1.15; color: var(--t1); }
-.pr-t b i { font-style: normal; font-size: .8125rem; font-weight: 650; color: var(--t2); margin-left: 2px; }
+.pr-t b i { font-style: normal; font-size: .8125rem; font-weight: 650; color: var(--t2); margin-inline-start: 2px; }
 .pr-t small { font-size: .7812rem; color: var(--t2); }
 .hist-ch { margin-top: 14px; } .hist-ch .chart { margin-top: 6px; }
 .hist-list { margin-top: 4px; }
@@ -613,6 +613,8 @@ dialog.sheet h3 { margin: 4px 0 12px; font-size: 1.1875rem; font-weight: 720; le
 dialog.sheet.dlg { inset: 0; margin: auto; max-width: 400px; width: calc(100% - 32px); height: max-content; border-radius: var(--r-xl); animation: popDlg 260ms var(--ease) both; }
 dialog.sheet.dlg .grab { display: none; } dialog.sheet.dlg .body { padding: 20px; }
 dialog.sheet.dlg.closing { animation: fadeOut 160ms ease-in both; }
+/* the scrolling body always fits the sheet (desktop sheet is 84dvh, body was sized for 90dvh -> last button cut off) */
+dialog.sheet[open] { display: flex; flex-direction: column; } dialog.sheet .grab { flex: none; } dialog.sheet .body { flex: 1 1 auto; min-height: 0; }
 @media (min-width: 768px) { dialog.sheet:not(.dlg) { bottom: 24px; border-radius: var(--r-xl); max-height: 84dvh; width: calc(100% - 48px); } }
 .toast { position: fixed; z-index: 100; left: 50%; bottom: calc(var(--tab-h) + var(--safe-b) + 16px); transform: translateX(-50%); display: flex; align-items: center; gap: 14px;
   padding: 11px 16px; border-radius: var(--r-md); background: var(--t1); color: var(--bg); font-weight: 600; font-size: .9062rem; box-shadow: var(--shadow); max-width: calc(100% - 32px); animation: toastIn 300ms var(--spring) both; }
@@ -999,3 +1001,15 @@ body:has(#rov) .toast { bottom: auto; top: calc(var(--safe-t) + 16px); }
 .tchips { display: flex; flex-wrap: wrap; gap: 8px; } .tchips .chip { height: 40px; text-decoration: none; color: var(--t1); }
 .wrow.next { box-shadow: 0 0 0 1.5px var(--accent); } .wrow .nx { color: var(--accent-text); font-weight: 700; }
 .cur-b { pointer-events: none; color: var(--ok); }
+
+/* A11Y-12..25 */
+.skip { position: fixed; inset-inline-start: 8px; top: -80px; z-index: 1000; padding: 10px 16px; border-radius: 12px; background: var(--s1); color: var(--t1); font-weight: 650; box-shadow: var(--shadow, 0 4px 16px rgb(0 0 0 / .18)); }
+.skip:focus { top: calc(8px + var(--safe-t, 0px)); }
+#view:focus { outline: none; }
+:focus-visible { outline-color: var(--accent-text); }
+.btn.primary:disabled { opacity: 1; background: var(--s3); color: var(--t3); box-shadow: none; }
+/* A11Y-22 RTL: zero specificity so rotate rules (open/close chevrons) still win; forward buttons already flip in LTR */
+:where([dir="rtl"]) :where(#tBack svg, svg.i.dir) { transform: scaleX(-1); }
+[dir="rtl"] .iconbtn.fwd svg { transform: none; }
+.tierhint { display: flex; align-items: center; gap: 10px; margin: 2px 0 8px; }
+@media (max-width: 399px) { .set-hdr .lt { display: none; } }
