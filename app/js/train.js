@@ -520,7 +520,10 @@ function entryMenu(ei) {
 }
 async function finishSession() {
   const a = S.active; const st = stats();
-  if (!st.sets && !(await ask("No sets are checked. Finish anyway?", { ok: "Finish" }))) return;
+  if (!st.sets) { // Q0c: never save an empty session (0 sets would count in history, calendar and streak)
+    if (await ask("Nothing was logged. Discard this workout?", { ok: "Discard", cancel: "Keep going", danger: true })) { closeSheet(); S.active = null; save("active"); stopRest(); wakeLock?.release?.(); clearInterval(clockT); redirect("#/train"); }
+    return;
+  }
   const left = a.entries.reduce((n, en) => n + en.sets.filter((s) => !s.done).length, 0); // UT-1: never drop unticked sets silently
   if (st.sets && left && !(await ask(`${left} ${left === 1 ? "set is" : "sets are"} not checked and won't be saved. Finish anyway?`, { ok: "Finish", cancel: "Keep going" }))) return;
   const prs = [];
