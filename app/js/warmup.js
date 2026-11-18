@@ -127,7 +127,7 @@ function visual(d) {
 /** Plays only the drill's segment of the expert's video (credited, links to the original). */
 function demo(d) {
   const id = ytId(d.clip.q), s = sec(d.clip.start), e = sec(d.clip.end);
-  $(".wvis").innerHTML = `<iframe class="wclip" src="https://www.youtube-nocookie.com/embed/${id}?start=${s}${e > s ? `&end=${e}` : ""}&autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1" title="${esc(d.clip.by || "Demo")}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+  $(".wvis").innerHTML = `<iframe class="wclip" src="https://www.youtube-nocookie.com/embed/${id}?start=${s}${e > s ? `&end=${e}` : ""}&autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1" title="${esc(d.clip.by || "Demo")}" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
     <a class="wcred" href="https://www.youtube.com/watch?v=${id}&t=${s}s" target="_blank" rel="noopener">${ic("yt", "xs")} ${esc(d.clip.by || "Original")}</a>`;
 }
 function player(w) {

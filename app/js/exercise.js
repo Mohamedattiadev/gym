@@ -373,7 +373,7 @@ async function mistakeSheet(e, i) {
   const m = e.mistakes[i]; if (!m) return;
   const c = ((await loadMistakes()).fam || {})[e.family]?.[i]?.clip, paint = paintBody(e), pw = c ? null : await poseWrong(e, i);
   const bodyVis = `<div class="mini-body mbody">${paint(bodySVG("front"))}${paint(bodySVG("back"))}</div><p class="dim small mcred">Done right, the highlighted muscles do the work.</p>`;
-  const vis = c ? `<div class="yt mclip"><iframe src="https://www.youtube-nocookie.com/embed/${esc(c.yt)}?start=${c.start | 0}&end=${c.end | 0}&autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1" title="Mistake demo" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+  const vis = c ? `<div class="yt mclip"><iframe src="https://www.youtube-nocookie.com/embed/${esc(c.yt)}?start=${c.start | 0}&end=${c.end | 0}&autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1" title="Mistake demo" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
       <p class="dim small mcred">Clip: ${esc(c.credit || "")} · <a href="https://www.youtube.com/watch?v=${esc(c.yt)}&t=${c.start | 0}s" target="_blank" rel="noopener">Original at ${mmss(c.start)}</a></p>`
     : pw ? `<div class="m3d"><div class="seg sm m3seg" hidden><button class="on" data-w="1">Wrong</button><button data-w="0">Right</button></div><div class="m3row"></div>
       <p class="dim small mcred">3D: the mistake next to the right movement. Drag to turn.</p></div>`
@@ -438,7 +438,7 @@ async function rankPanel(e, p) {
     <div class="h4">My notes</div><textarea id="note" class="input" placeholder="Seat height, grip, cues…">${esc(S.notes[e.slug] || "")}</textarea>`;
   const th = $("#tierHelp", p); if (th) th.onclick = () => { haptic(); tierInfo(); };
   const y = $(".yt[data-yt]", p); if (y) y.onclick = () => { haptic();
-    y.outerHTML = `<div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/${y.dataset.yt}?start=${y.dataset.t}&autoplay=1&playsinline=1&rel=0&modestbranding=1" title="YouTube video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`; };
+    y.outerHTML = `<div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/${y.dataset.yt}?start=${y.dataset.t}&autoplay=1&playsinline=1&rel=0&modestbranding=1" title="YouTube video" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`; };
   let nt; $("#note", p).oninput = (ev) => { clearTimeout(nt); nt = setTimeout(() => { S.notes[e.slug] = ev.target.value; save("notes"); }, 400); };
 }
 function statsPanel(e, p) {
