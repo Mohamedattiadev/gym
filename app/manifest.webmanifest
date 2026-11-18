@@ -2,6 +2,7 @@
   "name": "Gym",
   "short_name": "Gym",
   "description": "Offline gym guide: best exercises, body map, workouts and timers.",
+  "id": "./",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
