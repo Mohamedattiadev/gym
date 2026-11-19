@@ -1,6 +1,7 @@
 // One global timer (stopwatch | countdown | intervals) shared by the Timer page, rest timer and the floating pill.
 import { $, BP, esc, ic, haptic, beep, toast, fmtDur } from "./ui.js";
 import { S } from "./store.js";
+import * as V from "./voice.js";
 
 const KEY = "gym-timer";
 const now = () => Date.now();
@@ -17,25 +18,35 @@ function loop() { clearInterval(iv); if (T.mode && T.running) iv = setInterval(t
 function tick() {
   if (T.mode === "countdown" && T.running) {
     const left = T.end - now(); const sec = Math.ceil(left / 1000);
-    if (sec <= 3 && sec > 0 && sec !== lastBeep) { lastBeep = sec; beep([[660, .08]], .12); }
+    count(sec, T.total, .08, .12);
     if (left <= 0) { const { kind, nx } = T; stop(); haptic("rest"); beep([[880, .15], [880, .15], [1320, .3]]);
       const msg = kind === "rest" ? (nx?.name ? `Go: ${nx.name}${nx.set ? ` · set ${nx.set}` : ""}` : "Rest over — next set") : "Time is up";
       toast(msg); say(kind === "rest" ? `Rest over. ${msg}` : msg);
+      later(kind === "rest" ? `Go. ${V.nextPhrase(nx || {}) || "Next set."}` : "Time is up.");
       dispatchEvent(new CustomEvent("gym:timerend", { detail: { kind, nx } })); return; }
   }
   if (T.mode === "interval" && T.running) {
     let left = T.end - now();
     if (left <= 0) {
-      if (T.phase === "work" && T.rest) { T.phase = "rest"; T.end = now() + T.rest * 1000; beep([[440, .2]]); haptic("warn"); }
-      else if (T.round >= T.rounds) { stop(); beep([[880, .15], [1320, .4]]); haptic("rest"); toast("Intervals done"); return; }
-      else { T.round++; T.phase = "work"; T.end = now() + T.work * 1000; beep([[880, .2]]); haptic("success"); }
+      if (T.phase === "work" && T.rest) { T.phase = "rest"; T.end = now() + T.rest * 1000; beep([[440, .2]]); haptic("warn"); later("Rest."); }
+      else if (T.round >= T.rounds) { stop(); beep([[880, .15], [1320, .4]]); haptic("rest"); toast("Intervals done"); later("Intervals done."); return; }
+      else { T.round++; T.phase = "work"; T.end = now() + T.work * 1000; beep([[880, .2]]); haptic("success"); later(`Work. Round ${T.round} of ${T.rounds}.`); }
       persist(); left = T.end - now();
     }
-    const sec = Math.ceil(left / 1000); if (sec <= 3 && sec > 0 && sec !== lastBeep) { lastBeep = sec; beep([[660, .06]], .1); }
+    count(Math.ceil(left / 1000), (T.phase === "work" ? T.work : T.rest) * 1000, .06, .1);
   }
   listeners.forEach((fn) => fn(view()));
   renderOverlay(); renderPill();
 }
+
+/* last seconds: a beep at 3, 2, 1 — with Voice on it says "10 seconds" (long timers) and "3", "2", "1" instead */
+function count(sec, total, d, vol) {
+  if (sec === lastBeep || sec <= 0) return;
+  if (sec === 10 && total >= 20000 && V.enabled()) { lastBeep = sec; V.speak("10 seconds"); }
+  else if (sec <= 3) { lastBeep = sec; if (!V.speak(String(sec))) beep([[660, d]], vol); }
+}
+/* speak after the end beep has played */
+const later = (t) => V.enabled() && setTimeout(() => V.speak(t), 700);
 
 /* ---- derived view of the timer ---- */
 export function view() {
@@ -55,10 +66,11 @@ export function startStopwatch() { T = { mode: "stopwatch", running: true, t0: n
 /* nx (rest only) = { text, slug, name, set, of, w, r } — the next set, shown on the overlay and the lock screen */
 export function startCountdown(sec, { kind = "timer", label = "", next = "", nx = null } = {}) {
   T = { mode: "countdown", kind, running: true, total: sec * 1000, end: now() + sec * 1000, left: sec * 1000, label, next, nx }; lastBeep = -1; persist(); loop();
+  if (kind === "rest") V.speak(`Rest ${V.duration(sec)}.`);
 }
 export function startIntervals(work, rest, rounds, label = "") {
   T = { mode: "interval", running: true, work, rest, rounds, round: 1, phase: "work", end: now() + work * 1000, left: work * 1000, label }; lastBeep = -1;
-  beep([[880, .2]]); persist(); loop();
+  beep([[880, .2]]); persist(); loop(); later(`Work. Round 1 of ${rounds}.`);
 }
 export function pause() {
   if (!T.running) return;
@@ -77,7 +89,7 @@ export function add(sec) {
   if (T.running) T.end += sec * 1000; else T.left = Math.max(0, T.left + sec * 1000);
   T.total = Math.max(1000, T.total + sec * 1000); persist(); tick();
 }
-export function stop() { T = { mode: null }; persist(); clearInterval(iv); listeners.forEach((fn) => fn(view())); renderOverlay(); renderPill(); }
+export function stop() { V.stop(); T = { mode: null }; persist(); clearInterval(iv); listeners.forEach((fn) => fn(view())); renderOverlay(); renderPill(); }
 export const isRest = () => T.mode === "countdown" && T.kind === "rest";
 export const active = () => !!T.mode;
 

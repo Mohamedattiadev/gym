@@ -134,7 +134,7 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 
 ## 9b. Voice guidance (later phase — yes, possible)
 - ⬜ **Narrate the movement explanations** too: about, numbered how-to steps, cues, common mistakes, warm-up drills, plan explanations (a play button on every explanation + hands-free mode during a session)
-- ⬜ Read steps & cues aloud, announce "set 2 of 3", rep count, rest countdown "10 seconds… 3, 2, 1, go"
+- ✅ Read steps & cues aloud, announce "set 2 of 3", rest countdown "10 seconds… 3, 2, 1, go" (Q7, app/js/voice.js, option A Web Speech): Settings > Voice (off by default) speaks "Rest 2 minutes", "10 seconds" (timers >= 20 s), "3", "2", "1" instead of the beeps, then "Go. Set 2 of 3. 40 kilos for 10 reps." (a new exercise: its name + first cue); interval timer "Work. Round 2 of 8" / "Rest" / "Intervals done"; exercise How to has a Listen / Stop button (name, numbered steps, cues) that works with the setting off; stops on page/tab change, Skip rest or stop. No rep counting (we do not know when a rep happens). Not yet: about/mistakes/warm-up/plan narration, TR/AR voices (follow <html lang> once block 21 ships)
 - Option A (free, instant): browser **Web Speech API** (`speechSynthesis`) — works offline on most phones, voices for en/tr/ar depend on device
 - Option B (best quality, offline): pre-generate audio with open-source **Piper TTS** (has English, Turkish, Arabic voices) → small .mp3/.opus per phrase, cached by the SW
 - Setting: Voice on/off, language follows app language

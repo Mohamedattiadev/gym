@@ -11,3 +11,4 @@ train.js ${BY[ch[0].slug]?.name}  # toast text
 train.js ${BY[ch[0].to]?.name}    # toast text
 ui.js ${action.label}         # screen-reader text (say)
 exercise.js ${y.dataset.t}    # number from bundled jeff.json (iframe start=)
+voice.js ${nx.name}           # spoken text (speechSynthesis), never HTML

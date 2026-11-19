@@ -31,7 +31,7 @@ const P = {
   sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
   moon: '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>', chev: '<path d="M9 6l6 6-6 6"/>',
   chart: '<path d="M3 3v18h18M7 15l4-4 3 3 6-6"/>', book: '<path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4zM20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/>',
-  bolt: '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>', scale: '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7 10.5a6 6 0 0 1 10 0M12 12.5l2.2-3.6"/><circle cx="12" cy="13" r="0.6"/>', sound: '<path d="M4 9h4l5-4v14l-5-4H4zM16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>', share: '<path d="M12 3v13M7 8l5-5 5 5M5 21h14"/>', note: '<path d="M4 4h16v12l-4 4H4zM16 20v-4h4"/>',
+  bolt: '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>', scale: '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7 10.5a6 6 0 0 1 10 0M12 12.5l2.2-3.6"/><circle cx="12" cy="13" r="0.6"/>', voice: '<path d="M4 5h16v11H10l-5 4v-4H4z"/><path d="M8 9.5h8M8 12.5h5"/>', sound: '<path d="M4 9h4l5-4v14l-5-4H4zM16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>', share: '<path d="M12 3v13M7 8l5-5 5 5M5 21h14"/>', note: '<path d="M4 4h16v12l-4 4H4zM16 20v-4h4"/>',
   pause: '<path d="M8 5v14M16 5v14" stroke-width="3"/>', speed: '<path d="M4 18a8 8 0 1 1 16 0"/><path d="M12 18l4-5"/>', fs: '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>', fsx: '<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>',
   calendar: '<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/>',
   phone: '<rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/>',

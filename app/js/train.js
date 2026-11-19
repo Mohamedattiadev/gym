@@ -476,7 +476,8 @@ function nextInfo(ei, from) {
     const w = warm ? s.w : s.w || tg.w, r = warm ? s.r : s.r || tg.r;
     const name = BY[en.slug]?.name || en.slug, u = S.settings.unit;
     const text = `Next: ${i === ei ? "" : `${name} · `}${warm ? "warm-up set" : `set ${n} of ${work.length}`}${r ? ` · ${w ? `${w} ${u} × ` : ""}${r}` : ""}`;
-    return { text, slug: en.slug, name, set: warm ? "" : n, of: work.length, w: String(w || ""), r: String(r || "") };
+    const fresh = !en.sets.some((x) => x.done); // Voice: a new exercise gets its name and first cue spoken
+    return { text, slug: en.slug, name, set: warm ? "" : n, of: work.length, w: String(w || ""), r: String(r || ""), newEx: i !== ei || fresh, cue: fresh ? BY[en.slug]?.cues?.[0] || "" : "" };
   }
   return { text: "Last set — finish strong" };
 }

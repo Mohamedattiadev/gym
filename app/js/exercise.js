@@ -8,6 +8,7 @@ import { e1rm } from "./calc.js";
 import { setTop, go, routeParts } from "./nav.js";
 import { tierBadge, tierInfo, levelBars, xcard, onImg, isFav, toggleFav, restText, JEFF_VID, fillIll } from "./components.js";
 import * as T from "./train.js";
+import * as V from "./voice.js";
 
 const view = () => $("#view");
 const wide = () => innerWidth >= BP.wide;
@@ -387,16 +388,33 @@ async function mistakeSheet(e, i) {
     (el) => { if (pw) mount3dPair(el, e, i, pw); const v = $(".mvid video", el); if (v) v.onerror = () => { const b = v.closest(".mvwrap"); if (b) b.outerHTML = bodyVis; }; }, { half: !pw });
 }
 
+/* ---- Listen: read the steps and cues aloud (Web Speech, works with the Voice setting off) ---- */
+let reading = null;
+function wireListen(e, b) {
+  const set = (on) => { b.setAttribute("aria-pressed", on); b.lastElementChild.textContent = on ? "Stop" : "Listen"; };
+  b.onclick = () => {
+    haptic();
+    if (reading) { reading = null; V.stop(); set(false); return; }
+    const lines = [e.name + ".", ...e.steps.map((s, i) => `Step ${i + 1}. ${s}`), e.cues.length ? `Cues. ${e.cues.map((c) => (/[.!?]$/.test(c) ? c : c + ".")).join(" ")}` : ""];
+    reading = b; set(true);
+    if (!V.speak(lines, { force: true, onend: () => { if (reading === b) { reading = null; set(false); } } })) { reading = null; set(false); toast("This browser cannot read aloud"); }
+  };
+}
+addEventListener("hashchange", () => { if (reading) { reading = null; V.stop(); } });
+
 /* ---- tab panels ---- */
 function panel(e) {
+  if (reading) { reading = null; V.stop(); }
   const p = $("#dpanel"); p.style.animation = "none"; void p.offsetWidth; p.style.animation = "";
   if (dtab.cur === "how") {
-    p.innerHTML = `<div id="tgt"></div>${e.about ? `<p class="muted mb-12">${esc(e.about)}</p>` : ""}
+    const canRead = V.supported && (e.steps.length || e.cues.length);
+    p.innerHTML = `<div id="tgt"></div>${canRead ? `<div class="how-top mb-12">${e.about ? `<p class="muted">${esc(e.about)}</p>` : "<span></span>"}<button class="btn sm listen" id="listen" aria-pressed="false">${ic("sound", "sm")}<span>Listen</span></button></div>`
+      : e.about ? `<p class="muted mb-12">${esc(e.about)}</p>` : ""}
       ${e.steps.length ? `<ol class="steps">${e.steps.map((s) => `<li><span>${esc(s)}</span></li>`).join("")}</ol>` : `<p class="dim">No written steps yet — follow the video.</p>`}
       ${e.cues.length ? `<div class="h4">Cues</div><ul class="bul ok">${e.cues.map((s) => `<li>${ic("okc", "sm")}<span>${esc(s)}</span></li>`).join("")}</ul>` : ""}
       ${e.mistakes.length ? `<div class="h4">Common mistakes</div><ul class="bul no">${e.mistakes.map((m, i) => `<li>${ic("x", "sm")}<span>${esc(m.text)}</span><button class="mshow" data-mi="${i}" aria-label="Show the fix">Show</button></li>`).join("")}</ul>` : ""}
       ${e.vnote ? `<div class="h4">This variation</div><p class="muted">${esc(e.vnote)}</p>` : ""}`;
-    targets(e, p); $$(".mshow", p).forEach((b) => (b.onclick = () => { haptic(); mistakeSheet(e, +b.dataset.mi); }));
+    targets(e, p); if (canRead) wireListen(e, $("#listen", p)); $$(".mshow", p).forEach((b) => (b.onclick = () => { haptic(); mistakeSheet(e, +b.dataset.mi); }));
   } else if (dtab.cur === "stats") statsPanel(e, p);
   else rankPanel(e, p);
 }

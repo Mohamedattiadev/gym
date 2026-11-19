@@ -1043,3 +1043,6 @@ body:has(#rov) .toast { bottom: auto; top: calc(var(--safe-t) + 16px); }
 .pr-b .i, .pr-i .i { width: 14px; height: 14px; } .pr-i { color: var(--accent-text); vertical-align: -2px; }
 .wk-s.flash { animation: wkFlash 1.2s var(--ease); }
 @keyframes wkFlash { 0%, 40% { box-shadow: 0 0 0 2px var(--accent); } 100% { box-shadow: var(--raise); } }
+/* exercise How to: about text + Listen (voice.js) */
+.how-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.how-top p { margin: 0; flex: 1; } .listen { flex: none; } .listen[aria-pressed="true"] { color: var(--accent-text); }

@@ -10,6 +10,7 @@ import { installNow, standalone } from "./install.js";
 import { applyTheme, fillIll, MEDIA_CACHE, RECENT_CACHE, tierBadge } from "./components.js";
 import { lib } from "./exercise.js";
 import * as Sync from "./sync.js";
+import * as V from "./voice.js";
 import { readLog, clearLog } from "./log.js";
 
 const view = () => $("#view");
@@ -225,6 +226,7 @@ async function settingsPanel(host) {
         ${row("timer", "Auto rest timer", `<button class="switch ${st.autoRest ? "on" : ""}" role="switch" aria-checked="${!!(st.autoRest)}" data-k="autoRest" aria-label="Auto rest timer"></button>`, "Starts after every checked set")}
         ${row("play", "Lock-screen rest timer", `<button class="switch ${st.lockTimer !== false ? "on" : ""}" role="switch" aria-checked="${!!(st.lockTimer !== false)}" data-k="lockTimer" aria-label="Lock-screen rest timer"></button>`, `Rest time and next set on the lock screen · <a href="#" id="lockHelp" style="color:var(--accent-text)">How it works</a>`)}
         ${row("sound", "Sound", `<button class="switch ${st.sound ? "on" : ""}" role="switch" aria-checked="${!!(st.sound)}" data-k="sound" aria-label="Sound"></button>`)}
+        ${V.supported ? row("voice", "Voice", `<button class="switch ${st.voice ? "on" : ""}" role="switch" aria-checked="${!!st.voice}" data-k="voice" aria-label="Voice"></button>`, "Says the rest time, the last seconds and the next set") : ""}
         ${row("phone", "Vibration", `<button class="switch ${st.haptics ? "on" : ""}" role="switch" aria-checked="${!!(st.haptics)}" data-k="haptics" aria-label="Vibration"></button>`)}
       </div>
       ${joints.length ? `<div class="card pad"><div class="row"><span class="ico-t">${ic("bandage", "sm")}</span><div class="grow"><b>Pain flags</b><div class="dim small">${joints.map((j) => esc(JOINTS[j]?.name?.en || j)).join(", ")} · ${Object.keys(S.pain).length} exercises hidden</div></div><button class="btn sm" id="clrPain">Clear</button></div></div>` : ""}
@@ -255,7 +257,7 @@ async function settingsPanel(host) {
   seg("sTheme", (v) => { set("theme", v); applyTheme(); });
   seg("sEquip", (v) => { set("equip", v); lib.mine = true; toast(`Showing exercises for: ${EQUIP_PROFILES[v].name}`); });
   seg("sUnit", (v) => set("unit", v)); seg("sBar", (v) => set("bar", +v));
-  $$(".switch[data-k]").forEach((s) => (s.onclick = () => { s.classList.toggle("on"); s.setAttribute("aria-checked", s.classList.contains("on")); set(s.dataset.k, s.classList.contains("on")); }));
+  $$(".switch[data-k]").forEach((s) => (s.onclick = () => { s.classList.toggle("on"); s.setAttribute("aria-checked", s.classList.contains("on")); set(s.dataset.k, s.classList.contains("on")); if (s.dataset.k === "voice" && st.voice) V.speak("Voice on. Rest 2 minutes. Set 2 of 3."); }));
   $("#lockHelp").onclick = (e) => { e.preventDefault(); openSheet(`<h3 style="margin:0 0 8px">Lock-screen rest timer</h3>
     <p class="muted small" style="margin:0 0 8px">During a workout the rest timer shows on the lock screen and in the notification player: time left, the next set and weight. Pause = pause rest, Next = skip rest, the seek buttons = +30 s / −15 s. When rest ends you hear a beep, the phone vibrates (Android) and a notification appears.</p>
     <p class="muted small" style="margin:0 0 8px"><b>Android:</b> works in Chrome and the installed app. It uses a silent audio track, so on some phones it pauses music from other apps — turn it off here if it does.</p>

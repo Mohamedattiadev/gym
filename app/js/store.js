@@ -5,7 +5,7 @@ export const SCHEMA = 2;
 const DEFAULTS = {
   favorites: [], workouts: [], sessions: [], active: null, notes: {}, notesAt: {}, bodyweight: [], pain: {}, adjust: {},
   settings: { unit: "kg", restDefault: 90, autoRest: true, sound: true, haptics: true, bar: 20,
-    plates: [25, 20, 15, 10, 5, 2.5, 1.25], theme: "system", equip: "gym", installDismissed: 0, lastBackup: 0, onboarded: false, lockTimer: true },
+    plates: [25, 20, 15, 10, 5, 2.5, 1.25], theme: "system", equip: "gym", installDismissed: 0, lastBackup: 0, onboarded: false, lockTimer: true, voice: false },
   profile: null, // {level, days, equipment, name}
   deleted: {}, // FE-7 tombstones {sessions|workouts|favorites: {id: ts}}; ts < 0 = brought back (undo / re-favourite) at -ts
 };
