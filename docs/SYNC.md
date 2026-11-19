@@ -1,5 +1,9 @@
 # Cloud backup (optional) — your own private GitHub repo
 
+> Simpler option for most people: **Me → Settings → Account → Sign in with Google** (Supabase, see `docs/SUPABASE.md`;
+> shown once the owner has set it up). Same data, same merge; no repo or token needed. This GitHub option stays for
+> people who want the backup in their own repository.
+
 Gym keeps all data on the phone (IndexedDB). If the browser data is cleared or the phone is replaced, it is gone.
 Cloud backup copies everything to **one JSON file (`gym-backup.json`) in a private GitHub repository that you own**.
 There is no Gym server: the app talks directly to `api.github.com` with a token that only you have.

@@ -56,7 +56,7 @@ async function adoptFallback() {
   let fb = null; try { fb = JSON.parse(localStorage.getItem("gymy2") || "null"); } catch {}
   if (!fb) return;
   const { merge } = await import("./sync.js");
-  const m = merge(Object.fromEntries(Object.keys(DEFAULTS).map((k) => [k, S[k]])), { ...fb, sync: undefined });
+  const m = merge(Object.fromEntries(Object.keys(DEFAULTS).map((k) => [k, S[k]])), { ...fb, sync: undefined, cloud: undefined });
   for (const k of Object.keys(DEFAULTS)) if (k !== "settings" && k !== "active") S[k] = m[k];
   S.active ??= fb.active ?? null;
   await saveAll();
@@ -125,7 +125,7 @@ export async function flush() {
   if (!keys.length) return;
   if (!db) {
     // FE-26 / SEC-5: the sync token never goes into localStorage (it stays in memory for this degraded session only)
-    try { localStorage.setItem("gymy2", JSON.stringify({ ...S, sync: S.sync ? { ...S.sync, token: undefined } : S.sync })); } catch (e) { keys.forEach((k) => dirty.add(k)); fail(e); }
+    try { localStorage.setItem("gymy2", JSON.stringify({ ...S, sync: S.sync ? { ...S.sync, token: undefined } : S.sync, cloud: undefined })); } catch (e) { keys.forEach((k) => dirty.add(k)); fail(e); }
     return;
   }
   const put = () => tx("readwrite", (st) => keys.forEach((k) => st.put(structuredClone(S[k]), k)));
@@ -154,7 +154,7 @@ export async function persist() {
 
 export function exportData() {
   return JSON.stringify({ app: "gymy", schema: SCHEMA, exportedAt: new Date().toISOString(),
-    data: { ...S, active: null, sync: undefined } }, null, 1);
+    data: { ...S, active: null, sync: undefined, cloud: undefined } }, null, 1);
 }
 export async function importData(text) {
   const j = JSON.parse(text);
@@ -165,7 +165,7 @@ export async function importData(text) {
   // FE-20: one undo slot — what was here before the import (restored by undoImport)
   if (db) await tx("readwrite", (st) => { st.put(exportData(), "preImport"); });
   else try { localStorage.setItem("gymy_preImport", exportData()); } catch {}
-  Object.assign(S, structuredClone(DEFAULTS), d, { settings: { ...DEFAULTS.settings, ...(d.settings || {}) }, active: S.active, sync: S.sync });
+  Object.assign(S, structuredClone(DEFAULTS), d, { settings: { ...DEFAULTS.settings, ...(d.settings || {}) }, active: S.active, sync: S.sync, cloud: S.cloud });
   await saveAll();
 }
 export async function undoImport() {
@@ -174,7 +174,7 @@ export async function undoImport() {
   else try { txt = localStorage.getItem("gymy_preImport"); } catch {}
   if (!txt) return false;
   const d = clean(JSON.parse(txt).data);
-  Object.assign(S, structuredClone(DEFAULTS), d, { settings: { ...DEFAULTS.settings, ...(d.settings || {}) }, active: S.active, sync: S.sync });
+  Object.assign(S, structuredClone(DEFAULTS), d, { settings: { ...DEFAULTS.settings, ...(d.settings || {}) }, active: S.active, sync: S.sync, cloud: S.cloud });
   await saveAll();
   if (db) await tx("readwrite", (st) => { st.delete("preImport"); }); else try { localStorage.removeItem("gymy_preImport"); } catch {}
   return true;

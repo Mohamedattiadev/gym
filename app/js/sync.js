@@ -43,7 +43,7 @@ export function parseRepo(owner = "", repo = "") {
 // Backup payload = exportData() minus anything secret/device-only.
 export function buildBackup(text = exportData()) {
   const j = JSON.parse(text);
-  if (j && j.data) { delete j.data.sync; j.data.active = null; }
+  if (j && j.data) { delete j.data.sync; delete j.data.cloud; j.data.active = null; }
   return j;
 }
 
@@ -163,7 +163,7 @@ export function merge(local = {}, remote = {}, opts = {}) {
   out.schema = Math.max(+local.schema || 0, +remote.schema || 0) || out.schema;
 
   out.active = local.active ?? null; // an in-progress workout is device-only
-  delete out.sync;                   // token/config never travels (applyData keeps this device's own S.sync)
+  delete out.sync; delete out.cloud; // token/config/account session never travels (applyData keeps this device's own)
   return out;
 }
 
@@ -226,7 +226,7 @@ async function getRemote(c) {
   return { sha: j.sha, text };
 }
 
-function parseBackup(text) {
+export function parseBackup(text) {
   let j;
   try { j = JSON.parse(text); } catch { throw new SyncError(t("The backup file in the repo is not valid JSON."), "corrupt"); }
   const d = j && j.app === "gymy" ? j.data : j;
@@ -256,15 +256,16 @@ const exclusive = (fn) => {
   return p.finally(() => { busy = busy > 1 ? busy - 1 : null; });
 };
 
-// Write merged data into S (all keys, never the device's sync config / active workout).
-async function applyData(d) {
+// Write merged data into S (all keys, never the device's sync config / account session / active workout).
+// Also used by cloud.js (Supabase account backup).
+export async function applyData(d) {
   d = cleanData(d); // SEC-3: the sync repo is outside data
   for (const [k, v] of Object.entries(d)) {
-    if (k === "sync" || k === "active") continue;
+    if (k === "sync" || k === "active" || k === "cloud") continue;
     S[k] = structuredClone(v);
   }
   applying = true; // our own write of merged/pulled data is not a local change to push
-  try { save(...Object.keys(d).filter((k) => k !== "sync" && k !== "active"), "sync"); } finally { applying = false; }
+  try { save(...Object.keys(d).filter((k) => k !== "sync" && k !== "active" && k !== "cloud"), "sync"); } finally { applying = false; }
   await flush();
 }
 
@@ -386,8 +387,9 @@ function waitOnline() {
 // Call once after loadStore(): pushes after every save of user data (FE-10) and resumes an upload that was
 // pending when the app was closed.
 let applying = false, hooked = false;
+export const isApplying = () => applying; // cloud.js: merged data written by a sync is not a local change
 export function initSync() {
-  if (!hooked) { hooked = true; onSave((keys) => { if (!applying && keys.some((k) => k !== "active" && k !== "sync")) autoPush(); }); }
+  if (!hooked) { hooked = true; onSave((keys) => { if (!applying && keys.some((k) => !["active", "sync", "cloud"].includes(k))) autoPush(); }); }
   const c = cfg(); if (!c) return;
   lastError = c.lastError || null;
   if (c.dirty && c.auto !== false) autoPush();

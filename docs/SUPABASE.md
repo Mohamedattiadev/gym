@@ -5,7 +5,29 @@ Prepared 2026-11-19 from the working Fluent365 implementation (repo `fluent365`:
 `.github/workflows/supabase-keepalive.yml`, `docs/SUPABASE_SETUP.md`). Read those first: most of it ports directly.
 
 Part A is for the owner (setup, ~10 minutes once Fluent365's setup is done). Part B is the build brief for the session
-that implements it. Status: **⬜ not built yet** (Gym has only the GitHub backup, `docs/SYNC.md`).
+that implements it. Status: **✅ built (Q11, 2026-11-19) — waiting for the owner's Part A steps.** Until the two repo
+Variables exist the live site serves the committed `app/supabase-config.json` = `{}` and the Account card stays hidden.
+
+### What was built (differences from the brief below)
+- `app/js/cloud.js`, **no supabase-js**: OAuth PKCE (`/auth/v1/authorize` with `code_challenge_method=s256` →
+  `?code=` → `POST /auth/v1/token?grant_type=pkce`), refresh (`grant_type=refresh_token`) and PostgREST calls over
+  plain `fetch`, like `sync.js` (no 60 kB vendor file, nothing to keep up to date). Session in IndexedDB key `cloud`
+  (stripped from Export, the GitHub backup, the localStorage fallback and imports).
+- Table `gym_backups` gets a **`rev` column** (`supabase/gym-schema.sql` — run that file, not the SQL in Part B §2):
+  writes are `PATCH … where rev = <read rev>`; a lost race reads again and merges, so two phones never overwrite each
+  other. `data` = the same JSON as Export, merged with `sync.js merge()` (ids, tombstones, notes by edit time,
+  newer-schema refusal BE-6).
+- When it syncs: right after sign-in (empty phone = restore, else merge + upload), 20 s after a change, when the app
+  comes back to the front (at most once a minute), when back online.
+- **Delete my cloud data** deletes only the Gym row (+ signs out; the phone keeps its data). The Google sign-in user is
+  NOT deleted on purpose: the Supabase project is shared with Fluent365 and `on delete cascade` would delete the
+  Fluent365 data too. The privacy page (`#/privacy`) says how to ask for the sign-in itself to be removed.
+- Config: `app/supabase-config.json` is committed as `{}` (no 404 in the console); `pages.yml` overwrites it with `jq` from `vars.SUPABASE_URL` / `vars.SUPABASE_ANON_KEY`
+  (only `https://<ref>.supabase.co`) and adds that URL to the CSP `connect-src` in `index.html`. The service worker never
+  caches the config.
+- Tests: `tools/test/unit/cloud.test.mjs` (fake REST: upload, restore, merge with rev, conflict retry, newer schema,
+  token refresh / dead refresh token, delete) and `node tools/test/cloud.mjs <outDir>` (real app + fake Supabase on the
+  same origin, two fresh browser profiles: sign in → row, second phone restores, delete → row gone, signed out).
 
 ---
 
@@ -17,7 +39,7 @@ Doing a second project would mean a second Google client, a second keep-alive an
 
 Prerequisite: `fluent365/docs/SUPABASE_SETUP.md` steps 1–5 are done (project, Google client, Google provider on).
 
-1. **Table:** Supabase → **SQL Editor** → **New query** → paste the SQL from Part B §2 → **Run**.
+1. **Table:** Supabase → **SQL Editor** → **New query** → paste all of `supabase/gym-schema.sql` (in this repo) → **Run**.
    *You should see:* "Success. No rows returned"; **Table Editor** shows `gym_backups` with **RLS enabled**.
 2. **Redirect URL:** Supabase → **Authentication** → **URL Configuration** → **Redirect URLs** → **Add URL**:
    `https://mohamedattiadev.github.io/gym/**` → **Save**. Leave **Site URL** as Fluent365's address.

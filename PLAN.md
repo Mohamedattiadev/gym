@@ -140,7 +140,7 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 - Setting: Voice on/off, language follows app language
 
 ## 9c. Accounts + cloud DB (owner, 2026-11-19) — queue item Q11
-- ⬜ Supabase (free tier) + Sign in with Google; local-first stays (offline works, signed-out users unchanged).
+- 🟡 BUILT, waiting for owner keys (Q11, session 67): app/js/cloud.js (PKCE Google sign-in + one `gym_backups` row with `rev`, no supabase-js), Settings > Account card (hidden until the deploy writes supabase-config.json from repo Variables SUPABASE_URL / SUPABASE_ANON_KEY), #/privacy page, Delete my cloud data, supabase/gym-schema.sql, tests (unit cloud.test.mjs + tools/test/cloud.mjs). Owner steps: docs/SUPABASE.md Part A.
 - DB = per-account data only (workout history, own/chosen plans, profile, bodyweight, settings, favourites, notes, pain flags, tombstones; optional active workout). Videos/posters/voice/3D/content stay on GitHub Pages + device cache, never in the DB.
 - Needs: RLS (each user only their own row), vendored supabase-js + CSP connect-src, privacy page, "Delete my account and data", owner sets up Supabase + Google OAuth. Caveat: free projects pause after ~1 week idle. Full steps in NEXT_SESSION Q11.
 - Native APK question (owner): Capacitor can build an APK on this Linux box (JDK 17 + Android SDK); not queued yet.
@@ -491,4 +491,4 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 - Owner pasted their Get SWOLE password in chat → change it. `raw/.token` must never be committed.
 
 ## Optional account (Sign in with Google + Supabase backup)
-- ⬜ Not built. Everything needed (owner setup reusing Fluent365's Supabase project, SQL, build brief, tests): `docs/SUPABASE.md`.
+- 🟡 Built in Q11 (session 67), hidden until the owner does `docs/SUPABASE.md` Part A (SQL file, redirect URL, 2 repo Variables).

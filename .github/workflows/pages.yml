@@ -34,6 +34,19 @@ jobs:
       - uses: actions/configure-pages@v5
       - name: Copy media into the site
         run: rm -rf app/media && cp -r media app/media
+      - name: Account config (Q11, docs/SUPABASE.md) — only when the repo Variables are set
+        env:
+          URL: ${{ vars.SUPABASE_URL }}
+          KEY: ${{ vars.SUPABASE_ANON_KEY }}
+        run: |
+          URL="${URL%/}"
+          if [[ "$URL" =~ ^https://[a-z0-9-]+\.supabase\.co$ && -n "$KEY" ]]; then
+            jq -n --arg url "$URL" --arg key "$KEY" '{url:$url,key:$key}' > app/supabase-config.json
+            sed -i "s#connect-src 'self'#connect-src 'self' $URL#" app/index.html
+            grep -q "connect-src 'self' $URL" app/index.html && echo "account config written for $URL"
+          else
+            echo "no Supabase Variables: Sign in with Google stays hidden"
+          fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: app

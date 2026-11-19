@@ -10,6 +10,7 @@ import { installNow, standalone } from "./install.js";
 import { applyTheme, fillIll, MEDIA_CACHE, RECENT_CACHE, tierBadge, GUIDE_LEVELS, guideBtns } from "./components.js";
 import { lib } from "./exercise.js";
 import * as Sync from "./sync.js";
+import * as Cloud from "./cloud.js";
 import * as V from "./voice.js";
 import { readLog, clearLog } from "./log.js";
 import { LANGS, READY, lang as curLang, t, tn, N, loc } from "./i18n.js";
@@ -237,6 +238,7 @@ async function settingsPanel(host) {
       <div class="card pad"><b>${t("Offline videos")}</b><p class="muted small" style="margin:4px 0 10px">${t("Videos save as you watch. Download all once on Wi-Fi (~500 MB) for full offline use.")}</p>
         <div class="progress"><div id="bar"></div></div><div class="dim small" style="margin:8px 0 10px" id="cstat">${t("Checking…")}</div>
         <div class="row"><button class="btn primary sm grow" id="dlAll">${ic("download", "sm")} ${t("All")}</button><button class="btn sm grow" id="dlTop">${t("S + A tier only")}</button></div></div>
+      <div class="card pad" id="acct" hidden></div>
       <div class="card pad" id="cloud">${cloudCard()}</div>
       <div class="card pad"><b>${t("Backup file")}</b><p class="muted small" style="margin:4px 0 10px">${t("Your data stays on this phone. Save a backup now and then.")}</p>
         <div class="row"><button class="btn sm grow" id="exp">${ic("share", "sm")} ${t("Export")}</button><label class="btn sm grow">${ic("download", "sm")} ${t("Import")}<input type="file" id="imp" accept=".json,application/json" hidden></label></div>
@@ -249,10 +251,10 @@ async function settingsPanel(host) {
       <p>${t("Code © Mohamed Attia, MIT license. {n} exercises. Not affiliated with any of the owners below; everything else belongs to them.", { n: EX.length })}</p>
       <p>Demo videos, posters and exercise names © <a href="https://getswole.app" target="_blank" rel="noopener">Get SWOLE</a> and the coaches shown. Tier rankings and training ideas © <a href="https://www.youtube.com/@JeffNippard" target="_blank" rel="noopener">Jeff Nippard</a>. Volume and recovery ideas: <a href="https://www.youtube.com/@RenaissancePeriodization" target="_blank" rel="noopener">Renaissance Periodization</a>. 3D body and motions: <a href="https://github.com/AssiamahS/opengym3d" target="_blank" rel="noopener">OpenGym3D</a> (MIT), rendered with <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> (MIT). Body map: <a href="https://github.com/HichamELBSI/react-native-body-highlighter" target="_blank" rel="noopener">react-native-body-highlighter</a> (MIT). Muscle figures: <a href="https://github.com/AbanoubAmir/open-exercise-figures" target="_blank" rel="noopener">open-exercise-figures</a> (CC0). Font: Inter (<a href="fonts/OFL.txt" target="_blank" rel="noopener">OFL 1.1</a>). 3D model compression: meshoptimizer (MIT). Voice: recorded with a Microsoft Edge neural voice (Ava).</p>
       <p>${t("Coach videos play from YouTube (privacy-enhanced mode) only when you tap them.")}</p>
-      <p>${t("Own something here and want it changed or removed? {link} and it will be done right away.", { link: `<a href="https://github.com/Mohamedattiadev/gym/issues" target="_blank" rel="noopener">${t("Open an issue")}</a>` })}</p></div>`;
+      <p>${t("Own something here and want it changed or removed? {link} and it will be done right away.", { link: `<a href="https://github.com/Mohamedattiadev/gym/issues" target="_blank" rel="noopener">${t("Open an issue")}</a>` })} · <a href="#/privacy">${t("Privacy")}</a></p></div>`;
   const urls = (onlyTop) => EX.filter((e) => !onlyTop || ["S", "A"].includes(e.tier)).flatMap((e) => [e.poster, e.video].filter(Boolean));
   const stat = async () => { let n = 0; try { const m = await caches.open(MEDIA_CACHE), r = await caches.open(RECENT_CACHE); const k = new Set((await m.keys()).concat(await r.keys()).map((x) => x.url).filter((u) => !u.includes("/voice/"))); n = k.size; } catch {} const c = $("#cstat"); if (c) { c.textContent = t("{n} / {total} files on this device", { n, total }); $("#bar").style.width = `${Math.min(100, (n / total) * 100)}%`; } };
-  stat(); wireCloud();
+  stat(); wireCloud(); Cloud.loadConfig().then((c) => { if (c) acct(); });
   (async () => { const pe = await (navigator.storage?.persisted?.() ?? false); const est = await (navigator.storage?.estimate?.() ?? {}); const el = $("#pst"); if (el) el.innerHTML = `${pe ? t("Storage protected") : `${t("Storage")} <a href="#" id="persist" style="color:var(--accent-text)">${t("not protected — tap to protect")}</a>`}${est.usage ? ` · ${t("{n} MB used", { n: (est.usage / 1e6).toFixed(0) })}` : ""}`;
     const pp = $("#persist"); if (pp) pp.onclick = async (e) => { e.preventDefault(); toast((await persist()) ? t("Storage protected") : t("Install the app first, then try again")); }; })();
   const set = (k, v) => { st[k] = v; save("settings"); haptic(); };
@@ -381,6 +383,41 @@ function wireCloud() {
   const r = $("#cRest"); if (r) r.onclick = async () => { if (!(await ask(t("Merge the cloud backup into this phone? Nothing will be deleted."), { ok: t("Restore") }))) return; try { const x = await Sync.restore(); toast(t("Restored {n} workouts", { n: x.sessions ?? 0 })); } catch (e) { toast(e.message, 4000); } re(); };
   const a = $("#cAuto"); if (a) a.onclick = () => { Sync.setAuto(!Sync.status().auto); re(); };
   const d = $("#cDis"); if (d) d.onclick = async () => { if (await ask(t("Remove the token from this phone? Your cloud backup stays on GitHub."), { ok: t("Disconnect"), danger: true })) { await Sync.disconnect(); re(); } };
+}
+
+/* ---- Q11 account: Sign in with Google + Supabase backup (cloud.js, docs/SUPABASE.md); hidden without a config ---- */
+const when = (x) => (x ? fmtDate(x, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : t("never"));
+function acct() {
+  const el = $("#acct"); if (!el) return;
+  const st = Cloud.status(), priv = `<a href="#/privacy" class="small" style="color:var(--accent-text)">${t("Privacy")}</a>`;
+  el.hidden = false;
+  el.innerHTML = !st.signedIn ? `<b>${t("Account")}</b><p class="muted small" style="margin:4px 0 10px">${st.expired ? t("Signed out. Sign in again to keep backing up.") : t("Sign in to keep your workouts safe and get them on your other devices. Without it, everything stays on this phone.")}</p>
+      <button class="btn primary sm block" id="aIn">${t("Sign in with Google")}</button><div class="mt-8">${priv}</div>`
+    : `<b>${t("Account")}</b><p class="muted small" style="margin:4px 0 10px">${t("Signed in as {email} · last backup {d}", { email: `<b>${esc(st.email)}</b>`, d: when(st.lastPush || st.lastPull) })}${st.pending ? ` · ${t("pending")}` : ""}</p>
+      ${st.error ? `<p class="small" style="color:var(--danger);margin:0 0 10px">${esc(st.error)}</p>` : ""}
+      <div class="row wrap"><button class="btn sm primary" id="aSync">${t("Back up now")}</button><button class="btn sm" id="aOut">${t("Sign out")}</button><button class="btn sm ghost danger" id="aDel">${t("Delete my cloud data")}</button></div><div class="mt-8">${priv}</div>`;
+  const on = (id, fn) => { const b = $(id, el); if (b) b.onclick = fn; };
+  on("#aIn", () => Cloud.signIn());
+  on("#aSync", async (e) => { e.currentTarget.disabled = true; try { await Cloud.syncNow(); toast(t("Backed up")); } catch (er) { toast(er.message, 4000); } acct(); });
+  on("#aOut", async () => { if (await ask(t("Sign out on this phone? Your data stays here and in your account."), { ok: t("Sign out") })) { await Cloud.signOut(); acct(); } });
+  on("#aDel", async () => {
+    if (!(await ask(t("Delete everything Gym saved in your account? The data on this phone stays."), { ok: t("Delete"), danger: true }))) return;
+    try { await Cloud.deleteCloudData(); toast(t("Your cloud data is deleted")); } catch (er) { toast(er.message, 4000); } acct();
+  });
+}
+
+/** #/privacy: what is stored where, and how to delete it (needed for Google sign-in and store listings) */
+export function privacyView() {
+  setTop({ title: t("Privacy"), back: true });
+  const sec = (h, p) => `<h2 style="font-size:1.05rem;margin:20px 0 6px">${h}</h2><p class="muted">${p}</p>`;
+  view().innerHTML = `<div class="card pad" style="max-width:680px;margin-inline:auto"><h1 style="font-size:1.4rem;margin-bottom:8px">${t("Privacy")}</h1>
+    <p>${t("Gym keeps your data on this device. No ads, no trackers, no analytics.")}</p>
+    ${sec(t("On this device"), t("Your workouts, history, plans, profile, body weight, notes, pain flags and settings. Clearing the site data or uninstalling the app removes them."))}
+    ${sec(t("Account (optional)"), t("If you sign in with Google, a copy of the same data is kept in your account (stored with Supabase) so it comes back on another phone. Gym gets only your email address and an account id from Google. Videos and pictures are never uploaded."))}
+    ${sec(t("GitHub backup (optional)"), t("Saved only in your own private GitHub repository. The token stays on this device."))}
+    ${sec(t("Coach videos"), t("Coach videos play from YouTube (privacy-enhanced mode) only when you tap them."))}
+    ${sec(t("Delete your data"), t("Me > Settings > Account > Delete my cloud data removes the copy in your account. To remove the sign-in itself or ask anything: {link}.", { link: `<a href="https://github.com/Mohamedattiadev/gym/issues" target="_blank" rel="noopener">${t("Open an issue")}</a>` }))}
+  </div>`;
 }
 
 let downloading = false;

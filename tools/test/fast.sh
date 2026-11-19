@@ -5,7 +5,7 @@
 cd "$(dirname "$0")/../.." || exit 1
 fail=0
 step() { printf '\n== %s\n' "$1"; shift; if "$@"; then echo "-> ok"; else echo "-> FAIL"; fail=1; fi; }
-step "unit tests (calc, merge, sanitize, csv, search, stats, i18n)" node --test tools/test/unit/*.test.mjs
+step "unit tests (calc, merge, sanitize, csv, search, stats, i18n, cloud)" node --test tools/test/unit/*.test.mjs
 step "JS syntax (app/js, sw.js)" bash -c 'for f in app/js/*.js app/sw.js; do node --check "$f" || exit 1; done'
 step "sw.js precache files exist" node -e '
   const fs=require("fs"); const m=fs.readFileSync("app/sw.js","utf8").match(/SHELL_FILES\s*=\s*(\[[\s\S]*?\]);\n/);

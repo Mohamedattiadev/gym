@@ -2,7 +2,7 @@
    (FE-3/PERF-5); a new version waits until the user taps "Reload" (or all windows close). data/*.json and
    illustrations = stale-while-revalidate. 3D engine + model = cache-first in a stable cache that survives app
    updates (PERF-4). Posters/videos are cached on first view (or Settings → Download all); videos answer Range. */
-const VERSION = "v119";
+const VERSION = "v120";
 const SHELL = `gym-shell-${VERSION}`;
 // voice clips (media/voice) are requested as <file>.mp3?v=VOICE_V (voice.js): bump BOTH when tools/voice/gen.py regenerates clips
 const VOICE_V = "2";
@@ -11,7 +11,7 @@ const RECENT = "gym-media-recent"; // PERF-6: videos saved while watching; cappe
 const RECENT_MAX = 150; // ~100 MB; "Download all" puts its files in MEDIA, which has no cap
 const THREE_D = "gym-3d-v1"; // vendor/three + 3d/body.glb + 3d/anim: bump ONLY when those files change
 const SHELL_FILES = ["./", "index.html", "css/app.css", "fonts/Inter.woff2", "manifest.webmanifest",
-  ...["main", "nav", "components", "install", "ui", "store", "data", "calc", "body", "anatomy", "train", "plans", "timer", "sync", "home", "exercise", "me", "guide", "share", "view3d", "warmup", "media", "csv", "log", "sanitize", "scenario", "bodymap", "palette", "videos", "voice", "i18n"].map((m) => `js/${m}.js`),
+  ...["main", "nav", "components", "install", "ui", "store", "data", "calc", "body", "anatomy", "train", "plans", "timer", "sync", "home", "exercise", "me", "guide", "share", "view3d", "warmup", "media", "csv", "log", "sanitize", "scenario", "bodymap", "palette", "videos", "voice", "i18n", "cloud"].map((m) => `js/${m}.js`),
   "data/exercises.json", "data/families.en.json", "data/figures.json", "data/guide/heads.json", "data/guide/joints.json",
   ...["plans", "nutrition", "standards", "onboarding", "equipment", "warmups"].map((n) => `data/guide/${n}.json`),
   ...["empty-history", "empty-workouts", "hero-start", "plan", "pr", "rest-recovery", "timer", "warmup"].map((n) => `illustrations/${n}.svg`),
@@ -73,6 +73,7 @@ self.addEventListener("fetch", (e) => {
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
   if (url.pathname.includes("/guides/")) return; // printable PDFs (tools/guide/build.mjs): straight from the network, never cached
+  if (url.pathname.endsWith("/supabase-config.json") || /\/(auth|rest)\/v1\//.test(url.pathname)) return; // Q11 account config + (mocked) API: never cached
 
 
   if (url.pathname.includes("/media/")) {

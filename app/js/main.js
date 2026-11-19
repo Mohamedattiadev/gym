@@ -32,14 +32,14 @@ function hideSplash() {
 const view = $("#view");
 
 /* ================= router ================= */
-const TAB_OF = { "": "home", lib: "lib", ex: "lib", body: "body", train: "train", workout: "train", session: "train", pick: "train", me: "me", videos: "home", settings: "me", timer: "train", guide: "me", start: "train", profile: "me", standards: "me", nutrition: "me", plans: "train", plan: "train", warmup: "train" };
+const TAB_OF = { "": "home", lib: "lib", ex: "lib", body: "body", train: "train", workout: "train", session: "train", pick: "train", me: "me", videos: "home", settings: "me", timer: "train", guide: "me", start: "train", profile: "me", standards: "me", nutrition: "me", plans: "train", plan: "train", warmup: "train", privacy: "me" };
 let lastDepth = 0;
 function route(quiet) {
   if (quiet !== true) quiet = false;
   nextRoute();
   const [, a = "", b] = routeParts();
   const narrow = innerWidth < BP.tablet;
-  const depth = ["ex", "workout", "session", "pick", "videos", "guide", "start", "profile", "standards", "nutrition", "plans", "plan", "warmup"].includes(a) || (a === "timer" && narrow) ? 1 : 0;
+  const depth = ["ex", "workout", "session", "pick", "videos", "guide", "start", "profile", "standards", "nutrition", "plans", "plan", "warmup", "privacy"].includes(a) || (a === "timer" && narrow) ? 1 : 0;
   const back = depth < lastDepth; lastDepth = depth;
   const keep = (a === "ex" || a === "lib") && innerWidth >= BP.wide && !!$("#lpane"); // 2-pane library: only the detail pane changes
   view.onclick = null; view.oninput = null; view.onchange = null; if (!keep) view.className = "";
@@ -48,7 +48,7 @@ function route(quiet) {
   $$(".nav .navl").forEach((x) => x.classList.toggle("active", x.dataset.tab === tab));
   setTop({ back: depth > 0 });
   const fn = { "": homeView, lib: Z("libraryView", "exercise"), ex: Z("exerciseView", "exercise"), body: bodyMap, train: T.trainView, workout: T.workoutView, session: T.sessionView,
-    pick: Z("libraryView", "exercise"), me: Z("meView", "me"), guide: G("guideView"), start: G("startView"), profile: G("profileView"), standards: G("standardsView"), nutrition: G("nutritionView"), plans: G("plansView"), plan: G("plansView"), warmup: G("warmupView", "warmup"), videos, settings: Z("settingsView", "me"), timer: (x) => timerView(setTop, view, x) }[a] || homeView;
+    pick: Z("libraryView", "exercise"), me: Z("meView", "me"), guide: G("guideView"), start: G("startView"), profile: G("profileView"), standards: G("standardsView"), nutrition: G("nutritionView"), plans: G("plansView"), plan: G("plansView"), warmup: G("warmupView", "warmup"), videos, settings: Z("settingsView", "me"), privacy: Z("privacyView", "me"), timer: (x) => timerView(setTop, view, x) }[a] || homeView;
   try { fn(b); } catch (err) { console.error(err); view.innerHTML = `<div class="empty">Something went wrong.<br><small>${esc(err.message)}</small></div>`; }
   T.updateLiveDot(); fillIll(view);
   $("#tTitle").toggleAttribute("aria-hidden", !!view.querySelector("h1")); // A11Y-14 one h1 per page for screen readers
@@ -118,6 +118,8 @@ addEventListener("pointerdown", unlockAudio, { once: true });
   await loadStore(); applyTheme();
   const lg = await setLang(S.settings.lang); try { localStorage.setItem("gym-lang", lg); } catch {}
   if (lg !== "en") import("./voice.js").then((m) => m.loadTable(lg)).catch(() => {}); // spoken phrases in that language
+  // Q11: back from "Sign in with Google" (?code=…): the route is restored at once, sign-in + first sync run in the background
+  const back = /[?&](code|error)=/.test(location.search) ? await import("./cloud.js").then((m) => { const r = m.pendingReturn(); return r && { done: m.finishSignIn(r) }; }).catch(() => null) : null; // {done} = not awaited here
   if (degraded) $(".app").insertAdjacentHTML("afterbegin", `<div class="notice warn storewarn" role="alert">${ic("alert", "sm")}<div class="grow"><b>${t("Storage unavailable")}</b><div class="small">${t("Changes may not be kept. Close the app fully and open it again.")}</div></div></div>`);
   try { await exP; if (FAM_LANG !== lg) await loadExercises(); } catch (e) { view.innerHTML = `<div class="empty">${t("Couldn't load exercises.")}<br><small>${esc(e.message)}</small></div>`; hideSplash(); return; }
   initMedia(); initTimer();
@@ -126,6 +128,8 @@ addEventListener("pointerdown", unlockAudio, { once: true });
   const first = LAZY[routeParts()[1] || ""]; if (first) await need(first).catch(() => {});
   route(); renderPill();
   import("./sync.js").then((m) => m.initSync()).catch((e) => console.warn(e));
+  if (back) back.done.then((r) => { toast(r.ok ? (r.restored ? t("Signed in. Your data is back.") : t("Signed in. Backup is on.")) : r.error, 4000); route(); });
+  else if (S.cloud?.refresh) import("./cloud.js").then((m) => m.initCloud()).catch((e) => console.warn(e));
   const idle = self.requestIdleCallback || ((f) => setTimeout(f, 300));
   idle(() => { buildIndex(); need("exercise").then(() => need("me")).catch(() => {}); });
   if ("serviceWorker" in navigator) {
