@@ -1,0 +1,8 @@
+[{"vp":"phone"},{"scheme":"light"},{"go":"#/train"},{"waitFor":"[data-use]"},{"click":"[data-use]","wait":800},
+ {"go":"#/"},{"wait":1200},{"eval":"document.getElementById('install')?.remove()"},{"wait":200},{"shot":"home"},
+ {"go":"#/ex/machine-chest-press-ryan_humis514743"},{"wait":2500},{"shot":"exercise"},
+ {"go":"#/body"},{"wait":1200},{"eval":"(()=>{const e=document.querySelector('button[data-m=chest]')||document.querySelector('[data-m=chest]');e.dispatchEvent(new MouseEvent('click',{bubbles:true}))})()"},{"wait":1500},{"shot":"body"},
+ {"go":"#/settings"},{"wait":1200},{"eval":"[...document.querySelectorAll('.card b')].find(b=>b.textContent==='Backup file')?.closest('.card').scrollIntoView({block:'start'}); scrollBy(0,-70)"},{"wait":500},{"shot":"backup"},
+ {"go":"#/train"},{"waitFor":"[data-start]"},{"click":"[data-start]","wait":1200},{"waitFor":".xblock"},
+ {"eval":"(()=>{const set=(el,v)=>{el.value=v;el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}))};const w=document.querySelector('input[data-k=w]'),r=document.querySelector('input[data-k=r]');set(w,'40');set(r,'10');window.scrollTo(0,0)})()"},{"wait":600},{"shot":"session"},
+ {"click":"button.check[data-a=done]","wait":1500},{"eval":"document.querySelectorAll('.toast').forEach(t=>t.remove())"},{"wait":300},{"shot":"rest"}]
