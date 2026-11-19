@@ -7,7 +7,7 @@ import { MUSCLES, MBY } from "./body.js";
 import { e1rm } from "./calc.js";
 import { setTop, routeParts } from "./nav.js";
 import { installNow, standalone } from "./install.js";
-import { applyTheme, fillIll, MEDIA_CACHE, tierBadge } from "./components.js";
+import { applyTheme, fillIll, MEDIA_CACHE, RECENT_CACHE, tierBadge } from "./components.js";
 import { lib } from "./exercise.js";
 import * as Sync from "./sync.js";
 import { readLog, clearLog } from "./log.js";
@@ -191,7 +191,7 @@ async function settingsPanel(host) {
       <p>Coach videos play from YouTube (privacy-enhanced mode) only when you tap them.</p>
       <p>Own something here and want it changed or removed? <a href="https://github.com/Mohamedattiadev/gym/issues" target="_blank" rel="noopener">Open an issue</a> and it will be done right away.</p></div>`;
   const urls = (onlyTop) => EX.filter((e) => !onlyTop || ["S", "A"].includes(e.tier)).flatMap((e) => [e.poster, e.video].filter(Boolean));
-  const stat = async () => { let n = 0; try { n = (await (await caches.open(MEDIA_CACHE)).keys()).length; } catch {} const c = $("#cstat"); if (c) { c.textContent = `${n} / ${total} files on this device`; $("#bar").style.width = `${Math.min(100, (n / total) * 100)}%`; } };
+  const stat = async () => { let n = 0; try { const m = await caches.open(MEDIA_CACHE), r = await caches.open(RECENT_CACHE); const k = new Set((await m.keys()).concat(await r.keys()).map((x) => x.url)); n = k.size; } catch {} const c = $("#cstat"); if (c) { c.textContent = `${n} / ${total} files on this device`; $("#bar").style.width = `${Math.min(100, (n / total) * 100)}%`; } };
   stat(); wireCloud();
   (async () => { const pe = await (navigator.storage?.persisted?.() ?? false); const est = await (navigator.storage?.estimate?.() ?? {}); const el = $("#pst"); if (el) el.innerHTML = `Storage ${pe ? "protected" : `<a href="#" id="persist" style="color:var(--accent-text)">not protected — tap to protect</a>`}${est.usage ? ` · ${(est.usage / 1e6).toFixed(0)} MB used` : ""}`;
     const pp = $("#persist"); if (pp) pp.onclick = async (e) => { e.preventDefault(); toast((await persist()) ? "Storage protected" : "Install the app first, then try again"); }; })();
@@ -324,7 +324,8 @@ async function downloadMedia(list, onProgress) {
   const have = new Set((await cache.keys()).map((r) => new URL(r.url).pathname));
   const todo = list.map((x) => new URL(x, location.href)).filter((x) => !have.has(x.pathname));
   let i = 0, fail = 0, last = 0;
-  const worker = async () => { while (i < todo.length) { const x = todo[i++]; try { const r = await fetch(x.href); r.ok ? await cache.put(x.origin + x.pathname, r) : fail++; } catch { fail++; } if (Date.now() - last > 500) { last = Date.now(); onProgress(); } } };
+  const recent = await caches.open(RECENT_CACHE); // PERF-6: a video already watched moves into the kept cache (no second download)
+  const worker = async () => { while (i < todo.length) { const x = todo[i++], k = x.origin + x.pathname; try { const old = await recent.match(k); const r = old || await fetch(x.href); if (r.ok) { await cache.put(k, r); if (old) await recent.delete(k); } else fail++; } catch { fail++; } if (Date.now() - last > 500) { last = Date.now(); onProgress(); } } };
   await Promise.all(Array.from({ length: 4 }, worker));
   downloading = false; await onProgress(); btns.forEach((b) => (b.disabled = false));
   toast(fail ? `${fail} files failed — try again` : "Saved for offline");

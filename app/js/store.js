@@ -112,7 +112,11 @@ export function save(...keys) {
   (keys.length ? keys : Object.keys(DEFAULTS)).forEach((k) => dirty.add(k));
   subs.forEach((fn) => { try { fn(keys.length ? keys : Object.keys(DEFAULTS)); } catch (e) { console.warn(e); } });
   clearTimeout(timer); timer = setTimeout(flushSafe, 150);
+  // PERF-6: ask the browser to keep our storage at the first real user data (a logged set, a workout, a favourite)
+  if (!askedPersist && keys.some((k) => USER_KEYS.includes(k)) && typeof navigator !== "undefined") { askedPersist = true; persist(); }
 }
+const USER_KEYS = ["active", "sessions", "workouts", "favorites", "bodyweight"];
+let askedPersist = false;
 // FE-5: keys stay dirty until the write succeeds; one retry with a fresh connection (Safari drops it in the
 // background), then the user is told instead of silently losing the set.
 let warned = 0;

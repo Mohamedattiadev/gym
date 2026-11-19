@@ -72,7 +72,7 @@ const nearWord = (w, words) => words.some((x) => near1(w, x) || (x.length > w.le
 /** Filter + order: exact hits (every word found) first, then 1-typo hits; both by tier. A word gets typo tolerance only when it
  *  has >= 4 letters and appears nowhere in the library as typed (so "calf" never pulls in "half…"). */
 export function searchEx(q, list) {
-  const groups = parseQuery(q);
+  const groups = parseQuery(q); buildIndex();
   if (!groups.length) return [...list].sort(byTier);
   for (const g of groups) g.fuzzy = g.w.length >= 4 && !g.w.includes(" ") && !EX.some((e) => g.alts.some((a) => e._q.includes(a)));
   const exact = [], close = [];
@@ -93,6 +93,15 @@ export function searchEx(q, list) {
   const out = [...exact.sort(byName), ...close.sort(byTier)]; out.close = close.length; return out;
 }
 
+/* PERF-8: the search index is built on the first search (or in idle time after the first page), not on the boot path. */
+let idx = false;
+export function buildIndex() {
+  if (idx) return; idx = true;
+  for (const e of EX) {
+    e._q = norm([e.name, e.aliases, e.group, GROUP_I18N[e.group], e.region, e.machine, e.machine && "makine machine جهاز", ...e.muscles, ...e.equipment, ...e.equipment.map((q) => EQUIP_I18N[q])].join(" "));
+  }
+}
+
 export let FAM = { families: {}, notes: {} };
 export async function loadExercises() {
   const lang = S.settings.lang || "en";
@@ -101,15 +110,15 @@ export async function loadExercises() {
   [EX, FAM, fig, JOINTS] = await Promise.all([fetch("data/exercises.json").then((r) => r.json()), get(`data/families.${lang}.json`, null).then((x) => x || get("data/families.en.json", { families: {}, notes: {} })),
     get("data/figures.json", { f: {}, s: {} }), get("data/guide/joints.json", { joints: {} }).then((j) => j.joints || {})]);
   for (const e of EX) {
-    e.video = e.v ? `media/video/${e.slug}.mp4` : null; e.poster = e.v ? `media/poster/${e.slug}.jpg` : ""; // no video = no poster file
+    e.video = e.v ? `media/video/${e.slug}.mp4` : null; e.poster = e.v ? `media/poster/${e.slug}.webp` : ""; // no video = no poster file
     const oef = fig.s[e.slug] || fig.f[e.family]; e.figure = oef ? `media/figures/${oef}.webp` : null;
     const f = FAM.families[e.family] || {}; e.steps = f.steps || []; e.cues = f.cues || []; e.mistakes = (f.mistakes || []).map((m) => (typeof m === "string" ? { text: m } : m)); e.about = f.about || "";
     e.vnote = e.note ? FAM.notes[e.slug] || "" : "";
     e.muscles = [...(e.primary || []), ...(e.secondary || [])]; e.aliases = [e.aliases, e.tr, e.ar].filter(Boolean).join(" ");
     e.tier ??= null; e.tierNote ??= ""; e.canonical = !!e.canonical;
     BY[e.slug] = e;
-    e._q = norm([e.name, e.aliases, e.group, GROUP_I18N[e.group], e.region, e.machine, e.machine && "makine machine جهاز", ...e.muscles, ...e.equipment, ...e.equipment.map((q) => EQUIP_I18N[q])].join(" "));
   }
+  idx = false;
   const gs = new Set(EX.map((e) => e.group));
   GROUPS = GROUP_ORDER.filter((g) => gs.has(g));
   const counts = {};

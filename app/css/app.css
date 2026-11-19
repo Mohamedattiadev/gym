@@ -99,7 +99,7 @@ main#view.page { animation: pageIn 220ms var(--ease) backwards; }
 .nav { position: fixed; z-index: 40; inset: auto 0 0 0; height: calc(var(--tab-h) + var(--safe-b)); padding: 6px 4px var(--safe-b);
   display: grid; grid-template-columns: repeat(5, 1fr); background: color-mix(in oklab, var(--s1) 92%, transparent);
   backdrop-filter: blur(20px) saturate(150%); -webkit-backdrop-filter: blur(20px) saturate(150%); box-shadow: 0 -6px 24px -12px #0003; }
-.nav .brand, .nav .navx, .navl .kbd { display: none; }
+.nav .brand, .navl .kbd { display: none; }
 .nav .brand .lb { display: none; }
 .navl { position: relative; display: grid; justify-items: center; align-content: center; gap: 3px; color: var(--t3); font-size: .7188rem; font-weight: 600; border-radius: var(--r-md); }
 .navl::before { display: none; }
@@ -117,7 +117,6 @@ main#view.page { animation: pageIn 220ms var(--ease) backwards; }
     padding: calc(var(--safe-t) + 14px) 6px 14px; background: var(--s1); box-shadow: 6px 0 24px -14px #0003; }
   .nav .brand { display: grid; place-items: center; height: 44px; margin-bottom: 10px; }
   .navl { padding: 6px 0; }
-  .nav .navx { display: grid; margin-top: auto; }
 }
 @media (min-width: 1100px) {
   :root { --nav-w: 236px; }
@@ -128,7 +127,6 @@ main#view.page { animation: pageIn 220ms var(--ease) backwards; }
   .navl .ind { width: auto; height: auto; background: none !important; animation: none !important; }
   .navl.active { background: var(--accent-soft); color: var(--accent-text); }
   .navl .dot { position: static; margin-inline-start: auto; border: 0; }
-  .nav .navx { display: flex; }
   .nav .brand .lb { display: inline; }
   .navl .kbd { display: inline; margin-inline-start: auto; font-size: .6875rem; color: var(--t3); border: 1px solid var(--line); border-radius: 5px; padding: 0 5px; }
   main#view { max-width: 1180px; }
@@ -243,7 +241,6 @@ svg.ring circle { fill: none; stroke-width: 4; } svg.ring .bg { stroke: var(--s3
 .setrow-s { display: flex; align-items: center; gap: 12px; padding: 12px 14px; min-height: 54px; position: relative; }
 .setrow-s .ico { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-text); flex: none; }
 .setrow-s b { font-weight: 600; } .setrow-s .v { color: var(--t3); font-size: .875rem; }
-@media (max-width: 480px) { .setrow-s .v.hide-s { display: none; } }
 .setrow-s.wrap { flex-wrap: wrap; } .setrow-s.wrap .seg.block { flex-basis: 100%; }
 
 /* rounded icon tiles */

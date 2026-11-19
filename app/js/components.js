@@ -3,6 +3,7 @@ import { S, save, tomb } from "./store.js";
 import { $$, esc, ic, openSheet, haptic } from "./ui.js";
 
 export const MEDIA_CACHE = "gym-media-v1";
+export const RECENT_CACHE = "gym-media-recent"; // PERF-6: videos saved while watching (sw.js caps it)
 
 /* ================= inline illustrations (follow theme via currentColor) ================= */
 const illCache = {};

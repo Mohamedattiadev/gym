@@ -86,7 +86,7 @@ for e in API:
         aliases=e.get("other_names") or "",
         each_side=bool(e.get("each_side")),
         video=f"media/video/{slug}.mp4" if has_video else None,
-        poster=f"media/poster/{slug}.jpg",
+        poster=f"media/poster/{slug}.webp",
         _api_group=MUSCLE_MAP.get(primary, primary),
     ))
 

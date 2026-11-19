@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Downloads each exercise video from Mux, re-encodes it to a small silent looping MP4
-# (GIF-like, 720p ~600KB) plus a poster JPG. Skips files that already exist, so it can be re-run.
+# (GIF-like, 720p ~600KB) plus a WebP poster (PERF-13). Skips files that already exist, so it can be re-run.
 set -uo pipefail
 cd "$(dirname "$0")/.."
 mkdir -p media/video media/poster
@@ -8,7 +8,7 @@ JOBS="${JOBS:-4}"
 
 one() {
   slug="$1"; stream="$2"; thumb="$3"
-  mp4="media/video/$slug.mp4"; jpg="media/poster/$slug.jpg"
+  mp4="media/video/$slug.mp4"; jpg="media/poster/$slug.webp"
   if [[ -n "$stream" && ! -s "$mp4" ]]; then
     # use the 720p variant (sharp but small); fall back to master playlist
     variant=$(curl -s --max-time 20 "$stream" | awk '/RESOLUTION=720x|RESOLUTION=[0-9]+x720/{getline; print; exit}')
@@ -22,10 +22,10 @@ one() {
   fi
   if [[ ! -s "$jpg" ]]; then
     if [[ -s "$mp4" ]]; then
-      ffmpeg -nostdin -v error -y -ss 1 -i "$mp4" -frames:v 1 -vf scale=480:-2 -q:v 4 "$jpg" || echo "FAIL poster $slug" >&2
+      ffmpeg -nostdin -v error -y -ss 1 -i "$mp4" -frames:v 1 -vf scale=480:-2 -c:v libwebp -quality 75 "$jpg" || echo "FAIL poster $slug" >&2
     elif [[ -n "$thumb" ]]; then
       curl -s --max-time 30 -o "$jpg.tmp" "${thumb%%\?*}?width=480" && \
-        ffmpeg -nostdin -v error -y -i "$jpg.tmp" -q:v 5 "$jpg"; rm -f "$jpg.tmp"
+        ffmpeg -nostdin -v error -y -i "$jpg.tmp" -c:v libwebp -quality 75 "$jpg"; rm -f "$jpg.tmp"
     fi
   fi
   echo "ok $slug"

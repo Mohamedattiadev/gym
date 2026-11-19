@@ -2,7 +2,7 @@
 import "./log.js"; // FE-6: first, so boot errors are caught too
 import { S, loadStore, flush, degraded } from "./store.js";
 import { $, BP, $$, esc, ic, closeSheet, initSheet, toast, unlockAudio, indicate } from "./ui.js";
-import { EX, loadExercises } from "./data.js";
+import { EX, loadExercises, buildIndex } from "./data.js";
 import { bodyMap, leaveBodyMap } from "./bodymap.js";
 import { videos } from "./videos.js";
 import { nextRoute, routeId, live, go, routeParts, onRoute, setTop } from "./nav.js";
@@ -10,11 +10,8 @@ import { MEDIA_CACHE, fillIll, applyTheme } from "./components.js";
 import "./install.js";
 import * as T from "./train.js";
 import { homeView } from "./home.js";
-import { libraryView, exerciseView } from "./exercise.js";
-import { meView, settingsView } from "./me.js";
 import { timerView, initTimer, renderPill } from "./timer.js";
 import { initMedia } from "./media.js";
-import * as Sync from "./sync.js";
 
 /* Opening screen: the first open of the day plays the whole animation (assemble + one rep, ~2.7 s);
    later opens only let the dumbbell snap together (~0.9 s) so the app stays quick. */
@@ -49,8 +46,8 @@ function route(quiet) {
   const tab = TAB_OF[a] || "home";
   $$(".nav .navl").forEach((x) => x.classList.toggle("active", x.dataset.tab === tab));
   setTop({ back: depth > 0 });
-  const fn = { "": homeView, lib: libraryView, ex: exerciseView, body: bodyMap, train: T.trainView, workout: T.workoutView, session: T.sessionView,
-    pick: libraryView, me: meView, guide: G("guideView"), start: G("startView"), profile: G("profileView"), standards: G("standardsView"), nutrition: G("nutritionView"), plans: G("plansView"), plan: G("plansView"), warmup: G("warmupView", "warmup"), videos, settings: settingsView, timer: (x) => timerView(setTop, view, x) }[a] || homeView;
+  const fn = { "": homeView, lib: Z("libraryView", "exercise"), ex: Z("exerciseView", "exercise"), body: bodyMap, train: T.trainView, workout: T.workoutView, session: T.sessionView,
+    pick: Z("libraryView", "exercise"), me: Z("meView", "me"), guide: G("guideView"), start: G("startView"), profile: G("profileView"), standards: G("standardsView"), nutrition: G("nutritionView"), plans: G("plansView"), plan: G("plansView"), warmup: G("warmupView", "warmup"), videos, settings: Z("settingsView", "me"), timer: (x) => timerView(setTop, view, x) }[a] || homeView;
   try { fn(b); } catch (err) { console.error(err); view.innerHTML = `<div class="empty">Something went wrong.<br><small>${esc(err.message)}</small></div>`; }
   T.updateLiveDot(); fillIll(view);
   $("#tTitle").toggleAttribute("aria-hidden", !!view.querySelector("h1")); // A11Y-14 one h1 per page for screen readers
@@ -81,7 +78,13 @@ addEventListener("store:changed", () => { staleView = true; refresh(); });
 document.addEventListener("visibilitychange", refresh);
 document.addEventListener("focusout", () => setTimeout(refresh, 0));
 onRoute(route);
-const G = (fn, mod = "guide") => (x) => { const rid = routeId(); return import(`./${mod}.js`).then((m) => live(rid) && m[fn](x)).then(() => { if (!live(rid)) return; fillIll(view); requestAnimationFrame(() => indicate(view)); }).catch((err) => { console.error(err); if (live(rid)) view.innerHTML = `<div class="empty">Could not load.</div>`; }); };
+/* PERF-7: rarely-first pages load their module on demand. Z() renders synchronously once the module is in
+   (boot awaits it for a deep link, idle time loads the rest), so scroll restore and heading focus keep working. */
+const MOD = {};
+const need = (mod) => import(`./${mod}.js`).then((m) => (MOD[mod] = m));
+const LAZY = { lib: "exercise", ex: "exercise", pick: "exercise", me: "me", settings: "me" };
+const Z = (fn, mod) => (x) => (MOD[mod] ? MOD[mod][fn](x) : G(fn, mod)(x));
+const G = (fn, mod = "guide") => (x) => { const rid = routeId(); return need(mod).then((m) => live(rid) && m[fn](x)).then(() => { if (!live(rid)) return; fillIll(view); requestAnimationFrame(() => indicate(view)); }).catch((err) => { console.error(err); if (live(rid)) view.innerHTML = `<div class="empty">Could not load.</div>`; }); };
 
 let lastY = 0, scrollQ = 0;
 // PERF-2: one check per frame; scrollHeight (forces layout) is read only while scrolling down
@@ -112,12 +115,16 @@ addEventListener("pointerdown", unlockAudio, { once: true });
   initSheet(); net();
   const exP = loadExercises(); // fetch data in parallel with IndexedDB
   await loadStore(); applyTheme();
-  if (degraded) $(".app").insertAdjacentHTML("afterbegin", `<div class="notice warn storewarn" role="alert">${ic("alert", "sm")}<div class="grow"><b>Storage unavailable</b><div class="small">Changes may not be kept. Close the app fully and open it again.</div></div></div>`); try { Sync.initSync(); } catch (e) { console.warn(e); }
+  if (degraded) $(".app").insertAdjacentHTML("afterbegin", `<div class="notice warn storewarn" role="alert">${ic("alert", "sm")}<div class="grow"><b>Storage unavailable</b><div class="small">Changes may not be kept. Close the app fully and open it again.</div></div></div>`);
   try { await exP; } catch (e) { view.innerHTML = `<div class="empty">Couldn't load exercises.<br><small>${esc(e.message)}</small></div>`; hideSplash(); return; }
   initMedia(); initTimer();
   // 26b: first open (nothing set up yet, landing on Home) -> onboarding; deep links are never hijacked
   if (!S.profile?.onboarded && !S.settings.onboarded && !S.sessions.length && !S.workouts.length && /^#?\/?$/.test(location.hash)) history.replaceState(null, "", "#/start");
+  const first = LAZY[routeParts()[1] || ""]; if (first) await need(first).catch(() => {});
   route(); renderPill();
+  import("./sync.js").then((m) => m.initSync()).catch((e) => console.warn(e));
+  const idle = self.requestIdleCallback || ((f) => setTimeout(f, 300));
+  idle(() => { buildIndex(); need("exercise").then(() => need("me")).catch(() => {}); });
   if ("serviceWorker" in navigator) {
     // FE-3/PERF-5: a new version waits; "Reload" activates it and reloads once, so code never mixes versions
     let reloading = false;
@@ -137,7 +144,7 @@ addEventListener("pointerdown", unlockAudio, { once: true });
    all still saves every video. Skipped on Data Saver; resumes where it stopped (only missing files are fetched). */
 async function precachePosters() {
   try {
-    if (localStorage.getItem("gym-posters") === "1" || navigator.connection?.saveData || !navigator.onLine || !("caches" in self)) return;
+    if (localStorage.getItem("gym-posters") === "webp" || navigator.connection?.saveData || !navigator.onLine || !("caches" in self)) return;
     const cache = await caches.open(MEDIA_CACHE);
     const have = new Set((await cache.keys()).map((r) => new URL(r.url).pathname));
     const todo = [...new Set(EX.map((e) => e.poster).filter(Boolean))].map((x) => new URL(x, location.href)).filter((x) => !have.has(x.pathname));
@@ -145,6 +152,6 @@ async function precachePosters() {
     // the service worker stores each poster as it passes through (one download); stop early if the host has no media
     const worker = async () => { while (i < todo.length && (ok || i < 6)) { const x = todo[i++]; try { const r = await fetch(x.href); if (r.ok) { ok++; await r.arrayBuffer(); } else if (r.status !== 404) fail++; } catch { fail++; } } };
     await Promise.all([worker(), worker()]);
-    if (!fail && ok && i >= todo.length) localStorage.setItem("gym-posters", "1");
+    if (!fail && ok && i >= todo.length) localStorage.setItem("gym-posters", "webp");
   } catch {}
 }

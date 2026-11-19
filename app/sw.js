@@ -2,9 +2,11 @@
    (FE-3/PERF-5); a new version waits until the user taps "Reload" (or all windows close). data/*.json and
    illustrations = stale-while-revalidate. 3D engine + model = cache-first in a stable cache that survives app
    updates (PERF-4). Posters/videos are cached on first view (or Settings → Download all); videos answer Range. */
-const VERSION = "v93";
+const VERSION = "v94";
 const SHELL = `gym-shell-${VERSION}`;
 const MEDIA = "gym-media-v1"; // keep name stable so downloaded media survives app updates
+const RECENT = "gym-media-recent"; // PERF-6: videos saved while watching; capped, oldest dropped first
+const RECENT_MAX = 150; // ~100 MB; "Download all" puts its files in MEDIA, which has no cap
 const THREE_D = "gym-3d-v1"; // vendor/three + 3d/body.glb + 3d/anim: bump ONLY when those files change
 const SHELL_FILES = ["./", "index.html", "css/app.css", "fonts/Inter.woff2", "manifest.webmanifest",
   ...["main", "nav", "components", "install", "ui", "store", "data", "calc", "body", "anatomy", "train", "plans", "timer", "sync", "home", "exercise", "me", "guide", "share", "view3d", "warmup", "media", "csv", "log", "sanitize", "scenario", "bodymap", "palette", "videos"].map((m) => `js/${m}.js`),
@@ -22,6 +24,8 @@ self.addEventListener("message", (e) => { if (e.data === "skip") self.skipWaitin
 self.addEventListener("activate", (e) => {
   e.waitUntil((async () => {
     for (const k of await caches.keys()) if (k.startsWith("gym-shell-") && k !== SHELL) await caches.delete(k);
+    // PERF-13: posters are WebP now — drop the old JPEG copies (~20 MB)
+    try { const m = await caches.open(MEDIA); for (const r of await m.keys()) if (/\/media\/poster\/[^/]+\.jpg$/.test(r.url)) await m.delete(r); } catch {}
     await self.clients.claim();
   })());
 });
@@ -35,6 +39,12 @@ self.addEventListener("notificationclick", (e) => {
     return self.clients.openWindow("./#/train");
   })());
 });
+
+// keys() lists entries in the order they were stored, so the first ones are the oldest
+async function trim(cache) {
+  const keys = await cache.keys();
+  for (const k of keys.slice(0, Math.max(0, keys.length - RECENT_MAX))) await cache.delete(k);
+}
 
 async function rangeResponse(resp, rangeHeader) {
   const buf = await resp.arrayBuffer();
@@ -63,19 +73,20 @@ self.addEventListener("fetch", (e) => {
 
   if (url.pathname.includes("/media/")) {
     e.respondWith((async () => {
-      const cache = await caches.open(MEDIA);
       const key = url.origin + url.pathname;
-      const hit = await cache.match(key);
+      const video = url.pathname.includes("/media/video/");
+      const cache = await caches.open(video ? RECENT : MEDIA);
+      const hit = await caches.match(key, { cacheName: MEDIA }) || (video && await cache.match(key));
       if (!hit) {
         // a whole-file request (poster, Download all) is fetched once and stored as it streams through
         if (!req.headers.get("range")) {
           const r = await fetch(key).catch(() => null);
-          if (r && r.ok && r.status === 200) e.waitUntil(cache.put(key, r.clone()).catch(() => {}));
+          if (r && r.ok && r.status === 200) e.waitUntil(cache.put(key, r.clone()).then(() => video && trim(cache)).catch(() => {}));
           return r || new Response("", { status: 504 });
         }
         // PERF-1: video Range request — stream the network response now (playback starts after the first ~100 KB);
         // cache the whole file in the background
-        e.waitUntil(fetch(key).then((r) => r.ok && cache.put(key, r)).catch(() => {}));
+        e.waitUntil(fetch(key).then((r) => r.ok && cache.put(key, r)).then(() => video && trim(cache)).catch(() => {}));
         return fetch(req).catch(() => new Response("", { status: 504 }));
       }
       const range = req.headers.get("range");

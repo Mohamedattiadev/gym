@@ -40,14 +40,14 @@ const INJECT = `(() => {
     list(where) { const seen = {}, perKind = {}, res = [];
       for (const e of all(where)) { const s = sig(e), k = kind(e); const n = seen[s] = (seen[s] || 0) + 1;
         perKind[k] = (perKind[k] || 0) + 1; if (perKind[k] > ${PER_KIND}) continue;
-        if (e.matches(".on, [aria-pressed=true], [aria-selected=true], [aria-current=page], [aria-checked=true]:not(input)") && !e.matches("label.switch")) continue; // already selected: pressing it again rightly does nothing
+        if (e.matches(".on, .navl.active, [aria-pressed=true], [aria-selected=true], [aria-current=page], [aria-checked=true]:not(input), [aria-disabled=true]") && !e.matches("label.switch")) continue; // already selected (or the current tab) / disabled: pressing it rightly does nothing
         const ext = e.matches("a[href]") && /^(https?:|mailto:|tel:)/.test(e.getAttribute("href"));
         res.push({ sig: s, n, kind: k, ext, blank: e.target === "_blank", rel: e.rel || "", file: e.matches("input[type=file]"), dl: e.hasAttribute("download") }); }
       return res; },
     find(where, s, n) { let i = 0; for (const e of all(where)) if (sig(e) === s && ++i === n) return e; return null; },
     state() { const d = document.getElementById("sheet"), b = document.body.innerHTML;
       return [location.hash, h(b), d?.open ? 1 : 0, Math.round(scrollY), [...document.querySelectorAll("video")].map((v) => v.paused ? 0 : 1).join(""), document.documentElement.className, document.fullscreenElement ? 1 : 0, window.__opened || ""].join("|"); },
-    press(where, s, n) { const e = this.find(where, s, n); if (!e) return { miss: true };
+    press(where, s, n) { const e = this.find(where, s, n); if (!e || e.disabled || e.getAttribute("aria-disabled") === "true") return { miss: true }; // disabled by an earlier click (e.g. Zoom out after Full body)
       e.scrollIntoView({ block: "center", inline: "center" }); const r = e.getBoundingClientRect(); const x = r.left + r.width / 2, y = r.top + r.height / 2;
       const hit = document.elementFromPoint(x, y); let cover = "";
       if (hit && hit !== e && !e.contains(hit) && !hit.contains(e) && !(e.htmlFor && hit.id === e.htmlFor) && !(e.matches("input") && hit.closest("label")?.contains(e))) cover = sig(hit.closest(SEL) || hit) + " ." + [...hit.classList].join(".");
