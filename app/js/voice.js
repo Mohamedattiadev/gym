@@ -47,7 +47,18 @@ export function speak(lines, { force = false, onend } = {}) {
   if (cut) setTimeout(go, 120); else go();
   return true;
 }
-export function stop() { token++; for (const s of srcs) try { s.stop(); } catch {} srcs = []; try { SS?.cancel(); } catch {} }
+export function stop() { token++; for (const s of srcs) try { s.stop(); } catch {} srcs = []; try { SS?.cancel(); } catch {} capTimers.forEach(clearTimeout); capTimers = []; caption(""); }
+
+/* ---- caption: the sentence being spoken, at the top of the screen (owner: "text while it talks") ---- */
+let capTimers = [], capOff = 0;
+function caption(text, ms = 0) {
+  let c = document.getElementById("vcap");
+  if (!text) { c?.classList.remove("on"); return; }
+  if (/^\d+$/.test(text.trim())) return; // "3", "2", "1": the big timer already shows it
+  if (!c) { c = document.createElement("div"); c.id = "vcap"; c.className = "vcap"; c.setAttribute("aria-hidden", "true"); document.body.appendChild(c); }
+  c.textContent = text; c.classList.add("on");
+  clearTimeout(capOff); capOff = setTimeout(() => c.classList.remove("on"), ms + 700);
+}
 
 /* ---- recorded clips ---- */
 let token = 0, srcs = [];
@@ -70,12 +81,20 @@ export async function say(parts, { force = false, onend } = {}) {
   stop(); const my = token;
   const ctx = audioCtx(), got = ctx ? await Promise.all(parts.map((p) => load(p[0]))) : [];
   if (my !== token) return true; // something newer started meanwhile
-  if (!ctx || got.some((b) => !b)) return speak(parts.map((p) => p[1]).join(" "), { force: true, onend });
+  if (!ctx || got.some((b) => !b)) { const text = parts.map((p) => p[1]).join(" "); caption(text, text.length * 75); return speak(text, { force: true, onend }); }
   if (ctx.state === "suspended") try { await ctx.resume(); } catch {}
-  let t = ctx.currentTime + 0.04;
+  const t0 = ctx.currentTime + 0.04; let t = t0;
+  /* caption by sentence: pieces up to one ending in . ! ? are shown together while they play */
+  let from = 0, sent = [];
   got.forEach((b, i) => {
+    sent.push(parts[i][1]);
+    if (/[.!?]$/.test(parts[i][1]) || i === got.length - 1) {
+      const start = from, text = sent.join(" "), end = t + b.duration - t0;
+      capTimers.push(setTimeout(() => caption(text, (end - start) * 1000), start * 1000));
+      sent = []; from = t + b.duration + (parts[i][2] ?? 0.35) - t0;
+    }
     const src = ctx.createBufferSource(); src.buffer = b; src.connect(ctx.destination); src.start(t); srcs.push(src);
-    t += b.duration + (parts[i][2] ?? 0.22);
+    t += b.duration + (parts[i][2] ?? 0.35);
     if (i === got.length - 1) src.onended = () => { if (my === token) { srcs = []; onend?.(); } };
   });
   return true;
@@ -96,7 +115,7 @@ export function duration(sec) {
 }
 const kgKey = (w) => (S.settings.unit === "kg" && ((w <= 300 && Number.isInteger(w * 2)) || (w <= 400 && Number.isInteger(w))) ? `kg/${w}` : null);
 export const P = {
-  rest: (sec) => [[sec % 15 === 0 && sec <= 600 ? `p/rest-${sec}` : null, `Set done. Rest for ${duration(sec)}.`]],
+  rest: (sec) => [[sec % 15 === 0 && sec <= 600 ? `p/rest-${sec}` : null, `Nice work. Now rest for ${duration(sec)}.`]],
   count: (n) => [n === 10 ? ["p/ten", "10 seconds."] : [`p/n${n}`, String(n)]],
   timeUp: () => [["p/timeup", "Time is up."]],
   ivRest: () => [["p/rest", "Rest."]],

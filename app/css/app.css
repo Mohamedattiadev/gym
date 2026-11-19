@@ -1049,3 +1049,20 @@ body:has(#rov) .toast { bottom: auto; top: calc(var(--safe-t) + 16px); }
 /* exercise How to: about text + Listen (voice.js) */
 .how-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
 .how-top p { margin: 0; flex: 1; } .listen { flex: none; } .listen[aria-pressed="true"] { color: var(--accent-text); }
+/* voice.js caption: the sentence being spoken, top centre, above the rest overlay */
+.vcap { position: fixed; z-index: 120; left: 50%; top: calc(var(--safe-t) + 12px); transform: translate(-50%, -8px); max-width: min(560px, calc(100% - 32px)); width: max-content;
+  padding: 10px 16px; border-radius: var(--r-md); background: var(--t1); color: var(--bg); font-weight: 600; font-size: .9375rem; line-height: 1.35; text-align: center;
+  box-shadow: var(--shadow); opacity: 0; pointer-events: none; transition: opacity 180ms, transform 180ms var(--ease); }
+.vcap.on { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: reduce) { .vcap { transition: none; } }
+/* installed app: Android's own opening screen already showed the icon (coral dumbbell on the dark background, same as ours),
+   so ours continues from it: dumbbell already assembled and about as big as the system one, straight into the rep loop */
+@media (display-mode: standalone) {
+  #splash .sp-db { width: 240px; height: 240px; }
+  #splash .sp-p, #splash .sp-whole { animation: none; }
+  #splash .sp-loop { animation-delay: .1s; }
+}
+/* mistake sheet Wrong | Right switch (phone): the shown one is filled red / green with white text (owner: the ring alone was unclear) */
+.m3seg .seg-ind { display: none; }
+.m3seg button.on { color: #fff; font-weight: 750; box-shadow: none; }
+.m3seg button[data-w="1"].on { background: #B3261E; } .m3seg button[data-w="0"].on { background: #1E7A4C; }

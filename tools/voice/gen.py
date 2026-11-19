@@ -29,7 +29,7 @@ import edge_tts
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..")
 LANG = "en"
-VOICE, RATE = "en-US-AvaNeural", "-5%"
+VOICE, RATE = "en-US-AvaNeural", "-20%"  # owner 2026-11-19: -5% was "way too fast"
 OUT = os.path.join(ROOT, "media", "voice", LANG)
 IDX = os.path.join(ROOT, "tools", "voice", f"index.{LANG}.json")
 
@@ -48,7 +48,7 @@ def num(w):
 def clips():
     c = {}
     for sec in range(15, 601, 15):
-        c[f"p/rest-{sec}"] = f"Set done. Rest for {duration(sec)}."
+        c[f"p/rest-{sec}"] = f"Nice work. Now rest for {duration(sec)}."  # owner: "Set done" was hard to hear
     c.update({"p/ten": "10 seconds.", "p/n1": "1", "p/n2": "2", "p/n3": "3", "p/go": "Go.", "p/rest": "Rest.",
               "p/restover": "Rest over. Next set.", "p/timeup": "Time is up.", "p/ivdone": "Intervals done.", "p/work": "Work.",
               "p/warm": "Warm-up set.", "p/last": "Last set. Finish strong.", "p/cues": "Cues.",
