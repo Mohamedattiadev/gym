@@ -8,11 +8,12 @@ import { warmupSets } from "./calc.js";
 import { setTop, go, redirect, routeId, live } from "./nav.js";
 import { fillIll } from "./components.js";
 import * as T from "./train.js";
+import { t, tn } from "./i18n.js";
 
 const view = () => $("#view");
 let W = null;
 const load = () => W || (W = fetch("data/guide/warmups.json").then((r) => (r.ok ? r.json() : {})).catch(() => ({})));
-const mins = (s) => `${Math.max(1, Math.round(s / 60))} min`;
+const mins = (s) => t("{n} min", { n: Math.max(1, Math.round(s / 60)) });
 const AREAS = ["shoulders", "back", "knees", "hips", "elbows", "ankles", "core"];
 const PUSH = ["chest", "delt-front", "delt-side", "triceps"], PULL = ["lats", "upper-back", "traps", "biceps", "delt-rear", "forearms"],
   LEGS = ["quads", "glutes", "hamstrings", "calves", "adductors", "shins"];
@@ -39,7 +40,7 @@ export function buildFor(w, slugs, name) {
   add(w.general?.cardio?.[0], 120);
   (w.general?.mobility?.[type] || []).slice(0, 4).forEach((id) => add(id));
   top.forEach((a) => (w.areas?.[a]?.drills || []).filter((id) => !has(id)).slice(0, 1).forEach((id) => add(id)));
-  return { title: name ? `Warm-up · ${name}` : "General warm-up", items, type, areas: top, slugs };
+  return { title: name ? t("Warm-up · {name}", { name }) : t("General warm-up"), items, type, areas: top, slugs };
 }
 const buildList = (w, title, ids) => ({ title, items: ids.map((id) => item(w, id)).filter(Boolean) });
 
@@ -50,9 +51,9 @@ export async function playDrills(title, ids, back) { const w = await load(); pla
 let Q = null; // current player queue {title, items, i, back, slugs, cool}
 export async function warmupView(arg) {
   const [, , sub, id] = (location.hash.slice(1) || "/").split("?")[0].split("/");
-  view().innerHTML = `<div class="empty">Loading…</div>`;
+  view().innerHTML = `<div class="empty">${t("Loading…")}</div>`;
   const rid = routeId(); const w = await load(); if (!live(rid)) return;
-  if (!w.drills) { setTop({ title: "Warm-up", back: true }); view().innerHTML = `<div class="empty">Could not load.</div>`; return; }
+  if (!w.drills) { setTop({ title: t("Warm-up"), back: true }); view().innerHTML = `<div class="empty">${t("Could not load.")}</div>`; return; }
   if (sub === "play") return Q ? player(w) : go("#/warmup");
   if (sub === "s" || sub === "w") {
     const src = sub === "s" ? S.active : S.workouts.find((x) => x.id === id);
@@ -60,35 +61,35 @@ export async function warmupView(arg) {
     const slugs = sub === "s" ? src.entries.map((e) => e.slug) : src.items.map((it) => it.slug);
     return play(buildFor(w, slugs, src.name), sub === "s" ? "#/session" : `#/workout/${src.id}`, true);
   }
-  if (sub === "cool") return play({ ...buildList(w, "Cool-down", w.cooldown?.drills || []), cool: true }, "#/warmup", true);
+  if (sub === "cool") return play({ ...buildList(w, t("Cool-down"), w.cooldown?.drills || []), cool: true }, "#/warmup", true);
   hub(w);
 }
 
 function hub(w) {
-  setTop({ title: "Warm-up", back: true });
+  setTop({ title: t("Warm-up"), back: true });
   const nx = S.active ? { name: S.active.name, slugs: S.active.entries.map((e) => e.slug), href: "#/warmup/s" }
     : (() => { const n = T.nextWorkout(); return n && { name: n.name, slugs: n.items.map((it) => it.slug), href: `#/warmup/w/${n.id}` }; })();
   const auto = buildFor(w, nx?.slugs || [], nx?.name);
   const areaName = (a) => L(w.areas?.[a]?.name) || a;
   const u = S.settings.unit;
   view().innerHTML = `<div class="muted small" style="margin:-2px 0 12px">${esc(L(w.intro))}</div>
-    <div class="hero-card has-ill"><div class="txt"><div class="eyebrow">${nx ? "Before your workout" : "Quick start"}</div><h2>${esc(nx ? nx.name : "General warm-up")}</h2>
-      <div class="muted small mb-12">${mins(total(auto))} · ${auto.items.length} moves${auto.areas.length ? ` · ${esc(auto.areas.map(areaName).join(", "))}` : ""}</div>
-      <button class="btn primary" id="wAuto">${ic("play", "sm")} Start warm-up</button></div><div class="ill" data-ill="warmup"></div></div>
-    <div class="sec"><h2>Warm up one area</h2></div>
+    <div class="hero-card has-ill"><div class="txt"><div class="eyebrow">${nx ? t("Before your workout") : t("Quick start")}</div><h2>${esc(nx ? nx.name : t("General warm-up"))}</h2>
+      <div class="muted small mb-12">${mins(total(auto))} · ${tn(auto.items.length, "{n} move", "{n} moves")}${auto.areas.length ? ` · ${esc(auto.areas.map(areaName).join(", "))}` : ""}</div>
+      <button class="btn primary" id="wAuto">${ic("play", "sm")} ${t("Start warm-up")}</button></div><div class="ill" data-ill="warmup"></div></div>
+    <div class="sec"><h2>${t("Warm up one area")}</h2></div>
     <div class="chips" id="wAreas">${AREAS.filter((a) => w.areas?.[a]).map((a) => `<button class="chip" data-a="${a}">${esc(areaName(a))}</button>`).join("")}</div>
-    <div class="sec"><h2>Ramp-up sets</h2><button class="link small" id="wRules" style="color:var(--accent-text);font-weight:600;background:none;border:0">How it works</button></div>
-    <div class="card pad"><div class="row" style="gap:10px;flex-wrap:wrap"><div class="field" style="margin:0;flex:1;min-width:120px"><label for="wKg">Working weight (${u})</label><input id="wKg" type="number" inputmode="decimal" min="0" step="0.5" placeholder="e.g. 80"></div>
-      <div class="seg sm" id="wKind"><button data-v="heavy" class="on">Barbell lift</button><button data-v="light">Other</button></div></div>
+    <div class="sec"><h2>${t("Ramp-up sets")}</h2><button class="link small" id="wRules" style="color:var(--accent-text);font-weight:600;background:none;border:0">${t("How it works")}</button></div>
+    <div class="card pad"><div class="row" style="gap:10px;flex-wrap:wrap"><div class="field" style="margin:0;flex:1;min-width:120px"><label for="wKg">${t("Working weight ({u})", { u })}</label><input id="wKg" type="number" inputmode="decimal" min="0" step="0.5" placeholder="${t("e.g. 80")}"></div>
+      <div class="seg sm" id="wKind"><button data-v="heavy" class="on">${t("Barbell lift")}</button><button data-v="light">${t("Other")}</button></div></div>
       <div id="wRamp" class="ramp mt-10"><div class="dim small">${esc(L(w.ramp?.note))}</div></div></div>
-    <div class="itiles mt-12"><button class="itile" id="wGen"><span class="ico">${ic("flame")}</span><div><b>General</b><span>${mins(total(buildFor(w, [], "")))} · full body</span></div></button>
-      <a class="itile" href="#/warmup/cool" style="--c:var(--info)"><span class="ico">${ic("timer")}</span><div><b>Cool-down</b><span>After training</span></div></a></div>
-    ${w.sources?.length ? `<details class="srcs"><summary class="dim small">Sources</summary><div class="small">${w.sources.map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join(" · ")}</div></details>` : ""}`;
+    <div class="itiles mt-12"><button class="itile" id="wGen"><span class="ico">${ic("flame")}</span><div><b>${t("General")}</b><span>${mins(total(buildFor(w, [], "")))} · ${t("full body")}</span></div></button>
+      <a class="itile" href="#/warmup/cool" style="--c:var(--info)"><span class="ico">${ic("timer")}</span><div><b>${t("Cool-down")}</b><span>${t("After training")}</span></div></a></div>
+    ${w.sources?.length ? `<details class="srcs"><summary class="dim small">${t("Sources")}</summary><div class="small">${w.sources.map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join(" · ")}</div></details>` : ""}`;
   fillIll(view()); indicate(view());
   $("#wAuto").onclick = () => (nx ? go(nx.href) : play(auto, "#/warmup"));
   $("#wGen").onclick = () => play(buildFor(w, [], ""), "#/warmup");
-  $("#wAreas").onclick = (e) => { const b = e.target.closest("[data-a]"); if (!b) return; const a = b.dataset.a; play(buildList(w, `Warm-up · ${areaName(a)}`, w.areas[a].drills), "#/warmup"); };
-  $("#wRules").onclick = () => openSheet(`<h3>Ramp-up sets</h3><div class="muted small mb-10">${esc(L(w.ramp?.note))}</div>
+  $("#wAreas").onclick = (e) => { const b = e.target.closest("[data-a]"); if (!b) return; const a = b.dataset.a; play(buildList(w, t("Warm-up · {name}", { name: areaName(a) }), w.areas[a].drills), "#/warmup"); };
+  $("#wRules").onclick = () => openSheet(`<h3>${t("Ramp-up sets")}</h3><div class="muted small mb-10">${esc(L(w.ramp?.note))}</div>
     <ul class="bul">${(w.ramp?.rules || []).map((r) => `<li>${ic("check", "sm")}<span>${esc(L(r))}</span></li>`).join("")}</ul>`);
   let kind = "heavy";
   const ramp = () => {
@@ -96,7 +97,7 @@ function hub(w) {
     if (!kg) return (box.innerHTML = `<div class="dim small">${esc(L(w.ramp?.note))}</div>`);
     const ex = kind === "heavy" ? { equipment: ["Barbell"], type: "compound" } : { equipment: [], type: "isolation" };
     const ws = warmupSets(kg, ex);
-    box.innerHTML = ws.length ? `<div class="rsets">${ws.map((s, i) => `<div><span class="dim tiny">Set ${i + 1}</span><b class="num">${s.w}${u}</b><span class="num">× ${s.r}</span></div>`).join("")}<div class="go"><span class="dim tiny">Then</span><b class="num">${kg}${u}</b><span>work sets</span></div></div>` : `<div class="dim small">Light enough — no ramp-up sets needed.</div>`;
+    box.innerHTML = ws.length ? `<div class="rsets">${ws.map((s, i) => `<div><span class="dim tiny">${t("Set {n}", { n: i + 1 })}</span><b class="num">${s.w}${u}</b><span class="num">× ${s.r}</span></div>`).join("")}<div class="go"><span class="dim tiny">${t("Then")}</span><b class="num">${kg}${u}</b><span>${t("work sets")}</span></div></div>` : `<div class="dim small">${t("Light enough — no ramp-up sets needed.")}</div>`;
   };
   $("#wKg").oninput = ramp;
   $("#wKind").onclick = (e) => { const b = e.target.closest("button"); if (!b) return; haptic(); selectIn(b); kind = b.dataset.v; ramp(); };
@@ -106,28 +107,28 @@ function hub(w) {
 let iv = null, endAt = 0, left = 0, running = false;
 function play(q, back, replace = false) {
   Q = { ...q, i: 0, back };
-  if (!Q.items.length) return toast("Nothing to show yet");
+  if (!Q.items.length) return toast(t("Nothing to show yet"));
   replace ? history.replaceState(null, "", "#/warmup/play") : history.pushState(null, "", "#/warmup/play");
   load().then(player);
 }
 const stopT = () => { clearInterval(iv); iv = null; running = false; };
 addEventListener("hashchange", () => { if (!location.hash.startsWith("#/warmup/play")) stopT(); });
 
-const sec = (t) => String(t || "0").split(":").reduce((a, x) => a * 60 + +x, 0);
+const sec = (x) => String(x || "0").split(":").reduce((a, x) => a * 60 + +x, 0);
 const ytId = (u) => (String(u).match(/[?&]v=([\w-]{11})/) || String(u).match(/youtu\.be\/([\w-]{11})/) || [])[1];
 function visual(d) {
   if (d.fig) return `<img class="wfig" src="media/figures/${esc(d.fig)}.webp" alt="">`;
   if (d.clip?.file) return `<video class="wclip" src="media/clips/${esc(d.clip.file)}"${RM.matches ? " controls" : " autoplay"} muted loop playsinline preload="metadata"></video>
-    <a class="wcred" href="${esc(d.clip.q)}" target="_blank" rel="noopener">${ic("yt", "xs")} ${esc(d.clip.by || "Original")}</a>`;
+    <a class="wcred" href="${esc(d.clip.q)}" target="_blank" rel="noopener">${ic("yt", "xs")} ${esc(d.clip.by || t("Original"))}</a>`;
   if (d.clip?.q && ytId(d.clip.q)) return `<div class="ill wfill" data-ill="warmup"></div>
-    <button class="btn sm wdemo" id="wpDemo">${ic("play", "sm")} Watch demo · ${esc(d.clip.by || "")}</button>`;
+    <button class="btn sm wdemo" id="wpDemo">${ic("play", "sm")} ${t("Watch demo")}${d.clip.by ? ` · ${esc(d.clip.by)}` : ""}</button>`;
   return `<div class="ill wfill" data-ill="warmup"></div>`;
 }
 /** Plays only the drill's segment of the expert's video (credited, links to the original). */
 function demo(d) {
   const id = ytId(d.clip.q), s = sec(d.clip.start), e = sec(d.clip.end);
-  $(".wvis").innerHTML = `<iframe class="wclip" src="https://www.youtube-nocookie.com/embed/${id}?start=${s}${e > s ? `&end=${e}` : ""}&autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1" title="${esc(d.clip.by || "Demo")}" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-    <a class="wcred" href="https://www.youtube.com/watch?v=${id}&t=${s}s" target="_blank" rel="noopener">${ic("yt", "xs")} ${esc(d.clip.by || "Original")}</a>`;
+  $(".wvis").innerHTML = `<iframe class="wclip" src="https://www.youtube-nocookie.com/embed/${id}?start=${s}${e > s ? `&end=${e}` : ""}&autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1" title="${esc(d.clip.by || t("Demo"))}" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    <a class="wcred" href="https://www.youtube.com/watch?v=${id}&t=${s}s" target="_blank" rel="noopener">${ic("yt", "xs")} ${esc(d.clip.by || t("Original"))}</a>`;
 }
 function player(w) {
   const q = Q, it = q.items[q.i], d = w.drills[it.id], n = q.items.length;
@@ -135,28 +136,28 @@ function player(w) {
   const restSecs = q.items.slice(q.i + 1).reduce((a, x) => a + x.secs, 0);
   const R = 46, CC = 2 * Math.PI * R;
   view().innerHTML = `<div class="qprog"><i style="width:${(q.i / n) * 100}%"></i></div>
-    <div class="row between dim tiny" style="margin:8px 0 10px"><span>Move ${q.i + 1} of ${n}</span><span id="wpLeft"></span></div>
+    <div class="row between dim tiny" style="margin:8px 0 10px"><span>${t("Move {n} of {m}", { n: q.i + 1, m: n })}</span><span id="wpLeft"></span></div>
     <div class="wplay"><div class="wvis">${visual(d)}</div>
       <div class="winfo"><h2 class="qt" style="margin:0">${esc(L(d.name))}</h2>
         <div class="wcue">${esc(L(d.reps) || L(d.cue))}</div>
         <div class="muted small">${esc(L(d.how))}${L(d.reps) && L(d.cue) ? ` <b>${esc(L(d.cue))}</b>` : ""}</div>
         <div class="wctl"><div class="ringwrap sm"><svg viewBox="0 0 100 100"><circle class="track" cx="50" cy="50" r="${R}"/><circle class="fill" id="wpF" cx="50" cy="50" r="${R}" stroke-dasharray="${CC}" stroke-dashoffset="0"/></svg><div class="big num" id="wpT"></div></div>
-          <div class="row" style="justify-content:center;gap:10px"><button class="iconbtn filled" id="wpPrev" aria-label="Previous" ${q.i ? "" : "disabled"}>${ic("back")}</button>
+          <div class="row" style="justify-content:center;gap:10px"><button class="iconbtn filled" id="wpPrev" aria-label="${t("Previous")}" ${q.i ? "" : "disabled"}>${ic("back")}</button>
             <button class="btn lg primary" id="wpGo" style="min-width:130px"></button>
-            <button class="iconbtn filled fwd" id="wpNext" aria-label="${q.i < n - 1 ? "Next" : "Finish"}">${ic("back")}</button></div></div></div></div>
-    ${q.i === n - 1 && !q.cool ? `<div class="dim small" style="text-align:center;margin-top:10px">Next: ramp-up sets on your first exercise.</div>` : ""}`;
+            <button class="iconbtn filled fwd" id="wpNext" aria-label="${q.i < n - 1 ? t("Next") : t("Finish")}">${ic("back")}</button></div></div></div></div>
+    ${q.i === n - 1 && !q.cool ? `<div class="dim small" style="text-align:center;margin-top:10px">${t("Next: ramp-up sets on your first exercise.")}</div>` : ""}`;
   fillIll(view());
   left = it.secs; const draw = () => {
-    const s = Math.max(0, Math.ceil(left)); const t = $("#wpT"); if (!t) return stopT();
-    t.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+    const s = Math.max(0, Math.ceil(left)); const tt = $("#wpT"); if (!tt) return stopT();
+    tt.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
     $("#wpF").setAttribute("stroke-dashoffset", String(CC * (1 - left / it.secs)));
-    $("#wpGo").innerHTML = running ? `${ic("pause", "sm")} Pause` : `${ic("play", "sm")} ${left < it.secs ? "Resume" : "Start"}`;
-    $("#wpLeft").textContent = `${mins(left + restSecs)} left`;
+    $("#wpGo").innerHTML = running ? `${ic("pause", "sm")} ${t("Pause")}` : `${ic("play", "sm")} ${left < it.secs ? t("Resume") : t("Start")}`;
+    $("#wpLeft").textContent = t("{time} left", { time: mins(left + restSecs) });
   };
   const tick = () => { left = (endAt - Date.now()) / 1000; if (left <= 0) { left = 0; stopT(); draw(); beep([[660, .1], [880, .18]]); haptic("success"); return next(); } if (left <= 3.2 && left > 3) beep([[520, .06]], .1); draw(); };
   const start = () => { endAt = Date.now() + left * 1000; running = true; clearInterval(iv); iv = setInterval(tick, 200); draw(); };
   const next = () => { stopT(); if (q.i < n - 1) { q.i++; player(w); } else finish(w); };
-  const dm = $("#wpDemo"); if (dm) dm.onclick = () => { haptic(); if (!navigator.onLine) return toast("Demo needs internet"); demo(d); };
+  const dm = $("#wpDemo"); if (dm) dm.onclick = () => { haptic(); if (!navigator.onLine) return toast(t("Demo needs internet")); demo(d); };
   $("#wpGo").onclick = () => { haptic(); running ? (stopT(), draw()) : start(); };
   $("#wpNext").onclick = () => { haptic(); next(); };
   $("#wpPrev").onclick = () => { haptic(); stopT(); if (q.i) { q.i--; player(w); } };
@@ -176,17 +177,17 @@ function finish(w) {
   setTop({ title: q.title, back: true });
   view().innerHTML = `<div class="qprog"><i style="width:100%"></i></div>
     <div style="text-align:center;margin-top:14px"><div class="ill" data-ill="${q.cool ? "rest-recovery" : "warmup"}" style="max-width:150px;margin:0 auto"></div>
-      <h2 class="qt" style="margin:6px 0 2px">${q.cool ? "Cool-down done" : "Warm-up done"}</h2>
-      <div class="muted small">${q.cool ? "Nice work today." : "Now ease into your first exercise with a few light sets."}</div></div>
-    ${ws.length ? `<div class="card pad mt-14"><b>${esc(first.name)}</b><div class="dim tiny" style="margin-bottom:8px">Ramp-up to ${lw}${u} (last time)</div>
-      <div class="rsets">${ws.map((s, i) => `<div><span class="dim tiny">Set ${i + 1}</span><b class="num">${s.w}${u}</b><span class="num">× ${s.r}</span></div>`).join("")}</div>
-      ${S.active && q.back === "#/session" ? `<button class="btn block mt-10" id="wAdd">${ic("plus", "sm")} Add these to the workout</button>` : ""}</div>` : ""}
-    <button class="btn lg primary block mt-16" id="wDone">${q.back === "#/session" ? "Back to workout" : q.back?.startsWith("#/workout/") ? "Go to workout" : "Done"}</button>`;
+      <h2 class="qt" style="margin:6px 0 2px">${q.cool ? t("Cool-down done") : t("Warm-up done")}</h2>
+      <div class="muted small">${q.cool ? t("Nice work today.") : t("Now ease into your first exercise with a few light sets.")}</div></div>
+    ${ws.length ? `<div class="card pad mt-14"><b>${esc(first.name)}</b><div class="dim tiny" style="margin-bottom:8px">${t("Ramp-up to {w} (last time)", { w: lw + u })}</div>
+      <div class="rsets">${ws.map((s, i) => `<div><span class="dim tiny">${t("Set {n}", { n: i + 1 })}</span><b class="num">${s.w}${u}</b><span class="num">× ${s.r}</span></div>`).join("")}</div>
+      ${S.active && q.back === "#/session" ? `<button class="btn block mt-10" id="wAdd">${ic("plus", "sm")} ${t("Add these to the workout")}</button>` : ""}</div>` : ""}
+    <button class="btn lg primary block mt-16" id="wDone">${q.back === "#/session" ? t("Back to workout") : q.back?.startsWith("#/workout/") ? t("Go to workout") : t("Done")}</button>`;
   fillIll(view());
   const add = $("#wAdd"); if (add) add.onclick = () => {
     const en = S.active?.entries.find((e) => e.slug === first.slug); if (!en) return;
-    if (en.sets.some((s) => s.type === "w")) return toast("Warm-up sets already added");
-    en.sets.unshift(...ws.map((s) => ({ w: s.w, r: s.r, done: false, type: "w" }))); save("active"); toast(`Added ${ws.length} warm-up sets`); add.disabled = true;
+    if (en.sets.some((s) => s.type === "w")) return toast(t("Warm-up sets already added"));
+    en.sets.unshift(...ws.map((s) => ({ w: s.w, r: s.r, done: false, type: "w" }))); save("active"); toast(tn(ws.length, "Added {n} warm-up set", "Added {n} warm-up sets")); add.disabled = true;
   };
   $("#wDone").onclick = () => { Q = null; go(q.back || "#/warmup"); };
 }

@@ -4,6 +4,7 @@ import { EX, byTier, weeklyVolume, hasEquip, hurts, recovery } from "./data.js";
 import { MUSCLES, MBY, bodySVG, muscleBox, zoomTo, panZoom, FULL, HEAT, CREDIT } from "./body.js";
 import { setTop } from "./nav.js";
 import { tierBadge } from "./components.js";
+import { t, tn } from "./i18n.js";
 
 const view = $("#view");
 /** The router calls this on every page change: the detail controller only lives while the page is shown. */
@@ -17,31 +18,32 @@ function exercisesFor(m) {
 /** Which head of muscle `hs` an exercise mainly hits (regex on name, else the default head). */
 const headOf = (hs, e) => hs.find((h) => h.match && new RegExp(h.match, "i").test(e.name)) || hs.find((h) => h.default) || hs[0];
 const heatOf = (m, vol) => HEAT[Math.min(4, Math.ceil(((vol[m.id] || 0) / (m.lm[1] ? m.lm[1] * .6 : 10)) * 4))];
-const recText = (r) => (!r ? "Ready" : r.state === "r" ? `Trained <24h · ~${r.left}h to go` : r.left ? `Needs ~${r.left} more hours` : "Ready");
+const recText = (r) => (!r ? t("Ready") : r.state === "r" ? t("Trained <24h · ~{h}h to go", { h: r.left }) : r.left ? tn(r.left, "Needs ~{n} more hour", "Needs ~{n} more hours") : t("Ready"));
 let BM = null; // live body-map controller (detail panel), null when the page is not shown
 const wide = () => innerWidth >= BP.panel;
 addEventListener("popstate", () => { if (BM && location.hash.startsWith("#/body")) BM.sync(); });
 addEventListener("keydown", (e) => { if (e.key === "Escape" && BM?.open && !$("#sheet").open) { e.preventDefault(); BM.close(); } });
 export function bodyMap() {
-  setTop({ title: "Body map" });
+  setTop({ title: t("Body map") });
   document.body.classList.remove("bm-open");
   const vol = weeklyVolume(), rec = recovery();
   const list = MUSCLES.filter((m) => m.view === bm.view || m.view === "both");
   const M = bm.mode;
-  const hint = M === "week" ? `<div class="heat-legend">Sets vs target ${HEAT.map((c) => `<i style="background:${c}"></i>`).join("")}<span>none → optimal</span></div>`
-    : M === "rec" ? `<div class="legend-dots"><span><i style="background:var(--rec-r)"></i>&lt;24h</span><span><i style="background:var(--rec-y)"></i>Recovering</span><span><i style="background:var(--rec-g)"></i>Ready</span></div>`
-    : `<div class="dim small">Tap a muscle to see its parts and the best exercises.</div>`;
+  const hint = M === "week" ? `<div class="heat-legend">${t("Sets vs target")} ${HEAT.map((c) => `<i style="background:${c}"></i>`).join("")}<span>${t("none → optimal")}</span></div>`
+    : M === "rec" ? `<div class="legend-dots"><span><i style="background:var(--rec-r)"></i>${esc(t("<24h"))}</span><span><i style="background:var(--rec-y)"></i>${t("Recovering")}</span><span><i style="background:var(--rec-g)"></i>${t("Ready")}</span></div>`
+    : `<div class="dim small">${t("Tap a muscle to see its parts and the best exercises.")}</div>`;
   const dot = (m) => (M === "week" ? heatOf(m, vol) : M === "rec" ? `var(--rec-${rec[m.id]?.state || "g"})` : "var(--accent)");
-  const cnt = (m) => (M === "week" ? Math.round(vol[m.id] || 0) + " sets" : M === "rec" ? (rec[m.id]?.left ? `~${rec[m.id].left}h` : "Ready") : exercisesFor(m).length);
+  const cnt = (m) => (M === "week" ? tn(Math.round(vol[m.id] || 0), "{n} set", "{n} sets") : M === "rec" ? (rec[m.id]?.left ? `~${rec[m.id].left}h` : t("Ready")) : exercisesFor(m).length);
+  const aria = (m) => (M === "muscles" ? tn(cnt(m), "{name}, {n} exercise", "{name}, {n} exercises", { name: t(m.name) }) : `${t(m.name)}, ${cnt(m)}`);
   view.innerHTML = `<div class="bm-split"><div class="bm-main">
-      <div class="bm-top" id="bmtop"><div class="seg" id="side"><button data-v="front" class="${bm.view === "front" ? "on" : ""}">Front</button><button data-v="back" class="${bm.view === "back" ? "on" : ""}">Back</button></div>
-        <div class="seg" id="mode">${[["muscles", "Muscles"], ["week", "This week"], ["rec", "Recovery"]].map(([k, l]) => `<button data-k="${k}" class="${M === k ? "on" : ""}">${l}</button>`).join("")}</div></div>
+      <div class="bm-top" id="bmtop"><div class="seg" id="side"><button data-v="front" class="${bm.view === "front" ? "on" : ""}">${t("Front")}</button><button data-v="back" class="${bm.view === "back" ? "on" : ""}">${t("Back")}</button></div>
+        <div class="seg" id="mode">${[["muscles", t("Muscles")], ["week", t("This week")], ["rec", t("Recovery")]].map(([k, l]) => `<button data-k="${k}" class="${M === k ? "on" : ""}">${l}</button>`).join("")}</div></div>
       ${hint}
-      <div class="body-wrap" id="bwrap">${bodySVG(bm.view)}<div class="zctl"><button class="iconbtn" data-z="1.4" aria-label="Zoom in">${ic("plus", "sm")}</button><button class="iconbtn" data-z="0.7" aria-label="Zoom out">${ic("minus", "sm")}</button></div></div>
-      <div class="dim tiny bm-credit"><button class="linkbtn" id="credit">Anatomy art credit</button></div></div>
-    <div class="bm-side"><div id="bmlist"><div class="sec"><h2>Muscles</h2></div>
-      <div class="mgrid stagger" id="legend">${list.map((m) => `<button data-m="${m.id}" style="--hm:${dot(m)}" aria-label="${m.name}, ${cnt(m)} exercises"><i></i>${m.name}<span class="c">${cnt(m)}</span></button>`).join("")}</div></div>
-      <section class="mdet" id="mdet" hidden aria-label="Muscle details"></section></div></div>`;
+      <div class="body-wrap" id="bwrap">${bodySVG(bm.view)}<div class="zctl"><button class="iconbtn" data-z="1.4" aria-label="${t("Zoom in")}">${ic("plus", "sm")}</button><button class="iconbtn" data-z="0.7" aria-label="${t("Zoom out")}">${ic("minus", "sm")}</button></div></div>
+      <div class="dim tiny bm-credit"><button class="linkbtn" id="credit">${t("Anatomy art credit")}</button></div></div>
+    <div class="bm-side"><div id="bmlist"><div class="sec"><h2>${t("Muscles")}</h2></div>
+      <div class="mgrid stagger" id="legend">${list.map((m) => `<button data-m="${m.id}" style="--hm:${dot(m)}" aria-label="${esc(aria(m))}"><i></i>${esc(t(m.name))}<span class="c">${cnt(m)}</span></button>`).join("")}</div></div>
+      <section class="mdet" id="mdet" hidden aria-label="${t("Muscle details")}"></section></div></div>`;
   const svg = $(".body-svg"), det = $("#mdet"), dur = () => (RM.matches ? 1 : 520);
   $$("path.m", svg).forEach((p) => { const m = MBY[p.dataset.m]; if (!m) return;
     if (M === "week") p.style.setProperty("--hm", heatOf(m, vol)); else if (M === "rec") p.classList.add(rec[m.id]?.state || "g"); });
@@ -114,7 +116,7 @@ export function bodyMap() {
   const pz = panZoom($("#bwrap"), [svg]); // 18b
   $("#bwrap .zctl").onclick = (e) => { const z = e.target.closest("[data-z]"); if (z) { haptic(); pz.zoomBy(+z.dataset.z); } };
   $("#legend").onclick = (e) => { const b = e.target.closest("button"); if (b) select(b.dataset.m); };
-  $("#credit").onclick = () => openSheet(`<h3>Anatomy art</h3><p class="muted small">${esc(CREDIT.title)} by ${esc(CREDIT.author)}.<br>License: <a href="${esc(CREDIT.licenseUrl)}" target="_blank" rel="noopener">${esc(CREDIT.license)}</a>. ${esc(CREDIT.note || "")}</p><p class="small"><a href="${esc(CREDIT.url)}" target="_blank" rel="noopener">Original source</a></p>`);
+  $("#credit").onclick = () => openSheet(`<h3>${t("Anatomy art")}</h3><p class="muted small">${esc(t("{title} by {author}.", { title: CREDIT.title, author: CREDIT.author }))}<br>${t("License:")} <a href="${esc(CREDIT.licenseUrl)}" target="_blank" rel="noopener">${esc(CREDIT.license)}</a>. ${esc(CREDIT.note || "")}</p><p class="small"><a href="${esc(CREDIT.url)}" target="_blank" rel="noopener">${t("Original source")}</a></p>`);
   $("#side").onclick = (e) => { const b = e.target.closest("button"); if (!b || b.dataset.v === bm.view) return; bm.view = b.dataset.v; haptic(); selectIn(b); setTimeout(() => { bodyMap(); $("#bwrap").classList.add("flip"); indicate(view); }, 160); };
   $("#mode").onclick = (e) => { const b = e.target.closest("button"); if (!b || b.dataset.k === bm.mode) return; bm.mode = b.dataset.k; haptic(); selectIn(b); setTimeout(() => { bodyMap(); indicate(view); }, 160); };
   if (history.state?.bm) ctl.sync(); // back from an exercise / Front-Back flip keeps the open muscle
@@ -127,7 +129,7 @@ async function muscleDetail(m, vol, rec, svg, el, ctl) {
   const done = Math.round(vol[m.id] || 0); const [mev, mav] = m.lm; const r = rec[m.id];
   let eq = "", picked = null;
   const pickHead = (hid) => { svg.classList.toggle("hpick", !!hid); $$(`path.m[data-m="${m.id}"]`, svg).forEach((p) => p.classList.toggle("hsel", p.dataset.h === hid)); };
-  const exRow = (e, hid) => `<a class="lrow" href="#/ex/${e.slug}"${hid ? ` data-h="${hid}"` : ""}><img src="${e.poster}" alt="" loading="lazy"><div class="grow"><div class="t">${esc(e.name)}</div><div class="s">${esc(e.equipment.join(" · ") || e.group)}</div></div>${tierBadge(e.tier)}</a>`;
+  const exRow = (e, hid) => `<a class="lrow" href="#/ex/${e.slug}"${hid ? ` data-h="${hid}"` : ""}><img src="${e.poster}" alt="" loading="lazy"><div class="grow"><div class="t">${esc(e.name)}</div><div class="s">${esc(e.equipment.map((q) => t(q)).join(" · ") || t(e.group))}</div></div>${tierBadge(e.tier)}</a>`;
   const drawEx = () => {
     const l = eq ? list.filter((e) => e.equipment.includes(eq)) : list;
     let html;
@@ -135,17 +137,17 @@ async function muscleDetail(m, vol, rec, svg, el, ctl) {
       const by = Object.fromEntries(hs.map((h) => [h.id, []])); l.forEach((e) => by[headOf(hs, e).id].push(e));
       html = hs.filter((h) => by[h.id].length).map((h) => `<div class="h4 hd-h" data-h="${h.id}">${esc(L(h.name))} <span class="dim tiny">${by[h.id].length}</span></div>${by[h.id].slice(0, 12).map((e) => exRow(e, h.id)).join("")}`).join("");
     } else html = l.slice(0, 40).map((e) => exRow(e)).join("");
-    $("#mlist", el).innerHTML = html || `<div class="empty">No exercises</div>`;
+    $("#mlist", el).innerHTML = html || `<div class="empty">${t("No exercises")}</div>`;
   };
   const eqs = [...new Set(list.flatMap((e) => e.equipment))].slice(0, 8);
-  const info = `<p class="muted small" style="margin:0 0 10px">${m.fn}</p>
-    <div class="card soft pad row"><div class="grow"><div class="eyebrow">This week</div><b class="num" style="font-size:22px">${done}</b> <span class="dim">/ ${mev || 4}–${mav} sets</span></div>
+  const info = `<p class="muted small" style="margin:0 0 10px">${t(m.fn)}</p>
+    <div class="card soft pad row"><div class="grow"><div class="eyebrow">${t("This week")}</div><b class="num" style="font-size:22px">${done}</b> <span class="dim">${t("/ {a}–{b} sets", { a: mev || 4, b: mav })}</span></div>
       <div style="width:110px" class="progress"><div style="width:${Math.min(100, (done / (mav || 10)) * 100)}%"></div></div></div>
     <div class="row small" style="gap:8px;margin:10px 2px"><i class="rdot" style="background:var(--rec-${r?.state || "g"})"></i><span>${recText(r)}</span></div>
-    ${hs.length > 1 ? `<div class="h4">Parts</div><div class="list-sep" id="hlist">${hs.map((h) => `<button class="lrow plain hd-row" data-h="${h.id}"><span class="hdot"></span><div class="grow"><div class="t">${esc(L(h.name))} <span class="dim tiny">${esc(h.latin || "")}</span></div><div class="s" style="color:var(--t2)">${esc(L(h.about))}</div>${shown.has(h.id) ? "" : `<div class="dim tiny">Deep or not visible from this side</div>`}</div></button>`).join("")}</div>` : ""}`;
-  el.innerHTML = `<button class="mgrab" aria-label="Expand or collapse"></button>
-    <div class="mhd"><button class="iconbtn" id="mback" aria-label="Back to muscles">${ic(wide() ? "back" : "x")}</button><h3>${m.name}</h3></div>
-    <div class="mbd"><div class="ptabs fit" id="mtabs"><button data-k="info" class="${ctl.tab === "info" ? "on" : ""}">Info</button><button data-k="ex" class="${ctl.tab === "ex" ? "on" : ""}">Exercises <span class="dim tiny">${list.length}</span></button></div>
+    ${hs.length > 1 ? `<div class="h4">${t("Parts")}</div><div class="list-sep" id="hlist">${hs.map((h) => `<button class="lrow plain hd-row" data-h="${h.id}"><span class="hdot"></span><div class="grow"><div class="t">${esc(L(h.name))} <span class="dim tiny">${esc(h.latin || "")}</span></div><div class="s" style="color:var(--t2)">${esc(L(h.about))}</div>${shown.has(h.id) ? "" : `<div class="dim tiny">${t("Deep or not visible from this side")}</div>`}</div></button>`).join("")}</div>` : ""}`;
+  el.innerHTML = `<button class="mgrab" aria-label="${t("Expand or collapse")}"></button>
+    <div class="mhd"><button class="iconbtn" id="mback" aria-label="${t("Back to muscles")}">${ic(wide() ? "back" : "x")}</button><h3>${esc(t(m.name))}</h3></div>
+    <div class="mbd"><div class="ptabs fit" id="mtabs"><button data-k="info" class="${ctl.tab === "info" ? "on" : ""}">${t("Info")}</button><button data-k="ex" class="${ctl.tab === "ex" ? "on" : ""}">${t("Exercises")} <span class="dim tiny">${list.length}</span></button></div>
     <div id="mpanel" class="mt-12"></div></div>`;
   const hover = matchMedia("(hover: hover)").matches;
   const panel = () => {
@@ -155,7 +157,7 @@ async function muscleDetail(m, vol, rec, svg, el, ctl) {
       hl.onclick = (e) => { const b = e.target.closest("[data-h]"); if (!b) return; haptic(); picked = picked === b.dataset.h ? null : b.dataset.h; $$(".hd-row", el).forEach((x) => x.classList.toggle("on", x.dataset.h === picked)); pickHead(picked); };
       if (hover) { hl.onmouseover = (e) => { const b = e.target.closest("[data-h]"); if (b) pickHead(b.dataset.h); }; hl.onmouseleave = () => pickHead(picked); }
     } else {
-      pn.innerHTML = `<div class="chips" id="meq"><button class="chip ${eq ? "" : "on"}" data-q="">All</button>${eqs.map((q) => `<button class="chip ${eq === q ? "on" : ""}" data-q="${esc(q)}">${esc(q)}</button>`).join("")}</div><div class="stack tight" id="mlist"></div>`;
+      pn.innerHTML = `<div class="chips" id="meq"><button class="chip ${eq ? "" : "on"}" data-q="">${t("All")}</button>${eqs.map((q) => `<button class="chip ${eq === q ? "on" : ""}" data-q="${esc(q)}">${esc(t(q))}</button>`).join("")}</div><div class="stack tight" id="mlist"></div>`;
       drawEx();
       $("#meq", el).onclick = (e) => { const b = e.target.closest(".chip"); if (!b) return; eq = b.dataset.q; $$("#meq .chip", el).forEach((c) => c.classList.toggle("on", c === b)); drawEx(); };
       $("#mlist", el).onclick = (e) => { const h = e.target.closest(".hd-h"); if (h) { picked = h.dataset.h; pickHead(picked); } };

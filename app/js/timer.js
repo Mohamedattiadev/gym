@@ -2,6 +2,7 @@
 import { $, BP, esc, ic, haptic, beep, toast, fmtDur } from "./ui.js";
 import { S } from "./store.js";
 import * as V from "./voice.js";
+import { t, tn } from "./i18n.js";
 
 const KEY = "gym-timer";
 const now = () => Date.now();
@@ -20,8 +21,8 @@ function tick() {
     const left = T.end - now(); const sec = Math.ceil(left / 1000);
     count(sec, T.total, .08, .12);
     if (left <= 0) { const { kind, nx } = T; stop(); haptic("rest"); beep([[880, .15], [880, .15], [1320, .3]]);
-      const msg = kind === "rest" ? (nx?.name ? `Go: ${nx.name}${nx.set ? ` · set ${nx.set}` : ""}` : "Rest over — next set") : "Time is up";
-      toast(msg); say(kind === "rest" ? `Rest over. ${msg}` : msg);
+      const msg = kind === "rest" ? (nx?.name ? (nx.set ? t("Go: {name} · set {n}", { name: nx.name, n: nx.set }) : t("Go: {name}", { name: nx.name })) : t("Rest over — next set")) : t("Time is up");
+      toast(msg); say(kind === "rest" ? t("Rest over. {msg}", { msg }) : msg);
       later(kind === "rest" ? V.P.go(nx || {}) : V.P.timeUp());
       dispatchEvent(new CustomEvent("gym:timerend", { detail: { kind, nx } })); return; }
   }
@@ -29,7 +30,7 @@ function tick() {
     let left = T.end - now();
     if (left <= 0) {
       if (T.phase === "work" && T.rest) { T.phase = "rest"; T.end = now() + T.rest * 1000; beep([[440, .2]]); haptic("warn"); later(V.P.ivRest()); }
-      else if (T.round >= T.rounds) { stop(); beep([[880, .15], [1320, .4]]); haptic("rest"); toast("Intervals done"); later(V.P.ivDone()); return; }
+      else if (T.round >= T.rounds) { stop(); beep([[880, .15], [1320, .4]]); haptic("rest"); toast(t("Intervals done")); later(V.P.ivDone()); return; }
       else { T.round++; T.phase = "work"; T.end = now() + T.work * 1000; beep([[880, .2]]); haptic("success"); later(V.P.ivWork(T.round, T.rounds)); }
       persist(); left = T.end - now();
     }
@@ -103,14 +104,14 @@ export function renderPill() {
   const v = view();
   if (!p) {
     p = document.createElement("div"); p.id = "tpill"; p.className = "tpill"; p.setAttribute("role", "timer");
-    p.innerHTML = `<a href="#/timer" class="row" style="gap:6px" aria-label="Open timer"><svg class="ring" viewBox="0 0 28 28"><circle class="bg" cx="14" cy="14" r="11"/><circle class="fg" cx="14" cy="14" r="11" stroke-dasharray="${C}"/></svg><span class="tm num"></span></a>
-      <button data-p="toggle" aria-label="Pause or resume"></button><button data-p="plus" hidden>+30</button><button data-p="stop" aria-label="Stop">${ic("close", "xs")}</button>`;
+    p.innerHTML = `<a href="#/timer" class="row" style="gap:6px" aria-label="${t("Open timer")}"><svg class="ring" viewBox="0 0 28 28"><circle class="bg" cx="14" cy="14" r="11"/><circle class="fg" cx="14" cy="14" r="11" stroke-dasharray="${C}"/></svg><span class="tm num"></span></a>
+      <button data-p="toggle" aria-label="${t("Pause or resume")}"></button><button data-p="plus" hidden>+30</button><button data-p="stop" aria-label="${t("Stop")}">${ic("close", "xs")}</button>`;
     p.onclick = (e) => { const b = e.target.closest("[data-p]"); if (!b) return; haptic();
       if (b.dataset.p === "toggle") toggle(); if (b.dataset.p === "plus") add(30); if (b.dataset.p === "stop") stop(); };
     document.body.appendChild(p);
   }
-  p.querySelector(".tm").textContent = v.mode === "interval" ? `${v.phase === "work" ? "Work" : "Rest"} ${v.text}` : isRest() ? `Rest ${v.text}` : v.text; // say what it is: a rest, not a set to do
-  p.setAttribute("aria-label", isRest() ? "Rest timer" : "Timer");
+  p.querySelector(".tm").textContent = v.mode === "interval" ? (v.phase === "work" ? t("Work {time}", { time: v.text }) : t("Rest {time}", { time: v.text })) : isRest() ? t("Rest {time}", { time: v.text }) : v.text; // say what it is: a rest, not a set to do
+  p.setAttribute("aria-label", isRest() ? t("Rest timer") : t("Timer"));
   p.querySelector(".fg").setAttribute("stroke-dashoffset", C * (1 - (v.mode === "stopwatch" ? 1 : v.pct)));
   const tg = p.querySelector('[data-p="toggle"]'); const icn = v.running ? "pause" : "play";
   if (tg.dataset.i !== icn) { tg.dataset.i = icn; tg.innerHTML = ic(icn, "xs"); }
@@ -121,9 +122,9 @@ addEventListener("hashchange", () => { renderOverlay(); renderPill(); });
 /* ---- full-screen rest overlay: big ring, the next set, −15 / +30 / Skip; minimise = back to the pill ---- */
 const RR = 46, RC = 2 * Math.PI * RR;
 /* A11Y-2: assertive live region (rest end), focus + inert while the overlay is open */
-function say(t) {
+function say(msg) {
   let l = $("#srLive"); if (!l) { l = document.createElement("div"); l.id = "srLive"; l.className = "sr"; l.setAttribute("aria-live", "assertive"); document.body.appendChild(l); }
-  l.textContent = ""; setTimeout(() => (l.textContent = t), 60);
+  l.textContent = ""; setTimeout(() => (l.textContent = msg), 60);
 }
 let rovFocus = null;
 const setInert = (on) => { const a = $(".app"); if (a) a.inert = on; };
@@ -136,16 +137,16 @@ function renderOverlay() {
   }
   const v = view(), nx = T.nx || {};
   if (!o) {
-    o = document.createElement("div"); o.id = "rov"; o.className = "rov"; o.setAttribute("role", "dialog"); o.setAttribute("aria-modal", "true"); o.setAttribute("aria-label", "Rest");
-    const u = S.settings.unit, load = nx.r ? `${nx.w ? `${nx.w} ${u} × ` : ""}${nx.r} reps` : "";
-    o.innerHTML = `<div class="rov-in"><div class="rov-top"><span class="lbl">Rest</span><button class="iconbtn" data-r="min" aria-label="Minimise">${ic("down")}</button></div>
+    o = document.createElement("div"); o.id = "rov"; o.className = "rov"; o.setAttribute("role", "dialog"); o.setAttribute("aria-modal", "true"); o.setAttribute("aria-label", t("Rest"));
+    const u = S.settings.unit, load = nx.r ? (nx.w ? `${nx.w} ${u} × ` : "") + tn(nx.r, "{n} rep", "{n} reps") : "";
+    o.innerHTML = `<div class="rov-in"><div class="rov-top"><span class="lbl">${t("Rest")}</span><button class="iconbtn" data-r="min" aria-label="${t("Minimise")}">${ic("down")}</button></div>
       <div class="ringwrap"><svg viewBox="0 0 100 100"><circle class="track" cx="50" cy="50" r="${RR}"/><circle class="fill" cx="50" cy="50" r="${RR}" stroke-dasharray="${RC}"/></svg>
         <button class="big num" data-r="toggle"></button><div class="sub2 rov-st"></div></div>
-      ${nx.name ? `<div class="rov-next">${nx.slug ? `<img src="media/poster/${esc(nx.slug)}.webp" alt="">` : ""}<div class="grow"><div class="dim tiny">Next</div><b>${esc(nx.name)}</b>
-        <div class="muted small">${[nx.set ? `Set ${nx.set}${nx.of ? ` of ${nx.of}` : ""}` : "", load].filter(Boolean).join(" · ")}</div></div></div>`
+      ${nx.name ? `<div class="rov-next">${nx.slug ? `<img src="media/poster/${esc(nx.slug)}.webp" alt="">` : ""}<div class="grow"><div class="dim tiny">${t("Next")}</div><b>${esc(nx.name)}</b>
+        <div class="muted small">${[nx.set ? (nx.of ? t("Set {n} of {m}", { n: nx.set, m: nx.of }) : t("Set {n}", { n: nx.set })) : "", load].filter(Boolean).join(" · ")}</div></div></div>`
         : nx.text ? `<div class="rov-next"><b class="grow">${esc(nx.text)}</b></div>` : ""}
-      <div class="rov-btns"><button class="btn lg" data-r="m15">−15 s</button><button class="btn lg" data-r="p30">+30 s</button></div>
-      <button class="btn lg primary block" data-r="skip">Skip rest</button></div>`;
+      <div class="rov-btns"><button class="btn lg" data-r="m15">${t("−15 s")}</button><button class="btn lg" data-r="p30">${t("+30 s")}</button></div>
+      <button class="btn lg primary block" data-r="skip">${t("Skip rest")}</button></div>`;
     o.onclick = (e) => { const b = e.target.closest("[data-r]"); if (!b) return; haptic(); const k = b.dataset.r;
       if (k === "min") { T.min = true; persist(); tick(); } if (k === "toggle") toggle(); if (k === "m15") add(-15); if (k === "p30") add(30); if (k === "skip") stop(); };
     rovFocus = document.activeElement; document.body.appendChild(o); document.addEventListener("keydown", onKey);
@@ -153,10 +154,10 @@ function renderOverlay() {
   }
   const big = $(".big", o); big.textContent = v.text;
   // spoken name: remaining time in 15 s steps (not every second) + what a tap does
-  const step = `${Math.ceil(v.ms / 15000) * 15 || 0}`, lab = `${v.text} rest left, tap to ${v.running ? "pause" : "resume"}`;
+  const step = `${Math.ceil(v.ms / 15000) * 15 || 0}`, lab = v.running ? t("{time} rest left, tap to pause", { time: v.text }) : t("{time} rest left, tap to resume", { time: v.text });
   if (big.dataset.s !== step + v.running) { big.dataset.s = step + v.running; big.setAttribute("aria-label", lab); }
   $(".fill", o).setAttribute("stroke-dashoffset", RC * (1 - v.pct));
-  $(".rov-st", o).textContent = v.running ? "" : "Paused — tap to resume";
+  $(".rov-st", o).textContent = v.running ? "" : t("Paused — tap to resume");
 }
 function onKey(e) { if (e.key === "Escape" && isRest()) { T.min = true; persist(); tick(); } }
 
@@ -165,7 +166,7 @@ const PRESETS = [30, 60, 90, 120, 180, 300];
 const IPRESETS = [["Tabata", 20, 10, 8], ["EMOM", 60, 0, 10], ["40 / 20", 40, 20, 10], ["30 / 30", 30, 30, 12]];
 let tab = null, cdSet = { m: 1, s: 30 }, iSet = { w: 40, r: 20, n: 10 };
 export function timerView(setTop, root, arg) {
-  setTop({ title: "Timer", back: innerWidth < BP.tablet });
+  setTop({ title: t("Timer"), back: innerWidth < BP.tablet });
   if (arg && ["stopwatch", "countdown", "interval"].includes(arg)) tab = arg;
   if (T.mode) tab = T.mode; tab ||= "countdown";
   const R = 46, CC = 2 * Math.PI * R;
@@ -175,27 +176,27 @@ export function timerView(setTop, root, arg) {
     if (tab === "stopwatch") {
       body = `<div class="ringwrap"><svg viewBox="0 0 100 100"><circle class="track" cx="50" cy="50" r="${R}"/></svg><div class="big num" id="tmT">${mine ? v.text : "0:00.0"}</div></div>
         <div class="row" style="justify-content:center;gap:10px">${mine
-          ? `<button class="btn lg" data-a="${v.running ? "lap" : "reset"}" style="min-width:120px">${v.running ? "Lap" : "Reset"}</button><button class="btn lg primary" data-a="toggle" style="min-width:120px">${v.running ? "Pause" : "Resume"}</button>`
-          : `<button class="btn lg primary" data-a="sw" style="min-width:200px">${ic("play", "sm")} Start</button>`}</div>
-        <div class="laps">${mine ? (T.laps || []).map((l, i, a) => `<div><span class="dim">Lap ${a.length - i}</span><b class="num">${fmtMs(l - (a[i + 1] || 0))}</b><span class="num dim">${fmtMs(l)}</span></div>`).join("") : ""}</div>`;
+          ? `<button class="btn lg" data-a="${v.running ? "lap" : "reset"}" style="min-width:120px">${v.running ? t("Lap") : t("Reset")}</button><button class="btn lg primary" data-a="toggle" style="min-width:120px">${v.running ? t("Pause") : t("Resume")}</button>`
+          : `<button class="btn lg primary" data-a="sw" style="min-width:200px">${ic("play", "sm")} ${t("Start")}</button>`}</div>
+        <div class="laps">${mine ? (T.laps || []).map((l, i, a) => `<div><span class="dim">${t("Lap {n}", { n: a.length - i })}</span><b class="num">${fmtMs(l - (a[i + 1] || 0))}</b><span class="num dim">${fmtMs(l)}</span></div>`).join("") : ""}</div>`;
     } else if (tab === "countdown") {
       body = mine ? `<div class="ringwrap"><svg viewBox="0 0 100 100"><circle class="track" cx="50" cy="50" r="${R}"/><circle class="fill" id="tmF" cx="50" cy="50" r="${R}" stroke-dasharray="${CC}" stroke-dashoffset="${CC * (1 - v.pct)}"/></svg>
-          ${T.kind === "rest" ? `<div class="lbl">Rest</div>` : ""}<div class="big num" id="tmT">${v.text}</div>${v.next ? `<div class="sub2">${esc(v.next)}</div>` : ""}</div>
-          <div class="row" style="justify-content:center;gap:8px"><button class="btn lg" data-a="m15">−15s</button><button class="btn lg primary" data-a="toggle" style="min-width:120px">${v.running ? "Pause" : "Resume"}</button><button class="btn lg" data-a="p15">+15s</button></div>
-          <button class="btn block ghost mt-8" data-a="stop">${T.kind === "rest" ? "Skip rest" : "Stop"}</button>`
-        : `<div class="mmss" style="margin:22px 0 16px"><input id="cdM" inputmode="numeric" value="${cdSet.m}" aria-label="Minutes"><b>:</b><input id="cdS" inputmode="numeric" value="${String(cdSet.s).padStart(2, "0")}" aria-label="Seconds"></div>
+          ${T.kind === "rest" ? `<div class="lbl">${t("Rest")}</div>` : ""}<div class="big num" id="tmT">${v.text}</div>${v.next ? `<div class="sub2">${esc(v.next)}</div>` : ""}</div>
+          <div class="row" style="justify-content:center;gap:8px"><button class="btn lg" data-a="m15">${t("−15 s")}</button><button class="btn lg primary" data-a="toggle" style="min-width:120px">${v.running ? t("Pause") : t("Resume")}</button><button class="btn lg" data-a="p15">${t("+15 s")}</button></div>
+          <button class="btn block ghost mt-8" data-a="stop">${T.kind === "rest" ? t("Skip rest") : t("Stop")}</button>`
+        : `<div class="mmss" style="margin:22px 0 16px"><input id="cdM" inputmode="numeric" value="${cdSet.m}" aria-label="${t("Minutes")}"><b>:</b><input id="cdS" inputmode="numeric" value="${String(cdSet.s).padStart(2, "0")}" aria-label="${t("Seconds")}"></div>
           <div class="presets" style="grid-template-columns:repeat(3,1fr)">${PRESETS.map((s) => `<button data-pre="${s}">${fmtDur(s * 1000)}</button>`).join("")}</div>
-          <button class="btn lg primary block mt-16" data-a="cd">${ic("play", "sm")} Start</button>`;
+          <button class="btn lg primary block mt-16" data-a="cd">${ic("play", "sm")} ${t("Start")}</button>`;
     } else {
       body = mine ? `<div class="ringwrap"><svg viewBox="0 0 100 100"><circle class="track" cx="50" cy="50" r="${R}"/><circle class="fill" id="tmF" cx="50" cy="50" r="${R}" stroke-dasharray="${CC}" stroke-dashoffset="${CC * (1 - v.pct)}" style="stroke:${v.phase === "work" ? "var(--accent)" : "var(--info)"}"/></svg>
-          <div class="lbl" style="color:${v.phase === "work" ? "var(--accent-text)" : "var(--info)"}">${v.phase === "work" ? "Work" : "Rest"}</div><div class="big num" id="tmT">${v.text}</div><div class="sub2">Round ${v.round} / ${v.rounds}</div></div>
-          <div class="row" style="justify-content:center;gap:10px"><button class="btn lg" data-a="stop" style="min-width:120px">Stop</button><button class="btn lg primary" data-a="toggle" style="min-width:120px">${v.running ? "Pause" : "Resume"}</button></div>`
-        : `<div class="chips mt-14">${IPRESETS.map(([n, w, r, k]) => `<button class="chip ${iSet.w === w && iSet.r === r && iSet.n === k ? "on" : ""}" data-ip="${w},${r},${k}">${n}</button>`).join("")}</div>
-          <div class="kv" style="margin:8px 0 16px">${[["w", "Work (s)"], ["r", "Rest (s)"], ["n", "Rounds"]].map(([k, l]) => `<div><input class="input num" data-i="${k}" inputmode="numeric" value="${iSet[k]}" style="text-align:center;font-size:22px;font-weight:740;height:52px"><span>${l}</span></div>`).join("")}</div>
-          <div class="dim small" style="text-align:center;margin-bottom:12px">Total ${fmtDur((iSet.w + iSet.r) * iSet.n * 1000)}</div>
-          <button class="btn lg primary block" data-a="int">${ic("play", "sm")} Start</button>`;
+          <div class="lbl" style="color:${v.phase === "work" ? "var(--accent-text)" : "var(--info)"}">${v.phase === "work" ? t("Work") : t("Rest")}</div><div class="big num" id="tmT">${v.text}</div><div class="sub2">${t("Round {n} / {m}", { n: v.round, m: v.rounds })}</div></div>
+          <div class="row" style="justify-content:center;gap:10px"><button class="btn lg" data-a="stop" style="min-width:120px">${t("Stop")}</button><button class="btn lg primary" data-a="toggle" style="min-width:120px">${v.running ? t("Pause") : t("Resume")}</button></div>`
+        : `<div class="chips mt-14">${IPRESETS.map(([n, w, r, k]) => `<button class="chip ${iSet.w === w && iSet.r === r && iSet.n === k ? "on" : ""}" data-ip="${w},${r},${k}">${t(n)}</button>`).join("")}</div>
+          <div class="kv" style="margin:8px 0 16px">${[["w", t("Work (s)")], ["r", t("Rest (s)")], ["n", t("Rounds")]].map(([k, l]) => `<div><input class="input num" data-i="${k}" inputmode="numeric" value="${iSet[k]}" style="text-align:center;font-size:22px;font-weight:740;height:52px"><span>${l}</span></div>`).join("")}</div>
+          <div class="dim small" style="text-align:center;margin-bottom:12px">${t("Total {time}", { time: fmtDur((iSet.w + iSet.r) * iSet.n * 1000) })}</div>
+          <button class="btn lg primary block" data-a="int">${ic("play", "sm")} ${t("Start")}</button>`;
     }
-    root.innerHTML = `<div class="seg block" id="tmTabs" style="margin:4px 0 6px">${[["stopwatch", "Stopwatch"], ["countdown", "Countdown"], ["interval", "Intervals"]].map(([k, l]) => `<button data-t="${k}" class="${tab === k ? "on" : ""}">${l}</button>`).join("")}</div>
+    root.innerHTML = `<div class="seg block" id="tmTabs" style="margin:4px 0 6px">${[["stopwatch", t("Stopwatch")], ["countdown", t("Countdown")], ["interval", t("Intervals")]].map(([k, l]) => `<button data-tab="${k}" class="${tab === k ? "on" : ""}">${l}</button>`).join("")}</div>
       <div class="tab-panel" style="max-width:460px;margin:0 auto">${body}</div>`;
   };
   draw();
@@ -204,18 +205,18 @@ export function timerView(setTop, root, arg) {
   const off = offView = onTick((v) => {
     if (!root.isConnected || !location.hash.startsWith("#/timer")) return off();
     if (v.running !== last.running || T.mode !== last.mode || T.phase !== last.phase) { last = { running: T.running, mode: T.mode, phase: T.phase }; draw(); return; }
-    const t = $("#tmT", root); if (t && T.mode === tab) t.textContent = v.text;
+    const tt = $("#tmT", root); if (tt && T.mode === tab) tt.textContent = v.text;
     const f = $("#tmF", root); if (f) f.setAttribute("stroke-dashoffset", CC * (1 - v.pct));
   });
   root.oninput = (e) => {
     const i = e.target;
     if (i.id === "cdM") cdSet.m = Math.max(0, Math.min(99, parseInt(i.value) || 0));
     if (i.id === "cdS") cdSet.s = Math.max(0, Math.min(59, parseInt(i.value) || 0));
-    if (i.dataset.i) { iSet[i.dataset.i] = Math.max(i.dataset.i === "r" ? 0 : 1, parseInt(i.value) || 0); const d = root.querySelector(".dim.small"); if (d) d.textContent = `Total ${fmtDur((iSet.w + iSet.r) * iSet.n * 1000)}`; }
+    if (i.dataset.i) { iSet[i.dataset.i] = Math.max(i.dataset.i === "r" ? 0 : 1, parseInt(i.value) || 0); const d = root.querySelector(".dim.small"); if (d) d.textContent = t("Total {time}", { time: fmtDur((iSet.w + iSet.r) * iSet.n * 1000) }); }
   };
   root.onclick = (e) => {
     const b = e.target.closest("button"); if (!b) return; haptic();
-    if (b.dataset.t) { if (T.mode && T.mode !== b.dataset.t) { toast("Stop the running timer first"); return; } tab = b.dataset.t; draw(); return; }
+    if (b.dataset.tab) { if (T.mode && T.mode !== b.dataset.tab) { toast(t("Stop the running timer first")); return; } tab = b.dataset.tab; draw(); return; }
     if (b.dataset.pre) { const s = +b.dataset.pre; cdSet = { m: Math.floor(s / 60), s: s % 60 }; startCountdown(s); draw(); return; }
     if (b.dataset.ip) { const [w, r, n] = b.dataset.ip.split(",").map(Number); iSet = { w, r, n }; draw(); return; }
     const a = b.dataset.a;
