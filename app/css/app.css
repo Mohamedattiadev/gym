@@ -179,7 +179,11 @@ main#view.page { animation: pageIn 220ms var(--ease) backwards; }
 .chip { position: relative; overflow: hidden; flex: none; display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 13px; border-radius: var(--r-full);
   border: 0; background: var(--s1); color: var(--t2); font-size: .875rem; font-weight: 600; white-space: nowrap; box-shadow: var(--raise-sm);
   transition: background var(--dur) var(--ease), color var(--dur), transform 120ms var(--ease); }
-select.chip { appearance: none; padding-inline-end: 14px; }
+select.chip { appearance: none; padding-inline-end: 28px; cursor: pointer; }
+/* a dropdown chip shows a chevron so it reads as "opens a list", not as a filter toggle (owner: Equipment / Level looked like plain chips) */
+select.chip, select.chip.on { background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-size: 5px 5px; background-repeat: no-repeat; background-position: calc(100% - 16px) 55%, calc(100% - 11px) 55%; }
+[dir="rtl"] select.chip, [dir="rtl"] select.chip.on { background-position: 11px 55%, 16px 55%; }
 .chip:active { transform: scale(.96); }
 .chip .n { font-size: .75rem; color: var(--t3); }
 .chip.on { background: var(--accent); color: var(--accent-ink); box-shadow: none; }

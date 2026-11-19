@@ -31,7 +31,7 @@ function libHTML(pick) {
         <select class="chip ${lib.level ? "on" : ""}" id="level" aria-label="Level"><option value="">Level</option>${["beginner", "intermediate", "advanced"].map((l) => `<option value="${l}" ${l === lib.level ? "selected" : ""}>${l[0].toUpperCase() + l.slice(1)}</option>`).join("")}</select></div>
       <div class="chips" id="groups" style="padding-top:0">${["All", ...GROUPS].map((g) => `<button class="chip ${lib.group === g ? "on" : ""}" data-g="${esc(g)}">${esc(g)}${g !== "All" ? ` <span class="n">${counts[g]}</span>` : ""}</button>`).join("")}</div></div>
     <div class="row"><div class="count grow" id="count"></div><button class="linkbtn small" id="tierHelp">${ic("info", "xs")} Tiers</button></div>
-    ${S.settings.tierSeen ? "" : `<div class="tierhint dim small" id="tierHint"><span class="grow">S, A, B… is Jeff Nippard's ranking. S is the best pick.</span><button class="linkbtn small" id="tierOk">Got it</button></div>`}
+    ${S.settings.tierSeen ? "" : `<div class="tierhint" id="tierHint"><span class="th-b" aria-hidden="true"><span class="tier S">S</span><span class="tier A">A</span><span class="tier B">B</span></span><div class="grow"><div class="th-t">S tier = the best pick</div><div class="th-s">Tiers are Jeff Nippard's ranking of each exercise.</div></div><button class="btn sm" id="tierOk">Got it</button></div>`}
     <div class="grid ${pick ? "pick" : ""}" id="grid"></div><div id="sentinel" style="height:1px"></div>`;
 }
 function wireLib(pick, cur) {
