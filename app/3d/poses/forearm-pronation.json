@@ -1,0 +1,7 @@
+{"ecc":"back","plant":false,"props":["db"],"one":"R","roll":true,"fixed":["seat"],"base":{"torso":[0,0.88,0.48],"neck":[0,0.8,0.6],"thigh":[0.16,-0.05,1],"shin":[0.06,-1,0.05],"uarmL":[0.22,-0.9,0.36],"farmL":[0.04,-0.3,0.95],"uarmR":[0.04,-0.95,0.3],"farmR":[0,-0.32,0.95]},
+ "keys":[
+  {"tw":{"farmR":-170}},
+  {"tw":{"farmR":0}}],
+ "wrong":{
+  "0":{"keys":[{"uarmR":[-0.25,-0.8,0.5],"farmR":[-0.3,0.2,0.93]},{"uarmR":[0.3,-0.8,0.5],"farmR":[0.3,0.1,0.95]}],"view":"front"},
+  "1":{"tempo":{"ecc":0.35,"bottom":0}}}}

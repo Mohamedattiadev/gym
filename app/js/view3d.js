@@ -18,6 +18,8 @@ const getAnim = (id) => (anims[id] ??= id.startsWith("p:") ? fetch(`3d/poses/${i
    (x = the body's LEFT/outward for sided segments (mirrored for the right side), y = up, z = forward),
    e.g. "uarm":[0,-1,0.2], "farmR":[...]; "tw":{"farm":deg} twists a segment about its own axis;
    "sp":deg bends the upper spine (spine03..01) forward (+, crunch / rounding) or back (−, extension) on top of the torso direction, which then aims the lower spine;
+   "fc":0..1 = how far the fingers close when something is held (default 1 = fist; finger flexor curls open them);
+   "roll":true = the dumbbell turns with the hand (pronation/supination), "fixed":["plate"] = plate held between both hands (bus driver);
    "frame":deg pitches the whole body (-90 = lying on the back, author as if standing); "plant":false = feet not planted, "footL" = only the front (left) foot.
    Interpolated per sample (directions slerped), so planted feet stay put; eccentric half is slower. */
 const SEG = { torso: ["spine05", "neck01"], neck: ["neck01", "head"], clav: ["clavicle", "upperarm01"], uarm: ["upperarm01", "lowerarm01"],
@@ -45,7 +47,7 @@ function resolve(spec) { // {uarm:[..]} -> {uarmL:[..], uarmR:[-x..]}; explicit 
   }
   for (const [k, v] of Object.entries(spec.tw || {})) if (/[LR]$/.test(k)) tw[k] = v;
   for (const [k, v] of Object.entries(spec)) if (/[LR]$/.test(k) && SEG[k.slice(0, -1)]) d[k] = v;
-  return { d, tw, frame: spec.frame || 0, pos: spec.pos || [0, 0, 0], sp: spec.sp || 0 };
+  return { d, tw, frame: spec.frame || 0, pos: spec.pos || [0, 0, 0], sp: spec.sp || 0, fc: spec.fc ?? 1 };
 }
 /* 22c: "wrong": {"<mistake index>": {all:{..}, keys:[{..}|null], base:{..}, range:[a,b], tempo:{ecc,con,bottom}, view}} in the same pose file.
    all = merged into every key, keys[i] = merged into key i, insert:[i, key] = extra key before key i (filled from key i-1, e.g. hips rising first),
@@ -115,7 +117,7 @@ function buildClip(model, P, eqProp = null) {
         aimW("hand" + sd, g.up.clone().addScaledVector(g.fwd, -.55).normalize());
       }
     }
-    if (grip) curl();
+    if (grip) curl(r.fc);
   };
   // two-segment spine: spread "sp" over the upper spine joints about the body's left axis (carried by spine05, so frame / torso twist are respected)
   const upper = ["spine03", "spine02", "spine01"].map((n) => bones[n]).filter(Boolean);
@@ -132,13 +134,13 @@ function buildClip(model, P, eqProp = null) {
   // closed grip: curl the fingers (and the thumb a bit) when something is held
   const held = [...(P.props || []), ...(P.fixed || [])].some((k) => /bar|db|cbar|pullbar|dipbars/.test(k)), grip = P.grip ?? held;
   const fingers = []; for (const sd of ["L", "R"]) for (let f = 1; f <= 5; f++) for (let j = 1; j <= 3; j++) { const fb = B(`finger${f}-${j}`, sd); if (fb) fingers.push([fb, f, j, sd]); }
-  const curl = () => { for (const [fb, f, j, sd] of fingers) fb.quaternion.multiply(Q().setFromAxisAngle(CURL_AXIS, (f === 1 ? (j === 1 ? .2 : .45) : j === 1 ? 1.25 : j === 2 ? 1.35 : .9) * (sd === "L" ? 1 : -1))); };
+  const curl = (amt = 1) => { for (const [fb, f, j, sd] of fingers) fb.quaternion.multiply(Q().setFromAxisAngle(CURL_AXIS, amt * (f === 1 ? (j === 1 ? .2 : .45) : j === 1 ? 1.25 : j === 2 ? 1.35 : .9) * (sd === "L" ? 1 : -1))); };
   { model.updateMatrixWorld(true); restDir.y0 = (pw(seg.footL[0]).y + pw(seg.footR[0]).y) / 2; }
   const lerpR = (a, b, u) => { const d = {}; for (const k of new Set([...Object.keys(a.d), ...Object.keys(b.d)])) {
       const va = new THREE.Vector3(...(a.d[k] || b.d[k])).normalize(), vb = new THREE.Vector3(...(b.d[k] || a.d[k])).normalize();
       d[k] = va.clone().applyQuaternion(Q().slerp(Q().setFromUnitVectors(va, vb), u)).toArray(); }
     const tw = {}; for (const k of new Set([...Object.keys(a.tw), ...Object.keys(b.tw)])) tw[k] = (a.tw[k] || 0) * (1 - u) + (b.tw[k] || 0) * u;
-    return { d, tw, sp: a.sp + (b.sp - a.sp) * u, frame: a.frame + (b.frame - a.frame) * u, pos: a.pos.map((x, i) => x + (b.pos[i] - x) * u) }; };
+    return { d, tw, sp: a.sp + (b.sp - a.sp) * u, fc: a.fc + (b.fc - a.fc) * u, frame: a.frame + (b.frame - a.frame) * u, pos: a.pos.map((x, i) => x + (b.pos[i] - x) * u) }; };
   const [ra, rb] = P.range || [0, 1];
   const at = (u) => { u = ra + (rb - ra) * u; const n = keys.length - 1, x = Math.min(n - 1e-6, u * n), i = Math.floor(x); return lerpR(keys[i], keys[i + 1], x - i); };
   const tp = P.tempo || {}, E = tp.ecc ?? 1.6, C = tp.con ?? 1.0;
@@ -160,6 +162,7 @@ function buildClip(model, P, eqProp = null) {
   if (P.bar === "back" && eqProp === "bar") clip.props = [...clip.props, "backbar"];
   if (P.one && eqProp === "db") { clip.props = [...clip.props, "db" + P.one]; clip.eqProps = clip.eqProps.filter((k) => k !== "db"); } // one dumbbell (single-arm moves)
   if (P.hold === "neutral" && eqProp === "db") { clip.props = [...clip.props.filter((k) => !/^db[LR]$/.test(k)), "dbn" + (P.one || "")]; clip.eqProps = clip.eqProps.filter((k) => k !== "db"); } // hammer grip: handle front-to-back
+  if (P.roll) clip.props = clip.props.map((k) => k.replace(/^dbn?([LR]?)$/, "dbr$1")); // handle across the palm, turning with the forearm
   return clip;
 }
 
@@ -169,6 +172,7 @@ function makeProp(kinds, model, dark) {
   kinds = kinds.filter(Boolean); if (!kinds.length) return null;
   const bones = {}; model.traverse((o) => { if (o.isBone) bones[o.name] = o; });
   const hand = ["L", "R"].map((s) => [bones["wrist" + s], bones["finger3-1" + s] || bones["finger31" + s]]);
+  const palm = ["L", "R"].map((s) => [bones["finger2-1" + s] || bones["finger21" + s], bones["finger5-1" + s] || bones["finger51" + s]]);
   const mat = new THREE.MeshStandardMaterial({ color: dark ? 0x5a5c60 : 0x3b3d42, roughness: .45, metalness: .6 });
   const pad = new THREE.MeshStandardMaterial({ color: dark ? 0x3a3c40 : 0x55585e, roughness: .8 });
   const cyl = (r, l, m = mat) => { const o = new THREE.Mesh(new THREE.CylinderGeometry(r, r, l, 20), m); o.rotation.z = Math.PI / 2; return o; };
@@ -183,9 +187,14 @@ function makeProp(kinds, model, dark) {
     } else if (kind === "backbar" || kind === "lowbar" || kind === "frontbar") { const o = new THREE.Group(); o.add(cyl(.014, 1.8)); for (const x of [-.74, .74]) { const p = cyl(.1, .05); p.position.x = x; o.add(p); } g.add(o);
       const get = (n) => loc(bones[n], new THREE.Vector3()).clone();
       ups.push(() => { const k = backBar(get, kind === "frontbar" ? "front" : kind === "lowbar"); o.position.copy(k.c); o.quaternion.setFromUnitVectors(X, k.left); });
-    } else if (/^dbn?[LR]?$/.test(kind)) for (let i = 0; i < 2; i++) { if (/[LR]$/.test(kind) && i !== (kind.endsWith("R") ? 1 : 0)) continue; const nt = kind.startsWith("dbn"); const o = new THREE.Group(); o.add(cyl(.016, .16)); for (const x of [-.09, .09]) { const p = cyl(.05, .05); p.position.x = x; o.add(p); } g.add(o);
+    } else if (kind === "plate") { // bus driver: plate between the hands, facing along the forearms
+      const o = new THREE.Mesh(new THREE.CylinderGeometry(.19, .19, .03, 32), mat), d = new THREE.Vector3(), Y = new THREE.Vector3(0, 1, 0); g.add(o);
+      const fa = ["L", "R"].map((s) => bones["lowerarm01" + s]);
+      ups.push(() => { const L = grip(hand[0]), R = grip(hand[1]); o.position.copy(L).add(R).multiplyScalar(.5);
+        d.copy(loc(hand[0][0], a)).sub(loc(fa[0], b)).add(loc(hand[1][0], a)).sub(loc(fa[1], b)).normalize(); o.quaternion.setFromUnitVectors(Y, d); });
+    } else if (/^db[nr]?[LR]?$/.test(kind)) for (let i = 0; i < 2; i++) { if (/[LR]$/.test(kind) && i !== (kind.endsWith("R") ? 1 : 0)) continue; const nt = kind.startsWith("dbn"), rl = kind.startsWith("dbr"); const o = new THREE.Group(); o.add(cyl(.016, .16)); for (const x of [-.09, .09]) { const p = cyl(.05, .05); p.position.x = x; o.add(p); } g.add(o);
       ups.push(() => { const h = hand[i]; o.position.copy(grip(h)); loc(h[0], a); loc(h[1], b); // handle across the palm
-        const n = b.sub(a).normalize(), side = nt ? c.set(0, 0, 1) : c.set(i ? -1 : 1, 0, 0); o.quaternion.setFromUnitVectors(X, side.sub(n.multiplyScalar(side.dot(n))).normalize()); });
+        const n = b.sub(a).normalize(), side = rl ? loc(palm[i][0], c).sub(loc(palm[i][1], new THREE.Vector3())) : nt ? c.set(0, 0, 1) : c.set(i ? -1 : 1, 0, 0); o.quaternion.setFromUnitVectors(X, side.sub(n.multiplyScalar(side.dot(n))).normalize()); });
     } else if (kind === "bench") { // pad under the back, pitched to follow the torso (flat or incline); seat block under the hips when inclined
       const o = new THREE.Mesh(new THREE.BoxGeometry(.3, .07, 1.2), pad), seat = new THREE.Mesh(new THREE.BoxGeometry(.3, .07, .38), pad), legs = new THREE.Mesh(new THREE.BoxGeometry(.08, 1, .08), mat); g.add(o, seat, legs);
       const t = new THREE.Vector3(), n = new THREE.Vector3(), x = new THREE.Vector3(), M = new THREE.Matrix4(), UP = new THREE.Vector3(0, 1, 0);
