@@ -23,7 +23,7 @@ function heroCard() {
   if (S.active) {
     const n = S.active.entries.reduce((a, en) => a + en.sets.filter((s) => s.done).length, 0);
     return `<a class="hero-card live" href="#/session"><div class="eyebrow">In progress</div><h2>${esc(S.active.name)}</h2>
-      <div class="muted small">${fmtDur(Date.now() - S.active.startedAt)} · ${n} sets done · tap to resume</div></a>`;
+      <div class="muted small">${fmtDur(Date.now() - S.active.startedAt)} · ${n} set${n === 1 ? "" : "s"} done · tap to resume</div></a>`;
   }
   const next = T.nextWorkout();
   const pl = T.currentPlan();

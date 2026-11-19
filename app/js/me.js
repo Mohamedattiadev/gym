@@ -104,8 +104,8 @@ function heatMap() {
   const end = weekStart() + WEEK, start = end - 16 * WEEK, cnt = {};
   S.sessions.forEach((s) => { if (s.endedAt >= start) { const k = Math.floor((s.endedAt - start) / DAY); cnt[k] = (cnt[k] || 0) + 1; } });
   const today = Math.floor((Date.now() - start) / DAY);
-  return `<div class="heat">${Array.from({ length: 112 }, (_, i) => `<i class="${i > today ? "fut" : cnt[i] ? "l" + Math.min(3, cnt[i] + 1) : ""}" title="${fmtDate(start + i * DAY)}"></i>`).join("")}</div>
-    <div class="chart-x"><span>${fmtDate(start, { month: "short", day: "numeric" })}</span><span>Today</span></div>`;
+  return `<div class="heatbox"><div class="heat">${Array.from({ length: 112 }, (_, i) => `<i class="${i > today ? "fut" : cnt[i] ? "l" + Math.min(3, cnt[i] + 1) : ""}" title="${fmtDate(start + i * DAY)}"></i>`).join("")}</div>
+    <div class="chart-x"><span>${fmtDate(start, { month: "short", day: "numeric" })}</span><span>Today</span></div></div>`;
 }
 
 /* ---------------- bodyweight ---------------- */
@@ -131,9 +131,9 @@ function wireBW(p) {
 /* ---------------- history ---------------- */
 function historyPanel(p) {
   const ss = [...S.sessions].reverse(), now = Date.now();
-  p.innerHTML = ss.length ? `<div class="card pad mb-12"><div class="row between mb-10"><b>Last 16 weeks</b><span class="dim tiny">${S.sessions.filter((s) => s.endedAt > now - 112 * DAY).length} workouts</span></div>${heatMap()}</div>
+  p.innerHTML = ss.length ? `<div class="card pad mb-12"><div class="row between mb-10"><b>Last 16 weeks</b><span class="dim tiny">${((n) => `${n} workout${n === 1 ? "" : "s"}`)(S.sessions.filter((s) => s.endedAt > now - 112 * DAY).length)}</span></div>${heatMap()}</div>
     <div class="stack tight stagger">${ss.slice(0, 60).map((s) => `<div class="card pad">
-      <div class="row"><div class="grow"><b>${esc(s.name)}</b><div class="dim small">${fmtDate(s.endedAt)} · ${fmtDur(s.endedAt - s.startedAt)} · ${s.entries.reduce((a, en) => a + en.sets.length, 0)} sets</div></div>
+      <div class="row"><div class="grow"><b>${esc(s.name)}</b><div class="dim small">${fmtDate(s.endedAt)} · ${fmtDur(s.endedAt - s.startedAt)} · ${((n) => `${n} set${n === 1 ? "" : "s"}`)(s.entries.reduce((a, en) => a + en.sets.length, 0))}</div></div>
       <button class="iconbtn sm" data-del="${esc(s.id)}" aria-label="Delete" style="color:var(--t3)">${ic("trash", "sm")}</button></div>
       ${s.entries.map((en) => `<div class="small mt-6"><b class="b">${esc(BY[en.slug]?.name || en.slug)}</b> <span class="dim">${esc(setsText(en.sets))}</span></div>`).join("")}</div>`).join("")}</div>`
     : `<div class="empty"><div class="ill" data-ill="empty-history"></div>Finished workouts appear here.</div>`;

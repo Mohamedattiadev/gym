@@ -198,6 +198,7 @@ select.chip { appearance: none; padding-inline-end: 14px; }
 .ptabs { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; border-bottom: 1px solid var(--line); }
 .ptabs button { border: 0; background: none; height: 42px; font-weight: 650; font-size: .9062rem; color: var(--t3); transition: color var(--dur) var(--ease); padding: 0 4px; white-space: nowrap; }
 .ptabs button.on { color: var(--t1); }
+.ptabs button:focus-visible { outline-offset: -4px; border-radius: 10px; } /* keyboard ring inside the tab, not a clipped box around it */
 .ptabs-ind { position: absolute; bottom: -1px; left: 0; height: 2.5px; border-radius: 3px 3px 0 0; background: var(--accent); transition: transform 280ms var(--ease-out), width 280ms var(--ease-out); }
 .tab-panel { animation: fadeIn 200ms var(--ease) backwards; padding-top: 14px; }
 
@@ -574,7 +575,9 @@ body:has(.tpill) main#view { padding-bottom: 64px; }
 .has-cta .tpill { bottom: 72px; } }
 
 /* ============ me / tracking ============ */
-.heat { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 1fr); grid-auto-columns: 1fr; gap: 3px; }
+/* small fixed squares (GitHub-like); on a narrow phone they shrink to fit */
+.heatbox { max-width: 340px; }
+.heat { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, auto); grid-auto-columns: minmax(0, 18px); gap: 3px; }
 .heat i { aspect-ratio: 1; border-radius: 3px; background: var(--s3); min-width: 0; }
 .heat i.l1 { background: color-mix(in oklab, var(--accent) 35%, var(--s3)); } .heat i.l2 { background: color-mix(in oklab, var(--accent) 65%, var(--s3)); } .heat i.l3 { background: var(--accent); }
 .heat i.fut { background: transparent; }
