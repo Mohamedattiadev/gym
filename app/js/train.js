@@ -34,8 +34,7 @@ export function trainView() {
           <button class="go-btn" data-start="${esc(w.id)}" aria-label="${t("Start {name}", { name: esc(w.name) })}">${ic("play")}</button></div>`;
   const planBox = cur ? `<div class="card pad myplan"><div class="eyebrow">${t("Your plan")}</div><div class="row" style="gap:8px;align-items:baseline"><h2 class="grow">${esc(cur.name)}</h2><span class="dim small num">${tn(cur.days, "{n} day a week", "{n} days a week")}</span></div>
       <div class="muted small">${esc(weekLine(cur))} ${t("Each muscle {f}× a week.", { f: freqOf(cur) })}</div>
-      <div class="row mt-10"><a class="btn sm grow" href="#/plans">${ic("swap", "sm")} ${t("Change plan")}</a><a class="btn sm grow" href="#/plan/${cur.id}">${t("How it works")}</a></div>
-      <button class="btn ghost sm block mt-6" id="pPrint">${ic("download", "sm")} ${t("Print or share as PDF")}</button></div>`
+      <div class="row mt-10"><a class="btn sm grow" href="#/plans">${ic("swap", "sm")} ${t("Change plan")}</a><a class="btn sm grow" href="#/plan/${cur.id}">${t("How it works")}</a><button class="btn sm" id="pPrint" aria-label="${t("Print or share as PDF")}" title="${t("Print or share as PDF")}">${ic("download", "sm")}<span class="wl"> PDF</span></button></div></div>`
     : `<div class="card pad myplan"><div class="eyebrow">${t("Step 1")}</div><h2>${t("Pick a plan")}</h2><div class="muted small">${t("A plan gives you ready workouts for each training day. You can change it any time.")}</div></div>`;
   const plans = `<div class="stack tight stagger" id="planCards">${pickPlans({ level: S.profile?.level || "beginner", days: S.profile?.days || 3 }).map(({ p }) => planCard(p)).join("")}</div>
       <div class="row mt-6"><a class="btn ghost grow" href="#/plans">${t("All {n} plans", { n: PLANS.length })}</a><a class="btn ghost grow" href="#/start">${ic("layers", "sm")} ${t("Find my plan")}</a></div>`;
