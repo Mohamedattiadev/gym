@@ -1,5 +1,5 @@
 // Printable guide (block 25 / Q8): wall poster (A3) + full guide (A4) per level and language, built from the app's own data.
-// Usage: node tools/guide/build.mjs [outDir=docs/guide] [levels=beginner] [langs=en] [base=http://localhost:8765/]
+// Usage: node tools/guide/build.mjs [outDir=docs/guide] [levels=beginner] [langs=en] [base=http://localhost:8765/]  (env THEMES=light,dark)
 //   e.g. node tools/guide/build.mjs docs/guide beginner,intermediate,advanced en,tr,ar
 // Needs the local server (cd app && python3 -m http.server 8765), chromium, qrencode; pdftoppm for the PNG check pages.
 // The plans are built IN the app (plans.js buildPlan with a fresh profile = full gym, 60 min, no focus), so the PDF lists
@@ -12,7 +12,7 @@ import { guideHTML, posterHTML } from "./template.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const [outArg = "docs/guide", lvArg = "beginner", langArg = "en", base = "http://localhost:8765/"] = process.argv.slice(2);
-const OUT = resolve(outArg), LEVELS = lvArg.split(","), LANGS = langArg.split(",");
+const OUT = resolve(outArg), LEVELS = lvArg.split(","), LANGS = langArg.split(","), THEMES = (process.env.THEMES || "light,dark").split(",");
 mkdirSync(OUT, { recursive: true });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const json = (p) => JSON.parse(readFileSync(resolve(ROOT, "app", p), "utf8"));
@@ -35,11 +35,14 @@ const DUMP = `(async () => {
   const P = await import('./js/plans.js');
   const pick = (e) => ({ slug: e.slug, name: e.name, group: e.group, equipment: e.equipment, tier: e.tier, rest: e.rest, family: e.family, poster: e.poster, pattern: e.pattern });
   const out = {};
-  for (const lv of ${JSON.stringify(LEVELS)}) {
-    const p = P.planById(P.recommendedId(lv, undefined)), opt = { min: 60, focus: '' }, slots = P.planSlots(p, opt);
-    out[lv] = { id: p.id, days: p.days, week: p.week, sets: P.weeklySets(p, slots),
+  const plan = (p) => { const opt = { min: 60, focus: '' }, slots = P.planSlots(p, opt);
+    return { id: p.id, name: p.name, level: p.level, days: p.days, week: p.week, sets: P.weeklySets(p, slots), freq: P.freqOf(p),
       workouts: P.buildPlan(p, opt).map((w, i) => ({ name: w.name, min: P.minutesOf(slots[i]),
-        items: w.items.map((it) => { const e = D.BY[it.slug]; return { ...pick(e), sets: it.sets, reps: it.reps, swaps: D.swaps(e, 3).map(pick) }; }) })) };
+        items: w.items.map((it, k) => { const e = D.BY[it.slug]; return { ...pick(e), slotPattern: slots[i][k]?.pattern, sets: it.sets, reps: it.reps, swaps: D.swaps(e, 3).map(pick) }; }) })) }; };
+  for (const lv of ${JSON.stringify(LEVELS)}) {
+    const rec = P.recommendedId(lv, undefined);
+    const list = P.PLANS.filter((p) => p.levels.includes(lv)).sort((a, b) => (b.id === rec) - (a.id === rec) || a.days - b.days);
+    out[lv] = { rec, plans: list.map(plan) };
   }
   return out;
 })()`;
@@ -75,15 +78,15 @@ try {
       nutri: json("data/guide/nutrition.json"), joints: json("data/guide/joints.json").joints } };
   for (const lang of LANGS) {
     const fam = existsSync(resolve(ROOT, `app/data/families.${lang}.json`)) ? json(`data/families.${lang}.json`) : json("data/families.en.json");
-    for (const lv of LEVELS) {
+    for (const lv of LEVELS) for (const theme of THEMES) {
       for (const [kind, fn, size] of [["poster", posterHTML, { w: 11.69, h: 16.54 }], ["guide", guideHTML, { w: 8.27, h: 11.69 }]]) {
-        const name = `gym-${kind}-${lv}-${lang}`, html = resolve(OUT, `${name}.html`);
-        writeFileSync(html, fn({ ...ctx, lang, level: lv, plan: data[lv], fam: fam.families }));
+        const name = `gym-${kind}-${lv}-${lang}-${theme}`, html = resolve(OUT, `${name}.html`);
+        writeFileSync(html, fn({ ...ctx, lang, theme, level: lv, data: data[lv], fam: fam.families }));
         await go("file://" + html);
         await ev("document.fonts.ready.then(() => Promise.all([...document.images].map((i) => i.decode().catch(() => 0))))");
         const pdf = await send("Page.printToPDF", { printBackground: true, preferCSSPageSize: true, paperWidth: size.w, paperHeight: size.h, marginTop: 0, marginBottom: 0, marginLeft: 0, marginRight: 0, generateTaggedPDF: true });
         writeFileSync(resolve(OUT, `${name}.pdf`), Buffer.from(pdf.data, "base64"));
-        rmSync(html);
+        if (!process.env.KEEP_HTML) rmSync(html);
         try { mkdirSync(resolve(OUT, "png"), { recursive: true }); execFileSync("pdftoppm", ["-r", kind === "poster" ? "40" : "60", "-png", resolve(OUT, `${name}.pdf`), resolve(OUT, "png", name)]); } catch {}
         console.log("ok", name);
       }
