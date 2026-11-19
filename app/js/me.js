@@ -7,7 +7,7 @@ import { MUSCLES, MBY } from "./body.js";
 import { e1rm } from "./calc.js";
 import { setTop, routeParts } from "./nav.js";
 import { installNow, standalone } from "./install.js";
-import { applyTheme, fillIll, MEDIA_CACHE, RECENT_CACHE, tierBadge, openGuideSheet } from "./components.js";
+import { applyTheme, fillIll, MEDIA_CACHE, RECENT_CACHE, tierBadge, openGuideSheet, APP_VERSION } from "./components.js";
 import { lib } from "./exercise.js";
 import * as Sync from "./sync.js";
 import * as Cloud from "./cloud.js";
@@ -251,7 +251,8 @@ async function settingsPanel(host) {
       <p>${t("Code © Mohamed Attia, MIT license. {n} exercises. Not affiliated with any of the owners below; everything else belongs to them.", { n: EX.length })}</p>
       <p>Demo videos, posters and exercise names © <a href="https://getswole.app" target="_blank" rel="noopener">Get SWOLE</a> and the coaches shown. Tier rankings and training ideas © <a href="https://www.youtube.com/@JeffNippard" target="_blank" rel="noopener">Jeff Nippard</a>. Volume and recovery ideas: <a href="https://www.youtube.com/@RenaissancePeriodization" target="_blank" rel="noopener">Renaissance Periodization</a>. 3D body and motions: <a href="https://github.com/AssiamahS/opengym3d" target="_blank" rel="noopener">OpenGym3D</a> (MIT), rendered with <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> (MIT). Body map: <a href="https://github.com/HichamELBSI/react-native-body-highlighter" target="_blank" rel="noopener">react-native-body-highlighter</a> (MIT). Muscle figures: <a href="https://github.com/AbanoubAmir/open-exercise-figures" target="_blank" rel="noopener">open-exercise-figures</a> (CC0). Font: Inter (<a href="fonts/OFL.txt" target="_blank" rel="noopener">OFL 1.1</a>). 3D model compression: meshoptimizer (MIT). Voice: recorded with a Microsoft Edge neural voice (Ava).</p>
       <p>${t("Coach videos play from YouTube (privacy-enhanced mode) only when you tap them.")}</p>
-      <p>${t("Own something here and want it changed or removed? {link} and it will be done right away.", { link: `<a href="https://github.com/Mohamedattiadev/gym/issues" target="_blank" rel="noopener">${t("Open an issue")}</a>` })} · <a href="#/privacy">${t("Privacy")}</a></p></div>`;
+      <p>${t("Own something here and want it changed or removed? {link} and it will be done right away.", { link: `<a href="https://github.com/Mohamedattiadev/gym/issues" target="_blank" rel="noopener">${t("Open an issue")}</a>` })} · <a href="#/privacy">${t("Privacy")}</a></p></div>
+    <p class="appver dim tiny" dir="ltr">Gym ${APP_VERSION}</p>`;
   const urls = (onlyTop) => EX.filter((e) => !onlyTop || ["S", "A"].includes(e.tier)).flatMap((e) => [e.poster, e.video].filter(Boolean));
   const stat = async () => { let n = 0; try { const m = await caches.open(MEDIA_CACHE), r = await caches.open(RECENT_CACHE); const k = new Set((await m.keys()).concat(await r.keys()).map((x) => x.url).filter((u) => !u.includes("/voice/"))); n = k.size; } catch {} const c = $("#cstat"); if (c) { c.textContent = t("{n} / {total} files on this device", { n, total }); $("#bar").style.width = `${Math.min(100, (n / total) * 100)}%`; } };
   stat(); wireCloud(); Cloud.loadConfig().then((c) => { if (c) acct(); });
@@ -282,7 +283,7 @@ async function settingsPanel(host) {
     S.settings.lastBackup = Date.now(); save("settings");
   };
   const cl = $("#copyLog"); if (cl) cl.onclick = async (ev) => { ev.preventDefault();
-    const txt = readLog().map((x) => `${new Date(x.t).toISOString()} ${x.hash} ${x.msg}\n${x.stack}`).join("\n\n");
+    const txt = `Gym ${APP_VERSION} · ${navigator.userAgent}\n\n` + readLog().map((x) => `${new Date(x.t).toISOString()} ${x.hash} ${x.msg}\n${x.stack}`).join("\n\n");
     try { await navigator.clipboard.writeText(txt); toast(t("Debug log copied")); } catch { toast(t("Couldn't copy")); }
   };
   const xl = $("#clearLog"); if (xl) xl.onclick = (ev) => { ev.preventDefault(); clearLog(); xl.closest(".errlog")?.remove(); };

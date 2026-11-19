@@ -3,6 +3,9 @@ import { S, save, tomb } from "./store.js";
 import { $$, esc, ic, openSheet, haptic, indicate, selectIn } from "./ui.js";
 import { t, N, lang } from "./i18n.js";
 
+// User-facing version (shown at the bottom of Me > Settings and in the debug log). Bump only for feature releases the owner announces;
+// independent from sw.js VERSION (internal cache counter, never shown).
+export const APP_VERSION = "1.0";
 export const MEDIA_CACHE = "gym-media-v1";
 export const RECENT_CACHE = "gym-media-recent"; // PERF-6: videos saved while watching (sw.js caps it)
 

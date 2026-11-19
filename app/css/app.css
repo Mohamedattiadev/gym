@@ -615,6 +615,7 @@ body:has(.tpill) main#view { padding-bottom: 64px; }
 .bars .b i.low { background: var(--warn); }
 .bars .v { text-align: end; font-weight: 650; }
 .credits p { margin: 0 0 10px; font-size: .875rem; color: var(--t2); } .credits a { color: var(--accent-text); }
+.appver { text-align: center; margin: 14px 0 4px; }
 
 /* ============ sheet / dialog ============ */
 dialog.sheet { position: fixed; inset: auto 0 0 0; margin: 0 auto; width: 100%; max-width: 640px; max-height: 90dvh; padding: 0; border: 0;
