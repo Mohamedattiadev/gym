@@ -100,14 +100,6 @@ function prList() {
   if (!prs.length) return "";
   return `<div class="card pad"><div class="row between" style="margin-bottom:6px"><b>Personal records</b>${ic("trophy", "sm")}</div><div class="list-sep">${prs.map(([s, b]) => `<a class="lrow plain" href="#/ex/${s}"><img src="${BY[s].poster}" alt="" style="width:40px;height:40px"><div class="grow"><div class="t ellip">${esc(BY[s].name)}</div><div class="s">${b.w}${u()} × ${b.r} · ${fmtDate(b.date, { month: "short", day: "numeric" })}</div></div><b class="num">${b.e1rm}<span class="dim tiny"> e1RM</span></b></a>`).join("")}</div></div>`;
 }
-function heatMap() {
-  const end = weekStart() + WEEK, start = end - 16 * WEEK, cnt = {};
-  S.sessions.forEach((s) => { if (s.endedAt >= start) { const k = Math.floor((s.endedAt - start) / DAY); cnt[k] = (cnt[k] || 0) + 1; } });
-  const today = Math.floor((Date.now() - start) / DAY);
-  return `<div class="heatbox"><div class="heat">${Array.from({ length: 112 }, (_, i) => `<i class="${i > today ? "fut" : cnt[i] ? "l" + Math.min(3, cnt[i] + 1) : ""}" title="${fmtDate(start + i * DAY)}"></i>`).join("")}</div>
-    <div class="chart-x"><span>${fmtDate(start, { month: "short", day: "numeric" })}</span><span>Today</span></div></div>`;
-}
-
 /* ---------------- bodyweight ---------------- */
 const bw = () => [...(S.bodyweight || [])].filter((x) => x && +x.w).sort((a, b) => String(a.d).localeCompare(String(b.d)));
 function bodyweightCard() {
@@ -129,15 +121,78 @@ function wireBW(p) {
 }
 
 /* ---------------- history ---------------- */
+/* Workouts tab: summary tiles, 16-week calendar (month + weekday labels, tap a day -> its workout),
+   workouts grouped by week with volume and PR marks. */
+const doneSets = (en) => en.sets.filter((x) => x.done !== false && x.type !== "w" && (+x.w || +x.r));
+const sessKg = (s) => s.entries.reduce((a, en) => a + doneSets(en).reduce((b, x) => b + (+x.w || 0) * (+x.r || 0), 0), 0);
+const sessSets = (s) => s.entries.reduce((a, en) => a + doneSets(en).length, 0);
+const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
+const mins = (ms) => { const m = Math.max(1, Math.round(ms / 60000)); return m < 60 ? `${m} min` : `${Math.floor(m / 60)} h ${m % 60 ? `${m % 60} min` : ""}`.trim(); };
+/** slug list per session id where the best e1RM went up (the first time an exercise is done is not a PR) */
+function prsBySession() {
+  const best = {}, out = {};
+  for (const s of [...S.sessions].sort((a, b) => a.endedAt - b.endedAt)) for (const en of s.entries) {
+    const top = Math.max(0, ...doneSets(en).map((x) => e1rm(+x.w || 0, +x.r || 0)));
+    if (!top) continue;
+    if (best[en.slug] && top > best[en.slug] + 0.01) (out[s.id] ??= []).push(en.slug);
+    best[en.slug] = Math.max(best[en.slug] || 0, top);
+  }
+  return out;
+}
+function weekStreak() {
+  const has = new Set(S.sessions.map((s) => weekStart(s.endedAt)));
+  let w = weekStart(), n = 0;
+  if (!has.has(w)) w -= WEEK; // this week not trained yet: the streak is still alive
+  while (has.has(w)) { n++; w = weekStart(w - 3 * DAY); }
+  return n;
+}
+function calendar() {
+  const end = weekStart() + WEEK, start = weekStart(end - 16 * WEEK + DAY), first = {}, cnt = {};
+  for (const s of S.sessions) if (s.endedAt >= start) { const k = Math.floor((s.endedAt - start) / DAY); cnt[k] = (cnt[k] || 0) + 1; if (!first[k] || s.endedAt > first[k].endedAt) first[k] = s; }
+  const today = Math.floor((Date.now() - start) / DAY);
+  let lastM = -1; const months = [];
+  for (let c = 0; c < 16; c++) { const m = new Date(start + c * WEEK + 6 * DAY).getMonth(); months.push(m !== lastM && c < 15 ? fmtDate(start + c * WEEK + 6 * DAY, { month: "short" }) : ""); lastM = m; }
+  const cells = Array.from({ length: 112 }, (_, i) => {
+    const t = start + i * DAY, n = cnt[i] || 0, at = `style="grid-column:${2 + Math.floor(i / 7)};grid-row:${2 + (i % 7)}"`;
+    if (i > today) return `<i class="fut" ${at}></i>`;
+    const lbl = `${fmtDate(t)}${n ? ` · ${plural(n, "workout")}` : ""}`;
+    return n ? `<button class="l${Math.min(3, n + 1)}${i === today ? " now" : ""}" ${at} data-day="${esc(first[i].id)}" title="${lbl}" aria-label="${lbl}"></button>` : `<i class="${i === today ? "now" : ""}" ${at} title="${lbl}"></i>`;
+  }).join("");
+  return `<div class="hm">${months.map((m, c) => `<span class="hm-m" style="grid-column:${c + 2}">${m}</span>`).join("")}
+    ${["Mon", "", "Wed", "", "Fri", "", ""].map((d, r) => `<span class="hm-d" style="grid-row:${r + 2}">${d}</span>`).join("")}
+    <div class="heat">${cells}</div></div>
+    <div class="hm-legend">Less <i></i><i class="l1"></i><i class="l2"></i><i class="l3"></i> More</div>`;
+}
+let showAll = false;
 function historyPanel(p) {
-  const ss = [...S.sessions].reverse(), now = Date.now();
-  p.innerHTML = ss.length ? `<div class="card pad mb-12"><div class="row between mb-10"><b>Last 16 weeks</b><span class="dim tiny">${((n) => `${n} workout${n === 1 ? "" : "s"}`)(S.sessions.filter((s) => s.endedAt > now - 112 * DAY).length)}</span></div>${heatMap()}</div>
-    <div class="stack tight stagger">${ss.slice(0, 60).map((s) => `<div class="card pad">
-      <div class="row"><div class="grow"><b>${esc(s.name)}</b><div class="dim small">${fmtDate(s.endedAt)} · ${fmtDur(s.endedAt - s.startedAt)} · ${((n) => `${n} set${n === 1 ? "" : "s"}`)(s.entries.reduce((a, en) => a + en.sets.length, 0))}</div></div>
-      <button class="iconbtn sm" data-del="${esc(s.id)}" aria-label="Delete" style="color:var(--t3)">${ic("trash", "sm")}</button></div>
-      ${s.entries.map((en) => `<div class="small mt-6"><b class="b">${esc(BY[en.slug]?.name || en.slug)}</b> <span class="dim">${esc(setsText(en.sets))}</span></div>`).join("")}</div>`).join("")}</div>`
-    : `<div class="empty"><div class="ill" data-ill="empty-history"></div>Finished workouts appear here.</div>`;
+  if (!S.sessions.length) { p.innerHTML = `<div class="empty"><div class="ill" data-ill="empty-history"></div>Finished workouts appear here.</div>`; p.onclick = null; return; }
+  const now = Date.now(), wk = weekStart(), goal = +S.profile?.days || 3;
+  const thisW = periodStats(wk, wk + WEEK), m30 = periodStats(now - 30 * DAY, now + 1), streak = weekStreak();
+  const pr = prsBySession(), ss = [...S.sessions].sort((a, b) => b.endedAt - a.endedAt), list = showAll ? ss : ss.slice(0, 40);
+  const tile = (v, l, sub) => `<div class="kpi"><b class="num">${v}</b><span>${l}</span>${sub ? `<div class="d dim">${sub}</div>` : ""}</div>`;
+  const bar = `<div class="wk-goal" role="img" aria-label="${thisW.workouts} of ${goal} workouts this week">${Array.from({ length: Math.max(goal, thisW.workouts) }, (_, i) => `<i class="${i < thisW.workouts ? "on" : ""}"></i>`).join("")}</div>`;
+  const groups = []; for (const s of list) { const w = weekStart(s.endedAt); if (groups.at(-1)?.w !== w) groups.push({ w, items: [] }); groups.at(-1).items.push(s); }
+  const wname = (w) => w === wk ? "This week" : w === wk - WEEK || w === weekStart(wk - 3 * DAY) ? "Last week" : `${fmtDate(w, { month: "short", day: "numeric" })} – ${fmtDate(w + 6 * DAY, { month: "short", day: "numeric" })}`;
+  const card = (s) => { const prs = pr[s.id] || [], kg = sessKg(s);
+    return `<div class="card pad wk-s" id="s-${esc(s.id)}">
+      <div class="row"><div class="grow"><b>${esc(s.name || "Workout")}</b><div class="dim small">${fmtDate(s.endedAt)} · ${mins(s.endedAt - s.startedAt)} · ${plural(sessSets(s), "set")}${kg ? ` · ${fmtKg(kg)} ${u()}` : ""}</div></div>
+      ${prs.length ? `<span class="pr-b">${ic("trophy", "sm")}${prs.length > 1 ? `${prs.length} PRs` : "PR"}</span>` : ""}
+      <button class="iconbtn sm" data-del="${esc(s.id)}" aria-label="Delete workout" style="color:var(--t3)">${ic("trash", "sm")}</button></div>
+      <div class="wk-ex">${s.entries.filter((en) => doneSets(en).length).map((en) => `<a href="#/ex/${esc(en.slug)}"><span class="b ellip">${esc(BY[en.slug]?.name || en.slug)}${prs.includes(en.slug) ? ` <span class="pr-i" aria-label="new record">${ic("trophy", "sm")}</span>` : ""}</span><span class="dim">${esc(setsText(doneSets(en)))}</span></a>`).join("")}</div></div>`; };
+  p.innerHTML = `<div class="wk-top">
+      <div class="kpis wk-kpis">
+        <div class="kpi"><b class="num">${thisW.workouts}<small class="dim"> / ${goal}</small></b><span>This week</span>${bar}</div>
+        ${tile(streak, "Week streak", streak ? "weeks in a row with a workout" : "train this week to start")}
+        ${tile(m30.workouts, "Last 30 days", m30.kg ? `${fmtKg(m30.kg)} ${u()} lifted` : "")}
+      </div>
+      <div class="card pad wk-cal"><div class="row between mb-10"><b>Last 16 weeks</b><span class="dim tiny">${plural(S.sessions.filter((s) => s.endedAt > now - 112 * DAY).length, "workout")}</span></div>${calendar()}</div></div>
+    ${groups.map((g) => { const st = periodStats(g.w, g.w + WEEK); return `<div class="wk-h"><b>${wname(g.w)}</b><span class="dim tiny">${plural(st.workouts, "workout")}${st.kg ? ` · ${fmtKg(st.kg)} ${u()}` : ""}</span></div>
+      <div class="stack tight">${g.items.map(card).join("")}</div>`; }).join("")}
+    ${!showAll && ss.length > list.length ? `<button class="btn block mt-12" data-more>Show all ${ss.length} workouts</button>` : ""}`;
   p.onclick = async (e) => {
+    if (e.target.closest("[data-more]")) { showAll = true; return historyPanel(p); }
+    const d = e.target.closest("[data-day]");
+    if (d) { const el = document.getElementById(`s-${d.dataset.day}`); if (!el) { showAll = true; historyPanel(p); } const t = document.getElementById(`s-${d.dataset.day}`); if (t) { t.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" }); t.classList.remove("flash"); void t.offsetWidth; t.classList.add("flash"); } return; }
     const b = e.target.closest("[data-del]"); if (!b) return;
     const old = S.sessions;
     if (await ask("Delete this workout from your history?", { ok: "Delete", danger: true })) {

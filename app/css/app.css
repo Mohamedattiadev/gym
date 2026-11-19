@@ -575,12 +575,18 @@ body:has(.tpill) main#view { padding-bottom: 64px; }
 .has-cta .tpill { bottom: 72px; } }
 
 /* ============ me / tracking ============ */
-/* small fixed squares (GitHub-like); on a narrow phone they shrink to fit */
-.heatbox { max-width: 340px; }
-.heat { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, auto); grid-auto-columns: minmax(0, 18px); gap: 3px; }
-.heat i { aspect-ratio: 1; border-radius: 3px; background: var(--s3); min-width: 0; }
-.heat i.l1 { background: color-mix(in oklab, var(--accent) 35%, var(--s3)); } .heat i.l2 { background: color-mix(in oklab, var(--accent) 65%, var(--s3)); } .heat i.l3 { background: var(--accent); }
-.heat i.fut { background: transparent; }
+/* Me > Workouts calendar: 16 week columns × 7 days, month labels on top, Mon/Wed/Fri on the left */
+.hm { display: grid; grid-template-columns: auto repeat(16, minmax(0, var(--hc, 20px))); grid-template-rows: auto repeat(7, auto); column-gap: 4px; row-gap: 4px; justify-content: start; }
+.hm-m { grid-row: 1; font-size: .6875rem; color: var(--t3); white-space: nowrap; overflow: visible; width: 0; }
+.hm-d { grid-column: 1; font-size: .6875rem; color: var(--t3); align-self: center; padding-inline-end: 4px; }
+.heat { display: contents; }
+.heat > * { aspect-ratio: 1; border-radius: 4px; background: var(--s3); min-width: 0; border: 0; padding: 0; display: block; }
+.heat > .l1, .hm-legend .l1 { background: color-mix(in oklab, var(--accent) 35%, var(--s3)); } .heat > .l2, .hm-legend .l2 { background: color-mix(in oklab, var(--accent) 65%, var(--s3)); } .heat > .l3, .hm-legend .l3 { background: var(--accent); }
+.heat > .fut { background: transparent; }
+.heat > .now { box-shadow: inset 0 0 0 1.5px var(--t2); }
+.heat > button { cursor: pointer; } .heat > button:hover { filter: brightness(1.1); }
+.hm-legend { display: flex; align-items: center; justify-content: flex-end; gap: 4px; margin-top: 10px; font-size: .6875rem; color: var(--t3); }
+.hm-legend i { width: 12px; height: 12px; border-radius: 3px; background: var(--s3); }
 .chart { width: 100%; height: 130px; display: block; overflow: visible; }
 .chart .ln { fill: none; stroke: var(--accent); stroke-width: 2.2; vector-effect: non-scaling-stroke; stroke-linejoin: round; stroke-linecap: round; }
 .chart .ar { fill: var(--accent-soft); }
@@ -1017,3 +1023,19 @@ body:has(#rov) .toast { bottom: auto; top: calc(var(--safe-t) + 16px); }
 .mt-4 { margin-top: 4px !important; } .mt-6 { margin-top: 6px !important; } .mt-8 { margin-top: 8px !important; } .mt-10 { margin-top: 10px !important; }
 .mt-12 { margin-top: 12px !important; } .mt-14 { margin-top: 14px !important; } .mt-16 { margin-top: 16px !important; }
 .mb-10 { margin-bottom: 10px !important; } .mb-12 { margin-bottom: 12px !important; } .tc { text-align: center !important; }
+/* Me > Workouts: summary tiles beside the calendar on wide screens, week groups, PR marks */
+.wk-top { display: grid; gap: 12px; margin-bottom: 6px; }
+.wk-kpis .kpi .d { white-space: normal; font-weight: 600; }
+.wk-kpis small { font-size: .875rem; font-weight: 650; }
+.wk-goal { display: flex; gap: 4px; margin-top: 8px; } .wk-goal i { flex: 1; height: 5px; border-radius: 3px; background: var(--s3); } .wk-goal i.on { background: var(--accent); }
+@media (min-width: 1000px) { .wk-top { grid-template-columns: auto 1fr; align-items: stretch; } .wk-cal { order: -1; } .wk-kpis { grid-template-columns: 1fr; } .hm { --hc: 22px; } }
+@media (max-width: 420px) { .wk-kpis .kpi .d { display: none; } .wk-kpis .kpi .wk-goal { display: flex; } }
+.wk-h { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin: 18px 2px 8px; }
+.wk-ex { display: grid; gap: 2px; margin-top: 8px; }
+.wk-ex a { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 5px 0; color: inherit; text-decoration: none; font-size: .875rem; border-top: 1px solid var(--line); }
+.wk-ex a .b { flex: 1 1 40%; min-width: 0; } .wk-ex a .dim { flex: 0 1 auto; font-variant-numeric: tabular-nums; text-align: end; }
+.wk-ex a:hover .b { color: var(--accent-text); }
+.pr-b { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: var(--r-full); background: color-mix(in oklab, var(--accent) 14%, transparent); color: var(--accent-text); font-size: .75rem; font-weight: 700; white-space: nowrap; }
+.pr-b .i, .pr-i .i { width: 14px; height: 14px; } .pr-i { color: var(--accent-text); vertical-align: -2px; }
+.wk-s.flash { animation: wkFlash 1.2s var(--ease); }
+@keyframes wkFlash { 0%, 40% { box-shadow: 0 0 0 2px var(--accent); } 100% { box-shadow: var(--raise); } }
