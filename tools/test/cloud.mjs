@@ -63,6 +63,11 @@ check(st.row?.rev === 1 && st.row.data.data.sessions.some((s) => s.id === "e2e1"
 check(!JSON.stringify(st.row?.data || {}).includes("ref-"), "no refresh token in the uploaded data");
 check(/eval: "\|#\/me\/settings"/.test(o1), "phone 1: back on #/me/settings, ?code removed from the URL");
 
+// Q13b phone 3: fresh profile -> welcome screen -> Sign in with Google -> the account has data -> Home (onboarding skipped)
+const o3 = await shot("phone3", [{ vp: "phone" }, { go: "#/" }, { waitFor: "#wG" }, { wait: 300 }, { shot: "welcome-cloud" }, { click: "#wG" }, { wait: 2500 }, { waitFor: ".nav" }, { wait: 1500 },
+  { eval: "import('./js/store.js').then(m=>location.hash+'|'+m.S.sessions.map(s=>s.id).join(',')+'|'+!!document.querySelector('.welc'))", log: true }, { shot: "welcome-restored" }]);
+check(/eval: "#\/\|e2e1\|false"/.test(o3), "phone 3: welcome Sign in with Google restored the workout and went Home");
+
 // phone 2: a fresh browser signs in to the same account -> the workout comes back; then Delete my cloud data
 const o2 = await shot("phone2", [{ vp: "phone" }, { go: "#/me/settings" }, { waitFor: "#aIn" }, { click: "#aIn" }, { wait: 2500 }, { waitFor: "#aSync" }, { wait: 800 },
   { eval: "import('./js/store.js').then(m=>m.S.sessions.map(s=>s.id).join(','))", log: true },
@@ -74,7 +79,11 @@ st = await (await fetch(BASE + "__row")).json();
 check(/eval: "e2e1"/.test(o2), "phone 2: workout restored after sign-in");
 check(st.row === null, "phone 2: Delete my cloud data removed the row");
 check(/eval: "1\|null"/.test(o2), "phone 2: local data kept, signed out");
-check(!/ERRORS/.test(o1 + o2), "no console errors");
+// Q13b phone 4: fresh profile, the account has NO data (row deleted above) -> back on the onboarding steps, not the welcome screen
+const o4 = await shot("phone4", [{ vp: "phone" }, { go: "#/" }, { waitFor: "#wG" }, { click: "#wG" }, { wait: 2500 }, { waitFor: ".qopt" }, { wait: 800 },
+  { eval: "location.hash+'|'+!!document.querySelector('.welc')+'|'+!!document.querySelector('#obOpts')", log: true }, { shot: "welcome-new-account" }]);
+check(/eval: "#\/start\|false\|true"/.test(o4), "phone 4: new account continues with the onboarding steps");
+check(!/ERRORS/.test(o1 + o2 + o3 + o4), "no console errors");
 srv.close();
 console.log(fails.length ? `CLOUD TEST FAILED (${fails.length})` : "CLOUD TEST PASS");
 process.exit(fails.length ? 1 : 0);

@@ -924,5 +924,9 @@
  "Your cloud data is deleted": "Buluttaki verilerin silindi",
  "Your workouts, history, plans, profile, body weight, notes, pain flags and settings. Clearing the site data or uninstalling the app removes them.": "Antrenmanların, geçmişin, planların, profilin, vücut ağırlığın, notların, ağrı işaretlerin ve ayarların. Site verilerini temizlemek ya da uygulamayı kaldırmak bunları siler.",
  "Show sets": "Setleri göster",
- "Add warm-up sets": "Isınma setleri ekle"
+ "Add warm-up sets": "Isınma setleri ekle",
+ "Your plan, your workouts, your progress.": "Planın, antrenmanların, gelişimin.",
+ "Continue as guest": "Misafir olarak devam et",
+ "You can sign in later in Me > Settings.": "Daha sonra Ben > Ayarlar'dan giriş yapabilirsin.",
+ "Continue": "Devam"
 }

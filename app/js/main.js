@@ -1,6 +1,6 @@
 // App shell: splash, router, scroll/top bar, keyboard shortcuts, boot, poster precache. Pages live in their own modules.
 import "./log.js"; // FE-6: first, so boot errors are caught too
-import { S, loadStore, flush, degraded } from "./store.js";
+import { S, save, loadStore, flush, degraded } from "./store.js";
 import { $, BP, $$, esc, ic, closeSheet, initSheet, toast, unlockAudio, indicate } from "./ui.js";
 import { EX, loadExercises, buildIndex, FAM_LANG } from "./data.js";
 import { bodyMap, leaveBodyMap } from "./bodymap.js";
@@ -125,10 +125,12 @@ addEventListener("pointerdown", unlockAudio, { once: true });
   initMedia(); initTimer();
   // 26b: first open (nothing set up yet, landing on Home) -> onboarding; deep links are never hijacked
   if (!S.profile?.onboarded && !S.settings.onboarded && !S.sessions.length && !S.workouts.length && /^#?\/?$/.test(location.hash)) history.replaceState(null, "", "#/start");
+  if (back && location.hash.startsWith("#/start") && !S.settings.welcomed) { S.settings.welcomed = true; save("settings"); } // Q13b: back from Google on the welcome screen -> onboarding steps
   const first = LAZY[routeParts()[1] || ""]; if (first) await need(first).catch(() => {});
   route(); renderPill();
   import("./sync.js").then((m) => m.initSync()).catch((e) => console.warn(e));
-  if (back) back.done.then((r) => { toast(r.ok ? (r.restored ? t("Signed in. Your data is back.") : t("Signed in. Backup is on.")) : r.error, 4000); route(); });
+  if (back) back.done.then((r) => { if (r.ok && r.restored && location.hash.startsWith("#/start")) { S.settings.onboarded = true; save("settings"); history.replaceState(null, "", "#/"); } // account already has data: skip onboarding
+    toast(r.ok ? (r.restored ? t("Signed in. Your data is back.") : t("Signed in. Backup is on.")) : r.error, 4000); route(); });
   else if (S.cloud?.refresh) import("./cloud.js").then((m) => m.initCloud()).catch((e) => console.warn(e));
   const idle = self.requestIdleCallback || ((f) => setTimeout(f, 300));
   idle(() => { buildIndex(); need("exercise").then(() => need("me")).catch(() => {}); });

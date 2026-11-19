@@ -1093,3 +1093,12 @@ body:has(#rov) .toast { bottom: auto; top: calc(var(--safe-t) + 16px); }
 .setrow.done .stepper { border-color: transparent; }
 .xtools { margin-top: 6px; }
 .xtools .btn.ghost { color: var(--t2); }
+/* Q13b welcome screen (guide.js welcome): logo, language, Sign in with Google / Continue as guest */
+.welc { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; min-height: calc(100dvh - 220px); justify-content: center; padding: 16px 0; }
+.welc img { border-radius: 18px; }
+.welc h1 { margin: 6px 0 0; font-size: 1.75rem; font-weight: 750; }
+.welc p { margin: 0 0 14px; }
+.welc-lang { display: grid; width: 100%; max-width: 380px; }
+.welc-lang button { height: 44px; }
+.welc-go { width: 100%; max-width: 380px; margin-top: 18px; }
+.welc-go a { color: var(--accent-text); padding: 6px; }

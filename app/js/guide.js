@@ -1,13 +1,13 @@
 // Guides: onboarding (-> plan) + profile, strength standards, nutrition calculator + guide, plans explained.
 // Content lives in data/guide/*.json (en/tr/ar); this module is lazy-loaded by the router.
-import { S, save } from "./store.js";
+import { S, save, flush } from "./store.js";
 import { $, esc, ic, haptic, toast, selectIn, indicate, L } from "./ui.js";
-import { EX, bestOf, EQUIP_PROFILES } from "./data.js";
+import { EX, bestOf, EQUIP_PROFILES, loadExercises } from "./data.js";
 import { setTop, go, redirect, routeId, live } from "./nav.js";
 import * as T from "./train.js";
 import * as P from "./plans.js";
 import { guideBtns } from "./components.js";
-import { t, tn, N } from "./i18n.js";
+import { t, tn, N, setLang, lang, LANGS, READY } from "./i18n.js";
 
 const view = () => $("#view");
 const G = {};
@@ -59,6 +59,7 @@ export async function startView() {
   const nav = (ok = true, label = t("Next")) => `<div class="row obnav">${ob.i ? `<button class="btn grow" id="obBack">${ic("back", "sm")} ${t("Back", null, "nav")}</button>` : ""}<button class="btn primary grow" id="obNext" ${ok ? "" : "disabled"}>${label}</button></div>`;
   const step = (k) => { ob.i = k; draw(); window.scrollTo(0, 0); };
   const draw = () => {
+    if (ob.i === 0 && !ob.ns && firstRun() && !S.settings.welcomed) return welcome();
     if (ob.i >= 3) return result(od);
     if (ob.ns) return notSure();
     if (ob.i === 0) {
@@ -101,7 +102,28 @@ export async function startView() {
     };
     $("#obBack").onclick = () => { if (ob.ns.i) ob.ns.i--; else ob.ns = null; draw(); };
   };
+  // Q13b: first screen for a fresh user = language + Sign in with Google / Continue as guest (only the language + Continue without a cloud config)
+  const welcome = async () => {
+    if (!S.settings.lang) { const n = (navigator.language || "").slice(0, 2).toLowerCase(); if (n !== "en" && READY.includes(n)) await pickLang(n); }
+    const cloud = await import("./cloud.js").then((m) => m.loadConfig().then((c) => c && m)).catch(() => null);
+    if (!live(rid) || S.settings.welcomed) return;
+    setTop({ title: "", back: false });
+    view().innerHTML = `<div class="welc"><img src="icons/icon.svg" alt="" width="72" height="72"><h1>Gym</h1><p class="muted">${t("Your plan, your workouts, your progress.")}</p>
+      <div class="seg welc-lang" id="wLang" role="group" aria-label="${t("Language")}">${READY.map((l) => `<button data-v="${l}" lang="${l}" class="${lang() === l ? "on" : ""}">${LANGS[l]}</button>`).join("")}</div>
+      <div class="stack tight welc-go">${cloud ? `<button class="btn primary block" id="wG">${t("Sign in with Google")}</button><a class="small tc" href="#/privacy">${t("Privacy")}</a>
+        <button class="btn block mt-8" id="wGuest">${t("Continue as guest")}</button><div class="dim tiny tc">${t("You can sign in later in Me > Settings.")}</div>`
+        : `<button class="btn primary block" id="wGuest">${t("Continue")}</button>`}</div></div>`;
+    $("#wLang").onclick = async (e) => { const b = e.target.closest("[data-v]"); if (!b || b.classList.contains("on")) return; haptic(); await pickLang(b.dataset.v); if (live(rid)) welcome(); };
+    $("#wGuest").onclick = () => { S.settings.welcomed = true; save("settings"); draw(); window.scrollTo(0, 0); };
+    const g = $("#wG"); if (g) g.onclick = async () => { g.disabled = true; await flush().catch(() => {}); cloud.signIn(); }; // returns to #/start; main.js marks welcomed
+  };
   draw();
+}
+/** Switch the app language in place (no reload): table, <html dir>, tab bar, stored setting + the gym-lang mirror, exercise texts. */
+async function pickLang(l) {
+  const lg = await setLang(l); S.settings.lang = lg; save("settings");
+  try { localStorage.setItem("gym-lang", lg); } catch {}
+  loadExercises().catch(() => {});
 }
 const saveDays = ({ days, equip }) => { setProf({ days }); if (S.settings.equip !== equip) { S.settings.equip = equip; save("settings"); } };
 

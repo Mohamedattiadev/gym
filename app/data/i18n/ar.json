@@ -1099,5 +1099,9 @@
  "Your cloud data is deleted": "حُذفت بياناتك السحابية",
  "Your workouts, history, plans, profile, body weight, notes, pain flags and settings. Clearing the site data or uninstalling the app removes them.": "تمارينك وسجلّك وخططك وملفك الشخصي ووزنك وملاحظاتك وعلامات الألم وإعداداتك. يؤدي مسح بيانات الموقع أو إزالة التطبيق إلى حذفها.",
  "Show sets": "اعرض المجموعات",
- "Add warm-up sets": "أضف مجموعات إحماء"
+ "Add warm-up sets": "أضف مجموعات إحماء",
+ "Your plan, your workouts, your progress.": "خطتك وتمارينك وتقدّمك.",
+ "Continue as guest": "المتابعة كضيف",
+ "You can sign in later in Me > Settings.": "يمكنك تسجيل الدخول لاحقًا من أنا > الإعدادات.",
+ "Continue": "متابعة"
 }
