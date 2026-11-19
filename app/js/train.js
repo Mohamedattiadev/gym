@@ -40,15 +40,16 @@ export function trainView() {
   const tools = `<div class="sec"><h2>Tools</h2></div><div class="tchips">
       <button class="chip" id="tPlates">${ic("calc", "sm")} Plates</button><button class="chip" id="t1rm">${ic("trophy", "sm")} 1RM</button>
       <a class="chip" href="#/timer/countdown">${ic("timer", "sm")} Rest timer</a><a class="chip" href="#/timer/interval">${ic("bolt", "sm")} Intervals</a><a class="chip" href="#/warmup">${ic("flame", "sm")} Warm-up</a></div>`;
+  /* wide screens (.cols): no plan yet -> plans on the left, My workouts + Tools on the right (owner: My workouts sat far down under the plans, right side empty); with a plan -> plan + workouts left, Tools right */
   view().innerHTML = `${S.active ? `<a class="hero-card live" href="#/session" style="display:block;margin-bottom:4px"><div class="eyebrow">In progress</div><h2>${esc(S.active.name)}</h2><div class="muted small">Tap to resume</div></a>` : ""}
     <div class="cols"><div>
       ${planBox}
-      ${cur ? "" : plans}
+      ${cur ? "" : `${plans}</div><div>`}
       <div class="sec"><h2>${cur ? "Workouts" : "My workouts"}</h2><button class="btn sm" id="newW">${ic("plus", "sm")} New</button></div>
       <div class="stack tight stagger">${S.workouts.map(wrow).join("") ||
         `<div class="card pad row" style="gap:14px;text-align:start"><div class="ill" data-ill="empty-workouts" style="width:84px;margin:0;flex:none"></div><div class="grow"><b>No workouts yet</b><div class="muted small">Pick a plan above, or tap New to build your own.</div></div></div>`}</div>
       ${S.active ? "" : `<button class="btn ghost block mt-6" id="quick">${ic("bolt", "sm")} Quick start — empty workout</button>`}
-    </div><div>
+    ${cur ? "</div><div>" : ""}
       ${tools}
     </div></div>`;
   view().onclick = (e) => {
