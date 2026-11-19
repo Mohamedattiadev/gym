@@ -8,27 +8,40 @@ const SS = typeof speechSynthesis !== "undefined" ? speechSynthesis : null;
 export const supported = !!SS;
 export const enabled = () => !!SS && S.settings.voice === true;
 
-let voice = null;
+let voice = null, local = null;
+/* best-sounding voice first: natural / neural / Google / enhanced ones beat the default device engine;
+   a network voice (Android Chrome "Google US English") only while online, else the best on-device one */
+const GOOD = /natural|neural|enhanced|premium|google|siri|samantha|daniel|karen|moira|serena|aria|jenny|guy/i;
+const score = (v, lang) => (GOOD.test(v.name) ? 8 : 0) + (/^en[-_](us|gb)/i.test(v.lang) && lang === "en" ? 3 : 0) + (v.default ? 1 : 0) - (/compact|eloquence|espeak/i.test(v.name) ? 10 : 0);
 function pick() {
   const lang = (document.documentElement.lang || "en").slice(0, 2).toLowerCase();
-  const vs = SS.getVoices().filter((v) => (v.lang || "").toLowerCase().replace("_", "-").startsWith(lang));
-  voice = vs.find((v) => v.localService && v.default) || vs.find((v) => v.localService) || vs.find((v) => v.default) || vs[0] || null;
+  const vs = SS.getVoices().filter((v) => (v.lang || "").toLowerCase().replace("_", "-").startsWith(lang)).sort((a, b) => score(b, lang) - score(a, lang));
+  local = vs.find((v) => v.localService) || null;
+  voice = vs[0] || null;
 }
+const best = () => (voice && !voice.localService && navigator.onLine === false ? local : voice);
 if (SS) { try { pick(); SS.addEventListener?.("voiceschanged", pick); } catch {} }
 
 /** speak one or more lines; a new call cuts off what is being said. force = speak even when the setting is off */
 export function speak(lines, { force = false, onend } = {}) {
   if (!SS || (!force && !enabled())) return false;
   const list = [].concat(lines).map((t) => String(t || "").trim()).filter(Boolean);
-  SS.cancel();
+  const cut = SS.speaking || SS.pending;
+  if (cut) SS.cancel();
   if (!list.length) return false;
   if (!voice) pick();
-  list.forEach((t, i) => {
-    const u = new SpeechSynthesisUtterance(t);
-    if (voice) { u.voice = voice; u.lang = voice.lang; } else u.lang = document.documentElement.lang || "en";
-    if (i === list.length - 1 && onend) { u.onend = onend; u.onerror = onend; }
-    SS.speak(u);
-  });
+  const v = best();
+  const go = () => {
+    try { SS.resume(); } catch {} // Chrome can get stuck "paused" after the tab was hidden
+    list.forEach((t, i) => {
+      const u = new SpeechSynthesisUtterance(t);
+      if (v) { u.voice = v; u.lang = v.lang; } else u.lang = document.documentElement.lang || "en";
+      if (i === list.length - 1 && onend) { u.onend = onend; u.onerror = onend; }
+      SS.speak(u);
+    });
+  };
+  // Chrome on Android drops an utterance queued in the same tick as cancel(): wait a moment when something was cut off
+  if (cut) setTimeout(go, 120); else go();
   return true;
 }
 export const stop = () => { try { SS?.cancel(); } catch {} };
