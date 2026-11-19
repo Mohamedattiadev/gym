@@ -3,47 +3,50 @@
 import { S } from "./store.js";
 import { EX, byTier, hasEquip, hurts, LEVEL_N } from "./data.js";
 import { uid } from "./ui.js";
+import { t, N } from "./i18n.js";
 
 const SLOT = (group, pattern, sets, reps) => ({ group, pattern, sets, reps });
 const W = {
-  fbA: ["Full Body A", [SLOT("Quads", "squat", 3, "6-10"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Lats", "v-pull", 3, "8-12"), SLOT("Hamstrings", "curl", 2, "10-12"), SLOT("Shoulders", "raise", 2, "12-15"), SLOT("Abs", "core", 2, "10-15")]],
-  fbB: ["Full Body B", [SLOT("Hamstrings", "hinge", 3, "8-10"), SLOT("Shoulders", "v-push", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Chest", "h-push", 2, "8-12"), SLOT("Quads", "lunge", 2, "10-12"), SLOT("Biceps", "curl", 2, "10-15"), SLOT("Triceps", "ext", 2, "10-15")]],
-  fbC: ["Full Body C", [SLOT("Quads", "squat", 3, "8-12"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Lats", "v-pull", 3, "10-12"), SLOT("Hamstrings", "curl", 2, "10-12"), SLOT("Shoulders", "raise", 2, "12-15"), SLOT("Triceps", "ext", 2, "10-15"), SLOT("Abs", "core", 2, "10-15")]], /* owner: Day 1 / 2 / 3 every week instead of rotating 2 workouts over 3 days; C = Day 1's pattern with other exercises (used set) */
-  fb2A: ["Full Body A", [SLOT("Quads", "squat", 3, "6-10"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Lats", "v-pull", 3, "8-12"), SLOT("Hamstrings", "curl", 2, "10-12"), SLOT("Shoulders", "raise", 2, "12-15"), SLOT("Biceps", "curl", 2, "10-15")]],
-  fb2B: ["Full Body B", [SLOT("Hamstrings", "hinge", 3, "8-10"), SLOT("Shoulders", "v-push", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Quads", "lunge", 2, "10-12"), SLOT("Chest", "fly", 2, "10-15"), SLOT("Triceps", "ext", 2, "10-15")]],
-  upA: ["Upper A", [SLOT("Chest", "h-push", 3, "6-10"), SLOT("Lats", "v-pull", 3, "8-12"), SLOT("Shoulders", "v-push", 2, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Shoulders", "raise", 3, "12-15"), SLOT("Biceps", "curl", 2, "10-12"), SLOT("Triceps", "ext", 2, "10-12")]],
-  loA: ["Lower A", [SLOT("Quads", "squat", 3, "6-10"), SLOT("Hamstrings", "hinge", 3, "8-10"), SLOT("Quads", "ext", 2, "10-15"), SLOT("Hamstrings", "curl", 3, "10-12"), SLOT("Calves", "calf", 3, "10-15"), SLOT("Abs", "core", 3, "10-15")]],
-  upB: ["Upper B", [SLOT("Chest", "h-push", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Lats", "v-pull", 3, "10-12"), SLOT("Chest", "fly", 2, "10-15"), SLOT("Shoulders", "fly", 3, "12-15"), SLOT("Triceps", "ext", 2, "10-15"), SLOT("Biceps", "curl", 2, "10-15")]],
-  loB: ["Lower B", [SLOT("Quads", "lunge", 3, "8-12"), SLOT("Glutes", "hinge", 3, "8-12"), SLOT("Hamstrings", "curl", 3, "10-12"), SLOT("Glutes", "raise", 2, "12-20"), SLOT("Calves", "calf", 3, "10-15"), SLOT("Abs", "core", 2, "10-15")]],
-  full: ["Full Body", [SLOT("Quads", "lunge", 3, "8-12"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Lats", "h-pull", 3, "10-12"), SLOT("Hamstrings", "curl", 2, "10-12"), SLOT("Shoulders", "raise", 2, "12-15"), SLOT("Abs", "core", 2, "10-15")]],
-  push: ["Push", [SLOT("Chest", "h-push", 3, "6-10"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Shoulders", "v-push", 3, "8-12"), SLOT("Chest", "fly", 3, "10-15"), SLOT("Shoulders", "raise", 4, "12-20"), SLOT("Triceps", "ext", 3, "10-15")]],
-  pull: ["Pull", [SLOT("Lats", "v-pull", 3, "6-10"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Lats", "h-pull", 3, "10-12"), SLOT("Shoulders", "fly", 3, "12-20"), SLOT("Biceps", "curl", 3, "8-12"), SLOT("Biceps", "curl", 2, "12-15")]],
-  legs: ["Legs", [SLOT("Quads", "squat", 4, "6-10"), SLOT("Hamstrings", "hinge", 3, "8-10"), SLOT("Quads", "lunge", 3, "8-12"), SLOT("Hamstrings", "curl", 3, "10-15"), SLOT("Quads", "ext", 3, "12-15"), SLOT("Calves", "calf", 4, "10-15")]],
-  torA: ["Torso A", [SLOT("Chest", "h-push", 3, "6-10"), SLOT("Lats", "v-pull", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Shoulders", "v-push", 2, "8-12"), SLOT("Chest", "fly", 2, "10-15"), SLOT("Abs", "core", 2, "10-15")]],
-  limA: ["Limbs A", [SLOT("Quads", "squat", 3, "6-10"), SLOT("Hamstrings", "curl", 3, "10-12"), SLOT("Shoulders", "raise", 3, "12-15"), SLOT("Biceps", "curl", 3, "8-12"), SLOT("Triceps", "ext", 3, "10-12"), SLOT("Calves", "calf", 3, "10-15")]],
-  torB: ["Torso B", [SLOT("Chest", "h-push", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Lats", "v-pull", 3, "10-12"), SLOT("Shoulders", "fly", 3, "12-15"), SLOT("Chest", "fly", 2, "12-15"), SLOT("Abs", "core", 2, "10-15")]],
-  limB: ["Limbs B", [SLOT("Hamstrings", "hinge", 3, "8-10"), SLOT("Quads", "lunge", 3, "8-12"), SLOT("Shoulders", "raise", 3, "12-20"), SLOT("Biceps", "curl", 2, "10-15"), SLOT("Triceps", "ext", 2, "10-15"), SLOT("Calves", "calf", 3, "10-15")]],
-  chBk: ["Chest + Back", [SLOT("Chest", "h-push", 3, "6-10"), SLOT("Lats", "v-pull", 3, "8-12"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Chest", "fly", 2, "10-15"), SLOT("Lats", "h-pull", 2, "10-12")]],
-  shAr: ["Shoulders + Arms", [SLOT("Shoulders", "v-push", 3, "8-12"), SLOT("Shoulders", "raise", 4, "12-20"), SLOT("Shoulders", "fly", 2, "12-20"), SLOT("Biceps", "curl", 3, "8-12"), SLOT("Triceps", "ext", 3, "10-12"), SLOT("Biceps", "curl", 2, "12-15"), SLOT("Triceps", "ext", 2, "12-15")]],
-  chest: ["Chest", [SLOT("Chest", "h-push", 4, "6-10"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Chest", "fly", 3, "10-15"), SLOT("Chest", "fly", 2, "12-15"), SLOT("Abs", "core", 3, "10-15")]],
-  back: ["Back", [SLOT("Lats", "v-pull", 4, "6-10"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Lats", "h-pull", 3, "10-12"), SLOT("Lats", "v-pull", 2, "12-15"), SLOT("Traps", "raise", 3, "10-15")]],
-  delts: ["Shoulders", [SLOT("Shoulders", "v-push", 4, "8-12"), SLOT("Shoulders", "raise", 4, "12-20"), SLOT("Shoulders", "fly", 3, "12-20"), SLOT("Shoulders", "raise", 3, "15-20")]],
-  arms: ["Arms", [SLOT("Biceps", "curl", 3, "8-12"), SLOT("Triceps", "ext", 3, "8-12"), SLOT("Biceps", "curl", 3, "10-15"), SLOT("Triceps", "ext", 3, "10-15"), SLOT("Forearms", "curl", 2, "12-15")]],
+  fbA: [N("Full Body"), [SLOT("Quads", "squat", 3, "6-10"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Lats", "v-pull", 3, "8-12"), SLOT("Hamstrings", "curl", 2, "10-12"), SLOT("Shoulders", "raise", 2, "12-15"), SLOT("Abs", "core", 2, "10-15")]],
+  fbB: [N("Full Body"), [SLOT("Hamstrings", "hinge", 3, "8-10"), SLOT("Shoulders", "v-push", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Chest", "h-push", 2, "8-12"), SLOT("Quads", "lunge", 2, "10-12"), SLOT("Biceps", "curl", 2, "10-15"), SLOT("Triceps", "ext", 2, "10-15")]],
+  fbC: [N("Full Body"), [SLOT("Quads", "squat", 3, "8-12"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Lats", "v-pull", 3, "10-12"), SLOT("Hamstrings", "curl", 2, "10-12"), SLOT("Shoulders", "raise", 2, "12-15"), SLOT("Triceps", "ext", 2, "10-15"), SLOT("Abs", "core", 2, "10-15")]], /* owner: Day 1 / 2 / 3 every week instead of rotating 2 workouts over 3 days; C = Day 1's pattern with other exercises (used set) */
+  fb2A: [N("Full Body"), [SLOT("Quads", "squat", 3, "6-10"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Lats", "v-pull", 3, "8-12"), SLOT("Hamstrings", "curl", 2, "10-12"), SLOT("Shoulders", "raise", 2, "12-15"), SLOT("Biceps", "curl", 2, "10-15")]],
+  fb2B: [N("Full Body"), [SLOT("Hamstrings", "hinge", 3, "8-10"), SLOT("Shoulders", "v-push", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Quads", "lunge", 2, "10-12"), SLOT("Chest", "fly", 2, "10-15"), SLOT("Triceps", "ext", 2, "10-15")]],
+  upA: [N("Upper"), [SLOT("Chest", "h-push", 3, "6-10"), SLOT("Lats", "v-pull", 3, "8-12"), SLOT("Shoulders", "v-push", 2, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Shoulders", "raise", 3, "12-15"), SLOT("Biceps", "curl", 2, "10-12"), SLOT("Triceps", "ext", 2, "10-12")]],
+  loA: [N("Lower"), [SLOT("Quads", "squat", 3, "6-10"), SLOT("Hamstrings", "hinge", 3, "8-10"), SLOT("Quads", "ext", 2, "10-15"), SLOT("Hamstrings", "curl", 3, "10-12"), SLOT("Calves", "calf", 3, "10-15"), SLOT("Abs", "core", 3, "10-15")]],
+  upB: [N("Upper"), [SLOT("Chest", "h-push", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Lats", "v-pull", 3, "10-12"), SLOT("Chest", "fly", 2, "10-15"), SLOT("Shoulders", "fly", 3, "12-15"), SLOT("Triceps", "ext", 2, "10-15"), SLOT("Biceps", "curl", 2, "10-15")]],
+  loB: [N("Lower"), [SLOT("Quads", "lunge", 3, "8-12"), SLOT("Glutes", "hinge", 3, "8-12"), SLOT("Hamstrings", "curl", 3, "10-12"), SLOT("Glutes", "raise", 2, "12-20"), SLOT("Calves", "calf", 3, "10-15"), SLOT("Abs", "core", 2, "10-15")]],
+  full: [N("Full Body"), [SLOT("Quads", "lunge", 3, "8-12"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Lats", "h-pull", 3, "10-12"), SLOT("Hamstrings", "curl", 2, "10-12"), SLOT("Shoulders", "raise", 2, "12-15"), SLOT("Abs", "core", 2, "10-15")]],
+  push: [N("Push"), [SLOT("Chest", "h-push", 3, "6-10"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Shoulders", "v-push", 3, "8-12"), SLOT("Chest", "fly", 3, "10-15"), SLOT("Shoulders", "raise", 4, "12-20"), SLOT("Triceps", "ext", 3, "10-15")]],
+  pull: [N("Pull"), [SLOT("Lats", "v-pull", 3, "6-10"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Lats", "h-pull", 3, "10-12"), SLOT("Shoulders", "fly", 3, "12-20"), SLOT("Biceps", "curl", 3, "8-12"), SLOT("Biceps", "curl", 2, "12-15")]],
+  legs: [N("Legs"), [SLOT("Quads", "squat", 4, "6-10"), SLOT("Hamstrings", "hinge", 3, "8-10"), SLOT("Quads", "lunge", 3, "8-12"), SLOT("Hamstrings", "curl", 3, "10-15"), SLOT("Quads", "ext", 3, "12-15"), SLOT("Calves", "calf", 4, "10-15")]],
+  torA: [N("Torso"), [SLOT("Chest", "h-push", 3, "6-10"), SLOT("Lats", "v-pull", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Shoulders", "v-push", 2, "8-12"), SLOT("Chest", "fly", 2, "10-15"), SLOT("Abs", "core", 2, "10-15")]],
+  limA: [N("Limbs"), [SLOT("Quads", "squat", 3, "6-10"), SLOT("Hamstrings", "curl", 3, "10-12"), SLOT("Shoulders", "raise", 3, "12-15"), SLOT("Biceps", "curl", 3, "8-12"), SLOT("Triceps", "ext", 3, "10-12"), SLOT("Calves", "calf", 3, "10-15")]],
+  torB: [N("Torso"), [SLOT("Chest", "h-push", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Lats", "v-pull", 3, "10-12"), SLOT("Shoulders", "fly", 3, "12-15"), SLOT("Chest", "fly", 2, "12-15"), SLOT("Abs", "core", 2, "10-15")]],
+  limB: [N("Limbs"), [SLOT("Hamstrings", "hinge", 3, "8-10"), SLOT("Quads", "lunge", 3, "8-12"), SLOT("Shoulders", "raise", 3, "12-20"), SLOT("Biceps", "curl", 2, "10-15"), SLOT("Triceps", "ext", 2, "10-15"), SLOT("Calves", "calf", 3, "10-15")]],
+  chBk: [N("Chest + Back"), [SLOT("Chest", "h-push", 3, "6-10"), SLOT("Lats", "v-pull", 3, "8-12"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Chest", "fly", 2, "10-15"), SLOT("Lats", "h-pull", 2, "10-12")]],
+  shAr: [N("Shoulders + Arms"), [SLOT("Shoulders", "v-push", 3, "8-12"), SLOT("Shoulders", "raise", 4, "12-20"), SLOT("Shoulders", "fly", 2, "12-20"), SLOT("Biceps", "curl", 3, "8-12"), SLOT("Triceps", "ext", 3, "10-12"), SLOT("Biceps", "curl", 2, "12-15"), SLOT("Triceps", "ext", 2, "12-15")]],
+  chest: [N("Chest"), [SLOT("Chest", "h-push", 4, "6-10"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Chest", "fly", 3, "10-15"), SLOT("Chest", "fly", 2, "12-15"), SLOT("Abs", "core", 3, "10-15")]],
+  back: [N("Back"), [SLOT("Lats", "v-pull", 4, "6-10"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Lats", "h-pull", 3, "10-12"), SLOT("Lats", "v-pull", 2, "12-15"), SLOT("Traps", "raise", 3, "10-15")]],
+  delts: [N("Shoulders"), [SLOT("Shoulders", "v-push", 4, "8-12"), SLOT("Shoulders", "raise", 4, "12-20"), SLOT("Shoulders", "fly", 3, "12-20"), SLOT("Shoulders", "raise", 3, "15-20")]],
+  arms: [N("Arms"), [SLOT("Biceps", "curl", 3, "8-12"), SLOT("Triceps", "ext", 3, "8-12"), SLOT("Biceps", "curl", 3, "10-15"), SLOT("Triceps", "ext", 3, "10-15"), SLOT("Forearms", "curl", 2, "12-15")]],
 };
 /* week: 7 entries Mon..Sun, each an index into workouts or null (rest) */
-const P = (id, name, level, levels, days, kind, ws, week) => ({ id, name, level, levels, days, kind, workouts: ws.map((k, i) => [`${W[k][0].replace(/ [ABC]$/, "")} · Day ${i + 1}`, W[k][1]]), week }); /* owner (Q8c): "Full Body · Day 1" instead of "Full Body A" (same as the PDF guides) */
+const P = (id, name, level, levels, days, kind, ws, week) => ({ id, get name() { return t(name); }, level, levels, days, kind, workouts: ws.map((k, i) => [`${W[k][0]} · Day ${i + 1}`, W[k][1]]), week }); /* owner (Q8c): "Full Body · Day 1" instead of "Full Body A" (same as the PDF guides) */
 export const PLANS = [
-  P("fb2", "Full Body", "beginner", ["beginner", "intermediate", "advanced"], 2, "fb", ["fb2A", "fb2B"], [0, null, null, 1, null, null, null]),
-  P("beg-fb", "Full Body", "beginner", ["beginner", "intermediate"], 3, "fb", ["fbA", "fbB", "fbC"], [0, null, 1, null, 2, null, null]),
-  P("ulf3", "Upper / Lower / Full", "intermediate", ["beginner", "intermediate"], 3, "ul", ["upA", "loA", "full"], [0, null, 1, null, 2, null, null]),
-  P("ppl3", "Push / Pull / Legs", "intermediate", ["intermediate"], 3, "ppl", ["push", "pull", "legs"], [0, null, 1, null, 2, null, null]),
-  P("int-ul", "Upper / Lower", "intermediate", ["beginner", "intermediate", "advanced"], 4, "ul", ["upA", "loA", "upB", "loB"], [0, 1, null, 2, 3, null, null]),
-  P("tl4", "Torso / Limbs", "intermediate", ["intermediate", "advanced"], 4, "ul", ["torA", "limA", "torB", "limB"], [0, 1, null, 2, 3, null, null]),
-  P("pplul5", "PPL + Upper / Lower", "advanced", ["intermediate", "advanced"], 5, "ppl", ["push", "pull", "legs", "upA", "loA"], [0, 1, 2, null, 3, 4, null]),
-  P("bro5", "Bro split", "intermediate", ["intermediate", "advanced"], 5, "bro", ["chest", "back", "delts", "legs", "arms"], [0, 1, 2, 3, 4, null, null]),
-  P("adv-ppl", "Push / Pull / Legs", "advanced", ["advanced"], 6, "ppl", ["push", "pull", "legs"], [0, 1, 2, 0, 1, 2, null]),
-  P("arnold6", "Arnold split", "advanced", ["advanced"], 6, "ppl", ["chBk", "shAr", "legs"], [0, 1, 2, 0, 1, 2, null]),
+  P("fb2", N("Full Body"), "beginner", ["beginner", "intermediate", "advanced"], 2, "fb", ["fb2A", "fb2B"], [0, null, null, 1, null, null, null]),
+  P("beg-fb", N("Full Body"), "beginner", ["beginner", "intermediate"], 3, "fb", ["fbA", "fbB", "fbC"], [0, null, 1, null, 2, null, null]),
+  P("ulf3", N("Upper / Lower / Full"), "intermediate", ["beginner", "intermediate"], 3, "ul", ["upA", "loA", "full"], [0, null, 1, null, 2, null, null]),
+  P("ppl3", N("Push / Pull / Legs"), "intermediate", ["intermediate"], 3, "ppl", ["push", "pull", "legs"], [0, null, 1, null, 2, null, null]),
+  P("int-ul", N("Upper / Lower"), "intermediate", ["beginner", "intermediate", "advanced"], 4, "ul", ["upA", "loA", "upB", "loB"], [0, 1, null, 2, 3, null, null]),
+  P("tl4", N("Torso / Limbs"), "intermediate", ["intermediate", "advanced"], 4, "ul", ["torA", "limA", "torB", "limB"], [0, 1, null, 2, 3, null, null]),
+  P("pplul5", N("PPL + Upper / Lower"), "advanced", ["intermediate", "advanced"], 5, "ppl", ["push", "pull", "legs", "upA", "loA"], [0, 1, 2, null, 3, 4, null]),
+  P("bro5", N("Bro split"), "intermediate", ["intermediate", "advanced"], 5, "bro", ["chest", "back", "delts", "legs", "arms"], [0, 1, 2, 3, 4, null, null]),
+  P("adv-ppl", N("Push / Pull / Legs"), "advanced", ["advanced"], 6, "ppl", ["push", "pull", "legs"], [0, 1, 2, 0, 1, 2, null]),
+  P("arnold6", N("Arnold split"), "advanced", ["advanced"], 6, "ppl", ["chBk", "shAr", "legs"], [0, 1, 2, 0, 1, 2, null]),
 ];
+/** "Full Body · Day 1" in the app language (stored workout names are made by buildPlan in the current language) */
+export const wName = (x) => x.replace(/^(.*) · Day (\d+)$/, (_, b, n) => `${gName(b)} · ${t("Day {n}", { n })}`);
 export const planById = (id) => PLANS.find((p) => p.id === id);
 
 /* Recommended (owner rules, Jeff Nippard: each muscle ~2x/week, enough weekly sets, sustainable) */
@@ -69,14 +72,16 @@ export function pickPlans({ level = "beginner", days = 3 } = {}) {
 
 /* the week in one line, e.g. "Mon Day 1 · Wed Day 2 · Fri Day 1" + the rotation note when the week does not repeat
    (owner: "3 days a week" but only 2 workouts listed was confusing) */
-const DN = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+export const DN = [N("Mon"), N("Tue"), N("Wed"), N("Thu"), N("Fri"), N("Sat"), N("Sun")];
 export function weekLine(p) {
   const on = p.week.map((w, i) => [w, i]).filter(([w]) => w != null);
-  const line = on.map(([w, i]) => `${DN[i]} Day ${w + 1}`).join(" · ");
+  const line = on.map(([w, i]) => `${t(DN[i])} ${t("Day {n}", { n: w + 1 })}`).join(" · ");
   const n = p.workouts.length, nxt = (on[on.length - 1][0] + 1) % n;
-  return n < on.length && nxt !== on[0][0] ? `${line}. ${n} workouts on ${on.length} days, done in turn: next week starts with Day ${nxt + 1}.` : `${line}.`;
+  return n < on.length && nxt !== on[0][0] ? `${line}. ${t("{n} workouts on {d} days, done in turn: next week starts with Day {x}.", { n, d: on.length, x: nxt + 1 })}` : `${line}.`;
 }
 /* weekly hard sets per muscle (Lats + Upper Back = Back, Glutes count with Hamstrings only when no Glutes slot) */
+/** muscle-group name in the app language ("Back" here = the muscle, not the body side / button) */
+export const gName = (g) => (g === "Back" ? t("Back", null, "muscle") : t(g));
 export const MAIN = ["Chest", "Back", "Shoulders", "Quads", "Hamstrings", "Biceps", "Triceps"];
 const muscleOf = (g) => (g === "Lats" || g === "Upper Back" ? "Back" : g);
 export function weeklySets(p, ws = p.workouts.map(([, s]) => s)) {
@@ -110,11 +115,11 @@ export function fitTime(slots, min = 60) {
 }
 /* focus add-ons: +4–6 sets a week for one area, added to two workouts */
 export const FOCUS = {
-  arms: { name: "Arms", groups: ["Biceps", "Triceps"], slots: [SLOT("Biceps", "curl", 2, "10-15"), SLOT("Triceps", "ext", 2, "10-15")] },
-  shoulders: { name: "Shoulders", groups: ["Shoulders"], slots: [SLOT("Shoulders", "raise", 3, "12-20")] },
-  chest: { name: "Chest", groups: ["Chest"], slots: [SLOT("Chest", "fly", 3, "10-15")] },
-  back: { name: "Back", groups: ["Lats", "Upper Back"], slots: [SLOT("Lats", "v-pull", 3, "10-12")] },
-  glutes: { name: "Glutes", groups: ["Glutes", "Hamstrings", "Quads"], slots: [SLOT("Glutes", "hinge", 3, "8-12")] },
+  arms: { name: N("Arms"), groups: ["Biceps", "Triceps"], slots: [SLOT("Biceps", "curl", 2, "10-15"), SLOT("Triceps", "ext", 2, "10-15")] },
+  shoulders: { name: N("Shoulders"), groups: ["Shoulders"], slots: [SLOT("Shoulders", "raise", 3, "12-20")] },
+  chest: { name: N("Chest"), groups: ["Chest"], slots: [SLOT("Chest", "fly", 3, "10-15")] },
+  back: { name: N("Back"), groups: ["Lats", "Upper Back"], slots: [SLOT("Lats", "v-pull", 3, "10-12")] },
+  glutes: { name: N("Glutes"), groups: ["Glutes", "Hamstrings", "Quads"], slots: [SLOT("Glutes", "hinge", 3, "8-12")] },
 };
 export function planSlots(p, { min = 60, focus = "" } = {}) {
   const ws = p.workouts.map(([, s]) => fitTime(s, min));
@@ -139,7 +144,7 @@ function fillSlot(slot, used, level) {
 }
 export function buildPlan(p, opt = planOpts()) {
   const used = new Set(), ws = planSlots(p, opt);
-  return p.workouts.map(([name], i) => ({ id: uid(), name, plan: p.id, updatedAt: Date.now(),
+  return p.workouts.map(([name], i) => ({ id: uid(), name: wName(name), plan: p.id, updatedAt: Date.now(),
     items: ws[i].map((s) => [s, fillSlot(s, used, p.level)]).filter(([, e]) => e).map(([s, e]) => ({ slug: e.slug, sets: s.sets, reps: s.reps })) }));
 }
 export const planOpts = () => ({ min: +S.settings.planMin || 60, focus: S.settings.planFocus || "" });

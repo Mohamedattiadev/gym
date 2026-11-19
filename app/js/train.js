@@ -2,12 +2,12 @@
 import { S, save, tomb, persist } from "./store.js";
 import { $, BP, $$, esc, ic, uid, ask, askText, choose, openSheet, closeSheet, toast, haptic, beep, confetti, fmtDur, RM } from "./ui.js";
 import { BY, history, lastSets, bestOf, setsText, swaps, WEEK } from "./data.js";
-import { PLANS, planById, buildPlan, pickPlans, recommendedId, planOpts, planSlots, minutesOf, freqOf, FOCUS, loadPlanText, weekLine } from "./plans.js";
+import { PLANS, planById, buildPlan, pickPlans, recommendedId, planOpts, planSlots, minutesOf, freqOf, FOCUS, loadPlanText, weekLine, gName } from "./plans.js";
 import { e1rm, platesFor, plateColor, plateHeight, warmupSets, suggest } from "./calc.js";
 import { go, redirect, setTop } from "./nav.js";
 import { tierBadge, restText, fillIll } from "./components.js";
 import * as Tm from "./timer.js";
-import { t, tn, N } from "./i18n.js";
+import { t, tn, N, lang } from "./i18n.js";
 
 const view = () => $("#view");
 export let pickMode = null;
@@ -92,7 +92,7 @@ export function previewPlan(p) {
     el.innerHTML = `<h3>${esc(p.name)}</h3><p class="muted small" style="margin:-6px 0 10px">${esc(weekLine(p))}</p>
       <div class="seg sm block mb-12" id="pvTab" role="group"><button class="${tab === "list" ? "on" : ""}" data-v="list">${t("Workouts")}</button><button class="${tab === "week" ? "on" : ""}" data-v="week">${t("How a week works")}</button></div>
       <div class="pv-opts"><div class="row between"><span class="small b">${t("Session length")}</span>${seg("pvMin", [45, 60, 75].map((m) => [m, t("{n} min", { n: m })]), o.min)}</div>
-        <div><span class="small b">${t("Extra focus")}</span><div class="gchips mt-6" id="pvFocus">${[["", t("None")], ...Object.entries(FOCUS).map(([k, v]) => [k, t(v.name)])].map(([k, lb]) => `<button class="chip ${k === o.focus ? "on" : ""}" data-v="${k}">${lb}</button>`).join("")}</div>${o.focus ? `<div class="dim tiny mt-4">${t("Adds a few sets for {focus} to two workouts.", { focus: esc(t(FOCUS[o.focus].name).toLowerCase()) })}</div>` : ""}</div></div>
+        <div><span class="small b">${t("Extra focus")}</span><div class="gchips mt-6" id="pvFocus">${[["", t("None")], ...Object.entries(FOCUS).map(([k, v]) => [k, gName(v.name)])].map(([k, lb]) => `<button class="chip ${k === o.focus ? "on" : ""}" data-v="${k}">${lb}</button>`).join("")}</div>${o.focus ? `<div class="dim tiny mt-4">${t("Adds a few sets for {focus} to two workouts.", { focus: esc(gName(FOCUS[o.focus].name).toLocaleLowerCase(lang())) })}</div>` : ""}</div></div>
       ${tab === "week" ? `<div id="pvScn" class="mt-12"></div>` : ws.map((w, i) => `<div class="h4">${esc(w.name)} <span class="dim tiny num">${t("~{m} min", { m: minutesOf(sl[i]) })}</span></div><div class="stack tight">
       ${w.items.map((it) => `<div class="lrow"><img src="${BY[it.slug].poster}" alt=""><div class="grow"><div class="t">${esc(BY[it.slug].name)}</div><div class="s">${it.sets} × ${it.reps}</div></div>${tierBadge(BY[it.slug].tier)}</div>`).join("")}</div>`).join("")}
       <button class="btn primary block mt-16" id="usePv">${t("Use this plan")}</button>`;

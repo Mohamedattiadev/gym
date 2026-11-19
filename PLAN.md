@@ -186,6 +186,9 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 ## Notes (session 63) — Q9 i18n slice 3 (Turkish ships)
 - app/data/i18n/tr.json 858/858 keys; READY en+tr = Settings > Language; families.<lang>.json via the "gym-lang" localStorage mirror; context keys t(s, vars, ctx) -> "s@ctx" (Back@nav, Home@equip); data words (groups, equipment, MUSCLES name/fn) collected by keys.mjs; unit test checks every READY table. Left: plans.js/scenario.js (2b-4), Arabic + RTL (4), voice TR/AR (5). TR texts written by Claude, not native-reviewed. eeded38, sw v116.
 
+## Notes (session 64) — Q9 i18n slice 2b-4 (plans + scenario)
+- plans.js: plan names via a `name` getter (t(name)), workout names N()-marked without the A/B/C letter ("Upper", "Torso"…), buildPlan stores wName() = "<base> · Day N" in the app language (old stored workouts keep their names); gName(g) = muscle-group name with the context key "Back@muscle" (= Sırt; plain "Back" is the body side Arka) — used by the scenario "Times a week" line, the Preview Extra focus chips and the bro split back day; weekLine + DN day names translated. scenario.js fully converted (Start@week = Başlangıç). tr.json 896/896. sw v117.
+
 ## Notes (session 49) — SEC-5/FE-26/FE-20, cleanup + PERF-11
 - store.js: degraded (localStorage) path writes S with sync.token removed; fallback load merges DEFAULTS.settings. importData writes exportData() to IndexedDB key "preImport" (or localStorage gymy_preImport when degraded) before replacing; undoImport() restores and deletes the slot; loadStore skips "preImport". me.js import -> toast "Backup restored" with Undo (8 s).
 - sync.js connect() stamps connectedAt; status() exposes it; me.js tokenAge() shows the hint only after 80 days (older connections without a stamp show nothing).
