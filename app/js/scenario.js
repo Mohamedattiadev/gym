@@ -53,7 +53,7 @@ function progression(built) {
   const [lo, hi] = String(it.reps).split("-").map(Number); const top = hi || lo + 2;
   const wk = [[w, lo, it.sets, t("Start", null, "week")], [w, top, it.sets, t("Reps up")], [w + step, lo, it.sets, t("Weight up")], [Math.round((w * 0.6) / step) * step, lo, Math.max(1, it.sets - 1), t("Deload")]];
   const max = Math.max(...wk.map(([a, r, s]) => a * r * s));
-  return `<div class="h4">${t("The next 4 weeks")}</div><div class="prog4">${wk.map(([a, r, s, lb], n) => `<div class="${n === 3 ? "dl" : ""}"><i><b style="height:${Math.round((a * r * s / max) * 100)}%"></b></i><em class="num">${a} ${u} × ${r}</em><span>${n + 1}. ${lb}</span></div>`).join("")}</div>
+  return `<div class="h4">${t("The next 4 weeks")}</div><div class="prog4">${wk.map(([a, r, s, lb], n) => `<div class="${n === 3 ? "dl" : ""}"><i><b style="height:${Math.round((a * r * s / max) * 100)}%"></b></i><em class="num"><bdi>${a} ${u} × ${r}</bdi></em><span>${n + 1}. ${lb}</span></div>`).join("")}</div>
     <p class="dim tiny mt-6">${esc(t("Example: {name}, {s} sets of {r}. Add reps until every set reaches {top}, then add weight and start again at {lo}. Every few weeks take one lighter week (about 60% of the weight, one set less).", { name: BY[it.slug]?.name || "", s: it.sets, r: it.reps, top, lo }))}</p>`;
 }
 

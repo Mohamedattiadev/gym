@@ -119,6 +119,7 @@ export async function loadExercises() {
     e.vnote = e.note ? FAM.notes[e.slug] || "" : "";
     e.muscles = [...(e.primary || []), ...(e.secondary || [])]; e.aliases = [e.aliases, e.tr, e.ar].filter(Boolean).join(" ");
     e.tier ??= null; e.tierNote ??= ""; e.canonical = !!e.canonical;
+    if (lang === "ar") e.name = "\u2068" + e.name + "\u2069"; // English names inside RTL text: isolate them ("2 Part High Elbow Row" kept in order); norm() drops these marks
     BY[e.slug] = e;
   }
   idx = false;

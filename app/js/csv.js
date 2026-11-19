@@ -30,7 +30,7 @@ export function exportCSV() {
     const mins = s.endedAt && s.startedAt ? Math.round((s.endedAt - s.startedAt) / 6e4) : "";
     for (const en of s.entries) { let n = 0;
       for (const x of en.sets) { if (!x.done) continue; const w = x.type === "w"; if (!w) n++;
-        out.push([dt(s.startedAt), s.name || "Workout", mins, BY[en.slug]?.name || en.name || en.slug, w ? "W" : n, +x.w || 0, u, +x.r || 0, w ? "warmup" : "normal", en.slug].map(q).join(",")); } }
+        out.push([dt(s.startedAt), s.name || "Workout", mins, (BY[en.slug]?.name || en.name || en.slug).replace(/[\u2066-\u2069]/g, ""), w ? "W" : n, +x.w || 0, u, +x.r || 0, w ? "warmup" : "normal", en.slug].map(q).join(",")); } }
   }
   return out.join("\n");
 }

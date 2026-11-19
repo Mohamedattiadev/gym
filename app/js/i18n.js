@@ -7,7 +7,7 @@
    Imports nothing (ui.js and store.js import this). */
 export const LANGS = { en: "English", tr: "Türkçe", ar: "العربية" };
 /** Languages whose table is complete enough to offer in Settings (FE-19: no half-translated switch). */
-export const READY = ["en", "tr"];
+export const READY = ["en", "tr", "ar"];
 let LANG = "en", TBL = {}, PR = new Intl.PluralRules("en");
 
 export const lang = () => LANG;
@@ -18,11 +18,14 @@ export const loc = () => (LANG === "ar" ? "ar-u-nu-latn" : LANG);
 const fill = (s, v) => (v ? s.replace(/\{(\w+)\}/g, (m, k) => (v[k] ?? m)) : s);
 /** t(s, vars, ctx): ctx tells apart one English word with two meanings ("Back" body side vs "Back" button): key "s@ctx" first. */
 export function t(s, v, c) {
-  const x = (c && TBL[`${s}@${c}`]) || TBL[s];
+  let x = (c && TBL[`${s}@${c}`]) || TBL[s];
+  if (x && typeof x === "object") x = x.few || x.other; // a plural key used as a bare label ("sets"): the plain plural noun
   return fill(typeof x === "string" && x ? x : s, v);
 }
 /** Marks English text stored in data for keys.mjs; translate it later with t(x). */
 export const N = (s) => s;
+/** Isolates a "60 kg × 10" style run (FSI…PDI) so it keeps its order inside Arabic text; no-op outside RTL. */
+export const iso = (s) => (s && LANG === "ar" ? `\u2068${s}\u2069` : s);
 export function tn(n, one, many, v = {}) {
   const x = TBL[many], vv = { n, ...v };
   if (x && typeof x === "object") return fill(x[PR.select(n)] || x.other || many, vv);

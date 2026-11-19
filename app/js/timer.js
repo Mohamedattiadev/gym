@@ -2,7 +2,7 @@
 import { $, BP, esc, ic, haptic, beep, toast, fmtDur } from "./ui.js";
 import { S } from "./store.js";
 import * as V from "./voice.js";
-import { t, tn } from "./i18n.js";
+import { t, tn, iso } from "./i18n.js";
 
 const KEY = "gym-timer";
 const now = () => Date.now();
@@ -138,7 +138,7 @@ function renderOverlay() {
   const v = view(), nx = T.nx || {};
   if (!o) {
     o = document.createElement("div"); o.id = "rov"; o.className = "rov"; o.setAttribute("role", "dialog"); o.setAttribute("aria-modal", "true"); o.setAttribute("aria-label", t("Rest"));
-    const u = S.settings.unit, load = nx.r ? (nx.w ? `${nx.w} ${u} × ` : "") + tn(nx.r, "{n} rep", "{n} reps") : "";
+    const u = S.settings.unit, load = nx.r ? iso((nx.w ? `${nx.w} ${u} × ` : "") + tn(nx.r, "{n} rep", "{n} reps")) : "";
     o.innerHTML = `<div class="rov-in"><div class="rov-top"><span class="lbl">${t("Rest")}</span><button class="iconbtn" data-r="min" aria-label="${t("Minimise")}">${ic("down")}</button></div>
       <div class="ringwrap"><svg viewBox="0 0 100 100"><circle class="track" cx="50" cy="50" r="${RR}"/><circle class="fill" cx="50" cy="50" r="${RR}" stroke-dasharray="${RC}"/></svg>
         <button class="big num" data-r="toggle"></button><div class="sub2 rov-st"></div></div>

@@ -7,7 +7,7 @@ import { e1rm, platesFor, plateColor, plateHeight, warmupSets, suggest } from ".
 import { go, redirect, setTop } from "./nav.js";
 import { tierBadge, restText, fillIll } from "./components.js";
 import * as Tm from "./timer.js";
-import { t, tn, N, lang } from "./i18n.js";
+import { t, tn, N, lang, iso } from "./i18n.js";
 
 const view = () => $("#view");
 export let pickMode = null;
@@ -290,7 +290,7 @@ function side() {
   if (k < 0) now = `<b>${t("All sets done")}</b>`;
   else { const s = en.sets[k], warm = s.type === "w", n = warm ? 0 : en.sets.slice(0, k + 1).filter((x) => x.type !== "w").length, tg = warm ? null : planOf(en).tgt(n);
     const w = s.w || tg?.w, r = s.r || tg?.r;
-    now = `<b>${warm ? t("Warm-up set") : t("Set {n} of {m}", { n, m: work.length })}</b>${r ? `<span class="num">${w ? `${esc(w)} ${u} × ${esc(r)}` : t("{r} reps", { r: esc(r) })}</span>` : ""}`; }
+    now = `<b>${warm ? t("Warm-up set") : t("Set {n} of {m}", { n, m: work.length })}</b>${r ? `<span class="num">${w ? `<bdi>${esc(w)} ${u} × ${esc(r)}</bdi>` : t("{r} reps", { r: esc(r) })}</span>` : ""}`; }
   if (sideSlug !== en.slug || !el.firstElementChild) {
     sideSlug = en.slug;
     el.innerHTML = `<div class="card sside"><a class="sv" href="#/ex/${en.slug}" aria-label="${t("How to do {name}", { name: esc(e?.name || en.slug) })}">${e?.poster ? `<img class="hbg" src="${e.poster}" alt="">` : ""}${e?.video ? `<video src="${e.video}" poster="${e?.poster || ""}"${RM.matches ? "" : " autoplay"} muted loop playsinline preload="metadata"></video>` : e?.poster ? `<img src="${e.poster}" alt="">` : ""}</a>
@@ -324,7 +324,7 @@ function planOf(en) {
   };
   return { e, last, sug, top, tr, prev, tgt };
 }
-const wr = (w, r, u = "") => `${+w ? `${w}${u ? " " + u : ""} × ` : ""}${r}`;
+const wr = (w, r, u = "") => iso(`${+w ? `${w}${u ? " " + u : ""} × ` : ""}${r}`);
 export const restOf = (en) => S.settings.restEx?.[en.slug] ?? BY[en.slug]?.rest ?? S.settings.restDefault;
 const restLbl = (sec) => (sec ? t("{time} rest", { time: restText(sec) }) : t("rest off")); // reads as a setting ("2 min rest"), not an order
 function entryHTML(en, ei) {
@@ -352,7 +352,7 @@ function entryHTML(en, ei) {
       <div class="stepper"><input data-k="w" inputmode="decimal" enterkeyhint="next"${barb ? ` title="${t("Hold for plates")}"` : ""} placeholder="${esc(tg.w || "kg")}" value="${esc(s.w)}" aria-label="${t("Set {n} weight, {name}", { n: sn, name: xn })}"></div>
       <div class="stepper"><input data-k="r" inputmode="numeric" enterkeyhint="done" placeholder="${esc(tg.r || "—")}" value="${esc(s.r)}" aria-label="${t("Set {n} reps, {name}", { n: sn, name: xn })}"></div>
       <button class="check" data-a="done" aria-pressed="${!!s.done}" aria-label="${t("Set {n} done, {name}", { n: sn, name: xn })}">${ic("check")}</button>
-      <div class="stepline"><div><button data-a="w-" aria-label="${t("Less weight")}">−</button><span>${wStep(e)} ${u}</span><button data-a="w+" aria-label="${t("More weight")}">+</button></div>
+      <div class="stepline"><div><button data-a="w-" aria-label="${t("Less weight")}">−</button><span><bdi>${wStep(e)} ${u}</bdi></span><button data-a="w+" aria-label="${t("More weight")}">+</button></div>
         <div><button data-a="r-" aria-label="${t("Fewer reps")}">−</button><span>${t("1 rep")}</span><button data-a="r+" aria-label="${t("More reps")}">+</button></div></div></div>`; }).join("")}</div>
     <div class="xtools"><button class="btn sm" data-a="add">${ic("plus", "sm")} ${t("Set")}</button><button class="btn sm" data-a="warm">${ic("flame", "sm")} ${t("Warm-up")}</button>
       ${barb ? `<button class="btn sm" data-a="plates">${ic("calc", "sm")} ${t("Plates")}</button>` : ""}<button class="btn sm" data-a="swap">${ic("swap", "sm")} ${t("Swap")}</button></div>
@@ -479,7 +479,7 @@ function nextInfo(ei, from) {
     const n = warm ? 0 : en.sets.slice(0, k + 1).filter((x) => x.type !== "w").length, tg = warm ? null : planOf(en).tgt(n);
     const w = warm ? s.w : s.w || tg.w, r = warm ? s.r : s.r || tg.r;
     const name = BY[en.slug]?.name || en.slug, u = S.settings.unit;
-    const what = warm ? t("warm-up set") : t("set {n} of {m}", { n, m: work.length }), load = r ? ` · ${w ? `${w} ${u} × ` : ""}${r}` : "";
+    const what = warm ? t("warm-up set") : t("set {n} of {m}", { n, m: work.length }), load = r ? ` · ${iso(`${w ? `${w} ${u} × ` : ""}${r}`)}` : "";
     const text = (i === ei ? t("Next: {what}", { what }) : t("Next: {name} · {what}", { name, what })) + load;
     const fresh = !en.sets.some((x) => x.done); // Voice: a new exercise gets its name and first cue spoken
     return { text, slug: en.slug, name, set: warm ? "" : n, of: work.length, w: String(w || ""), r: String(r || ""), fam: BY[en.slug]?.family || "", newEx: i !== ei || fresh, cue: fresh ? BY[en.slug]?.cues?.[0] || "" : "" };
@@ -560,7 +560,7 @@ function restHint() {
   const blk = Tm.isRest() && S.active ? box.querySelector(`[data-ei="${restEi}"]`) || (nx.slug && box.querySelector(`[data-slug="${CSS.escape(nx.slug)}"]`)) : null;
   if (!blk) { h?.remove(); return; }
   const row = blk.querySelector(".setrow:not(.done)"), same = row && blk.dataset.slug === nx.slug, u = S.settings.unit;
-  const load = nx.r ? ` · ${nx.w ? `${nx.w} ${u} × ` : ""}${nx.r}` : "";
+  const load = nx.r ? ` · ${iso(`${nx.w ? `${nx.w} ${u} × ` : ""}${nx.r}`)}` : "";
   const next = !nx.name ? "" : same ? " · " + t("next: {what}", { what: nx.set ? t("set {n}", { n: nx.set }) : t("warm-up") }) + load : " · " + t("next: {what}", { what: nx.name }); // plain text (textContent)
   const txt = t("Resting {time}", { time: Tm.view().text }) + next;
   if (!h || h.parentElement !== (same ? row.parentElement : $(".sets", blk)) || (same && h.nextElementSibling !== row)) {
