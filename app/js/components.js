@@ -1,6 +1,6 @@
 /* Small shared view pieces (FE-12: moved out of main.js so views never import main.js). */
 import { S, save, tomb } from "./store.js";
-import { $$, esc, ic, openSheet, haptic } from "./ui.js";
+import { $$, esc, ic, openSheet, haptic, indicate, selectIn } from "./ui.js";
 import { t, N, lang } from "./i18n.js";
 
 export const MEDIA_CACHE = "gym-media-v1";
@@ -28,13 +28,27 @@ lightMQ.addEventListener("change", applyTheme);
 
 /* ================= printable guide PDFs (Q8c, app/guides, built by tools/guide/build.mjs) ================= */
 export const GUIDE_LEVELS = ["beginner", "intermediate", "advanced"];
-export function guideUrl(kind, level) {
+export const appTheme = () => (document.documentElement.dataset.theme === "dark" ? "dark" : "light");
+export function guideUrl(kind, level, theme) {
   const lv = GUIDE_LEVELS.includes(level) ? level : "beginner";
   const lg = lang();
-  const th = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+  const th = theme === "dark" || theme === "light" ? theme : appTheme(); // owner: the Printable guide sheet picks Light | Dark paper; elsewhere it follows the app
   return `guides/gym-${kind}-${lv}-${lg}-${th}.pdf`;
 }
-export const guideBtns = (level, cls = "btn sm grow") => `<div class="row"><a class="${cls}" href="${guideUrl("guide", level)}" target="_blank" rel="noopener" download>${ic("download", "sm")} ${t("Guide PDF")}</a><a class="${cls}" href="${guideUrl("poster", level)}" target="_blank" rel="noopener" download>${ic("download", "sm")} ${t("Wall poster")}</a></div>`;
+export const guideBtns = (level, cls = "btn sm grow", theme) => `<div class="row"><a class="${cls}" href="${guideUrl("guide", level, theme)}" target="_blank" rel="noopener" download>${ic("download", "sm")} ${t("Guide PDF")}</a><a class="${cls}" href="${guideUrl("poster", level, theme)}" target="_blank" rel="noopener" download>${ic("download", "sm")} ${t("Wall poster")}</a></div>`;
+
+/** Printable guide sheet: level + Light | Dark paper -> Guide PDF / Wall poster (Me > Settings and the Train "Your plan" card). */
+export function openGuideSheet(level) {
+  let lv = GUIDE_LEVELS.includes(level) ? level : GUIDE_LEVELS.includes(S.profile?.level) ? S.profile.level : "beginner", th = appTheme();
+  const seg = (id, opts, cur, label) => `<div class="seg sm block" id="${id}" role="group" aria-label="${label}">${opts.map(([v, l]) => `<button data-v="${v}" class="${cur === v ? "on" : ""}">${t(l)}</button>`).join("")}</div>`;
+  openSheet(`<h3 style="margin:0 0 4px">${t("Printable guide")}</h3><p class="muted small" style="margin:0 0 12px">${t("Your plan with photos, sets and a QR code to each exercise video. Print the wall poster for the gym, share the guide with friends.")}</p>
+    ${seg("gLv", GUIDE_LEVELS.map((l) => [l, l[0].toUpperCase() + l.slice(1)]), lv, t("Level"))}
+    <div class="mt-8">${seg("gTh", [["light", "Light"], ["dark", "Dark"]], th, t("Paper"))}</div><div class="mt-16" id="gBtns">${guideBtns(lv, "btn grow", th)}</div>`, (d) => {
+    requestAnimationFrame(() => indicate(d));
+    const pick = (id, fn) => (d.querySelector(id).onclick = (e) => { const b = e.target.closest("button"); if (!b || b.classList.contains("on")) return; selectIn(b); fn(b.dataset.v); d.querySelector("#gBtns").innerHTML = guideBtns(lv, "btn grow", th); });
+    pick("#gLv", (v) => (lv = v)); pick("#gTh", (v) => (th = v));
+  }, { half: true });
+}
 
 /* ================= shared bits ================= */
 export const tierBadge = (k, cls = "") => (k ? `<span class="tier ${k} ${cls}">${k}<small>${t("tier")}</small></span>` : "");

@@ -7,7 +7,7 @@ import { MUSCLES, MBY } from "./body.js";
 import { e1rm } from "./calc.js";
 import { setTop, routeParts } from "./nav.js";
 import { installNow, standalone } from "./install.js";
-import { applyTheme, fillIll, MEDIA_CACHE, RECENT_CACHE, tierBadge, GUIDE_LEVELS, guideBtns } from "./components.js";
+import { applyTheme, fillIll, MEDIA_CACHE, RECENT_CACHE, tierBadge, openGuideSheet } from "./components.js";
 import { lib } from "./exercise.js";
 import * as Sync from "./sync.js";
 import * as Cloud from "./cloud.js";
@@ -259,12 +259,7 @@ async function settingsPanel(host) {
     const pp = $("#persist"); if (pp) pp.onclick = async (e) => { e.preventDefault(); toast((await persist()) ? t("Storage protected") : t("Install the app first, then try again")); }; })();
   const set = (k, v) => { st[k] = v; save("settings"); haptic(); };
   const seg = (id, fn) => ($(`#${id}`).onclick = (e) => { const b = e.target.closest("button"); if (!b || b.classList.contains("on")) return; selectIn(b); fn(b.dataset.v); });
-  $("#pdfG").onclick = () => {
-    let lv = GUIDE_LEVELS.includes(S.profile?.level) ? S.profile.level : "beginner";
-    const body = () => `<h3 style="margin:0 0 4px">${t("Printable guide")}</h3><p class="muted small" style="margin:0 0 12px">${t("Your plan with photos, sets and a QR code to each exercise video. Print the wall poster for the gym, share the guide with friends.")}</p>
-      ${segH("gLv", GUIDE_LEVELS.map((l) => [l, l[0].toUpperCase() + l.slice(1)]), lv).replace('class="seg sm"', 'class="seg sm block"')}<div class="mt-16" id="gBtns">${guideBtns(lv, "btn grow")}</div>`;
-    openSheet(body(), (d) => { requestAnimationFrame(() => indicate(d)); d.querySelector("#gLv").onclick = (e) => { const b = e.target.closest("button"); if (!b || b.classList.contains("on")) return; selectIn(b); lv = b.dataset.v; d.querySelector("#gBtns").innerHTML = guideBtns(lv, "btn grow"); }; }, { half: true });
-  };
+  $("#pdfG").onclick = () => openGuideSheet();
   seg("sTheme", (v) => { set("theme", v); applyTheme(); });
   if ($("#sLang")) seg("sLang", async (v) => { set("lang", v); await flush().catch(() => {}); location.reload(); }); // exercise texts load per language at boot
   seg("sEquip", (v) => { set("equip", v); lib.mine = true; toast(t("Showing exercises for: {x}", { x: t(EQUIP_PROFILES[v].name) })); });
