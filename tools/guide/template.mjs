@@ -76,7 +76,7 @@ const T = {
     daysRange: (a, b) => (a === b ? `${a} days a week` : `${a} to ${b} days a week`), startLight: "Start light: leave 2–3 reps in the tank on every set.", plansIn: (n) => `${n} plans`,
     gt: (lv) => `${lv} guide`, gtHTML: (lv) => `${lv}<br>guide`, M: "M", W: "W", kgx: "kg ×", bwShort: "BW",
     fullGuide: "Get the full guide", fullGuideLine: "All plans, starting weights, progress examples and the app guide (PDF).",
-    G: {}, EQ: {}, WN: {}, minU: "min", sU: "s", dayN: (n) => `Day ${n}`,
+    G: {}, EQ: {}, WN: {}, minU: "min", sU: "s", dayN: (n) => `Day ${n}`, rotate: (d, n, x) => `${d} training days, ${n} workouts: do them in turn. Next week starts with Day ${x}.`,
   },
 };
 T.tr = { ...T.en, ...TR };
@@ -239,6 +239,7 @@ table.t td.big { font-size: 10pt; font-weight: 700; }
 .pfoot .tip { border-inline-start: .3mm solid var(--line); padding-inline-start: 7mm; }
 .pfoot .tip b { display: block; font-size: 12pt; font-weight: 750; margin-bottom: 1mm; } .pfoot .tip p { font-size: 11pt; color: var(--dim); line-height: 1.4; }
 .pfoot .tip p + b { margin-top: 3mm; }
+.rot { margin-top: 2.5mm; font-size: 10.5pt; font-weight: 650; color: var(--accent-text); } .pw1 .rot { font-size: 14pt; margin-top: 3mm; }
 .pw1 h1 { font-size: 64pt; } .pw1 .when { font-size: 14pt; color: var(--dim); margin-top: 2.5mm; font-weight: 500; }
 .week > div.other { background: var(--s2); color: var(--dim); }
 .prows { flex: 1; display: flex; flex-direction: column; min-height: 0; }
@@ -278,6 +279,9 @@ function kit(c) {
   const weekStrip = (p, hi = null) => `<div class="week">${p.week.map((w, i) => w == null ? `<div class="off"><i>${t.dayNames[i]}</i><b>${t.rest}</b></div>`
     : `<div class="${hi != null && w !== hi ? "other" : ""}"><i>${t.dayNames[i]}</i><b>${esc(p.workouts[w].name)}</b><small>${t.dayN(w + 1)}</small></div>`).join("")}</div>`;
   /* "Full Body" + small "Day 1" instead of "Full Body A" (owner: A / B is confusing) */
+  /* owner: "3 days a week" but only 2 workout pages was confusing -> say the workouts rotate */
+  const rot = (p) => { const on = p.week.filter((w) => w != null), n = p.workouts.length, x = (on[on.length - 1] + 1) % n;
+    return n < on.length && x !== on[0] ? `<p class="rot">${esc(t.rotate(on.length, n, x + 1))}</p>` : ""; };
   const wTitle = (w, wi) => `${esc(w.name)} <small class="dayl">${t.dayN(wi + 1)}</small>`;
   const appBlock = (q = "40mm", url = true) => `<div class="app" style="--q:${q}"><div class="qbox"><a class="qr" href="${c.site}">${c.qr(c.site)}</a><span>${t.scanApp}</span></div>
     <div><h3>${t.getApp}</h3><p class="sub">${t.getAppLine}</p>${url ? `<p class="url">mohamedattiadev.github.io/gym</p>` : ""}
@@ -286,11 +290,11 @@ function kit(c) {
   const wN = (x) => { const m = /^(.*?)( [AB])?( · Day \d+)?$/.exec(x); return t.WN[m[1]] || m[1]; };
   /* translated copy of the plan data (workout names) */
   c.data = { ...c.data, plans: c.data.plans.map((p) => ({ ...p, workouts: p.workouts.map((w) => ({ ...w, name: wN(w.name) })) })) };
-  return { t, L, exUrl, img, ill, ptx, planName, daysOf, weekStrip, wTitle, appBlock, gN, eqN };
+  return { t, L, exUrl, img, ill, ptx, planName, daysOf, weekStrip, wTitle, rot, appBlock, gN, eqN };
 }
 
 export function guideHTML(c) {
-  const K = kit(c), { t, L, exUrl, img, ill, ptx, planName, daysOf, weekStrip, wTitle, appBlock, gN, eqN } = K;
+  const K = kit(c), { t, L, exUrl, img, ill, ptx, planName, daysOf, weekStrip, wTitle, rot, appBlock, gN, eqN } = K;
   const D = c.data, plans = D.plans, rec = plans[0], lvName = t.levels[c.level];
   const fam = (e) => c.fam[e.family] || {};
   const pages = [], toc = [];
@@ -354,7 +358,7 @@ export function guideHTML(c) {
     const name = planName(p), ttl = `${t.secPlan} ${pi + 1} · ${name}`;
     page(`<div class="kicker">${t.secPlan} ${pi + 1} / ${plans.length} · ${t.days(p.days)} ${pi === 0 ? `<span class="badge" style="margin-left:2mm">${t.recommended}</span>` : ""}</div>
       <h2>${esc(name)}</h2><p class="lead">${esc(L(tx.what))}</p>
-      <div style="margin-top:5mm">${weekStrip(p)}</div>
+      <div style="margin-top:5mm">${weekStrip(p)}</div>${rot(p)}
       <div class="grid2" style="margin-top:5mm">
         <div class="card"><h3>${t.who}</h3><p class="dim small">${esc(L(tx.who))}</p><h3 style="margin-top:3mm">${t.why}</h3><p class="dim small">${esc(L(tx.why))}</p></div>
         <div class="card"><h3>${t.weeklySets}</h3><div class="bars">${sets.map(([m, n]) => `<span>${esc(gN(m))}</span><i><b style="width:${Math.round((n / maxS) * 100)}%"></b></i><em>${n}</em>`).join("")}</div>
@@ -505,7 +509,7 @@ export function guideHTML(c) {
 
 /* Wall posters: ONE A3 page per workout (readable from ~1.5 m, QR about 30 mm). Print only the pages of your plan. */
 export function posterHTML(c) {
-  const { t, exUrl, img, planName, weekStrip, wTitle } = kit(c);
+  const { t, exUrl, img, planName, weekStrip, wTitle, rot } = kit(c);
   const lvName = t.levels[c.level], fam = (e) => c.fam[e.family] || {}, guideUrl = `${c.site}guides/gym-guide-${c.level}-${c.lang}-light.pdf`;
   const page = (p, pi, w, wi) => {
     const n = w.items.length, rowH = Math.min(46, 300 / n), ph = Math.min(52, (rowH - 16) / 0.5625), q = Math.min(28, rowH - 17); /* owner: more air between the photos + room for the QR caption */
@@ -516,7 +520,7 @@ export function posterHTML(c) {
       <div><div class="kicker">${esc(lvName)} · ${esc(planName(p))} · ${t.days(p.days)} ${pi === 0 ? `<span class="badge" style="font-size:10pt;margin-left:2mm">${t.recommended}</span>` : ""}</div>
         <h1>${wTitle(w, wi)}</h1><p class="when">${days} · ${w.items.length} ${t.exercises} · ${t.min(w.min)}</p></div>
       <div class="brand" style="font-size:20pt"><img src="file://${resolve(c.root, "app/icons/icon.svg")}" alt="" style="width:12mm;height:12mm">Gym</div></div>
-    <div style="margin-top:6mm">${strip}</div>
+    <div style="margin-top:6mm">${strip}</div>${rot(p)}
     <div class="prow ph">
       <span></span><span>${t.exercise}</span><span></span><span>${t.setsReps}</span><span>${t.restCol}</span><span style="text-align:center">${t.video}</span></div>
     <div class="prows">${w.items.map((e, i) => `<div class="prow">
