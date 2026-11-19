@@ -17,6 +17,7 @@ const getAnim = (id) => (anims[id] ??= id.startsWith("p:") ? fetch(`3d/poses/${i
    {base:{...}, keys:[start, (mid), end], ecc:"out"|"back"}  — each key = segment directions in body space
    (x = the body's LEFT/outward for sided segments (mirrored for the right side), y = up, z = forward),
    e.g. "uarm":[0,-1,0.2], "farmR":[...]; "tw":{"farm":deg} twists a segment about its own axis;
+   "sp":deg bends the upper spine (spine03..01) forward (+, crunch / rounding) or back (−, extension) on top of the torso direction, which then aims the lower spine;
    "frame":deg pitches the whole body (-90 = lying on the back, author as if standing); "plant":false = feet not planted, "footL" = only the front (left) foot.
    Interpolated per sample (directions slerped), so planted feet stay put; eccentric half is slower. */
 const SEG = { torso: ["spine05", "neck01"], neck: ["neck01", "head"], clav: ["clavicle", "upperarm01"], uarm: ["upperarm01", "lowerarm01"],
@@ -44,7 +45,7 @@ function resolve(spec) { // {uarm:[..]} -> {uarmL:[..], uarmR:[-x..]}; explicit 
   }
   for (const [k, v] of Object.entries(spec.tw || {})) if (/[LR]$/.test(k)) tw[k] = v;
   for (const [k, v] of Object.entries(spec)) if (/[LR]$/.test(k) && SEG[k.slice(0, -1)]) d[k] = v;
-  return { d, tw, frame: spec.frame || 0, pos: spec.pos || [0, 0, 0] };
+  return { d, tw, frame: spec.frame || 0, pos: spec.pos || [0, 0, 0], sp: spec.sp || 0 };
 }
 /* 22c: "wrong": {"<mistake index>": {all:{..}, keys:[{..}|null], base:{..}, range:[a,b], tempo:{ecc,con,bottom}, view}} in the same pose file.
    all = merged into every key, keys[i] = merged into key i, insert:[i, key] = extra key before key i (filled from key i-1, e.g. hips rising first),
@@ -79,6 +80,7 @@ function buildClip(model, P, eqProp = null) {
       if (target[k]) { const t = new THREE.Vector3(...target[k]).normalize(); if (!(k in restDir) || r.d[k]) t.applyQuaternion(F); bw.premultiply(Q().setFromUnitVectors(dir(k), t)); }
       b.quaternion.copy(par.multiply(bw)); b.updateMatrixWorld(true);
       if (r.tw[k]) { const tq = Q().setFromAxisAngle(dir(k), THREE.MathUtils.degToRad(r.tw[k])); b.quaternion.copy(b.parent.getWorldQuaternion(Q()).invert().multiply(tq.multiply(b.getWorldQuaternion(Q())))); b.updateMatrixWorld(true); }
+      if (k === "torso" && r.sp) bendSpine(r.sp);
     }
     root.position.add(new THREE.Vector3(...r.pos));
     if (plant) { model.updateMatrixWorld(true); const f = pw(seg[pb[0]][0]).add(pw(seg[pb[1]][0])).multiplyScalar(.5);
@@ -115,6 +117,14 @@ function buildClip(model, P, eqProp = null) {
     }
     if (grip) curl();
   };
+  // two-segment spine: spread "sp" over the upper spine joints about the body's left axis (carried by spine05, so frame / torso twist are respected)
+  const upper = ["spine03", "spine02", "spine01"].map((n) => bones[n]).filter(Boolean);
+  const s5rest = bones.spine05.getWorldQuaternion(Q()).invert();
+  const bendSpine = (deg) => {
+    const left = new THREE.Vector3(1, 0, 0).applyQuaternion(bones.spine05.getWorldQuaternion(Q()).multiply(s5rest));
+    const rq = Q().setFromAxisAngle(left, THREE.MathUtils.degToRad(deg / upper.length));
+    for (const b of upper) { b.quaternion.copy(b.parent.getWorldQuaternion(Q()).invert().multiply(rq.clone().multiply(b.getWorldQuaternion(Q())))); b.updateMatrixWorld(true); }
+  };
   const aimW = (k, t) => { const [b] = seg[k]; const bw = b.getWorldQuaternion(Q()), par = b.parent.getWorldQuaternion(Q()).invert();
     bw.premultiply(Q().setFromUnitVectors(dir(k), t)); b.quaternion.copy(par.multiply(bw)); b.updateMatrixWorld(true); };
   const ulen = {}, flen = {};
@@ -128,7 +138,7 @@ function buildClip(model, P, eqProp = null) {
       const va = new THREE.Vector3(...(a.d[k] || b.d[k])).normalize(), vb = new THREE.Vector3(...(b.d[k] || a.d[k])).normalize();
       d[k] = va.clone().applyQuaternion(Q().slerp(Q().setFromUnitVectors(va, vb), u)).toArray(); }
     const tw = {}; for (const k of new Set([...Object.keys(a.tw), ...Object.keys(b.tw)])) tw[k] = (a.tw[k] || 0) * (1 - u) + (b.tw[k] || 0) * u;
-    return { d, tw, frame: a.frame + (b.frame - a.frame) * u, pos: a.pos.map((x, i) => x + (b.pos[i] - x) * u) }; };
+    return { d, tw, sp: a.sp + (b.sp - a.sp) * u, frame: a.frame + (b.frame - a.frame) * u, pos: a.pos.map((x, i) => x + (b.pos[i] - x) * u) }; };
   const [ra, rb] = P.range || [0, 1];
   const at = (u) => { u = ra + (rb - ra) * u; const n = keys.length - 1, x = Math.min(n - 1e-6, u * n), i = Math.floor(x); return lerpR(keys[i], keys[i + 1], x - i); };
   const tp = P.tempo || {}, E = tp.ecc ?? 1.6, C = tp.con ?? 1.0;
@@ -139,7 +149,7 @@ function buildClip(model, P, eqProp = null) {
   for (let i = 1; i <= N; i++) push(H0 + T1 * i / N, ezs(i / N));
   push(H0 + T1 + H1, 1);
   for (let i = 1; i <= N; i++) push(H0 + T1 + H1 + T2 * i / N, 1 - ezs(i / N));
-  const moved = [root, ...new Set(Object.values(seg).map((s) => s[0]).filter(Boolean)), ...(grip ? fingers.map((x) => x[0]) : [])];
+  const moved = [root, ...new Set(Object.values(seg).map((s) => s[0]).filter(Boolean)), ...(grip ? fingers.map((x) => x[0]) : []), ...(keys.some((k) => k.sp) ? upper : [])];
   const qv = moved.map(() => []), pv = [];
   pose(keys[0]); // fixes the anchor at the start pose
   for (const u of samples) { pose(at(u)); moved.forEach((b, i) => qv[i].push(...b.quaternion.toArray())); pv.push(...root.position.toArray()); }

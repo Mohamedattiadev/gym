@@ -273,7 +273,7 @@ const POSE3D = { "high-bar-squat": /heel|elevated|drops?\b|pause|safety|century/
   "bodyweight-row": /$^/, "bodyweight-curl": /$^/, "bodyweight-triceps-extension": /$^/,
   "triceps-push-ups": /decline|incline/i, "deficit-push-ups": /$^/, "reverse-crunch": /pelvic|seated/i,
   "v-up": /bent knees/i, "ab-rollout": /$^/,
-  "barbell-pullover": /incline/i, "dumbbell-pullover": /one arm|single/i, "decline-crunch": /sit-up/i,
+  "barbell-pullover": /incline/i, "dumbbell-pullover": /one arm|single/i, "decline-crunch": /sit-up/i, "cable-crunch": /machine/i, "thoracic-flexion-extension": /assisted/i, "spinal-flexion-extension-hyper": /$^/,
   "cable-rotation": /$^/, "seated-bicycle": /$^/,
   "front-raise": /$^/, "dead-hang": /$^/, "chest-stretch": /$^/, "quad-stretch": /$^/, "rear-cable-fly-protraction": /incline/i,
   "around-the-worlds": /$^/, "tuck-jump": /$^/, "cable-kickback": /$^/, "behind-back-barbell-raise": /$^/, "jefferson-curl": /$^/ };
