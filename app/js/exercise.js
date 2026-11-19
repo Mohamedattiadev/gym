@@ -275,6 +275,7 @@ const POSE3D = { "high-bar-squat": /heel|elevated|drops?\b|pause|safety|century/
   "v-up": /bent knees/i, "ab-rollout": /$^/,
   "barbell-pullover": /incline/i, "dumbbell-pullover": /one arm|single/i, "decline-crunch": /sit-up/i,
   "cable-rotation": /$^/, "seated-bicycle": /$^/,
+  "front-raise": /$^/, "dead-hang": /$^/, "chest-stretch": /$^/, "quad-stretch": /$^/, "rear-cable-fly-protraction": /incline/i,
   "around-the-worlds": /$^/, "tuck-jump": /$^/, "cable-kickback": /$^/, "behind-back-barbell-raise": /$^/, "jefferson-curl": /$^/ };
 export const move3d = (e) => { const m = MOVE3D[e.family]; if (m) return !NOT_SAME.test(e.name) ? m : null;
   const not = POSE3D[e.family]; return not && !not.test(e.name) ? "p:" + e.family : null; };

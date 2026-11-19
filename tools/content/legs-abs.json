@@ -1551,23 +1551,23 @@
     "title": "Quad Stretch",
     "about": "A mobility drill that lengthens the quads and hip flexors to improve recovery and range of motion.",
     "steps": [
-     "Stand tall and hold a support for balance.",
-     "Bend one knee and grab the ankle behind you.",
-     "Pull the heel toward your glutes and hold 2 seconds.",
-     "Release, repeat for the set reps, then switch legs."
+     "Kneel on a soft surface with the tops of your feet flat on the floor.",
+     "Sit back toward your heels and put your hands behind you.",
+     "Lean back slowly until you feel a stretch along the front of the thighs and hold 2 seconds.",
+     "Come back upright and repeat for the set reps."
     ],
     "cues": [
-     "Tuck your pelvis under to feel the stretch higher on the thigh.",
-     "Keep knees close together."
+     "Squeeze your glutes to feel the stretch higher on the thigh.",
+     "Keep your knees close together."
     ],
     "mistakes": [
      {
       "text": "Arching the lower back instead of stretching the quad.",
-      "fix": "Tuck your pelvis under and keep the knees close together."
+      "fix": "Squeeze your glutes, keep the ribs down and lean back only as far as the thighs allow."
      },
      {
-      "text": "Yanking the foot hard into pain.",
-      "fix": "Pull the heel gently toward your glutes, never into pain."
+      "text": "Dropping back fast into pain.",
+      "fix": "Lean back slowly and stop where the stretch is strong but not painful."
      }
     ]
    },
@@ -1575,23 +1575,23 @@
     "title": "Quad Esneme",
     "about": "Quadriceps ve kalça fleksörlerini uzatan mobilite çalışması; toparlanmayı ve hareket açıklığını iyileştirir.",
     "steps": [
-     "Dik dur ve denge için bir desteğe tutun.",
-     "Bir dizini bük ve ayak bileğini arkadan kavra.",
-     "Topuğu kalçana doğru çek ve 2 saniye tut.",
-     "Bırak, tekrar sayısını tamamla ve bacak değiştir."
+     "Ayaklarının üstü yerde düz olacak şekilde yumuşak bir zeminde diz çök.",
+     "Topuklarına doğru otur ve ellerini arkana koy.",
+     "Uyluğun önünde gerilme hissedene kadar yavaşça geriye yaslan ve 2 saniye tut.",
+     "Dik konuma dön ve tekrar sayısını tamamla."
     ],
     "cues": [
-     "Uyluğun üst kısmında hissetmek için leğeni içe devir.",
+     "Uyluğun üst kısmında hissetmek için kalçanı sık.",
      "Dizlerini birbirine yakın tut."
     ],
     "mistakes": [
      {
       "text": "Quad yerine beli kavislendirmek.",
-      "fix": "Leğeni içe devir ve dizlerini birbirine yakın tut."
+      "fix": "Kalçanı sık, göğüs kafesini aşağıda tut ve sadece uyluğun izin verdiği kadar yaslan."
      },
      {
-      "text": "Ayağı acıtacak kadar sertçe çekmek.",
-      "fix": "Topuğu kalçana doğru nazikçe çek, asla acıtacak kadar değil."
+      "text": "Hızla geriye düşüp acıtmak.",
+      "fix": "Yavaşça yaslan ve gerilme güçlü ama acısız olduğunda dur."
      }
     ]
    },
@@ -1599,23 +1599,23 @@
     "title": "تمدد الفخذ الأمامي",
     "about": "تمرين مرونة يطيل عضلات الفخذ الأمامية وثانيات الورك لتحسين التعافي والمدى الحركي.",
     "steps": [
-     "قف مستقيماً وأمسك داعماً للتوازن.",
-     "اثنِ ركبة واحدة وأمسك الكاحل خلفك.",
-     "اسحب الكعب نحو الألوية وثبّت ثانيتين.",
-     "حرّر، وكرر العدد المطلوب ثم بدّل الساق."
+     "اجثُ على سطح ناعم وظهر القدمين مسطّح على الأرض.",
+     "اجلس للخلف نحو كعبيك وضع يديك خلفك.",
+     "مِل للخلف ببطء حتى تشعر بتمدد على طول مقدمة الفخذين وثبّت ثانيتين.",
+     "عُد إلى الوضع المستقيم وكرر العدد المطلوب."
     ],
     "cues": [
-     "اقلب الحوض للداخل لتشعر بالتمدد أعلى الفخذ.",
+     "اشدّ الألوية لتشعر بالتمدد أعلى الفخذ.",
      "أبقِ الركبتين قريبتين من بعضهما."
     ],
     "mistakes": [
      {
       "text": "تقوس أسفل الظهر بدل تمدد الفخذ.",
-      "fix": "اقلب الحوض للداخل وأبقِ الركبتين قريبتين من بعضهما."
+      "fix": "اشدّ الألوية وأبقِ القفص الصدري منخفضًا ومِل للخلف بقدر ما يسمح الفخذان فقط."
      },
      {
-      "text": "شد القدم بعنف حتى الألم.",
-      "fix": "اسحب الكعب نحو الألوية بلطف ودون ألم أبداً."
+      "text": "السقوط للخلف بسرعة حتى الألم.",
+      "fix": "مِل للخلف ببطء وتوقف حين يكون التمدد قويًا دون ألم."
      }
     ]
    }

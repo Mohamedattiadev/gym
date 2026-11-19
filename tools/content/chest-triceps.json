@@ -2055,21 +2055,21 @@
    ],
    "en": {
     "title": "Chest Stretch",
-    "about": "A static stretch held for about 60 seconds to lengthen the pecs and front shoulders.",
+    "about": "A loaded stretch: lie on a flat bench and let light dumbbells hold the chest in a deep stretch for about 60 seconds.",
     "steps": [
-     "Place your forearm on a doorframe or post, elbow at shoulder height.",
-     "Step through gently until you feel a stretch across the chest.",
-     "Breathe slowly and hold for about 60 seconds.",
-     "Switch sides."
+     "Lie on a flat bench with a light dumbbell in each hand, feet on the floor.",
+     "Lower the dumbbells out to the sides, elbows bent, until you feel a stretch across the chest.",
+     "Breathe slowly and hold the bottom for about 60 seconds.",
+     "Bring the dumbbells back up over the chest to finish."
     ],
     "cues": [
      "Keep the stretch mild to moderate, never painful.",
-     "Keep the ribcage down and torso tall."
+     "Keep the shoulder blades pinned to the bench."
     ],
     "mistakes": [
      {
       "text": "Forcing the stretch and straining the shoulder.",
-      "fix": "Keep the stretch mild to moderate, never painful."
+      "fix": "Use light dumbbells and stop where the stretch is mild to moderate."
      },
      {
       "text": "Holding your breath.",
@@ -2079,21 +2079,21 @@
    },
    "tr": {
     "title": "Chest Stretch",
-    "about": "Göğüs ve ön omzu uzatmak için yaklaşık 60 saniye tutulan statik esneme.",
+    "about": "Yüklü esneme: düz sehpaya uzan, hafif dambıllar göğsü yaklaşık 60 saniye derin bir esnemede tutsun.",
     "steps": [
-     "Ön kolunu kapı kasasına ya da direğe koy, dirsek omuz hizasında.",
-     "Göğüste gerilme hissedene kadar yavaşça öne adım at.",
-     "Yavaş nefes al ve yaklaşık 60 saniye tut.",
-     "Taraf değiştir."
+     "Her elinde hafif bir dambılla düz sehpaya uzan, ayakların yerde.",
+     "Dambılları dirsekler bükülü şekilde yanlara indir, göğüste gerilme hissedene kadar.",
+     "Yavaş nefes al ve en altta yaklaşık 60 saniye tut.",
+     "Bitirmek için dambılları göğsünün üstüne geri getir."
     ],
     "cues": [
      "Gerilme hafif-orta olsun, asla ağrılı değil.",
-     "Göğüs kafesi aşağıda, gövde dik kalsın."
+     "Kürek kemiklerini sehpaya bastırılmış tut."
     ],
     "mistakes": [
      {
       "text": "Gerilmeyi zorlayıp omzu incitmek.",
-      "fix": "Gerilmeyi hafif-orta tut, asla ağrılı olmasın."
+      "fix": "Hafif dambıl kullan ve gerilme hafif-orta olduğunda dur."
      },
      {
       "text": "Nefesini tutmak.",
@@ -2103,21 +2103,21 @@
    },
    "ar": {
     "title": "Chest Stretch",
-    "about": "إطالة ثابتة لمدة 60 ثانية تقريبًا لإطالة عضلات الصدر ومقدمة الكتف.",
+    "about": "إطالة بالأوزان: استلقِ على مقعد مستوٍ ودع دمبلين خفيفين يثبّتان الصدر في إطالة عميقة لمدة 60 ثانية تقريبًا.",
     "steps": [
-     "ضع ساعدك على إطار باب أو عمود والمرفق بمستوى الكتف.",
-     "تقدّم بلطف حتى تشعر بإطالة عبر الصدر.",
-     "تنفس ببطء واثبت نحو 60 ثانية.",
-     "بدّل الجانب."
+     "استلقِ على مقعد مستوٍ ودمبل خفيف في كل يد، والقدمان على الأرض.",
+     "أنزل الدمبلين إلى الجانبين والمرفقان مثنيّان حتى تشعر بإطالة عبر الصدر.",
+     "تنفس ببطء واثبت في الأسفل نحو 60 ثانية.",
+     "أعد الدمبلين فوق الصدر للإنهاء."
     ],
     "cues": [
      "اجعل الإطالة خفيفة إلى متوسطة وليست مؤلمة أبدًا.",
-     "أبقِ القفص الصدري منخفضًا والجذع مستقيمًا."
+     "أبقِ لوحي الكتف ملتصقين بالمقعد."
     ],
     "mistakes": [
      {
       "text": "إجبار الإطالة وإجهاد الكتف.",
-      "fix": "اجعل الإطالة خفيفة إلى متوسطة وليست مؤلمة أبدًا."
+      "fix": "استخدم دمبلين خفيفين وتوقف حين تكون الإطالة خفيفة إلى متوسطة."
      },
      {
       "text": "حبس النفس.",
