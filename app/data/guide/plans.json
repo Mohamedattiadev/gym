@@ -100,9 +100,9 @@
     "ar": "كل عضلة 3 مرات أسبوعيًا · حصص قصيرة وبسيطة"
    },
    "what": {
-    "en": "Three full-body workouts a week: Monday, Wednesday, Friday. You alternate Day 1 and Day 2 with a rest day between.",
-    "tr": "Haftada üç tüm vücut antrenmanı: Pazartesi, Çarşamba, Cuma. 1. gün ve 2. günü sırayla yaparsın, arada dinlenme günü olur.",
-    "ar": "ثلاث حصص لكامل الجسم أسبوعيًا: الإثنين والأربعاء والجمعة. تتناوب بين اليوم 1 واليوم 2 مع يوم راحة بينها."
+    "en": "Three full-body workouts a week: Day 1 on Monday, Day 2 on Wednesday, Day 3 on Friday, with a rest day between. Same week every week.",
+    "tr": "Haftada üç tüm vücut antrenmanı: Pazartesi 1. gün, Çarşamba 2. gün, Cuma 3. gün, arada dinlenme günü. Her hafta aynı.",
+    "ar": "ثلاث حصص لكامل الجسم أسبوعيًا: اليوم 1 الإثنين، اليوم 2 الأربعاء، اليوم 3 الجمعة، مع يوم راحة بينها. الأسبوع نفسه كل أسبوع."
    },
    "who": {
     "en": "New lifters, or anyone back after a long break.",

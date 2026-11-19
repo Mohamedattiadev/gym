@@ -8,6 +8,7 @@ const SLOT = (group, pattern, sets, reps) => ({ group, pattern, sets, reps });
 const W = {
   fbA: ["Full Body A", [SLOT("Quads", "squat", 3, "6-10"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Lats", "v-pull", 3, "8-12"), SLOT("Hamstrings", "curl", 2, "10-12"), SLOT("Shoulders", "raise", 2, "12-15"), SLOT("Abs", "core", 2, "10-15")]],
   fbB: ["Full Body B", [SLOT("Hamstrings", "hinge", 3, "8-10"), SLOT("Shoulders", "v-push", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Chest", "h-push", 2, "8-12"), SLOT("Quads", "lunge", 2, "10-12"), SLOT("Biceps", "curl", 2, "10-15"), SLOT("Triceps", "ext", 2, "10-15")]],
+  fbC: ["Full Body C", [SLOT("Quads", "squat", 3, "8-12"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Lats", "v-pull", 3, "10-12"), SLOT("Hamstrings", "curl", 2, "10-12"), SLOT("Shoulders", "raise", 2, "12-15"), SLOT("Triceps", "ext", 2, "10-15"), SLOT("Abs", "core", 2, "10-15")]], /* owner: Day 1 / 2 / 3 every week instead of rotating 2 workouts over 3 days; C = Day 1's pattern with other exercises (used set) */
   fb2A: ["Full Body A", [SLOT("Quads", "squat", 3, "6-10"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Lats", "v-pull", 3, "8-12"), SLOT("Hamstrings", "curl", 2, "10-12"), SLOT("Shoulders", "raise", 2, "12-15"), SLOT("Biceps", "curl", 2, "10-15")]],
   fb2B: ["Full Body B", [SLOT("Hamstrings", "hinge", 3, "8-10"), SLOT("Shoulders", "v-push", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Quads", "lunge", 2, "10-12"), SLOT("Chest", "fly", 2, "10-15"), SLOT("Triceps", "ext", 2, "10-15")]],
   upA: ["Upper A", [SLOT("Chest", "h-push", 3, "6-10"), SLOT("Lats", "v-pull", 3, "8-12"), SLOT("Shoulders", "v-push", 2, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Shoulders", "raise", 3, "12-15"), SLOT("Biceps", "curl", 2, "10-12"), SLOT("Triceps", "ext", 2, "10-12")]],
@@ -25,15 +26,15 @@ const W = {
   chBk: ["Chest + Back", [SLOT("Chest", "h-push", 3, "6-10"), SLOT("Lats", "v-pull", 3, "8-12"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Chest", "fly", 2, "10-15"), SLOT("Lats", "h-pull", 2, "10-12")]],
   shAr: ["Shoulders + Arms", [SLOT("Shoulders", "v-push", 3, "8-12"), SLOT("Shoulders", "raise", 4, "12-20"), SLOT("Shoulders", "fly", 2, "12-20"), SLOT("Biceps", "curl", 3, "8-12"), SLOT("Triceps", "ext", 3, "10-12"), SLOT("Biceps", "curl", 2, "12-15"), SLOT("Triceps", "ext", 2, "12-15")]],
   chest: ["Chest", [SLOT("Chest", "h-push", 4, "6-10"), SLOT("Chest", "h-push", 3, "8-12"), SLOT("Chest", "fly", 3, "10-15"), SLOT("Chest", "fly", 2, "12-15"), SLOT("Abs", "core", 3, "10-15")]],
-  back: ["Back", [SLOT("Lats", "v-pull", 4, "6-10"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Lats", "h-pull", 3, "10-12"), SLOT("Lats", "fly", 2, "12-15"), SLOT("Traps", "raise", 3, "10-15")]],
+  back: ["Back", [SLOT("Lats", "v-pull", 4, "6-10"), SLOT("Upper Back", "h-pull", 3, "8-12"), SLOT("Lats", "h-pull", 3, "10-12"), SLOT("Lats", "v-pull", 2, "12-15"), SLOT("Traps", "raise", 3, "10-15")]],
   delts: ["Shoulders", [SLOT("Shoulders", "v-push", 4, "8-12"), SLOT("Shoulders", "raise", 4, "12-20"), SLOT("Shoulders", "fly", 3, "12-20"), SLOT("Shoulders", "raise", 3, "15-20")]],
   arms: ["Arms", [SLOT("Biceps", "curl", 3, "8-12"), SLOT("Triceps", "ext", 3, "8-12"), SLOT("Biceps", "curl", 3, "10-15"), SLOT("Triceps", "ext", 3, "10-15"), SLOT("Forearms", "curl", 2, "12-15")]],
 };
 /* week: 7 entries Mon..Sun, each an index into workouts or null (rest) */
-const P = (id, name, level, levels, days, kind, ws, week) => ({ id, name, level, levels, days, kind, workouts: ws.map((k, i) => [`${W[k][0].replace(/ [AB]$/, "")} · Day ${i + 1}`, W[k][1]]), week }); /* owner (Q8c): "Full Body · Day 1" instead of "Full Body A" (same as the PDF guides) */
+const P = (id, name, level, levels, days, kind, ws, week) => ({ id, name, level, levels, days, kind, workouts: ws.map((k, i) => [`${W[k][0].replace(/ [ABC]$/, "")} · Day ${i + 1}`, W[k][1]]), week }); /* owner (Q8c): "Full Body · Day 1" instead of "Full Body A" (same as the PDF guides) */
 export const PLANS = [
   P("fb2", "Full Body", "beginner", ["beginner", "intermediate", "advanced"], 2, "fb", ["fb2A", "fb2B"], [0, null, null, 1, null, null, null]),
-  P("beg-fb", "Full Body", "beginner", ["beginner", "intermediate"], 3, "fb", ["fbA", "fbB"], [0, null, 1, null, 0, null, null]),
+  P("beg-fb", "Full Body", "beginner", ["beginner", "intermediate"], 3, "fb", ["fbA", "fbB", "fbC"], [0, null, 1, null, 2, null, null]),
   P("ulf3", "Upper / Lower / Full", "intermediate", ["beginner", "intermediate"], 3, "ul", ["upA", "loA", "full"], [0, null, 1, null, 2, null, null]),
   P("ppl3", "Push / Pull / Legs", "intermediate", ["intermediate"], 3, "ppl", ["push", "pull", "legs"], [0, null, 1, null, 2, null, null]),
   P("int-ul", "Upper / Lower", "intermediate", ["beginner", "intermediate", "advanced"], 4, "ul", ["upA", "loA", "upB", "loB"], [0, 1, null, 2, 3, null, null]),
@@ -130,7 +131,9 @@ function fillSlot(slot, used, level) {
   const lv = LEVEL_N[level] || 2;
   const ok = (e) => e.video && hasEquip(e) && !hurts(e) && !used.has(e.slug);
   const pool = EX.filter((e) => ok(e) && e.group === slot.group && e.pattern === slot.pattern && (LEVEL_N[e.level] || 1) <= Math.max(lv, 2));
-  const best = pool.filter((e) => e.canonical).sort(byTier)[0] || pool.sort(byTier)[0] || EX.filter((e) => ok(e) && e.group === slot.group).sort(byTier)[0];
+  /* the standard (canonical) exercise first, but only when it is S or A tier — otherwise the best-ranked one (owner: plans = Jeff's S/A picks) */
+  const canon = pool.filter((e) => e.canonical).sort(byTier)[0], top = pool.sort(byTier)[0];
+  const best = (canon && /^[SA]$/.test(canon.tier) ? canon : top || canon) || EX.filter((e) => ok(e) && e.group === slot.group).sort(byTier)[0];
   if (best) used.add(best.slug);
   return best;
 }
