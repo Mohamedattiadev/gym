@@ -1,11 +1,12 @@
 /* Install prompt + steps (FE-12: out of main.js). */
 import { S, save, persist } from "./store.js";
 import { $, ic, openSheet, closeSheet, toast } from "./ui.js";
-import { rerender as route } from "./nav.js";
+import { rerender as route, setTop, go } from "./nav.js";
 import { t } from "./i18n.js";
 
 let deferredPrompt = null;
-addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); deferredPrompt = e; if (location.hash.length < 3) route(); });
+addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); deferredPrompt = e; if (location.hash.length < 3 || onInstallPage()) route(); });
+const onInstallPage = () => location.hash.startsWith("#/install");
 export const standalone = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone;
 const ua = () => navigator.userAgent;
 const isIOS = () => /iphone|ipad|ipod/i.test(ua()) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
@@ -32,10 +33,12 @@ export function installNow() {
     try { Promise.resolve(dp.prompt()).then(() => dp.userChoice).then((c) => { if (c.outcome === "accepted") toast(t("Installing Gym…"), 6000); route(); }, fail); } catch { fail(); }
   } else steps();
 }
-const sheet = (title, items, note = "") => openSheet(`<h3>${title}</h3>${items.length ? `<ol class="steps">${items.map((s) => `<li><span>${s}</span></li>`).join("")}</ol>` : ""}
-    ${note ? `<p class="muted small" style="margin:14px 0 0">${note}</p>` : ""}
-    <button class="btn primary block" style="margin-top:18px" id="gotIt">${t("Got it")}</button>`, (el) => ($("#gotIt", el).onclick = closeSheet));
-function steps() {
+const stepsHTML = ({ items, note }) => `${items.length ? `<ol class="steps">${items.map((s) => `<li><span>${s}</span></li>`).join("")}</ol>` : ""}
+    ${note ? `<p class="muted small" style="margin:14px 0 0">${note}</p>` : ""}`;
+const sheet = (title, items, note = "") => ({ head: title, items, note });
+function steps() { const x = stepsFor(); openSheet(`<h3>${x.head}</h3>${stepsHTML(x)}
+    <button class="btn primary block" style="margin-top:18px" id="gotIt">${t("Got it")}</button>`, (el) => ($("#gotIt", el).onclick = closeSheet)); }
+function stepsFor() {
   const b = browser(), desk = !coarse(), linux = /Linux/.test(ua()) && !/Android/.test(ua());
   const again = t("Just uninstalled it? Reload this page once, then try again.");
   if (isIOS()) return sheet(t("Add to Home Screen"), [t("Tap the <b>Share</b> button in Safari (bottom bar, or top right on iPad)"),
@@ -50,11 +53,32 @@ function steps() {
   else list = b === "Edge" ? [t("Click the <b>app icon</b> at the right of the address bar"), t("Or open the menu <b>…</b> → <b>Apps</b> → <b>Install this site as an app</b>"), launcher]
     : b === "Brave" ? [t("Click the <b>install icon</b> at the right of the address bar"), t("Or open the Brave menu <b>≡</b> → <b>Save and share</b> → <b>Install page as app</b>"), launcher]
     : [t("Click the <b>install icon</b> at the right of the address bar"), t("Or open the {b} menu <b>⋮</b> → <b>Cast, save and share</b> → <b>Install page as app</b>", { b }), launcher];
-  sheet(t("Install Gym"), list, `${again} ${t("iPhone: Safari → <b>Share</b> → <b>Add to Home Screen</b>.")}`);
+  return sheet(t("Install Gym"), list, `${again} ${t("iPhone: Safari → <b>Share</b> → <b>Add to Home Screen</b>.")}`);
 }
 addEventListener("appinstalled", () => {
   deferredPrompt = null; S.settings.installDismissed = 0; save("settings"); persist();
   const desk = !coarse(); // also fires when installed from the browser menu
   toast(!desk ? t("Installed · open Gym from your home screen") : /Linux/.test(ua()) ? t("Installed · find Gym in your app launcher") : t("Installed · open Gym from your apps"), 5000);
-  if (location.hash.length < 3) route();
+  if (location.hash.length < 3 || onInstallPage()) route();
 });
+
+/* Q13c #/install: the link on GitHub (README "Install" button). Opens straight to the install button or this browser's steps;
+   a fresh profile is NOT sent to onboarding first (boot only redirects "#/"), "Continue" goes there afterwards. */
+const fresh = () => !S.profile?.onboarded && !S.settings.onboarded && !S.sessions.length && !S.workouts.length;
+export function installView(view) {
+  setTop({ title: t("Install"), back: !fresh() });
+  const next = () => go(fresh() ? "#/start" : "#/");
+  let body;
+  if (standalone()) body = `<p class="muted">${t("Gym is already installed.")}</p>
+    <button class="btn primary block big" id="iGo">${t("Open Gym")}</button>`;
+  else {
+    const x = isIOS() || browser() === "Firefox" ? stepsFor() : null; // no install prompt ever comes there; elsewhere it can arrive late -> button (no prompt = steps sheet)
+    body = `<p class="muted">${t("Full screen, works offline. No store needed.")}</p>
+    ${x ? `<div class="card pad mt-12" style="text-align:start"><b>${x.head}</b>${stepsHTML(x)}</div>` : `<button class="btn primary block big" id="iDo">${ic("download", "sm")} ${t("Install")}</button>`}
+    <button class="btn ghost block mt-12" id="iGo">${t("Continue in the browser")}</button>`;
+  }
+  view.innerHTML = `<div class="inst-page tc" style="max-width:440px;margin:24px auto 0"><img src="icons/icon-192.png" alt="" width="96" height="96" style="border-radius:22px">
+    <h1 style="font-size:1.6rem;margin:14px 0 6px">${t("Install Gym")}</h1>${body}</div>`;
+  const d = $("#iDo", view); if (d) d.onclick = installNow;
+  $("#iGo", view).onclick = next;
+}

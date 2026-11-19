@@ -7,7 +7,10 @@
 **The best exercises for every muscle, a plan for your level, and a logger that stays out of your way.**
 Free. Offline. No account. No ads.
 
-[![Open the app](https://img.shields.io/badge/Open_the_app-D93A31?style=for-the-badge&logoColor=white)](https://mohamedattiadev.github.io/gym)
+[![Open the app](https://img.shields.io/badge/Open_the_app-D93A31?style=for-the-badge&logoColor=white)](https://mohamedattiadev.github.io/gym/)
+[![Install](https://img.shields.io/badge/Install-161413?style=for-the-badge&logoColor=white)](https://mohamedattiadev.github.io/gym/#/install)
+
+<sub>Works on Android, iPhone and desktop — no store needed.</sub>
 
 ![PWA](https://img.shields.io/badge/PWA-installable-161413?style=flat-square)
 ![Offline](https://img.shields.io/badge/works-offline-161413?style=flat-square)

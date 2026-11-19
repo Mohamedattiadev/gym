@@ -928,5 +928,9 @@
  "Your plan, your workouts, your progress.": "Planın, antrenmanların, gelişimin.",
  "Continue as guest": "Misafir olarak devam et",
  "You can sign in later in Me > Settings.": "Daha sonra Ben > Ayarlar'dan giriş yapabilirsin.",
- "Continue": "Devam"
+ "Continue": "Devam",
+ "Continue in the browser": "Tarayıcıda devam et",
+ "Full screen, works offline. No store needed.": "Tam ekran, çevrimdışı çalışır. Mağaza gerekmez.",
+ "Gym is already installed.": "Gym zaten yüklü.",
+ "Open Gym": "Gym'i aç"
 }

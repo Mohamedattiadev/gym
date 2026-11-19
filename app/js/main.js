@@ -7,7 +7,7 @@ import { bodyMap, leaveBodyMap } from "./bodymap.js";
 import { videos } from "./videos.js";
 import { nextRoute, routeId, live, go, routeParts, onRoute, setTop } from "./nav.js";
 import { MEDIA_CACHE, fillIll, applyTheme } from "./components.js";
-import "./install.js";
+import { installView } from "./install.js";
 import * as T from "./train.js";
 import { homeView } from "./home.js";
 import { timerView, initTimer, renderPill } from "./timer.js";
@@ -32,14 +32,14 @@ function hideSplash() {
 const view = $("#view");
 
 /* ================= router ================= */
-const TAB_OF = { "": "home", lib: "lib", ex: "lib", body: "body", train: "train", workout: "train", session: "train", pick: "train", me: "me", videos: "home", settings: "me", timer: "train", guide: "me", start: "train", profile: "me", standards: "me", nutrition: "me", plans: "train", plan: "train", warmup: "train", privacy: "me" };
+const TAB_OF = { "": "home", lib: "lib", ex: "lib", body: "body", train: "train", workout: "train", session: "train", pick: "train", me: "me", videos: "home", settings: "me", timer: "train", guide: "me", start: "train", profile: "me", standards: "me", nutrition: "me", plans: "train", plan: "train", warmup: "train", privacy: "me", install: "me" };
 let lastDepth = 0;
 function route(quiet) {
   if (quiet !== true) quiet = false;
   nextRoute();
   const [, a = "", b] = routeParts();
   const narrow = innerWidth < BP.tablet;
-  const depth = ["ex", "workout", "session", "pick", "videos", "guide", "start", "profile", "standards", "nutrition", "plans", "plan", "warmup", "privacy"].includes(a) || (a === "timer" && narrow) ? 1 : 0;
+  const depth = ["ex", "workout", "session", "pick", "videos", "guide", "start", "profile", "standards", "nutrition", "plans", "plan", "warmup", "privacy", "install"].includes(a) || (a === "timer" && narrow) ? 1 : 0;
   const back = depth < lastDepth; lastDepth = depth;
   const keep = (a === "ex" || a === "lib") && innerWidth >= BP.wide && !!$("#lpane"); // 2-pane library: only the detail pane changes
   view.onclick = null; view.oninput = null; view.onchange = null; if (!keep) view.className = "";
@@ -48,7 +48,7 @@ function route(quiet) {
   $$(".nav .navl").forEach((x) => x.classList.toggle("active", x.dataset.tab === tab));
   setTop({ back: depth > 0 });
   const fn = { "": homeView, lib: Z("libraryView", "exercise"), ex: Z("exerciseView", "exercise"), body: bodyMap, train: T.trainView, workout: T.workoutView, session: T.sessionView,
-    pick: Z("libraryView", "exercise"), me: Z("meView", "me"), guide: G("guideView"), start: G("startView"), profile: G("profileView"), standards: G("standardsView"), nutrition: G("nutritionView"), plans: G("plansView"), plan: G("plansView"), warmup: G("warmupView", "warmup"), videos, settings: Z("settingsView", "me"), privacy: Z("privacyView", "me"), timer: (x) => timerView(setTop, view, x) }[a] || homeView;
+    pick: Z("libraryView", "exercise"), me: Z("meView", "me"), guide: G("guideView"), start: G("startView"), profile: G("profileView"), standards: G("standardsView"), nutrition: G("nutritionView"), plans: G("plansView"), plan: G("plansView"), warmup: G("warmupView", "warmup"), videos, settings: Z("settingsView", "me"), privacy: Z("privacyView", "me"), install: () => installView(view), timer: (x) => timerView(setTop, view, x) }[a] || homeView;
   try { fn(b); } catch (err) { console.error(err); view.innerHTML = `<div class="empty">Something went wrong.<br><small>${esc(err.message)}</small></div>`; }
   T.updateLiveDot(); fillIll(view);
   $("#tTitle").toggleAttribute("aria-hidden", !!view.querySelector("h1")); // A11Y-14 one h1 per page for screen readers
