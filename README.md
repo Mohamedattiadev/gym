@@ -60,6 +60,27 @@ like a normal app, and every update reaches everyone the moment it's pushed.
 2. Tap **Install** (Android, desktop Chrome / Edge / Brave), or **Share → Add to Home Screen** (iPhone).
 3. Optional: **Me → Settings → Offline videos** once on Wi-Fi, so demos play in a basement gym too.
 
+### Printable guides and posters
+
+Prefer paper? Every plan level comes as a PDF in English, Turkish and Arabic, in a light (for printing) and a dark (for the screen) version.
+
+**Guide** · A4, every plan for that level: find your level, pick a plan, then each day with its exercises, sets and reps.
+
+| | English | Türkçe | العربية |
+| --- | --- | --- | --- |
+| **Beginner** | [Light](https://mohamedattiadev.github.io/gym/guides/gym-guide-beginner-en-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-guide-beginner-en-dark.pdf) | [Light](https://mohamedattiadev.github.io/gym/guides/gym-guide-beginner-tr-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-guide-beginner-tr-dark.pdf) | [Light](https://mohamedattiadev.github.io/gym/guides/gym-guide-beginner-ar-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-guide-beginner-ar-dark.pdf) |
+| **Intermediate** | [Light](https://mohamedattiadev.github.io/gym/guides/gym-guide-intermediate-en-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-guide-intermediate-en-dark.pdf) | [Light](https://mohamedattiadev.github.io/gym/guides/gym-guide-intermediate-tr-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-guide-intermediate-tr-dark.pdf) | [Light](https://mohamedattiadev.github.io/gym/guides/gym-guide-intermediate-ar-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-guide-intermediate-ar-dark.pdf) |
+| **Advanced** | [Light](https://mohamedattiadev.github.io/gym/guides/gym-guide-advanced-en-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-guide-advanced-en-dark.pdf) | [Light](https://mohamedattiadev.github.io/gym/guides/gym-guide-advanced-tr-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-guide-advanced-tr-dark.pdf) | [Light](https://mohamedattiadev.github.io/gym/guides/gym-guide-advanced-ar-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-guide-advanced-ar-dark.pdf) |
+
+**Poster** · A3, one page per workout day with the week at a glance, to print and take to the gym.
+
+| | English | Türkçe | العربية |
+| --- | --- | --- | --- |
+| **Beginner** | [Light](https://mohamedattiadev.github.io/gym/guides/gym-poster-beginner-en-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-poster-beginner-en-dark.pdf) | [Light](https://mohamedattiadev.github.io/gym/guides/gym-poster-beginner-tr-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-poster-beginner-tr-dark.pdf) | [Light](https://mohamedattiadev.github.io/gym/guides/gym-poster-beginner-ar-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-poster-beginner-ar-dark.pdf) |
+| **Intermediate** | [Light](https://mohamedattiadev.github.io/gym/guides/gym-poster-intermediate-en-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-poster-intermediate-en-dark.pdf) | [Light](https://mohamedattiadev.github.io/gym/guides/gym-poster-intermediate-tr-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-poster-intermediate-tr-dark.pdf) | [Light](https://mohamedattiadev.github.io/gym/guides/gym-poster-intermediate-ar-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-poster-intermediate-ar-dark.pdf) |
+| **Advanced** | [Light](https://mohamedattiadev.github.io/gym/guides/gym-poster-advanced-en-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-poster-advanced-en-dark.pdf) | [Light](https://mohamedattiadev.github.io/gym/guides/gym-poster-advanced-tr-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-poster-advanced-tr-dark.pdf) | [Light](https://mohamedattiadev.github.io/gym/guides/gym-poster-advanced-ar-light.pdf) · [Dark](https://mohamedattiadev.github.io/gym/guides/gym-poster-advanced-ar-dark.pdf) |
+
+
 ## Built with
 
 Plain HTML, CSS and JavaScript modules: no framework, no bundler, no tracking.
