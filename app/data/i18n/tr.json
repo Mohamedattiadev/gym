@@ -913,7 +913,6 @@
  "Sign in to keep your workouts safe and get them on your other devices. Without it, everything stays on this phone.": "Antrenmanlarını güvende tutmak ve diğer cihazlarında da görmek için giriş yap. Giriş yapmazsan her şey bu telefonda kalır.",
  "Sign in with Google": "Google ile giriş yap",
  "Sign out": "Çıkış yap",
- "Sign out on this phone? Your data stays here and in your account.": "Bu telefonda çıkış yapılsın mı? Verilerin burada ve hesabında kalır.",
  "Sign-in was cancelled.": "Giriş iptal edildi.",
  "Sign-in was not finished. Try again.": "Giriş tamamlanmadı. Tekrar dene.",
  "Signed in as {email} · last backup {d}": "{email} olarak giriş yapıldı · son yedek {d}",
@@ -936,5 +935,15 @@
  "Paper": "Kâğıt",
  "Print or share as PDF": "PDF olarak yazdır veya paylaş",
  "Or get the PDF": "Ya da PDF'i al",
- "Ready plans for each level, with photos, sets and a QR code to each exercise video. Print the wall poster for the gym, share the guide with friends.": "Her seviye için hazır planlar: fotoğraflar, setler ve her egzersiz videosuna bir QR kod. Duvar posterini salona as, rehberi arkadaşlarınla paylaş."
+ "Ready plans for each level, with photos, sets and a QR code to each exercise video. Print the wall poster for the gym, share the guide with friends.": "Her seviye için hazır planlar: fotoğraflar, setler ve her egzersiz videosuna bir QR kod. Duvar posterini salona as, rehberi arkadaşlarınla paylaş.",
+ "This phone has another account's data": "Bu telefonda başka bir hesabın verileri var",
+ "You signed in as {email}. The workouts on this phone belong to a different account.": "{email} olarak giriş yaptın. Bu telefondaki antrenmanlar farklı bir hesaba ait.",
+ "Use only this account's data": "Yalnızca bu hesabın verilerini kullan",
+ "Add this phone's data to this account": "Bu telefondaki verileri bu hesaba ekle",
+ "Sign-in cancelled. Nothing was changed.": "Giriş iptal edildi. Hiçbir şey değişmedi.",
+ "Your data is safe in your account.": "Verilerin hesabında güvende.",
+ "Sign out and remove this phone's data": "Çıkış yap ve bu telefondaki verileri sil",
+ "Sign out, keep data here": "Çıkış yap, veriler burada kalsın",
+ "Signed out. This phone's data is removed.": "Çıkış yapıldı. Bu telefondaki veriler silindi.",
+ "Could not back up. Connect to the internet first, or keep the data here.": "Yedeklenemedi. Önce internete bağlan ya da verileri burada tut."
 }

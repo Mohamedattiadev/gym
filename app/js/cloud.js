@@ -3,12 +3,13 @@
 // No libraries: OAuth PKCE + PostgREST over fetch. Sessions (tokens) live in IndexedDB key "cloud" and are never
 // put into a backup. The data itself is merged exactly like the GitHub backup (sync.js merge: ids, tombstones,
 // notes by edit time, newer-schema refusal), so two devices never overwrite each other.
-import { S, save, onSave } from "./store.js";
+import { S, save, onSave, resetUserData } from "./store.js";
 import { merge, buildBackup, parseBackup, applyData, isApplying, SyncError } from "./sync.js";
 import { t } from "./i18n.js";
 
 const TABLE = "gym_backups";
 const DEBOUNCE_MS = 20000, PULL_GAP = 60000;
+const OWNER = "gym-data-uid"; // Q20 localStorage: the account this device's data belongs to (kept after "Sign out, keep data")
 const PK = "gym-pkce"; // localStorage: PKCE verifier + the hash to return to (survives the Google redirect)
 
 let conf = null;        // null = not loaded yet, false = no config (feature hidden), {url,key}
@@ -62,6 +63,7 @@ function setSession(s) {
     access: s.access_token, refresh: s.refresh_token || prev.refresh,
     exp: s.expires_at ? s.expires_at * 1000 : Date.now() + (+s.expires_in || 3600) * 1000 };
   save("cloud");
+  if (uid) try { localStorage.setItem(OWNER, uid); } catch {}
 }
 
 async function token() {
@@ -103,7 +105,16 @@ export async function finishSignIn({ p, q }) {
   if (!code) return { ok: false, error: q.get("error_description") || t("Sign-in was cancelled.") };
   try {
     if (!(await loadConfig())) throw new SyncError(t("Sign-in was not finished. Try again."), "config");
+    let owner = null; try { owner = localStorage.getItem(OWNER); } catch {}
     setSession(await (await req("/auth/v1/token?grant_type=pkce", { method: "POST", body: { auth_code: code, code_verifier: p.ver } })).json());
+    // Q20: another account's data is on this phone -> ask instead of merging two people's workouts
+    if (owner && owner !== S.cloud.uid && hasUserData()) {
+      const { choose } = await import("./ui.js");
+      const c = await choose(t("This phone has another account's data"), t("You signed in as {email}. The workouts on this phone belong to a different account.", { email: S.cloud.email || "?" }),
+        [["only", t("Use only this account's data")], ["add", t("Add this phone's data to this account")]]);
+      if (!c) { await signOut(); try { localStorage.setItem(OWNER, owner); } catch {} return { ok: false, error: t("Sign-in cancelled. Nothing was changed.") }; }
+      if (c === "only") await resetUserData();
+    }
     hook();
     const r = await syncNow();
     return { ok: true, restored: r.restored };
@@ -115,6 +126,16 @@ export async function signOut() {
   const c = S.cloud;
   if (c?.access && conf) req("/auth/v1/logout?scope=local", { method: "POST", token: c.access }).catch(() => {}); // best effort
   S.cloud = null; lastError = null; save("cloud"); emit();
+}
+
+const hasUserData = () => ["sessions", "workouts", "favorites", "bodyweight"].some((k) => S[k]?.length) || !!S.profile;
+
+/** Q20: backs up first, then signs out and empties this device (false = the backup failed, nothing was removed). */
+export async function signOutAndRemove() {
+  try { await syncNow(); } catch { return false; }
+  await signOut(); await resetUserData();
+  try { localStorage.removeItem(OWNER); } catch {}
+  return true;
 }
 
 /** Deletes this user's Gym row (the data on this device stays), then signs out. */

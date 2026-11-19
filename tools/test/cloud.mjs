@@ -12,28 +12,33 @@ import { extname, join, resolve } from "node:path";
 const out = resolve(process.argv[2] || "cloud-shots"); mkdirSync(out, { recursive: true });
 const ROOT = resolve("app"), PORT = 8766, BASE = `http://localhost:${PORT}/`;
 const TYPES = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".json": "application/json", ".svg": "image/svg+xml", ".png": "image/png", ".webp": "image/webp", ".woff2": "font/woff2", ".webmanifest": "application/manifest+json", ".mp3": "audio/mpeg", ".mp4": "video/mp4", ".glb": "model/gltf-binary", ".jpg": "image/jpeg" };
-let row = null; const calls = [];
-const user = { id: "00000000-0000-4000-8000-000000000001", email: "tester@example.com" };
-const session = () => ({ access_token: "acc-" + Date.now(), refresh_token: "ref-" + Date.now(), expires_in: 3600, token_type: "bearer", user });
+// Q20: two fake accounts, one row each; /__as?u=2 picks the account the next Google sign-in returns
+const rows = { 1: null, 2: null }; const calls = []; let as = 1;
+const users = { 1: { id: "00000000-0000-4000-8000-000000000001", email: "tester@example.com" }, 2: { id: "00000000-0000-4000-8000-000000000002", email: "second@example.com" } };
+const session = (u = as) => ({ access_token: `acc-${u}-` + Date.now(), refresh_token: `ref-${u}-` + Date.now(), expires_in: 3600, token_type: "bearer", user: users[u] });
 const srv = http.createServer(async (q, r) => {
   const u = new URL(q.url, BASE), send = (code, body, type = "application/json") => { r.writeHead(code, { "content-type": type, "cache-control": "no-store" }); r.end(body == null ? "" : typeof body === "string" || Buffer.isBuffer(body) ? body : JSON.stringify(body)); };
   let body = ""; for await (const c of q) body += c;
   if (u.pathname.startsWith("/auth/") || u.pathname.startsWith("/rest/")) calls.push(`${q.method} ${u.pathname}${u.search}`);
   if (u.pathname === "/supabase-config.json") return send(200, { url: `http://localhost:${PORT}`, key: "anon-test" });
-  if (u.pathname === "/__row") return send(200, { row, calls });
+  if (u.pathname === "/__row") return send(200, { row: rows[1], rows, calls });
+  if (u.pathname === "/__as") { as = +u.searchParams.get("u") || 1; if (u.searchParams.has("seed") && rows[1]) { const d = structuredClone(rows[1].data); d.data.sessions = d.data.sessions.slice(0, 1).map((x) => ({ ...x, id: "u2s" })); rows[as] = { data: d, rev: 1 }; } return send(200, { as }); }
   if (u.pathname === "/auth/v1/authorize") {
     const back = u.searchParams.get("redirect_to"), ok = u.searchParams.get("provider") === "google" && u.searchParams.get("code_challenge_method") === "s256" && (u.searchParams.get("code_challenge") || "").length >= 43;
     return send(200, `<script>location.replace(${JSON.stringify(back + (ok ? "?code=e2e" : "?error=bad_request&error_description=bad+authorize+params"))})</script>`, "text/html");
   }
-  if (u.pathname === "/auth/v1/token") { const b = JSON.parse(body || "{}"); return (b.auth_code === "e2e" && b.code_verifier?.length >= 43) || b.refresh_token ? send(200, session()) : send(400, { error: "invalid_grant" }); }
+  if (u.pathname === "/auth/v1/token") { const b = JSON.parse(body || "{}"); return (b.auth_code === "e2e" && b.code_verifier?.length >= 43) || b.refresh_token ? send(200, session(b.refresh_token ? +(b.refresh_token.split("-")[1]) || as : as)) : send(400, { error: "invalid_grant" }); }
   if (u.pathname === "/auth/v1/logout") return send(204, null);
   if (u.pathname === "/rest/v1/gym_backups") {
-    if (!/^Bearer acc-/.test(q.headers.authorization || "") || q.headers.apikey !== "anon-test") return send(401, { message: "JWT" });
+    const who = +((q.headers.authorization || "").match(/^Bearer acc-(\d)-/) || [])[1];
+    if (!who || q.headers.apikey !== "anon-test") return send(401, { message: "JWT" });
+    if (!(u.searchParams.get("user_id") || "").endsWith(users[who].id) && q.method !== "POST") return send(403, { message: "RLS" });
+    let row = rows[who]; const put = (v) => { rows[who] = row = v; };
     if (q.method === "GET") return send(200, row ? [{ data: row.data, rev: row.rev }] : []);
     const b = JSON.parse(body || "null");
-    if (q.method === "POST") { if (row) return send(409, {}); row = { data: b.data, rev: 1 }; return send(201, null); }
-    if (q.method === "PATCH") { const want = +(u.searchParams.get("rev") || "").replace("eq.", ""); if (!row || row.rev !== want) return send(200, []); row = { data: b.data, rev: b.rev }; return send(200, [{ rev: b.rev }]); }
-    if (q.method === "DELETE") { row = null; return send(204, null); }
+    if (q.method === "POST") { if (row) return send(409, {}); put({ data: b.data, rev: 1 }); return send(201, null); }
+    if (q.method === "PATCH") { const want = +(u.searchParams.get("rev") || "").replace("eq.", ""); if (!row || row.rev !== want) return send(200, []); put({ data: b.data, rev: b.rev }); return send(200, [{ rev: b.rev }]); }
+    if (q.method === "DELETE") { put(null); return send(204, null); }
   }
   let p = join(ROOT, decodeURIComponent(u.pathname)); if (!p.startsWith(ROOT)) return send(403, "");
   try { if ((await stat(p)).isDirectory()) p = join(p, "index.html"); send(200, await readFile(p), TYPES[extname(p)] || "application/octet-stream"); } catch { send(404, "not found", "text/plain"); }
@@ -83,7 +88,27 @@ check(/eval: "1\|null"/.test(o2), "phone 2: local data kept, signed out");
 const o4 = await shot("phone4", [{ vp: "phone" }, { go: "#/" }, { waitFor: "#wG" }, { click: "#wG" }, { wait: 2500 }, { waitFor: ".qopt" }, { wait: 800 },
   { eval: "location.hash+'|'+!!document.querySelector('.welc')+'|'+!!document.querySelector('#obOpts')", log: true }, { shot: "welcome-new-account" }]);
 check(/eval: "#\/start\|false\|true"/.test(o4), "phone 4: new account continues with the onboarding steps");
-check(!/ERRORS/.test(o1 + o2 + o3 + o4), "no console errors");
+// Q20 phone 5: account 1 logs a workout, "Sign out, keep data here"; account 2 signs in -> the question; "Use only" =
+// account 2's data only; then "Sign out and remove this phone's data" -> phone empty, account 2's row intact
+const sess = "import('./js/store.js').then(m=>m.S.sessions.map(s=>s.id).join(',')+'|'+localStorage.getItem('gym-data-uid'))";
+const o5 = await shot("phone5", [{ vp: "phone" }, { go: "#/train" }, { waitFor: ".nav" }, { eval: fakeSession.replace("'e2e1'", "'p5a'"), wait: 400 },
+  { go: "#/me/settings" }, { waitFor: "#aIn" }, { click: "#aIn" }, { wait: 2500 }, { waitFor: "#aSync" }, { wait: 800 },
+  { click: "#aOut" }, { waitFor: "[data-c=\"keep\"]" }, { wait: 400 }, { shot: "signout-choice" }, { click: "[data-c=\"keep\"]" }, { wait: 600 }, { waitFor: "#aIn" },
+  { eval: sess, log: true },
+  { eval: "fetch('/__as?u=2&seed=1').then(r=>r.json()).then(j=>j.as)", log: true },
+  { click: "#aIn" }, { wait: 2500 }, { waitFor: "[data-c=\"only\"]" }, { wait: 400 }, { shot: "switch-choice" },
+  { eval: "document.documentElement.setAttribute('data-theme','dark')", wait: 200 }, { shot: "switch-choice-dark" }, { eval: "document.documentElement.removeAttribute('data-theme')" },
+  { click: "[data-c=\"only\"]" }, { wait: 1500 }, { waitFor: "#aSync" }, { wait: 500 },
+  { eval: sess, log: true },
+  { click: "#aOut" }, { waitFor: "[data-c=\"rm\"]" }, { click: "[data-c=\"rm\"]" }, { wait: 1500 }, { waitFor: ".nav" }, { wait: 500 },
+  { eval: sess + ".then(x=>x+'|'+location.hash)", log: true }, { shot: "after-remove" }]);
+st = await (await fetch(BASE + "__row")).json();
+check(st.rows[1]?.data.data.sessions.some((s) => s.id === "p5a") && !st.rows[1].data.data.sessions.some((s) => s.id === "u2s"), "phone 5: account 1 row has its workout, nothing of account 2");
+check(/eval: "p5a\|00000000-0000-4000-8000-000000000001"/.test(o5), "phone 5: 'keep data' sign-out kept the workout and its owner");
+check(/eval: "u2s\|00000000-0000-4000-8000-000000000002"/.test(o5), "phone 5: account switch asked; 'Use only' = account 2's data only");
+check(/eval: "\|null\|#\/"/.test(o5), "phone 5: 'remove this phone's data' emptied the phone, back Home");
+check(st.rows[2]?.data.data.sessions.map((s) => s.id).join() === "u2s", "phone 5: account 2 row intact after the remove");
+check(!/ERRORS/.test(o1 + o2 + o3 + o4 + o5), "no console errors");
 srv.close();
 console.log(fails.length ? `CLOUD TEST FAILED (${fails.length})` : "CLOUD TEST PASS");
 process.exit(fails.length ? 1 : 0);

@@ -168,6 +168,17 @@ export async function importData(text) {
   Object.assign(S, structuredClone(DEFAULTS), d, { settings: { ...DEFAULTS.settings, ...(d.settings || {}) }, active: S.active, sync: S.sync, cloud: S.cloud });
   await saveAll();
 }
+// Q20: "Sign out and remove this phone's data" — every per-person key back to empty; device settings (theme, language,
+// units, sound, voice, plates, install / onboarding flags) stay. Also drops the import undo slot, the degraded-mode copy
+// and the GitHub backup link (they hold the previous person's data / token).
+const PERSON_SETTINGS = ["restEx", "csvMap", "planMin", "planFocus", "lastBackup"];
+export async function resetUserData() {
+  const keep = { ...S.settings }; PERSON_SETTINGS.forEach((k) => delete keep[k]);
+  Object.assign(S, structuredClone(DEFAULTS), { settings: { ...DEFAULTS.settings, ...keep }, sync: null, cloud: S.cloud });
+  await saveAll(); dirty.add("sync"); await flush();
+  if (db) await tx("readwrite", (st) => { st.delete("preImport"); }).catch(() => {});
+  try { localStorage.removeItem("gymy_preImport"); if (db) localStorage.removeItem("gymy2"); } catch {}
+}
 export async function undoImport() {
   let txt = null;
   if (db) txt = await tx("readonly", (st) => st.get("preImport"));

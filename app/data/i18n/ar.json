@@ -1088,7 +1088,6 @@
  "Sign in to keep your workouts safe and get them on your other devices. Without it, everything stays on this phone.": "سجّل الدخول لتحفظ تمارينك وتجدها على أجهزتك الأخرى. بدونه يبقى كل شيء على هذا الهاتف.",
  "Sign in with Google": "تسجيل الدخول باستخدام Google",
  "Sign out": "تسجيل الخروج",
- "Sign out on this phone? Your data stays here and in your account.": "تسجيل الخروج على هذا الهاتف؟ تبقى بياناتك هنا وفي حسابك.",
  "Sign-in was cancelled.": "أُلغي تسجيل الدخول.",
  "Sign-in was not finished. Try again.": "لم يكتمل تسجيل الدخول. حاول مرة أخرى.",
  "Signed in as {email} · last backup {d}": "مسجّل الدخول باسم {email} · آخر نسخة احتياطية {d}",
@@ -1111,5 +1110,15 @@
  "Paper": "الورق",
  "Print or share as PDF": "اطبع أو شارك كملف PDF",
  "Or get the PDF": "أو احصل على ملف PDF",
- "Ready plans for each level, with photos, sets and a QR code to each exercise video. Print the wall poster for the gym, share the guide with friends.": "خطط جاهزة لكل مستوى، مع صور ومجموعات ورمز QR لفيديو كل تمرين. اطبع الملصق للنادي وشارك الدليل مع أصدقائك."
+ "Ready plans for each level, with photos, sets and a QR code to each exercise video. Print the wall poster for the gym, share the guide with friends.": "خطط جاهزة لكل مستوى، مع صور ومجموعات ورمز QR لفيديو كل تمرين. اطبع الملصق للنادي وشارك الدليل مع أصدقائك.",
+ "This phone has another account's data": "هذا الهاتف فيه بيانات حساب آخر",
+ "You signed in as {email}. The workouts on this phone belong to a different account.": "سجّلت الدخول باسم {email}. التمارين على هذا الهاتف تخص حسابًا آخر.",
+ "Use only this account's data": "استخدم بيانات هذا الحساب فقط",
+ "Add this phone's data to this account": "أضف بيانات هذا الهاتف إلى هذا الحساب",
+ "Sign-in cancelled. Nothing was changed.": "أُلغي تسجيل الدخول. لم يتغير شيء.",
+ "Your data is safe in your account.": "بياناتك محفوظة في حسابك.",
+ "Sign out and remove this phone's data": "سجّل الخروج واحذف بيانات هذا الهاتف",
+ "Sign out, keep data here": "سجّل الخروج واحتفظ بالبيانات هنا",
+ "Signed out. This phone's data is removed.": "تم تسجيل الخروج. حُذفت بيانات هذا الهاتف.",
+ "Could not back up. Connect to the internet first, or keep the data here.": "تعذّر النسخ الاحتياطي. اتصل بالإنترنت أولًا، أو احتفظ بالبيانات هنا."
 }

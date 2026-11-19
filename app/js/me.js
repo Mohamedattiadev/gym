@@ -1,7 +1,7 @@
 // Me: three tabs — Progress (week vs week, charts, PRs, bodyweight), Workouts (16-week calendar + past sessions), Settings.
 // Routes: #/me, #/me/workouts, #/me/settings (#/settings opens the Settings tab).
 import { S, save, tomb, persist, exportData, importData, undoImport, flush } from "./store.js";
-import { $, $$, esc, ic, ask, askText, openSheet, closeSheet, toast, haptic, fmtDate, fmtDur, lineChart, vBars, delta, fmtKg, indicate, selectIn, gLogo } from "./ui.js";
+import { $, $$, esc, ic, ask, askText, choose, openSheet, closeSheet, toast, haptic, fmtDate, fmtDur, lineChart, vBars, delta, fmtKg, indicate, selectIn, gLogo } from "./ui.js";
 import { EX, BY, EQUIP_PROFILES, bestOf, setsText, weeklyVolume, periodStats, exerciseStats, weekStart, WEEK, DAY, history, flaggedJoints, JOINTS } from "./data.js";
 import { MUSCLES, MBY } from "./body.js";
 import { e1rm } from "./calc.js";
@@ -395,7 +395,13 @@ function acct() {
   const on = (id, fn) => { const b = $(id, el); if (b) b.onclick = fn; };
   on("#aIn", () => Cloud.signIn());
   on("#aSync", async (e) => { e.currentTarget.disabled = true; try { await Cloud.syncNow(); toast(t("Backed up")); } catch (er) { toast(er.message, 4000); } acct(); });
-  on("#aOut", async () => { if (await ask(t("Sign out on this phone? Your data stays here and in your account."), { ok: t("Sign out") })) { await Cloud.signOut(); acct(); } });
+  on("#aOut", async () => { // Q20: two people / two accounts on one phone must not mix their workouts
+    const c = await choose(t("Sign out"), t("Your data is safe in your account."), [["rm", t("Sign out and remove this phone's data")], ["keep", t("Sign out, keep data here")]]);
+    if (c === "keep") { await Cloud.signOut(); acct(); return; }
+    if (c !== "rm") return;
+    if (await Cloud.signOutAndRemove()) { toast(t("Signed out. This phone's data is removed.")); location.replace("#/"); }
+    else toast(t("Could not back up. Connect to the internet first, or keep the data here."), 5000);
+  });
   on("#aDel", async () => {
     if (!(await ask(t("Delete everything Gym saved in your account? The data on this phone stays."), { ok: t("Delete"), danger: true }))) return;
     try { await Cloud.deleteCloudData(); toast(t("Your cloud data is deleted")); } catch (er) { toast(er.message, 4000); } acct();
