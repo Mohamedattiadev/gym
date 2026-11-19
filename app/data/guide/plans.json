@@ -8,7 +8,7 @@
    },
    "line": {
     "en": "Two short full-body sessions · for busy weeks",
-    "tr": "İki kısa tüm vücut seansı · yoğun haftalar için",
+    "tr": "İki kısa tüm vücut antrenmanı · yoğun haftalar için",
     "ar": "حصتان قصيرتان لكامل الجسم · للأسابيع المزدحمة"
    },
    "what": {
@@ -23,7 +23,7 @@
    },
    "why": {
     "en": "Two good sessions a week beat none. Each session hits every big muscle, so you keep progressing at a low time cost.",
-    "tr": "Haftada iki iyi seans, hiç yapmamaktan iyidir. Her seans büyük kasların hepsini çalıştırır, böylece az zamanla ilerlemeye devam edersin.",
+    "tr": "Haftada iki iyi antrenman, hiç yapmamaktan iyidir. Her antrenman büyük kasların hepsini çalıştırır, böylece az zamanla ilerlemeye devam edersin.",
     "ar": "حصتان جيدتان أسبوعيًا أفضل من لا شيء. كل حصة تشمل العضلات الكبيرة كلها، فتواصل التقدم بوقت قليل."
    },
    "pros": [
@@ -34,7 +34,7 @@
     },
     {
      "en": "Long rest between sessions, easy recovery",
-     "tr": "Seanslar arası uzun dinlenme, kolay toparlanma",
+     "tr": "Antrenmanlar arası uzun dinlenme, kolay toparlanma",
      "ar": "راحة طويلة بين الحصص وتعافٍ سهل"
     },
     {
@@ -62,13 +62,13 @@
    },
    "progression": {
     "en": "Double progression: stay in the rep range, add a rep each week, then add weight when every set hits the top. With few sessions, make each set count.",
-    "tr": "Çift ilerleme: tekrar aralığında kal, her hafta bir tekrar ekle; tüm setler üst sınıra çıkınca ağırlık artır. Az seans olduğu için her seti değerli kıl.",
+    "tr": "Çift ilerleme: tekrar aralığında kal, her hafta bir tekrar ekle; tüm setler üst sınıra çıkınca ağırlık artır. Az antrenman olduğu için her seti değerli kıl.",
     "ar": "التقدم المزدوج: ابقَ داخل نطاق التكرار وزد تكرارًا كل أسبوع، ثم زد الوزن عندما تبلغ كل المجموعات الحد الأعلى. مع قلة الحصص اجعل كل مجموعة مؤثرة."
    },
    "tips": [
     {
      "en": "Keep the two sessions about 3 days apart.",
-     "tr": "İki seansı yaklaşık 3 gün arayla yap.",
+     "tr": "İki antrenmanı yaklaşık 3 gün arayla yap.",
      "ar": "اجعل بين الحصتين نحو 3 أيام."
     },
     {
@@ -85,7 +85,7 @@
    "best": {
     "en": "Best for 2 days a week: full body keeps each muscle at about 2x (Jeff Nippard's minimal-time guidance).",
     "tr": "Haftada 2 gün için en iyisi: tüm vücut her kası yaklaşık 2 kez çalıştırır (Jeff Nippard'ın az zaman önerisi).",
-    "ar": "الأفضل ليومين أسبوعيًا: كامل الجسم يبقي كل عضلة عند نحو مرتين (إرشادات جيف نيبارد للوقت المحدود)."
+    "ar": "الأفضل ليومين أسبوعيًا: كامل الجسم يبقي كل عضلة عند نحو مرتين (إرشادات Jeff Nippard للوقت المحدود)."
    }
   },
   "beg-fb": {
@@ -96,7 +96,7 @@
    },
    "line": {
     "en": "Each muscle 3x a week · short, simple sessions",
-    "tr": "Her kas haftada 3 kez · kısa, basit seanslar",
+    "tr": "Her kas haftada 3 kez · kısa, basit antrenmanlar",
     "ar": "كل عضلة 3 مرات أسبوعيًا · حصص قصيرة وبسيطة"
    },
    "what": {
@@ -111,7 +111,7 @@
    },
    "why": {
     "en": "Beginners gain from frequent practice. Doing the main lifts often builds skill fast, and short sessions are easy to recover from.",
-    "tr": "Yeni başlayanlar sık pratikten fayda görür. Ana hareketleri sık yapmak tekniği hızla geliştirir ve kısa seanslardan kolay toparlanırsın.",
+    "tr": "Yeni başlayanlar sık pratikten fayda görür. Ana hareketleri sık yapmak tekniği hızla geliştirir ve kısa antrenmanlardan kolay toparlanırsın.",
     "ar": "المبتدئ يستفيد من الممارسة المتكررة. تكرار التمارين الأساسية يبني المهارة بسرعة، والحصص القصيرة سهلة التعافي."
    },
    "pros": [
@@ -122,7 +122,7 @@
     },
     {
      "en": "Short sessions, simple to follow",
-     "tr": "Kısa seanslar, takip etmesi kolay",
+     "tr": "Kısa antrenmanlar, takip etmesi kolay",
      "ar": "حصص قصيرة وسهلة المتابعة"
     },
     {
@@ -173,7 +173,7 @@
    "best": {
     "en": "Recommended for beginners: each muscle about 3x a week with simple lifts (Jeff Nippard).",
     "tr": "Yeni başlayanlara önerilir: basit hareketlerle her kas haftada yaklaşık 3 kez (Jeff Nippard).",
-    "ar": "موصى به للمبتدئين: كل عضلة نحو 3 مرات أسبوعيًا بتمارين بسيطة (جيف نيبارد)."
+    "ar": "موصى به للمبتدئين: كل عضلة نحو 3 مرات أسبوعيًا بتمارين بسيطة (Jeff Nippard)."
    }
   },
   "ulf3": {
@@ -199,7 +199,7 @@
    },
    "why": {
     "en": "Upper and lower days allow more sets per session, and the last day covers the rest. Most muscles reach 2x a week with 3 days.",
-    "tr": "Üst ve alt günler seans başına daha fazla set sağlar, son gün kalanı tamamlar. 3 günle çoğu kas haftada 2 kez çalışır.",
+    "tr": "Üst ve alt günler antrenman başına daha fazla set sağlar, son gün kalanı tamamlar. 3 günle çoğu kas haftada 2 kez çalışır.",
     "ar": "أيام العلوي والسفلي تسمح بمجموعات أكثر لكل حصة، واليوم الأخير يكمل الباقي. معظم العضلات تصل إلى مرتين أسبوعيًا بثلاثة أيام."
    },
    "pros": [
@@ -222,7 +222,7 @@
     },
     {
      "en": "Sessions are longer than full body",
-     "tr": "Seanslar tüm vücuttan uzundur",
+     "tr": "Antrenmanlar tüm vücuttan uzundur",
      "ar": "الحصص أطول من كامل الجسم"
     }
    ],
@@ -233,7 +233,7 @@
    },
    "progression": {
     "en": "Double progression: reach the top of the rep range on every set, then add weight. Deload for a week every 6–8 weeks, or sooner if you feel run down.",
-    "tr": "Çift ilerleme: tüm setlerde tekrar aralığının üstüne çık, sonra ağırlık ekle. 6–8 haftada bir hafif bir hafta (deload) yap, yorgunsan daha erken.",
+    "tr": "Çift ilerleme: tüm setlerde tekrar aralığının üstüne çık, sonra ağırlık ekle. 6–8 haftada bir hafif hafta yap, yorgunsan daha erken.",
     "ar": "التقدم المزدوج: بلغ الحد الأعلى للتكرارات في كل المجموعات ثم زد الوزن. خذ أسبوع تخفيف كل 6–8 أسابيع، أو أبكر إن شعرت بالإرهاق."
    },
    "tips": [
@@ -244,14 +244,14 @@
     },
     {
      "en": "Put your weakest muscle early in the session.",
-     "tr": "En zayıf kasını seansın başına koy.",
+     "tr": "En zayıf kasını antrenmanın başına koy.",
      "ar": "ضع عضلتك الأضعف في بداية الحصة."
     }
    ],
    "best": {
     "en": "Good for 3 days: each muscle about 2x a week without extra days (Jeff Nippard).",
     "tr": "3 gün için iyi: ekstra gün olmadan her kas haftada yaklaşık 2 kez (Jeff Nippard).",
-    "ar": "جيد لثلاثة أيام: كل عضلة نحو مرتين أسبوعيًا دون أيام إضافية (جيف نيبارد)."
+    "ar": "جيد لثلاثة أيام: كل عضلة نحو مرتين أسبوعيًا دون أيام إضافية (Jeff Nippard)."
    }
   },
   "ppl3": {
@@ -272,18 +272,18 @@
    },
    "who": {
     "en": "Intermediates who like focused sessions and can only train 3 days.",
-    "tr": "Odaklı seansları seven ve sadece 3 gün antrenman yapabilen orta seviyeliler.",
+    "tr": "Odaklı antrenmanları seven ve sadece 3 gün antrenman yapabilen orta seviyeliler.",
     "ar": "متوسطو الخبرة الذين يحبون الحصص المركّزة ولا يملكون سوى 3 أيام."
    },
    "why": {
     "en": "Each session gets many sets for its muscles, so you can train them hard and recover for a full week.",
-    "tr": "Her seans kasları için çok set içerir; onları sert çalıştırıp bir hafta boyunca toparlanabilirsin.",
+    "tr": "Her antrenman kasları için çok set içerir; onları sert çalıştırıp bir hafta boyunca toparlanabilirsin.",
     "ar": "كل حصة تضم مجموعات كثيرة لعضلاتها، فتتدرب بقوة وتتعافى أسبوعًا كاملًا."
    },
    "pros": [
     {
      "en": "High volume per muscle in one session",
-     "tr": "Tek seansta kas başına yüksek hacim",
+     "tr": "Tek antrenmanda kas başına yüksek hacim",
      "ar": "حجم عالٍ لكل عضلة في حصة واحدة"
     },
     {
@@ -311,7 +311,7 @@
    },
    "progression": {
     "en": "Double progression: add reps inside the range, then add weight. Since each muscle is hit once, push sets close to 1–2 reps from failure. Deload every 6–8 weeks.",
-    "tr": "Çift ilerleme: aralık içinde tekrar ekle, sonra ağırlık artır. Her kas 1 kez çalıştığı için setleri başarısızlığa 1–2 tekrar kala bitir. 6–8 haftada bir deload yap.",
+    "tr": "Çift ilerleme: aralık içinde tekrar ekle, sonra ağırlık artır. Her kas 1 kez çalıştığı için setleri başarısızlığa 1–2 tekrar kala bitir. 6–8 haftada bir hafif hafta yap.",
     "ar": "التقدم المزدوج: زد التكرارات داخل النطاق ثم الوزن. لأن كل عضلة تُدرَّب مرة، اقترب من الفشل بمقدار 1–2 تكرار. خفّف الحمل كل 6–8 أسابيع."
    },
    "tips": [
@@ -355,7 +355,7 @@
    },
    "why": {
     "en": "Each muscle gets two sessions with enough sets, which fits what research shows works best. The rest days keep recovery easy.",
-    "tr": "Her kas yeterli setle iki seans alır; araştırmaların en iyi çalıştığını gösterdiği düzen budur. Dinlenme günleri toparlanmayı kolaylaştırır.",
+    "tr": "Her kas yeterli setle iki antrenman alır; araştırmaların en iyi çalıştığını gösterdiği düzen budur. Dinlenme günleri toparlanmayı kolaylaştırır.",
     "ar": "كل عضلة تحصل على حصتين بمجموعات كافية، وهذا ما تُظهر الأبحاث أنه الأنسب. أيام الراحة تسهّل التعافي."
    },
    "pros": [
@@ -366,7 +366,7 @@
     },
     {
      "en": "Enough sets without very long sessions",
-     "tr": "Çok uzun seans olmadan yeterli set",
+     "tr": "Çok uzun antrenman olmadan yeterli set",
      "ar": "مجموعات كافية دون حصص طويلة جدًا"
     },
     {
@@ -383,7 +383,7 @@
     },
     {
      "en": "Sessions run longer than full body",
-     "tr": "Seanslar tüm vücuttan uzundur",
+     "tr": "Antrenmanlar tüm vücuttan uzundur",
      "ar": "الحصص أطول من كامل الجسم"
     }
    ],
@@ -394,7 +394,7 @@
    },
    "progression": {
     "en": "Double progression: add reps inside the range, then add weight when every set hits the top. Deload for a week every 6–8 weeks, or when progress stalls for 2 weeks.",
-    "tr": "Çift ilerleme: aralık içinde tekrar ekle, tüm setler üst sınıra çıkınca ağırlık artır. 6–8 haftada bir veya ilerleme 2 hafta durunca bir hafta deload yap.",
+    "tr": "Çift ilerleme: aralık içinde tekrar ekle, tüm setler üst sınıra çıkınca ağırlık artır. 6–8 haftada bir veya ilerleme 2 hafta durunca bir hafif hafta yap.",
     "ar": "التقدم المزدوج: زد التكرارات داخل النطاق، ثم زد الوزن عندما تبلغ كل المجموعات الحد الأعلى. خفّف الحمل أسبوعًا كل 6–8 أسابيع أو عندما يتوقف التقدم أسبوعين."
    },
    "tips": [
@@ -412,7 +412,7 @@
    "best": {
     "en": "Recommended for intermediates: 4 days, each muscle 2x with enough sets (Jeff Nippard).",
     "tr": "Orta seviye için önerilir: 4 gün, her kas yeterli setle 2 kez (Jeff Nippard).",
-    "ar": "موصى به للمتوسطين: 4 أيام وكل عضلة مرتين بمجموعات كافية (جيف نيبارد)."
+    "ar": "موصى به للمتوسطين: 4 أيام وكل عضلة مرتين بمجموعات كافية (Jeff Nippard)."
    }
   },
   "tl4": {
@@ -477,14 +477,14 @@
    },
    "progression": {
     "en": "Double progression: add reps inside the range, then add weight. Deload every 6–8 weeks or when you stall for 2 weeks.",
-    "tr": "Çift ilerleme: aralık içinde tekrar ekle, sonra ağırlık artır. 6–8 haftada bir veya 2 hafta durunca deload yap.",
+    "tr": "Çift ilerleme: aralık içinde tekrar ekle, sonra ağırlık artır. 6–8 haftada bir veya 2 hafta durunca hafif hafta yap.",
     "ar": "التقدم المزدوج: زد التكرارات داخل النطاق ثم الوزن. خفّف الحمل كل 6–8 أسابيع أو عند التوقف أسبوعين."
    },
    "tips": [
     {
      "en": "Start limbs days with the squat while you are fresh.",
      "tr": "Uzuv günlerine taze iken squat ile başla.",
-     "ar": "ابدأ أيام الأطراف بالسكوات وأنت نشيط."
+     "ar": "ابدأ أيام الأطراف بالقرفصاء وأنت نشيط."
     },
     {
      "en": "Shorten the arm work if the legs leave you too tired.",
@@ -537,7 +537,7 @@
     },
     {
      "en": "Easy to cut a session if you are short on time",
-     "tr": "Zaman azsa bir seansı kısaltmak kolay",
+     "tr": "Zaman azsa bir antrenmanı kısaltmak kolay",
      "ar": "سهل اختصار حصة عند ضيق الوقت"
     }
    ],
@@ -560,7 +560,7 @@
    },
    "progression": {
     "en": "Double progression: add reps inside the range, then add weight when every set hits the top. Deload for a week every 5–8 weeks.",
-    "tr": "Çift ilerleme: aralık içinde tekrar ekle, tüm setler üst sınıra çıkınca ağırlık artır. 5–8 haftada bir hafta deload yap.",
+    "tr": "Çift ilerleme: aralık içinde tekrar ekle, tüm setler üst sınıra çıkınca ağırlık artır. 5–8 haftada bir hafif hafta yap.",
     "ar": "التقدم المزدوج: زد التكرارات داخل النطاق ثم الوزن عندما تبلغ كل المجموعات الحد الأعلى. خفّف الحمل أسبوعًا كل 5–8 أسابيع."
    },
    "tips": [
@@ -578,14 +578,14 @@
    "best": {
     "en": "Recommended for advanced lifters with 5 days: most muscles 2x with high volume (Jeff Nippard).",
     "tr": "5 günü olan ileri seviye için önerilir: yüksek hacimle çoğu kas 2 kez (Jeff Nippard).",
-    "ar": "موصى به للمتقدمين بخمسة أيام: معظم العضلات مرتان بحجم عالٍ (جيف نيبارد)."
+    "ar": "موصى به للمتقدمين بخمسة أيام: معظم العضلات مرتان بحجم عالٍ (Jeff Nippard)."
    }
   },
   "bro5": {
    "name": {
     "en": "Bro split",
     "tr": "Bro split",
-    "ar": "تقسيمة الـ Bro"
+    "ar": "تقسيمة Bro"
    },
    "line": {
     "en": "One muscle group a day · each once a week",
@@ -599,12 +599,12 @@
    },
    "who": {
     "en": "Lifters who enjoy long, focused sessions and have 5 fixed days.",
-    "tr": "Uzun, odaklı seansları seven ve 5 sabit günü olanlar.",
+    "tr": "Uzun, odaklı antrenmanları seven ve 5 sabit günü olanlar.",
     "ar": "من يحب الحصص الطويلة المركّزة ولديه 5 أيام ثابتة."
    },
    "why": {
     "en": "Each muscle gets many sets in one fresh session, so the work is easy to focus on and fun to do.",
-    "tr": "Her kas, taze bir seansta çok set alır; çalışmaya odaklanmak kolay ve keyiflidir.",
+    "tr": "Her kas, taze bir antrenmanda çok set alır; çalışmaya odaklanmak kolay ve keyiflidir.",
     "ar": "كل عضلة تحصل على مجموعات كثيرة في حصة واحدة وهي منتعشة، فيسهل التركيز وتكون ممتعة."
    },
    "pros": [
@@ -638,18 +638,18 @@
    ],
    "setsPerMuscle": {
     "en": "About 10–14 hard sets per week for chest, shoulders and quads; 9 for lats; 6 for arms. Each trained once.",
-    "tr": "Göğüs, omuz ve ön bacak için haftada yaklaşık 10–14 zor set; kanat için 9; kollar için 6. Her biri 1 kez.",
+    "tr": "Göğüs, omuz ve ön bacak için haftada yaklaşık 10–14 zor set; lat için 9; kollar için 6. Her biri 1 kez.",
     "ar": "نحو 10–14 مجموعة صعبة أسبوعيًا للصدر والكتفين والفخذين، و9 للظهر العريض، و6 للذراعين. كل عضلة مرة واحدة."
    },
    "progression": {
     "en": "Double progression: add reps inside the range, then add weight. Since each muscle is trained once, push sets to 1–2 reps from failure. Deload every 6–8 weeks.",
-    "tr": "Çift ilerleme: aralık içinde tekrar ekle, sonra ağırlık artır. Her kas 1 kez çalıştığı için setleri başarısızlığa 1–2 tekrar kala bitir. 6–8 haftada bir deload yap.",
+    "tr": "Çift ilerleme: aralık içinde tekrar ekle, sonra ağırlık artır. Her kas 1 kez çalıştığı için setleri başarısızlığa 1–2 tekrar kala bitir. 6–8 haftada bir hafif hafta yap.",
     "ar": "التقدم المزدوج: زد التكرارات داخل النطاق ثم الوزن. لأن كل عضلة تُدرَّب مرة، اقترب من الفشل بمقدار 1–2 تكرار. خفّف الحمل كل 6–8 أسابيع."
    },
    "tips": [
     {
      "en": "Keep rest times honest so sessions do not drag past an hour.",
-     "tr": "Dinlenme sürelerini kısa tut, seans bir saati aşmasın.",
+     "tr": "Dinlenme sürelerini kısa tut, antrenman bir saati aşmasın.",
      "ar": "التزم بأوقات الراحة كي لا تتجاوز الحصة ساعة."
     },
     {
@@ -661,7 +661,7 @@
    "best": {
     "en": "Pick it for variety and focus. For results per hour, Upper / Lower or PPL + Upper / Lower train muscles 2x (Jeff Nippard).",
     "tr": "Çeşitlilik ve odak için seç. Zaman başına sonuç için Üst / Alt veya PPL + Üst / Alt kasları 2 kez çalıştırır (Jeff Nippard).",
-    "ar": "اختره للتنويع والتركيز. وللنتيجة مقابل الوقت، علوي / سفلي أو PPL + علوي / سفلي يدرّبان العضلات مرتين (جيف نيبارد)."
+    "ar": "اختره للتنويع والتركيز. وللنتيجة مقابل الوقت، علوي / سفلي أو PPL + علوي / سفلي يدرّبان العضلات مرتين (Jeff Nippard)."
    }
   },
   "adv-ppl": {
@@ -698,14 +698,14 @@
     },
     {
      "en": "Short, focused sessions",
-     "tr": "Kısa, odaklı seanslar",
+     "tr": "Kısa, odaklı antrenmanlar",
      "ar": "حصص قصيرة ومركّزة"
     }
    ],
    "cons": [
     {
      "en": "6 days leave little room for life or missed sessions",
-     "tr": "6 gün, hayata veya kaçan seanslara az yer bırakır",
+     "tr": "6 gün, hayata veya kaçan antrenmanlara az yer bırakır",
      "ar": "ستة أيام تترك مجالًا ضيقًا للحياة أو للحصص الفائتة"
     },
     {
@@ -717,11 +717,11 @@
    "setsPerMuscle": {
     "en": "About 18–20 hard sets per week for chest, shoulders and quads; 12 for back and hamstrings; 10 for biceps; 6 direct for triceps; 8 for calves. Each trained 2x.",
     "tr": "Göğüs, omuz ve ön bacak için haftada yaklaşık 18–20 zor set; sırt ve arka bacak için 12; biceps için 10; triceps için 6 doğrudan set; baldır için 8. Her biri 2 kez.",
-    "ar": "نحو 18–20 مجموعة صعبة أسبوعيًا للصدر والكتفين والفخذين، و12 للظهر والخلفية، و10 للبايسبس، و6 مباشرة للترايسبس، و8 للسمانة. كل عضلة مرتان."
+    "ar": "نحو 18–20 مجموعة صعبة أسبوعيًا للصدر والكتفين والفخذين، و12 للظهر والفخذ الخلفي، و10 للبايسبس، و6 مباشرة للترايسبس، و8 للسمانة. كل عضلة مرتان."
    },
    "progression": {
     "en": "Double progression: add reps inside the range, then add weight. Deload for a week every 5–6 weeks. If you stall for 2 weeks, cut a set per lift before adding more.",
-    "tr": "Çift ilerleme: aralık içinde tekrar ekle, sonra ağırlık artır. 5–6 haftada bir hafta deload yap. 2 hafta durursan daha fazla eklemeden önce her hareketten bir set çıkar.",
+    "tr": "Çift ilerleme: aralık içinde tekrar ekle, sonra ağırlık artır. 5–6 haftada bir hafif hafta yap. 2 hafta durursan daha fazla eklemeden önce her hareketten bir set çıkar.",
     "ar": "التقدم المزدوج: زد التكرارات داخل النطاق ثم الوزن. خفّف الحمل أسبوعًا كل 5–6 أسابيع. وإن توقفت أسبوعين فاحذف مجموعة من كل تمرين قبل أن تضيف أكثر."
    },
    "tips": [
@@ -739,7 +739,7 @@
    "best": {
     "en": "Recommended for advanced lifters who have 6 days: every muscle 2x with high volume (Jeff Nippard).",
     "tr": "6 günü olan ileri seviye için önerilir: yüksek hacimle her kas 2 kez (Jeff Nippard).",
-    "ar": "موصى به للمتقدمين الذين لديهم 6 أيام: كل عضلة مرتان بحجم عالٍ (جيف نيبارد)."
+    "ar": "موصى به للمتقدمين الذين لديهم 6 أيام: كل عضلة مرتان بحجم عالٍ (Jeff Nippard)."
    }
   },
   "arnold6": {
@@ -765,7 +765,7 @@
    },
    "why": {
     "en": "Pairing opposite muscles lets you alternate between them in a session. Each muscle still gets 2 sessions a week with high volume.",
-    "tr": "Zıt kasları eşleştirmek seans içinde aralarında geçiş yapmanı sağlar. Her kas yine yüksek hacimle haftada 2 seans alır.",
+    "tr": "Zıt kasları eşleştirmek antrenman içinde aralarında geçiş yapmanı sağlar. Her kas yine yüksek hacimle haftada 2 antrenman alır.",
     "ar": "قرن العضلات المتقابلة يتيح التناوب بينها في الحصة. وتحصل كل عضلة على حصتين أسبوعيًا بحجم عالٍ."
    },
    "pros": [
@@ -783,7 +783,7 @@
    "cons": [
     {
      "en": "6 days and long sessions need time and recovery",
-     "tr": "6 gün ve uzun seanslar zaman ve toparlanma ister",
+     "tr": "6 gün ve uzun antrenmanlar zaman ve toparlanma ister",
      "ar": "ستة أيام وحصص طويلة تحتاج وقتًا وتعافيًا"
     },
     {
@@ -795,11 +795,11 @@
    "setsPerMuscle": {
     "en": "About 16–20 hard sets per week for chest, shoulders and quads; 10–12 for back, biceps, triceps and hamstrings; 8 for calves. Each trained 2x.",
     "tr": "Göğüs, omuz ve ön bacak için haftada yaklaşık 16–20 zor set; sırt, biceps, triceps ve arka bacak için 10–12; baldır için 8. Her biri 2 kez.",
-    "ar": "نحو 16–20 مجموعة صعبة أسبوعيًا للصدر والكتفين والفخذين، و10–12 للظهر والبايسبس والترايسبس والخلفية، و8 للسمانة. كل عضلة مرتان."
+    "ar": "نحو 16–20 مجموعة صعبة أسبوعيًا للصدر والكتفين والفخذين، و10–12 للظهر والبايسبس والترايسبس والفخذ الخلفي، و8 للسمانة. كل عضلة مرتان."
    },
    "progression": {
     "en": "Double progression: add reps inside the range, then add weight. Deload for a week every 5–6 weeks.",
-    "tr": "Çift ilerleme: aralık içinde tekrar ekle, sonra ağırlık artır. 5–6 haftada bir hafta deload yap.",
+    "tr": "Çift ilerleme: aralık içinde tekrar ekle, sonra ağırlık artır. 5–6 haftada bir hafif hafta yap.",
     "ar": "التقدم المزدوج: زد التكرارات داخل النطاق ثم الوزن. خفّف الحمل أسبوعًا كل 5–6 أسابيع."
    },
    "tips": [
@@ -832,7 +832,7 @@
    "days": "2–4",
    "about": {
     "en": "Every muscle in every session. Simple, time-efficient and great for beginners or busy weeks.",
-    "tr": "Her seansta tüm kaslar. Basit, zaman açısından verimli; yeni başlayanlar ve yoğun haftalar için ideal.",
+    "tr": "Her antrenmanda tüm kaslar. Basit, zaman açısından verimli; yeni başlayanlar ve yoğun haftalar için ideal.",
     "ar": "كل العضلات في كل حصة. بسيط وموفّر للوقت وممتاز للمبتدئين والأسابيع المزدحمة."
    }
   },
@@ -854,8 +854,8 @@
    "id": "ppl",
    "name": {
     "en": "Push / Pull / Legs",
-    "tr": "İtme / Çekme / Bacak",
-    "ar": "دفع / سحب / ساقان"
+    "tr": "Push / Pull / Legs",
+    "ar": "Push / Pull / Legs"
    },
    "days": "3–6",
    "about": {
@@ -897,7 +897,7 @@
    "name": {
     "en": "Bro split",
     "tr": "Bro split",
-    "ar": "تقسيمة الـ Bro"
+    "ar": "تقسيمة Bro"
    },
    "days": "5",
    "about": {
@@ -916,7 +916,7 @@
    "days": "4–6",
    "about": {
     "en": "Bring up a lagging muscle for 6–8 weeks. Add 4–6 sets for it and train it first in the session. Cut back slightly on muscles that are already strong so total work stays manageable.",
-    "tr": "Geride kalan bir kası 6–8 hafta öne çıkar. Ona 4–6 set ekle ve seansın başında çalıştır. Toplam yük yönetilebilir kalsın diye zaten güçlü kaslarda biraz azalt.",
+    "tr": "Geride kalan bir kası 6–8 hafta öne çıkar. Ona 4–6 set ekle ve antrenmanın başında çalıştır. Toplam yük yönetilebilir kalsın diye zaten güçlü kaslarda biraz azalt.",
     "ar": "ركّز على عضلة متأخرة لمدة 6–8 أسابيع. أضف لها 4–6 مجموعات ودرّبها في بداية الحصة، وقلّل قليلًا من العضلات القوية أصلًا ليبقى الحمل الكلي محتملًا."
    }
   }
@@ -924,7 +924,7 @@
  "progression": {
   "title": {
    "en": "How to progress",
-   "tr": "Nasıl ilerlersin",
+   "tr": "Nasıl ilerlenir",
    "ar": "كيف تتقدّم"
   },
   "points": [
@@ -946,11 +946,11 @@
    {
     "en": "Small jumps win. Add the smallest weight step available, usually 1–2.5 kg.",
     "tr": "Küçük adımlar kazandırır. Mevcut en küçük ağırlık artışını kullan, genelde 1–2,5 kg.",
-    "ar": "الزيادات الصغيرة تنتصر. أضف أصغر زيادة متاحة، عادة 1–2.5 كغ."
+    "ar": "الزيادات الصغيرة تنتصر. أضف أصغر زيادة متاحة، عادة 1–2.5 kg."
    },
    {
     "en": "Deload when progress stalls for 2+ weeks, joints ache or motivation drops: one easy week with about half the sets.",
-    "tr": "İlerleme 2+ hafta durursa, eklemler ağrırsa veya motivasyon düşerse deload yap: yaklaşık yarı set ile bir hafif hafta.",
+    "tr": "İlerleme 2+ hafta durursa, eklemler ağrırsa veya motivasyon düşerse hafif hafta yap: setlerin yaklaşık yarısıyla kolay bir hafta.",
     "ar": "خفّف الحمل إذا توقف التقدم أسبوعين أو أكثر، أو آلمتك المفاصل، أو قلّ حماسك: أسبوع سهل بنحو نصف المجموعات."
    }
   ]
