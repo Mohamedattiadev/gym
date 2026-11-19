@@ -3,6 +3,7 @@
 // One guide per level = every plan of that level (recommended first); one A3 poster page per plan.
 import { readFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
+import { TR, AR } from "./i18n.mjs";
 import { startKg, perHand, BODY, REF, e1rm, pctFor, progression, stepOf } from "./start.mjs";
 
 /* UI words (the app's own wording); tr/ar come with block 21 */
@@ -73,11 +74,16 @@ const T = {
     weekN: (n) => `Week ${n}`, date: "Date", blank: "Blank log sheet", blankLine: "For any workout. Copy this page as often as you need.",
     made: "Made with Gym, a free workout app.", progShort: "Add a rep each week. When every set hits the top of the range, add the smallest weight step.",
     daysRange: (a, b) => (a === b ? `${a} days a week` : `${a} to ${b} days a week`), startLight: "Start light: leave 2–3 reps in the tank on every set.", plansIn: (n) => `${n} plans`,
+    gt: (lv) => `${lv} guide`, gtHTML: (lv) => `${lv}<br>guide`, M: "M", W: "W", kgx: "kg ×", bwShort: "BW",
+    fullGuide: "Get the full guide", fullGuideLine: "All plans, starting weights, progress examples and the app guide (PDF).",
+    G: {}, EQ: {}, WN: {}, minU: "min", sU: "s", dayN: (n) => `Day ${n}`,
   },
 };
+T.tr = { ...T.en, ...TR };
+T.ar = { ...T.en, ...AR };
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-const fmtRest = (s) => (s >= 60 ? `${Math.floor(s / 60)}${s % 60 ? `:${String(s % 60).padStart(2, "0")}` : ""} min` : `${s} s`);
+const fmtRest = (s, t) => (s >= 60 ? `${Math.floor(s / 60)}${s % 60 ? `:${String(s % 60).padStart(2, "0")}` : ""} ${t.minU}` : `${s} ${t.sU}`);
 const reps = (r) => String(r).replace("-", "–");
 const kgS = (n) => `${+(+n).toFixed(2)}`;
 const THEME = {
@@ -92,7 +98,7 @@ function css(root, kind, theme) {
 @page { size: ${kind === "poster" ? "A3" : "A4"}; margin: 0; }
 :root { ${THEME[theme] || THEME.light} }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { background: var(--paper); color: var(--ink); font-family: Inter, system-ui, sans-serif; font-feature-settings: "tnum" 1, "cv11" 1; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+html, body { background: var(--paper); color: var(--ink); font-family: Inter, "Noto Sans Arabic", system-ui, sans-serif; font-feature-settings: "tnum" 1, "cv11" 1; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 a { color: inherit; text-decoration: none; }
 .page { width: 210mm; height: 297mm; padding: 15mm 15mm 16mm; position: relative; overflow: hidden; break-after: page; display: flex; flex-direction: column; background: var(--paper); }
 .top { display: flex; align-items: center; gap: 3mm; font-size: 8pt; font-weight: 600; color: var(--faint); letter-spacing: .02em; padding-bottom: 3mm; margin-bottom: 7mm; border-bottom: .25mm solid var(--line); }
@@ -113,8 +119,8 @@ p, li { font-size: 10pt; line-height: 1.5; }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; } .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
 .badge { display: inline-block; font-size: 7.5pt; font-weight: 700; letter-spacing: .02em; color: var(--on-accent); background: var(--accent); border-radius: 1.2mm; padding: .6mm 2mm; vertical-align: 2px; }
 .chip { display: inline-block; font-size: 7.5pt; font-weight: 650; color: var(--dim); border: .25mm solid var(--line2); border-radius: 1.2mm; padding: .5mm 1.8mm; }
-ul.dots { list-style: none; } ul.dots li { padding-left: 4.5mm; position: relative; margin-top: 1.4mm; }
-ul.dots li::before { content: ""; position: absolute; left: 0; top: 2.2mm; width: 1.6mm; height: 1.6mm; border-radius: 50%; background: var(--line2); }
+ul.dots { list-style: none; } ul.dots li { padding-inline-start: 4.5mm; position: relative; margin-top: 1.4mm; }
+ul.dots li::before { content: ""; position: absolute; inset-inline-start: 0; top: 2.2mm; width: 1.6mm; height: 1.6mm; border-radius: 50%; background: var(--line2); }
 ul.dots.acc li::before { background: var(--accent); }
 .steps { display: grid; gap: 4mm; } .step { display: grid; grid-template-columns: 8mm 1fr; gap: 3mm; align-items: start; }
 .step > i { font-style: normal; width: 7mm; height: 7mm; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-weight: 750; font-size: 10pt; display: grid; place-items: center; }
@@ -124,10 +130,13 @@ ul.dots.acc li::before { background: var(--accent); }
 .week > div.off { background: transparent; border: .25mm dashed var(--line2); color: var(--faint); }
 .week i { display: block; font-style: normal; font-size: 7pt; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; opacity: .85; }
 .week b { display: block; font-size: 8.5pt; font-weight: 700; margin-top: .8mm; line-height: 1.15; }
+.week small { display: block; font-size: 6.5pt; font-weight: 600; opacity: .8; margin-top: .4mm; }
+.poster .week small { font-size: 9pt; }
+small.dayl { font-size: .45em; font-weight: 650; color: var(--accent-text); letter-spacing: 0; vertical-align: .35em; margin-inline-start: .3em; }
 .bars { display: grid; grid-template-columns: 23mm 1fr 7mm; gap: 1.8mm 3mm; align-items: center; font-size: 8.5pt; }
 .bars i { height: 2.4mm; border-radius: 1.2mm; background: var(--s2); position: relative; overflow: hidden; }
-.bars i b { position: absolute; inset: 0 auto 0 0; background: var(--accent); border-radius: 1.2mm; }
-.bars em { font-style: normal; text-align: right; font-weight: 700; }
+.bars i b { position: absolute; inset-block: 0; inset-inline-start: 0; background: var(--accent); border-radius: 1.2mm; }
+.bars em { font-style: normal; text-align: end; font-weight: 700; }
 .qr { background: #fff; padding: 1.3mm; border-radius: 1.5mm; display: block; flex: none; }
 .qr svg { display: block; width: 100%; height: 100%; }
 .tierb { font-size: 6.5pt; font-weight: 700; border: .25mm solid var(--line2); border-radius: 1mm; padding: .1mm 1.1mm; color: var(--dim); }
@@ -165,7 +174,7 @@ ul.dots.acc li::before { background: var(--accent); }
 .wk.big .ex .qr { width: 19mm; height: 19mm; padding: 1.1mm; } .wk.big .ex .sr { font-size: 14pt; }
 /* tables */
 table.t { width: 100%; border-collapse: collapse; font-size: 9pt; }
-table.t th { text-align: left; font-size: 7pt; color: var(--faint); text-transform: uppercase; letter-spacing: .05em; font-weight: 650; padding: 0 2mm 1.5mm 0; }
+table.t th { text-align: start; font-size: 7pt; color: var(--faint); text-transform: uppercase; letter-spacing: .05em; font-weight: 650; padding: 0 2mm 1.5mm 0; }
 table.t td { border-top: .25mm solid var(--line); padding: 1.8mm 2mm 1.8mm 0; vertical-align: top; line-height: 1.35; }
 table.t td.n { font-weight: 650; } table.t td.c, table.t th.c { text-align: center; } table.t .hl { color: var(--accent-text); font-weight: 750; }
 table.t tr.grp td { border-top: 0; padding-top: 3.5mm; font-size: 7.5pt; font-weight: 750; text-transform: uppercase; letter-spacing: .06em; color: var(--accent-text); }
@@ -178,6 +187,7 @@ table.t td.big { font-size: 10pt; font-weight: 700; }
 .swg { display: grid; grid-template-columns: 1fr 1fr; gap: 0 6mm; }
 .swg > div { border-top: .25mm solid var(--line); padding: 2.2mm 0; font-size: 8.5pt; line-height: 1.45; break-inside: avoid; }
 .swg b { font-weight: 700; } .swg .dim { font-size: 7.5pt; }
+[dir=rtl] .sr, [dir=rtl] .rs, [dir=rtl] .st b, [dir=rtl] .prog td, [dir=rtl] td.c, [dir=rtl] .bars em, [dir=rtl] .meta .sr { direction: ltr; unicode-bidi: isolate; }
 .ill { color: var(--accent); } .ill svg { width: 100%; height: 100%; display: block; }
 /* phone shots */
 .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm; }
@@ -188,9 +198,9 @@ table.t td.big { font-size: 10pt; font-weight: 700; }
 .shots .cap b { display: block; font-size: 10pt; font-weight: 700; } .shots .cap p { font-size: 8.5pt; color: var(--dim); line-height: 1.4; margin-top: .4mm; }
 /* log */
 .logt { width: 100%; border-collapse: collapse; table-layout: fixed; }
-.logt th { font-size: 7pt; color: var(--faint); text-transform: uppercase; letter-spacing: .05em; font-weight: 650; text-align: left; padding: 0 1.5mm 1.5mm; }
+.logt th { font-size: 7pt; color: var(--faint); text-transform: uppercase; letter-spacing: .05em; font-weight: 650; text-align: start; padding: 0 1.5mm 1.5mm; }
 .logt td { border: .25mm solid var(--line2); height: var(--rh, 7.2mm); font-size: 6.5pt; color: var(--faint); padding: 0 1.5mm; vertical-align: middle; }
-.logt td.exn { border-left: 0; font-size: 8pt; color: var(--ink); font-weight: 650; line-height: 1.2; padding-left: 0; }
+.logt td.exn { border-inline-start: 0; font-size: 8pt; color: var(--ink); font-weight: 650; line-height: 1.2; padding-inline-start: 0; }
 .logt td.exn span { display: block; font-weight: 500; color: var(--dim); font-size: 7pt; }
 .logt tr.first td { border-top: .5mm solid var(--ink); } .logt td.sn { text-align: center; color: var(--dim); }
 /* contents */
@@ -224,9 +234,26 @@ table.t td.big { font-size: 10pt; font-weight: 700; }
 .pfoot { display: grid; grid-template-columns: auto 1fr 1fr; gap: 8mm; align-items: center; margin-top: 6mm; }
 .pfoot .qr { width: 44mm; height: 44mm; padding: 2.5mm; border: .25mm solid var(--line); }
 .pfoot h2 { font-size: 24pt; margin: 0; } .pfoot p { font-size: 12pt; }
-.pfoot .tip { border-left: .3mm solid var(--line); padding-left: 7mm; }
+.pfoot .tip { border-inline-start: .3mm solid var(--line); padding-inline-start: 7mm; }
 .pfoot .tip b { display: block; font-size: 12pt; font-weight: 750; margin-bottom: 1mm; } .pfoot .tip p { font-size: 11pt; color: var(--dim); line-height: 1.4; }
 .pfoot .tip p + b { margin-top: 3mm; }
+.pw1 h1 { font-size: 64pt; } .pw1 .when { font-size: 14pt; color: var(--dim); margin-top: 2.5mm; font-weight: 500; }
+.week > div.other { background: var(--s2); color: var(--dim); }
+.prows { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.prow { flex: 1; padding: 3mm 0; display: grid; grid-template-columns: 11mm var(--ph) 1fr 44mm 24mm var(--q); gap: 5mm; align-items: center; border-top: .35mm solid var(--line); min-height: 0; }
+.prow.ph { flex: none; border: 0; margin-top: 7mm; padding-bottom: 2mm; font-size: 9pt; color: var(--faint); text-transform: uppercase; letter-spacing: .06em; font-weight: 650; }
+.prow > i { font-style: normal; width: 10mm; height: 10mm; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-weight: 800; font-size: 15pt; display: grid; place-items: center; }
+.prow > img, .prow > span.ph { width: var(--ph); height: calc(var(--ph) * .5625); border-radius: 2.5mm; object-fit: cover; display: block; background: var(--s2); }
+.prow .nm { font-size: 21pt; font-weight: 750; line-height: 1.12; letter-spacing: -.015em; display: block; }
+.prow .cue { font-size: 11.5pt; color: var(--dim); line-height: 1.35; margin-top: 1.5mm; }
+.prow .sr { font-size: 27pt; font-weight: 800; letter-spacing: -.02em; white-space: nowrap; }
+.prow .rs { font-size: 15pt; font-weight: 650; color: var(--dim); white-space: nowrap; }
+.prow .qr { width: var(--q); height: var(--q); padding: 1.5mm; border: .3mm solid var(--line); }
+.ptips { font-size: 11pt; color: var(--dim); line-height: 1.4; margin-top: 4mm; } .ptips b { color: var(--ink); font-weight: 700; }
+.pfoot2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-top: 4mm; }
+.pfoot2 .card { display: grid; grid-template-columns: auto 1fr; gap: 5mm; align-items: center; padding: 4.5mm; }
+.pfoot2 .qr { width: 34mm; height: 34mm; padding: 2mm; border: .25mm solid var(--line); }
+.pfoot2 h2 { font-size: 18pt; margin: 0 0 1mm; } .pfoot2 p { font-size: 10.5pt; line-height: 1.35; } .pfoot2 p.b { font-weight: 650; margin-top: 2mm; }
 .pex.stack { grid-template-columns: var(--pw) 1fr; grid-template-areas: "ph qr" "tx tx"; gap: 1.5mm 3mm; align-content: center; }
 .pex.stack > img, .pex.stack > span.ph { grid-area: ph; } .pex.stack > div { grid-area: tx; } .pex.stack > a.qr { grid-area: qr; justify-self: end; align-self: end; }
 .pex.stack .meta { margin-top: .5mm; }
@@ -245,16 +272,23 @@ function kit(c) {
   const ptx = (id) => c.text.plans.plans[id] || {};
   const planName = (p) => L(ptx(p.id).name) || p.name;
   const daysOf = (p, w) => t.dayNames.filter((_, i) => p.week[i] === w).join(", ");
-  const weekStrip = (p) => `<div class="week">${p.week.map((w, i) => w == null ? `<div class="off"><i>${t.dayNames[i]}</i><b>${t.rest}</b></div>`
-    : `<div><i>${t.dayNames[i]}</i><b>${esc(p.workouts[w].name)}</b></div>`).join("")}</div>`;
+  /* hi = workout index to highlight (poster): the other training days turn grey */
+  const weekStrip = (p, hi = null) => `<div class="week">${p.week.map((w, i) => w == null ? `<div class="off"><i>${t.dayNames[i]}</i><b>${t.rest}</b></div>`
+    : `<div class="${hi != null && w !== hi ? "other" : ""}"><i>${t.dayNames[i]}</i><b>${esc(p.workouts[w].name)}</b><small>${t.dayN(w + 1)}</small></div>`).join("")}</div>`;
+  /* "Full Body" + small "Day 1" instead of "Full Body A" (owner: A / B is confusing) */
+  const wTitle = (w, wi) => `${esc(w.name)} <small class="dayl">${t.dayN(wi + 1)}</small>`;
   const appBlock = (q = "40mm", url = true) => `<div class="app" style="--q:${q}"><div class="qbox"><a class="qr" href="${c.site}">${c.qr(c.site)}</a><span>${t.scanApp}</span></div>
     <div><h3>${t.getApp}</h3><p class="sub">${t.getAppLine}</p>${url ? `<p class="url">mohamedattiadev.github.io/gym</p>` : ""}
       <div class="inst">${t.inst.map(([h, p]) => `<div><b>${h}</b><p>${esc(p)}</p></div>`).join("")}</div></div></div>`;
-  return { t, L, exUrl, img, ill, ptx, planName, daysOf, weekStrip, appBlock };
+  const gN = (x) => t.G[x] || x, eqN = (x) => t.EQ[x] || x;
+  const wN = (x) => { const m = /^(.*?)( [AB])?$/.exec(x); return t.WN[m[1]] || m[1]; };
+  /* translated copy of the plan data (workout names) */
+  c.data = { ...c.data, plans: c.data.plans.map((p) => ({ ...p, workouts: p.workouts.map((w) => ({ ...w, name: wN(w.name) })) })) };
+  return { t, L, exUrl, img, ill, ptx, planName, daysOf, weekStrip, wTitle, appBlock, gN, eqN };
 }
 
 export function guideHTML(c) {
-  const K = kit(c), { t, L, exUrl, img, ill, ptx, planName, daysOf, weekStrip, appBlock } = K;
+  const K = kit(c), { t, L, exUrl, img, ill, ptx, planName, daysOf, weekStrip, wTitle, appBlock, gN, eqN } = K;
   const D = c.data, plans = D.plans, rec = plans[0], lvName = t.levels[c.level];
   const fam = (e) => c.fam[e.family] || {};
   const pages = [], toc = [];
@@ -263,8 +297,8 @@ export function guideHTML(c) {
   const page = (body, { id, title, tocTitle, sub, cls = "" } = {}) => {
     if (id && !sub) sec++;
     if (id) toc.push({ id, title: tocTitle || title, sub: !!sub, sec, n: pages.length + 3 });
-    const head = title ? `<div class="top"><span class="no">${String(sec).padStart(2, "0")}</span><b>${esc(title)}</b><span class="sp"></span><span>${esc(lvName)} ${t.guide}</span></div>` : "";
-    pages.push(`<section class="page ${cls}"${id ? ` id="${id}"` : ""}>${head}${body}<div class="foot"><span><b>Gym</b> · ${esc(lvName)} ${t.guide}</span><span>${t.page} %N%</span></div></section>`);
+    const head = title ? `<div class="top"><span class="no">${String(sec).padStart(2, "0")}</span><b>${esc(title)}</b><span class="sp"></span><span>${esc(t.gt(lvName))}</span></div>` : "";
+    pages.push(`<section class="page ${cls}"${id ? ` id="${id}"` : ""}>${head}${body}<div class="foot"><span><b>Gym</b> · ${esc(t.gt(lvName))}</span><span>${t.page} %N%</span></div></section>`);
   };
   const pageOf = (id) => toc.find((x) => x.id === id)?.n ?? "";
 
@@ -301,16 +335,16 @@ export function guideHTML(c) {
     const m = startKg(e, REF.male, "male", c.level), w = startKg(e, REF.female, "female", c.level);
     if (m == null) return `<div class="st faint">—</div>`;
     if (m === 0) return `<div class="st"><b>${t.bw}</b></div>`;
-    return `<div class="st"><b>M ${kgS(m)} kg</b><br>W ${kgS(w)} kg${perHand(e) ? `<small>${t.each}</small>` : ""}</div>`;
+    return `<div class="st"><b>${t.M} ${kgS(m)} kg</b><br>${t.W} ${kgS(w)} kg${perHand(e) ? `<small>${t.each}</small>` : ""}</div>`;
   };
   const wkCard = (p, w, wi) => {
     const total = w.items.reduce((a, x) => a + +x.sets, 0);
-    return `<div class="wk big"><div class="wkh"><h3>${esc(w.name)}</h3><span>${daysOf(p, wi)}</span><span class="sp"></span><span>${w.items.length} ${t.exercises} · ${total} ${t.sets} · ${t.min(w.min)}</span></div>
+    return `<div class="wk big"><div class="wkh"><h3>${wTitle(w, wi)}</h3><span>${daysOf(p, wi)}</span><span class="sp"></span><span>${w.items.length} ${t.exercises} · ${total} ${t.sets} · ${t.min(w.min)}</span></div>
       <div class="thead"><span>${t.exercise}</span><span></span><span>${t.setsReps}</span><span>${t.restCol}</span><span>${t.start}</span><span>${t.video}</span></div>
       <div class="rows">${w.items.map((e) => `<div class="ex">${img(e)}
-        <div><a class="nm" href="${exUrl(e.slug)}">${esc(e.name)}</a><div class="meta">${esc(e.group)} · ${esc(e.equipment.join(", "))} ${e.tier ? `<span class="tierb ${e.tier}">${e.tier}</span>` : ""}</div>
+        <div><a class="nm" href="${exUrl(e.slug)}">${esc(e.name)}</a><div class="meta">${esc(gN(e.group))} · ${esc(e.equipment.map(eqN).join(", "))}</div>
           ${fam(e).cues?.[0] ? `<div class="cue">${esc(fam(e).cues[0])}</div>` : ""}</div>
-        <div class="sr">${e.sets} × ${reps(e.reps)}</div><div class="rs">${fmtRest(e.rest || 90)}</div>${startCell(e)}
+        <div class="sr">${e.sets} × ${reps(e.reps)}</div><div class="rs">${fmtRest(e.rest || 90, t)}</div>${startCell(e)}
         <a href="${exUrl(e.slug)}" class="qr">${c.qr(exUrl(e.slug))}</a></div>`).join("")}</div></div>`;
   };
   plans.forEach((p, pi) => {
@@ -321,7 +355,7 @@ export function guideHTML(c) {
       <div style="margin-top:5mm">${weekStrip(p)}</div>
       <div class="grid2" style="margin-top:5mm">
         <div class="card"><h3>${t.who}</h3><p class="dim small">${esc(L(tx.who))}</p><h3 style="margin-top:3mm">${t.why}</h3><p class="dim small">${esc(L(tx.why))}</p></div>
-        <div class="card"><h3>${t.weeklySets}</h3><div class="bars">${sets.map(([m, n]) => `<span>${esc(m)}</span><i><b style="width:${Math.round((n / maxS) * 100)}%"></b></i><em>${n}</em>`).join("")}</div>
+        <div class="card"><h3>${t.weeklySets}</h3><div class="bars">${sets.map(([m, n]) => `<span>${esc(gN(m))}</span><i><b style="width:${Math.round((n / maxS) * 100)}%"></b></i><em>${n}</em>`).join("")}</div>
           <p class="dim tiny" style="margin-top:2.5mm">${esc(L(tx.setsPerMuscle))}</p></div>
         <div class="card"><h3>${t.pros}</h3><ul class="dots acc">${(tx.pros || []).map((x) => `<li class="small">${esc(L(x))}</li>`).join("")}</ul></div>
         <div class="card"><h3>${t.cons}</h3><ul class="dots">${(tx.cons || []).map((x) => `<li class="small">${esc(L(x))}</li>`).join("")}</ul></div>
@@ -339,10 +373,10 @@ export function guideHTML(c) {
   const ORDER = ["Chest", "Shoulders", "Lats", "Upper Back", "Traps", "Biceps", "Triceps", "Forearms", "Quads", "Hamstrings", "Glutes", "Calves", "Abs"];
   const exs = [...seen.values()].sort((a, b) => (ORDER.indexOf(a.group) - ORDER.indexOf(b.group)) || a.name.localeCompare(b.name));
   const rowsOf = (list) => { let g = ""; return list.map((e) => {
-    const head = e.group !== g ? `<tr class="grp"><td colspan="8">${esc((g = e.group))}</td></tr>` : "";
+    const head = e.group !== g ? `<tr class="grp"><td colspan="8">${esc(gN((g = e.group)))}</td></tr>` : "";
     const cells = [...BODY.male.map((b) => startKg(e, b, "male", c.level)), ...BODY.female.map((b) => startKg(e, b, "female", c.level))];
-    return head + `<tr><td class="n">${esc(e.name)}<span class="faint" style="font-weight:400"> · ${esc(e.equipment[0] || "")}${perHand(e) ? ` (${t.each})` : ""}</span></td>
-      ${cells.map((k, i) => `<td class="c ${i === 1 || i === 4 ? "big" : ""}">${k == null ? "—" : k === 0 ? "BW" : kgS(k)}</td>`).join("")}</tr>`; }).join(""); };
+    return head + `<tr><td class="n">${esc(e.name)}<span class="faint" style="font-weight:400"> · ${esc(eqN(e.equipment[0] || ""))}${perHand(e) ? ` (${t.each})` : ""}</span></td>
+      ${cells.map((k, i) => `<td class="c ${i === 1 || i === 4 ? "big" : ""}">${k == null ? "—" : k === 0 ? t.bwShort : kgS(k)}</td>`).join("")}</tr>`; }).join(""); };
   const thead = `<tr><th>${t.exercise}</th>${BODY.male.map((b) => `<th class="c">${t.man} ${b}</th>`).join("")}${BODY.female.map((b) => `<th class="c">${t.woman} ${b}</th>`).join("")}</tr>`;
   const ex0 = rec.workouts[0].items.find((e) => startKg(e, REF.male, "male", c.level) > 0) || rec.workouts[0].items[0];
   const [lo0, hi0] = String(ex0.reps).split("-").map(Number);
@@ -398,7 +432,7 @@ export function guideHTML(c) {
   /* ---- swaps + pain (recommended plan) ---- */
   const J = c.text.joints;
   page(`<h2>${t.secSwap}</h2><p class="lead">${t.swapsLine}</p>
-    <div class="swg" style="margin-top:4mm">${rec.workouts.flatMap((w) => w.items).map((e) => `<div><b>${esc(e.name)}</b> <span class="dim">${esc(e.equipment.join(", "))}</span><div style="font-size:8pt">${e.swaps.map((x) => `<a href="${exUrl(x.slug)}">${esc(x.name)}</a> <span class="dim">${esc(x.equipment[0] || "")}</span>`).join(" · ")}</div></div>`).join("")}</div>
+    <div class="swg" style="margin-top:4mm">${rec.workouts.flatMap((w) => w.items).map((e) => `<div><b>${esc(e.name)}</b> <span class="dim">${esc(e.equipment.map(eqN).join(", "))}</span><div style="font-size:8pt">${e.swaps.map((x) => `<a href="${exUrl(x.slug)}">${esc(x.name)}</a> <span class="dim">${esc(eqN(x.equipment[0] || ""))}</span>`).join(" · ")}</div></div>`).join("")}</div>
     <h3 style="margin-top:6mm">${t.pain}</h3>
     <div class="grid3" style="gap:3mm">${Object.values(J).map((j) => `<div class="card" style="padding:3.5mm"><b class="small" style="font-weight:700">${esc(L(j.name))}</b>
       <ul class="dots">${(j.tips?.[c.lang] || j.tips?.en || []).slice(0, 2).map((x) => `<li class="tiny">${esc(x)}</li>`).join("")}</ul></div>`).join("")}</div>`, { id: "swap", title: t.secSwap });
@@ -433,11 +467,11 @@ export function guideHTML(c) {
     const items = w ? w.items : Array.from({ length: 8 }, () => ({ name: "", sets: 3, reps: "" }));
     return `<h2>${esc(title)}</h2><p class="dim small" style="margin-bottom:4mm">${line}</p>
       <table class="logt" style="--rh:${rowH}mm"><colgroup><col style="width:40mm"><col style="width:6mm">${"<col>".repeat(6)}</colgroup>
-      <tr><th style="padding-left:0">${t.exercise}</th><th></th>${[1, 2, 3, 4, 5, 6].map((n) => `<th>${t.weekN(n)}</th>`).join("")}</tr>
+      <tr><th style="padding-inline-start:0">${t.exercise}</th><th></th>${[1, 2, 3, 4, 5, 6].map((n) => `<th>${t.weekN(n)}</th>`).join("")}</tr>
       <tr><td class="exn" style="font-weight:500;color:var(--dim)">${t.date}</td><td class="sn"></td>${"<td></td>".repeat(6)}</tr>
-      ${items.map((e) => Array.from({ length: +e.sets }, (_, s) => `<tr class="${s === 0 ? "first" : ""}">${s === 0 ? `<td class="exn" rowspan="${e.sets}">${esc(e.name)}${e.reps ? `<span>${e.sets} × ${reps(e.reps)}</span>` : ""}</td>` : ""}<td class="sn">${s + 1}</td>${"<td>kg ×</td>".repeat(6)}</tr>`).join("")).join("")}</table>`;
+      ${items.map((e) => Array.from({ length: +e.sets }, (_, s) => `<tr class="${s === 0 ? "first" : ""}">${s === 0 ? `<td class="exn" rowspan="${e.sets}">${esc(e.name)}${e.reps ? `<span>${e.sets} × ${reps(e.reps)}</span>` : ""}</td>` : ""}<td class="sn">${s + 1}</td>${`<td>${t.kgx}</td>`.repeat(6)}</tr>`).join("")).join("")}</table>`;
   };
-  rec.workouts.forEach((w, i) => page(logPage(w, `${planName(rec)} · ${w.name}`, t.logLine), i === 0 ? { id: "log", title: t.secLog } : { title: t.secLog }));
+  rec.workouts.forEach((w, i) => page(logPage(w, `${planName(rec)} · ${w.name} (${t.dayN(i + 1)})`, t.logLine), i === 0 ? { id: "log", title: t.secLog } : { title: t.secLog }));
   page(logPage(null, t.blank, t.blankLine), { title: t.secLog });
 
   /* ---- sources ---- */
@@ -450,55 +484,50 @@ export function guideHTML(c) {
   /* ---- cover + contents (built last, they need page numbers) ---- */
   const cover = `<section class="page cover"><div class="band">
       <div class="brand"><img src="file://${resolve(c.root, "app/icons/icon.svg")}" alt="">Gym</div>
-      <h1>${esc(lvName)}<br>${t.guide}</h1><div class="kick" style="margin-top:4mm">${t.plansIn(plans.length)} · ${t.daysRange(Math.min(...plans.map((p) => p.days)), Math.max(...plans.map((p) => p.days)))}</div>
+      <h1>${t.gtHTML(esc(lvName))}</h1><div class="kick" style="margin-top:4mm">${t.plansIn(plans.length)} · ${t.daysRange(Math.min(...plans.map((p) => p.days)), Math.max(...plans.map((p) => p.days)))}</div>
       <p>${esc(t.lvlDesc[c.level])} ${esc(L(ptx(rec.id).best) || "")}</p>
       <div class="pl">${plans.map((p, i) => `<span class="${i === 0 ? "rec" : ""}">${esc(planName(p))} · ${p.days}d</span>`).join("")}</div></div>
     <div class="body"><div class="ill" style="width:78mm;height:68mm;margin:2mm auto 0">${ill("hero-start")}</div>
       <div class="card" style="margin-top:auto">${appBlock("40mm")}</div></div></section>`;
   const use = t.use.map(([h, p]) => [h, p.replace("{level}", "%P:level%").replace("{choose}", "%P:choose%").replace("{start}", "%P:start%").replace("{prog}", "%P:prog%")]);
-  const contents = `<section class="page"><div class="top"><span class="no">00</span><b>${t.contents}</b><span class="sp"></span><span>${esc(lvName)} ${t.guide}</span></div>
+  const contents = `<section class="page"><div class="top"><span class="no">00</span><b>${t.contents}</b><span class="sp"></span><span>${esc(t.gt(lvName))}</span></div>
     <div class="grid2" style="grid-template-columns:1fr 1fr;gap:10mm">
       <div><h2>${t.contents}</h2><div class="toc" style="margin-top:3mm">${toc.map((x) => `<a href="#${x.id}" class="${x.sub || x.id.startsWith("plan-") ? "sub" : ""}"><i>${x.id.startsWith("plan-") ? "" : String(x.sec).padStart(2, "0")}</i><span>${esc(x.title)}</span><em>${x.n}</em></a>`).join("")}</div></div>
       <div><h2>${t.howToUse}</h2><div class="steps" style="margin-top:5mm;gap:5mm">${use.map(([h, p], i) => `<div class="step"><i>${i + 1}</i><div><b>${h}</b><p>${esc(p)}</p></div></div>`).join("")}</div>
         <div class="card tint" style="margin-top:7mm"><p class="small">${t.scanEx}</p></div></div></div>
-    <div class="foot"><span><b>Gym</b> · ${esc(lvName)} ${t.guide}</span><span>${t.page} 2</span></div></section>`;
+    <div class="foot"><span><b>Gym</b> · ${esc(t.gt(lvName))}</span><span>${t.page} 2</span></div></section>`;
   let html = [cover, contents, ...pages.map((p, i) => p.replace("%N%", i + 3))].join("");
   html = html.replace(/%P:([\w-]+)%/g, (_, id) => pageOf(id));
-  return `<!doctype html><html lang="${c.lang}" dir="${c.lang === "ar" ? "rtl" : "ltr"}"><head><meta charset="utf-8"><title>Gym · ${esc(lvName)} ${t.guide}</title>${css(c.root, "guide", c.theme)}</head><body>${html}</body></html>`;
+  return `<!doctype html><html lang="${c.lang}" dir="${c.lang === "ar" ? "rtl" : "ltr"}"><head><meta charset="utf-8"><title>Gym · ${esc(t.gt(lvName))}</title>${css(c.root, "guide", c.theme)}</head><body>${html}</body></html>`;
 }
 
+/* Wall posters: ONE A3 page per workout (readable from ~1.5 m, QR about 30 mm). Print only the pages of your plan. */
 export function posterHTML(c) {
-  const { t, L, exUrl, img, ptx, planName, daysOf, weekStrip } = kit(c);
-  const lvName = t.levels[c.level];
-  const one = (p, pi) => {
-    const n = p.workouts.length, cols = n <= 3 ? n : n === 4 ? 2 : 3, rowsN = Math.ceil(n / cols);
-    const maxItems = Math.max(...p.workouts.map((w) => w.items.length));
-    /* row height available per exercise -> photo / font / QR size */
-    const inCell = n % cols !== 0 && rowsN > 1; /* empty grid cell -> the app + tips card goes there, no footer */
-    const gridH = 262 + (inCell ? 62 : 0) - (rowsN - 1) * 6, rowH = (gridH / rowsN - 31) / maxItems;
-    const colW = (267 - (cols - 1) * 6) / cols - 10;
-    const pq = Math.max(11, Math.min(18, rowH - 3.5, colW * 0.18)); let pw = Math.min(colW * 0.32, (rowH - 3.5) / 0.5625, 44);
-    let textW = colW - pw - pq - 8, pf = Math.max(9.5, Math.min(15, rowH * 0.55, textW / 2.4));
-    /* tall narrow cells (3 workouts in one row): photo + QR on top, text below */
-    const stack = cols === 3 && rowsN === 1 && rowH >= 32;
-    if (stack) { pw = Math.min(colW - pq - 4, (rowH - 15) / 0.5625); pf = 12; }
-    return `<section class="poster">
+  const { t, exUrl, img, planName, weekStrip, wTitle } = kit(c);
+  const lvName = t.levels[c.level], fam = (e) => c.fam[e.family] || {}, guideUrl = `${c.site}guides/gym-guide-${c.level}-${c.lang}-light.pdf`;
+  const page = (p, pi, w, wi) => {
+    const n = w.items.length, rowH = Math.min(46, 300 / n), ph = Math.min(60, (rowH - 12) / 0.5625), q = Math.min(30, rowH - 10);
+    const days = t.dayNames.filter((_, i) => p.week[i] === wi).join(", ");
+    const strip = weekStrip(p, wi);
+    return `<section class="poster pw1" style="--ph:${ph.toFixed(1)}mm;--q:${q.toFixed(1)}mm">
     <div style="display:flex;justify-content:space-between;align-items:flex-start">
-      <div><div class="kicker">${esc(lvName)} · ${t.days(p.days)} ${pi === 0 ? `<span class="badge" style="font-size:10pt;margin-left:2mm">${t.recommended}</span>` : ""}</div><h1>${esc(planName(p))}</h1></div>
+      <div><div class="kicker">${esc(lvName)} · ${esc(planName(p))} · ${t.days(p.days)} ${pi === 0 ? `<span class="badge" style="font-size:10pt;margin-left:2mm">${t.recommended}</span>` : ""}</div>
+        <h1>${wTitle(w, wi)}</h1><p class="when">${days} · ${w.items.length} ${t.exercises} · ${t.min(w.min)}</p></div>
       <div class="brand" style="font-size:20pt"><img src="file://${resolve(c.root, "app/icons/icon.svg")}" alt="" style="width:12mm;height:12mm">Gym</div></div>
-    <div style="margin-top:6mm">${weekStrip(p)}</div>
-    <div class="pgrid" style="grid-template-columns:repeat(${cols},minmax(0,1fr));grid-template-rows:repeat(${rowsN},minmax(0,1fr));--pw:${pw.toFixed(1)}mm;--pq:${pq.toFixed(1)}mm;--pf:${pf.toFixed(1)}pt">
-      ${p.workouts.map((w, wi) => `<div class="pw"><h2>${esc(w.name)}</h2><div class="when">${daysOf(p, wi)} · ${t.min(w.min)}</div>
-        <div class="rows">${w.items.map((e) => `<div class="pex${stack ? " stack" : ""}">${img(e)}<div><a class="nm" href="${exUrl(e.slug)}">${esc(e.name)}</a><div class="meta"><span class="sr">${e.sets} × ${reps(e.reps)}</span><span>${t.restCol} ${fmtRest(e.rest || 90)}</span></div></div>
-          <a href="${exUrl(e.slug)}" class="qr">${c.qr(exUrl(e.slug))}</a></div>`).join("")}</div></div>`).join("")}
-      ${inCell ? `<div class="pw pcell"><a href="${c.site}" class="qr">${c.qr(c.site)}</a><h2>${t.getApp}</h2><p class="dim">${t.getAppLine}</p><p style="font-weight:650">${t.scanEx}</p>
-        <div class="tip"><b>${t.secProg}</b><p>${t.progShort}</p><b>${t.secStart}</b><p>${t.startLight}</p></div></div>` : ""}
-    </div>
-    ${inCell ? "" : `<div class="pfoot card" style="padding:6mm">
-      <a href="${c.site}" class="qr">${c.qr(c.site)}</a>
-      <div><h2>${t.getApp}</h2><p class="dim" style="margin-top:1.5mm">${t.getAppLine}</p><p style="margin-top:3mm;font-weight:650">${t.scanEx}</p></div>
-      <div class="tip"><b>${t.secProg}</b><p>${t.progShort}</p><b>${t.secStart}</b><p>${t.startLight}</p></div>
-    </div>`}</section>`;
+    <div style="margin-top:6mm">${strip}</div>
+    <div class="prow ph">
+      <span></span><span>${t.exercise}</span><span></span><span>${t.setsReps}</span><span>${t.restCol}</span><span style="text-align:center">${t.video}</span></div>
+    <div class="prows">${w.items.map((e, i) => `<div class="prow">
+      <i>${i + 1}</i>${img(e)}
+      <div><a class="nm" href="${exUrl(e.slug)}">${esc(e.name)}</a>${fam(e).cues?.[0] ? `<p class="cue">${esc(fam(e).cues[0])}</p>` : ""}</div>
+      <b class="sr">${e.sets} × ${reps(e.reps)}</b><span class="rs">${fmtRest(e.rest || 90, t)}</span>
+      <a href="${exUrl(e.slug)}" class="qr">${c.qr(exUrl(e.slug))}</a></div>`).join("")}</div>
+    <p class="ptips"><b>${t.secProg}:</b> ${t.progShort} <b>${t.secStart}:</b> ${t.startLight}</p>
+    <div class="pfoot2">
+      <div class="card"><a href="${c.site}" class="qr">${c.qr(c.site)}</a><div><h2>${t.getApp}</h2><p class="dim">${t.getAppLine}</p><p class="b">${t.scanEx}</p></div></div>
+      <div class="card"><a href="${guideUrl}" class="qr">${c.qr(guideUrl)}</a><div><h2>${t.fullGuide}</h2><p class="dim">${t.fullGuideLine}</p></div></div>
+    </div></section>`;
   };
-  return `<!doctype html><html lang="${c.lang}" dir="${c.lang === "ar" ? "rtl" : "ltr"}"><head><meta charset="utf-8"><title>Gym · ${esc(lvName)} posters</title>${css(c.root, "poster", c.theme)}</head><body>${c.data.plans.map(one).join("")}</body></html>`;
+  const pages = c.data.plans.flatMap((p, pi) => p.workouts.map((w, wi) => page(p, pi, w, wi)));
+  return `<!doctype html><html lang="${c.lang}" dir="${c.lang === "ar" ? "rtl" : "ltr"}"><head><meta charset="utf-8"><title>Gym · ${esc(lvName)} posters</title>${css(c.root, "poster", c.theme)}</head><body>${pages.join("")}</body></html>`;
 }

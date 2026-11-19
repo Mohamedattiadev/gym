@@ -1,5 +1,5 @@
 // Printable guide (block 25 / Q8): wall poster (A3) + full guide (A4) per level and language, built from the app's own data.
-// Usage: node tools/guide/build.mjs [outDir=docs/guide] [levels=beginner] [langs=en] [base=http://localhost:8765/]  (env THEMES=light,dark)
+// Usage: node tools/guide/build.mjs [outDir=app/guides] [levels=beginner] [langs=en] [base=http://localhost:8765/]  (env THEMES=light,dark)
 //   e.g. node tools/guide/build.mjs docs/guide beginner,intermediate,advanced en,tr,ar
 // Needs the local server (cd app && python3 -m http.server 8765), chromium, qrencode; pdftoppm for the PNG check pages.
 // The plans are built IN the app (plans.js buildPlan with a fresh profile = full gym, 60 min, no focus), so the PDF lists
@@ -11,7 +11,7 @@ import { fileURLToPath } from "node:url";
 import { guideHTML, posterHTML } from "./template.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
-const [outArg = "docs/guide", lvArg = "beginner", langArg = "en", base = "http://localhost:8765/"] = process.argv.slice(2);
+const [outArg = "app/guides", lvArg = "beginner", langArg = "en", base = "http://localhost:8765/"] = process.argv.slice(2);
 const OUT = resolve(outArg), LEVELS = lvArg.split(","), LANGS = langArg.split(","), THEMES = (process.env.THEMES || "light,dark").split(",");
 mkdirSync(OUT, { recursive: true });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -68,7 +68,8 @@ try {
   await send("Page.enable"); await send("Runtime.enable");
   await go(base + "#/train"); await sleep(800);
   const data = await ev(DUMP);
-  writeFileSync(resolve(OUT, "plans-data.json"), JSON.stringify(data, null, 1));
+  const CHECK = resolve(ROOT, "docs/guide"); mkdirSync(CHECK, { recursive: true });
+  writeFileSync(resolve(CHECK, "plans-data.json"), JSON.stringify(data, null, 1));
   /* posters as JPEG: Chromium embeds JPEG as-is (DCT) but re-encodes WebP losslessly -> 5x bigger PDFs */
   const IMG = resolve(OUT, ".img"); mkdirSync(IMG, { recursive: true });
   const img = (p) => { const src = resolve(ROOT, "app", p), jpg = resolve(IMG, p.split("/").pop().replace(/\.\w+$/, ".jpg"));
@@ -85,9 +86,13 @@ try {
         await go("file://" + html);
         await ev("document.fonts.ready.then(() => Promise.all([...document.images].map((i) => i.decode().catch(() => 0))))");
         const pdf = await send("Page.printToPDF", { printBackground: true, preferCSSPageSize: true, paperWidth: size.w, paperHeight: size.h, marginTop: 0, marginBottom: 0, marginLeft: 0, marginRight: 0, generateTaggedPDF: true });
-        writeFileSync(resolve(OUT, `${name}.pdf`), Buffer.from(pdf.data, "base64"));
+        /* Ghostscript /ebook: dedupes repeated photos + 150 dpi images, keeps vector QRs and links (4.8 -> 1.5 MB) */
+        const raw = resolve(OUT, `${name}.raw.pdf`), out = resolve(OUT, `${name}.pdf`);
+        writeFileSync(raw, Buffer.from(pdf.data, "base64"));
+        try { execFileSync("gs", ["-q", "-dNOPAUSE", "-dBATCH", "-sDEVICE=pdfwrite", "-dPDFSETTINGS=/ebook", "-dDetectDuplicateImages=true", `-sOutputFile=${out}`, raw]); rmSync(raw); }
+        catch { execFileSync("mv", [raw, out]); }
         if (!process.env.KEEP_HTML) rmSync(html);
-        try { mkdirSync(resolve(OUT, "png"), { recursive: true }); execFileSync("pdftoppm", ["-r", kind === "poster" ? "40" : "60", "-png", resolve(OUT, `${name}.pdf`), resolve(OUT, "png", name)]); } catch {}
+        try { mkdirSync(resolve(CHECK, "png"), { recursive: true }); execFileSync("pdftoppm", ["-r", kind === "poster" ? "40" : "60", "-png", resolve(OUT, `${name}.pdf`), resolve(CHECK, "png", name)]); } catch {}
         console.log("ok", name);
       }
     }

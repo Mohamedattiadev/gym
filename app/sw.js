@@ -2,7 +2,7 @@
    (FE-3/PERF-5); a new version waits until the user taps "Reload" (or all windows close). data/*.json and
    illustrations = stale-while-revalidate. 3D engine + model = cache-first in a stable cache that survives app
    updates (PERF-4). Posters/videos are cached on first view (or Settings → Download all); videos answer Range. */
-const VERSION = "v103";
+const VERSION = "v104";
 const SHELL = `gym-shell-${VERSION}`;
 // voice clips (media/voice) are requested as <file>.mp3?v=VOICE_V (voice.js): bump BOTH when tools/voice/gen.py regenerates clips
 const VOICE_V = "2";
@@ -72,6 +72,8 @@ self.addEventListener("fetch", (e) => {
   if (req.method !== "GET") return;
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
+  if (url.pathname.includes("/guides/")) return; // printable PDFs (tools/guide/build.mjs): straight from the network, never cached
+
 
   if (url.pathname.includes("/media/")) {
     e.respondWith((async () => {
