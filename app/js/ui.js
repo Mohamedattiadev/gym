@@ -225,6 +225,7 @@ export function haptic(kind = "tap") {
 }
 let actx;
 export function unlockAudio() { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); if (actx.state === "suspended") actx.resume(); } catch {} }
+export const audioCtx = () => { unlockAudio(); return actx || null; }; // voice.js plays its clips here
 export function beep(seq = [[880, .12]], vol = .18) {
   if (!S.settings.sound || !actx) return;
   let t = actx.currentTime;

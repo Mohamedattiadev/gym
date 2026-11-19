@@ -395,9 +395,9 @@ function wireListen(e, b) {
   b.onclick = () => {
     haptic();
     if (reading) { reading = null; V.stop(); set(false); return; }
-    const lines = [e.name + ".", ...e.steps.map((s, i) => `Step ${i + 1}. ${s}`), e.cues.length ? `Cues. ${e.cues.map((c) => (/[.!?]$/.test(c) ? c : c + ".")).join(" ")}` : ""];
     reading = b; set(true);
-    if (!V.speak(lines, { force: true, onend: () => { if (reading === b) { reading = null; set(false); } } })) { reading = null; set(false); toast("This browser cannot read aloud"); }
+    V.say(V.P.howTo(e), { force: true, onend: () => { if (reading === b) { reading = null; set(false); } } })
+      .then((ok) => { if (!ok && reading === b) { reading = null; set(false); toast("This browser cannot read aloud"); } });
   };
 }
 addEventListener("hashchange", () => { if (reading) { reading = null; V.stop(); } });

@@ -493,6 +493,9 @@ svg.ring circle { fill: none; stroke-width: 4; } svg.ring .bg { stroke: var(--s3
 .set-hdr, .setrow { display: grid; grid-template-columns: 30px minmax(44px, .9fr) 1fr 1fr 46px; gap: 6px; align-items: center; }
 .set-hdr { font-size: .7188rem; color: var(--t3); font-weight: 650; text-transform: uppercase; letter-spacing: .05em; margin: 10px 0 4px; text-align: center; }
 .sets { display: grid; gap: 6px; }
+.rhint { display: flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 10px; background: var(--accent-soft); color: var(--accent-text); font-size: .8125rem; font-weight: 650; min-width: 0; }
+.rhint span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-variant-numeric: tabular-nums; }
+.rhint svg { flex: none; }
 .setrow .n { width: 30px; height: 30px; border-radius: 8px; border: 0; background: var(--s3); font-weight: 750; font-size: .8125rem; color: var(--t2); }
 .setrow .n.w { color: var(--warn); }
 /* exercise history (Stats tab + session History sheet) */

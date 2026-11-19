@@ -324,7 +324,7 @@ function planOf(en) {
 }
 const wr = (w, r, u = "") => `${+w ? `${w}${u ? " " + u : ""} × ` : ""}${r}`;
 export const restOf = (en) => S.settings.restEx?.[en.slug] ?? BY[en.slug]?.rest ?? S.settings.restDefault;
-const restLbl = (sec) => (sec ? restText(sec) : "off");
+const restLbl = (sec) => (sec ? `${restText(sec)} rest` : "rest off"); // reads as a setting ("2 min rest"), not an order
 function entryHTML(en, ei) {
   const P = planOf(en), e = P.e, last = P.last, u = S.settings.unit;
   const allDone = en.sets.length && en.sets.every((s) => s.done);
@@ -334,11 +334,11 @@ function entryHTML(en, ei) {
   let n = 0;
   const xn = esc(e?.name || en.slug);
   const ssIn = S.active.entries[ei - 1]?.ss, ssOut = en.ss && S.active.entries[ei + 1];
-  return `<div class="xblock ${allDone ? "done-all" : ""} ${S.settings.gym && ei === gi ? "cur" : ""} ${ssOut ? "ss-out" : ""} ${ssIn ? "ss-in" : ""}" data-ei="${ei}">
+  return `<div class="xblock ${allDone ? "done-all" : ""} ${S.settings.gym && ei === gi ? "cur" : ""} ${ssOut ? "ss-out" : ""} ${ssIn ? "ss-in" : ""}" data-ei="${ei}" data-slug="${esc(en.slug)}">
     ${ssOut ? `<div class="ss-tag">${ic("swap", "xs")} Superset with next — no rest between</div>` : ""}
     <div class="xhead"><a href="#/ex/${en.slug}" aria-label="How to do ${esc(e?.name || en.slug)}"><img src="${e?.poster || ""}" alt=""></a>
       <div class="grow"><div class="t">${esc(e?.name || en.slug)}</div>
-        <div class="hint">${tierBadge(e?.tier)}<span>${esc(en.target || "")} reps${e?.each_side ? " each side" : ""} ·</span><button class="restb" data-a="rest" aria-label="Change rest time">rest ${restLbl(restOf(en))}</button></div>
+        <div class="hint">${tierBadge(e?.tier)}<span>${esc(en.target || "")} reps${e?.each_side ? " each side" : ""} ·</span><button class="restb" data-a="rest" aria-label="Rest between sets: ${restLbl(restOf(en))}. Change">${restLbl(restOf(en))}</button></div>
         ${last ? `<div class="hint"><span class="beat">${ic("target")}Today: ${wr(t1.w, t1.r, u)}</span><span class="dim">(last: ${wr(P.top.w, P.top.r)})</span></div>` : `<div class="hint">First time — pick a weight you can do ${P.tr ? P.tr[1] : 10} times with good form.</div>`}
         ${en.deload ? `<div class="hint" style="color:var(--warn)">${ic("alert", "xs")}<span class="grow">Stalled 5+ weeks — deload: ~60% weight today, then build back up.</span></div>` : ""}</div>
       <button class="iconbtn sm" data-a="menu" aria-label="Options">${ic("more")}</button></div>
@@ -360,7 +360,8 @@ let lpFired = 0;
 function wireSession() {
   const a = S.active; const box = $("#entries");
   const refreshStats = () => { const st = stats(); $("#stSets").textContent = st.sets; $("#stVol").textContent = st.vol; };
-  const rerender = (ei) => { const old = box.querySelector(`[data-ei="${ei}"]`); if (old) old.outerHTML = entryHTML(a.entries[ei], ei); };
+  const rerender = (ei) => { const old = box.querySelector(`[data-ei="${ei}"]`); if (old) old.outerHTML = entryHTML(a.entries[ei], ei); restHint(); };
+  offHint?.(); offHint = Tm.onTick(restHint); restHint();
   box.oninput = (e) => {
     const inp = e.target.closest("input"); if (!inp) return;
     const en = a.entries[+inp.closest("[data-ei]").dataset.ei]; en.sets[+inp.closest("[data-si]").dataset.si][inp.dataset.k] = inp.value.replace(",", ".");
@@ -421,6 +422,7 @@ function wireSession() {
         const nx = en.sets[si + 1]; if (nx && !nx.w && nx.type === s.type) nx.w = s.w;
         if (s.type !== "w" && isPR(en.slug, s)) { confetti(); toast(`New PR: ${s.w}${S.settings.unit} × ${s.r}`); beep([[660, .1], [880, .1], [1175, .2]]); }
         const ssNext = en.ss && a.entries[ei + 1];
+        restEi = ei;
         if (s.type !== "w" && ssNext) toast(`Superset: now ${BY[ssNext.slug]?.name || "next exercise"}`);
         else if (S.settings.autoRest && s.type !== "w" && restOf(en)) startRest(restOf(en), a.entries[ei - 1]?.ss ? ssBackLabel(ei - 1) : nextLabel(ei, si));
         else if (s.type === "w") startRest(45, nextLabel(ei, si));
@@ -477,7 +479,7 @@ function nextInfo(ei, from) {
     const name = BY[en.slug]?.name || en.slug, u = S.settings.unit;
     const text = `Next: ${i === ei ? "" : `${name} · `}${warm ? "warm-up set" : `set ${n} of ${work.length}`}${r ? ` · ${w ? `${w} ${u} × ` : ""}${r}` : ""}`;
     const fresh = !en.sets.some((x) => x.done); // Voice: a new exercise gets its name and first cue spoken
-    return { text, slug: en.slug, name, set: warm ? "" : n, of: work.length, w: String(w || ""), r: String(r || ""), newEx: i !== ei || fresh, cue: fresh ? BY[en.slug]?.cues?.[0] || "" : "" };
+    return { text, slug: en.slug, name, set: warm ? "" : n, of: work.length, w: String(w || ""), r: String(r || ""), fam: BY[en.slug]?.family || "", newEx: i !== ei || fresh, cue: fresh ? BY[en.slug]?.cues?.[0] || "" : "" };
   }
   return { text: "Last set — finish strong" };
 }
@@ -486,7 +488,7 @@ function isPR(slug, s) { const b = bestOf(slug); const v = e1rm(s.w, s.r); retur
 function restSheet(ei) {
   const en = S.active.entries[ei], cur = restOf(en), def = BY[en.slug]?.rest ?? S.settings.restDefault;
   const opts = [0, 45, 60, 90, 120, 150, 180, 240, 300];
-  openSheet(`<h3>Rest time</h3><p class="muted small" style="margin:-6px 0 12px">${esc(BY[en.slug]?.name || "")} · saved for next time. Suggested: ${restText(def)}</p>
+  openSheet(`<h3>Rest between sets</h3><p class="muted small" style="margin:-6px 0 12px">${esc(BY[en.slug]?.name || "")} · saved for next time. Suggested: ${restText(def)}</p>
     <div class="restgrid">${opts.map((o) => `<button class="btn ${o === cur ? "primary" : ""}" data-r="${o}">${o ? fmtDur(o * 1000) : "Off"}</button>`).join("")}</div>`, (el) => {
     el.onclick = (e) => { const b = e.target.closest("[data-r]"); if (!b) return; const v = +b.dataset.r;
       S.settings.restEx = { ...(S.settings.restEx || {}) }; if (v === def) delete S.settings.restEx[en.slug]; else S.settings.restEx[en.slug] = v;
@@ -547,6 +549,23 @@ async function finishSession() {
 }
 
 /* ---------------- rest timer (global timer + floating pill) ---------------- */
+/* while a rest runs, one line in the exercise you just ticked: "Resting 1:49 · next: set 2 · 66 kg × 10" (gone when the rest ends or is skipped) */
+let restEi = -1, offHint = null;
+function restHint() {
+  const box = $("#entries"); if (!box) return;
+  let h = box.querySelector(".rhint"); const nx = Tm.T.nx || {};
+  const blk = Tm.isRest() && S.active ? box.querySelector(`[data-ei="${restEi}"]`) || (nx.slug && box.querySelector(`[data-slug="${CSS.escape(nx.slug)}"]`)) : null;
+  if (!blk) { h?.remove(); return; }
+  const row = blk.querySelector(".setrow:not(.done)"), same = row && blk.dataset.slug === nx.slug, u = S.settings.unit;
+  const load = nx.r ? ` · ${nx.w ? `${nx.w} ${u} × ` : ""}${nx.r}` : "";
+  const next = !nx.name ? "" : same ? ` · next: ${nx.set ? `set ${nx.set}` : "warm-up"}${load}` : " · next: " + nx.name; // plain text (textContent)
+  const txt = `Resting ${Tm.view().text}${next}`;
+  if (!h || h.parentElement !== (same ? row.parentElement : $(".sets", blk)) || (same && h.nextElementSibling !== row)) {
+    h?.remove(); h = document.createElement("div"); h.className = "rhint"; h.innerHTML = `${ic("timer", "xs")}<span></span>`;
+    if (same) row.before(h); else $(".sets", blk).append(h);
+  }
+  const sp = h.lastElementChild; if (sp.textContent !== txt) sp.textContent = txt;
+}
 export function startRest(sec, nx = {}) { Tm.startCountdown(sec, { kind: "rest", label: "Rest", next: nx.text || "", nx }); }
 export function stopRest() { if (Tm.T.mode === "countdown" && Tm.T.kind === "rest") Tm.stop(); }
 
