@@ -1097,5 +1097,7 @@
  "Signed out. Sign in again to keep backing up.": "تم تسجيل خروجك. سجّل الدخول مجددًا لمتابعة النسخ الاحتياطي.",
  "The server is having trouble right now. Will try again later.": "يواجه الخادم مشكلة الآن. ستتم المحاولة لاحقًا.",
  "Your cloud data is deleted": "حُذفت بياناتك السحابية",
- "Your workouts, history, plans, profile, body weight, notes, pain flags and settings. Clearing the site data or uninstalling the app removes them.": "تمارينك وسجلّك وخططك وملفك الشخصي ووزنك وملاحظاتك وعلامات الألم وإعداداتك. يؤدي مسح بيانات الموقع أو إزالة التطبيق إلى حذفها."
+ "Your workouts, history, plans, profile, body weight, notes, pain flags and settings. Clearing the site data or uninstalling the app removes them.": "تمارينك وسجلّك وخططك وملفك الشخصي ووزنك وملاحظاتك وعلامات الألم وإعداداتك. يؤدي مسح بيانات الموقع أو إزالة التطبيق إلى حذفها.",
+ "Show sets": "اعرض المجموعات",
+ "Add warm-up sets": "أضف مجموعات إحماء"
 }

@@ -1,6 +1,7 @@
 // One global timer (stopwatch | countdown | intervals) shared by the Timer page, rest timer and the floating pill.
 import { $, BP, esc, ic, haptic, beep, toast, fmtDur } from "./ui.js";
 import { S } from "./store.js";
+import { BY } from "./data.js";
 import * as V from "./voice.js";
 import { t, tn, iso } from "./i18n.js";
 
@@ -142,7 +143,7 @@ function renderOverlay() {
     o.innerHTML = `<div class="rov-in"><div class="rov-top"><span class="lbl">${t("Rest")}</span><button class="iconbtn" data-r="min" aria-label="${t("Minimise")}">${ic("down")}</button></div>
       <div class="ringwrap"><svg viewBox="0 0 100 100"><circle class="track" cx="50" cy="50" r="${RR}"/><circle class="fill" cx="50" cy="50" r="${RR}" stroke-dasharray="${RC}"/></svg>
         <button class="big num" data-r="toggle"></button><div class="sub2 rov-st"></div></div>
-      ${nx.name ? `<div class="rov-next">${nx.slug ? `<img src="media/poster/${esc(nx.slug)}.webp" alt="">` : ""}<div class="grow"><div class="dim tiny">${t("Next")}</div><b>${esc(nx.name)}</b>
+      ${nx.name ? `<div class="rov-next">${BY[nx.slug]?.poster ? `<img src="${BY[nx.slug].poster}" alt="">` : ""}<div class="grow"><div class="dim tiny">${t("Next")}</div><b>${esc(nx.name)}</b>
         <div class="muted small">${[nx.set ? (nx.of ? t("Set {n} of {m}", { n: nx.set, m: nx.of }) : t("Set {n}", { n: nx.set })) : "", load].filter(Boolean).join(" · ")}</div></div></div>`
         : nx.text ? `<div class="rov-next"><b class="grow">${esc(nx.text)}</b></div>` : ""}
       <div class="rov-btns"><button class="btn lg" data-r="m15">${t("−15 s")}</button><button class="btn lg" data-r="p30">${t("+30 s")}</button></div>

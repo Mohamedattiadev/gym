@@ -257,15 +257,13 @@ export function sessionView() {
   if (gym) { gi = Math.min(gi, a.entries.length - 1); if (a.entries[gi]?.sets.every((x) => x.done)) { const k = a.entries.findIndex((en) => en.sets.some((x) => !x.done)); if (k >= 0) gi = k; } }
   view().classList.toggle("gym", gym);
   view().innerHTML = `
-    <div class="sess-head"><div><div class="eyebrow">${t("Time")}</div><div class="sess-clock num" id="clock">0:00</div></div>
-      <div class="sess-stats"><div><b class="num" id="stSets">${st.sets}</b>${t("sets")}</div><div><b class="num" id="stVol">${st.vol}</b>${u}</div></div>
-      <button class="btn sm ${gym ? "primary" : ""}" id="gymT" aria-pressed="${gym}">${ic("phone", "sm")} ${t("Gym mode")}</button></div>
-    ${!a.warmed && !a.noWarm && a.entries.length && !a.entries.some((en) => en.sets.some((x) => x.done)) ? `<div class="notice acc mb-12" id="warmN">${ic("flame", "sm")}<div class="grow"><b>${t("Warm up first")}</b><div class="small muted">${t("About 6 min, made for this workout")}</div></div><a class="btn sm primary" href="#/warmup/s">${t("Start")}</a><button class="iconbtn sm" id="warmX" aria-label="${t("Skip warm-up")}">${ic("close", "sm")}</button></div>` : ""}
+    <div class="sess-head"><span class="sess-clock num" id="clock" aria-label="${t("Time")}">0:00</span>
+      <span class="sess-stats"><span><b class="num" id="stSets">${st.sets}</b> ${t("sets")}</span><span><b class="num" id="stVol">${st.vol}</b> ${u}</span></span></div>
+    ${!a.warmed && !a.noWarm && a.entries.length && !a.entries.some((en) => en.sets.some((x) => x.done)) ? `<div class="warmn" id="warmN">${ic("flame", "sm")}<span class="grow" title="${t("About 6 min, made for this workout")}">${t("Warm up first")}</span><a class="btn sm" href="#/warmup/s">${t("Start")}</a><button class="iconbtn sm" id="warmX" aria-label="${t("Skip warm-up")}">${ic("close", "sm")}</button></div>` : ""}
     ${gym ? `<div class="gnav"><button class="iconbtn filled" id="gPrev" aria-label="${t("Previous exercise")}" ${gi ? "" : "disabled"}>${ic("back")}</button><b class="num">${t("Exercise {n} of {m}", { n: gi + 1, m: a.entries.length })}</b><button class="iconbtn filled fwd" id="gNext" aria-label="${t("Next exercise")}" ${gi < a.entries.length - 1 ? "" : "disabled"}>${ic("back")}</button></div>` : ""}
     <div class="sess-grid"><div class="sess-main">
     <div class="stack" id="entries">${a.entries.map((en, ei) => entryHTML(en, ei)).join("") || `<div class="card pad tc"><div class="ill" data-ill="hero-start" style="max-width:140px"></div><b>${t("Empty workout")}</b><div class="muted small">${t("Add your first exercise.")}</div></div>`}</div>
-    <button class="btn block mt-12" id="addEx">${ic("plus", "sm")} ${t("Add exercise")}</button>
-    <div class="row mt-10"><button class="btn ghost grow danger" id="disc">${t("Discard")}</button><button class="btn primary grow" id="fin">${ic("check", "sm")} ${t("Finish workout")}</button></div></div>
+    <div class="row mt-12"><button class="btn grow" id="addEx">${ic("plus", "sm")} ${t("Add exercise")}</button><button class="btn primary grow" id="fin">${ic("check", "sm")} ${t("Finish workout")}</button></div></div>
     <aside class="sess-side" id="sside" aria-label="${t("Current exercise")}"></aside></div>`;
   clearInterval(clockT);
   const tick = () => { const c = $("#clock"); if (!c || !S.active) return clearInterval(clockT); c.textContent = fmtDur(Date.now() - S.active.startedAt); };
@@ -327,11 +325,19 @@ function planOf(en) {
 const wr = (w, r, u = "") => iso(`${+w ? `${w}${u ? " " + u : ""} × ` : ""}${r}`);
 export const restOf = (en) => S.settings.restEx?.[en.slug] ?? BY[en.slug]?.rest ?? S.settings.restDefault;
 const restLbl = (sec) => (sec ? t("{time} rest", { time: restText(sec) }) : t("rest off")); // reads as a setting ("2 min rest"), not an order
+const opened = new WeakSet(); // finished exercises the user expanded again (Q13: done exercises fold to one line)
+const firstOpen = () => S.active.entries.findIndex((x) => x.sets.some((s) => !s.done));
 function entryHTML(en, ei) {
   const P = planOf(en), e = P.e, last = P.last, u = S.settings.unit;
   const allDone = en.sets.length && en.sets.every((s) => s.done);
+  const ssIn0 = S.active.entries[ei - 1]?.ss, ssOut0 = en.ss && S.active.entries[ei + 1];
+  if (allDone && !S.settings.gym && !opened.has(en)) { // Q13: one calm line per finished exercise, tap to open
+    const ws = en.sets.filter((s) => s.type !== "w"), top = ws.reduce((b, x) => (+x.w * +x.r > +b.w * +b.r ? x : b), ws[0] || en.sets[0]);
+    return `<div class="xblock done-all fold ${ssOut0 ? "ss-out" : ""} ${ssIn0 ? "ss-in" : ""}" data-ei="${ei}" data-slug="${esc(en.slug)}"><button class="xfold" data-a="unfold" aria-expanded="false" aria-label="${t("Show sets")}: ${esc(e?.name || en.slug)}">
+      <img src="${e?.poster || ""}" alt=""><span class="grow"><span class="t">${esc(e?.name || en.slug)}</span><span class="hint">${tn(ws.length, "{n} set", "{n} sets")}${top ? ` · ${esc(wr(top.w, top.r, u))}` : ""}</span></span><span class="okdot">${ic("check", "sm")}</span></button></div>`;
+  }
   const barb = e && (e.equipment.includes("Barbell") || e.equipment.includes("Smith"));
-  const act = en.sets.findIndex((s) => !s.done);
+  const act = S.settings.gym || ei === firstOpen() ? en.sets.findIndex((s) => !s.done) : -1; // Q13: the +/- line only under the current set of the current exercise
   const t1 = P.tgt(1);
   let n = 0;
   const xn = esc(e?.name || en.slug);
@@ -340,8 +346,8 @@ function entryHTML(en, ei) {
     ${ssOut ? `<div class="ss-tag">${ic("swap", "xs")} ${t("Superset with next — no rest between")}</div>` : ""}
     <div class="xhead"><a href="#/ex/${en.slug}" aria-label="${t("How to do {name}", { name: esc(e?.name || en.slug) })}"><img src="${e?.poster || ""}" alt=""></a>
       <div class="grow"><div class="t">${esc(e?.name || en.slug)}</div>
-        <div class="hint">${tierBadge(e?.tier)}<span>${e?.each_side ? t("{r} reps each side", { r: esc(en.target || "") }) : t("{r} reps", { r: esc(en.target || "") })} ·</span><button class="restb" data-a="rest" aria-label="${t("Rest between sets: {rest}. Change", { rest: restLbl(restOf(en)) })}">${restLbl(restOf(en))}</button></div>
-        ${last ? `<div class="hint"><span class="beat">${ic("target")}${t("Today: {x}", { x: wr(t1.w, t1.r, u) })}</span><span class="dim">${t("(last: {x})", { x: wr(P.top.w, P.top.r) })}</span></div>` : `<div class="hint">${t("First time — pick a weight you can do {n} times with good form.", { n: P.tr ? P.tr[1] : 10 })}</div>`}
+        <div class="hint"><span>${e?.each_side ? t("{r} reps each side", { r: esc(en.target || "") }) : t("{r} reps", { r: esc(en.target || "") })} ·</span><button class="restb" data-a="rest" aria-label="${t("Rest between sets: {rest}. Change", { rest: restLbl(restOf(en)) })}">${restLbl(restOf(en))}</button></div>
+        ${last ? `<div class="hint"><span class="beat">${ic("target")}${t("Today: {x}", { x: wr(t1.w, t1.r, u) })}</span><span class="dim">${t("(last: {x})", { x: wr(P.top.w, P.top.r) })}</span></div>` : ei === firstOpen() && !en.sets.some((s) => s.done) ? `<div class="hint">${t("First time — pick a weight you can do {n} times with good form.", { n: P.tr ? P.tr[1] : 10 })}</div>` : ""}
         ${en.deload ? `<div class="hint" style="color:var(--warn)">${ic("alert", "xs")}<span class="grow">${t("Stalled 5+ weeks — deload: ~60% weight today, then build back up.")}</span></div>` : ""}</div>
       <button class="iconbtn sm" data-a="menu" aria-label="${t("Options")}">${ic("more")}</button></div>
     <div class="set-hdr"><span>${t("Set")}</span><span>${t("Last")}<span class="lt"> ${t("time")}</span></span><span>${u}</span><span>${t("Reps")}</span><span></span></div>
@@ -354,15 +360,14 @@ function entryHTML(en, ei) {
       <button class="check" data-a="done" aria-pressed="${!!s.done}" aria-label="${t("Set {n} done, {name}", { n: sn, name: xn })}">${ic("check")}</button>
       <div class="stepline"><div><button data-a="w-" aria-label="${t("Less weight")}">−</button><span><bdi>${wStep(e)} ${u}</bdi></span><button data-a="w+" aria-label="${t("More weight")}">+</button></div>
         <div><button data-a="r-" aria-label="${t("Fewer reps")}">−</button><span>${t("1 rep")}</span><button data-a="r+" aria-label="${t("More reps")}">+</button></div></div></div>`; }).join("")}</div>
-    <div class="xtools"><button class="btn sm" data-a="add">${ic("plus", "sm")} ${t("Set")}</button><button class="btn sm" data-a="warm">${ic("flame", "sm")} ${t("Warm-up")}</button>
-      ${barb ? `<button class="btn sm" data-a="plates">${ic("calc", "sm")} ${t("Plates")}</button>` : ""}<button class="btn sm" data-a="swap">${ic("swap", "sm")} ${t("Swap")}</button></div>
+    <div class="xtools"><button class="btn sm ghost" data-a="add">${ic("plus", "sm")} ${t("Set")}</button>${allDone && opened.has(en) ? `<button class="btn sm ghost" data-a="fold" aria-expanded="true">${ic("up", "sm")} ${t("Done")}</button>` : ""}</div>
     ${S.settings.gym && allDone && ei < S.active.entries.length - 1 ? `<button class="btn primary block big" data-a="next">${t("Next exercise")} ${ic("chev", "sm")}</button>` : ""}</div>`;
 }
 let lpFired = 0;
 function wireSession() {
   const a = S.active; const box = $("#entries");
   const refreshStats = () => { const st = stats(); $("#stSets").textContent = st.sets; $("#stVol").textContent = st.vol; };
-  const rerender = (ei) => { const old = box.querySelector(`[data-ei="${ei}"]`); if (old) old.outerHTML = entryHTML(a.entries[ei], ei); restHint(); };
+  const rerender = (ei) => { const f0 = firstOpen(); [ei, ...(f0 >= 0 && f0 !== ei ? [f0] : [])].forEach((i) => { const old = box.querySelector(`[data-ei="${i}"]`); if (old) old.outerHTML = entryHTML(a.entries[i], i); }); restHint(); };
   offHint?.(); offHint = Tm.onTick(restHint); restHint();
   box.oninput = (e) => {
     const inp = e.target.closest("input"); if (!inp) return;
@@ -372,7 +377,7 @@ function wireSession() {
   box.addEventListener("focusin", (e) => { const b = e.target.closest("[data-ei]"); if (b && +b.dataset.ei !== sideCur) { sideCur = +b.dataset.ei; side(); } });
   box.addEventListener("click", () => setTimeout(side, 0));
   box.addEventListener("focusin", (e) => { const row = e.target.closest(".setrow"); if (!row || row.classList.contains("act")) return;
-    row.parentElement.querySelectorAll(".setrow.act").forEach((x) => x.classList.remove("act")); row.classList.add("act"); });
+    box.querySelectorAll(".setrow.act").forEach((x) => x.classList.remove("act")); row.classList.add("act"); });
   // keyboard entry: ↑/↓ = ± one step (weight step / 1 rep), Enter in kg -> reps; Enter in reps (mouse/keyboard devices) = set done -> next set's kg
   box.addEventListener("keydown", (e) => {
     const inp = e.target.closest?.(".setrow input[data-k]"); if (!inp || e.altKey || e.ctrlKey || e.metaKey) return;
@@ -404,6 +409,8 @@ function wireSession() {
     const blk = b.closest("[data-ei]"); const ei = +blk.dataset.ei; const en = a.entries[ei]; const ex = BY[en.slug];
     const row = b.closest("[data-si]"); const si = row ? +row.dataset.si : -1; const s = row ? en.sets[si] : null;
     const act = b.dataset.a; haptic();
+    if (act === "unfold") { opened.add(en); rerender(ei); return; }
+    if (act === "fold") { opened.delete(en); rerender(ei); box.querySelector(`[data-ei="${ei}"]`)?.scrollIntoView({ block: "nearest" }); return; }
     if (act === "w+" || act === "w-") { const step = wStep(ex);
       s.w = String(Math.max(0, Math.round(((+s.w || +ph(row, "w") || 0) + (act === "w+" ? step : -step)) * 100) / 100)); row.querySelector('[data-k="w"]').value = s.w; save("active"); return; }
     if (act === "r+" || act === "r-") { s.r = String(Math.max(0, (+s.r || +ph(row, "r") || 0) + (act === "r+" ? 1 : -1))); row.querySelector('[data-k="r"]').value = s.r; save("active"); return; }
@@ -420,7 +427,7 @@ function wireSession() {
       }
       s.done = !s.done; save("active");
       if (s.done) {
-        haptic("success");
+        haptic("success"); $("#warmN")?.remove();
         const nx = en.sets[si + 1]; if (nx && !nx.w && nx.type === s.type) nx.w = s.w;
         if (s.type !== "w" && isPR(en.slug, s)) { confetti(); toast(t("New PR: {w}{u} × {r}", { w: s.w, u: S.settings.unit, r: s.r })); beep([[660, .1], [880, .1], [1175, .2]]); }
         const ssNext = en.ss && a.entries[ei + 1];
@@ -439,17 +446,8 @@ function wireSession() {
     }
     if (act === "next") return gymGo(ei + 1);
     if (act === "add") { const l = en.sets.at(-1); en.sets.push({ w: l?.w || "", r: "", done: false, type: "n" }); save("active"); rerender(ei); return; }
-    if (act === "warm") {
-      const work = en.sets.find((x) => x.type !== "w" && +x.w)?.w || lastSets(en.slug)?.sets[0]?.w || await askText(t("Working weight ({u})", { u: S.settings.unit }), { inputmode: "decimal", ok: t("Add warm-up") }); if (!+work) return;
-      const ws = warmupSets(work, ex); if (!ws.length) return toast(t("No warm-up needed for this weight"));
-      en.sets = [...ws.map((x) => ({ w: String(x.w), r: String(x.r), done: false, type: "w" })), ...en.sets.filter((x) => x.type !== "w")];
-      save("active"); rerender(ei); toast(tn(ws.length, "Added {n} warm-up set", "Added {n} warm-up sets")); return;
-    }
-    if (act === "plates") { const w = en.sets.find((x) => !x.done && +x.w)?.w || en.sets.find((x) => +x.w)?.w || lastSets(en.slug)?.sets[0]?.w || 60; plateSheet(+w); return; }
-    if (act === "swap") return swapSheet(ei);
     if (act === "menu") return entryMenu(ei);
   };
-  $("#gymT").onclick = () => { S.settings.gym = !S.settings.gym; save("settings"); haptic(); sessionView(); };
   const gp = $("#gPrev"), gn = $("#gNext"); if (gp) gp.onclick = () => gymGo(gi - 1); if (gn) gn.onclick = () => gymGo(gi + 1);
   if (S.settings.gym) { let x0 = null, y0 = 0; // swipe left/right between exercises
     box.ontouchstart = (e) => { if (e.target.closest("input,.stepper")) return; x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; };
@@ -458,9 +456,9 @@ function wireSession() {
   $("#addEx").onclick = () => { pickMode = { toSession: true, selected: new Set() }; go("#/pick"); };
   $("#fin").onclick = finishSession; $("#finTop").onclick = finishSession;
   const discard = async () => { if (await ask(t("Discard this workout? Nothing will be saved."), { ok: t("Discard"), danger: true })) { closeSheet(); S.active = null; save("active"); stopRest(); wakeLock?.release?.(); redirect("#/train"); } };
-  $("#disc").onclick = discard;
-  $("#sMore").onclick = () => openSheet(`<h3>${esc(a.name)}</h3><div class="menu"><button id="sAdd">${ic("plus", "sm")}${t("Add exercise")}</button><button class="danger" id="sDisc">${ic("trash", "sm")}${t("Discard workout")}</button></div>`, (el) => {
+  $("#sMore").onclick = () => openSheet(`<h3>${esc(a.name)}</h3><div class="menu"><button id="sAdd">${ic("plus", "sm")}${t("Add exercise")}</button><button id="sGym" aria-pressed="${!!S.settings.gym}">${ic("phone", "sm")}<span class="grow">${t("Gym mode")}</span><span class="switch${S.settings.gym ? " on" : ""}" aria-hidden="true"></span></button><button class="danger" id="sDisc">${ic("trash", "sm")}${t("Discard workout")}</button></div>`, (el) => {
     $("#sAdd", el).onclick = () => { closeSheet(); $("#addEx").click(); };
+    $("#sGym", el).onclick = () => { S.settings.gym = !S.settings.gym; save("settings"); haptic(); closeSheet(); sessionView(); };
     $("#sDisc", el).onclick = discard;
   });
 }
@@ -506,8 +504,9 @@ function swapSheet(ei) {
   });
 }
 function entryMenu(ei) {
-  const a = S.active; const en = a.entries[ei];
+  const a = S.active; const en = a.entries[ei], ex = BY[en.slug], barb = ex && (ex.equipment.includes("Barbell") || ex.equipment.includes("Smith"));
   openSheet(`<h3>${esc(BY[en.slug]?.name)}</h3><div class="menu">
+    <button data-m="swap">${ic("swap", "sm")}${t("Swap exercise")}</button><button data-m="warm">${ic("flame", "sm")}${t("Add warm-up sets")}</button>${barb ? `<button data-m="plates">${ic("calc", "sm")}${t("Plate calculator")}</button>` : ""}
     <button data-m="up" ${ei ? "" : "disabled"}>${ic("up", "sm")}${t("Move up")}</button><button data-m="down" ${ei < a.entries.length - 1 ? "" : "disabled"}>${ic("down", "sm")}${t("Move down")}</button>
     <button data-m="ss" ${ei < a.entries.length - 1 ? "" : "disabled"}>${ic("swap", "sm")}${en.ss ? t("Unlink superset") : t("Superset with next exercise")}</button>
     <button data-m="delset">${ic("minus", "sm")}${t("Remove last set")}</button><button data-m="hist">${ic("chart", "sm")}${t("History")}</button><a href="#/ex/${en.slug}">${ic("book", "sm")}${t("How to do it")}</a>
@@ -515,6 +514,9 @@ function entryMenu(ei) {
     el.onclick = (e) => {
       const b = e.target.closest("[data-m]"); if (!b) return; const m = b.dataset.m;
       if (m === "hist") { closeSheet(); setTimeout(() => historySheet(en.slug), 220); return; }
+      if (m === "swap") { closeSheet(); setTimeout(() => swapSheet(ei), 220); return; }
+      if (m === "plates") { closeSheet(); const w = en.sets.find((x) => !x.done && +x.w)?.w || en.sets.find((x) => +x.w)?.w || lastSets(en.slug)?.sets[0]?.w || 60; setTimeout(() => plateSheet(+w), 220); return; }
+      if (m === "warm") { closeSheet(); setTimeout(() => addWarm(ei), 220); return; }
       if (m === "up" && ei > 0) [a.entries[ei - 1], a.entries[ei]] = [a.entries[ei], a.entries[ei - 1]];
       if (m === "down" && ei < a.entries.length - 1) [a.entries[ei + 1], a.entries[ei]] = [a.entries[ei], a.entries[ei + 1]];
       if (m === "delset" && en.sets.length > 1) en.sets.pop();
@@ -524,6 +526,13 @@ function entryMenu(ei) {
       save("active"); closeSheet(); sessionView();
     };
   });
+}
+async function addWarm(ei) {
+  const en = S.active?.entries[ei]; if (!en) return; const ex = BY[en.slug];
+  const work = en.sets.find((x) => x.type !== "w" && +x.w)?.w || lastSets(en.slug)?.sets[0]?.w || await askText(t("Working weight ({u})", { u: S.settings.unit }), { inputmode: "decimal", ok: t("Add warm-up") }); if (!+work) return;
+  const ws = warmupSets(work, ex); if (!ws.length) return toast(t("No warm-up needed for this weight"));
+  en.sets = [...ws.map((x) => ({ w: String(x.w), r: String(x.r), done: false, type: "w" })), ...en.sets.filter((x) => x.type !== "w")];
+  save("active"); sessionView(); toast(tn(ws.length, "Added {n} warm-up set", "Added {n} warm-up sets"));
 }
 async function finishSession() {
   const a = S.active; const st = stats();
@@ -557,7 +566,8 @@ let restEi = -1, offHint = null;
 function restHint() {
   const box = $("#entries"); if (!box) return;
   let h = box.querySelector(".rhint"); const nx = Tm.T.nx || {};
-  const blk = Tm.isRest() && S.active ? box.querySelector(`[data-ei="${restEi}"]`) || (nx.slug && box.querySelector(`[data-slug="${CSS.escape(nx.slug)}"]`)) : null;
+  let blk = Tm.isRest() && S.active ? box.querySelector(`[data-ei="${restEi}"]:not(.fold)`) || (nx.slug && box.querySelector(`[data-slug="${CSS.escape(nx.slug)}"]:not(.fold)`)) : null;
+  if (blk && !$(".sets", blk)) blk = null;
   if (!blk) { h?.remove(); return; }
   const row = blk.querySelector(".setrow:not(.done)"), same = row && blk.dataset.slug === nx.slug, u = S.settings.unit;
   const load = nx.r ? ` · ${iso(`${nx.w ? `${nx.w} ${u} × ` : ""}${nx.r}`)}` : "";

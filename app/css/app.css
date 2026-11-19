@@ -1076,3 +1076,20 @@ body:has(#rov) .toast { bottom: auto; top: calc(var(--safe-t) + 16px); }
 .m3seg .seg-ind { display: none; }
 .m3seg button.on { color: #fff; font-weight: 750; box-shadow: none; }
 .m3seg button[data-w="1"].on { background: #B3261E; } .m3seg button[data-w="0"].on { background: #1E7A4C; }
+/* Q13 calm session page: one-line time strip, one-line warm-up note, folded finished exercises, boxes only on the active set */
+.sess-head { justify-content: flex-start; align-items: baseline; gap: 14px; padding-block: 4px 10px; }
+.sess-head .sess-clock { font-size: 1.375rem; }
+.sess-head .sess-stats { gap: 12px; font-size: .8125rem; color: var(--t3); font-weight: 600; }
+.sess-head .sess-stats b { display: inline; font-size: .9375rem; color: var(--t2); font-weight: 700; }
+.warmn { display: flex; align-items: center; gap: 8px; padding-block: 4px; padding-inline: 12px 4px; margin-bottom: 12px; border-radius: var(--r-md); background: var(--accent-soft); font-weight: 650; font-size: .9062rem; }
+.warmn > svg.i { color: var(--accent-text); flex: none; }
+.xblock.fold { padding: 0; }
+.xfold { display: flex; align-items: center; gap: 10px; width: 100%; padding-block: 8px; padding-inline: 8px 12px; border: 0; background: none; color: inherit; font: inherit; text-align: start; border-radius: inherit; min-height: 52px; }
+.xfold img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; background: var(--s3); flex: none; }
+.xfold .t { display: block; font-weight: 650; font-size: .9062rem; line-height: 1.25; }
+.xfold .hint { margin-top: 1px; }
+.xfold .okdot { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--ok); color: #fff; flex: none; }
+.setrow:not(.act):not(.done) .stepper { border-color: transparent; background: color-mix(in oklab, var(--t3) 7%, transparent); box-shadow: none; }
+.setrow.done .stepper { border-color: transparent; }
+.xtools { margin-top: 6px; }
+.xtools .btn.ghost { color: var(--t2); }
