@@ -484,7 +484,7 @@ function nextInfo(ei, from) {
     const fresh = !en.sets.some((x) => x.done); // Voice: a new exercise gets its name and first cue spoken
     return { text, slug: en.slug, name, set: warm ? "" : n, of: work.length, w: String(w || ""), r: String(r || ""), fam: BY[en.slug]?.family || "", newEx: i !== ei || fresh, cue: fresh ? BY[en.slug]?.cues?.[0] || "" : "" };
   }
-  return { text: t("Last set — finish strong"), last: true }; // voice.js still matches /last set/ on text (English); `last` is for when voice goes i18n
+  return { text: t("Last set — finish strong"), last: true }; // voice.js P.go uses `last` (text is translated)
 }
 const nextLabel = (ei, si) => nextInfo(ei, si + 1), ssBackLabel = (pi) => nextInfo(pi, 0);
 function isPR(slug, s) { const b = bestOf(slug); const v = e1rm(s.w, s.r); return v > 0 && b && v > b.e1rm; }

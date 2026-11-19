@@ -1,0 +1,40 @@
+{
+ "voice": "tr-TR-EmelNeural",
+ "rate": "-20%",
+ "names": "en",
+ "dec": ",",
+ "rest": "Güzel. Şimdi {d} dinlen.",
+ "min": {
+  "other": "{n} dakika"
+ },
+ "sec": {
+  "other": "{n} saniye"
+ },
+ "minsec": "{m} {s}",
+ "ten": "10 saniye.",
+ "go": "Başla.",
+ "ivrest": "Dinlen.",
+ "restover": "Dinlenme bitti. Sıradaki set.",
+ "timeup": "Süre doldu.",
+ "ivdone": "Aralıklar bitti.",
+ "work": "Çalış.",
+ "warm": "Isınma seti.",
+ "last": "Son set. Güçlü bitir.",
+ "cues": "İpuçları.",
+ "voiceon": "Ses açık. 2 dakika dinlen. 2. set, toplam 3 set.",
+ "set": "{n}. set, toplam {m} set.",
+ "round": "{n}. tur, toplam {m} tur.",
+ "kg": {
+  "other": "{n} kilo"
+ },
+ "lb": {
+  "other": "{n} libre"
+ },
+ "reps": {
+  "other": "{n} tekrar."
+ },
+ "forReps": {
+  "other": "{n} tekrar."
+ },
+ "step": "{n}. adım. {s}"
+}

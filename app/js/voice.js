@@ -3,7 +3,8 @@
 // pounds, odd weights) -> that sentence uses the browser's own voice (Web Speech API).
 // Settings > Voice turns on the spoken rest timer ("Rest 2 minutes", "10 seconds", "3, 2, 1", "Go. Set 2 of 3 …").
 // The Listen button on an exercise's How to reads the steps and cues aloud even when the setting is off (explicit tap).
-// The language follows <html lang> (English now; block 21 sets tr/ar).
+// The language follows <html lang>: every sentence comes from app/data/voice.<lang>.json (the same table tools/voice/gen.py
+// records from; English is inlined below so it works before any fetch). tr/ar reuse the English exercise-name clips.
 import { S } from "./store.js";
 import { audioCtx } from "./ui.js";
 
@@ -56,7 +57,8 @@ function caption(text, ms = 0) {
   if (!text) { c?.classList.remove("on"); return; }
   if (/^\d+$/.test(text.trim())) return; // "3", "2", "1": the big timer already shows it
   if (!c) { c = document.createElement("div"); c.id = "vcap"; c.className = "vcap"; c.setAttribute("aria-hidden", "true"); document.body.appendChild(c); }
-  c.textContent = text; c.classList.add("on");
+  c.textContent = text; c.dir = /[֐-ࣿ]/.test(text) ? "rtl" : "ltr"; // an English exercise name alone keeps its "." on the right
+  c.classList.add("on");
   clearTimeout(capOff); capOff = setTimeout(() => c.classList.remove("on"), ms + 700);
 }
 
@@ -67,7 +69,7 @@ const VOICE_V = "2"; // = sw.js VOICE_V; bump both after regenerating clips (old
 const bufs = new Map(); // key -> Promise<AudioBuffer | null>
 function load(key) {
   if (!key) return Promise.resolve(null);
-  const id = `${lang()}/${key}`;
+  const id = `${key.startsWith("x/") && tbl().names === "en" ? "en" : lang()}/${key}`;
   if (!bufs.has(id)) bufs.set(id, (async () => {
     try { const r = await fetch(`media/voice/${id}.mp3?v=${VOICE_V}`); if (!r.ok) throw 0; return await audioCtx().decodeAudioData(await r.arrayBuffer()); }
     catch { bufs.delete(id); return null; } // not cached: try again next time (back online)
@@ -108,35 +110,56 @@ if (SS) addEventListener("pointerdown", function unlock() {
   try { const u = new SpeechSynthesisUtterance(" "); u.volume = 0; SS.speak(u); } catch {}
 }, true);
 
-/* ---- phrases: [clipKey, text, gap] lists (keys = tools/voice/gen.py) ---- */
+/* ---- phrases: [clipKey, text, gap] lists (keys = tools/voice/gen.py, text = voice.<lang>.json) ---- */
+const EN = {"voice":"en-US-AvaNeural","rate":"-20%","names":"own","dec":".",
+  "rest":"Nice work. Now rest for {d}.",
+  "min":{"one":"{n} minute","other":"{n} minutes"},"sec":{"one":"{n} second","other":"{n} seconds"},"minsec":"{m} {s}",
+  "ten":"10 seconds.","go":"Go.","ivrest":"Rest.","restover":"Rest over. Next set.","timeup":"Time is up.","ivdone":"Intervals done.",
+  "work":"Work.","warm":"Warm-up set.","last":"Last set. Finish strong.","cues":"Cues.","voiceon":"Voice on. Rest 2 minutes. Set 2 of 3.",
+  "set":"Set {n} of {m}.","round":"Round {n} of {m}.",
+  "kg":{"one":"{n} kilo","other":"{n} kilos"},"lb":{"one":"{n} pound","other":"{n} pounds"},
+  "reps":{"one":"{n} rep.","other":"{n} reps."},"forReps":{"one":"for {n} rep.","other":"for {n} reps."},
+  "step":"Step {n}. {s}"}; // = app/data/voice.en.json (tools/test/unit/voice.test.mjs checks)
+const tables = { en: EN };
+let loading = null;
+/** fetch voice.<lang>.json once (main.js calls it at boot; English needs nothing) */
+export function loadTable(l = lang()) {
+  if (tables[l] || l === "en") return Promise.resolve();
+  return (loading ||= fetch(`data/voice.${l}.json`).then((r) => r.json()).then((j) => { tables[l] = j; }).catch(() => {}).finally(() => { loading = null; }));
+}
+const tbl = () => tables[lang()] || (loadTable(), EN);
+const fill = (s, kv) => s.replace(/\{(\w)\}/g, (m, k) => kv[k] ?? m);
+const num = (n) => String(n).replace(".", tbl().dec);
+const pl = (key, n) => { const f = tbl()[key]; let c = "other"; try { c = new Intl.PluralRules(lang()).select(n); } catch {} return (f[c] ?? f.other).replace("{n}", num(n)); };
 export function duration(sec) {
   sec = Math.round(sec); const m = Math.floor(sec / 60), s = sec % 60;
-  if (!m) return `${s} seconds`;
-  return `${m} minute${m === 1 ? "" : "s"}${s ? ` ${s} seconds` : ""}`;
+  if (!m) return pl("sec", s);
+  return s ? fill(tbl().minsec, { m: pl("min", m), s: pl("sec", s) }) : pl("min", m);
 }
 const kgKey = (w) => (S.settings.unit === "kg" && ((w <= 300 && Number.isInteger(w * 2)) || (w <= 400 && Number.isInteger(w))) ? `kg/${w}` : null);
+const p = (k) => tbl()[k];
 export const P = {
-  rest: (sec) => [[sec % 15 === 0 && sec <= 600 ? `p/rest-${sec}` : null, `Nice work. Now rest for ${duration(sec)}.`]],
-  count: (n) => [n === 10 ? ["p/ten", "10 seconds."] : [`p/n${n}`, String(n)]],
-  timeUp: () => [["p/timeup", "Time is up."]],
-  ivRest: () => [["p/rest", "Rest."]],
-  ivDone: () => [["p/ivdone", "Intervals done."]],
-  ivWork: (n, m) => [["p/work", "Work.", 0.12], [m <= 30 ? `p/round-${n}-of-${m}` : null, `Round ${n} of ${m}.`]],
-  voiceOn: () => [["p/voiceon", "Voice on. Rest 2 minutes. Set 2 of 3."]],
-  /** nx = train.js nextInfo(): { text, slug, fam, name, set, of, w, r, cue, newEx } */
+  rest: (sec) => [[sec % 15 === 0 && sec <= 600 ? `p/rest-${sec}` : null, fill(p("rest"), { d: duration(sec) })]],
+  count: (n) => [n === 10 ? ["p/ten", p("ten")] : [`p/n${n}`, String(n)]],
+  timeUp: () => [["p/timeup", p("timeup")]],
+  ivRest: () => [["p/rest", p("ivrest")]],
+  ivDone: () => [["p/ivdone", p("ivdone")]],
+  ivWork: (n, m) => [["p/work", p("work"), 0.12], [m <= 30 ? `p/round-${n}-of-${m}` : null, fill(p("round"), { n, m })]],
+  voiceOn: () => [["p/voiceon", p("voiceon")]],
+  /** nx = train.js nextInfo(): { text, last, slug, fam, name, set, of, w, r, cue, newEx } */
   go(nx = {}) {
-    if (!nx.name) return nx.text && /last set/i.test(nx.text) ? [["p/go", "Go."], ["p/last", "Last set. Finish strong."]] : [["p/restover", "Rest over. Next set."]];
-    const out = [["p/go", "Go.", 0.15]];
+    if (!nx.name) return nx.last ? [["p/go", p("go")], ["p/last", p("last")]] : [["p/restover", p("restover")]];
+    const out = [["p/go", p("go"), 0.15]];
     if (nx.newEx) out.push([nx.slug ? `x/${nx.slug}` : null, `${nx.name}.`]);
     const n = +nx.set, m = +nx.of;
-    out.push(n ? [m <= 12 && n <= m ? `p/set-${n}-of-${m}` : null, `Set ${n} of ${m}.`] : ["p/warm", "Warm-up set."]);
-    const w = +nx.w, r = +nx.r, unit = S.settings.unit === "lb" ? (w === 1 ? "pound" : "pounds") : (w === 1 ? "kilo" : "kilos");
-    if (r && w) out.push([kgKey(w), `${w} ${unit}`, 0.08], [r <= 50 ? `fr/${r}` : null, `for ${r} reps.`]);
-    else if (r) out.push([r <= 50 ? `r/${r}` : null, `${r} reps.`]);
+    out.push(n ? [m <= 12 && n <= m ? `p/set-${n}-of-${m}` : null, fill(p("set"), { n, m })] : ["p/warm", p("warm")]);
+    const w = +nx.w, r = +nx.r;
+    if (r && w) out.push([kgKey(w), pl(S.settings.unit === "lb" ? "lb" : "kg", w), 0.08], [r <= 50 ? `fr/${r}` : null, pl("forReps", r)]);
+    else if (r) out.push([r <= 50 ? `r/${r}` : null, pl("reps", r)]);
     if (nx.cue) out.push([nx.fam ? `f/${nx.fam}-c0` : null, nx.cue]);
     return out;
   },
   /** exercise How to: name, numbered steps, cues */
-  howTo: (e) => [[`x/${e.slug}`, `${e.name}.`, 0.4], ...e.steps.map((s, i) => [`f/${e.family}-s${i}`, `Step ${i + 1}. ${s}`, 0.45]),
-    ...(e.cues.length ? [["p/cues", "Cues.", 0.25], ...e.cues.map((c, i) => [`f/${e.family}-c${i}`, /[.!?]$/.test(c) ? c : c + ".", 0.35])] : [])],
+  howTo: (e) => [[`x/${e.slug}`, `${e.name}.`, 0.4], ...e.steps.map((s, i) => [`f/${e.family}-s${i}`, fill(p("step"), { n: i + 1, s }), 0.45]),
+    ...(e.cues.length ? [["p/cues", p("cues"), 0.25], ...e.cues.map((c, i) => [`f/${e.family}-c${i}`, /[.!?]$/.test(c) ? c : c + ".", 0.35])] : [])],
 };

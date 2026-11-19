@@ -117,6 +117,7 @@ addEventListener("pointerdown", unlockAudio, { once: true });
   const exP = loadExercises(); // fetch data in parallel with IndexedDB
   await loadStore(); applyTheme();
   const lg = await setLang(S.settings.lang); try { localStorage.setItem("gym-lang", lg); } catch {}
+  if (lg !== "en") import("./voice.js").then((m) => m.loadTable(lg)).catch(() => {}); // spoken phrases in that language
   if (degraded) $(".app").insertAdjacentHTML("afterbegin", `<div class="notice warn storewarn" role="alert">${ic("alert", "sm")}<div class="grow"><b>${t("Storage unavailable")}</b><div class="small">${t("Changes may not be kept. Close the app fully and open it again.")}</div></div></div>`);
   try { await exP; if (FAM_LANG !== lg) await loadExercises(); } catch (e) { view.innerHTML = `<div class="empty">${t("Couldn't load exercises.")}<br><small>${esc(e.message)}</small></div>`; hideSplash(); return; }
   initMedia(); initTimer();

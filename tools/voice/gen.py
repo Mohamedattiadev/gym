@@ -5,6 +5,11 @@ Usage:
   uvx --with edge-tts python tools/voice/gen.py            # only clips whose text or voice changed
   uvx --with edge-tts python tools/voice/gen.py --all      # everything again
   uvx --with edge-tts python tools/voice/gen.py --list     # print the clip count, generate nothing
+  ... gen.py --lang tr|ar [--only p/go,kg/40]               # another language / just a few sample clips
+
+Every sentence comes from app/data/voice.<lang>.json (voice, rate, whole phrases with {n}/{m}/{d}/{s}, plural forms keyed
+by Intl.PluralRules categories zero/one/two/few/many/other) — app/js/voice.js reads the same file, so text and clips match.
+"names": "en" = this language reuses media/voice/en/x/* for exercise names (the UI keeps English names).
 
 Output: media/voice/<lang>/<key>.mp3 (mono 24 kHz, 32 kbit/s, silence trimmed at both ends) and
 tools/voice/index.<lang>.json (key -> hash of text + voice, for regeneration). Keys (app/js/voice.js builds the same):
@@ -29,49 +34,72 @@ import tempfile
 import edge_tts
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..")
-LANG = "en"
-VOICE, RATE = "en-US-AvaNeural", "-20%"  # owner 2026-11-19: -5% was "way too fast"
+LANG = sys.argv[sys.argv.index("--lang") + 1] if "--lang" in sys.argv else "en"
+V = json.load(open(os.path.join(ROOT, "app", "data", f"voice.{LANG}.json")))
+VOICE, RATE = V["voice"], V["rate"]  # owner 2026-11-19: -5% was "way too fast" -> -20%
 OUT = os.path.join(ROOT, "media", "voice", LANG)
 IDX = os.path.join(ROOT, "tools", "voice", f"index.{LANG}.json")
+
+
+def cat(n):
+    """Intl.PluralRules category (en/tr: one/other; ar: zero/one/two/few/many/other)"""
+    if not float(n).is_integer():
+        return "other"
+    n = int(n)
+    if LANG == "ar":
+        return "zero" if n == 0 else "one" if n == 1 else "two" if n == 2 else "few" if 3 <= n % 100 <= 10 else "many" if 11 <= n % 100 <= 99 else "other"
+    return "one" if n == 1 else "other"
+
+
+def num(w):
+    return str(int(w)) if float(w).is_integer() else str(w).replace(".", V["dec"])
+
+
+def pl(key, n):
+    f = V[key]
+    return f.get(cat(n), f["other"]).replace("{n}", num(n))
+
+
+def fill(key, **kv):
+    s = V[key]
+    for k, v in kv.items():
+        s = s.replace("{" + k + "}", str(v))
+    return s
 
 
 def duration(sec):
     m, s = divmod(sec, 60)
     if not m:
-        return f"{s} seconds"
-    return f"{m} minute{'' if m == 1 else 's'}" + (f" {s} seconds" if s else "")
-
-
-def num(w):
-    return str(int(w)) if float(w).is_integer() else str(w)
+        return pl("sec", s)
+    return fill("minsec", m=pl("min", m), s=pl("sec", s)) if s else pl("min", m)
 
 
 def clips():
     c = {}
     for sec in range(15, 601, 15):
-        c[f"p/rest-{sec}"] = f"Nice work. Now rest for {duration(sec)}."  # owner: "Set done" was hard to hear
-    c.update({"p/ten": "10 seconds.", "p/n1": "1", "p/n2": "2", "p/n3": "3", "p/go": "Go.", "p/rest": "Rest.",
-              "p/restover": "Rest over. Next set.", "p/timeup": "Time is up.", "p/ivdone": "Intervals done.", "p/work": "Work.",
-              "p/warm": "Warm-up set.", "p/last": "Last set. Finish strong.", "p/cues": "Cues.",
-              "p/voiceon": "Voice on. Rest 2 minutes. Set 2 of 3."})
+        c[f"p/rest-{sec}"] = fill("rest", d=duration(sec))  # owner: "Set done" was hard to hear
+    c.update({"p/ten": V["ten"], "p/n1": "1", "p/n2": "2", "p/n3": "3", "p/go": V["go"], "p/rest": V["ivrest"],
+              "p/restover": V["restover"], "p/timeup": V["timeup"], "p/ivdone": V["ivdone"], "p/work": V["work"],
+              "p/warm": V["warm"], "p/last": V["last"], "p/cues": V["cues"], "p/voiceon": V["voiceon"]})
     for m in range(1, 13):
         for n in range(1, m + 1):
-            c[f"p/set-{n}-of-{m}"] = f"Set {n} of {m}."
+            c[f"p/set-{n}-of-{m}"] = fill("set", n=n, m=m)
     for m in range(1, 31):
         for n in range(1, m + 1):
-            c[f"p/round-{n}-of-{m}"] = f"Round {n} of {m}."
+            c[f"p/round-{n}-of-{m}"] = fill("round", n=n, m=m)
     ws = {x / 2 for x in range(1, 601)} | set(range(1, 401))
     for w in sorted(ws):
-        c[f"kg/{num(w)}"] = f"{num(w)} {'kilo' if w == 1 else 'kilos'}"
+        c[f"kg/{w:g}"] = pl("kg", w)
     for n in range(1, 51):
-        c[f"r/{n}"] = f"{n} {'rep' if n == 1 else 'reps'}."
-        c[f"fr/{n}"] = f"for {n} {'rep' if n == 1 else 'reps'}."
-    for e in json.load(open(os.path.join(ROOT, "app", "data", "exercises.json"))):
-        c[f"x/{e['slug']}"] = e["name"].strip() + "."
+        c[f"r/{n}"] = pl("reps", n)
+        c[f"fr/{n}"] = pl("forReps", n)
+    if V["names"] == "own":
+        for e in json.load(open(os.path.join(ROOT, "app", "data", "exercises.json"))):
+            c[f"x/{e['slug']}"] = e["name"].strip() + "."
     fam = json.load(open(os.path.join(ROOT, "app", "data", f"families.{LANG}.json")))["families"]
     for k, f in fam.items():
         for i, s in enumerate(f.get("steps") or []):
-            c[f"f/{k}-s{i}"] = f"Step {i + 1}. {s}"
+            c[f"f/{k}-s{i}"] = fill("step", n=i + 1, s=s)
         for i, s in enumerate(f.get("cues") or []):
             c[f"f/{k}-c{i}"] = s if s.rstrip()[-1:] in ".!?" else s + "."
     return c
@@ -110,6 +138,9 @@ async def make(key, text, sem):
 
 async def main():
     c = clips()
+    if "--only" in sys.argv:  # sample clips, e.g. to pick a voice: --only p/go,p/rest-150,kg/42.5
+        keep = sys.argv[sys.argv.index("--only") + 1].split(",")
+        c = {k: v for k, v in c.items() if k in keep}
     if "--list" in sys.argv:
         print(len(c), "clips,", sum(map(len, c.values())), "characters")
         return
@@ -127,7 +158,7 @@ async def main():
         json.dump(dict(sorted(idx.items())), open(IDX, "w"), indent=0)
         print(f"  {done}/{len(todo)}", flush=True)
     for k in list(idx):  # clips whose text is gone
-        if k not in c:
+        if k not in c and "--only" not in sys.argv:
             idx.pop(k)
             try:
                 os.unlink(os.path.join(OUT, k + ".mp3"))

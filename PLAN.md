@@ -45,7 +45,7 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
   - Phone (Android/iPhone): bottom tab bar, safe areas
   - iPad/tablet (≥768px): left rail nav + 2-pane (list | detail)
   - Desktop (≥1100px): sidebar nav + multi-column, hover states, keyboard shortcuts
-- 🟡 (session 65: EN/TR/AR UI tables + RTL shipped; voice in TR/AR left) i18n **EN / TR / AR** for the whole UI (`app/i18n/*.json`, `t()`, picker, `dir="rtl"` + logical CSS for Arabic)
+- ✅ (session 65: EN/TR/AR UI tables + RTL; session 66: voice in TR/AR) i18n **EN / TR / AR** for the whole UI (`app/i18n/*.json`, `t()`, picker, `dir="rtl"` + logical CSS for Arabic)
 - ⬜ **Performance**: precache shell, stale-while-revalidate for data JSON, lazy images with fixed aspect boxes, `content-visibility`, code-split rarely used views, prefetch next likely view, compress JSON, Lighthouse ≥ 95 on mobile (✅ live 95–97, Q6)
 - ✅ Rename app everywhere to **Gym** (title, manifest name/short_name, header, README, SW cache names)
 
@@ -193,6 +193,11 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 - app/data/i18n/ar.json 896/896 (2 subagents, merged + placeholder-checked; plural keys = {zero,one,two,few,many,other}, each form keeps {n}); READY = en,tr,ar -> Settings > Language English | Türkçe | العربية. t() on a plural key used as a bare label ("sets") returns the `few` form (plain plural noun). Not native-reviewed.
 - RTL: CSS was already logical (inset-inline/margin-inline/text-align start-end, chevrons svg.i.dir flipped, switch knob) — added: slide-in animations follow --fx (-1 under [dir=rtl]), `.mini-body { direction: ltr }` (front | back body order not mirrored). Bidi: English exercise names wrapped in FSI…PDI at load when lang = ar (data.js; norm() drops the marks; CSV export strips them) so "2 Part High Elbow Row" keeps its order; i18n.js iso() / <bdi> around "60 kg × 10" runs (train.js wr/load lines + stepline, timer.js lock-screen line, scenario.js progression labels). Plan page weekly-sets bars + "Also:" now use gName() (were English in TR too).
 - Verified with shot.mjs: phone dark (Train, Home, library, exercise, plan, Settings, Body map, session) + phone light (Home, exercise, session) + desktop dark (Train, library, plan, Me, session with the right column).
+
+## Notes (session 66) — Q9 slice 5 (voice in TR/AR) — Q9 DONE
+- app/data/voice.<lang>.json = ONE phrase table per language read by tools/voice/gen.py AND app/js/voice.js (voice, rate, whole sentences with {n}/{m}/{d}/{s}, plural forms by Intl.PluralRules category; English inlined in voice.js, tools/test/unit/voice.test.mjs keeps them equal). gen.py --lang tr|ar [--only k1,k2] (sample clips). English output unchanged (0 of 3415 hashes changed).
+- Voices auto-picked (owner away): tr-TR-EmelNeural, ar-SA-ZariyahNeural, both -20%. Checked samples with whisper-cli (ggml-small): TR "2. set, toplam 3 set." (plain "toplam 3." was read as the ordinal "üçüncü"), TR decimals "42,5 kilo"; AR "المجموعة 2 من 3" read as "المجموعة الثانية من ثلاثة", duals دقيقتين / كيلوين / تكراران, 3–10 تكرارات, 11+ تكرارًا.
+- tr/ar have "names": "en" -> exercise names are played from media/voice/en/x/* (the UI keeps English names; a Turkish/Arabic voice mangles them). ~2570 clips per language in media/voice/tr|ar. voice.js P.go uses nx.last (not the English text). main.js loads the table at boot for tr/ar. Browser-voice fallback already picks a voice by <html lang>. TR/AR wording not native-reviewed.
 
 ## Notes (session 49) — SEC-5/FE-26/FE-20, cleanup + PERF-11
 - store.js: degraded (localStorage) path writes S with sync.token removed; fallback load merges DEFAULTS.settings. importData writes exportData() to IndexedDB key "preImport" (or localStorage gymy_preImport when degraded) before replacing; undoImport() restores and deletes the slot; loadStore skips "preImport". me.js import -> toast "Backup restored" with Undo (8 s).

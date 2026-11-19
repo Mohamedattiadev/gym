@@ -1,0 +1,46 @@
+{
+ "voice": "en-US-AvaNeural",
+ "rate": "-20%",
+ "names": "own",
+ "dec": ".",
+ "rest": "Nice work. Now rest for {d}.",
+ "min": {
+  "one": "{n} minute",
+  "other": "{n} minutes"
+ },
+ "sec": {
+  "one": "{n} second",
+  "other": "{n} seconds"
+ },
+ "minsec": "{m} {s}",
+ "ten": "10 seconds.",
+ "go": "Go.",
+ "ivrest": "Rest.",
+ "restover": "Rest over. Next set.",
+ "timeup": "Time is up.",
+ "ivdone": "Intervals done.",
+ "work": "Work.",
+ "warm": "Warm-up set.",
+ "last": "Last set. Finish strong.",
+ "cues": "Cues.",
+ "voiceon": "Voice on. Rest 2 minutes. Set 2 of 3.",
+ "set": "Set {n} of {m}.",
+ "round": "Round {n} of {m}.",
+ "kg": {
+  "one": "{n} kilo",
+  "other": "{n} kilos"
+ },
+ "lb": {
+  "one": "{n} pound",
+  "other": "{n} pounds"
+ },
+ "reps": {
+  "one": "{n} rep.",
+  "other": "{n} reps."
+ },
+ "forReps": {
+  "one": "for {n} rep.",
+  "other": "for {n} reps."
+ },
+ "step": "Step {n}. {s}"
+}
