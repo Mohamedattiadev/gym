@@ -2,8 +2,10 @@
    (FE-3/PERF-5); a new version waits until the user taps "Reload" (or all windows close). data/*.json and
    illustrations = stale-while-revalidate. 3D engine + model = cache-first in a stable cache that survives app
    updates (PERF-4). Posters/videos are cached on first view (or Settings → Download all); videos answer Range. */
-const VERSION = "v102";
+const VERSION = "v103";
 const SHELL = `gym-shell-${VERSION}`;
+// voice clips (media/voice) are requested as <file>.mp3?v=VOICE_V (voice.js): bump BOTH when tools/voice/gen.py regenerates clips
+const VOICE_V = "2";
 const MEDIA = "gym-media-v1"; // keep name stable so downloaded media survives app updates
 const RECENT = "gym-media-recent"; // PERF-6: videos saved while watching; capped, oldest dropped first
 const RECENT_MAX = 150; // ~100 MB; "Download all" puts its files in MEDIA, which has no cap
@@ -25,7 +27,7 @@ self.addEventListener("activate", (e) => {
   e.waitUntil((async () => {
     for (const k of await caches.keys()) if (k.startsWith("gym-shell-") && k !== SHELL) await caches.delete(k);
     // PERF-13: posters are WebP now — drop the old JPEG copies (~20 MB)
-    try { const m = await caches.open(MEDIA); for (const r of await m.keys()) if (/\/media\/poster\/[^/]+\.jpg$/.test(r.url)) await m.delete(r); } catch {}
+    try { const m = await caches.open(MEDIA); for (const r of await m.keys()) if (/\/media\/poster\/[^/]+\.jpg$/.test(r.url) || (r.url.includes("/media/voice/") && !r.url.endsWith(`?v=${VOICE_V}`))) await m.delete(r); } catch {}
     await self.clients.claim();
   })());
 });
@@ -73,7 +75,7 @@ self.addEventListener("fetch", (e) => {
 
   if (url.pathname.includes("/media/")) {
     e.respondWith((async () => {
-      const key = url.origin + url.pathname;
+      const key = url.origin + url.pathname + (url.pathname.includes("/media/voice/") ? url.search : ""); // voice: ?v= = clip version
       const video = url.pathname.includes("/media/video/");
       const cache = await caches.open(video ? RECENT : MEDIA);
       const hit = await caches.match(key, { cacheName: MEDIA }) || (video && await cache.match(key));

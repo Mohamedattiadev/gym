@@ -13,6 +13,7 @@ tools/voice/index.<lang>.json (key -> hash of text + voice, for regeneration). K
   r/<n>, fr/<n>       "<n> reps." and "for <n> reps." (1 .. 50)
   x/<slug>            exercise name
   f/<family>-s<i>     "Step i+1. <step>"   f/<family>-c<i>  cue
+After regenerating: bump VOICE_V in app/sw.js AND app/js/voice.js (phones keep old clips in the media cache otherwise).
 Anything without a clip (pounds, 41.25 kg, ...) falls back to the browser voice for that sentence.
 Licence: the Edge read-aloud service has no published licence for its output (same owner-accepted risk as
 Fluent365); fallback = regenerate with an open model (Kokoro-82M, Apache-2.0) through this script.

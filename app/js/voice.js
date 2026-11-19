@@ -63,12 +63,13 @@ function caption(text, ms = 0) {
 /* ---- recorded clips ---- */
 let token = 0, srcs = [];
 const lang = () => (document.documentElement.lang || "en").slice(0, 2).toLowerCase();
+const VOICE_V = "2"; // = sw.js VOICE_V; bump both after regenerating clips (old cached clips are dropped)
 const bufs = new Map(); // key -> Promise<AudioBuffer | null>
 function load(key) {
   if (!key) return Promise.resolve(null);
   const id = `${lang()}/${key}`;
   if (!bufs.has(id)) bufs.set(id, (async () => {
-    try { const r = await fetch(`media/voice/${id}.mp3`); if (!r.ok) throw 0; return await audioCtx().decodeAudioData(await r.arrayBuffer()); }
+    try { const r = await fetch(`media/voice/${id}.mp3?v=${VOICE_V}`); if (!r.ok) throw 0; return await audioCtx().decodeAudioData(await r.arrayBuffer()); }
     catch { bufs.delete(id); return null; } // not cached: try again next time (back online)
   })());
   return bufs.get(id);
