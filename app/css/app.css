@@ -816,6 +816,17 @@ body:has(.tpill) .toast { bottom: calc(var(--tab-h) + var(--safe-b) + 70px); }
 .gym .setrow .check { width: 56px; height: 54px; }
 .gym .setrow .n { width: 34px; height: 38px; font-size: .9375rem; }
 .btn.big { height: 56px; font-size: 1.0625rem; margin-top: 12px; }
+/* owner (session 69): Gym mode fits one phone screen — no tab bar (back arrow / Finish / ⋯ stay), no bottom Add|Finish row (both in the header), no first-time hint, smaller nav row */
+.gym #sEnd, .gym .hint.ft { display: none; }
+@media (max-width: 767px) {
+  :root:has(#view.gym) { --tab-h: 0px; }
+  body:has(#view.gym) .nav { display: none; }
+  .gym .gnav { margin: 0 0 8px; } .gym .gnav .iconbtn { width: 44px; height: 44px; }
+  .gym .xhead img { width: 56px; height: 56px; }
+  .gym .set-hdr { margin: 6px 0 2px; }
+  .gym .stepline button { height: 46px; } .gym .xblock { padding: 10px; }
+  .gym .warmn { margin-bottom: 8px; }
+}
 .gchips { display: flex; flex-wrap: wrap; gap: 6px; }
 
 /* ---------- warm-ups (block 20) ---------- */

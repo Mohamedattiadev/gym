@@ -263,7 +263,7 @@ export function sessionView() {
     ${gym ? `<div class="gnav"><button class="iconbtn filled" id="gPrev" aria-label="${t("Previous exercise")}" ${gi ? "" : "disabled"}>${ic("back")}</button><b class="num">${t("Exercise {n} of {m}", { n: gi + 1, m: a.entries.length })}</b><button class="iconbtn filled fwd" id="gNext" aria-label="${t("Next exercise")}" ${gi < a.entries.length - 1 ? "" : "disabled"}>${ic("back")}</button></div>` : ""}
     <div class="sess-grid"><div class="sess-main">
     <div class="stack" id="entries">${a.entries.map((en, ei) => entryHTML(en, ei)).join("") || `<div class="card pad tc"><div class="ill" data-ill="hero-start" style="max-width:140px"></div><b>${t("Empty workout")}</b><div class="muted small">${t("Add your first exercise.")}</div></div>`}</div>
-    <div class="row mt-12"><button class="btn grow" id="addEx">${ic("plus", "sm")} ${t("Add exercise")}</button><button class="btn primary grow" id="fin">${ic("check", "sm")} ${t("Finish workout")}</button></div></div>
+    <div class="row mt-12" id="sEnd"><button class="btn grow" id="addEx">${ic("plus", "sm")} ${t("Add exercise")}</button><button class="btn primary grow" id="fin">${ic("check", "sm")} ${t("Finish workout")}</button></div></div>
     <aside class="sess-side" id="sside" aria-label="${t("Current exercise")}"></aside></div>`;
   clearInterval(clockT);
   const tick = () => { const c = $("#clock"); if (!c || !S.active) return clearInterval(clockT); c.textContent = fmtDur(Date.now() - S.active.startedAt); };
@@ -347,7 +347,7 @@ function entryHTML(en, ei) {
     <div class="xhead"><a href="#/ex/${en.slug}" aria-label="${t("How to do {name}", { name: esc(e?.name || en.slug) })}"><img src="${e?.poster || ""}" alt=""></a>
       <div class="grow"><div class="t">${esc(e?.name || en.slug)}</div>
         <div class="hint"><span>${e?.each_side ? t("{r} reps each side", { r: esc(en.target || "") }) : t("{r} reps", { r: esc(en.target || "") })} ·</span><button class="restb" data-a="rest" aria-label="${t("Rest between sets: {rest}. Change", { rest: restLbl(restOf(en)) })}">${restLbl(restOf(en))}</button></div>
-        ${last ? `<div class="hint"><span class="beat">${ic("target")}${t("Today: {x}", { x: wr(t1.w, t1.r, u) })}</span><span class="dim">${t("(last: {x})", { x: wr(P.top.w, P.top.r) })}</span></div>` : ei === firstOpen() && !en.sets.some((s) => s.done) ? `<div class="hint">${t("First time — pick a weight you can do {n} times with good form.", { n: P.tr ? P.tr[1] : 10 })}</div>` : ""}
+        ${last ? `<div class="hint"><span class="beat">${ic("target")}${t("Today: {x}", { x: wr(t1.w, t1.r, u) })}</span><span class="dim">${t("(last: {x})", { x: wr(P.top.w, P.top.r) })}</span></div>` : ei === firstOpen() && !en.sets.some((s) => s.done) ? `<div class="hint ft">${t("First time — pick a weight you can do {n} times with good form.", { n: P.tr ? P.tr[1] : 10 })}</div>` : ""}
         ${en.deload ? `<div class="hint" style="color:var(--warn)">${ic("alert", "xs")}<span class="grow">${t("Stalled 5+ weeks — deload: ~60% weight today, then build back up.")}</span></div>` : ""}</div>
       <button class="iconbtn sm" data-a="menu" aria-label="${t("Options")}">${ic("more")}</button></div>
     <div class="set-hdr"><span>${t("Set")}</span><span>${t("Last")}<span class="lt"> ${t("time")}</span></span><span>${u}</span><span>${t("Reps")}</span><span></span></div>
