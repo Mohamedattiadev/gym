@@ -252,7 +252,7 @@ function stats() {
 export function sessionView() {
   const a = S.active; if (!a) return redirect("#/train");
   keepAwake();
-  setTop({ title: a.name, back: true, right: `<button class="iconbtn" id="sMore" aria-label="${t("Workout options")}">${ic("more")}</button><button class="btn sm primary" id="finTop">${t("Finish")}</button>` });
+  setTop({ title: a.name, back: true, right: `<button class="iconbtn" id="sMore" aria-label="${t("Workout options")}">${ic("more")}</button><button class="btn sm" id="finTop">${t("Finish")}</button>` });
   const st = stats(), u = S.settings.unit, gym = !!S.settings.gym && a.entries.length > 0;
   if (gym) { gi = Math.min(gi, a.entries.length - 1); if (a.entries[gi]?.sets.every((x) => x.done)) { const k = a.entries.findIndex((en) => en.sets.some((x) => !x.done)); if (k >= 0) gi = k; } }
   view().classList.toggle("gym", gym);

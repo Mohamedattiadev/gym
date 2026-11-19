@@ -147,8 +147,11 @@ function renderOverlay() {
         : nx.text ? `<div class="rov-next"><b class="grow">${esc(nx.text)}</b></div>` : ""}
       <div class="rov-btns"><button class="btn lg" data-r="m15">${t("−15 s")}</button><button class="btn lg" data-r="p30">${t("+30 s")}</button></div>
       <button class="btn lg primary block" data-r="skip">${t("Skip rest")}</button></div>`;
-    o.onclick = (e) => { const b = e.target.closest("[data-r]"); if (!b) return; haptic(); const k = b.dataset.r;
-      if (k === "min") { T.min = true; persist(); tick(); } if (k === "toggle") toggle(); if (k === "m15") add(-15); if (k === "p30") add(30); if (k === "skip") stop(); };
+    const hide = () => { T.min = true; persist(); tick(); };
+    let y0 = null; // A11Y-13: swipe down or tap the empty area hides the overlay (the top chevron is far from the thumb)
+    o.onpointerdown = (e) => { y0 = e.clientY; }; o.onpointerup = (e) => { if (y0 != null && e.clientY - y0 > 80 && $("#rov")) hide(); y0 = null; };
+    o.onclick = (e) => { const b = e.target.closest("[data-r]"); if (!b) { if (e.target === o) hide(); return; } haptic(); const k = b.dataset.r;
+      if (k === "min") hide(); if (k === "toggle") toggle(); if (k === "m15") add(-15); if (k === "p30") add(30); if (k === "skip") stop(); };
     rovFocus = document.activeElement; document.body.appendChild(o); document.addEventListener("keydown", onKey);
     setInert(true); $('[data-r="skip"]', o).focus({ preventScroll: true, focusVisible: false });
   }
