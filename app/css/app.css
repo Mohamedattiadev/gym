@@ -243,6 +243,7 @@ svg.ring circle { fill: none; stroke-width: 4; } svg.ring .bg { stroke: var(--s3
 .setrow-s .ico { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-text); flex: none; }
 .setrow-s b { font-weight: 600; } .setrow-s .v { color: var(--t3); font-size: .875rem; }
 .setrow-s.wrap { flex-wrap: wrap; } .setrow-s.wrap .seg.block { flex-basis: 100%; }
+button.setrow-s { width: 100%; text-align: start; background: none; border: 0; color: inherit; font: inherit; cursor: pointer; }
 
 /* rounded icon tiles */
 .itiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; } /* auto-fit: a few tiles share the full width on desktop (no empty columns) */
@@ -1024,7 +1025,11 @@ body:has(#rov) .toast { bottom: auto; top: calc(var(--safe-t) + 16px); }
 /* A11Y-22 RTL: zero specificity so rotate rules (open/close chevrons) still win; forward buttons already flip in LTR */
 :where([dir="rtl"]) :where(#tBack svg, svg.i.dir) { transform: scaleX(-1); }
 [dir="rtl"] .iconbtn.fwd svg { transform: none; }
-.tierhint { display: flex; align-items: center; gap: 10px; margin: 2px 0 8px; }
+.tierhint { display: flex; align-items: center; gap: 12px; margin: 4px 0 12px; padding: 10px 10px 10px 12px; background: var(--s2); border: 1px solid var(--line-2); border-radius: 14px; }
+.tierhint .th-b { display: flex; gap: 3px; flex: none; } .tierhint .th-b .tier { min-width: 22px; height: 22px; font-size: .75rem; }
+.tierhint .th-t { color: var(--t1); font-weight: 650; font-size: .875rem; line-height: 1.3; } .tierhint .th-s { color: var(--t2); font-size: .8125rem; line-height: 1.35; margin-top: 1px; }
+.tierhint .btn { flex: none; }
+@media (max-width: 380px) { .tierhint .th-b .tier:not(.S) { display: none; } }
 @media (max-width: 399px) { .set-hdr .lt { display: none; } }
 /* FE-22 spacing utilities (were inline style="" in JS templates; !important keeps the old inline-style precedence) */
 .mt-4 { margin-top: 4px !important; } .mt-6 { margin-top: 6px !important; } .mt-8 { margin-top: 8px !important; } .mt-10 { margin-top: 10px !important; }

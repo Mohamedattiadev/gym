@@ -25,6 +25,16 @@ export function applyTheme() {
 }
 lightMQ.addEventListener("change", applyTheme);
 
+/* ================= printable guide PDFs (Q8c, app/guides, built by tools/guide/build.mjs) ================= */
+export const GUIDE_LEVELS = ["beginner", "intermediate", "advanced"];
+export function guideUrl(kind, level) {
+  const lv = GUIDE_LEVELS.includes(level) ? level : "beginner";
+  const lang = ["tr", "ar"].includes(document.documentElement.lang) ? document.documentElement.lang : "en";
+  const th = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+  return `guides/gym-${kind}-${lv}-${lang}-${th}.pdf`;
+}
+export const guideBtns = (level, cls = "btn sm grow") => `<div class="row"><a class="${cls}" href="${guideUrl("guide", level)}" target="_blank" rel="noopener" download>${ic("download", "sm")} Guide PDF</a><a class="${cls}" href="${guideUrl("poster", level)}" target="_blank" rel="noopener" download>${ic("download", "sm")} Wall poster</a></div>`;
+
 /* ================= shared bits ================= */
 export const tierBadge = (t, cls = "") => (t ? `<span class="tier ${t} ${cls}">${t}<small>tier</small></span>` : "");
 export const TIER_INFO = [["S", "Top pick", "One of the best choices for this muscle."], ["A", "Great", "Excellent, use it freely."],

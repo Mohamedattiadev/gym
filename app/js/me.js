@@ -7,7 +7,7 @@ import { MUSCLES, MBY } from "./body.js";
 import { e1rm } from "./calc.js";
 import { setTop, routeParts } from "./nav.js";
 import { installNow, standalone } from "./install.js";
-import { applyTheme, fillIll, MEDIA_CACHE, RECENT_CACHE, tierBadge } from "./components.js";
+import { applyTheme, fillIll, MEDIA_CACHE, RECENT_CACHE, tierBadge, GUIDE_LEVELS, guideBtns } from "./components.js";
 import { lib } from "./exercise.js";
 import * as Sync from "./sync.js";
 import * as V from "./voice.js";
@@ -214,6 +214,7 @@ async function settingsPanel(host) {
       <div class="card list-sep">
         <a class="setrow-s" href="#/profile"><span class="ico">${ic("user", "sm")}</span><div class="grow"><b>Profile</b><div class="dim tiny">Level, days, body</div></div>${ic("chev", "sm")}</a>
         <a class="setrow-s" href="#/guide"><span class="ico">${ic("info", "sm")}</span><div class="grow"><b>Guides</b><div class="dim tiny">Plan quiz, strength goals, nutrition</div></div>${ic("chev", "sm")}</a>
+        <button class="setrow-s" id="pdfG"><span class="ico">${ic("download", "sm")}</span><div class="grow"><b>Printable guide</b><div class="dim tiny">PDF to print or share · plan, photos, video QR codes</div></div>${ic("chev", "sm")}</button>
         <a class="setrow-s" href="#/start"><span class="ico">${ic("user", "sm")}</span><div class="grow"><b>Set-up questions</b><div class="dim tiny">Level, days, equipment, body · picks a plan</div></div>${ic("chev", "sm")}</a>
       </div>
       <div class="card list-sep">
@@ -254,6 +255,12 @@ async function settingsPanel(host) {
     const pp = $("#persist"); if (pp) pp.onclick = async (e) => { e.preventDefault(); toast((await persist()) ? "Storage protected" : "Install the app first, then try again"); }; })();
   const set = (k, v) => { st[k] = v; save("settings"); haptic(); };
   const seg = (id, fn) => ($(`#${id}`).onclick = (e) => { const b = e.target.closest("button"); if (!b || b.classList.contains("on")) return; selectIn(b); fn(b.dataset.v); });
+  $("#pdfG").onclick = () => {
+    let lv = GUIDE_LEVELS.includes(S.profile?.level) ? S.profile.level : "beginner";
+    const body = () => `<h3 style="margin:0 0 4px">Printable guide</h3><p class="muted small" style="margin:0 0 12px">Your plan with photos, sets and a QR code to each exercise video. Print the wall poster for the gym, share the guide with friends.</p>
+      ${segH("gLv", GUIDE_LEVELS.map((l) => [l, l[0].toUpperCase() + l.slice(1)]), lv).replace('class="seg sm"', 'class="seg sm block"')}<div class="mt-16" id="gBtns">${guideBtns(lv, "btn grow")}</div>`;
+    openSheet(body(), (d) => { requestAnimationFrame(() => indicate(d)); d.querySelector("#gLv").onclick = (e) => { const b = e.target.closest("button"); if (!b || b.classList.contains("on")) return; selectIn(b); lv = b.dataset.v; d.querySelector("#gBtns").innerHTML = guideBtns(lv, "btn grow"); }; }, { half: true });
+  };
   seg("sTheme", (v) => { set("theme", v); applyTheme(); });
   seg("sEquip", (v) => { set("equip", v); lib.mine = true; toast(`Showing exercises for: ${EQUIP_PROFILES[v].name}`); });
   seg("sUnit", (v) => set("unit", v)); seg("sBar", (v) => set("bar", +v));

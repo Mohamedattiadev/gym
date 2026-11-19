@@ -14,7 +14,7 @@ const T = {
     dayNames: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], rest: "Rest",
     recommended: "Recommended", page: "Page", contents: "Contents", see: (n) => `page ${n}`,
     getApp: "Get the app", getAppLine: "Free. No account. Works offline in the gym.",
-    scanApp: "Scan with your phone camera", scanEx: "Scan the QR next to an exercise to watch its video.",
+    scanApp: "Scan with your phone camera", scanEx: "Scan the QR next to an exercise for its video and alternatives. No machine for it? Pick another one there.", qrCap: "Video + alternatives",
     inst: [["iPhone", "Open it in Safari, tap Share, then Add to Home Screen."], ["Android", "Open it in Chrome, tap the menu ⋮, then Install app."], ["Computer", "Chrome, Edge or Brave: click the install icon in the address bar."]],
     exercise: "Exercise", setsReps: "Sets × reps", restCol: "Rest", start: "Start", video: "Video", tier: "tier",
     startNote: (m, w, p) => `Start = first-session weight for a ${m} kg man (M) and a ${w} kg woman (W). Your own number: page ${p}.`,
@@ -139,6 +139,8 @@ small.dayl { font-size: .45em; font-weight: 650; color: var(--accent-text); lett
 .bars em { font-style: normal; text-align: end; font-weight: 700; }
 .qr { background: #fff; padding: 1.3mm; border-radius: 1.5mm; display: block; flex: none; }
 .qr svg { display: block; width: 100%; height: 100%; }
+.qrc { display: flex; flex-direction: column; align-items: center; gap: .8mm; } .qrc small { font-size: 6.5pt; line-height: 1.15; color: var(--dim); text-align: center; max-width: 20mm; }
+.prow .qrc small { font-size: 7.5pt; max-width: none; white-space: nowrap; }
 .tierb { font-size: 6.5pt; font-weight: 700; border: .25mm solid var(--line2); border-radius: 1mm; padding: .1mm 1.1mm; color: var(--dim); }
 .tierb.S { border-color: var(--accent); color: var(--accent-text); }
 /* get the app block */
@@ -281,7 +283,7 @@ function kit(c) {
     <div><h3>${t.getApp}</h3><p class="sub">${t.getAppLine}</p>${url ? `<p class="url">mohamedattiadev.github.io/gym</p>` : ""}
       <div class="inst">${t.inst.map(([h, p]) => `<div><b>${h}</b><p>${esc(p)}</p></div>`).join("")}</div></div></div>`;
   const gN = (x) => t.G[x] || x, eqN = (x) => t.EQ[x] || x;
-  const wN = (x) => { const m = /^(.*?)( [AB])?$/.exec(x); return t.WN[m[1]] || m[1]; };
+  const wN = (x) => { const m = /^(.*?)( [AB])?( · Day \d+)?$/.exec(x); return t.WN[m[1]] || m[1]; };
   /* translated copy of the plan data (workout names) */
   c.data = { ...c.data, plans: c.data.plans.map((p) => ({ ...p, workouts: p.workouts.map((w) => ({ ...w, name: wN(w.name) })) })) };
   return { t, L, exUrl, img, ill, ptx, planName, daysOf, weekStrip, wTitle, appBlock, gN, eqN };
@@ -345,7 +347,7 @@ export function guideHTML(c) {
         <div><a class="nm" href="${exUrl(e.slug)}">${esc(e.name)}</a><div class="meta">${esc(gN(e.group))} · ${esc(e.equipment.map(eqN).join(", "))}</div>
           ${fam(e).cues?.[0] ? `<div class="cue">${esc(fam(e).cues[0])}</div>` : ""}</div>
         <div class="sr">${e.sets} × ${reps(e.reps)}</div><div class="rs">${fmtRest(e.rest || 90, t)}</div>${startCell(e)}
-        <a href="${exUrl(e.slug)}" class="qr">${c.qr(exUrl(e.slug))}</a></div>`).join("")}</div></div>`;
+        <div class="qrc"><a href="${exUrl(e.slug)}" class="qr">${c.qr(exUrl(e.slug))}</a><small>${t.qrCap}</small></div></div>`).join("")}</div></div>`;
   };
   plans.forEach((p, pi) => {
     const tx = ptx(p.id), sets = Object.entries(p.sets).sort((a, b) => b[1] - a[1]), maxS = Math.max(...sets.map(([, n]) => n), 10);
@@ -506,7 +508,7 @@ export function posterHTML(c) {
   const { t, exUrl, img, planName, weekStrip, wTitle } = kit(c);
   const lvName = t.levels[c.level], fam = (e) => c.fam[e.family] || {}, guideUrl = `${c.site}guides/gym-guide-${c.level}-${c.lang}-light.pdf`;
   const page = (p, pi, w, wi) => {
-    const n = w.items.length, rowH = Math.min(46, 300 / n), ph = Math.min(60, (rowH - 12) / 0.5625), q = Math.min(30, rowH - 10);
+    const n = w.items.length, rowH = Math.min(46, 300 / n), ph = Math.min(52, (rowH - 16) / 0.5625), q = Math.min(28, rowH - 17); /* owner: more air between the photos + room for the QR caption */
     const days = t.dayNames.filter((_, i) => p.week[i] === wi).join(", ");
     const strip = weekStrip(p, wi);
     return `<section class="poster pw1" style="--ph:${ph.toFixed(1)}mm;--q:${q.toFixed(1)}mm">
@@ -521,7 +523,7 @@ export function posterHTML(c) {
       <i>${i + 1}</i>${img(e)}
       <div><a class="nm" href="${exUrl(e.slug)}">${esc(e.name)}</a>${fam(e).cues?.[0] ? `<p class="cue">${esc(fam(e).cues[0])}</p>` : ""}</div>
       <b class="sr">${e.sets} × ${reps(e.reps)}</b><span class="rs">${fmtRest(e.rest || 90, t)}</span>
-      <a href="${exUrl(e.slug)}" class="qr">${c.qr(exUrl(e.slug))}</a></div>`).join("")}</div>
+      <div class="qrc"><a href="${exUrl(e.slug)}" class="qr">${c.qr(exUrl(e.slug))}</a><small>${t.qrCap}</small></div></div>`).join("")}</div>
     <p class="ptips"><b>${t.secProg}:</b> ${t.progShort} <b>${t.secStart}:</b> ${t.startLight}</p>
     <div class="pfoot2">
       <div class="card"><a href="${c.site}" class="qr">${c.qr(c.site)}</a><div><h2>${t.getApp}</h2><p class="dim">${t.getAppLine}</p><p class="b">${t.scanEx}</p></div></div>

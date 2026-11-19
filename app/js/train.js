@@ -2,7 +2,7 @@
 import { S, save, tomb, persist } from "./store.js";
 import { $, BP, $$, esc, ic, uid, ask, askText, choose, openSheet, closeSheet, toast, haptic, beep, confetti, fmtDur, RM } from "./ui.js";
 import { BY, history, lastSets, bestOf, setsText, swaps, WEEK } from "./data.js";
-import { PLANS, planById, buildPlan, pickPlans, recommendedId, planOpts, planSlots, minutesOf, freqOf, FOCUS, loadPlanText } from "./plans.js";
+import { PLANS, planById, buildPlan, pickPlans, recommendedId, planOpts, planSlots, minutesOf, freqOf, FOCUS, loadPlanText, weekLine } from "./plans.js";
 import { e1rm, platesFor, plateColor, plateHeight, warmupSets, suggest } from "./calc.js";
 import { go, redirect, setTop } from "./nav.js";
 import { tierBadge, restText, fillIll } from "./components.js";
@@ -32,7 +32,7 @@ export function trainView() {
           <img src="${BY[w.items[0]?.slug]?.poster || ""}" alt="" data-hide-broken><div class="grow"><div class="b ellip">${esc(w.name)}</div><div class="dim small">${next && w.id === next.id ? `<b class="nx">Next</b> · ` : ""}${w.items.length} exercises · ${w.items.reduce((a, it) => a + +it.sets, 0)} sets</div></div></a>
           <button class="go-btn" data-start="${esc(w.id)}" aria-label="Start ${esc(w.name)}">${ic("play")}</button></div>`;
   const planBox = cur ? `<div class="card pad myplan"><div class="eyebrow">Your plan</div><div class="row" style="gap:8px;align-items:baseline"><h2 class="grow">${esc(cur.name)}</h2><span class="dim small num">${cur.days} days a week</span></div>
-      <div class="muted small">Do the workouts below in order, one per training day. Each muscle ${freqOf(cur)}× a week.</div>
+      <div class="muted small">${esc(weekLine(cur))} Each muscle ${freqOf(cur)}× a week.</div>
       <div class="row mt-10"><a class="btn sm grow" href="#/plans">${ic("swap", "sm")} Change plan</a><a class="btn sm grow" href="#/plan/${cur.id}">How it works</a></div></div>`
     : `<div class="card pad myplan"><div class="eyebrow">Step 1</div><h2>Pick a plan</h2><div class="muted small">A plan gives you ready workouts for each training day. You can change it any time.</div></div>`;
   const plans = `<div class="stack tight stagger" id="planCards">${pickPlans({ level: S.profile?.level || "beginner", days: S.profile?.days || 3 }).map(({ p }) => planCard(p)).join("")}</div>
@@ -87,7 +87,7 @@ export function previewPlan(p) {
   const draw = async (el) => {
     const ws = buildPlan(p, o), sl = planSlots(p, o);
     const seg = (id, opts, cur) => `<div class="seg sm" id="${id}" role="group">${opts.map(([v, t]) => `<button class="${String(v) === String(cur) ? "on" : ""}" data-v="${v}">${t}</button>`).join("")}</div>`;
-    el.innerHTML = `<h3>${esc(p.name)}</h3><p class="muted small" style="margin:-6px 0 10px">${p.days} days a week · ${ws.length} workouts</p>
+    el.innerHTML = `<h3>${esc(p.name)}</h3><p class="muted small" style="margin:-6px 0 10px">${esc(weekLine(p))}</p>
       <div class="seg sm block mb-12" id="pvTab" role="group"><button class="${tab === "list" ? "on" : ""}" data-v="list">Workouts</button><button class="${tab === "week" ? "on" : ""}" data-v="week">How a week works</button></div>
       <div class="pv-opts"><div class="row between"><span class="small b">Session length</span>${seg("pvMin", [[45, "45 min"], [60, "60 min"], [75, "75 min"]], o.min)}</div>
         <div><span class="small b">Extra focus</span><div class="gchips mt-6" id="pvFocus">${[["", "None"], ...Object.entries(FOCUS).map(([k, v]) => [k, v.name])].map(([k, t]) => `<button class="chip ${k === o.focus ? "on" : ""}" data-v="${k}">${t}</button>`).join("")}</div>${o.focus ? `<div class="dim tiny mt-4">Adds a few sets for ${esc(FOCUS[o.focus].name.toLowerCase())} to two workouts.</div>` : ""}</div></div>

@@ -30,7 +30,7 @@ const W = {
   arms: ["Arms", [SLOT("Biceps", "curl", 3, "8-12"), SLOT("Triceps", "ext", 3, "8-12"), SLOT("Biceps", "curl", 3, "10-15"), SLOT("Triceps", "ext", 3, "10-15"), SLOT("Forearms", "curl", 2, "12-15")]],
 };
 /* week: 7 entries Mon..Sun, each an index into workouts or null (rest) */
-const P = (id, name, level, levels, days, kind, ws, week) => ({ id, name, level, levels, days, kind, workouts: ws.map((k) => W[k]), week });
+const P = (id, name, level, levels, days, kind, ws, week) => ({ id, name, level, levels, days, kind, workouts: ws.map((k, i) => [`${W[k][0].replace(/ [AB]$/, "")} · Day ${i + 1}`, W[k][1]]), week }); /* owner (Q8c): "Full Body · Day 1" instead of "Full Body A" (same as the PDF guides) */
 export const PLANS = [
   P("fb2", "Full Body", "beginner", ["beginner", "intermediate", "advanced"], 2, "fb", ["fb2A", "fb2B"], [0, null, null, 1, null, null, null]),
   P("beg-fb", "Full Body", "beginner", ["beginner", "intermediate"], 3, "fb", ["fbA", "fbB"], [0, null, 1, null, 0, null, null]),
@@ -66,6 +66,15 @@ export function pickPlans({ level = "beginner", days = 3 } = {}) {
     .map(({ p }) => ({ p, why: p.id === rec ? "recommended" : best.includes(p.id) ? "days" : p.days === days ? "fits" : "fewer" }));
 }
 
+/* the week in one line, e.g. "Mon Day 1 · Wed Day 2 · Fri Day 1" + the rotation note when the week does not repeat
+   (owner: "3 days a week" but only 2 workouts listed was confusing) */
+const DN = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+export function weekLine(p) {
+  const on = p.week.map((w, i) => [w, i]).filter(([w]) => w != null);
+  const line = on.map(([w, i]) => `${DN[i]} Day ${w + 1}`).join(" · ");
+  const n = p.workouts.length, nxt = (on[on.length - 1][0] + 1) % n;
+  return n < on.length && nxt !== on[0][0] ? `${line}. ${n} workouts on ${on.length} days, done in turn: next week starts with Day ${nxt + 1}.` : `${line}.`;
+}
 /* weekly hard sets per muscle (Lats + Upper Back = Back, Glutes count with Hamstrings only when no Glutes slot) */
 export const MAIN = ["Chest", "Back", "Shoulders", "Quads", "Hamstrings", "Biceps", "Triceps"];
 const muscleOf = (g) => (g === "Lats" || g === "Upper Back" ? "Back" : g);

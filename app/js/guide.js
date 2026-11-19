@@ -6,6 +6,7 @@ import { EX, bestOf, EQUIP_PROFILES } from "./data.js";
 import { setTop, go, redirect, routeId, live } from "./nav.js";
 import * as T from "./train.js";
 import * as P from "./plans.js";
+import { guideBtns } from "./components.js";
 
 const view = () => $("#view");
 const G = {};
@@ -285,12 +286,13 @@ export async function plansView(id) {
     const list = (t, xs, cls) => ((xs || []).length ? `<div class="h4">${t}</div><ul class="small glist ${cls}">${xs.map((x) => `<li>${esc(L(x))}</li>`).join("")}</ul>` : "");
     const ws = P.weeklySets(p), [lo, hi] = TARGET[p.level], max = Math.max(hi, ...Object.values(ws));
     const rec = p.id === P.recommendedId();
-    view().innerHTML = `<div class="card pad"><div class="eyebrow">${esc(p.level)} · ${p.days} days a week${rec ? " · Recommended for you" : ""}</div><p class="small" style="margin:6px 0 0">${esc(L(c.what))}</p>${c.best ? `<p class="dim small" style="margin:6px 0 0">${esc(L(c.best))}</p>` : ""}</div>
+    view().innerHTML = `<div class="card pad"><div class="eyebrow">${esc(p.level)} · ${p.days} days a week${rec ? " · Recommended for you" : ""}</div><p class="small" style="margin:6px 0 0">${esc(L(c.what))}</p><p class="small b" style="margin:6px 0 0">${esc(P.weekLine(p))}</p>${c.best ? `<p class="dim small" style="margin:6px 0 0">${esc(L(c.best))}</p>` : ""}</div>
       <div class="row between scn-h"><div class="h4">How a week works</div><select class="chip scn-cmp" id="pCmp" aria-label="Compare with another plan"><option value="">Compare with…</option>${P.PLANS.filter((q) => q.id !== p.id).map((q) => `<option value="${q.id}">${esc(L(C[q.id]?.name) || q.name)} · ${q.days} days</option>`).join("")}</select></div><div id="scnHost"></div>
       ${blk("Who it's for", c.who)}${blk("Why it works", c.why)}${list("Good", c.pros, "pros")}${list("Keep in mind", c.cons, "cons")}
       <div class="h4">Hard sets per muscle per week</div><div class="wsets">${P.MAIN.map((g) => [g, ws[g] || 0]).map(([g, n]) => `<div><span>${esc(g)}</span><i><u style="inset-inline-start:${(lo / max) * 100}%;width:${((hi - lo) / max) * 100}%"></u><b style="width:${(n / max) * 100}%" class="${n < lo ? "lo" : ""}"></b></i><em class="num">${n}</em></div>`).join("")}</div>
       <div class="dim tiny mt-6">Green band = a good weekly range for this level (${lo}–${hi} sets). Presses count half a set for triceps, rows and pulldowns half a set for biceps.${(() => { const o = Object.entries(ws).filter(([g]) => !P.MAIN.includes(g)); return o.length ? ` Also: ${o.map(([g, n]) => `${esc(g)} ${n}`).join(" · ")}.` : ""; })()}</div>
       ${blk("How to progress", c.progression)}${list("Tips", c.tips, "")}
+      <div class="h4">Print it</div><p class="dim small" style="margin:0 0 8px">The ${esc(p.level)} plans as a PDF with photos and a QR code to each video.</p>${guideBtns(p.level)}
       <div class="row mt-16"><button class="btn grow" id="pPv">Preview</button><button class="btn primary grow" id="pUse">${ic("plus", "sm")} Use this plan</button></div>`;
     const sc = await import("./scenario.js"); if (!live(rid)) return;
     sc.mountScenario($("#scnHost"), p);
