@@ -5,7 +5,7 @@ import { $, BP, $$, esc, ic, closeSheet, initSheet, toast, unlockAudio, indicate
 import { EX, loadExercises, buildIndex, FAM_LANG } from "./data.js";
 import { bodyMap, leaveBodyMap } from "./bodymap.js";
 import { videos } from "./videos.js";
-import { nextRoute, routeId, live, go, routeParts, onRoute, setTop } from "./nav.js";
+import { nextRoute, routeId, live, go, redirect, routeParts, onRoute, setTop } from "./nav.js";
 import { MEDIA_CACHE, fillIll, applyTheme } from "./components.js";
 import { installView } from "./install.js";
 import * as T from "./train.js";
@@ -38,6 +38,9 @@ function route(quiet) {
   if (quiet !== true) quiet = false;
   nextRoute();
   const [, a = "", b] = routeParts();
+  // owner: while the welcome screen is up (guide.js sets <html data-welcome>), the tabs must not skip it — only Guest / Google leave it (privacy + install stay open).
+  // Deep links (shared exercise, poster QR) of a fresh user still open directly: the flag exists only once the welcome screen was shown.
+  if (document.documentElement.dataset.welcome && !S.settings.welcomed && !["start", "privacy", "install"].includes(a)) { redirect("#/start"); return; }
   const narrow = innerWidth < BP.tablet;
   const depth = ["ex", "workout", "session", "pick", "videos", "guide", "start", "profile", "standards", "nutrition", "plans", "plan", "warmup", "privacy", "install"].includes(a) || (a === "timer" && narrow) ? 1 : 0;
   const back = depth < lastDepth; lastDepth = depth;

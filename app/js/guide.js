@@ -1,7 +1,7 @@
 // Guides: onboarding (-> plan) + profile, strength standards, nutrition calculator + guide, plans explained.
 // Content lives in data/guide/*.json (en/tr/ar); this module is lazy-loaded by the router.
 import { S, save, flush } from "./store.js";
-import { $, esc, ic, haptic, toast, selectIn, indicate, L } from "./ui.js";
+import { $, esc, ic, haptic, toast, selectIn, indicate, L, gLogo } from "./ui.js";
 import { EX, bestOf, EQUIP_PROFILES, loadExercises } from "./data.js";
 import { setTop, go, redirect, routeId, live } from "./nav.js";
 import * as T from "./train.js";
@@ -107,14 +107,14 @@ export async function startView() {
     if (!S.settings.lang) { const n = (navigator.language || "").slice(0, 2).toLowerCase(); if (n !== "en" && READY.includes(n)) await pickLang(n); }
     const cloud = await import("./cloud.js").then((m) => m.loadConfig().then((c) => c && m)).catch(() => null);
     if (!live(rid) || S.settings.welcomed) return;
-    setTop({ title: "", back: false });
+    setTop({ title: "", back: false }); document.documentElement.dataset.welcome = "1";
     view().innerHTML = `<div class="welc"><img src="icons/icon.svg" alt="" width="72" height="72"><h1>Gym</h1><p class="muted">${t("Your plan, your workouts, your progress.")}</p>
       <div class="seg welc-lang" id="wLang" role="group" aria-label="${t("Language")}">${READY.map((l) => `<button data-v="${l}" lang="${l}" class="${lang() === l ? "on" : ""}">${LANGS[l]}</button>`).join("")}</div>
-      <div class="stack tight welc-go">${cloud ? `<button class="btn primary block" id="wG">${t("Sign in with Google")}</button><a class="small tc" href="#/privacy">${t("Privacy")}</a>
+      <div class="stack tight welc-go">${cloud ? `<button class="btn primary block" id="wG">${gLogo}${t("Sign in with Google")}</button><a class="small tc" href="#/privacy">${t("Privacy")}</a>
         <button class="btn block mt-8" id="wGuest">${t("Continue as guest")}</button><div class="dim tiny tc">${t("You can sign in later in Me > Settings.")}</div>`
         : `<button class="btn primary block" id="wGuest">${t("Continue")}</button>`}</div></div>`;
     $("#wLang").onclick = async (e) => { const b = e.target.closest("[data-v]"); if (!b || b.classList.contains("on")) return; haptic(); await pickLang(b.dataset.v); if (live(rid)) welcome(); };
-    $("#wGuest").onclick = () => { S.settings.welcomed = true; save("settings"); draw(); window.scrollTo(0, 0); };
+    $("#wGuest").onclick = () => { S.settings.welcomed = true; save("settings"); delete document.documentElement.dataset.welcome; draw(); window.scrollTo(0, 0); };
     const g = $("#wG"); if (g) g.onclick = async () => { g.disabled = true; await flush().catch(() => {}); cloud.signIn(); }; // returns to #/start; main.js marks welcomed
   };
   draw();

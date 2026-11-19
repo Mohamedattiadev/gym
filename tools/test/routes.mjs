@@ -18,9 +18,13 @@ const sessionSteps = [{ go: "#/train" }, { waitFor: "[data-use]" }, { click: "[d
   { eval: "(() => { const l = localStorage.getItem('gym-log'); if (l) throw new Error('app error log: ' + l.slice(0, 400)); })()" }];
 let failed = 0;
 for (const vp of ["phone", "desktop"]) for (const scheme of ["light", "dark"]) {
+  // the welcome screen (fresh profile on #/ or #/start) holds every other route until Guest / Google (main.js route());
+  // check that once, then drop its flag before each page so every route renders as before
+  const unwelc = { eval: "delete document.documentElement.dataset.welcome", wait: 0 };
   const steps = [{ vp, scheme }, { go: "#/", wait: 2500 }, { waitFor: "#view" },
-    ...routes.flatMap((r) => [{ go: r, wait: 900 }, { shot: (r.slice(2).replace(/\W+/g, "-") || "home") + "-" + scheme }]),
-    ...sessionSteps.map((s) => (s.shot ? { shot: s.shot + "-" + scheme } : s))];
+    { go: "#/lib", wait: 700 }, { eval: "(() => { if (location.hash !== '#/start') throw new Error('welcome guard: tab left the welcome screen -> ' + location.hash); })()" },
+    ...routes.flatMap((r) => [unwelc, { go: r, wait: 900 }, { shot: (r.slice(2).replace(/\W+/g, "-") || "home") + "-" + scheme }]),
+    unwelc, ...sessionSteps.map((s) => (s.shot ? { shot: s.shot + "-" + scheme } : s))];
   const f = `${out}/steps-${vp}-${scheme}.json`; writeFileSync(f, JSON.stringify(steps));
   const txt = execFileSync("node", [root + "tools/test/shot.mjs", out, f], { encoding: "utf8", maxBuffer: 1 << 26 });
   const errs = txt.split("\n").filter((l) => l && !l.startsWith("shot ") && !/^(no console errors|ERRORS:)$/.test(l) && !/navigator\.vibrate/.test(l));

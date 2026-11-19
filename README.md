@@ -52,8 +52,12 @@ muscle are always on top. Around that sits everything you need for a session, in
 
 ## Install
 
-1. Open **[mohamedattiadev.github.io/gym](https://mohamedattiadev.github.io/gym)** on your phone.
-2. Tap **Install** on the banner (Android), or **Share → Add to Home Screen** (iPhone).
+Gym is a **PWA** (Progressive Web App) on purpose. I didn't want to deal with app stores: no review queues,
+no store fees, no waiting days for an update. You install it straight from the website, it runs full screen and works offline
+like a normal app, and every update reaches everyone the moment it's pushed.
+
+1. Open **[mohamedattiadev.github.io/gym/#/install](https://mohamedattiadev.github.io/gym/#/install)** on your phone.
+2. Tap **Install** (Android, desktop Chrome / Edge / Brave), or **Share → Add to Home Screen** (iPhone).
 3. Optional: **Me → Settings → Offline videos** once on Wi-Fi, so demos play in a basement gym too.
 
 ## Built with

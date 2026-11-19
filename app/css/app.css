@@ -1113,3 +1113,8 @@ body:has(#rov) .toast { bottom: auto; top: calc(var(--safe-t) + 16px); }
 .welc-lang button { height: 44px; }
 .welc-go { width: 100%; max-width: 380px; margin-top: 18px; }
 .welc-go a { color: var(--accent-text); padding: 6px; }
+/* owner: no tab bar on the welcome screen (phone) — Guest / Google first; main.js route() also sends tab links back to #/start */
+@media (max-width: 767px) { :root[data-welcome] { --tab-h: 0px; } :root[data-welcome] .nav { display: none; } }
+/* Google "G" on a white tile inside the Sign in with Google buttons (Google branding: logo on white) */
+.glogo { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: #fff; margin-inline-end: 10px; flex: none; }
+.btn.sm .glogo { width: 20px; height: 20px; border-radius: 5px; } .btn.sm .glogo svg { width: 14px; height: 14px; }

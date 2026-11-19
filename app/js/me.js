@@ -1,7 +1,7 @@
 // Me: three tabs — Progress (week vs week, charts, PRs, bodyweight), Workouts (16-week calendar + past sessions), Settings.
 // Routes: #/me, #/me/workouts, #/me/settings (#/settings opens the Settings tab).
 import { S, save, tomb, persist, exportData, importData, undoImport, flush } from "./store.js";
-import { $, $$, esc, ic, ask, askText, openSheet, closeSheet, toast, haptic, fmtDate, fmtDur, lineChart, vBars, delta, fmtKg, indicate, selectIn } from "./ui.js";
+import { $, $$, esc, ic, ask, askText, openSheet, closeSheet, toast, haptic, fmtDate, fmtDur, lineChart, vBars, delta, fmtKg, indicate, selectIn, gLogo } from "./ui.js";
 import { EX, BY, EQUIP_PROFILES, bestOf, setsText, weeklyVolume, periodStats, exerciseStats, weekStart, WEEK, DAY, history, flaggedJoints, JOINTS } from "./data.js";
 import { MUSCLES, MBY } from "./body.js";
 import { e1rm } from "./calc.js";
@@ -392,7 +392,7 @@ function acct() {
   const st = Cloud.status(), priv = `<a href="#/privacy" class="small" style="color:var(--accent-text)">${t("Privacy")}</a>`;
   el.hidden = false;
   el.innerHTML = !st.signedIn ? `<b>${t("Account")}</b><p class="muted small" style="margin:4px 0 10px">${st.expired ? t("Signed out. Sign in again to keep backing up.") : t("Sign in to keep your workouts safe and get them on your other devices. Without it, everything stays on this phone.")}</p>
-      <button class="btn primary sm block" id="aIn">${t("Sign in with Google")}</button><div class="mt-8">${priv}</div>`
+      <button class="btn primary sm block" id="aIn">${gLogo}${t("Sign in with Google")}</button><div class="mt-8">${priv}</div>`
     : `<b>${t("Account")}</b><p class="muted small" style="margin:4px 0 10px">${t("Signed in as {email} · last backup {d}", { email: `<b>${esc(st.email)}</b>`, d: when(st.lastPush || st.lastPull) })}${st.pending ? ` · ${t("pending")}` : ""}</p>
       ${st.error ? `<p class="small" style="color:var(--danger);margin:0 0 10px">${esc(st.error)}</p>` : ""}
       <div class="row wrap"><button class="btn sm primary" id="aSync">${t("Back up now")}</button><button class="btn sm" id="aOut">${t("Sign out")}</button><button class="btn sm ghost danger" id="aDel">${t("Delete my cloud data")}</button></div><div class="mt-8">${priv}</div>`;
