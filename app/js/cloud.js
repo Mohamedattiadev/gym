@@ -83,7 +83,7 @@ export async function signIn() {
   const c = await loadConfig(); if (!c) return;
   const ver = b64url(crypto.getRandomValues(new Uint8Array(32)));
   const challenge = b64url(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(ver)));
-  localStorage.setItem(PK, JSON.stringify({ ver, hash: location.hash || "#/me/settings" }));
+  localStorage.setItem(PK, JSON.stringify({ ver, hash: location.hash || "#/me/settings", at: Date.now() })); // at: Fluent365 (same origin + Supabase project) forwards a ?code to /gym/ only within 10 min
   const back = location.origin + location.pathname; // never the hash: PKCE returns ?code=… and our routes use #
   location.assign(`${c.url}/auth/v1/authorize?` + new URLSearchParams({ provider: "google", redirect_to: back, code_challenge: challenge, code_challenge_method: "s256" }));
 }
