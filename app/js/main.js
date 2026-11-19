@@ -12,6 +12,7 @@ import * as T from "./train.js";
 import { homeView } from "./home.js";
 import { timerView, initTimer, renderPill } from "./timer.js";
 import { initMedia } from "./media.js";
+import { setLang, t } from "./i18n.js";
 
 /* Opening screen: the first open of the day plays the whole animation (assemble + one rep, ~2.7 s);
    later opens only let the dumbbell snap together (~0.9 s) so the app stays quick. */
@@ -114,9 +115,9 @@ addEventListener("pointerdown", unlockAudio, { once: true });
 (async () => {
   initSheet(); net();
   const exP = loadExercises(); // fetch data in parallel with IndexedDB
-  await loadStore(); applyTheme();
-  if (degraded) $(".app").insertAdjacentHTML("afterbegin", `<div class="notice warn storewarn" role="alert">${ic("alert", "sm")}<div class="grow"><b>Storage unavailable</b><div class="small">Changes may not be kept. Close the app fully and open it again.</div></div></div>`);
-  try { await exP; } catch (e) { view.innerHTML = `<div class="empty">Couldn't load exercises.<br><small>${esc(e.message)}</small></div>`; hideSplash(); return; }
+  await loadStore(); applyTheme(); await setLang(S.settings.lang);
+  if (degraded) $(".app").insertAdjacentHTML("afterbegin", `<div class="notice warn storewarn" role="alert">${ic("alert", "sm")}<div class="grow"><b>${t("Storage unavailable")}</b><div class="small">${t("Changes may not be kept. Close the app fully and open it again.")}</div></div></div>`);
+  try { await exP; } catch (e) { view.innerHTML = `<div class="empty">${t("Couldn't load exercises.")}<br><small>${esc(e.message)}</small></div>`; hideSplash(); return; }
   initMedia(); initTimer();
   // 26b: first open (nothing set up yet, landing on Home) -> onboarding; deep links are never hijacked
   if (!S.profile?.onboarded && !S.settings.onboarded && !S.sessions.length && !S.workouts.length && /^#?\/?$/.test(location.hash)) history.replaceState(null, "", "#/start");
@@ -128,7 +129,7 @@ addEventListener("pointerdown", unlockAudio, { once: true });
   if ("serviceWorker" in navigator) {
     // FE-3/PERF-5: a new version waits; "Reload" activates it and reloads once, so code never mixes versions
     let reloading = false;
-    const offer = (w) => w && navigator.serviceWorker.controller && toast("New version ready", 8000, { label: "Reload", fn: async () => { reloading = true; await flush().catch(() => {}); w.postMessage("skip"); } });
+    const offer = (w) => w && navigator.serviceWorker.controller && toast(t("New version ready"), 8000, { label: t("Reload"), fn: async () => { reloading = true; await flush().catch(() => {}); w.postMessage("skip"); } });
     navigator.serviceWorker.addEventListener("controllerchange", () => { if (reloading) location.reload(); });
     navigator.serviceWorker.register("sw.js").then((reg) => {
       offer(reg.waiting);

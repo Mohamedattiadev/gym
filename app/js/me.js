@@ -12,6 +12,7 @@ import { lib } from "./exercise.js";
 import * as Sync from "./sync.js";
 import * as V from "./voice.js";
 import { readLog, clearLog } from "./log.js";
+import { LANGS, READY, lang as curLang } from "./i18n.js";
 
 const view = () => $("#view");
 const me = { tab: "progress", ex: null };
@@ -218,6 +219,7 @@ async function settingsPanel(host) {
         <a class="setrow-s" href="#/start"><span class="ico">${ic("user", "sm")}</span><div class="grow"><b>Set-up questions</b><div class="dim tiny">Level, days, equipment, body · picks a plan</div></div>${ic("chev", "sm")}</a>
       </div>
       <div class="card list-sep">
+        ${READY.length > 1 ? row("info", "Language", segH("sLang", READY.map((l) => [l, LANGS[l]]), curLang())) : ""}
         ${row(document.documentElement.dataset.theme === "light" ? "sun" : "moon", "Theme", segH("sTheme", [["light", "Light"], ["dark", "Dark"], ["system", "Auto"]], st.theme || "system"))}
         <div class="setrow-s wrap">${`<span class="ico">${ic("dumbbell", "sm")}</span><div class="grow"><b>Equipment</b><div class="dim tiny">Library, plans and swaps show only what you have</div></div>`}${segH("sEquip", [["gym", "Full gym"], ["dumbbells", "Dumbbells"], ["home", "Home"]], st.equip || "gym").replace('class="seg sm"', 'class="seg sm block"')}</div>
         ${row("scale", "Units", segH("sUnit", [["kg", "kg"], ["lb", "lb"]], st.unit))}
@@ -262,6 +264,7 @@ async function settingsPanel(host) {
     openSheet(body(), (d) => { requestAnimationFrame(() => indicate(d)); d.querySelector("#gLv").onclick = (e) => { const b = e.target.closest("button"); if (!b || b.classList.contains("on")) return; selectIn(b); lv = b.dataset.v; d.querySelector("#gBtns").innerHTML = guideBtns(lv, "btn grow"); }; }, { half: true });
   };
   seg("sTheme", (v) => { set("theme", v); applyTheme(); });
+  if ($("#sLang")) seg("sLang", async (v) => { set("lang", v); await flush().catch(() => {}); location.reload(); }); // exercise texts load per language at boot
   seg("sEquip", (v) => { set("equip", v); lib.mine = true; toast(`Showing exercises for: ${EQUIP_PROFILES[v].name}`); });
   seg("sUnit", (v) => set("unit", v)); seg("sBar", (v) => set("bar", +v));
   $$(".switch[data-k]").forEach((s) => (s.onclick = () => { s.classList.toggle("on"); s.setAttribute("aria-checked", s.classList.contains("on")); set(s.dataset.k, s.classList.contains("on")); if (s.dataset.k === "voice" && st.voice) V.say(V.P.voiceOn()); }));

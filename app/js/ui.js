@@ -3,6 +3,7 @@
 // constant — names, notes, titles, anything from S, a backup, sync or CSV import. toast()/ask() take plain text.
 // tools/test/check-esc.sh (fast.sh) flags ${…name|note|title|label} without esc(); allowlist: tools/test/esc-allow.txt.
 import { S } from "./store.js";
+import { t as _t, loc, lang } from "./i18n.js";
 
 export const $ = (s, el = document) => el.querySelector(s);
 export const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -104,7 +105,7 @@ export const BP = { tablet: 768, panel: 820, wide: 1000, xl: 1200 };
 export const delta = (a, b, fmt = (x) => x) => { const d = a - b; if (!b && !a) return `<span class="d same">–</span>`;
   if (!a) return `<span class="d same">${fmt(b)} last week</span>`;
   return d > 0 ? `<span class="d up">${ic("arrowUp", "xs")}${fmt(d)}</span>` : d < 0 ? `<span class="d down">${ic("arrowDown", "xs")}${fmt(-d)}</span>` : `<span class="d same">same</span>`; };
-export const fmtKg = (v) => (v >= 10000 ? (v / 1000).toFixed(1) + "t" : Math.round(v).toLocaleString());
+export const fmtKg = (v) => (v >= 10000 ? (v / 1000).toFixed(1) + "t" : Math.round(v).toLocaleString(loc()));
 
 /* ---- sheet ---- */
 const sheet = () => $("#sheet");
@@ -132,7 +133,7 @@ let opener = null, openHash = "";
 function labelSheet() {
   const d = sheet(), b = $("#sheetBody"), h = b.querySelector("h1,h2,h3,h4") || (d.classList.contains("dlg") ? b.querySelector("p") : null);
   if (h) { h.id ||= "sheetT"; d.setAttribute("aria-labelledby", h.id); d.removeAttribute("aria-label"); }
-  else { d.removeAttribute("aria-labelledby"); d.setAttribute("aria-label", "Details"); }
+  else { d.removeAttribute("aria-labelledby"); d.setAttribute("aria-label", _t("Details")); }
 }
 function restoreFocus() {
   const o = opener; opener = null;
@@ -168,20 +169,20 @@ function dialogP(html, mount) {
   });
 }
 /** ask("Delete this?", {ok:"Delete", danger:true}) → Promise<boolean> */
-export function ask(msg, { title = "", ok = "OK", cancel = "Cancel", danger = false } = {}) {
+export function ask(msg, { title = "", ok = _t("OK"), cancel = _t("Cancel"), danger = false } = {}) {
   return dialogP(`${title ? `<h3>${esc(title)}</h3>` : ""}<p style="margin:${title ? 0 : "4px"} 0 18px;font-size:16px">${esc(msg)}</p>
     <div class="row"><button class="btn grow" data-v="0">${esc(cancel)}</button><button class="btn grow ${danger ? "dark danger" : "primary"}" data-v="1">${esc(ok)}</button></div>`,
     (el, finish) => { el.onclick = (e) => { const b = e.target.closest("[data-v]"); if (b) finish(b.dataset.v === "1"); }; setTimeout(() => $('[data-v="1"]', el)?.focus(), 60); }).then((v) => !!v);
 }
 /** choose("Title", "Message", [["replace","Replace"],["add","Keep both"]]) → Promise<value|null>; first option = primary */
 export function choose(title, msg, opts) {
-  return dialogP(`<h3>${esc(title)}</h3>${msg ? `<p class="muted" style="margin:0 0 16px">${esc(msg)}</p>` : ""}<div class="stack tight">${opts.map(([v, t], i) => `<button class="btn block ${i ? "" : "primary"}" data-c="${esc(v)}">${esc(t)}</button>`).join("")}<button class="btn ghost block" data-c="">Cancel</button></div>`,
+  return dialogP(`<h3>${esc(title)}</h3>${msg ? `<p class="muted" style="margin:0 0 16px">${esc(msg)}</p>` : ""}<div class="stack tight">${opts.map(([v, t], i) => `<button class="btn block ${i ? "" : "primary"}" data-c="${esc(v)}">${esc(t)}</button>`).join("")}<button class="btn ghost block" data-c="">${_t("Cancel")}</button></div>`,
     (el, finish) => { el.onclick = (e) => { const b = e.target.closest("[data-c]"); if (b) finish(b.dataset.c || null); }; setTimeout(() => $("[data-c]", el)?.focus(), 60); });
 }
 /** askText("Workout name", {value:"Push Day"}) → Promise<string|null> */
-export function askText(title, { value = "", ok = "Save", placeholder = "", type = "text", inputmode = "" } = {}) {
+export function askText(title, { value = "", ok = _t("Save"), placeholder = "", type = "text", inputmode = "" } = {}) {
   return dialogP(`<h3>${esc(title)}</h3><form id="dlgF"><input class="input" id="dlgI" type="${type}" ${inputmode ? `inputmode="${inputmode}"` : ""} value="${esc(value)}" placeholder="${esc(placeholder)}" autocomplete="off" enterkeyhint="done">
-    <div class="row mt-16"><button type="button" class="btn grow" data-x>Cancel</button><button class="btn primary grow">${esc(ok)}</button></div></form>`,
+    <div class="row mt-16"><button type="button" class="btn grow" data-x>${_t("Cancel")}</button><button class="btn primary grow">${esc(ok)}</button></div></form>`,
     (el, finish) => {
       const i = $("#dlgI", el); setTimeout(() => { i.focus(); i.select(); }, 80);
       $("#dlgF", el).onsubmit = (e) => { e.preventDefault(); const v = i.value.trim(); if (v) finish(v); else i.focus(); };
@@ -199,7 +200,7 @@ export function toast(msg, ms = 1900, action) {
   if (action) {
     const b = document.createElement("button"); b.textContent = action.label; b.onclick = () => { rm(); action.fn(); }; t.appendChild(b); ms = Math.max(ms, 8000);
     // UT-3: an action toast can be closed and never sits over a box the user is typing in
-    const x = document.createElement("button"); x.className = "tx"; x.setAttribute("aria-label", "Close"); x.innerHTML = ic("close", "sm"); x.onclick = rm; t.appendChild(x);
+    const x = document.createElement("button"); x.className = "tx"; x.setAttribute("aria-label", _t("Close")); x.innerHTML = ic("close", "sm"); x.onclick = rm; t.appendChild(x);
     const onF = (e) => { if (e.target.matches?.("input, textarea, select")) rm(); };
     document.addEventListener("focusin", onF); off = () => document.removeEventListener("focusin", onF);
   }
@@ -260,11 +261,11 @@ export const fmtDur = (ms) => {
   const s = Math.max(0, Math.round(ms / 1000)), h = (s / 3600) | 0, m = ((s % 3600) / 60) | 0, x = s % 60;
   return h ? `${h}:${String(m).padStart(2, "0")}:${String(x).padStart(2, "0")}` : `${m}:${String(x).padStart(2, "0")}`;
 };
-export const fmtDate = (t, o = { weekday: "short", month: "short", day: "numeric" }) => new Date(t).toLocaleDateString(undefined, o);
+export const fmtDate = (t, o = { weekday: "short", month: "short", day: "numeric" }) => new Date(t).toLocaleDateString(loc(), o);
 export const ring = (pct, r = 16) => {
   const c = 2 * Math.PI * r;
   return `<svg class="ring" viewBox="0 0 ${r * 2 + 6} ${r * 2 + 6}"><circle class="bg" cx="${r + 3}" cy="${r + 3}" r="${r}"/>
     <circle class="fg" cx="${r + 3}" cy="${r + 3}" r="${r}" stroke-dasharray="${c}" stroke-dashoffset="${c * (1 - pct)}"/></svg>`;
 };
 /** FE-17: the one bilingual-field reader ({en, tr, ar} or a plain string) */
-export const L = (o) => (o && typeof o === "object" ? o[S.settings.lang || "en"] || o.en || "" : o ?? "");
+export const L = (o) => (o && typeof o === "object" ? o[lang()] || o.en || "" : o ?? "");

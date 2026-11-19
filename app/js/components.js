@@ -1,6 +1,7 @@
 /* Small shared view pieces (FE-12: moved out of main.js so views never import main.js). */
 import { S, save, tomb } from "./store.js";
 import { $$, esc, ic, openSheet, haptic } from "./ui.js";
+import { t, N, lang } from "./i18n.js";
 
 export const MEDIA_CACHE = "gym-media-v1";
 export const RECENT_CACHE = "gym-media-recent"; // PERF-6: videos saved while watching (sw.js caps it)
@@ -29,26 +30,26 @@ lightMQ.addEventListener("change", applyTheme);
 export const GUIDE_LEVELS = ["beginner", "intermediate", "advanced"];
 export function guideUrl(kind, level) {
   const lv = GUIDE_LEVELS.includes(level) ? level : "beginner";
-  const lang = ["tr", "ar"].includes(document.documentElement.lang) ? document.documentElement.lang : "en";
+  const lg = lang();
   const th = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
-  return `guides/gym-${kind}-${lv}-${lang}-${th}.pdf`;
+  return `guides/gym-${kind}-${lv}-${lg}-${th}.pdf`;
 }
-export const guideBtns = (level, cls = "btn sm grow") => `<div class="row"><a class="${cls}" href="${guideUrl("guide", level)}" target="_blank" rel="noopener" download>${ic("download", "sm")} Guide PDF</a><a class="${cls}" href="${guideUrl("poster", level)}" target="_blank" rel="noopener" download>${ic("download", "sm")} Wall poster</a></div>`;
+export const guideBtns = (level, cls = "btn sm grow") => `<div class="row"><a class="${cls}" href="${guideUrl("guide", level)}" target="_blank" rel="noopener" download>${ic("download", "sm")} ${t("Guide PDF")}</a><a class="${cls}" href="${guideUrl("poster", level)}" target="_blank" rel="noopener" download>${ic("download", "sm")} ${t("Wall poster")}</a></div>`;
 
 /* ================= shared bits ================= */
-export const tierBadge = (t, cls = "") => (t ? `<span class="tier ${t} ${cls}">${t}<small>tier</small></span>` : "");
-export const TIER_INFO = [["S", "Top pick", "One of the best choices for this muscle."], ["A", "Great", "Excellent, use it freely."],
-  ["B", "Good", "Solid, works fine."], ["C", "OK", "Works, but better options exist."]];
+export const tierBadge = (k, cls = "") => (k ? `<span class="tier ${k} ${cls}">${k}<small>${t("tier")}</small></span>` : "");
+export const TIER_INFO = [["S", N("Top pick"), N("One of the best choices for this muscle.")], ["A", N("Great"), N("Excellent, use it freely.")],
+  ["B", N("Good"), N("Solid, works fine.")], ["C", N("OK"), N("Works, but better options exist.")]]; // English keys: show with t()
 /** One-tap explanation of Jeff Nippard's S/A/B/C tiers. */
 export function tierInfo() {
-  openSheet(`<h3>What do the tiers mean?</h3><p class="muted small" style="margin:-6px 0 12px">Jeff Nippard ranks exercises by how well they build muscle (S best, C weakest).</p>
-    <div class="list-sep">${TIER_INFO.map(([t, w, d]) => `<div class="lrow plain">${tierBadge(t)}<div class="grow"><div class="t">${w}</div><div class="s">${d}</div></div></div>`).join("")}</div>`);
+  openSheet(`<h3>${t("What do the tiers mean?")}</h3><p class="muted small" style="margin:-6px 0 12px">${t("Jeff Nippard ranks exercises by how well they build muscle (S best, C weakest).")}</p>
+    <div class="list-sep">${TIER_INFO.map(([k, w, d]) => `<div class="lrow plain">${tierBadge(k)}<div class="grow"><div class="t">${t(w)}</div><div class="s">${t(d)}</div></div></div>`).join("")}</div>`);
 }
-const LVL = { beginner: [1, "Beginner"], intermediate: [2, "Intermediate"], advanced: [3, "Advanced"] };
-export const levelBars = (l) => { const [n, w] = LVL[l] || [0, ""]; return n ? `<span class="lvl l${n}" title="${w}"><i></i><i></i><i></i></span>${w}` : ""; };
+const LVL = { beginner: [1, N("Beginner")], intermediate: [2, N("Intermediate")], advanced: [3, N("Advanced")] };
+export const levelBars = (l) => { const [n, w] = LVL[l] || [0, ""]; return n ? `<span class="lvl l${n}" title="${t(w)}"><i></i><i></i><i></i></span>${t(w)}` : ""; };
 export const isFav = (s) => S.favorites.includes(s);
 export function toggleFav(s) { const off = isFav(s); S.favorites = off ? S.favorites.filter((x) => x !== s) : [...S.favorites, s]; tomb("favorites", s, !off); save("favorites"); haptic(); }
-export const restText = (sec) => (sec >= 120 ? `${sec / 60} min` : `${sec}s`);
+export const restText = (sec) => (sec >= 120 ? t("{n} min", { n: sec / 60 }) : t("{n}s", { n: sec }));
 export function xcard(e, i = 0, sel = false, href = `#/ex/${e.slug}`) {
   return `<a class="xcard${sel ? " sel" : ""}" href="${href}" data-slug="${e.slug}">
     <div class="ph"><img data-fade loading="lazy" decoding="async" src="${e.poster}" alt="">${tierBadge(e.tier)}
