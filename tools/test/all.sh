@@ -9,6 +9,8 @@ fi
 step() { printf '\n== %s\n' "$1"; shift; if "$@"; then echo "-> ok"; else echo "-> FAIL"; fail=1; fi; }
 step "fast checks (unit, syntax, precache, CSP, imports, sw VERSION)" bash tools/test/fast.sh
 step "route smoke test (phone + desktop, light + dark)" node tools/test/routes.mjs "$OUT/routes"
+# Q6: the route screenshots vs tools/test/baseline (diff PNGs in $OUT/routes/visual-diff). Intended look change -> python3 tools/test/visual.py "$OUT/routes" --update
+step "visual baseline (route screenshots)" python3 tools/test/visual.py "$OUT/routes"
 step "3D prop check" node tools/test/check3d.mjs
 # Q0b: every button on every page (phone light, ~8 min). SKIP_CLICK=1 skips it; the full 4-viewport run = node tools/test/clickthrough.mjs <dir>
 [ -n "$SKIP_CLICK" ] || step "click-through (every button, phone light)" node tools/test/clickthrough.mjs "$OUT/click" --quick

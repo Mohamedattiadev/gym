@@ -31,16 +31,16 @@ export function trainView() {
   const wrow = (w) => `<div class="wrow${next && w.id === next.id ? " next" : ""}"><a class="grow" href="#/workout/${esc(w.id)}">
           <img src="${BY[w.items[0]?.slug]?.poster || ""}" alt="" data-hide-broken><div class="grow"><div class="b ellip">${esc(w.name)}</div><div class="dim small">${next && w.id === next.id ? `<b class="nx">Next</b> · ` : ""}${w.items.length} exercises · ${w.items.reduce((a, it) => a + +it.sets, 0)} sets</div></div></a>
           <button class="go-btn" data-start="${esc(w.id)}" aria-label="Start ${esc(w.name)}">${ic("play")}</button></div>`;
-  const planBox = cur ? `<div class="card pad myplan"><div class="eyebrow">Your plan</div><div class="row" style="gap:8px;align-items:baseline"><h3 class="grow">${esc(cur.name)}</h3><span class="dim small num">${cur.days} days a week</span></div>
+  const planBox = cur ? `<div class="card pad myplan"><div class="eyebrow">Your plan</div><div class="row" style="gap:8px;align-items:baseline"><h2 class="grow">${esc(cur.name)}</h2><span class="dim small num">${cur.days} days a week</span></div>
       <div class="muted small">Do the workouts below in order, one per training day. Each muscle ${freqOf(cur)}× a week.</div>
       <div class="row mt-10"><a class="btn sm grow" href="#/plans">${ic("swap", "sm")} Change plan</a><a class="btn sm grow" href="#/plan/${cur.id}">How it works</a></div></div>`
-    : `<div class="card pad myplan"><div class="eyebrow">Step 1</div><h3>Pick a plan</h3><div class="muted small">A plan gives you ready workouts for each training day. You can change it any time.</div></div>`;
+    : `<div class="card pad myplan"><div class="eyebrow">Step 1</div><h2>Pick a plan</h2><div class="muted small">A plan gives you ready workouts for each training day. You can change it any time.</div></div>`;
   const plans = `<div class="stack tight stagger" id="planCards">${pickPlans({ level: S.profile?.level || "beginner", days: S.profile?.days || 3 }).map(({ p }) => planCard(p)).join("")}</div>
       <div class="row mt-6"><a class="btn ghost grow" href="#/plans">All ${PLANS.length} plans</a><a class="btn ghost grow" href="#/start">${ic("layers", "sm")} Find my plan</a></div>`;
   const tools = `<div class="sec"><h2>Tools</h2></div><div class="tchips">
       <button class="chip" id="tPlates">${ic("calc", "sm")} Plates</button><button class="chip" id="t1rm">${ic("trophy", "sm")} 1RM</button>
       <a class="chip" href="#/timer/countdown">${ic("timer", "sm")} Rest timer</a><a class="chip" href="#/timer/interval">${ic("bolt", "sm")} Intervals</a><a class="chip" href="#/warmup">${ic("flame", "sm")} Warm-up</a></div>`;
-  view().innerHTML = `${S.active ? `<a class="hero-card live" href="#/session" style="display:block;margin-bottom:4px"><div class="eyebrow">In progress</div><h3>${esc(S.active.name)}</h3><div class="muted small">Tap to resume</div></a>` : ""}
+  view().innerHTML = `${S.active ? `<a class="hero-card live" href="#/session" style="display:block;margin-bottom:4px"><div class="eyebrow">In progress</div><h2>${esc(S.active.name)}</h2><div class="muted small">Tap to resume</div></a>` : ""}
     <div class="cols"><div>
       ${planBox}
       ${cur ? "" : plans}

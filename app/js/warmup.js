@@ -72,7 +72,7 @@ function hub(w) {
   const areaName = (a) => L(w.areas?.[a]?.name) || a;
   const u = S.settings.unit;
   view().innerHTML = `<div class="muted small" style="margin:-2px 0 12px">${esc(L(w.intro))}</div>
-    <div class="hero-card has-ill"><div class="txt"><div class="eyebrow">${nx ? "Before your workout" : "Quick start"}</div><h3>${esc(nx ? nx.name : "General warm-up")}</h3>
+    <div class="hero-card has-ill"><div class="txt"><div class="eyebrow">${nx ? "Before your workout" : "Quick start"}</div><h2>${esc(nx ? nx.name : "General warm-up")}</h2>
       <div class="muted small mb-12">${mins(total(auto))} · ${auto.items.length} moves${auto.areas.length ? ` · ${esc(auto.areas.map(areaName).join(", "))}` : ""}</div>
       <button class="btn primary" id="wAuto">${ic("play", "sm")} Start warm-up</button></div><div class="ill" data-ill="warmup"></div></div>
     <div class="sec"><h2>Warm up one area</h2></div>
