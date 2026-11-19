@@ -139,6 +139,12 @@ Goal: besides the real video, show a **neutral mannequin/skeleton-style body wit
 - Option B (best quality, offline): pre-generate audio with open-source **Piper TTS** (has English, Turkish, Arabic voices) → small .mp3/.opus per phrase, cached by the SW
 - Setting: Voice on/off, language follows app language
 
+## 9c. Accounts + cloud DB (owner, 2026-11-19) — queue item Q11
+- ⬜ Supabase (free tier) + Sign in with Google; local-first stays (offline works, signed-out users unchanged).
+- DB = per-account data only (workout history, own/chosen plans, profile, bodyweight, settings, favourites, notes, pain flags, tombstones; optional active workout). Videos/posters/voice/3D/content stay on GitHub Pages + device cache, never in the DB.
+- Needs: RLS (each user only their own row), vendored supabase-js + CSP connect-src, privacy page, "Delete my account and data", owner sets up Supabase + Google OAuth. Caveat: free projects pause after ~1 week idle. Full steps in NEXT_SESSION Q11.
+- Native APK question (owner): Capacitor can build an APK on this Linux box (JDK 17 + Android SDK); not queued yet.
+
 ## 10. More ideas — owner's decision: keep the app UNCLUTTERED
 Approved (implement):
 - ✅ **Pain / joint flag** (joints.json en/tr/ar; prehab drills shown as text, animations pending): mark an exercise "hurts my shoulder/knee/elbow/back" → hidden from suggestions, shows joint-friendly alternatives (same muscle, tier-sorted), plus warm-up / prehab drills for that joint (animation or timestamped expert video). Short disclaimer: "if pain persists, see a physio".
