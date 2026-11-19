@@ -177,6 +177,9 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 ## Notes (session 58) — Q9 i18n slice 1 (infra)
 - app/js/i18n.js: English text is the key (t / tn / N / loc / setLang / applyStatic); tables app/data/i18n/<lang>.json, missing -> English; READY=["en"] hides Settings > Language until a table is complete (FE-19). Converted: home, components, ui, main boot, tab bar. tools/i18n/keys.mjs in fast.sh (83 keys). Remaining slices + pitfalls: NEXT_SESSION.md Q9 PROGRESS. sw v110.
 
+## Notes (session 59) — Q9 i18n slice 2
+- train.js (199 keys; locals named t renamed: pt, lb, tot, ev, tw) and guide.js (onboarding LEVELS / NOT_SURE marked with N(), lower-case level words via lvName(), profile, standards, nutrition, plans pages) use t()/tn(). English UI unchanged (phone screenshots). keys.mjs: 379 keys from 8 files. nextInfo() now also returns `last: true` — voice.js still matches /last set/i on the text (switch to nx.last in the voice slice). FOCUS names in plans.js are shown with t(v.name) but not yet marked N() (plans.js was being edited by a parallel session).
+
 ## Notes (session 49) — SEC-5/FE-26/FE-20, cleanup + PERF-11
 - store.js: degraded (localStorage) path writes S with sync.token removed; fallback load merges DEFAULTS.settings. importData writes exportData() to IndexedDB key "preImport" (or localStorage gymy_preImport when degraded) before replacing; undoImport() restores and deletes the slot; loadStore skips "preImport". me.js import -> toast "Backup restored" with Undo (8 s).
 - sync.js connect() stamps connectedAt; status() exposes it; me.js tokenAge() shows the hint only after 80 days (older connections without a stamp show nothing).
