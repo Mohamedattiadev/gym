@@ -18,7 +18,7 @@ const TABS = [["progress", "Progress"], ["workouts", "Workouts"], ["settings", "
 const u = () => S.settings.unit;
 
 // FE-6: shown only when something actually went wrong
-const errLog = () => { const n = readLog().length; return n ? `<div class="dim tiny errlog" style="margin-top:6px">${n} app error${n > 1 ? "s" : ""} logged · <a href="#" id="copyLog" style="color:var(--accent-text)">Copy debug log</a> · <a href="#" id="clearLog" style="color:var(--accent-text)">Clear</a></div>` : ""; };
+const errLog = () => { const n = readLog().length; return n ? `<div class="dim tiny errlog mt-6">${n} app error${n > 1 ? "s" : ""} logged · <a href="#" id="copyLog" style="color:var(--accent-text)">Copy debug log</a> · <a href="#" id="clearLog" style="color:var(--accent-text)">Clear</a></div>` : ""; };
 export function meView() {
   const [, a, b] = routeParts();
   me.tab = a === "settings" ? "settings" : TABS.some(([k]) => k === b) ? b : "progress";
@@ -40,8 +40,8 @@ export function settingsView() { me.tab = "settings"; window.history.replaceStat
 /* ---------------- progress ---------------- */
 function progressPanel(p) {
   if (!S.sessions.length) {
-    p.innerHTML = `<div class="card pad" style="text-align:center"><div class="ill" data-ill="empty-history" style="max-width:150px"></div><b>No workouts yet</b><div class="muted small">Finish a workout and your progress, records and weekly totals show up here.</div></div>
-      <div style="margin-top:12px">${bodyweightCard()}</div>`;
+    p.innerHTML = `<div class="card pad tc"><div class="ill" data-ill="empty-history" style="max-width:150px"></div><b>No workouts yet</b><div class="muted small">Finish a workout and your progress, records and weekly totals show up here.</div></div>
+      <div class="mt-12">${bodyweightCard()}</div>`;
     wireBW(p); return;
   }
   const w0 = weekStart(), now = Date.now();
@@ -54,9 +54,9 @@ function progressPanel(p) {
   p.innerHTML = `<div class="cols">
     <div class="stack">
       <div class="card pad"><div class="row between"><b>This week</b><span class="dim tiny">vs last week</span></div>
-        <div class="kpis" style="margin-top:10px">${kpi(fmtKg(cur.kg), `Volume ${u()}`, delta(cur.kg, prev.kg, fmtKg))}${kpi(cur.sets, "Sets", delta(cur.sets, prev.sets))}${kpi(cur.reps, "Reps", delta(cur.reps, prev.reps))}</div></div>
-      <div class="card pad"><div class="row between" style="margin-bottom:10px"><b>Weekly volume</b><span class="dim tiny">${u()} lifted · 8 weeks</span></div>${vBars(weeks.map(([l, v, c]) => [l, v, c]))}</div>
-      <div class="card pad"><div class="row between" style="margin-bottom:10px"><b>Sets per muscle</b><span class="dim tiny">last 7 days · aim 10+</span></div>
+        <div class="kpis mt-10">${kpi(fmtKg(cur.kg), `Volume ${u()}`, delta(cur.kg, prev.kg, fmtKg))}${kpi(cur.sets, "Sets", delta(cur.sets, prev.sets))}${kpi(cur.reps, "Reps", delta(cur.reps, prev.reps))}</div></div>
+      <div class="card pad"><div class="row between mb-10"><b>Weekly volume</b><span class="dim tiny">${u()} lifted · 8 weeks</span></div>${vBars(weeks.map(([l, v, c]) => [l, v, c]))}</div>
+      <div class="card pad"><div class="row between mb-10"><b>Sets per muscle</b><span class="dim tiny">last 7 days · aim 10+</span></div>
         <div class="bars">${mus.map(([m, n]) => `<div><span class="ellip">${m.name}</span><div class="b"><i class="${n < 10 && m.lm[0] > 0 ? "low" : ""}" style="width:${(n / mx) * 100}%"></i></div><span class="v num">${n}</span></div>`).join("")}</div></div>
     </div>
     <div class="stack">
@@ -73,7 +73,7 @@ function perExercise(w0) {
   if (!slugs.length) return "";
   const cell = (o) => (o ? `${o.sets}×${Math.round(o.reps / o.sets)}${o.best?.w ? ` · ${o.best.w}` : ""}` : `<span class="dim">—</span>`);
   return `<div class="card pad"><div class="row between"><b>Per exercise</b><span class="dim tiny">sets×reps · top ${u()}</span></div>
-    <table class="cmp" style="margin-top:6px"><tr><th>Exercise</th><th class="n">Last wk</th><th class="n">This wk</th></tr>
+    <table class="cmp mt-6"><tr><th>Exercise</th><th class="n">Last wk</th><th class="n">This wk</th></tr>
     ${slugs.map((s) => { const c = cur[s], l = prev[s]; const up = c && l && c.e1 > l.e1;
       return `<tr><td><a href="#/ex/${s}" class="b">${esc(BY[s].name)}</a></td><td class="n">${cell(l)}</td><td class="n">${cell(c)}${up ? ` <span class="d up" style="display:inline-flex">${ic("arrowUp", "xs")}</span>` : ""}</td></tr>`; }).join("")}</table></div>`;
 }
@@ -115,7 +115,7 @@ function bodyweightCard() {
   return `<div class="card pad"><div class="row between"><div class="row"><span class="ico-t">${ic("scale", "sm")}</span><div><b>Bodyweight</b>
       <div class="dim small">${last ? `${last.w}${u()} · ${fmtDate(last.d, { month: "short", day: "numeric" })}${first ? ` · ${(last.w - first.w > 0 ? "+" : "") + Math.round((last.w - first.w) * 10) / 10}${u()} total` : ""}` : "Log it once a week, same time of day."}</div></div></div>
       <button class="btn sm" id="bwAdd">${ic("plus", "sm")} Add</button></div>
-    ${l.length > 1 ? `<div style="margin-top:10px">${lineChart(l.slice(-20).map((x) => +x.w), { h: 90 })}</div>` : ""}</div>`;
+    ${l.length > 1 ? `<div class="mt-10">${lineChart(l.slice(-20).map((x) => +x.w), { h: 90 })}</div>` : ""}</div>`;
 }
 function wireBW(p) {
   const b = $("#bwAdd", p); if (!b) return;
@@ -131,11 +131,11 @@ function wireBW(p) {
 /* ---------------- history ---------------- */
 function historyPanel(p) {
   const ss = [...S.sessions].reverse(), now = Date.now();
-  p.innerHTML = ss.length ? `<div class="card pad" style="margin-bottom:12px"><div class="row between" style="margin-bottom:10px"><b>Last 16 weeks</b><span class="dim tiny">${S.sessions.filter((s) => s.endedAt > now - 112 * DAY).length} workouts</span></div>${heatMap()}</div>
+  p.innerHTML = ss.length ? `<div class="card pad mb-12"><div class="row between mb-10"><b>Last 16 weeks</b><span class="dim tiny">${S.sessions.filter((s) => s.endedAt > now - 112 * DAY).length} workouts</span></div>${heatMap()}</div>
     <div class="stack tight stagger">${ss.slice(0, 60).map((s) => `<div class="card pad">
       <div class="row"><div class="grow"><b>${esc(s.name)}</b><div class="dim small">${fmtDate(s.endedAt)} · ${fmtDur(s.endedAt - s.startedAt)} · ${s.entries.reduce((a, en) => a + en.sets.length, 0)} sets</div></div>
       <button class="iconbtn sm" data-del="${esc(s.id)}" aria-label="Delete" style="color:var(--t3)">${ic("trash", "sm")}</button></div>
-      ${s.entries.map((en) => `<div class="small" style="margin-top:6px"><b class="b">${esc(BY[en.slug]?.name || en.slug)}</b> <span class="dim">${esc(setsText(en.sets))}</span></div>`).join("")}</div>`).join("")}</div>`
+      ${s.entries.map((en) => `<div class="small mt-6"><b class="b">${esc(BY[en.slug]?.name || en.slug)}</b> <span class="dim">${esc(setsText(en.sets))}</span></div>`).join("")}</div>`).join("")}</div>`
     : `<div class="empty"><div class="ill" data-ill="empty-history"></div>Finished workouts appear here.</div>`;
   p.onclick = async (e) => {
     const b = e.target.closest("[data-del]"); if (!b) return;
@@ -182,10 +182,10 @@ async function settingsPanel(host) {
         <div class="row"><button class="btn sm grow" id="exp">${ic("share", "sm")} Export</button><label class="btn sm grow">${ic("download", "sm")} Import<input type="file" id="imp" accept=".json,application/json" hidden></label></div>
         <div class="dim small" style="margin:12px 0 6px">Spreadsheet (CSV) — open in Excel, or move from another app</div>
         <div class="row"><button class="btn sm grow" id="expCsv">${ic("share", "sm")} Export CSV</button><label class="btn sm grow">${ic("download", "sm")} From Strong / Hevy<input type="file" id="impCsv" accept=".csv,text/csv,text/plain" hidden></label></div>
-        <div class="dim tiny" style="margin-top:8px" id="pst"></div>${errLog()}</div>
+        <div class="dim tiny mt-8" id="pst"></div>${errLog()}</div>
       ${standalone() ? "" : `<button class="btn block" id="inst">${ic("phone", "sm")} Install app</button>`}
     </div></div>
-    <div class="credits card soft pad" style="margin-top:16px">
+    <div class="credits card soft pad mt-16">
       <p>Code © Mohamed Attia, MIT license. ${EX.length} exercises. Not affiliated with any of the owners below; everything else belongs to them.</p>
       <p>Demo videos, posters and exercise names © <a href="https://getswole.app" target="_blank" rel="noopener">Get SWOLE</a> and the coaches shown. Tier rankings and training ideas © <a href="https://www.youtube.com/@JeffNippard" target="_blank" rel="noopener">Jeff Nippard</a>. Volume and recovery ideas: <a href="https://www.youtube.com/@RenaissancePeriodization" target="_blank" rel="noopener">Renaissance Periodization</a>. 3D body and motions: <a href="https://github.com/AssiamahS/opengym3d" target="_blank" rel="noopener">OpenGym3D</a> (MIT), rendered with <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> (MIT). Body map: <a href="https://github.com/HichamELBSI/react-native-body-highlighter" target="_blank" rel="noopener">react-native-body-highlighter</a> (MIT). Muscle figures: <a href="https://github.com/AbanoubAmir/open-exercise-figures" target="_blank" rel="noopener">open-exercise-figures</a> (CC0). Font: Inter (<a href="fonts/OFL.txt" target="_blank" rel="noopener">OFL 1.1</a>). 3D model compression: meshoptimizer (MIT).</p>
       <p>Coach videos play from YouTube (privacy-enhanced mode) only when you tap them.</p>
@@ -257,7 +257,7 @@ function csvPreview(C, R) {
   };
   openSheet(`<h3>Import from ${R.format}</h3>
     <div class="muted small" style="margin:-2px 0 12px">${R.workouts.length} workout${R.workouts.length === 1 ? "" : "s"} · ${sets} set${sets === 1 ? "" : "s"} · ${fmtDate(R.workouts[0].start, md)} – ${fmtDate(R.workouts.at(-1).start, md)}</div>
-    ${R.unitUnknown ? `<div class="row" style="margin-bottom:12px"><span class="grow small">Weights in this file are in</span><div class="seg sm" id="impU">${["kg", "lb"].map((u) => `<button data-u="${u}" class="${R.fileUnit === u ? "on" : ""}">${u}</button>`).join("")}</div></div>` : ""}
+    ${R.unitUnknown ? `<div class="row mb-12"><span class="grow small">Weights in this file are in</span><div class="seg sm" id="impU">${["kg", "lb"].map((u) => `<button data-u="${u}" class="${R.fileUnit === u ? "on" : ""}">${u}</button>`).join("")}</div></div>` : ""}
     ${R.dropped ? `<div class="muted small" style="margin:-6px 0 12px">${R.dropped} timed or distance set${R.dropped === 1 ? "" : "s"} (planks, cardio) won't be imported.</div>` : ""}
     <div class="row" style="margin-bottom:6px"><b class="grow" id="impSum"></b></div>
     <div id="impList" class="imp-list"></div>
@@ -280,7 +280,7 @@ function csvPreview(C, R) {
   });
 }
 
-/* ---- cloud backup to the owner's private GitHub repo (see js/SYNC.md) ---- */
+/* ---- cloud backup to the owner's private GitHub repo (see docs/SYNC.md) ---- */
 // SEC-5: GitHub tokens expire; after ~80 days remind the owner where a stopped backup comes from
 function tokenAge(t) {
   if (!t) return "";
@@ -295,7 +295,7 @@ function cloudCard() {
     <button class="btn primary sm block" id="cCon">Connect</button>`;
   return `<b>Cloud backup (GitHub)</b><p class="muted small" style="margin:4px 0 10px">Connected to <b>${esc(st.owner)}/${esc(st.repo)}</b> · last backup ${st.lastPush ? fmtDate(st.lastPush, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "never"}${st.pending ? " · pending" : ""}${tokenAge(st.connectedAt)}</p>
     ${st.error ? `<p class="small" style="color:var(--danger);margin:0 0 10px">${esc(st.error)}</p>` : ""}
-    <div class="row" style="margin-bottom:10px"><span class="grow small b">Auto backup after changes</span><button class="switch ${st.auto ? "on" : ""}" role="switch" aria-checked="${!!(st.auto)}" id="cAuto" aria-label="Auto backup"></button></div>
+    <div class="row mb-10"><span class="grow small b">Auto backup after changes</span><button class="switch ${st.auto ? "on" : ""}" role="switch" aria-checked="${!!(st.auto)}" id="cAuto" aria-label="Auto backup"></button></div>
     <div class="row wrap"><button class="btn sm primary" id="cPush">Back up now</button><button class="btn sm" id="cRest">Restore</button><button class="btn sm ghost danger" id="cDis">Disconnect</button></div>`;
 }
 function wireCloud() {

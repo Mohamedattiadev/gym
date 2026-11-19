@@ -1,4 +1,7 @@
 // Shared UI helpers: icons, sheet, toast, haptics, sound, confetti, formatting.
+// ESCAPING RULE (FE-24): inside HTML template strings, esc() every value that is not a number or a bundled
+// constant — names, notes, titles, anything from S, a backup, sync or CSV import. toast()/ask() take plain text.
+// tools/test/check-esc.sh (fast.sh) flags ${…name|note|title|label} without esc(); allowlist: tools/test/esc-allow.txt.
 import { S } from "./store.js";
 
 export const $ = (s, el = document) => el.querySelector(s);
@@ -178,7 +181,7 @@ export function choose(title, msg, opts) {
 /** askText("Workout name", {value:"Push Day"}) → Promise<string|null> */
 export function askText(title, { value = "", ok = "Save", placeholder = "", type = "text", inputmode = "" } = {}) {
   return dialogP(`<h3>${esc(title)}</h3><form id="dlgF"><input class="input" id="dlgI" type="${type}" ${inputmode ? `inputmode="${inputmode}"` : ""} value="${esc(value)}" placeholder="${esc(placeholder)}" autocomplete="off" enterkeyhint="done">
-    <div class="row" style="margin-top:16px"><button type="button" class="btn grow" data-x>Cancel</button><button class="btn primary grow">${esc(ok)}</button></div></form>`,
+    <div class="row mt-16"><button type="button" class="btn grow" data-x>Cancel</button><button class="btn primary grow">${esc(ok)}</button></div></form>`,
     (el, finish) => {
       const i = $("#dlgI", el); setTimeout(() => { i.focus(); i.select(); }, 80);
       $("#dlgF", el).onsubmit = (e) => { e.preventDefault(); const v = i.value.trim(); if (v) finish(v); else i.focus(); };

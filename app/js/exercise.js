@@ -98,7 +98,7 @@ function splitView(slug) {
   } else markCur(slug);
   const r = $("#rpane");
   if (!slug) {
-    r.innerHTML = `<div class="card pad-l" style="text-align:center;margin-top:4px"><div class="ill" data-ill="plan" style="max-width:220px"></div><b>Pick an exercise</b><p class="muted small" style="margin-top:4px">Videos, how-to steps, muscles and your stats show here.</p></div>`;
+    r.innerHTML = `<div class="card pad-l" style="text-align:center;margin-top:4px"><div class="ill" data-ill="plan" style="max-width:220px"></div><b>Pick an exercise</b><p class="muted small mt-4">Videos, how-to steps, muscles and your stats show here.</p></div>`;
     fillIll(r); return;
   }
   r.classList.remove("page"); void r.offsetWidth; r.classList.add("page");
@@ -137,7 +137,7 @@ function detail(slug, root) {
           ${e.level ? `<span class="small dim">${levelBars(e.level)}</span>` : ""}
           ${joints.length ? `<button class="painchip" id="painChip">${ic("bandage", "xs")}${joints.map((j) => esc(L(JOINTS[j]?.name) || j)).join(" · ")}</button>` : ""}</div>
         <div class="dsub">${e.repRange[0]}–${e.repRange[1]} reps · ${restText(e.rest)} rest · ${e.type === "compound" ? "Compound" : "Isolation"}</div>
-        <div class="ptabs fit" id="dtabs" style="margin-top:12px">${[["how", "How to"], ["stats", "Stats"], ["rank", "Ranking & alternatives"]].map(([k, l]) => `<button data-k="${k}" class="${dtab.cur === k ? "on" : ""}">${l}</button>`).join("")}</div>
+        <div class="ptabs fit mt-12" id="dtabs">${[["how", "How to"], ["stats", "Stats"], ["rank", "Ranking & alternatives"]].map(([k, l]) => `<button data-k="${k}" class="${dtab.cur === k ? "on" : ""}">${l}</button>`).join("")}</div>
         <div class="tab-panel" id="dpanel"></div>
       </div></div>
     <div class="sticky-cta"><button class="btn primary" id="addTo">${ic("plus", "sm")}<span class="lbl">Add to workout</span></button>${S.active ? `<button class="btn" id="addNow">${ic("bolt", "sm")}<span class="lbl">Add now</span></button>` : ""}</div>`;
@@ -202,12 +202,12 @@ async function jointCare(e) {
   const alts = jointFriendly(e, joints, 6);
   openSheet(`<h3>Joint care · ${esc(joints.map((j) => L(JOINTS[j]?.name) || j).join(" & "))}</h3>
     <p class="muted small" style="margin:-4px 0 10px">${pain.length ? "You flagged this exercise. It is hidden from plans and swaps." : `You flagged your ${esc(joints.map(jName).join(" & "))}. This exercise may bother it.`}</p>
-    <div class="h4" style="margin-top:4px">Joint-friendly options</div>${alts.length ? hcards(alts) : `<p class="dim small">No safe alternative found for this muscle.</p>`}
+    <div class="h4 mt-4">Joint-friendly options</div>${alts.length ? hcards(alts) : `<p class="dim small">No safe alternative found for this muscle.</p>`}
     ${drills.length ? `<div class="h4">Do these first</div><div class="list-sep jcdrills">${drills.map((d) => `<div class="lrow plain"><span class="ico">${ic("flame", "sm")}</span><div class="grow"><div class="t">${esc(L(d.name))}</div><div class="s">${esc(L(d.how))}</div></div><span class="dim tiny num">${d.secs || 30}s</span></div>`).join("")}</div>
-      <button class="btn sm" id="jcGo" style="margin-top:8px">${ic("play", "sm")} Start · ${Math.max(1, Math.round(secs / 60))} min</button>` : ""}
+      <button class="btn sm mt-8" id="jcGo">${ic("play", "sm")} Start · ${Math.max(1, Math.round(secs / 60))} min</button>` : ""}
     ${J.map((j) => `<div class="h4">Go easy on your ${esc(L(j.name).toLowerCase())}</div><ul class="bul ok">${(L(j.tips) || []).slice(0, 3).map((t) => `<li>${ic("okc", "sm")}<span>${esc(t)}</span></li>`).join("")}</ul>`).join("")}
-    <p class="dim small" style="margin-top:12px">${ic("alert", "xs")} ${esc(L(J[0]?.physio) || "If pain persists or is sharp, stop and see a physiotherapist.")}</p>
-    ${pain.length ? `<button class="btn sm ghost" id="rmPain" style="margin-top:4px">Remove pain flag</button>` : ""}`, (el) => {
+    <p class="dim small mt-12">${ic("alert", "xs")} ${esc(L(J[0]?.physio) || "If pain persists or is sharp, stop and see a physiotherapist.")}</p>
+    ${pain.length ? `<button class="btn sm ghost mt-4" id="rmPain">Remove pain flag</button>` : ""}`, (el) => {
     const g = $("#jcGo", el); if (g) g.onclick = () => { closeSheet(); import("./warmup.js").then((m) => m.playDrills(`Joint warm-up · ${L(JOINTS[joints[0]]?.name)}`, drills.map((d) => d.id), location.hash)); };
     const rm = $("#rmPain", el); if (rm) rm.onclick = () => { delete S.pain[e.slug]; save("pain"); toast("Flag removed"); closeSheet(); rerenderDetail(e.slug); };
     el.querySelectorAll(".hcard").forEach((a) => a.addEventListener("click", () => closeSheet()));
@@ -391,7 +391,7 @@ async function mistakeSheet(e, i) {
 function panel(e) {
   const p = $("#dpanel"); p.style.animation = "none"; void p.offsetWidth; p.style.animation = "";
   if (dtab.cur === "how") {
-    p.innerHTML = `<div id="tgt"></div>${e.about ? `<p class="muted" style="margin-bottom:12px">${esc(e.about)}</p>` : ""}
+    p.innerHTML = `<div id="tgt"></div>${e.about ? `<p class="muted mb-12">${esc(e.about)}</p>` : ""}
       ${e.steps.length ? `<ol class="steps">${e.steps.map((s) => `<li><span>${esc(s)}</span></li>`).join("")}</ol>` : `<p class="dim">No written steps yet — follow the video.</p>`}
       ${e.cues.length ? `<div class="h4">Cues</div><ul class="bul ok">${e.cues.map((s) => `<li>${ic("okc", "sm")}<span>${esc(s)}</span></li>`).join("")}</ul>` : ""}
       ${e.mistakes.length ? `<div class="h4">Common mistakes</div><ul class="bul no">${e.mistakes.map((m, i) => `<li>${ic("x", "sm")}<span>${esc(m.text)}</span><button class="mshow" data-mi="${i}" aria-label="Show the fix">Show</button></li>`).join("")}</ul>` : ""}
@@ -433,7 +433,7 @@ async function rankPanel(e, p) {
   } else if (J.ex?.[e.slug]) {
     const b = J.ex[e.slug];
     top = `<div class="rank"><div class="grow"><b>Not ranked by Jeff</b><div class="dim small">Technique from ${esc(b.by)}</div></div></div>${ytBox(b.yt, b.t, b.title)}<div class="dim small ytcap">${esc(b.title)} · ${esc(b.by)}</div>`;
-  } else top = `<p class="dim small" style="margin-top:4px">Not ranked by Jeff Nippard.</p>`;
+  } else top = `<p class="dim small mt-4">Not ranked by Jeff Nippard.</p>`;
   const alt = swaps(e, 8);
   p.innerHTML = `${top}
     <div class="h4">Alternatives <span class="dim small">same muscle, best tier first</span></div>
@@ -466,9 +466,9 @@ export function historyHTML(slug) {
       ${tile("Most reps", reps ? `${reps.r}` : "—", reps && reps.w ? `at ${reps.w} ${u}` : "reps")}</div>
     ${pts.length > 1 ? `<div class="hist-ch"><div class="eyebrow">Est. 1RM · ${pts.length} sessions</div>${lineChart(pts, { h: 84, cls: "chart" })}
       <div class="chart-x"><span>${fmtDate(rows.find((r) => r.v).date, { month: "short", day: "numeric" })}</span><span>${fmtDate(rows.at(-1).date, { month: "short", day: "numeric" })}</span></div></div>` : ""}
-    <div class="eyebrow" style="margin-top:14px">Past sessions</div>
+    <div class="eyebrow mt-14">Past sessions</div>
     <div class="hist-list">${list.map((r, i) => `<div class="hist-r ${i >= 5 ? "more" : ""}"><span class="d">${fmtDate(r.date)}</span><span class="s num">${esc(r.sets.map(wr).join(", "))}${r.pr && r.v ? ` <em title="Record at the time">PR</em>` : ""}</span></div>`).join("")}</div>
-    ${list.length > 5 ? `<button class="btn sm ghost block" data-h="all" style="margin-top:6px">Show all ${list.length}</button>` : ""}`;
+    ${list.length > 5 ? `<button class="btn sm ghost block mt-6" data-h="all">Show all ${list.length}</button>` : ""}`;
 }
 export function wireHistory(el) {
   el.addEventListener("click", (ev) => { const b = ev.target.closest("[data-h]"); if (!b) return;

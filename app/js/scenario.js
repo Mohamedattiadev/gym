@@ -53,7 +53,7 @@ function progression(built) {
   const wk = [[w, lo, it.sets, "Start"], [w, top, it.sets, "Reps up"], [w + step, lo, it.sets, "Weight up"], [Math.round((w * 0.6) / step) * step, lo, Math.max(1, it.sets - 1), "Deload"]];
   const max = Math.max(...wk.map(([a, r, s]) => a * r * s));
   return `<div class="h4">The next 4 weeks</div><div class="prog4">${wk.map(([a, r, s, t], n) => `<div class="${n === 3 ? "dl" : ""}"><i><b style="height:${Math.round((a * r * s / max) * 100)}%"></b></i><em class="num">${a} ${u} × ${r}</em><span>${n + 1}. ${t}</span></div>`).join("")}</div>
-    <p class="dim tiny" style="margin-top:6px">Example: ${esc(BY[it.slug]?.name || "")}, ${it.sets} sets of ${esc(it.reps)}. Add reps until every set reaches ${top}, then add weight and start again at ${lo}. Every few weeks take one lighter week (about 60% of the weight, one set less).</p>`;
+    <p class="dim tiny mt-6">Example: ${esc(BY[it.slug]?.name || "")}, ${it.sets} sets of ${esc(it.reps)}. Add reps until every set reaches ${top}, then add weight and start again at ${lo}. Every few weeks take one lighter week (about 60% of the weight, one set less).</p>`;
 }
 
 /** mount into host; returns nothing. opts.compare = second plan id (desktop), opts.opt = plan options (Preview sheet) */

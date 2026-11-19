@@ -1013,3 +1013,7 @@ body:has(#rov) .toast { bottom: auto; top: calc(var(--safe-t) + 16px); }
 [dir="rtl"] .iconbtn.fwd svg { transform: none; }
 .tierhint { display: flex; align-items: center; gap: 10px; margin: 2px 0 8px; }
 @media (max-width: 399px) { .set-hdr .lt { display: none; } }
+/* FE-22 spacing utilities (were inline style="" in JS templates; !important keeps the old inline-style precedence) */
+.mt-4 { margin-top: 4px !important; } .mt-6 { margin-top: 6px !important; } .mt-8 { margin-top: 8px !important; } .mt-10 { margin-top: 10px !important; }
+.mt-12 { margin-top: 12px !important; } .mt-14 { margin-top: 14px !important; } .mt-16 { margin-top: 16px !important; }
+.mb-10 { margin-bottom: 10px !important; } .mb-12 { margin-bottom: 12px !important; } .tc { text-align: center !important; }

@@ -33,6 +33,7 @@ const tx = (mode, fn) => new Promise((res, rej) => {
 // BE-4: storage that failed to open is retried once, then the app says so (S.degraded) instead of looking empty
 export let degraded = false;
 export async function loadStore() {
+  listen();
   try {
     try { db = await idb(); } catch { await new Promise((r) => setTimeout(r, 300)); db = await idb(); }
     db.onversionchange = () => { db.close(); db = null; };
@@ -136,8 +137,9 @@ function fail(e) {
 }
 const flushSafe = () => { flush().catch(() => {}); };
 async function saveAll() { Object.keys(DEFAULTS).concat("schema").forEach((k) => dirty.add(k)); subs.forEach((fn) => { try { fn(Object.keys(DEFAULTS)); } catch {} }); await flush(); }
-addEventListener("pagehide", flushSafe);
-document.addEventListener("visibilitychange", () => document.hidden && flushSafe());
+// FE-14: page listeners are added by loadStore(), so importing store.js in Node (unit tests) has no side effects
+let listening = false;
+function listen() { if (listening) return; listening = true; addEventListener("pagehide", flushSafe); document.addEventListener("visibilitychange", () => document.hidden && flushSafe()); }
 
 export async function persist() {
   try {

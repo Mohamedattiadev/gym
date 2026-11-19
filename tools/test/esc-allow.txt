@@ -1,0 +1,13 @@
+# FE-24 allowlist for tools/test/check-esc.sh: "<file> <expression>" pairs that are NOT inserted as HTML
+# or are bundled constants. Add a line only after checking the value can never hold user text.
+bodymap.js ${m.name}          # MUSCLES constant (body.js)
+me.js ${m.name}               # MUSCLES constant
+me.js ${EQUIP_PROFILES[v].name}   # constant, toast() uses textContent
+media.js ${x.name}            # Media Session metadata (plain text)
+media.js ${nx.name}           # Media Session metadata (plain text)
+timer.js ${nx.name}           # notification / toast text
+train.js ${w.name}            # ask() and toast() escape / use textContent
+train.js ${BY[ch[0].slug]?.name}  # toast text
+train.js ${BY[ch[0].to]?.name}    # toast text
+ui.js ${action.label}         # screen-reader text (say)
+exercise.js ${y.dataset.t}    # number from bundled jeff.json (iframe start=)

@@ -59,9 +59,9 @@ export async function startView() {
     if (ob.ns) return notSure();
     if (ob.i === 0) {
       view().innerHTML = `${dots()}<h2 class="qt">What is your level?</h2><div class="muted small">Picks the right plan. You can change it any time.</div>
-        <div class="stack tight" style="margin-top:14px" id="obOpts">${LEVELS.map(([v, t, d]) => `<button class="qopt ${ob.a.level === v ? "on" : ""}" data-v="${v}"><b>${t}</b><span>${d}</span></button>`).join("")}</div>
+        <div class="stack tight mt-14" id="obOpts">${LEVELS.map(([v, t, d]) => `<button class="qopt ${ob.a.level === v ? "on" : ""}" data-v="${v}"><b>${t}</b><span>${d}</span></button>`).join("")}</div>
         ${ob.picked ? `<div class="small obnote">${ic("check", "sm")} Picked from your answers. Change it if it feels wrong.</div>` : ""}
-        <button class="btn ghost block" id="obNs" style="margin-top:8px">Not sure? Answer 3 quick questions</button>${nav(!!ob.a.level)}`;
+        <button class="btn ghost block mt-8" id="obNs">Not sure? Answer 3 quick questions</button>${nav(!!ob.a.level)}`;
       $("#obOpts").onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b) return; haptic(); ob.a.level = b.dataset.v; ob.picked = false; setProf({ level: ob.a.level }); markOnboarded(); step(1); };
       $("#obNs").onclick = () => { ob.ns = { i: 0, s: [] }; draw(); };
     } else if (ob.i === 1) {
@@ -73,7 +73,7 @@ export async function startView() {
       $("#obEq").onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b) return; haptic(); ob.a.equip = b.dataset.v; selectIn(b); };
     } else {
       view().innerHTML = `${dots()}<h2 class="qt">About you</h2><div class="muted small">For strength goals and calories. You can add this later in Me.</div>
-        <div class="card pad" style="margin-top:14px" id="obBody">${bodyFields(ob.b)}</div>${nav()}`;
+        <div class="card pad mt-14" id="obBody">${bodyFields(ob.b)}</div>${nav()}`;
       wireBody($("#obBody"), ob.b);
     }
     const bk = $("#obBack"); if (bk) bk.onclick = () => step(ob.i - 1);
@@ -87,7 +87,7 @@ export async function startView() {
   const notSure = () => {
     const k = ob.ns.i, [q, opts] = NOT_SURE[k];
     view().innerHTML = `${dots()}<div class="dim tiny" style="margin:2px 0 4px">Question ${k + 1} of 3</div><h2 class="qt">${q}</h2>
-      <div class="stack tight" style="margin-top:14px" id="obOpts">${opts.map((t, v) => `<button class="qopt" data-v="${v}"><b>${t}</b></button>`).join("")}</div>
+      <div class="stack tight mt-14" id="obOpts">${opts.map((t, v) => `<button class="qopt" data-v="${v}"><b>${t}</b></button>`).join("")}</div>
       <div class="row obnav"><button class="btn grow" id="obBack">${ic("back", "sm")} Back</button></div>`;
     $("#obOpts").onclick = (e) => {
       const b = e.target.closest("[data-v]"); if (!b) return; haptic(); ob.ns.s[k] = +b.dataset.v;
@@ -168,19 +168,19 @@ async function result() {
       .map((l) => `${esc(L(l.name))} <b class="num">${Math.round(((l.ratios?.[sex] || [])[li] * bw) / r) * r} ${unit}</b>`).join(" · ");
     const nn = n.h && n.age && (p.sex || n.sex) ? nutriCalc(nu, { sex: p.sex || n.sex, age: n.age, h: n.h, act: n.act || nu.activity?.[2]?.id, goal: n.goal || "maintain" }, kgBW()) : null;
     targets = `<div class="card pad obtarget"><b>Your targets</b>
-      ${goals ? `<div class="small" style="margin-top:6px">Strength goals: ${goals}</div>` : ""}
-      ${nn ? `<div class="small" style="margin-top:4px">About <b class="num">${nn.kcal} kcal</b> a day to keep your weight · protein <b class="num">${nn.prot[0]}–${nn.prot[1]} g</b></div>` : `<div class="dim tiny" style="margin-top:4px">Add height and age in Me > Profile for calories.</div>`}
+      ${goals ? `<div class="small mt-6">Strength goals: ${goals}</div>` : ""}
+      ${nn ? `<div class="small mt-4">About <b class="num">${nn.kcal} kcal</b> a day to keep your weight · protein <b class="num">${nn.prot[0]}–${nn.prot[1]} g</b></div>` : `<div class="dim tiny mt-4">Add height and age in Me > Profile for calories.</div>`}
       <div class="row small" style="margin-top:8px;gap:14px"><a href="#/standards" class="lnk">Strength goals</a><a href="#/nutrition" class="lnk">Nutrition</a></div></div>`;
   }
   view().innerHTML = `<div class="obtop"><div class="obdots" role="img" aria-label="Step 4 of 4"><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div></div>
-    <div class="eyebrow" style="margin-top:6px">${best.id === P.recommendedId(a.level, a.days) ? "Recommended for you" : "Your best fit"}</div>
+    <div class="eyebrow mt-6">${best.id === P.recommendedId(a.level, a.days) ? "Recommended for you" : "Your best fit"}</div>
     <h2 class="qt">${esc(L(tx.plans?.[best.id]?.name) || best.name)}</h2><div class="muted small">${best.days} days a week${eq ? ` · ${esc(eq)}` : ""} · ${esc(p.level || best.level)}</div>
-    <div class="card pad" style="margin-top:12px"><div class="small">${esc(L(tx.plans?.[best.id]?.best) || L(tx.plans?.[best.id]?.line) || why(picks[0].why))}</div>
+    <div class="card pad mt-12"><div class="small">${esc(L(tx.plans?.[best.id]?.best) || L(tx.plans?.[best.id]?.line) || why(picks[0].why))}</div>
       <a class="small lnk" href="#/plan/${best.id}" style="display:inline-block;margin-top:8px">How a week works</a></div>
     <div class="row obnav"><a class="btn grow" href="#/plans">See other plans</a><button class="btn primary grow" id="qUse">${ic("plus", "sm")} Use this plan</button></div>
     ${targets}
     ${picks.length > 1 ? `<div class="h4">Also good for you</div><div class="stack tight" id="qAlt">${picks.slice(1).map(({ p: q, why: w }) => T.planCard(q, { why: why(w) })).join("")}</div>` : ""}
-    <button class="btn ghost block" style="margin-top:10px" id="qAgain">Start over</button>`;
+    <button class="btn ghost block mt-10" id="qAgain">Start over</button>`;
   const done = (ok) => ok && go(first ? "#/" : "#/train");
   $("#qUse").onclick = async () => done(await T.usePlan(best, false));
   const alt = $("#qAlt"); if (alt) alt.onclick = (e) => { const u = e.target.closest("[data-use]"); if (u) { e.preventDefault(); T.usePlan(P.planById(u.dataset.use), false).then(done); } else T.planClicks(e); };
@@ -232,8 +232,8 @@ export async function standardsView() {
     }).join("");
     view().innerHTML = `<div class="card pad"><div class="row" style="flex-wrap:wrap;gap:10px"><b class="grow">You</b>
         ${seg("sSex", [["male", "Male"], ["female", "Female"]], sex)}<button class="btn sm" id="sBw">${ic("scale", "sm")} ${bw ? `${bw} ${unit}` : "Set weight"}</button></div></div>
-      ${bw ? `<div class="stack tight" style="margin-top:10px">${rows}</div>` : `<div class="empty">Enter your bodyweight to see your targets.</div>`}
-      <p class="dim small" style="margin-top:12px">Your number is your best estimated 1-rep max from logged sets.${st.note ? ` ${esc(L(st.note))}` : ""}</p>`;
+      ${bw ? `<div class="stack tight mt-10">${rows}</div>` : `<div class="empty">Enter your bodyweight to see your targets.</div>`}
+      <p class="dim small mt-12">Your number is your best estimated 1-rep max from logged sets.${st.note ? ` ${esc(L(st.note))}` : ""}</p>`;
     segVal($("#sSex"), (v) => { setProf({ sex: v }); draw(); });
     $("#sBw").onclick = async () => { const { askText } = await import("./ui.js"); const v = await askText("Bodyweight", { value: bw || "", ok: "Save", type: "number", inputmode: "decimal" }); const w = +v; if (!w) return; if (w < 25 || w > 300) return toast("Enter a weight between 25 and 300"); saveBW(w); draw(); };
   };
@@ -251,8 +251,8 @@ export async function nutritionView() {
     const { tdee, kcal, prot, fat, carb, g } = nutriCalc(nu, n, w);
     view().innerHTML = `<div class="card pad nutri">
         <div class="kpis"><div class="kpi"><b class="num">${kcal}</b><span>kcal / day</span></div><div class="kpi"><b class="num">${prot[0]}–${prot[1]} g</b><span>Protein</span></div><div class="kpi"><b class="num">${fat} g</b><span>Fat (min)</span></div><div class="kpi"><b class="num">${carb} g</b><span>Carbs</span></div></div>
-        <div class="dim tiny" style="margin-top:6px">Maintenance about ${Math.round(tdee / 10) * 10} kcal${g.rate ? ` · ${esc(L(g.rate))}` : ""}</div></div>
-      <div class="card pad" style="margin-top:10px">
+        <div class="dim tiny mt-6">Maintenance about ${Math.round(tdee / 10) * 10} kcal${g.rate ? ` · ${esc(L(g.rate))}` : ""}</div></div>
+      <div class="card pad mt-10">
         <div class="field"><label>Goal</label><div class="gchips" id="nGoal">${goals.map((x) => `<button class="chip ${x.id === n.goal ? "on" : ""}" data-v="${x.id}">${esc(L(x.name))}</button>`).join("")}</div></div>
         <div class="field"><label>Activity</label><select id="nAct">${acts.map((x) => `<option value="${x.id}" ${x.id === n.act ? "selected" : ""}>${esc(L(x.name))} — ${esc(L(x.desc))}</option>`).join("")}</select></div>
         <div class="nrow"><div class="field"><label>Sex</label>${seg("nSex", [["male", "Male"], ["female", "Female"]], n.sex, "block")}</div>
@@ -260,7 +260,7 @@ export async function nutritionView() {
           <div class="field"><label for="nH">Height (cm)</label><input id="nH" type="number" inputmode="numeric" min="120" max="230" value="${n.h}"></div>
           <div class="field"><label for="nW">Weight (kg)</label><input id="nW" type="number" inputmode="decimal" min="30" max="300" value="${Math.round(w * 10) / 10}"></div></div></div>
       ${(nu.guide || []).map((s) => `<details class="gsec"><summary>${esc(L(s.title))}${ic("chev", "sm")}</summary><ul>${(s.points || []).map((x) => `<li>${esc(L(x))}</li>`).join("")}</ul></details>`).join("")}
-      ${nu.disclaimer ? `<p class="dim small" style="margin-top:12px">${esc(L(nu.disclaimer))}</p>` : ""}
+      ${nu.disclaimer ? `<p class="dim small mt-12">${esc(L(nu.disclaimer))}</p>` : ""}
       ${(nu.sources || []).length ? `<p class="dim tiny">Sources: ${nu.sources.map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>`).join(" · ")}</p>` : ""}`;
     const upd = (k, v) => { n[k] = v; save("profile"); draw(); };
     segVal($("#nGoal"), (v) => upd("goal", v)); segVal($("#nSex"), (v) => upd("sex", v));
@@ -289,9 +289,9 @@ export async function plansView(id) {
       <div class="row between scn-h"><div class="h4">How a week works</div><select class="chip scn-cmp" id="pCmp" aria-label="Compare with another plan"><option value="">Compare with…</option>${P.PLANS.filter((q) => q.id !== p.id).map((q) => `<option value="${q.id}">${esc(L(C[q.id]?.name) || q.name)} · ${q.days} days</option>`).join("")}</select></div><div id="scnHost"></div>
       ${blk("Who it's for", c.who)}${blk("Why it works", c.why)}${list("Good", c.pros, "pros")}${list("Keep in mind", c.cons, "cons")}
       <div class="h4">Hard sets per muscle per week</div><div class="wsets">${P.MAIN.map((g) => [g, ws[g] || 0]).map(([g, n]) => `<div><span>${esc(g)}</span><i><u style="inset-inline-start:${(lo / max) * 100}%;width:${((hi - lo) / max) * 100}%"></u><b style="width:${(n / max) * 100}%" class="${n < lo ? "lo" : ""}"></b></i><em class="num">${n}</em></div>`).join("")}</div>
-      <div class="dim tiny" style="margin-top:6px">Green band = a good weekly range for this level (${lo}–${hi} sets). Presses count half a set for triceps, rows and pulldowns half a set for biceps.${(() => { const o = Object.entries(ws).filter(([g]) => !P.MAIN.includes(g)); return o.length ? ` Also: ${o.map(([g, n]) => `${esc(g)} ${n}`).join(" · ")}.` : ""; })()}</div>
+      <div class="dim tiny mt-6">Green band = a good weekly range for this level (${lo}–${hi} sets). Presses count half a set for triceps, rows and pulldowns half a set for biceps.${(() => { const o = Object.entries(ws).filter(([g]) => !P.MAIN.includes(g)); return o.length ? ` Also: ${o.map(([g, n]) => `${esc(g)} ${n}`).join(" · ")}.` : ""; })()}</div>
       ${blk("How to progress", c.progression)}${list("Tips", c.tips, "")}
-      <div class="row" style="margin-top:16px"><button class="btn grow" id="pPv">Preview</button><button class="btn primary grow" id="pUse">${ic("plus", "sm")} Use this plan</button></div>`;
+      <div class="row mt-16"><button class="btn grow" id="pPv">Preview</button><button class="btn primary grow" id="pUse">${ic("plus", "sm")} Use this plan</button></div>`;
     const sc = await import("./scenario.js"); if (!live(rid)) return;
     sc.mountScenario($("#scnHost"), p);
     $("#pCmp").onchange = (e) => sc.mountScenario($("#scnHost"), p, { compare: e.target.value });
@@ -303,8 +303,8 @@ export async function plansView(id) {
   const draw = () => {
     const d = plansDays, ps = P.PLANS.filter((p) => !d || p.days === d).sort((a, b) => (b.id === rec) - (a.id === rec) || a.days - b.days);
     view().innerHTML = `<div class="gchips" id="pDays" role="group" aria-label="Days a week">${[[0, "All"], [2, "2 days"], [3, "3 days"], [4, "4 days"], [5, "5 days"], [6, "6 days"]].map(([v, t]) => `<button class="chip ${v === d ? "on" : ""}" data-v="${v}">${t}</button>`).join("")}</div>
-      <div class="stack tight" style="margin-top:10px" id="pList">${ps.map((p) => T.planCard(p)).join("")}</div>
-      <a class="btn ghost block" href="#/start" style="margin-top:8px">${ic("layers", "sm")} Not sure? Find my plan</a>
+      <div class="stack tight mt-10" id="pList">${ps.map((p) => T.planCard(p)).join("")}</div>
+      <a class="btn ghost block mt-8" href="#/start">${ic("layers", "sm")} Not sure? Find my plan</a>
       ${pl.progression ? `<details class="gsec"><summary>${esc(L(pl.progression.title))}${ic("chev", "sm")}</summary><ul>${(pl.progression.points || []).map((x) => `<li>${esc(L(x))}</li>`).join("")}</ul></details>` : ""}`;
     segVal($("#pDays"), (v) => { plansDays = +v; draw(); });
     $("#pList").onclick = (e) => { T.planClicks(e); }; // never return false: that cancels the "How it works" link

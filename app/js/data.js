@@ -1,4 +1,5 @@
 // Exercise library + derived lookups over user history.
+// FE-14: the history functions take `sessions` as their last argument (default S.sessions) so they are testable in Node.
 import { S } from "./store.js";
 import { e1rm } from "./calc.js";
 
@@ -164,18 +165,18 @@ export const DAY = 864e5, WEEK = 7 * DAY;
 export function weekStart(t = Date.now()) { const d = new Date(t); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() - ((d.getDay() + 6) % 7)); return d.getTime(); }
 const workSets = (en) => en.sets.filter((x) => x.done !== false && x.type !== "w" && (+x.w || +x.r));
 /** Totals for sessions finished in [from, to). */
-export function periodStats(from, to) {
+export function periodStats(from, to, sessions = S.sessions) {
   let workouts = 0, sets = 0, reps = 0, kg = 0;
-  for (const s of S.sessions) {
+  for (const s of sessions) {
     if (!(s.endedAt >= from && s.endedAt < to)) continue; workouts++;
     for (const en of s.entries) for (const x of workSets(en)) { sets++; reps += +x.r || 0; kg += (+x.w || 0) * (+x.r || 0); }
   }
   return { workouts, sets, reps, kg: Math.round(kg) };
 }
 /** Per exercise in [from, to): {slug: {sets, reps, kg, best:{w,r}}} */
-export function exerciseStats(from, to) {
+export function exerciseStats(from, to, sessions = S.sessions) {
   const out = {};
-  for (const s of S.sessions) {
+  for (const s of sessions) {
     if (!(s.endedAt >= from && s.endedAt < to)) continue;
     for (const en of s.entries) { const o = (out[en.slug] ??= { sets: 0, reps: 0, kg: 0, best: null, e1: 0 });
       for (const x of workSets(en)) { o.sets++; o.reps += +x.r || 0; o.kg += (+x.w || 0) * (+x.r || 0); const v = e1rm(x.w, x.r); if (v > o.e1) { o.e1 = v; o.best = { w: +x.w, r: +x.r }; } } }
@@ -186,9 +187,9 @@ export function exerciseStats(from, to) {
 /* ---- recovery: per muscle hours left (48–72h window by size & sets) ---- */
 export const REC_BASE = { quads: 72, hamstrings: 72, glutes: 72, lats: 66, "upper-back": 66, chest: 66, "lower-back": 72, traps: 54, "delt-front": 54, "delt-side": 54, "delt-rear": 54,
   triceps: 54, biceps: 54, adductors: 60, calves: 48, forearms: 48, abs: 48, obliques: 48, shins: 48 };
-export function recovery(now = Date.now()) {
+export function recovery(now = Date.now(), sessions = S.sessions) {
   const load = {}; // muscle → {t: last time, sets}
-  for (const s of S.sessions) {
+  for (const s of sessions) {
     if (!(s.endedAt > now - 4 * DAY)) continue;
     for (const en of s.entries) { const e = BY[en.slug]; if (!e) continue; const n = workSets(en).length; if (!n) continue;
       const add = (m, k) => { const o = (load[m] ??= { t: 0, sets: 0 }); o.t = Math.max(o.t, s.endedAt); o.sets += n * k; };
@@ -204,9 +205,9 @@ export function recovery(now = Date.now()) {
 }
 
 /** All finished working sets for an exercise, oldest first. */
-export function history(slug) {
+export function history(slug, sessions = S.sessions) {
   const out = [];
-  for (const s of S.sessions) {
+  for (const s of sessions) {
     const en = s.entries.find((x) => x.slug === slug);
     if (en) out.push({ date: s.endedAt || s.startedAt, sets: en.sets.filter((x) => x.done && x.type !== "w" && (+x.w || +x.r)) });
   }
@@ -225,9 +226,9 @@ export const setsText = (sets, unit = S.settings.unit) =>
   sets.map((s) => (+s.w ? `${+s.w}${unit}×${s.r || 0}` : `${s.r || 0} reps`)).join(" · ");
 
 /** Weekly working sets per muscle (primary muscles 1 set, secondary 0.5) between [from, to). */
-export function weeklyVolume(days = 7, to = Date.now()) {
+export function weeklyVolume(days = 7, to = Date.now(), sessions = S.sessions) {
   const since = to - days * 864e5, vol = {};
-  for (const s of S.sessions) {
+  for (const s of sessions) {
     const t = s.endedAt || 0; if (t < since || t >= to) continue;
     for (const en of s.entries) {
       const e = BY[en.slug]; if (!e) continue;

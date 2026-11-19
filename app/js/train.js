@@ -33,10 +33,10 @@ export function trainView() {
           <button class="go-btn" data-start="${esc(w.id)}" aria-label="Start ${esc(w.name)}">${ic("play")}</button></div>`;
   const planBox = cur ? `<div class="card pad myplan"><div class="eyebrow">Your plan</div><div class="row" style="gap:8px;align-items:baseline"><h3 class="grow">${esc(cur.name)}</h3><span class="dim small num">${cur.days} days a week</span></div>
       <div class="muted small">Do the workouts below in order, one per training day. Each muscle ${freqOf(cur)}× a week.</div>
-      <div class="row" style="margin-top:10px"><a class="btn sm grow" href="#/plans">${ic("swap", "sm")} Change plan</a><a class="btn sm grow" href="#/plan/${cur.id}">How it works</a></div></div>`
+      <div class="row mt-10"><a class="btn sm grow" href="#/plans">${ic("swap", "sm")} Change plan</a><a class="btn sm grow" href="#/plan/${cur.id}">How it works</a></div></div>`
     : `<div class="card pad myplan"><div class="eyebrow">Step 1</div><h3>Pick a plan</h3><div class="muted small">A plan gives you ready workouts for each training day. You can change it any time.</div></div>`;
   const plans = `<div class="stack tight stagger" id="planCards">${pickPlans({ level: S.profile?.level || "beginner", days: S.profile?.days || 3 }).map(({ p }) => planCard(p)).join("")}</div>
-      <div class="row" style="margin-top:6px"><a class="btn ghost grow" href="#/plans">All ${PLANS.length} plans</a><a class="btn ghost grow" href="#/start">${ic("layers", "sm")} Find my plan</a></div>`;
+      <div class="row mt-6"><a class="btn ghost grow" href="#/plans">All ${PLANS.length} plans</a><a class="btn ghost grow" href="#/start">${ic("layers", "sm")} Find my plan</a></div>`;
   const tools = `<div class="sec"><h2>Tools</h2></div><div class="tchips">
       <button class="chip" id="tPlates">${ic("calc", "sm")} Plates</button><button class="chip" id="t1rm">${ic("trophy", "sm")} 1RM</button>
       <a class="chip" href="#/timer/countdown">${ic("timer", "sm")} Rest timer</a><a class="chip" href="#/timer/interval">${ic("bolt", "sm")} Intervals</a><a class="chip" href="#/warmup">${ic("flame", "sm")} Warm-up</a></div>`;
@@ -47,7 +47,7 @@ export function trainView() {
       <div class="sec"><h2>${cur ? "Workouts" : "My workouts"}</h2><button class="btn sm" id="newW">${ic("plus", "sm")} New</button></div>
       <div class="stack tight stagger">${S.workouts.map(wrow).join("") ||
         `<div class="card pad row" style="gap:14px;text-align:start"><div class="ill" data-ill="empty-workouts" style="width:84px;margin:0;flex:none"></div><div class="grow"><b>No workouts yet</b><div class="muted small">Pick a plan above, or tap New to build your own.</div></div></div>`}</div>
-      ${S.active ? "" : `<button class="btn ghost block" id="quick" style="margin-top:6px">${ic("bolt", "sm")} Quick start — empty workout</button>`}
+      ${S.active ? "" : `<button class="btn ghost block mt-6" id="quick">${ic("bolt", "sm")} Quick start — empty workout</button>`}
     </div><div>
       ${tools}
     </div></div>`;
@@ -68,7 +68,7 @@ export function planCard(p, { why = "" } = {}) {
   return `<div class="plan-card${rec ? " rec" : ""}"><div class="row"><span class="tag" style="color:${LEVEL_C[p.level]};background:color-mix(in oklab, ${LEVEL_C[p.level]} 14%, transparent)">${LEVEL_T[p.level]}</span>${rec ? `<span class="tag rec-b">${ic("check", "sm")} Recommended</span>` : ""}<span class="grow"></span><a class="link small" href="#/plan/${p.id}" style="color:var(--accent-text);font-weight:600">How it works</a></div>
     <b>${esc(p.name)}</b><div class="dim small num">${p.days} days a week · ~${mins} min · each muscle ${f}× a week</div>
     <div class="muted small" data-pline="${p.id}">${why ? esc(why) : ""}</div>
-    <div class="row" style="margin-top:6px"><button class="btn sm grow" data-preview="${p.id}">Preview</button>${cur ? `<span class="btn sm grow cur-b" aria-disabled="true">${ic("check", "sm")} Your plan</span>` : `<button class="btn sm primary grow" data-use="${p.id}">Use plan</button>`}</div></div>`;
+    <div class="row mt-6"><button class="btn sm grow" data-preview="${p.id}">Preview</button>${cur ? `<span class="btn sm grow cur-b" aria-disabled="true">${ic("check", "sm")} Your plan</span>` : `<button class="btn sm primary grow" data-use="${p.id}">Use plan</button>`}</div></div>`;
 }
 /** fill the one-line texts after plans.json arrives */
 export async function fillPlanLines(root) {
@@ -88,12 +88,12 @@ export function previewPlan(p) {
     const ws = buildPlan(p, o), sl = planSlots(p, o);
     const seg = (id, opts, cur) => `<div class="seg sm" id="${id}" role="group">${opts.map(([v, t]) => `<button class="${String(v) === String(cur) ? "on" : ""}" data-v="${v}">${t}</button>`).join("")}</div>`;
     el.innerHTML = `<h3>${esc(p.name)}</h3><p class="muted small" style="margin:-6px 0 10px">${p.days} days a week · ${ws.length} workouts</p>
-      <div class="seg sm block" id="pvTab" role="group" style="margin-bottom:12px"><button class="${tab === "list" ? "on" : ""}" data-v="list">Workouts</button><button class="${tab === "week" ? "on" : ""}" data-v="week">How a week works</button></div>
+      <div class="seg sm block mb-12" id="pvTab" role="group"><button class="${tab === "list" ? "on" : ""}" data-v="list">Workouts</button><button class="${tab === "week" ? "on" : ""}" data-v="week">How a week works</button></div>
       <div class="pv-opts"><div class="row between"><span class="small b">Session length</span>${seg("pvMin", [[45, "45 min"], [60, "60 min"], [75, "75 min"]], o.min)}</div>
-        <div><span class="small b">Extra focus</span><div class="gchips" id="pvFocus" style="margin-top:6px">${[["", "None"], ...Object.entries(FOCUS).map(([k, v]) => [k, v.name])].map(([k, t]) => `<button class="chip ${k === o.focus ? "on" : ""}" data-v="${k}">${t}</button>`).join("")}</div>${o.focus ? `<div class="dim tiny" style="margin-top:4px">Adds a few sets for ${esc(FOCUS[o.focus].name.toLowerCase())} to two workouts.</div>` : ""}</div></div>
-      ${tab === "week" ? `<div id="pvScn" style="margin-top:12px"></div>` : ws.map((w, i) => `<div class="h4">${esc(w.name)} <span class="dim tiny num">~${minutesOf(sl[i])} min</span></div><div class="stack tight">
+        <div><span class="small b">Extra focus</span><div class="gchips mt-6" id="pvFocus">${[["", "None"], ...Object.entries(FOCUS).map(([k, v]) => [k, v.name])].map(([k, t]) => `<button class="chip ${k === o.focus ? "on" : ""}" data-v="${k}">${t}</button>`).join("")}</div>${o.focus ? `<div class="dim tiny mt-4">Adds a few sets for ${esc(FOCUS[o.focus].name.toLowerCase())} to two workouts.</div>` : ""}</div></div>
+      ${tab === "week" ? `<div id="pvScn" class="mt-12"></div>` : ws.map((w, i) => `<div class="h4">${esc(w.name)} <span class="dim tiny num">~${minutesOf(sl[i])} min</span></div><div class="stack tight">
       ${w.items.map((it) => `<div class="lrow"><img src="${BY[it.slug].poster}" alt=""><div class="grow"><div class="t">${esc(BY[it.slug].name)}</div><div class="s">${it.sets} × ${it.reps}</div></div>${tierBadge(BY[it.slug].tier)}</div>`).join("")}</div>`).join("")}
-      <button class="btn primary block" style="margin-top:16px" id="usePv">Use this plan</button>`;
+      <button class="btn primary block mt-16" id="usePv">Use this plan</button>`;
     $("#pvTab", el).onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b || b.dataset.v === tab) return; haptic(); tab = b.dataset.v; draw(el); };
     $("#pvMin", el).onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b) return; haptic(); o.min = +b.dataset.v; draw(el); };
     $("#pvFocus", el).onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b) return; haptic(); o.focus = b.dataset.v; draw(el); };
@@ -133,8 +133,8 @@ export function workoutView(id) {
         <div class="row dim small" style="gap:6px;margin-top:6px"><input class="mini-in num" data-k="sets" value="${esc(it.sets)}" inputmode="numeric" aria-label="Sets"> sets ×
           <input class="mini-in w num" data-k="reps" value="${esc(it.reps)}" aria-label="Reps"> reps</div></div>
       <div class="acts"><button class="iconbtn sm" data-a="up" aria-label="Move up" ${i ? "" : "disabled"}>${ic("up", "sm")}</button><button class="iconbtn sm" data-a="del" aria-label="Remove" style="color:var(--t3)">${ic("trash", "sm")}</button></div></div>`; }).join("") ||
-      `<div class="card pad" style="text-align:center"><div class="ill" data-ill="plan" style="max-width:140px"></div><b>No exercises yet</b><div class="muted small">Add a few from the library.</div></div>`}</div>
-    <button class="btn block" id="add" style="margin-top:12px">${ic("plus", "sm")} Add exercises</button>
+      `<div class="card pad tc"><div class="ill" data-ill="plan" style="max-width:140px"></div><b>No exercises yet</b><div class="muted small">Add a few from the library.</div></div>`}</div>
+    <button class="btn block mt-12" id="add">${ic("plus", "sm")} Add exercises</button>
     <div class="sticky-cta"><button class="btn primary" id="start" ${w.items.length ? "" : "disabled"}>${ic("play", "sm")} Start workout</button></div>`;
   document.body.classList.add("has-cta");
   const items = $("#items");
@@ -258,12 +258,12 @@ export function sessionView() {
     <div class="sess-head"><div><div class="eyebrow">Time</div><div class="sess-clock num" id="clock">0:00</div></div>
       <div class="sess-stats"><div><b class="num" id="stSets">${st.sets}</b>sets</div><div><b class="num" id="stVol">${st.vol}</b>${u}</div></div>
       <button class="btn sm ${gym ? "primary" : ""}" id="gymT" aria-pressed="${gym}">${ic("phone", "sm")} Gym mode</button></div>
-    ${!a.warmed && !a.noWarm && a.entries.length && !a.entries.some((en) => en.sets.some((x) => x.done)) ? `<div class="notice acc" id="warmN" style="margin-bottom:12px">${ic("flame", "sm")}<div class="grow"><b>Warm up first</b><div class="small muted">About 6 min, made for this workout</div></div><a class="btn sm primary" href="#/warmup/s">Start</a><button class="iconbtn sm" id="warmX" aria-label="Skip warm-up">${ic("close", "sm")}</button></div>` : ""}
+    ${!a.warmed && !a.noWarm && a.entries.length && !a.entries.some((en) => en.sets.some((x) => x.done)) ? `<div class="notice acc mb-12" id="warmN">${ic("flame", "sm")}<div class="grow"><b>Warm up first</b><div class="small muted">About 6 min, made for this workout</div></div><a class="btn sm primary" href="#/warmup/s">Start</a><button class="iconbtn sm" id="warmX" aria-label="Skip warm-up">${ic("close", "sm")}</button></div>` : ""}
     ${gym ? `<div class="gnav"><button class="iconbtn filled" id="gPrev" aria-label="Previous exercise" ${gi ? "" : "disabled"}>${ic("back")}</button><b class="num">Exercise ${gi + 1} of ${a.entries.length}</b><button class="iconbtn filled fwd" id="gNext" aria-label="Next exercise" ${gi < a.entries.length - 1 ? "" : "disabled"}>${ic("back")}</button></div>` : ""}
     <div class="sess-grid"><div class="sess-main">
-    <div class="stack" id="entries">${a.entries.map((en, ei) => entryHTML(en, ei)).join("") || `<div class="card pad" style="text-align:center"><div class="ill" data-ill="hero-start" style="max-width:140px"></div><b>Empty workout</b><div class="muted small">Add your first exercise.</div></div>`}</div>
-    <button class="btn block" id="addEx" style="margin-top:12px">${ic("plus", "sm")} Add exercise</button>
-    <div class="row" style="margin-top:10px"><button class="btn ghost grow danger" id="disc">Discard</button><button class="btn primary grow" id="fin">${ic("check", "sm")} Finish workout</button></div></div>
+    <div class="stack" id="entries">${a.entries.map((en, ei) => entryHTML(en, ei)).join("") || `<div class="card pad tc"><div class="ill" data-ill="hero-start" style="max-width:140px"></div><b>Empty workout</b><div class="muted small">Add your first exercise.</div></div>`}</div>
+    <button class="btn block mt-12" id="addEx">${ic("plus", "sm")} Add exercise</button>
+    <div class="row mt-10"><button class="btn ghost grow danger" id="disc">Discard</button><button class="btn primary grow" id="fin">${ic("check", "sm")} Finish workout</button></div></div>
     <aside class="sess-side" id="sside" aria-label="Current exercise"></aside></div>`;
   clearInterval(clockT);
   const tick = () => { const c = $("#clock"); if (!c || !S.active) return clearInterval(clockT); c.textContent = fmtDur(Date.now() - S.active.startedAt); };
@@ -338,7 +338,7 @@ function entryHTML(en, ei) {
     ${ssOut ? `<div class="ss-tag">${ic("swap", "xs")} Superset with next — no rest between</div>` : ""}
     <div class="xhead"><a href="#/ex/${en.slug}" aria-label="How to do ${esc(e?.name || en.slug)}"><img src="${e?.poster || ""}" alt=""></a>
       <div class="grow"><div class="t">${esc(e?.name || en.slug)}</div>
-        <div class="hint">${tierBadge(e?.tier)}<span>${esc(en.target || "")} reps ·</span><button class="restb" data-a="rest" aria-label="Change rest time">rest ${restLbl(restOf(en))}</button></div>
+        <div class="hint">${tierBadge(e?.tier)}<span>${esc(en.target || "")} reps${e?.each_side ? " each side" : ""} ·</span><button class="restb" data-a="rest" aria-label="Change rest time">rest ${restLbl(restOf(en))}</button></div>
         ${last ? `<div class="hint"><span class="beat">${ic("target")}Today: ${wr(t1.w, t1.r, u)}</span><span class="dim">(last: ${wr(P.top.w, P.top.r)})</span></div>` : `<div class="hint">First time — pick a weight you can do ${P.tr ? P.tr[1] : 10} times with good form.</div>`}
         ${en.deload ? `<div class="hint" style="color:var(--warn)">${ic("alert", "xs")}<span class="grow">Stalled 5+ weeks — deload: ~60% weight today, then build back up.</span></div>` : ""}</div>
       <button class="iconbtn sm" data-a="menu" aria-label="Options">${ic("more")}</button></div>
@@ -535,11 +535,11 @@ async function finishSession() {
   if (S.sessions.length === 1) persist();
   haptic("success"); beep([[523, .1], [659, .1], [784, .25]]); if (prs.length) confetti();
   redirect("#/");
-  setTimeout(() => openSheet(`<div style="text-align:center"><div class="ill" data-ill="${prs.length ? "pr" : "rest-recovery"}" style="max-width:150px"></div><h3 style="margin:4px 0 2px">Workout complete</h3><div class="muted small">${esc(a.name)} · ${fmtDur(a.endedAt - a.startedAt)}</div></div>
+  setTimeout(() => openSheet(`<div class="tc"><div class="ill" data-ill="${prs.length ? "pr" : "rest-recovery"}" style="max-width:150px"></div><h3 style="margin:4px 0 2px">Workout complete</h3><div class="muted small">${esc(a.name)} · ${fmtDur(a.endedAt - a.startedAt)}</div></div>
     <div class="kpis" style="margin:16px 0"><div class="kpi"><b class="num">${st.sets}</b><span>Sets</span></div><div class="kpi"><b class="num">${st.vol}</b><span>${S.settings.unit} volume</span></div><div class="kpi"><b class="num">${prs.length}</b><span>New PRs</span></div></div>
     ${prs.length ? `<div class="stack tight">${prs.map((p) => `<div class="lrow"><img src="${BY[p.slug]?.poster}" alt=""><div class="grow"><div class="t">${esc(BY[p.slug]?.name)}</div><div class="s">${p.w}${S.settings.unit} × ${p.r}</div></div>${ic("trophy")}</div>`).join("")}</div>` : ""}
-    <div class="row" style="margin-top:16px"><button class="btn grow" id="shareW">${ic("share", "sm")} Share</button><button class="btn primary grow" id="done">Done</button></div>
-    <a class="btn ghost block" href="#/warmup/cool" id="coolW" style="margin-top:6px">${ic("timer", "sm")} Cool-down stretches (optional)</a>`, (el) => {
+    <div class="row mt-16"><button class="btn grow" id="shareW">${ic("share", "sm")} Share</button><button class="btn primary grow" id="done">Done</button></div>
+    <a class="btn ghost block mt-6" href="#/warmup/cool" id="coolW">${ic("timer", "sm")} Cool-down stretches (optional)</a>`, (el) => {
       fillIll(el); $("#done", el).onclick = closeSheet; setTimeout(() => $("#done", el)?.focus({ focusVisible: false }), 60); /* UT-13: not a red ring on Share */
       $("#shareW", el).onclick = () => import("./share.js").then((m) => m.shareSession(a, st, prs)).catch((e) => { console.error(e); toast("Could not share"); });
     }), 120);
@@ -573,7 +573,7 @@ export function plateSheet(total) {
 function oneRmSheet() {
   const u = S.settings.unit;
   openSheet(`<h3>1RM calculator</h3><div class="row"><div class="field grow"><label>Weight (${u})</label><input id="ow" inputmode="decimal" value="80"></div><div class="field grow"><label>Reps</label><input id="or" inputmode="numeric" value="8"></div></div>
-    <div class="card soft pad" style="text-align:center"><div class="eyebrow">Estimated 1RM</div><div style="font-size:44px;font-weight:780" class="num" id="ores">—</div></div>
+    <div class="card soft pad tc"><div class="eyebrow">Estimated 1RM</div><div style="font-size:44px;font-weight:780" class="num" id="ores">—</div></div>
     <div class="h4">Training weights</div><div class="kv" id="opct"></div>`, (el) => {
     const draw = () => { const v = e1rm($("#ow", el).value, $("#or", el).value); $("#ores", el).textContent = v ? v + u : "—";
       $("#opct", el).innerHTML = [[.9, "3"], [.85, "5"], [.8, "8"], [.75, "10"], [.7, "12"], [.65, "15"]].map(([p, r]) => `<div><b class="num">${v ? Math.round(v * p * 2) / 2 : "—"}</b><span>~${r} reps · ${Math.round(p * 100)}%</span></div>`).join(""); };

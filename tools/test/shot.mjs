@@ -9,6 +9,9 @@ const steps = JSON.parse(scriptArg === "-" ? readFileSync(0, "utf8") : readFileS
 const VP = { phone: [390, 844, 3, true], small: [360, 740, 3, true], ipad: [820, 1180, 2, true], desktop: [1440, 900, 1, false], laptop: [1366, 768, 1, false] };
 const port = 9300 + Math.floor(Math.random() * 500);
 const prof = `/tmp/gymshot-${port}`;
+// a killed or timed-out run must not leave its profile in /tmp (tmpfs = RAM; 430 stale profiles once filled it)
+const dropProf = () => { try { rmSync(prof, { recursive: true, force: true }); } catch {} };
+for (const sig of ["SIGINT", "SIGTERM", "SIGHUP"]) process.on(sig, () => { try { chrome.kill(); } catch {} dropProf(); process.exit(130); });
 const chrome = spawn("chromium", ["--headless=new", `--remote-debugging-port=${port}`, `--user-data-dir=${prof}`, "--no-first-run",
   "--autoplay-policy=no-user-gesture-required", "--disable-gpu", "about:blank"], { stdio: "ignore" });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));

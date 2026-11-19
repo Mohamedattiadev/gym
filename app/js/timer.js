@@ -169,15 +169,15 @@ export function timerView(setTop, root, arg) {
       body = mine ? `<div class="ringwrap"><svg viewBox="0 0 100 100"><circle class="track" cx="50" cy="50" r="${R}"/><circle class="fill" id="tmF" cx="50" cy="50" r="${R}" stroke-dasharray="${CC}" stroke-dashoffset="${CC * (1 - v.pct)}"/></svg>
           ${T.kind === "rest" ? `<div class="lbl">Rest</div>` : ""}<div class="big num" id="tmT">${v.text}</div>${v.next ? `<div class="sub2">${esc(v.next)}</div>` : ""}</div>
           <div class="row" style="justify-content:center;gap:8px"><button class="btn lg" data-a="m15">−15s</button><button class="btn lg primary" data-a="toggle" style="min-width:120px">${v.running ? "Pause" : "Resume"}</button><button class="btn lg" data-a="p15">+15s</button></div>
-          <button class="btn block ghost" data-a="stop" style="margin-top:8px">${T.kind === "rest" ? "Skip rest" : "Stop"}</button>`
+          <button class="btn block ghost mt-8" data-a="stop">${T.kind === "rest" ? "Skip rest" : "Stop"}</button>`
         : `<div class="mmss" style="margin:22px 0 16px"><input id="cdM" inputmode="numeric" value="${cdSet.m}" aria-label="Minutes"><b>:</b><input id="cdS" inputmode="numeric" value="${String(cdSet.s).padStart(2, "0")}" aria-label="Seconds"></div>
           <div class="presets" style="grid-template-columns:repeat(3,1fr)">${PRESETS.map((s) => `<button data-pre="${s}">${fmtDur(s * 1000)}</button>`).join("")}</div>
-          <button class="btn lg primary block" data-a="cd" style="margin-top:16px">${ic("play", "sm")} Start</button>`;
+          <button class="btn lg primary block mt-16" data-a="cd">${ic("play", "sm")} Start</button>`;
     } else {
       body = mine ? `<div class="ringwrap"><svg viewBox="0 0 100 100"><circle class="track" cx="50" cy="50" r="${R}"/><circle class="fill" id="tmF" cx="50" cy="50" r="${R}" stroke-dasharray="${CC}" stroke-dashoffset="${CC * (1 - v.pct)}" style="stroke:${v.phase === "work" ? "var(--accent)" : "var(--info)"}"/></svg>
           <div class="lbl" style="color:${v.phase === "work" ? "var(--accent-text)" : "var(--info)"}">${v.phase === "work" ? "Work" : "Rest"}</div><div class="big num" id="tmT">${v.text}</div><div class="sub2">Round ${v.round} / ${v.rounds}</div></div>
           <div class="row" style="justify-content:center;gap:10px"><button class="btn lg" data-a="stop" style="min-width:120px">Stop</button><button class="btn lg primary" data-a="toggle" style="min-width:120px">${v.running ? "Pause" : "Resume"}</button></div>`
-        : `<div class="chips" style="margin-top:14px">${IPRESETS.map(([n, w, r, k]) => `<button class="chip ${iSet.w === w && iSet.r === r && iSet.n === k ? "on" : ""}" data-ip="${w},${r},${k}">${n}</button>`).join("")}</div>
+        : `<div class="chips mt-14">${IPRESETS.map(([n, w, r, k]) => `<button class="chip ${iSet.w === w && iSet.r === r && iSet.n === k ? "on" : ""}" data-ip="${w},${r},${k}">${n}</button>`).join("")}</div>
           <div class="kv" style="margin:8px 0 16px">${[["w", "Work (s)"], ["r", "Rest (s)"], ["n", "Rounds"]].map(([k, l]) => `<div><input class="input num" data-i="${k}" inputmode="numeric" value="${iSet[k]}" style="text-align:center;font-size:22px;font-weight:740;height:52px"><span>${l}</span></div>`).join("")}</div>
           <div class="dim small" style="text-align:center;margin-bottom:12px">Total ${fmtDur((iSet.w + iSet.r) * iSet.n * 1000)}</div>
           <button class="btn lg primary block" data-a="int">${ic("play", "sm")} Start</button>`;

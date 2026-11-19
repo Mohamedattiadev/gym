@@ -1,4 +1,4 @@
-// Optional cloud backup to the owner's OWN PRIVATE GitHub repo (see SYNC.md).
+// Optional cloud backup to the owner's OWN PRIVATE GitHub repo (see docs/SYNC.md).
 // The token stays on this device (IndexedDB key "sync") and is NEVER written into the backup file.
 // Talks only to https://api.github.com. No libraries.
 import { S, SCHEMA, save, onSave, flush, exportData, clean as cleanData } from "./store.js";

@@ -73,22 +73,22 @@ function hub(w) {
   const u = S.settings.unit;
   view().innerHTML = `<div class="muted small" style="margin:-2px 0 12px">${esc(L(w.intro))}</div>
     <div class="hero-card has-ill"><div class="txt"><div class="eyebrow">${nx ? "Before your workout" : "Quick start"}</div><h3>${esc(nx ? nx.name : "General warm-up")}</h3>
-      <div class="muted small" style="margin-bottom:12px">${mins(total(auto))} · ${auto.items.length} moves${auto.areas.length ? ` · ${esc(auto.areas.map(areaName).join(", "))}` : ""}</div>
+      <div class="muted small mb-12">${mins(total(auto))} · ${auto.items.length} moves${auto.areas.length ? ` · ${esc(auto.areas.map(areaName).join(", "))}` : ""}</div>
       <button class="btn primary" id="wAuto">${ic("play", "sm")} Start warm-up</button></div><div class="ill" data-ill="warmup"></div></div>
     <div class="sec"><h2>Warm up one area</h2></div>
     <div class="chips" id="wAreas">${AREAS.filter((a) => w.areas?.[a]).map((a) => `<button class="chip" data-a="${a}">${esc(areaName(a))}</button>`).join("")}</div>
     <div class="sec"><h2>Ramp-up sets</h2><button class="link small" id="wRules" style="color:var(--accent-text);font-weight:600;background:none;border:0">How it works</button></div>
     <div class="card pad"><div class="row" style="gap:10px;flex-wrap:wrap"><div class="field" style="margin:0;flex:1;min-width:120px"><label for="wKg">Working weight (${u})</label><input id="wKg" type="number" inputmode="decimal" min="0" step="0.5" placeholder="e.g. 80"></div>
       <div class="seg sm" id="wKind"><button data-v="heavy" class="on">Barbell lift</button><button data-v="light">Other</button></div></div>
-      <div id="wRamp" class="ramp" style="margin-top:10px"><div class="dim small">${esc(L(w.ramp?.note))}</div></div></div>
-    <div class="itiles" style="margin-top:12px"><button class="itile" id="wGen"><span class="ico">${ic("flame")}</span><div><b>General</b><span>${mins(total(buildFor(w, [], "")))} · full body</span></div></button>
+      <div id="wRamp" class="ramp mt-10"><div class="dim small">${esc(L(w.ramp?.note))}</div></div></div>
+    <div class="itiles mt-12"><button class="itile" id="wGen"><span class="ico">${ic("flame")}</span><div><b>General</b><span>${mins(total(buildFor(w, [], "")))} · full body</span></div></button>
       <a class="itile" href="#/warmup/cool" style="--c:var(--info)"><span class="ico">${ic("timer")}</span><div><b>Cool-down</b><span>After training</span></div></a></div>
     ${w.sources?.length ? `<details class="srcs"><summary class="dim small">Sources</summary><div class="small">${w.sources.map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join(" · ")}</div></details>` : ""}`;
   fillIll(view()); indicate(view());
   $("#wAuto").onclick = () => (nx ? go(nx.href) : play(auto, "#/warmup"));
   $("#wGen").onclick = () => play(buildFor(w, [], ""), "#/warmup");
   $("#wAreas").onclick = (e) => { const b = e.target.closest("[data-a]"); if (!b) return; const a = b.dataset.a; play(buildList(w, `Warm-up · ${areaName(a)}`, w.areas[a].drills), "#/warmup"); };
-  $("#wRules").onclick = () => openSheet(`<h3>Ramp-up sets</h3><div class="muted small" style="margin-bottom:10px">${esc(L(w.ramp?.note))}</div>
+  $("#wRules").onclick = () => openSheet(`<h3>Ramp-up sets</h3><div class="muted small mb-10">${esc(L(w.ramp?.note))}</div>
     <ul class="bul">${(w.ramp?.rules || []).map((r) => `<li>${ic("check", "sm")}<span>${esc(L(r))}</span></li>`).join("")}</ul>`);
   let kind = "heavy";
   const ramp = () => {
@@ -178,10 +178,10 @@ function finish(w) {
     <div style="text-align:center;margin-top:14px"><div class="ill" data-ill="${q.cool ? "rest-recovery" : "warmup"}" style="max-width:150px;margin:0 auto"></div>
       <h2 class="qt" style="margin:6px 0 2px">${q.cool ? "Cool-down done" : "Warm-up done"}</h2>
       <div class="muted small">${q.cool ? "Nice work today." : "Now ease into your first exercise with a few light sets."}</div></div>
-    ${ws.length ? `<div class="card pad" style="margin-top:14px"><b>${esc(first.name)}</b><div class="dim tiny" style="margin-bottom:8px">Ramp-up to ${lw}${u} (last time)</div>
+    ${ws.length ? `<div class="card pad mt-14"><b>${esc(first.name)}</b><div class="dim tiny" style="margin-bottom:8px">Ramp-up to ${lw}${u} (last time)</div>
       <div class="rsets">${ws.map((s, i) => `<div><span class="dim tiny">Set ${i + 1}</span><b class="num">${s.w}${u}</b><span class="num">× ${s.r}</span></div>`).join("")}</div>
-      ${S.active && q.back === "#/session" ? `<button class="btn block" id="wAdd" style="margin-top:10px">${ic("plus", "sm")} Add these to the workout</button>` : ""}</div>` : ""}
-    <button class="btn lg primary block" id="wDone" style="margin-top:16px">${q.back === "#/session" ? "Back to workout" : q.back?.startsWith("#/workout/") ? "Go to workout" : "Done"}</button>`;
+      ${S.active && q.back === "#/session" ? `<button class="btn block mt-10" id="wAdd">${ic("plus", "sm")} Add these to the workout</button>` : ""}</div>` : ""}
+    <button class="btn lg primary block mt-16" id="wDone">${q.back === "#/session" ? "Back to workout" : q.back?.startsWith("#/workout/") ? "Go to workout" : "Done"}</button>`;
   fillIll(view());
   const add = $("#wAdd"); if (add) add.onclick = () => {
     const en = S.active?.entries.find((e) => e.slug === first.slug); if (!en) return;

@@ -5,7 +5,7 @@
 cd "$(dirname "$0")/../.." || exit 1
 fail=0
 step() { printf '\n== %s\n' "$1"; shift; if "$@"; then echo "-> ok"; else echo "-> FAIL"; fail=1; fi; }
-step "unit tests (calc, merge, sanitize, csv, search)" node --test tools/test/unit/*.test.mjs
+step "unit tests (calc, merge, sanitize, csv, search, stats)" node --test tools/test/unit/*.test.mjs
 step "JS syntax (app/js, sw.js)" bash -c 'for f in app/js/*.js app/sw.js; do node --check "$f" || exit 1; done'
 step "sw.js precache files exist" node -e '
   const fs=require("fs"); const m=fs.readFileSync("app/sw.js","utf8").match(/SHELL_FILES\s*=\s*(\[[\s\S]*?\]);\n/);
@@ -18,5 +18,6 @@ ok=all("sha256-"+base64.b64encode(hashlib.sha256(s.encode()).digest()).decode() 
 print(len(sc),"inline script(s)"); sys.exit(0 if ok else 1)'
 step "no inline on*= handlers in templates (CSP blocks them)" bash -c '! grep -nE " on[a-z]+=\"" app/js/*.js app/index.html'
 step "no module imports main.js (FE-12: no circular imports)" bash -c '! grep -nE "from \"\./main\.js\"|import\(\"\./main\.js\"\)" app/js/*.js'
+step "user text escaped in templates (FE-24)" bash tools/test/check-esc.sh
 step "sw VERSION bumped when app/ changed" bash tools/check-sw.sh "${SW_BASE:-}"
 echo; [ $fail = 0 ] && echo "FAST PASS" || echo "FAST CHECKS FAILED"; exit $fail

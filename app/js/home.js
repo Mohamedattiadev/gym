@@ -41,7 +41,7 @@ function weekCard() {
   const cur = periodStats(w0, now + 1), prev = periodStats(w0 - WEEK, w0 - WEEK + (now - w0) + 1); // same point in last week
   const kpi = (v, l, d) => `<div class="kpi"><b class="num">${v}</b><span>${l}</span>${d}</div>`;
   return `<div class="card pad"><div class="row between"><b>This week</b><span class="dim tiny">vs same day last week</span></div>
-    <div class="kpis" style="margin-top:10px">${kpi(cur.workouts, "Workouts", delta(cur.workouts, prev.workouts))}${kpi(cur.sets, "Sets", delta(cur.sets, prev.sets))}${kpi(fmtKg(cur.kg), `Volume ${S.settings.unit}`, delta(cur.kg, prev.kg, fmtKg))}</div>
+    <div class="kpis mt-10">${kpi(cur.workouts, "Workouts", delta(cur.workouts, prev.workouts))}${kpi(cur.sets, "Sets", delta(cur.sets, prev.sets))}${kpi(fmtKg(cur.kg), `Volume ${S.settings.unit}`, delta(cur.kg, prev.kg, fmtKg))}</div>
     ${weekDots()}</div>`;
 }
 function recoveryCard() {
