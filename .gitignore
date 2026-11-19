@@ -15,3 +15,7 @@ __pycache__/
 node_modules/
 .DS_Store
 shots/
+
+# guide build check output (tools/guide/build.mjs)
+docs/guide/png/
+docs/guide/plans-data.json
