@@ -119,7 +119,7 @@ const EN = {"voice":"en-US-AvaNeural","rate":"-20%","names":"own","dec":".",
   "set":"Set {n} of {m}.","round":"Round {n} of {m}.",
   "kg":{"one":"{n} kilo","other":"{n} kilos"},"lb":{"one":"{n} pound","other":"{n} pounds"},
   "reps":{"one":"{n} rep.","other":"{n} reps."},"forReps":{"one":"for {n} rep.","other":"for {n} reps."},
-  "step":"Step {n}. {s}"}; // = app/data/voice.en.json (tools/test/unit/voice.test.mjs checks)
+  "step":"Step {n}. {s}","hold":"Hold for {d}."}; // = app/data/voice.en.json (tools/test/unit/voice.test.mjs checks)
 const tables = { en: EN };
 let loading = null;
 /** fetch voice.<lang>.json once (main.js calls it at boot; English needs nothing) */
@@ -138,6 +138,7 @@ export function duration(sec) {
 }
 const kgKey = (w) => (S.settings.unit === "kg" && ((w <= 300 && Number.isInteger(w * 2)) || (w <= 400 && Number.isInteger(w))) ? `kg/${w}` : null);
 const p = (k) => tbl()[k];
+const holdKey = (sec) => (sec % 5 === 0 && sec >= 10 && sec <= 180 ? `p/hold-${sec}` : null); // clips: tools/voice/gen.py
 export const P = {
   rest: (sec) => [[sec % 15 === 0 && sec <= 600 ? `p/rest-${sec}` : null, fill(p("rest"), { d: duration(sec) })]],
   count: (n) => [n === 10 ? ["p/ten", p("ten")] : [`p/n${n}`, String(n)]],
@@ -146,6 +147,8 @@ export const P = {
   ivDone: () => [["p/ivdone", p("ivdone")]],
   ivWork: (n, m) => [["p/work", p("work"), 0.12], [m <= 30 ? `p/round-${n}-of-${m}` : null, fill(p("round"), { n, m })]],
   voiceOn: () => [["p/voiceon", p("voiceon")]],
+  /** Q21 timed set starts: "Go. Hold for 60 seconds." */
+  hold: (sec) => [["p/go", p("go"), 0.15], ...(sec ? [[holdKey(sec), fill(p("hold"), { d: duration(sec) })]] : [])],
   /** nx = train.js nextInfo(): { text, last, slug, fam, name, set, of, w, r, cue, newEx } */
   go(nx = {}) {
     if (!nx.name) return nx.last ? [["p/go", p("go")], ["p/last", p("last")]] : [["p/restover", p("restover")]];
@@ -154,7 +157,8 @@ export const P = {
     const n = +nx.set, m = +nx.of;
     out.push(n ? [m <= 12 && n <= m ? `p/set-${n}-of-${m}` : null, fill(p("set"), { n, m })] : ["p/warm", p("warm")]);
     const w = +nx.w, r = +nx.r;
-    if (r && w) out.push([kgKey(w), pl(S.settings.unit === "lb" ? "lb" : "kg", w), 0.08], [r <= 50 ? `fr/${r}` : null, pl("forReps", r)]);
+    if (+nx.t) out.push([holdKey(+nx.t), fill(p("hold"), { d: duration(+nx.t) })]);
+    else if (r && w) out.push([kgKey(w), pl(S.settings.unit === "lb" ? "lb" : "kg", w), 0.08], [r <= 50 ? `fr/${r}` : null, pl("forReps", r)]);
     else if (r) out.push([r <= 50 ? `r/${r}` : null, pl("reps", r)]);
     if (nx.cue) out.push([nx.fam ? `f/${nx.fam}-c0` : null, nx.cue]);
     return out;

@@ -36,5 +36,6 @@
  "forReps": {
   "other": "{n} tekrar."
  },
- "step": "{n}. adım. {s}"
+ "step": "{n}. adım. {s}",
+ "hold": "{d} boyunca tut."
 }

@@ -37,3 +37,10 @@ test("sanitize: notesAt keeps only slug keys with finite numbers (BE-8)", () => 
   const out = sanitize({ sessions: [], workouts: [], notesAt: { bench: 5, "<x>": 3, row: "7", curl: Infinity } }, { ...opt, keys: [...KEYS, "notesAt"] });
   assert.deepEqual(out.notesAt, { bench: 5 });
 });
+
+test("sanitize: Q21 timed sets keep seconds, old sets get no t", () => {
+  const o = sanitize({ sessions: [{ id: "t1", startedAt: 1, entries: [{ slug: "dead-hang-ryan_humis514743", sets: [{ w: "", r: "", t: "62", done: true, type: "n" }, { w: "5", r: "", t: "45<b>", done: true, type: "n" }, { w: "60", r: "8", done: true, type: "n" }] }] }], schema: 2 }, opt);
+  const s = o.sessions[0].entries[0].sets;
+  assert.deepEqual(s.map((x) => x.t), ["62", "", undefined]);
+  assert.equal("t" in s[2], false);
+});

@@ -21,7 +21,7 @@ export function parseCSV(text) {
   return rows;
 }
 
-const COLS = ["Date", "Workout Name", "Duration (min)", "Exercise Name", "Set Order", "Weight", "Unit", "Reps", "Set Type", "Exercise ID"];
+const COLS = ["Date", "Workout Name", "Duration (min)", "Exercise Name", "Set Order", "Weight", "Unit", "Reps", "Set Type", "Exercise ID", "Seconds"];
 export function exportCSV() {
   const u = S.settings.unit, out = [COLS.join(",")];
   const pad = (n) => String(n).padStart(2, "0");
@@ -30,7 +30,7 @@ export function exportCSV() {
     const mins = s.endedAt && s.startedAt ? Math.round((s.endedAt - s.startedAt) / 6e4) : "";
     for (const en of s.entries) { let n = 0;
       for (const x of en.sets) { if (!x.done) continue; const w = x.type === "w"; if (!w) n++;
-        out.push([dt(s.startedAt), s.name || "Workout", mins, (BY[en.slug]?.name || en.name || en.slug).replace(/[\u2066-\u2069]/g, ""), w ? "W" : n, +x.w || 0, u, +x.r || 0, w ? "warmup" : "normal", en.slug].map(q).join(",")); } }
+        out.push([dt(s.startedAt), s.name || "Workout", mins, (BY[en.slug]?.name || en.name || en.slug).replace(/[\u2066-\u2069]/g, ""), w ? "W" : n, +x.w || 0, u, +x.r || 0, w ? "warmup" : "normal", en.slug, +x.t || 0].map(q).join(",")); } }
   }
   return out.join("\n");
 }
@@ -92,8 +92,8 @@ export function readImport(text) {
   const rows = parseCSV(text); if (rows.length < 2) throw new Error("empty");
   const H = rows[0].map((h) => h.trim().toLowerCase()), col = (...ks) => { for (const k of ks) { const i = H.indexOf(k); if (i >= 0) return i; } return -1; };
   const hevy = col("exercise_title") >= 0, own = col("exercise id") >= 0;
-  const c = hevy ? { date: col("start_time"), end: col("end_time"), wname: col("title"), ex: col("exercise_title"), order: col("set_index"), w: col("weight_kg", "weight_lbs"), r: col("reps"), type: col("set_type") }
-    : { date: col("date"), dur: col("duration", "duration (min)"), wname: col("workout name"), ex: col("exercise name"), order: col("set order"), w: col("weight"), r: col("reps"), unit: col("unit", "weight unit"), id: col("exercise id") };
+  const c = hevy ? { date: col("start_time"), end: col("end_time"), wname: col("title"), ex: col("exercise_title"), order: col("set_index"), w: col("weight_kg", "weight_lbs"), r: col("reps"), type: col("set_type"), sec: col("duration_seconds") }
+    : { date: col("date"), dur: col("duration", "duration (min)"), wname: col("workout name"), ex: col("exercise name"), order: col("set order"), w: col("weight"), r: col("reps"), unit: col("unit", "weight unit"), id: col("exercise id"), sec: col("seconds") };
   if (c.date < 0 || c.ex < 0 || c.r < 0) throw new Error("format");
   const myU = S.settings.unit, conv = (w, from) => (!from || from === myU ? w : from === "kg" ? Math.round(w * 2.20462 * 4) / 4 : Math.round(w / 2.20462 * 4) / 4);
   const hevyU = hevy ? (H[c.w] === "weight_lbs" ? "lb" : "kg") : null;
@@ -105,11 +105,12 @@ export function readImport(text) {
     if (!hevy && ord && !/^\d+$/.test(ord) && !/^[wdf]$/i.test(ord)) continue; // Strong "Rest Timer" rows etc.
     const warm = /^w$/i.test(ord) || typ.startsWith("warm"), reps = num(r[c.r]);
     let w = num(r[c.w]); const u = hevy ? hevyU : (String(r[c.unit] ?? "").toLowerCase().startsWith("lb") ? "lb" : String(r[c.unit] ?? "").toLowerCase().startsWith("kg") ? "kg" : null); w = conv(w, u);
-    if (!reps && !w) { dropped++; continue; } // timed / distance sets (plank, cardio) — counted, shown in the preview
+    const secs = c.sec >= 0 ? Math.round(num(r[c.sec])) : 0; // Q21: timed sets (plank, dead hang, cardio) come in as seconds
+    if (!reps && !w && !secs) { dropped++; continue; } // distance-only sets — counted, shown in the preview
     const key = t + "|" + (r[c.wname] || "");
     let wk = W.get(key); if (!wk) { const end = hevy ? parseDate(r[c.end]) : t + (durMin(r[c.dur]) || 60) * 6e4; W.set(key, (wk = { start: t, end: isFinite(end) && end > t ? end : t + 36e5, name: (r[c.wname] || "Workout").trim(), ex: [] })); }
     let en = wk.ex.at(-1); if (!en || en.name !== exn) wk.ex.push((en = { name: exn, id: own ? r[c.id] : "", sets: [] }));
-    en.sets.push({ w: w ? String(w) : "", r: reps ? String(reps) : "", done: true, type: warm ? "w" : "n" });
+    en.sets.push({ w: w ? String(w) : "", r: reps ? String(reps) : "", ...(secs && !reps ? { t: String(secs) } : {}), done: true, type: warm ? "w" : "n" });
     names.set(exn, (names.get(exn) || 0) + 1);
   }
   if (!W.size) throw new Error("nodata");

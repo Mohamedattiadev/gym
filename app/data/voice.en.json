@@ -42,5 +42,6 @@
   "one": "for {n} rep.",
   "other": "for {n} reps."
  },
- "step": "Step {n}. {s}"
+ "step": "Step {n}. {s}",
+ "hold": "Hold for {d}."
 }

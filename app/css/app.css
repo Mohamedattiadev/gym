@@ -1119,3 +1119,12 @@ body:has(#rov) .toast { bottom: auto; top: calc(var(--safe-t) + 16px); }
 /* Google "G" on a white tile inside the Sign in with Google buttons (Google branding: logo on white) */
 .glogo { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: #fff; margin-inline-end: 10px; flex: none; }
 .btn.sm .glogo { width: 20px; height: 20px; border-radius: 5px; } .btn.sm .glogo svg { width: 14px; height: 14px; }
+/* Q21 timed sets: no weight column for bodyweight holds / cardio; Start / Stop work timer in the current set's step line */
+.xblock.nokg .set-hdr, .xblock.nokg .setrow { grid-template-columns: 30px minmax(44px, .9fr) 2fr 46px; }
+.gym .xblock.nokg .set-hdr, .gym .xblock.nokg .setrow { grid-template-columns: 34px minmax(48px, .9fr) 2fr 56px; }
+@media (min-width: 900px) { .xblock.nokg .set-hdr, .xblock.nokg .setrow, .gym .xblock.nokg .set-hdr, .gym .xblock.nokg .setrow { grid-template-columns: 34px 110px 306px 52px; } }
+@media (max-width: 22em) { .xblock.nokg .set-hdr, .xblock.nokg .setrow, .gym .xblock.nokg .set-hdr, .gym .xblock.nokg .setrow { grid-template-columns: 30px 1fr 46px; } }
+.setrow span.n { display: grid; place-items: center; }
+.setrow .stepline button.holdb { width: 100%; font-size: .9375rem; font-weight: 700; color: var(--accent-text); display: flex; align-items: center; justify-content: center; gap: 6px; }
+.setrow .stepline button.holdb.on { color: var(--ok); }
+.setrow .stepline .holdb span { flex: none; color: inherit; font-size: inherit; }

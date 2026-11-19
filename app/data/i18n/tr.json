@@ -945,5 +945,22 @@
  "Sign out and remove this phone's data": "Çıkış yap ve bu telefondaki verileri sil",
  "Sign out, keep data here": "Çıkış yap, veriler burada kalsın",
  "Signed out. This phone's data is removed.": "Çıkış yapıldı. Bu telefondaki veriler silindi.",
- "Could not back up. Connect to the internet first, or keep the data here.": "Yedeklenemedi. Önce internete bağlan ya da verileri burada tut."
+ "Could not back up. Connect to the internet first, or keep the data here.": "Yedeklenemedi. Önce internete bağlan ya da verileri burada tut.",
+ "First time — tap Start, stop when your form breaks. Aim for {time}.": "İlk kez — Başlat'a dokun, formun bozulunca durdur. Hedef: {time}.",
+ "Hold {time}": "{time} tut",
+ "Less time": "Daha az süre",
+ "Longest hold": "En uzun tutuş",
+ "Longest hold · {n} session": "En uzun tutuş · {n} antrenman",
+ "Longest hold · {n} sessions": "En uzun tutuş · {n} antrenman",
+ "Min": "Dk",
+ "More time": "Daha çok süre",
+ "New PR: {time} hold": "Yeni rekor: {time} tutuş",
+ "Sec": "Sn",
+ "Sessions": "Antrenman",
+ "Set {n} minutes, {name}": "Set {n} dakika, {name}",
+ "Set {n} seconds, {name}": "Set {n} saniye, {name}",
+ "Total time": "Toplam süre",
+ "Type the time first": "Önce süreyi yaz",
+ "{n} distance-only set (cardio) won't be imported.": "Yalnız mesafe içeren {n} set (kardiyo) içe aktarılmayacak.",
+ "{n} distance-only sets (cardio) won't be imported.": "Yalnız mesafe içeren {n} set (kardiyo) içe aktarılmayacak."
 }

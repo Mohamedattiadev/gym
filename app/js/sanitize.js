@@ -6,7 +6,7 @@
    - every other string loses < > " ' ` unless it is free text (names, notes), which the UI esc()'s anyway */
 const BAD_KEY = new Set(["__proto__", "constructor", "prototype"]);
 const FREE = new Set(["name", "note", "notes", "title", "desc"]);
-const ID = /^[\w-]{1,60}$/, SLUG = /^[a-z0-9][a-z0-9-]{0,99}$/i, NUMSTR = /^\d{0,4}([.,]\d{1,2})?$/;
+const ID = /^[\w-]{1,60}$/, SLUG = /^[a-z0-9][a-z0-9_-]{0,119}$/i, NUMSTR = /^\d{0,4}([.,]\d{1,2})?$/;
 const strip = (s) => s.replace(/[<>"'`]/g, "");
 
 // generic deep clean: drops dangerous keys, functions, non-finite numbers; strips markup chars from non-free text
@@ -33,7 +33,7 @@ const slugMap = (m) => (m && typeof m === "object" && !Array.isArray(m)
 const num = (v) => { const s = String(v ?? "").trim(); return NUMSTR.test(s) ? s : ""; };
 function sets(list) {
   return (Array.isArray(list) ? list : []).filter((s) => s && typeof s === "object")
-    .map((s) => ({ ...s, w: num(s.w), r: num(s.r), type: /^[nwdf]$/.test(s.type) ? s.type : "n" }));
+    .map((s) => ({ ...s, w: num(s.w), r: num(s.r), ...("t" in s ? { t: num(s.t) } : {}), type: /^[nwdf]$/.test(s.type) ? s.type : "n" })); // t = seconds held (Q21 timed sets)
 }
 function entries(list) {
   return (Array.isArray(list) ? list : []).filter((e) => e && SLUG.test(e.slug)).map((e) => ({ ...e, sets: sets(e.sets) }));

@@ -2,6 +2,7 @@
 // FE-14: the history functions take `sessions` as their last argument (default S.sessions) so they are testable in Node.
 import { S } from "./store.js";
 import { e1rm } from "./calc.js";
+import { t } from "./i18n.js";
 
 export let EX = [];
 export const BY = {};
@@ -102,6 +103,25 @@ export function buildIndex() {
   }
 }
 
+/* Q21 timed exercises: logged as seconds held, not reps. Rep moves with a pause ("3 Second Hold at Bottom", "EXTREME STRETCH", "20 Second Hold" finishers) stay rep moves. */
+const TIMED_FAM = { "dead-hang": 60, "chest-stretch": 60, cardio: 1200 };
+const TIMED_NAME = /\bplanks?\b|wall sits?\b|farmer'?s? (carry|walk)|suitcase carry|\bcarry\b|static hold|iso(metric)? hold|\bl-sit|hollow (body )?hold/i;
+export function timedTarget(e) {
+  if (TIMED_FAM[e.family]) return TIMED_FAM[e.family];
+  const m = /\((\d+) seconds?\)/i.exec(e.name); if (m) return +m[1];
+  return TIMED_NAME.test(e.name) ? 30 : 0;
+}
+/** A weight box is shown for timed sets only when something can be held (dumbbells, plates…), not for bodyweight holds or cardio. */
+export const timedKg = (e) => !!e?.time && e.family !== "cardio" && !e.equipment.every((q) => /body|cardio|sport/i.test(q));
+/** Seconds as a short label: 45 -> "45 s", 1200 -> "20 min", 95 -> "1:35". */
+export const fmtSec = (s) => { s = Math.round(+s || 0); return s < 90 || (s < 120 && !(s % 60)) ? t("{n}s", { n: s }) : s % 60 ? `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}` : t("{n} min", { n: s / 60 }); };
+/** Longest hold for a timed exercise: {t, w, date} */
+export function bestHold(slug, sessions = S.sessions) {
+  let best = null;
+  for (const h of history(slug, sessions)) for (const s of h.sets) if (+s.t && (!best || +s.t > best.t)) best = { t: +s.t, w: +s.w || 0, date: h.date };
+  return best;
+}
+
 export let FAM = { families: {}, notes: {} };
 export let FAM_LANG = "en";
 /** Runs before loadStore (in parallel), so the language comes from the "gym-lang" localStorage mirror main.js writes. */
@@ -119,6 +139,7 @@ export async function loadExercises() {
     e.vnote = e.note ? FAM.notes[e.slug] || "" : "";
     e.muscles = [...(e.primary || []), ...(e.secondary || [])]; e.aliases = [e.aliases, e.tr, e.ar].filter(Boolean).join(" ");
     e.tier ??= null; e.tierNote ??= ""; e.canonical = !!e.canonical;
+    e.time = timedTarget(e); // Q21: seconds per set for holds / stretches / cardio (0 = a rep exercise)
     if (lang === "ar") e.name = "\u2068" + e.name + "\u2069"; // English names inside RTL text: isolate them ("2 Part High Elbow Row" kept in order); norm() drops these marks
     BY[e.slug] = e;
   }
@@ -176,7 +197,7 @@ export function jointFriendly(ex, joints, n = 6) {
 /* ---- dates & period stats ---- */
 export const DAY = 864e5, WEEK = 7 * DAY;
 export function weekStart(t = Date.now()) { const d = new Date(t); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() - ((d.getDay() + 6) % 7)); return d.getTime(); }
-const workSets = (en) => en.sets.filter((x) => x.done !== false && x.type !== "w" && (+x.w || +x.r));
+const workSets = (en) => en.sets.filter((x) => x.done !== false && x.type !== "w" && (+x.w || +x.r || +x.t));
 /** Totals for sessions finished in [from, to). */
 export function periodStats(from, to, sessions = S.sessions) {
   let workouts = 0, sets = 0, reps = 0, kg = 0;
@@ -191,8 +212,8 @@ export function exerciseStats(from, to, sessions = S.sessions) {
   const out = {};
   for (const s of sessions) {
     if (!(s.endedAt >= from && s.endedAt < to)) continue;
-    for (const en of s.entries) { const o = (out[en.slug] ??= { sets: 0, reps: 0, kg: 0, best: null, e1: 0 });
-      for (const x of workSets(en)) { o.sets++; o.reps += +x.r || 0; o.kg += (+x.w || 0) * (+x.r || 0); const v = e1rm(x.w, x.r); if (v > o.e1) { o.e1 = v; o.best = { w: +x.w, r: +x.r }; } } }
+    for (const en of s.entries) { const o = (out[en.slug] ??= { sets: 0, reps: 0, secs: 0, kg: 0, best: null, e1: 0 });
+      for (const x of workSets(en)) { o.sets++; o.reps += +x.r || 0; o.secs += +x.t || 0; o.kg += (+x.w || 0) * (+x.r || 0); const v = e1rm(x.w, x.r); if (v > o.e1) { o.e1 = v; o.best = { w: +x.w, r: +x.r }; } } }
   }
   return out;
 }
@@ -222,7 +243,7 @@ export function history(slug, sessions = S.sessions) {
   const out = [];
   for (const s of sessions) {
     const en = s.entries.find((x) => x.slug === slug);
-    if (en) out.push({ date: s.endedAt || s.startedAt, sets: en.sets.filter((x) => x.done && x.type !== "w" && (+x.w || +x.r)) });
+    if (en) out.push({ date: s.endedAt || s.startedAt, sets: en.sets.filter((x) => x.done && x.type !== "w" && (+x.w || +x.r || +x.t)) });
   }
   return out.filter((h) => h.sets.length);
 }
@@ -236,7 +257,7 @@ export function bestOf(slug) {
   return best;
 }
 export const setsText = (sets, unit = S.settings.unit) =>
-  sets.map((s) => (+s.w ? `${+s.w}${unit}×${s.r || 0}` : `${s.r || 0} reps`)).join(" · ");
+  sets.map((s) => (+s.t && !+s.r ? (+s.w ? `${+s.w}${unit} · ${fmtSec(s.t)}` : fmtSec(s.t)) : +s.w ? `${+s.w}${unit}×${s.r || 0}` : `${s.r || 0} reps`)).join(" · ");
 
 /** Weekly working sets per muscle (primary muscles 1 set, secondary 0.5) between [from, to). */
 export function weeklyVolume(days = 7, to = Date.now(), sessions = S.sessions) {

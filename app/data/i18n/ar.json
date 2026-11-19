@@ -1120,5 +1120,22 @@
  "Sign out and remove this phone's data": "سجّل الخروج واحذف بيانات هذا الهاتف",
  "Sign out, keep data here": "سجّل الخروج واحتفظ بالبيانات هنا",
  "Signed out. This phone's data is removed.": "تم تسجيل الخروج. حُذفت بيانات هذا الهاتف.",
- "Could not back up. Connect to the internet first, or keep the data here.": "تعذّر النسخ الاحتياطي. اتصل بالإنترنت أولًا، أو احتفظ بالبيانات هنا."
+ "Could not back up. Connect to the internet first, or keep the data here.": "تعذّر النسخ الاحتياطي. اتصل بالإنترنت أولًا، أو احتفظ بالبيانات هنا.",
+ "First time — tap Start, stop when your form breaks. Aim for {time}.": "أول مرة — اضغط ابدأ، وتوقف عندما يختل أداؤك. الهدف: {time}.",
+ "Hold {time}": "اثبت {time}",
+ "Less time": "وقت أقل",
+ "Longest hold": "أطول ثبات",
+ "Longest hold · {n} session": "أطول ثبات · {n} تمرين",
+ "Longest hold · {n} sessions": "أطول ثبات · {n} تمارين",
+ "Min": "د",
+ "More time": "وقت أكثر",
+ "New PR: {time} hold": "رقم قياسي جديد: ثبات {time}",
+ "Sec": "ث",
+ "Sessions": "التمارين",
+ "Set {n} minutes, {name}": "المجموعة {n} بالدقائق، {name}",
+ "Set {n} seconds, {name}": "المجموعة {n} بالثواني، {name}",
+ "Total time": "الوقت الكلي",
+ "Type the time first": "اكتب الوقت أولًا",
+ "{n} distance-only set (cardio) won't be imported.": "لن تُستورد {n} مجموعة مسافة فقط (كارديو).",
+ "{n} distance-only sets (cardio) won't be imported.": "لن تُستورد {n} مجموعات مسافة فقط (كارديو)."
 }

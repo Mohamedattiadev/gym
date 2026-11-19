@@ -1,7 +1,7 @@
 // Share a finished workout as an image (1080×1350 PNG, light card design). Lazy-loaded from the summary sheet.
 import { S } from "./store.js";
 import { toast, fmtDur } from "./ui.js";
-import { BY } from "./data.js";
+import { BY, fmtSec } from "./data.js";
 import { t, tn, loc } from "./i18n.js";
 
 const W = 1080, H = 1350, ACC = "#D93A31", INK = "#2B2522", DIM = "#8A817B";
@@ -26,10 +26,10 @@ export async function renderSession(a, st, prs) {
   const shown = Math.min(7, a.entries.length) + (a.entries.length > 7 ? 1 : 0);
   c.fillStyle = "#fff"; rr(c, 72, 610, W - 144, Math.max(160, shown * 82 + 50), 28); c.fill();
   for (const en of a.entries.slice(0, 7)) {
-    const best = en.sets.filter((s) => s.type !== "w").reduce((b, s) => ((+s.w || 0) * (+s.r || 1) > (+b?.w || 0) * (+b?.r || 1) ? s : b), null);
+    const tm = !!BY[en.slug]?.time, best = en.sets.filter((s) => s.type !== "w").reduce((b, s) => ((tm ? +s.t > +(b?.t || 0) : (+s.w || 0) * (+s.r || 1) > (+b?.w || 0) * (+b?.r || 1)) ? s : b), null);
     c.fillStyle = INK; c.font = F(650, 36); c.fillText(fit(c, BY[en.slug]?.name || en.slug, 640), 112, y + 36);
     c.fillStyle = pr.has(en.slug) ? ACC : DIM; c.font = F(600, 32); c.textAlign = "right";
-    c.fillText(`${en.sets.filter((s) => s.type !== "w").length} × ${best ? (+best.w ? `${best.w} ${u} × ${best.r}` : tn(+best.r, "{n} rep", "{n} reps")) : "–"}${pr.has(en.slug) ? "  PR" : ""}`, W - 112, y + 36); c.textAlign = "left";
+    c.fillText(`${en.sets.filter((s) => s.type !== "w").length} × ${best ? (tm ? `${+best.w ? `${best.w} ${u} · ` : ""}${fmtSec(best.t)}` : +best.w ? `${best.w} ${u} × ${best.r}` : tn(+best.r, "{n} rep", "{n} reps")) : "–"}${pr.has(en.slug) ? "  PR" : ""}`, W - 112, y + 36); c.textAlign = "left";
     y += 82;
   }
   if (a.entries.length > 7) { c.fillStyle = DIM; c.font = F(500, 30); c.fillText(t("+ {n} more", { n: a.entries.length - 7 }), 112, y + 30); }

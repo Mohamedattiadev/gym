@@ -42,3 +42,23 @@ test("history / exerciseStats: best set by e1RM", { skip: !D }, () => {
   assert.equal(D.history("barbell-bench-press", ss).length, 2);
   const st = D.exerciseStats(0, NOW + 1, ss)["barbell-bench-press"]; assert.equal(st.sets, 5); assert.deepEqual(st.best, { w: 80, r: 5 });
 });
+
+test("Q21 timed exercises: marked by family/name, rep moves with a hold are not", { skip: !D }, () => {
+  const by = Object.fromEntries(D.EX.map((e) => [e.slug, e]));
+  assert.equal(by["dead-hang-ryan_humis514743"].time, 60);
+  assert.equal(by["dead-hang-copy-ryan_humis514743"].time, 60);
+  assert.equal(by.cardio.time, 1200);
+  for (const s of ["dips-3-second-hold-at-bottom", "slight-incline-db-20-second-hold", "dumbbell-side-lateral-holds-garage-program", "quad-extreme-stretch", "dips-extreme-stretch"]) assert.equal(by[s].time, 0, s);
+  assert.equal(D.timedKg(by["dead-hang-copy-ryan_humis514743"]), true); // chest stretch holds dumbbells
+  assert.equal(D.timedKg(by["dead-hang-ryan_humis514743"]), false);
+  assert.equal(D.timedTarget({ family: "x", name: "Front Plank", equipment: [] }), 30);
+  assert.equal(D.timedTarget({ family: "x", name: "Side Plank (45 Seconds)", equipment: [] }), 45);
+});
+test("Q21 timed history: seconds-only sets count, best hold, labels", { skip: !D }, () => {
+  const ss = [{ endedAt: 1, startedAt: 0, entries: [{ slug: "dead-hang-ryan_humis514743", sets: [{ w: "", r: "", t: "50", done: true, type: "n" }, { w: "", r: "", t: "62", done: true, type: "n" }] }] },
+    { endedAt: 3, startedAt: 2, entries: [{ slug: "dead-hang-ryan_humis514743", sets: [{ w: "", r: "", t: "58", done: true, type: "n" }] }] }];
+  assert.equal(D.history("dead-hang-ryan_humis514743", ss).length, 2);
+  assert.deepEqual(D.bestHold("dead-hang-ryan_humis514743", ss), { t: 62, w: 0, date: 1 });
+  assert.equal(D.exerciseStats(0, 9, ss)["dead-hang-ryan_humis514743"].secs, 170);
+  assert.deepEqual([45, 60, 95, 1200].map(D.fmtSec), ["45s", "60s", "1:35", "20 min"]);
+});

@@ -2,7 +2,7 @@
 // Routes: #/me, #/me/workouts, #/me/settings (#/settings opens the Settings tab).
 import { S, save, tomb, persist, exportData, importData, undoImport, flush } from "./store.js";
 import { $, $$, esc, ic, ask, askText, choose, openSheet, closeSheet, toast, haptic, fmtDate, fmtDur, lineChart, vBars, delta, fmtKg, indicate, selectIn, gLogo } from "./ui.js";
-import { EX, BY, EQUIP_PROFILES, bestOf, setsText, weeklyVolume, periodStats, exerciseStats, weekStart, WEEK, DAY, history, flaggedJoints, JOINTS } from "./data.js";
+import { EX, BY, EQUIP_PROFILES, bestOf, setsText, fmtSec, weeklyVolume, periodStats, exerciseStats, weekStart, WEEK, DAY, history, flaggedJoints, JOINTS } from "./data.js";
 import { MUSCLES, MBY } from "./body.js";
 import { e1rm } from "./calc.js";
 import { setTop, routeParts } from "./nav.js";
@@ -74,15 +74,15 @@ function perExercise(w0) {
   const cur = exerciseStats(w0, Date.now() + 1), prev = exerciseStats(w0 - WEEK, w0);
   const slugs = [...new Set([...Object.keys(cur), ...Object.keys(prev)])].filter((s) => BY[s]).slice(0, 8);
   if (!slugs.length) return "";
-  const cell = (o) => (o ? `${o.sets}×${Math.round(o.reps / o.sets)}${o.best?.w ? ` · ${o.best.w}` : ""}` : `<span class="dim">—</span>`);
+  const cell = (o, sl) => (o && BY[sl]?.time ? `${o.sets}×${fmtSec(o.secs / o.sets)}` : o ? `${o.sets}×${Math.round(o.reps / o.sets)}${o.best?.w ? ` · ${o.best.w}` : ""}` : `<span class="dim">—</span>`);
   return `<div class="card pad"><div class="row between"><b>${t("Per exercise")}</b><span class="dim tiny">${t("sets×reps · top {u}", { u: u() })}</span></div>
     <table class="cmp mt-6"><tr><th>${t("Exercise")}</th><th class="n">${t("Last wk")}</th><th class="n">${t("This wk")}</th></tr>
     ${slugs.map((s) => { const c = cur[s], l = prev[s]; const up = c && l && c.e1 > l.e1;
-      return `<tr><td><a href="#/ex/${s}" class="b">${esc(BY[s].name)}</a></td><td class="n">${cell(l)}</td><td class="n">${cell(c)}${up ? ` <span class="d up" style="display:inline-flex">${ic("arrowUp", "xs")}</span>` : ""}</td></tr>`; }).join("")}</table></div>`;
+      return `<tr><td><a href="#/ex/${s}" class="b">${esc(BY[s].name)}</a></td><td class="n">${cell(l, s)}</td><td class="n">${cell(c, s)}${up ? ` <span class="d up" style="display:inline-flex">${ic("arrowUp", "xs")}</span>` : ""}</td></tr>`; }).join("")}</table></div>`;
 }
 function topExercises() {
   const n = {}; S.sessions.forEach((s) => s.entries.forEach((en) => { if (en.sets.some((x) => x.done && x.type !== "w" && (+x.w || +x.r))) n[en.slug] = (n[en.slug] || 0) + 1; })); // same rule as history()
-  return Object.keys(n).filter((s) => BY[s] && n[s] >= 2).sort((a, b) => n[b] - n[a]).slice(0, 6);
+  return Object.keys(n).filter((s) => BY[s] && !BY[s].time && n[s] >= 2).sort((a, b) => n[b] - n[a]).slice(0, 6);
 }
 function progressChart() {
   const tops = topExercises(); if (!tops.length) return "";
@@ -323,7 +323,7 @@ function csvPreview(C, R) {
   openSheet(`<h3>${esc(t("Import from {f}", { f: R.format }))}</h3>
     <div class="muted small" style="margin:-2px 0 12px">${nW(R.workouts.length)} · ${tn(sets, "{n} set", "{n} sets")} · ${fmtDate(R.workouts[0].start, md)} – ${fmtDate(R.workouts.at(-1).start, md)}</div>
     ${R.unitUnknown ? `<div class="row mb-12"><span class="grow small">${t("Weights in this file are in")}</span><div class="seg sm" id="impU">${["kg", "lb"].map((u) => `<button data-u="${u}" class="${R.fileUnit === u ? "on" : ""}">${u}</button>`).join("")}</div></div>` : ""}
-    ${R.dropped ? `<div class="muted small" style="margin:-6px 0 12px">${tn(R.dropped, "{n} timed or distance set (planks, cardio) won't be imported.", "{n} timed or distance sets (planks, cardio) won't be imported.")}</div>` : ""}
+    ${R.dropped ? `<div class="muted small" style="margin:-6px 0 12px">${tn(R.dropped, "{n} distance-only set (cardio) won't be imported.", "{n} distance-only sets (cardio) won't be imported.")}</div>` : ""}
     <div class="row" style="margin-bottom:6px"><b class="grow" id="impSum"></b></div>
     <div id="impList" class="imp-list"></div>
     <p class="dim small" style="margin:10px 0 12px">${t("Workouts are added to your history; nothing is replaced. Already imported workouts are skipped.")}</p>

@@ -1,12 +1,13 @@
 // Workouts, level-based plans, workout editor, live session logger (beat last week + plateau auto-adjust), tools.
 import { S, save, tomb, persist } from "./store.js";
 import { $, BP, $$, esc, ic, uid, ask, askText, choose, openSheet, closeSheet, toast, haptic, beep, confetti, fmtDur, RM } from "./ui.js";
-import { BY, history, lastSets, bestOf, setsText, swaps, WEEK } from "./data.js";
+import { BY, history, lastSets, bestOf, bestHold, setsText, swaps, WEEK, fmtSec, timedKg } from "./data.js";
 import { PLANS, planById, buildPlan, pickPlans, recommendedId, planOpts, planSlots, minutesOf, freqOf, FOCUS, loadPlanText, weekLine, gName } from "./plans.js";
 import { e1rm, platesFor, plateColor, plateHeight, warmupSets, suggest } from "./calc.js";
 import { go, redirect, setTop } from "./nav.js";
 import { tierBadge, restText, fillIll } from "./components.js";
 import * as Tm from "./timer.js";
+import * as V from "./voice.js";
 import { t, tn, N, lang, iso } from "./i18n.js";
 
 const view = () => $("#view");
@@ -94,7 +95,7 @@ export function previewPlan(p) {
       <div class="pv-opts"><div class="row between"><span class="small b">${t("Session length")}</span>${seg("pvMin", [45, 60, 75].map((m) => [m, t("{n} min", { n: m })]), o.min)}</div>
         <div><span class="small b">${t("Extra focus")}</span><div class="gchips mt-6" id="pvFocus">${[["", t("None")], ...Object.entries(FOCUS).map(([k, v]) => [k, gName(v.name)])].map(([k, lb]) => `<button class="chip ${k === o.focus ? "on" : ""}" data-v="${k}">${lb}</button>`).join("")}</div>${o.focus ? `<div class="dim tiny mt-4">${t("Adds a few sets for {focus} to two workouts.", { focus: esc(gName(FOCUS[o.focus].name).toLocaleLowerCase(lang())) })}</div>` : ""}</div></div>
       ${tab === "week" ? `<div id="pvScn" class="mt-12"></div>` : ws.map((w, i) => `<div class="h4">${esc(w.name)} <span class="dim tiny num">${t("~{m} min", { m: minutesOf(sl[i]) })}</span></div><div class="stack tight">
-      ${w.items.map((it) => `<div class="lrow"><img src="${BY[it.slug].poster}" alt=""><div class="grow"><div class="t">${esc(BY[it.slug].name)}</div><div class="s">${it.sets} × ${it.reps}</div></div>${tierBadge(BY[it.slug].tier)}</div>`).join("")}</div>`).join("")}
+      ${w.items.map((it) => `<div class="lrow"><img src="${BY[it.slug].poster}" alt=""><div class="grow"><div class="t">${esc(BY[it.slug].name)}</div><div class="s">${it.sets} × ${BY[it.slug].time ? fmtSec(BY[it.slug].time) : it.reps}</div></div>${tierBadge(BY[it.slug].tier)}</div>`).join("")}</div>`).join("")}
       <button class="btn primary block mt-16" id="usePv">${t("Use this plan")}</button>`;
     $("#pvTab", el).onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b || b.dataset.v === tab) return; haptic(); tab = b.dataset.v; draw(el); };
     $("#pvMin", el).onclick = (e) => { const b = e.target.closest("[data-v]"); if (!b) return; haptic(); o.min = +b.dataset.v; draw(el); };
@@ -133,7 +134,7 @@ export function workoutView(id) {
       <a href="#/ex/${it.slug}" aria-label="${t("How to do {name}", { name: esc(e?.name || it.slug) })}"><img src="${e?.poster || ""}" alt=""></a>
       <div style="min-width:0"><div class="t clamp2">${esc(e?.name || it.slug)} ${tierBadge(e?.tier)}</div>
         <div class="row dim small" style="gap:6px;margin-top:6px"><input class="mini-in num" data-k="sets" value="${esc(it.sets)}" inputmode="numeric" aria-label="${t("Sets")}"> ${t("sets ×")}
-          <input class="mini-in w num" data-k="reps" value="${esc(it.reps)}" aria-label="${t("Reps")}"> ${t("reps")}</div></div>
+          ${e?.time ? `<span class="num">${fmtSec(e.time)}</span>` : `<input class="mini-in w num" data-k="reps" value="${esc(it.reps)}" aria-label="${t("Reps")}"> ${t("reps")}`}</div></div>
       <div class="acts"><button class="iconbtn sm" data-a="up" aria-label="${t("Move up")}" ${i ? "" : "disabled"}>${ic("up", "sm")}</button><button class="iconbtn sm" data-a="del" aria-label="${t("Remove")}" style="color:var(--t3)">${ic("trash", "sm")}</button></div></div>`; }).join("") ||
       `<div class="card pad tc"><div class="ill" data-ill="plan" style="max-width:140px"></div><b>${t("No exercises yet")}</b><div class="muted small">${t("Add a few from the library.")}</div></div>`}</div>
     <button class="btn block mt-12" id="add">${ic("plus", "sm")} ${t("Add exercises")}</button>
@@ -185,6 +186,7 @@ export function addToSession(slug) { if (!S.active) return; S.active.entries.pus
 
 /* ---------------- plateau detection (best e1RM not beaten for ≥3 weeks and ≥3 sessions) ---------------- */
 export function stalledWeeks(slug, now = Date.now()) {
+  if (BY[slug]?.time) return 0; // timed holds progress by seconds, not e1RM
   const h = history(slug); if (h.length < 3) return 0;
   let best = 0, bestT = 0;
   for (const x of h) { const v = Math.max(...x.sets.map((s) => e1rm(s.w, s.r))); if (v > best) { best = v; bestT = x.date; } }
@@ -287,8 +289,8 @@ function side() {
   let now;
   if (k < 0) now = `<b>${t("All sets done")}</b>`;
   else { const s = en.sets[k], warm = s.type === "w", n = warm ? 0 : en.sets.slice(0, k + 1).filter((x) => x.type !== "w").length, tg = warm ? null : planOf(en).tgt(n);
-    const w = s.w || tg?.w, r = s.r || tg?.r;
-    now = `<b>${warm ? t("Warm-up set") : t("Set {n} of {m}", { n, m: work.length })}</b>${r ? `<span class="num">${w ? `<bdi>${esc(w)} ${u} × ${esc(r)}</bdi>` : t("{r} reps", { r: esc(r) })}</span>` : ""}`; }
+    const w = s.w || tg?.w, r = s.r || tg?.r, tt = e?.time ? s.t || tg?.t : "";
+    now = `<b>${warm ? t("Warm-up set") : t("Set {n} of {m}", { n, m: work.length })}</b>${tt ? `<span class="num"><bdi>${esc(ld({ w, t: tt }, u))}</bdi></span>` : r ? `<span class="num">${w ? `<bdi>${esc(w)} ${u} × ${esc(r)}</bdi>` : t("{r} reps", { r: esc(r) })}</span>` : ""}`; }
   if (sideSlug !== en.slug || !el.firstElementChild) {
     sideSlug = en.slug;
     el.innerHTML = `<div class="card sside"><a class="sv" href="#/ex/${en.slug}" aria-label="${t("How to do {name}", { name: esc(e?.name || en.slug) })}">${e?.poster ? `<img class="hbg" src="${e.poster}" alt="">` : ""}${e?.video ? `<video src="${e.video}" poster="${e?.poster || ""}"${RM.matches ? "" : " autoplay"} muted loop playsinline preload="metadata"></video>` : e?.poster ? `<img src="${e.poster}" alt="">` : ""}</a>
@@ -313,6 +315,12 @@ function planOf(en) {
   const sug = e && last ? suggest({ ...e, repRange: tr || e.repRange }, last.sets) : null;
   const top = last ? last.sets.reduce((a, x) => (+x.w > +a.w ? x : a), last.sets[0]) : null, st = wStep(e);
   const prev = (n) => last?.sets[n - 1] || null;
+  if (e?.time) { // Q21 timed: target = the exercise's time; once it was held, +5 s next time
+    const top = last ? last.sets.reduce((a, x) => (+x.t > +a.t ? x : a), last.sets[0]) : null;
+    const tgt = (n) => { const p = prev(n) || last?.sets.at(-1), pt = +p?.t || 0;
+      return { w: String(p?.w || ""), r: "", t: String(pt >= e.time ? Math.round((pt + 5) / 5) * 5 : e.time) }; };
+    return { e, last, sug: null, top, tr: null, prev, tgt, timed: true };
+  }
   const tgt = (n) => { // n = working-set number (1-based)
     const p = prev(n) || last?.sets.at(-1);
     if (!p) return { w: "", r: tr ? String(tr[1]) : "" };
@@ -323,6 +331,9 @@ function planOf(en) {
   return { e, last, sug, top, tr, prev, tgt };
 }
 const wr = (w, r, u = "") => iso(`${+w ? `${w}${u ? " " + u : ""} × ` : ""}${r}`);
+/** a set's load as text: "60 kg × 8", or for timed sets "5 kg · 45 s" / "45 s" */
+const ld = (x, u = "") => (+x?.t && !+x?.r ? iso(`${+x.w ? `${x.w}${u ? " " + u : ""} · ` : ""}${fmtSec(x.t)}`) : wr(x?.w, x?.r, u));
+const holdLbl = (e) => (e.family === "cardio" ? fmtSec(e.time) : t("Hold {time}", { time: fmtSec(e.time) }));
 export const restOf = (en) => S.settings.restEx?.[en.slug] ?? BY[en.slug]?.rest ?? S.settings.restDefault;
 const restLbl = (sec) => (sec ? t("{time} rest", { time: restText(sec) }) : t("rest off")); // reads as a setting ("2 min rest"), not an order
 const opened = new WeakSet(); // finished exercises the user expanded again (Q13: done exercises fold to one line)
@@ -332,9 +343,9 @@ function entryHTML(en, ei) {
   const allDone = en.sets.length && en.sets.every((s) => s.done);
   const ssIn0 = S.active.entries[ei - 1]?.ss, ssOut0 = en.ss && S.active.entries[ei + 1];
   if (allDone && !S.settings.gym && !opened.has(en)) { // Q13: one calm line per finished exercise, tap to open
-    const ws = en.sets.filter((s) => s.type !== "w"), top = ws.reduce((b, x) => (+x.w * +x.r > +b.w * +b.r ? x : b), ws[0] || en.sets[0]);
+    const ws = en.sets.filter((s) => s.type !== "w"), top = ws.reduce((b, x) => ((e?.time ? +x.t > +b.t : +x.w * +x.r > +b.w * +b.r) ? x : b), ws[0] || en.sets[0]);
     return `<div class="xblock done-all fold ${ssOut0 ? "ss-out" : ""} ${ssIn0 ? "ss-in" : ""}" data-ei="${ei}" data-slug="${esc(en.slug)}"><button class="xfold" data-a="unfold" aria-expanded="false" aria-label="${t("Show sets")}: ${esc(e?.name || en.slug)}">
-      <img src="${e?.poster || ""}" alt=""><span class="grow"><span class="t">${esc(e?.name || en.slug)}</span><span class="hint">${tn(ws.length, "{n} set", "{n} sets")}${top ? ` · ${esc(wr(top.w, top.r, u))}` : ""}</span></span><span class="okdot">${ic("check", "sm")}</span></button></div>`;
+      <img src="${e?.poster || ""}" alt=""><span class="grow"><span class="t">${esc(e?.name || en.slug)}</span><span class="hint">${tn(ws.length, "{n} set", "{n} sets")}${top ? ` · ${esc(ld(top, u))}` : ""}</span></span><span class="okdot">${ic("check", "sm")}</span></button></div>`;
   }
   const barb = e && (e.equipment.includes("Barbell") || e.equipment.includes("Smith"));
   const act = S.settings.gym || ei === firstOpen() ? en.sets.findIndex((s) => !s.done) : -1; // Q13: the +/- line only under the current set of the current exercise
@@ -342,15 +353,15 @@ function entryHTML(en, ei) {
   let n = 0;
   const xn = esc(e?.name || en.slug);
   const ssIn = S.active.entries[ei - 1]?.ss, ssOut = en.ss && S.active.entries[ei + 1];
-  return `<div class="xblock ${allDone ? "done-all" : ""} ${S.settings.gym && ei === gi ? "cur" : ""} ${ssOut ? "ss-out" : ""} ${ssIn ? "ss-in" : ""}" data-ei="${ei}" data-slug="${esc(en.slug)}">
+  return `<div class="xblock ${P.timed ? `tm${timedKg(e) ? "" : " nokg"}` : ""} ${allDone ? "done-all" : ""} ${S.settings.gym && ei === gi ? "cur" : ""} ${ssOut ? "ss-out" : ""} ${ssIn ? "ss-in" : ""}" data-ei="${ei}" data-slug="${esc(en.slug)}">
     ${ssOut ? `<div class="ss-tag">${ic("swap", "xs")} ${t("Superset with next — no rest between")}</div>` : ""}
-    <div class="xhead"><a href="#/ex/${en.slug}" aria-label="${t("How to do {name}", { name: esc(e?.name || en.slug) })}"><img src="${e?.poster || ""}" alt=""></a>
+    <div class="xhead"><a href="#/ex/${en.slug}" aria-label="${t("How to do {name}", { name: esc(e?.name || en.slug) })}"><img src="${e?.poster || ""}" alt="" data-hide-broken></a>
       <div class="grow"><div class="t">${esc(e?.name || en.slug)}</div>
-        <div class="hint"><span>${e?.each_side ? t("{r} reps each side", { r: esc(en.target || "") }) : t("{r} reps", { r: esc(en.target || "") })} ·</span><button class="restb" data-a="rest" aria-label="${t("Rest between sets: {rest}. Change", { rest: restLbl(restOf(en)) })}">${restLbl(restOf(en))}</button></div>
-        ${last ? `<div class="hint"><span class="beat">${ic("target")}${t("Today: {x}", { x: wr(t1.w, t1.r, u) })}</span><span class="dim">${t("(last: {x})", { x: wr(P.top.w, P.top.r) })}</span></div>` : ei === firstOpen() && !en.sets.some((s) => s.done) ? `<div class="hint ft">${t("First time — pick a weight you can do {n} times with good form.", { n: P.tr ? P.tr[1] : 10 })}</div>` : ""}
+        <div class="hint"><span>${e?.time ? esc(holdLbl(e)) : e?.each_side ? t("{r} reps each side", { r: esc(en.target || "") }) : t("{r} reps", { r: esc(en.target || "") })} ·</span><button class="restb" data-a="rest" aria-label="${t("Rest between sets: {rest}. Change", { rest: restLbl(restOf(en)) })}">${restLbl(restOf(en))}</button></div>
+        ${last ? `<div class="hint"><span class="beat">${ic("target")}${t("Today: {x}", { x: ld(t1, u) })}</span><span class="dim">${t("(last: {x})", { x: ld(P.top) })}</span></div>` : ei === firstOpen() && !en.sets.some((s) => s.done) ? `<div class="hint ft">${P.timed ? t("First time — tap Start, stop when your form breaks. Aim for {time}.", { time: fmtSec(e.time) }) : t("First time — pick a weight you can do {n} times with good form.", { n: P.tr ? P.tr[1] : 10 })}</div>` : ""}
         ${en.deload ? `<div class="hint" style="color:var(--warn)">${ic("alert", "xs")}<span class="grow">${t("Stalled 5+ weeks — deload: ~60% weight today, then build back up.")}</span></div>` : ""}</div>
       <button class="iconbtn sm" data-a="menu" aria-label="${t("Options")}">${ic("more")}</button></div>
-    <div class="set-hdr"><span>${t("Set")}</span><span>${t("Last")}<span class="lt"> ${t("time")}</span></span><span>${u}</span><span>${t("Reps")}</span><span></span></div>
+    ${P.timed ? timedSets(en, P, act, xn) : `<div class="set-hdr"><span>${t("Set")}</span><span>${t("Last")}<span class="lt"> ${t("time")}</span></span><span>${u}</span><span>${t("Reps")}</span><span></span></div>
     <div class="sets">${en.sets.map((s, si) => { const warm = s.type === "w"; if (!warm) n++; const pv = warm ? null : P.prev(n), tg = warm ? { w: "", r: "" } : P.tgt(n), sn = warm ? t("warm-up") : n;
       return `<div class="setrow ${s.done ? "done" : ""} ${si === act ? "act" : ""}" data-si="${si}">
       <button class="n ${warm ? "w" : ""}" data-a="type" aria-label="${t("Set {n} type, {name}", { n: sn, name: xn })}">${warm ? "W" : n}</button>
@@ -359,10 +370,49 @@ function entryHTML(en, ei) {
       <div class="stepper"><input data-k="r" inputmode="numeric" enterkeyhint="done" placeholder="${esc(tg.r || "—")}" value="${esc(s.r)}" aria-label="${t("Set {n} reps, {name}", { n: sn, name: xn })}"></div>
       <button class="check" data-a="done" aria-pressed="${!!s.done}" aria-label="${t("Set {n} done, {name}", { n: sn, name: xn })}">${ic("check")}</button>
       <div class="stepline"><div><button data-a="w-" aria-label="${t("Less weight")}">−</button><span><bdi>${wStep(e)} ${u}</bdi></span><button data-a="w+" aria-label="${t("More weight")}">+</button></div>
-        <div><button data-a="r-" aria-label="${t("Fewer reps")}">−</button><span>${t("1 rep")}</span><button data-a="r+" aria-label="${t("More reps")}">+</button></div></div></div>`; }).join("")}</div>
+        <div><button data-a="r-" aria-label="${t("Fewer reps")}">−</button><span>${t("1 rep")}</span><button data-a="r+" aria-label="${t("More reps")}">+</button></div></div></div>`; }).join("")}</div>`}
     <div class="xtools"><button class="btn sm ghost" data-a="add">${ic("plus", "sm")} ${t("Set")}</button>${allDone && opened.has(en) ? `<button class="btn sm ghost" data-a="fold" aria-expanded="true">${ic("up", "sm")} ${t("Done")}</button>` : ""}</div>
     ${S.settings.gym && allDone && ei < S.active.entries.length - 1 ? `<button class="btn primary block big" data-a="next">${t("Next exercise")} ${ic("chev", "sm")}</button>` : ""}</div>`;
 }
+/* Q21 timed sets: Set · Last · (kg for held weights) · Sec (Min for cardio) · check; the current set gets [− 5 s +] and Start/Stop */
+const tMul = (e) => (e.time >= 300 ? 60 : 1); // inputs show minutes for cardio-length targets, data is always seconds
+const tShow = (sec, mul) => (sec === "" || sec == null ? "" : String(Math.round((+sec / mul) * 10) / 10));
+function timedSets(en, P, act, xn) {
+  const e = P.e, u = S.settings.unit, kg = timedKg(e), mul = tMul(e);
+  let n = 0;
+  return `<div class="set-hdr"><span>${t("Set")}</span><span>${t("Last")}<span class="lt"> ${t("time")}</span></span>${kg ? `<span>${u}</span>` : ""}<span>${mul === 60 ? t("Min") : t("Sec")}</span><span></span></div>
+    <div class="sets">${en.sets.map((s, si) => { n++; const pv = P.prev(n), tg = P.tgt(n), run = hold?.en === en && hold.si === si;
+      return `<div class="setrow ${s.done ? "done" : ""} ${si === act || run ? "act" : ""}" data-si="${si}">
+      <span class="n">${n}</span>
+      ${pv && +pv.t ? `<button class="prev num" data-a="prev" data-w="${esc(pv.w || "")}" data-t="${esc(pv.t)}" aria-label="${t("Same as last time: {x}", { x: esc(ld(pv, u)) })}">${esc(ld(pv))}</button>` : `<span class="prev dim">—</span>`}
+      ${kg ? `<div class="stepper"><input data-k="w" inputmode="decimal" enterkeyhint="next" placeholder="${esc(tg.w || u)}" value="${esc(s.w)}" aria-label="${t("Set {n} weight, {name}", { n, name: xn })}"></div>` : ""}
+      <div class="stepper"><input data-k="t" data-mul="${mul}" inputmode="decimal" enterkeyhint="done" placeholder="${esc(tShow(tg.t, mul))}" value="${esc(tShow(run ? holdSec() : s.t, mul))}" aria-label="${mul === 60 ? t("Set {n} minutes, {name}", { n, name: xn }) : t("Set {n} seconds, {name}", { n, name: xn })}"></div>
+      <button class="check" data-a="done" aria-pressed="${!!s.done}" aria-label="${t("Set {n} done, {name}", { n, name: xn })}">${ic("check")}</button>
+      <div class="stepline"><div><button data-a="t-" aria-label="${t("Less time")}">−</button><span>${mul === 60 ? t("{n} min", { n: 1 }) : t("{n}s", { n: 5 })}</span><button data-a="t+" aria-label="${t("More time")}">+</button></div>
+        <div><button class="holdb${run ? " on" : ""}" data-a="hold">${run ? holdLabel() : `${ic("play", "sm")} ${t("Start")}`}</button></div></div></div>`; }).join("")}</div>`;
+}
+/* work timer for one timed set (separate from the rest timer): counts up, "Time is up" at the target, Stop logs the seconds held and ticks the set */
+let hold = null; // { en, si, t0, tgt, hit, iv }
+const holdSec = () => (hold ? Math.floor((Date.now() - hold.t0) / 1000) : 0);
+const holdLabel = () => `${ic("pause", "sm")} <span class="num">${fmtDur(holdSec() * 1000)}</span> ${t("Stop")}`;
+function holdPaint() {
+  const a = S.active, ei = hold && a ? a.entries.indexOf(hold.en) : -1; if (ei < 0) return;
+  const row = $(`#entries [data-ei="${ei}"] [data-si="${hold.si}"]`); if (!row) return;
+  const inp = row.querySelector('[data-k="t"]'), b = row.querySelector('[data-a="hold"]');
+  if (inp && document.activeElement !== inp) inp.value = tShow(holdSec(), +inp.dataset.mul || 1);
+  if (b) b.innerHTML = holdLabel();
+}
+function holdStart(en, si, tgt) {
+  holdEnd(false); stopRest();
+  hold = { en, si, t0: Date.now(), tgt: +tgt || 0, hit: false };
+  haptic("success"); if (V.enabled()) V.say(V.P.hold(hold.tgt)); else beep([[880, .15]]);
+  hold.iv = setInterval(() => {
+    if (!hold || !S.active?.entries.includes(hold.en)) return holdEnd(false);
+    if (!hold.hit && hold.tgt && holdSec() >= hold.tgt) { hold.hit = true; haptic("success"); if (V.enabled()) V.say(V.P.timeUp()); else beep([[660, .12], [880, .3]]); }
+    holdPaint();
+  }, 250);
+}
+function holdEnd(log) { if (!hold) return 0; clearInterval(hold.iv); const h = hold, sec = holdSec(); hold = null; if (log) h.en.sets[h.si].t = String(sec); return sec; }
 let lpFired = 0;
 function wireSession() {
   const a = S.active; const box = $("#entries");
@@ -371,7 +421,8 @@ function wireSession() {
   offHint?.(); offHint = Tm.onTick(restHint); restHint();
   box.oninput = (e) => {
     const inp = e.target.closest("input"); if (!inp) return;
-    const en = a.entries[+inp.closest("[data-ei]").dataset.ei]; en.sets[+inp.closest("[data-si]").dataset.si][inp.dataset.k] = inp.value.replace(",", ".");
+    const en = a.entries[+inp.closest("[data-ei]").dataset.ei], v = inp.value.replace(",", ".");
+    en.sets[+inp.closest("[data-si]").dataset.si][inp.dataset.k] = inp.dataset.k === "t" && v !== "" && +v >= 0 ? String(Math.round(+v * (+inp.dataset.mul || 1))) : v;
     save("active");
   };
   box.addEventListener("focusin", (e) => { const b = e.target.closest("[data-ei]"); if (b && +b.dataset.ei !== sideCur) { sideCur = +b.dataset.ei; side(); } });
@@ -384,7 +435,7 @@ function wireSession() {
     const row = inp.closest(".setrow"), k = inp.dataset.k;
     if (e.key === "ArrowUp" || e.key === "ArrowDown") { e.preventDefault(); row.querySelector(`[data-a="${k}${e.key === "ArrowUp" ? "+" : "-"}"]`)?.click(); inp.select(); return; }
     if (e.key !== "Enter") return; e.preventDefault();
-    if (k === "w") { const r = row.querySelector('[data-k="r"]'); r.focus(); r.select(); return; }
+    if (k === "w") { const r = row.querySelector('[data-k="r"],[data-k="t"]'); r.focus(); r.select(); return; }
     if (matchMedia("(pointer: coarse)").matches) { inp.blur(); return; }
     const ei = +row.closest("[data-ei]").dataset.ei, wasDone = row.classList.contains("done");
     if (!wasDone) row.querySelector('[data-a="done"]')?.click();
@@ -403,7 +454,7 @@ function wireSession() {
   ["pointerup", "pointercancel", "pointerleave"].forEach((ev) => box.addEventListener(ev, lpEnd));
   box.addEventListener("scroll", lpEnd, { passive: true, capture: true });
   box.addEventListener("contextmenu", (e) => { if (Date.now() - lpFired < 900 && e.target.closest('input[data-k="w"]')) e.preventDefault(); });
-  const ph = (row, k) => { const v = row.querySelector(`[data-k="${k}"]`).placeholder; return /^\d+([.,]\d+)?$/.test(v) ? v : ""; };
+  const ph = (row, k) => { const v = row.querySelector(`[data-k="${k}"]`)?.placeholder || ""; return /^\d+([.,]\d+)?$/.test(v) ? v : ""; };
   box.onclick = async (e) => {
     const b = e.target.closest("button[data-a]"); if (!b) return;
     const blk = b.closest("[data-ei]"); const ei = +blk.dataset.ei; const en = a.entries[ei]; const ex = BY[en.slug];
@@ -414,12 +465,22 @@ function wireSession() {
     if (act === "w+" || act === "w-") { const step = wStep(ex);
       s.w = String(Math.max(0, Math.round(((+s.w || +ph(row, "w") || 0) + (act === "w+" ? step : -step)) * 100) / 100)); row.querySelector('[data-k="w"]').value = s.w; save("active"); return; }
     if (act === "r+" || act === "r-") { s.r = String(Math.max(0, (+s.r || +ph(row, "r") || 0) + (act === "r+" ? 1 : -1))); row.querySelector('[data-k="r"]').value = s.r; save("active"); return; }
+    if (act === "t+" || act === "t-") { const mul = tMul(ex), step = mul === 60 ? 60 : 5;
+      s.t = String(Math.max(0, (+s.t || +ph(row, "t") * mul || 0) + (act === "t+" ? step : -step))); row.querySelector('[data-k="t"]').value = tShow(s.t, mul); save("active"); return; }
+    if (act === "hold") {
+      if (hold?.en === en && hold.si === si) { holdEnd(true); save("active"); if (!s.done) row.querySelector('[data-a="done"]').click(); else rerender(ei); return; }
+      if (s.done) { s.done = false; s.t = ""; }
+      holdStart(en, si, +ph(row, "t") * tMul(ex) || ex?.time); rerender(ei); return; }
     if (act === "type") { s.type = s.type === "w" ? "n" : "w"; save("active"); rerender(ei); return; }
     if (act === "rest") return restSheet(ei);
     if (act === "prev" || act === "done") {
-      if (act === "prev") { s.w = b.dataset.w || ""; s.r = b.dataset.r || ""; if (s.done) { save("active"); rerender(ei); refreshStats(); return; } }
-      if (!s.w) s.w = ph(row, "w"); if (!s.r) s.r = ph(row, "r");
-      if (!s.done) { // UT-2: nothing typed and no target to copy (first time) -> ask for the number instead of logging 0
+      if (hold?.en === en && hold.si === si) holdEnd(true); // ticking a running hold logs the seconds so far
+      if (act === "prev") { s.w = b.dataset.w || ""; s.r = b.dataset.r || ""; if (b.dataset.t) s.t = b.dataset.t; if (s.done) { save("active"); rerender(ei); refreshStats(); return; } }
+      if (!s.w) s.w = ph(row, "w");
+      if (ex?.time) { if (!+s.t && ph(row, "t")) s.t = String(Math.round(+ph(row, "t") * tMul(ex))); }
+      else if (!s.r) s.r = ph(row, "r");
+      if (!s.done && ex?.time && !+s.t) { const inp = row.querySelector('[data-k="t"]'); inp.focus(); inp.classList.add("need"); setTimeout(() => inp.classList.remove("need"), 1600); toast(t("Type the time first")); return; }
+      if (!s.done && !ex?.time) { // UT-2: nothing typed and no target to copy (first time) -> ask for the number instead of logging 0
         const bw = (ex?.equipment || []).length && ex.equipment.every((q) => /body/i.test(q));
         const miss = !s.r ? "r" : !s.w && !bw ? "w" : null;
         if (miss) { const inp = row.querySelector(`[data-k="${miss}"]`); inp.focus(); inp.classList.add("need"); setTimeout(() => inp.classList.remove("need"), 1600);
@@ -429,7 +490,7 @@ function wireSession() {
       if (s.done) {
         haptic("success"); $("#warmN")?.remove();
         const nx = en.sets[si + 1]; if (nx && !nx.w && nx.type === s.type) nx.w = s.w;
-        if (s.type !== "w" && isPR(en.slug, s)) { confetti(); toast(t("New PR: {w}{u} × {r}", { w: s.w, u: S.settings.unit, r: s.r })); beep([[660, .1], [880, .1], [1175, .2]]); }
+        if (s.type !== "w" && isPR(en.slug, s)) { confetti(); toast(ex?.time ? t("New PR: {time} hold", { time: fmtSec(s.t) }) : t("New PR: {w}{u} × {r}", { w: s.w, u: S.settings.unit, r: s.r })); beep([[660, .1], [880, .1], [1175, .2]]); }
         const ssNext = en.ss && a.entries[ei + 1];
         restEi = ei;
         if (s.type !== "w" && ssNext) toast(t("Superset: now {name}", { name: BY[ssNext.slug]?.name || t("next exercise") }));
@@ -455,7 +516,7 @@ function wireSession() {
       if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.5) gymGo(gi + (dx < 0 ? 1 : -1) * (document.dir === "rtl" ? -1 : 1)); }; }
   $("#addEx").onclick = () => { pickMode = { toSession: true, selected: new Set() }; go("#/pick"); };
   $("#fin").onclick = finishSession; $("#finTop").onclick = finishSession;
-  const discard = async () => { if (await ask(t("Discard this workout? Nothing will be saved."), { ok: t("Discard"), danger: true })) { closeSheet(); S.active = null; save("active"); stopRest(); wakeLock?.release?.(); redirect("#/train"); } };
+  const discard = async () => { if (await ask(t("Discard this workout? Nothing will be saved."), { ok: t("Discard"), danger: true })) { closeSheet(); holdEnd(false); S.active = null; save("active"); stopRest(); wakeLock?.release?.(); redirect("#/train"); } };
   $("#sMore").onclick = () => openSheet(`<h3>${esc(a.name)}</h3><div class="menu"><button id="sAdd">${ic("plus", "sm")}${t("Add exercise")}</button><button id="sGym" aria-pressed="${!!S.settings.gym}">${ic("phone", "sm")}<span class="grow">${t("Gym mode")}</span><span class="switch${S.settings.gym ? " on" : ""}" aria-hidden="true"></span></button><button class="danger" id="sDisc">${ic("trash", "sm")}${t("Discard workout")}</button></div>`, (el) => {
     $("#sAdd", el).onclick = () => { closeSheet(); $("#addEx").click(); };
     $("#sGym", el).onclick = () => { S.settings.gym = !S.settings.gym; save("settings"); haptic(); closeSheet(); sessionView(); };
@@ -475,17 +536,18 @@ function nextInfo(ei, from) {
     const en = a.entries[i], k = en.sets.findIndex((x, j) => j >= (i === ei ? from : 0) && !x.done); if (k < 0) continue;
     const s = en.sets[k], warm = s.type === "w", work = en.sets.filter((x) => x.type !== "w");
     const n = warm ? 0 : en.sets.slice(0, k + 1).filter((x) => x.type !== "w").length, tg = warm ? null : planOf(en).tgt(n);
-    const w = warm ? s.w : s.w || tg.w, r = warm ? s.r : s.r || tg.r;
+    const w = warm ? s.w : s.w || tg.w, r = warm ? s.r : s.r || tg.r, tt = !warm && BY[en.slug]?.time ? s.t || tg.t : "";
     const name = BY[en.slug]?.name || en.slug, u = S.settings.unit;
-    const what = warm ? t("warm-up set") : t("set {n} of {m}", { n, m: work.length }), load = r ? ` · ${iso(`${w ? `${w} ${u} × ` : ""}${r}`)}` : "";
+    const what = warm ? t("warm-up set") : t("set {n} of {m}", { n, m: work.length }), load = tt ? ` · ${ld({ w, t: tt }, u)}` : r ? ` · ${iso(`${w ? `${w} ${u} × ` : ""}${r}`)}` : "";
     const text = (i === ei ? t("Next: {what}", { what }) : t("Next: {name} · {what}", { name, what })) + load;
     const fresh = !en.sets.some((x) => x.done); // Voice: a new exercise gets its name and first cue spoken
-    return { text, slug: en.slug, name, set: warm ? "" : n, of: work.length, w: String(w || ""), r: String(r || ""), fam: BY[en.slug]?.family || "", newEx: i !== ei || fresh, cue: fresh ? BY[en.slug]?.cues?.[0] || "" : "" };
+    return { text, slug: en.slug, name, set: warm ? "" : n, of: work.length, w: String(w || ""), r: tt ? "" : String(r || ""), t: String(tt || ""), fam: BY[en.slug]?.family || "", newEx: i !== ei || fresh, cue: fresh ? BY[en.slug]?.cues?.[0] || "" : "" };
   }
   return { text: t("Last set — finish strong"), last: true }; // voice.js P.go uses `last` (text is translated)
 }
 const nextLabel = (ei, si) => nextInfo(ei, si + 1), ssBackLabel = (pi) => nextInfo(pi, 0);
-function isPR(slug, s) { const b = bestOf(slug); const v = e1rm(s.w, s.r); return v > 0 && b && v > b.e1rm; }
+function isPR(slug, s) { if (BY[slug]?.time) { const h = bestHold(slug); return +s.t > 0 && !!h && +s.t > h.t; }
+  const b = bestOf(slug); const v = e1rm(s.w, s.r); return v > 0 && b && v > b.e1rm; }
 function restSheet(ei) {
   const en = S.active.entries[ei], cur = restOf(en), def = BY[en.slug]?.rest ?? S.settings.restDefault;
   const opts = [0, 45, 60, 90, 120, 150, 180, 240, 300];
@@ -506,7 +568,7 @@ function swapSheet(ei) {
 function entryMenu(ei) {
   const a = S.active; const en = a.entries[ei], ex = BY[en.slug], barb = ex && (ex.equipment.includes("Barbell") || ex.equipment.includes("Smith"));
   openSheet(`<h3>${esc(BY[en.slug]?.name)}</h3><div class="menu">
-    <button data-m="swap">${ic("swap", "sm")}${t("Swap exercise")}</button><button data-m="warm">${ic("flame", "sm")}${t("Add warm-up sets")}</button>${barb ? `<button data-m="plates">${ic("calc", "sm")}${t("Plate calculator")}</button>` : ""}
+    <button data-m="swap">${ic("swap", "sm")}${t("Swap exercise")}</button>${ex?.time ? "" : `<button data-m="warm">${ic("flame", "sm")}${t("Add warm-up sets")}</button>`}${barb ? `<button data-m="plates">${ic("calc", "sm")}${t("Plate calculator")}</button>` : ""}
     <button data-m="up" ${ei ? "" : "disabled"}>${ic("up", "sm")}${t("Move up")}</button><button data-m="down" ${ei < a.entries.length - 1 ? "" : "disabled"}>${ic("down", "sm")}${t("Move down")}</button>
     <button data-m="ss" ${ei < a.entries.length - 1 ? "" : "disabled"}>${ic("swap", "sm")}${en.ss ? t("Unlink superset") : t("Superset with next exercise")}</button>
     <button data-m="delset">${ic("minus", "sm")}${t("Remove last set")}</button><button data-m="hist">${ic("chart", "sm")}${t("History")}</button><a href="#/ex/${en.slug}">${ic("book", "sm")}${t("How to do it")}</a>
@@ -542,8 +604,11 @@ async function finishSession() {
   }
   const left = a.entries.reduce((n, en) => n + en.sets.filter((s) => !s.done).length, 0); // UT-1: never drop unticked sets silently
   if (st.sets && left && !(await ask(tn(left, "{n} set is not checked and won't be saved. Finish anyway?", "{n} sets are not checked and won't be saved. Finish anyway?"), { ok: t("Finish"), cancel: t("Keep going") }))) return;
+  holdEnd(false);
   const prs = [];
-  a.entries.forEach((en) => { const b = bestOf(en.slug); en.sets.forEach((s) => { if (s.done && s.type !== "w") { const v = e1rm(s.w, s.r); if (v && (!b || v > b.e1rm) && !prs.find((p) => p.slug === en.slug)) prs.push({ slug: en.slug, w: s.w, r: s.r }); } }); });
+  a.entries.forEach((en) => { if (BY[en.slug]?.time) { const b = bestHold(en.slug), top = en.sets.filter((s) => s.done && s.type !== "w" && +s.t).reduce((x, s) => (+s.t > +(x?.t || 0) ? s : x), null);
+    if (top && b && +top.t > b.t) prs.push({ slug: en.slug, w: top.w, t: top.t }); return; }
+    const b = bestOf(en.slug); en.sets.forEach((s) => { if (s.done && s.type !== "w") { const v = e1rm(s.w, s.r); if (v && (!b || v > b.e1rm) && !prs.find((p) => p.slug === en.slug)) prs.push({ slug: en.slug, w: s.w, r: s.r }); } }); });
   a.endedAt = Date.now();
   a.entries = a.entries.map((en) => ({ slug: en.slug, sets: en.sets.filter((s) => s.done) })).filter((en) => en.sets.length);
   S.sessions.push(a); S.active = null; store("sessions", "active"); stopRest(); wakeLock?.release?.(); clearInterval(clockT);
@@ -552,7 +617,7 @@ async function finishSession() {
   redirect("#/");
   setTimeout(() => openSheet(`<div class="tc"><div class="ill" data-ill="${prs.length ? "pr" : "rest-recovery"}" style="max-width:150px"></div><h3 style="margin:4px 0 2px">${t("Workout complete")}</h3><div class="muted small">${esc(a.name)} · ${fmtDur(a.endedAt - a.startedAt)}</div></div>
     <div class="kpis" style="margin:16px 0"><div class="kpi"><b class="num">${st.sets}</b><span>${t("Sets")}</span></div><div class="kpi"><b class="num">${st.vol}</b><span>${t("{u} volume", { u: S.settings.unit })}</span></div><div class="kpi"><b class="num">${prs.length}</b><span>${t("New PRs")}</span></div></div>
-    ${prs.length ? `<div class="stack tight">${prs.map((p) => `<div class="lrow"><img src="${BY[p.slug]?.poster}" alt=""><div class="grow"><div class="t">${esc(BY[p.slug]?.name)}</div><div class="s">${p.w}${S.settings.unit} × ${p.r}</div></div>${ic("trophy")}</div>`).join("")}</div>` : ""}
+    ${prs.length ? `<div class="stack tight">${prs.map((p) => `<div class="lrow"><img src="${BY[p.slug]?.poster}" alt=""><div class="grow"><div class="t">${esc(BY[p.slug]?.name)}</div><div class="s">${p.t ? esc(ld(p, S.settings.unit)) : `${p.w}${S.settings.unit} × ${p.r}`}</div></div>${ic("trophy")}</div>`).join("")}</div>` : ""}
     <div class="row mt-16"><button class="btn grow" id="shareW">${ic("share", "sm")} ${t("Share")}</button><button class="btn primary grow" id="done">${t("Done")}</button></div>
     <a class="btn ghost block mt-6" href="#/warmup/cool" id="coolW">${ic("timer", "sm")} ${t("Cool-down stretches (optional)")}</a>`, (el) => {
       fillIll(el); $("#done", el).onclick = closeSheet; setTimeout(() => $("#done", el)?.focus({ focusVisible: false }), 60); /* UT-13: not a red ring on Share */
@@ -570,7 +635,7 @@ function restHint() {
   if (blk && !$(".sets", blk)) blk = null;
   if (!blk) { h?.remove(); return; }
   const row = blk.querySelector(".setrow:not(.done)"), same = row && blk.dataset.slug === nx.slug, u = S.settings.unit;
-  const load = nx.r ? ` · ${iso(`${nx.w ? `${nx.w} ${u} × ` : ""}${nx.r}`)}` : "";
+  const load = +nx.t ? ` · ${ld(nx, u)}` : nx.r ? ` · ${iso(`${nx.w ? `${nx.w} ${u} × ` : ""}${nx.r}`)}` : "";
   const next = !nx.name ? "" : same ? " · " + t("next: {what}", { what: nx.set ? t("set {n}", { n: nx.set }) : t("warm-up") }) + load : " · " + t("next: {what}", { what: nx.name }); // plain text (textContent)
   const txt = t("Resting {time}", { time: Tm.view().text }) + next;
   if (!h || h.parentElement !== (same ? row.parentElement : $(".sets", blk)) || (same && h.nextElementSibling !== row)) {

@@ -1,7 +1,7 @@
 // Exercise library (grid; list | detail at ≥1000px) and the exercise page (#/ex/<slug>) incl. pain / joint flags.
 import { S, save } from "./store.js";
 import { $, BP, $$, esc, ic, openSheet, closeSheet, toast, haptic, fmtDate, lineChart, indicate, selectIn, RM, L } from "./ui.js";
-import { EX, BY, GROUPS, EQUIP, searchEx, hasEquip, byTier, swaps, history, bestOf, setsText, exerciseStats, weekStart, WEEK,
+import { EX, BY, GROUPS, EQUIP, searchEx, hasEquip, byTier, swaps, history, bestOf, setsText, exerciseStats, weekStart, WEEK, fmtSec,
   JOINTS, JOINT_IDS, avoidFor, flaggedJoints, jointFriendly, hurts, FAM } from "./data.js";
 import { MBY, bodySVG, panZoom } from "./body.js";
 import { e1rm } from "./calc.js";
@@ -138,7 +138,7 @@ function detail(slug, root) {
         <div class="dmeta">${e.tier ? `<button class="tierbtn" id="tierInfo" aria-label="${t("Jeff's ranking")}">${tierBadge(e.tier)}<span class="dim small">${t(TIER_WORD[e.tier])}</span>${ic("info", "xs")}</button>` : `<span class="dim small">${t("Not ranked")}</span>`}
           ${e.level ? `<span class="small dim">${levelBars(e.level)}</span>` : ""}
           ${joints.length ? `<button class="painchip" id="painChip">${ic("bandage", "xs")}${joints.map((j) => esc(L(JOINTS[j]?.name) || j)).join(" · ")}</button>` : ""}</div>
-        <div class="dsub">${t("{a}–{b} reps", { a: e.repRange[0], b: e.repRange[1] })} · ${t("{r} rest", { r: restText(e.rest) })} · ${e.type === "compound" ? t("Compound") : t("Isolation")}</div>
+        <div class="dsub">${e.time ? (e.family === "cardio" ? fmtSec(e.time) : t("Hold {time}", { time: fmtSec(e.time) })) : t("{a}–{b} reps", { a: e.repRange[0], b: e.repRange[1] })} · ${t("{r} rest", { r: restText(e.rest) })} · ${e.type === "compound" ? t("Compound") : t("Isolation")}</div>
         <div class="ptabs fit mt-12" id="dtabs">${[["how", N("How to")], ["stats", N("Stats")], ["rank", N("Ranking & alternatives")]].map(([k, l]) => `<button data-k="${k}" class="${dtab.cur === k ? "on" : ""}">${t(l)}</button>`).join("")}</div>
         <div class="tab-panel" id="dpanel"></div>
       </div></div>
@@ -471,6 +471,7 @@ function statsPanel(e, p) {
 export function historyHTML(slug) {
   const hist = history(slug), u = S.settings.unit;
   if (!hist.length) return `<div class="empty hist-empty"><div class="ill" data-ill="pr" style="max-width:120px"></div><div>${t("No history yet. Log this exercise in a workout to see your records and progress here.")}</div></div>`;
+  if (BY[slug]?.time) return holdHistoryHTML(hist, u);
   const best = bestOf(slug); let heavy = null, reps = null;
   for (const h of hist) for (const s of h.sets) {
     if (+s.w && (!heavy || +s.w > heavy.w || (+s.w === heavy.w && +s.r > heavy.r))) heavy = { w: +s.w, r: +s.r };
@@ -488,6 +489,23 @@ export function historyHTML(slug) {
       <div class="chart-x"><span>${fmtDate(rows.find((r) => r.v).date, { month: "short", day: "numeric" })}</span><span>${fmtDate(rows.at(-1).date, { month: "short", day: "numeric" })}</span></div></div>` : ""}
     <div class="eyebrow mt-14">${t("Past sessions")}</div>
     <div class="hist-list">${list.map((r, i) => `<div class="hist-r ${i >= 5 ? "more" : ""}"><span class="d">${fmtDate(r.date)}</span><span class="s num">${esc(r.sets.map(wr).join(", "))}${r.pr && r.v ? ` <em title="${t("Record at the time")}">PR</em>` : ""}</span></div>`).join("")}</div>
+    ${list.length > 5 ? `<button class="btn sm ghost block mt-6" data-h="all">${t("Show all {n}", { n: list.length })}</button>` : ""}`;
+}
+/** Q21 timed exercises: longest hold instead of e1RM */
+function holdHistoryHTML(hist, u) {
+  const tl = (s) => (+s.w ? `${+s.w} ${u} · ${fmtSec(s.t)}` : fmtSec(s.t));
+  let rec = 0, best = null, total = 0, n = 0;
+  const rows = hist.map((h) => { const top = h.sets.reduce((a, s) => (+s.t > +(a?.t || 0) ? s : a), null), v = +top?.t || 0, pr = v > rec;
+    if (pr) { rec = v; best = top; } h.sets.forEach((s) => { total += +s.t || 0; n++; }); return { ...h, v, pr }; });
+  const pts = rows.map((r) => r.v).filter(Boolean), list = [...rows].reverse();
+  const tile = (l, v, sub) => `<div class="pr-t"><span>${l}</span><b class="num">${v}</b><small>${sub}</small></div>`;
+  return `<div class="pr-row">${tile(t("Longest hold"), best ? fmtSec(best.t) : "—", best && +best.w ? t("at {w} {u}", { w: +best.w, u }) : "&nbsp;")}
+      ${tile(t("Total time"), fmtSec(total), tn(n, "{n} set", "{n} sets"))}
+      ${tile(t("Sessions"), String(hist.length), "&nbsp;")}</div>
+    ${pts.length > 1 ? `<div class="hist-ch"><div class="eyebrow">${tn(pts.length, "Longest hold · {n} session", "Longest hold · {n} sessions")}</div>${lineChart(pts, { h: 84, cls: "chart" })}
+      <div class="chart-x"><span>${fmtDate(rows[0].date, { month: "short", day: "numeric" })}</span><span>${fmtDate(rows.at(-1).date, { month: "short", day: "numeric" })}</span></div></div>` : ""}
+    <div class="eyebrow mt-14">${t("Past sessions")}</div>
+    <div class="hist-list">${list.map((r, i) => `<div class="hist-r ${i >= 5 ? "more" : ""}"><span class="d">${fmtDate(r.date)}</span><span class="s num">${esc(r.sets.map(tl).join(", "))}${r.pr && r.v ? ` <em title="${t("Record at the time")}">PR</em>` : ""}</span></div>`).join("")}</div>
     ${list.length > 5 ? `<button class="btn sm ghost block mt-6" data-h="all">${t("Show all {n}", { n: list.length })}</button>` : ""}`;
 }
 export function wireHistory(el) {

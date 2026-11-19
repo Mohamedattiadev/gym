@@ -81,6 +81,8 @@ def clips():
     c.update({"p/ten": V["ten"], "p/n1": "1", "p/n2": "2", "p/n3": "3", "p/go": V["go"], "p/rest": V["ivrest"],
               "p/restover": V["restover"], "p/timeup": V["timeup"], "p/ivdone": V["ivdone"], "p/work": V["work"],
               "p/warm": V["warm"], "p/last": V["last"], "p/cues": V["cues"], "p/voiceon": V["voiceon"]})
+    for sec in range(10, 181, 5):  # Q21 timed sets: "Hold for 60 seconds." (voice.js holdKey)
+        c[f"p/hold-{sec}"] = fill("hold", d=duration(sec))
     for m in range(1, 13):
         for n in range(1, m + 1):
             c[f"p/set-{n}-of-{m}"] = fill("set", n=n, m=m)
