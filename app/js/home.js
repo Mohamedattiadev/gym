@@ -59,20 +59,22 @@ function recoveryCard() {
 export function homeView() {
   setTop();
   const low = lowMuscles();
-  const top = EX.filter((e) => e.tier === "S" && e.canonical && !hurts(e)).slice(0, 4);
+  const top = EX.filter((e) => e.tier === "S" && e.canonical && !hurts(e)).slice(0, 6);
   view().innerHTML = `
     <div class="hello"><h1 class="grow">${greeting()}${S.profile?.name ? ", " + esc(S.profile.name) : ""}</h1><div class="eyebrow">${fmtDate(Date.now(), { weekday: "short", month: "short", day: "numeric" })}</div></div>
     ${installBanner()}
     <div class="cols stagger">
-      <div class="stack">${heroCard()}</div>
+      <div class="stack">${heroCard()}${S.sessions.length ? recoveryCard() : ""}</div>
       <div class="stack">${S.sessions.length ? weekCard() : ""}
         ${low.length ? `<a class="notice warn" href="#/body">${ic("alert", "sm")}<div class="grow"><b>Low volume this week</b><div class="small muted">${low.slice(0, 4).map(([m, n]) => `${MBY[m]?.name || m} ${n}/10`).join(" · ")} sets</div></div>${ic("chev", "sm")}</a>` : ""}
-        ${recoveryCard()}
-        ${S.sessions.length ? "" : `<div class="itiles"><a class="itile" href="#/body"><span class="ico">${ic("body")}</span><div><b>Body map</b><span>Tap a muscle</span></div></a>
-          <a class="itile" href="#/videos" style="--c:var(--tier-S)"><span class="ico">${ic("yt")}</span><div><b>Jeff's tier lists</b><span>Watch rankings</span></div></a></div>`}
+        ${S.sessions.length ? "" : recoveryCard()}
+        ${S.sessions.length ? "" : `<div class="itiles two"><a class="itile" href="#/body"><span class="ico">${ic("body")}</span><div><b>Body map</b><span>Tap a muscle</span></div></a>
+          <a class="itile" href="#/videos" style="--c:var(--tier-S)"><span class="ico">${ic("yt")}</span><div><b>Jeff's tier lists</b><span>Watch rankings</span></div></a>
+          <a class="itile" href="#/standards" style="--c:var(--tier-A)"><span class="ico">${ic("trophy")}</span><div><b>Strength goals</b><span>For your bodyweight</span></div></a>
+          <a class="itile" href="#/nutrition" style="--c:var(--rec-g)"><span class="ico">${ic("flame")}</span><div><b>Nutrition</b><span>Calories & protein</span></div></a></div>`}
       </div></div>
     <div class="sec"><h2>Top S-tier picks</h2><a href="#/lib" id="seeS">See all</a></div>
-    <div class="grid">${top.map((e) => xcard(e)).join("")}</div>`;
+    <div class="grid picks">${top.map((e) => xcard(e)).join("")}</div>`;
   onImg(view());
   const ur = $("#useRec"); if (ur) ur.onclick = async () => { haptic(); if (await T.usePlan(planById(recommendedId()), false)) homeView(); };
   const sn = $("#startNext"); if (sn) sn.onclick = () => T.startSession(T.nextWorkout());

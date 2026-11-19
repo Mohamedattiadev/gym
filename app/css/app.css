@@ -245,7 +245,8 @@ svg.ring circle { fill: none; stroke-width: 4; } svg.ring .bg { stroke: var(--s3
 .setrow-s.wrap { flex-wrap: wrap; } .setrow-s.wrap .seg.block { flex-basis: 100%; }
 
 /* rounded icon tiles */
-.itiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.itiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; } /* auto-fit: a few tiles share the full width on desktop (no empty columns) */
+.itiles.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .itile { position: relative; overflow: hidden; display: flex; align-items: center; gap: 10px; padding: 12px; border-radius: var(--r-lg); background: var(--s1); box-shadow: var(--raise-sm); border: 0; text-align: start; color: inherit; }
 .itile .ico, .ico-t { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: color-mix(in oklab, var(--c, var(--accent)) 14%, var(--s1)); color: var(--c, var(--accent-text)); flex: none; }
 .itile b { display: block; font-size: .9062rem; font-weight: 650; line-height: 1.2; } .itile span { font-size: .7812rem; color: var(--t3); }
@@ -258,6 +259,9 @@ svg.ring circle { fill: none; stroke-width: 4; } svg.ring .bg { stroke: var(--s3
 
 /* ============ exercise cards ============ */
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(156px, 1fr)); gap: 12px; }
+/* Home "Top S-tier picks": one full row of 6 on desktop, 4 (2 × 2) on phone/tablet */
+@media (min-width: 1000px) { .grid.picks { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+@media (max-width: 999px) { .grid.picks > :nth-child(n+5) { display: none; } }
 .xcard { position: relative; display: block; overflow: hidden; border-radius: var(--r-lg); background: var(--s1); box-shadow: var(--raise-sm); transition: transform 140ms var(--ease), box-shadow var(--dur); content-visibility: auto; contain-intrinsic-size: 220px; }
 .xcard:active { transform: scale(.97); }
 @media (hover: hover) { .xcard:hover { box-shadow: 0 0 0 1px var(--line-2); } .xcard:hover img { transform: scale(1.03); } }
