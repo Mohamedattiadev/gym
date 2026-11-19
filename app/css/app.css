@@ -292,8 +292,6 @@ button.setrow-s { width: 100%; text-align: start; background: none; border: 0; c
 .hero-card .ill { position: absolute; inset-inline-end: 10px; bottom: 6px; width: 132px; margin: 0; opacity: .95; pointer-events: none; }
 .hero-card.has-ill .txt { padding-inline-end: 128px; }
 @media (max-width: 399px) { .hero-card .wl { display: none; } }
-@media (max-width: 439px) { .myplan .wl { display: none; } } /* Change plan | How it works | PDF fit on a phone */
-.install .linkbtn { text-align: start; margin-top: 2px; }
 .hero-card.rec .ill { top: 12px; bottom: auto; width: 112px; } .hero-card.rec .txt { padding-inline-end: 112px; } .hero-card.rec .row { position: relative; z-index: 1; }
 .thumbs { display: flex; margin: 10px 0 12px; }
 .thumbs img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--s1); margin-inline-end: -9px; background: var(--s3); }

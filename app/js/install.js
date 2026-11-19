@@ -3,7 +3,6 @@ import { S, save, persist } from "./store.js";
 import { $, ic, openSheet, closeSheet, toast } from "./ui.js";
 import { rerender as route, setTop, go } from "./nav.js";
 import { t } from "./i18n.js";
-import { openGuideSheet } from "./components.js";
 
 let deferredPrompt = null;
 addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); deferredPrompt = e; if (location.hash.length < 3 || onInstallPage()) route(); });
@@ -19,12 +18,11 @@ export function installBanner() {
   if (standalone() || Date.now() - (S.settings.installDismissed || 0) < 3 * 864e5) return "";
   if (!deferredPrompt && !isIOS() && !coarse()) return ""; // phones without a prompt get the menu steps
   return `<div class="install" id="install"><img src="icons/icon-192.png" alt="">
-    <div class="grow"><b>${t("Install Gym")}</b><div class="dim small">${t("Full screen, works offline.")}</div><button class="linkbtn small" id="insPdf">${t("Or get the PDF")}</button></div>
+    <div class="grow"><b>${t("Install Gym")}</b><div class="dim small">${t("Full screen, works offline.")}</div></div>
     <button class="btn primary sm" id="doInstall">${t("Install")}</button><button class="iconbtn sm" id="noInstall" aria-label="${t("Dismiss")}">${ic("close", "sm")}</button></div>`;
 }
 export function wireInstall() {
   const d = $("#doInstall"); if (d) d.onclick = installNow;
-  const p = $("#insPdf"); if (p) p.onclick = () => openGuideSheet(); // owner: the PDF is for people who don't install, so it sits in the install banner
   const n = $("#noInstall"); if (n) n.onclick = () => { S.settings.installDismissed = Date.now(); save("settings"); $("#install").remove(); };
 }
 export function installNow() {

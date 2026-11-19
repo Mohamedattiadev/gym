@@ -5,7 +5,7 @@ import { BY, EX, periodStats, weekStart, WEEK, DAY, lowMuscles, recovery, hurts 
 import { MBY, bodySVG } from "./body.js";
 import { setTop, go } from "./nav.js";
 import { installBanner, wireInstall } from "./install.js";
-import { xcard, onImg } from "./components.js";
+import { xcard, onImg, openGuideSheet } from "./components.js";
 import * as T from "./train.js";
 import { t, tn, loc } from "./i18n.js";
 import { planById, recommendedId, freqOf, planSlots, planOpts, minutesOf } from "./plans.js";
@@ -75,10 +75,12 @@ export function homeView() {
           <a class="itile" href="#/nutrition" style="--c:var(--rec-g)"><span class="ico">${ic("flame")}</span><div><b>${t("Nutrition")}</b><span>${t("Calories & protein")}</span></div></a></div>`}
       </div></div>
     <div class="sec"><h2>${t("Top S-tier picks")}</h2><a href="#/lib" id="seeS">${t("See all")}</a></div>
-    <div class="grid picks">${top.map((e) => xcard(e)).join("")}</div>`;
+    <div class="grid picks">${top.map((e) => xcard(e)).join("")}</div>
+    <div class="card mt-16"><button class="setrow-s" id="hPdf"><span class="ico">${ic("download", "sm")}</span><div class="grow"><b>${t("Printable guide")}</b><div class="dim tiny">${t("PDF to print or share · plan, photos, video QR codes")}</div></div>${ic("chev", "sm")}</button></div>`;
   onImg(view());
   const ur = $("#useRec"); if (ur) ur.onclick = async () => { haptic(); if (await T.usePlan(planById(recommendedId()), false)) homeView(); };
   const sn = $("#startNext"); if (sn) sn.onclick = () => T.startSession(T.nextWorkout());
   $("#seeS").onclick = async (e) => { e.preventDefault(); const L = await import("./exercise.js"); Object.assign(L.lib, { tier: "S", group: "All", q: "" }); go("#/lib"); };
+  $("#hPdf").onclick = () => openGuideSheet(); // owner: the PDF has a lasting place on Home (per level, not per your own plan)
   wireInstall();
 }

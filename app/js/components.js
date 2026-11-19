@@ -44,7 +44,7 @@ export const guideBtns = (level, cls = "btn sm grow", theme) => `<div class="row
 export function openGuideSheet(level) {
   let lv = GUIDE_LEVELS.includes(level) ? level : GUIDE_LEVELS.includes(S.profile?.level) ? S.profile.level : "beginner", th = appTheme();
   const seg = (id, opts, cur, label) => `<div class="seg sm block" id="${id}" role="group" aria-label="${label}">${opts.map(([v, l]) => `<button data-v="${v}" class="${cur === v ? "on" : ""}">${t(l)}</button>`).join("")}</div>`;
-  openSheet(`<h3 style="margin:0 0 4px">${t("Printable guide")}</h3><p class="muted small" style="margin:0 0 12px">${t("Your plan with photos, sets and a QR code to each exercise video. Print the wall poster for the gym, share the guide with friends.")}</p>
+  openSheet(`<h3 style="margin:0 0 4px">${t("Printable guide")}</h3><p class="muted small" style="margin:0 0 12px">${t("Ready plans for each level, with photos, sets and a QR code to each exercise video. Print the wall poster for the gym, share the guide with friends.")}</p>
     ${seg("gLv", GUIDE_LEVELS.map((l) => [l, l[0].toUpperCase() + l.slice(1)]), lv, t("Level"))}
     <div class="mt-8">${seg("gTh", [["light", "Light"], ["dark", "Dark"]], th, t("Paper"))}</div><div class="mt-16" id="gBtns">${guideBtns(lv, "btn grow", th)}</div>`, (d) => {
     requestAnimationFrame(() => indicate(d));
