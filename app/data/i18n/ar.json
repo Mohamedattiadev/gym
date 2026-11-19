@@ -1137,5 +1137,14 @@
  "Total time": "الوقت الكلي",
  "Type the time first": "اكتب الوقت أولًا",
  "{n} distance-only set (cardio) won't be imported.": "لن تُستورد {n} مجموعة مسافة فقط (كارديو).",
- "{n} distance-only sets (cardio) won't be imported.": "لن تُستورد {n} مجموعات مسافة فقط (كارديو)."
+ "{n} distance-only sets (cardio) won't be imported.": "لن تُستورد {n} مجموعات مسافة فقط (كارديو).",
+ "Change goal": "تغيير الهدف",
+ "Goal reached": "وصلت إلى الهدف",
+ "Goal removed": "أُزيل الهدف",
+ "Goal weight ({u})": "الوزن المستهدف ({u})",
+ "Goal {v}": "الهدف {v}",
+ "Leave empty for no goal": "اتركه فارغًا لإلغاء الهدف",
+ "No goal set": "لا يوجد هدف",
+ "Set goal": "حدّد هدفًا",
+ "{v} to go": "باقٍ {v}"
 }

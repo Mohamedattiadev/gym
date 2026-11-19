@@ -87,14 +87,15 @@ new MutationObserver((ms) => {
 
 /* ---- tiny SVG charts ---- */
 /** Line chart; pts = numbers. opts: {h, area, dots} */
-export function lineChart(pts, { h = 120, area = true, dots = true, cls = "chart" } = {}) {
+export function lineChart(pts, { h = 120, area = true, dots = true, cls = "chart", goal = null } = {}) {
   if (!pts.length) return "";
-  const w = 300, min = Math.min(...pts), max = Math.max(...pts), rng = max - min || 1, n = Math.max(1, pts.length - 1);
+  const g = Number.isFinite(goal) ? [goal] : []; // Q22: a dashed goal line, kept inside the range
+  const w = 300, min = Math.min(...pts, ...g), max = Math.max(...pts, ...g), rng = max - min || 1, n = Math.max(1, pts.length - 1);
   const xy = pts.map((v, i) => [pts.length === 1 ? w / 2 : (i / n) * w, h - 8 - ((v - min) / rng) * (h - 20)]);
   const d = xy.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" ");
   return `<svg class="${cls}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" style="height:${h}px" aria-hidden="true">
     ${[.25, .5, .75].map((k) => `<line class="gd" x1="0" x2="${w}" y1="${h * k}" y2="${h * k}"/>`).join("")}
-    ${area && pts.length > 1 ? `<path class="ar" d="${d} L${w} ${h} L0 ${h} Z"/>` : ""}<path class="ln" d="${d}"/>
+    ${area && pts.length > 1 ? `<path class="ar" d="${d} L${w} ${h} L0 ${h} Z"/>` : ""}${g.length ? `<line class="gl" x1="0" x2="${w}" y1="${(h - 8 - ((goal - min) / rng) * (h - 20)).toFixed(1)}" y2="${(h - 8 - ((goal - min) / rng) * (h - 20)).toFixed(1)}"/>` : ""}<path class="ln" d="${d}"/>
     ${dots ? xy.map((p, i) => (i === xy.length - 1 || pts.length < 14) ? `<circle class="pt" cx="${p[0]}" cy="${p[1]}" r="${i === xy.length - 1 ? 3.5 : 2.2}" vector-effect="non-scaling-stroke"/>` : "").join("") : ""}</svg>`;
 }
 /** Vertical bars; items = [[label, value, isCurrent]] */
@@ -182,12 +183,12 @@ export function choose(title, msg, opts) {
     (el, finish) => { el.onclick = (e) => { const b = e.target.closest("[data-c]"); if (b) finish(b.dataset.c || null); }; setTimeout(() => $("[data-c]", el)?.focus(), 60); });
 }
 /** askText("Workout name", {value:"Push Day"}) → Promise<string|null> */
-export function askText(title, { value = "", ok = _t("Save"), placeholder = "", type = "text", inputmode = "" } = {}) {
+export function askText(title, { value = "", ok = _t("Save"), placeholder = "", type = "text", inputmode = "", empty = false } = {}) {
   return dialogP(`<h3>${esc(title)}</h3><form id="dlgF"><input class="input" id="dlgI" type="${type}" ${inputmode ? `inputmode="${inputmode}"` : ""} value="${esc(value)}" placeholder="${esc(placeholder)}" autocomplete="off" enterkeyhint="done">
     <div class="row mt-16"><button type="button" class="btn grow" data-x>${_t("Cancel")}</button><button class="btn primary grow">${esc(ok)}</button></div></form>`,
     (el, finish) => {
       const i = $("#dlgI", el); setTimeout(() => { i.focus(); i.select(); }, 80);
-      $("#dlgF", el).onsubmit = (e) => { e.preventDefault(); const v = i.value.trim(); if (v) finish(v); else i.focus(); };
+      $("#dlgF", el).onsubmit = (e) => { e.preventDefault(); const v = i.value.trim(); if (v || empty) finish(v); else i.focus(); }; // empty: "" = clear
       $("[data-x]", el).onclick = () => finish(null);
     });
 }

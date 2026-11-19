@@ -2,7 +2,7 @@
 // Routes: #/me, #/me/workouts, #/me/settings (#/settings opens the Settings tab).
 import { S, save, tomb, persist, exportData, importData, undoImport, flush } from "./store.js";
 import { $, $$, esc, ic, ask, askText, choose, openSheet, closeSheet, toast, haptic, fmtDate, fmtDur, lineChart, vBars, delta, fmtKg, indicate, selectIn, gLogo } from "./ui.js";
-import { EX, BY, EQUIP_PROFILES, bestOf, setsText, fmtSec, weeklyVolume, periodStats, exerciseStats, weekStart, WEEK, DAY, history, flaggedJoints, JOINTS } from "./data.js";
+import { EX, BY, EQUIP_PROFILES, bestOf, setsText, fmtSec, weeklyVolume, periodStats, exerciseStats, weekStart, WEEK, DAY, history, flaggedJoints, JOINTS, goalStatus } from "./data.js";
 import { MUSCLES, MBY } from "./body.js";
 import { e1rm } from "./calc.js";
 import { setTop, routeParts } from "./nav.js";
@@ -105,12 +105,19 @@ function prList() {
 }
 /* ---------------- bodyweight ---------------- */
 const bw = () => [...(S.bodyweight || [])].filter((x) => x && +x.w).sort((a, b) => String(a.d).localeCompare(String(b.d)));
+const KG_LB = 2.2046, r1 = (x) => Math.round(x * 10) / 10;
+/** Q22: goal weight is stored in kg (S.profile.goalWeight) and shown in the current unit */
+const goalW = () => { const g = +S.profile?.goalWeight; return g > 0 ? r1(u() === "lb" ? g * KG_LB : g) : null; };
 function bodyweightCard() {
-  const l = bw(), last = l.at(-1), first = l.length > 1 ? l[0] : null;
+  const l = bw(), last = l.at(-1), first = l.length > 1 ? l[0] : null, goal = goalW();
+  const gs = goalStatus(first ? +first.w : null, last ? +last.w : null, goal);
+  const tot = first ? `${last.w - first.w > 0 ? "+" : ""}${r1(last.w - first.w)}${u()}` : "";
   return `<div class="card pad"><div class="row between"><div class="row"><span class="ico-t">${ic("scale", "sm")}</span><div><b>${t("Bodyweight")}</b>
-      <div class="dim small">${last ? `${last.w}${u()} · ${fmtDate(last.d, { month: "short", day: "numeric" })}${first ? ` · ${t("{v} total", { v: (last.w - first.w > 0 ? "+" : "") + Math.round((last.w - first.w) * 10) / 10 + u() })}` : ""}` : t("Log it once a week, same time of day.")}</div></div></div>
+      <div class="dim small">${last ? `${last.w}${u()} · ${fmtDate(last.d, { month: "short", day: "numeric" })}${tot ? ` · ${gs?.toward ? `<span class="ok-t">${t("{v} total", { v: tot })}</span>` : t("{v} total", { v: tot })}` : ""}` : t("Log it once a week, same time of day.")}</div></div></div>
       <button class="btn sm" id="bwAdd">${ic("plus", "sm")} ${t("Add")}</button></div>
-    ${l.length > 1 ? `<div class="mt-10">${lineChart(l.slice(-20).map((x) => +x.w), { h: 90 })}</div>` : ""}</div>`;
+    ${l.length > 1 ? `<div class="mt-10">${lineChart(l.slice(-20).map((x) => +x.w), { h: 90, goal })}</div>` : ""}
+    <div class="bw-goal"><span class="small">${goal == null ? `<span class="dim">${t("No goal set")}</span>` : `${gs ? (gs.reached ? `<span class="ok">${t("Goal reached")}</span>` : `<b>${t("{v} to go", { v: gs.left + u() })}</b>`) + " · " : ""}<span class="dim">${t("Goal {v}", { v: goal + u() })}</span>`}</span>
+      <button class="btn sm ghost" id="bwGoal">${goal == null ? t("Set goal") : t("Change goal")}</button></div></div>`;
 }
 function wireBW(p) {
   const b = $("#bwAdd", p); if (!b) return;
@@ -120,6 +127,15 @@ function wireBW(p) {
     const d = new Date().toISOString().slice(0, 10);
     S.bodyweight = [...(S.bodyweight || []).filter((x) => x.d !== d), { d, w, updatedAt: Date.now() }];
     save("bodyweight"); haptic("success"); toast(t("Saved")); panel();
+  };
+  const g = $("#bwGoal", p); if (g) g.onclick = async () => {
+    const v = await askText(t("Goal weight ({u})", { u: u() }), { value: goalW() ?? "", inputmode: "decimal", ok: t("Save"), placeholder: t("Leave empty for no goal"), empty: true });
+    if (v == null) return;
+    const prof = (S.profile = S.profile || {});
+    if (v === "") { if (prof.goalWeight == null) return; delete prof.goalWeight; save("profile"); toast(t("Goal removed")); panel(); return; }
+    const w = parseFloat(v.replace(",", ".")); if (!w || w < 20 || w > 400) { toast(t("Enter a number like 78.5")); return; }
+    prof.goalWeight = r1(u() === "lb" ? w / KG_LB : w);
+    save("profile"); haptic("success"); toast(t("Saved")); panel();
   };
 }
 
@@ -264,7 +280,9 @@ async function settingsPanel(host) {
   seg("sTheme", (v) => { set("theme", v); applyTheme(); });
   if ($("#sLang")) seg("sLang", async (v) => { set("lang", v); await flush().catch(() => {}); location.reload(); }); // exercise texts load per language at boot
   seg("sEquip", (v) => { set("equip", v); lib.mine = true; toast(t("Showing exercises for: {x}", { x: t(EQUIP_PROFILES[v].name) })); });
-  seg("sUnit", (v) => set("unit", v)); seg("sBar", (v) => set("bar", +v));
+  seg("sUnit", (v) => { // the bodyweight log is kept in the shown unit (like onboarding does); the goal is stored in kg
+    if (v !== st.unit && S.bodyweight?.length) { const f = v === "lb" ? KG_LB : 1 / KG_LB; S.bodyweight = S.bodyweight.map((x) => ({ ...x, w: r1(x.w * f), updatedAt: Date.now() })); save("bodyweight"); }
+    set("unit", v); }); seg("sBar", (v) => set("bar", +v));
   $$(".switch[data-k]").forEach((s) => (s.onclick = () => { s.classList.toggle("on"); s.setAttribute("aria-checked", s.classList.contains("on")); set(s.dataset.k, s.classList.contains("on")); if (s.dataset.k === "voice" && st.voice) V.say(V.P.voiceOn()); }));
   $("#lockHelp").onclick = (e) => { e.preventDefault(); openSheet(`<h3 style="margin:0 0 8px">${t("Lock-screen rest timer")}</h3>
     <p class="muted small" style="margin:0 0 8px">${t("During a workout the rest timer shows on the lock screen and in the notification player: time left, the next set and weight. Pause = pause rest, Next = skip rest, the seek buttons = +30 s / −15 s. When rest ends you hear a beep, the phone vibrates (Android) and a notification appears.")}</p>

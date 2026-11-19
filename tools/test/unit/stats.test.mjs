@@ -62,3 +62,13 @@ test("Q21 timed history: seconds-only sets count, best hold, labels", { skip: !D
   assert.equal(D.exerciseStats(0, 9, ss)["dead-hang-ryan_humis514743"].secs, 170);
   assert.deepEqual([45, 60, 95, 1200].map(D.fmtSec), ["45s", "60s", "1:35", "20 min"]);
 });
+
+test("goalStatus: to go, reached (near or crossed), toward the goal (Q22)", { skip: !D }, () => {
+  assert.equal(D.goalStatus(null, 80, null), null);
+  assert.deepEqual(D.goalStatus(84, 80, 77.6), { left: 2.4, reached: false, toward: true });
+  assert.deepEqual(D.goalStatus(80, 82, 77.6), { left: 4.4, reached: false, toward: false });
+  assert.equal(D.goalStatus(84, 77.5, 77.6).reached, true);
+  assert.equal(D.goalStatus(84, 76, 77.6).reached, true); // went past it
+  assert.equal(D.goalStatus(70, 75, 75).reached, true); // gaining goal
+  assert.deepEqual(D.goalStatus(null, 80, 80), { left: 0, reached: true, toward: false });
+});

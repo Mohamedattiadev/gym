@@ -44,3 +44,12 @@ test("sanitize: Q21 timed sets keep seconds, old sets get no t", () => {
   assert.deepEqual(s.map((x) => x.t), ["62", "", undefined]);
   assert.equal("t" in s[2], false);
 });
+
+test("sanitize: Q22 profile.goalWeight keeps a sane kg number only", () => {
+  const ok = sanitize({ profile: { level: "beginner", goalWeight: 75.5 }, schema: 2 }, opt);
+  assert.equal(ok.profile.goalWeight, 75.5);
+  for (const bad of ["75", -3, 0, 900, NaN, null, { x: 1 }]) {
+    const o = sanitize({ profile: { level: "beginner", goalWeight: bad }, schema: 2 }, opt);
+    assert.equal("goalWeight" in o.profile, false, String(bad)); assert.equal(o.profile.level, "beginner");
+  }
+});

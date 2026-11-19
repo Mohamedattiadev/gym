@@ -604,6 +604,9 @@ body:has(.tpill) main#view { padding-bottom: 64px; }
 .chart .ar { fill: var(--accent-soft); }
 .chart .gd { stroke: var(--line); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .chart .pt { fill: var(--accent); }
+.chart .gl { stroke: var(--ok); stroke-width: 1.5; stroke-dasharray: 5 4; vector-effect: non-scaling-stroke; }
+.bw-goal { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 6px; min-height: 44px; }
+.bw-goal .ok, .ok-t { color: var(--ok); font-weight: 700; }
 .chart-x { display: flex; justify-content: space-between; font-size: .7188rem; color: var(--t3); margin-top: 4px; }
 .vbars { display: flex; align-items: flex-end; gap: 6px; height: 110px; }
 .vbars > div { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 4px; height: 100%; font-size: .6875rem; color: var(--t3); min-width: 0; }

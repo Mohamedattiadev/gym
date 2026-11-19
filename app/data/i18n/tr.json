@@ -962,5 +962,14 @@
  "Total time": "Toplam süre",
  "Type the time first": "Önce süreyi yaz",
  "{n} distance-only set (cardio) won't be imported.": "Yalnız mesafe içeren {n} set (kardiyo) içe aktarılmayacak.",
- "{n} distance-only sets (cardio) won't be imported.": "Yalnız mesafe içeren {n} set (kardiyo) içe aktarılmayacak."
+ "{n} distance-only sets (cardio) won't be imported.": "Yalnız mesafe içeren {n} set (kardiyo) içe aktarılmayacak.",
+ "Change goal": "Hedefi değiştir",
+ "Goal reached": "Hedefe ulaştın",
+ "Goal removed": "Hedef kaldırıldı",
+ "Goal weight ({u})": "Hedef kilo ({u})",
+ "Goal {v}": "Hedef {v}",
+ "Leave empty for no goal": "Hedef istemiyorsan boş bırak",
+ "No goal set": "Hedef yok",
+ "Set goal": "Hedef koy",
+ "{v} to go": "{v} kaldı"
 }

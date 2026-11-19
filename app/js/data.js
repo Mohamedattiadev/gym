@@ -281,3 +281,10 @@ export function lowMuscles(min = 10) {
   const v = weeklyVolume();
   return BALANCE_MUSCLES.map((m) => [m, Math.round(v[m] || 0)]).filter(([, n]) => n < min).sort((a, b) => a[1] - b[1]);
 }
+/** where the last weigh-in stands against the goal: { left, reached, toward } (toward = moved closer since the first log) */
+export function goalStatus(first, last, goal) {
+  if (goal == null || last == null) return null;
+  const left = Math.round(Math.abs(last - goal) * 10) / 10;
+  const crossed = first != null && first !== goal && (first > goal) !== (last > goal);
+  return { left, reached: left <= 0.2 || crossed, toward: first != null && Math.abs(last - goal) < Math.abs(first - goal) };
+}

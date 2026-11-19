@@ -61,6 +61,7 @@ export function sanitize(d, { keys, schema, uid }) {
   }
   if (out.bodyweight && !Array.isArray(out.bodyweight)) out.bodyweight = [];
   if (out.profile !== undefined && out.profile !== null && (typeof out.profile !== "object" || Array.isArray(out.profile))) out.profile = null;
+  if (out.profile && "goalWeight" in out.profile) { const g = out.profile.goalWeight; if (!(typeof g === "number" && g >= 9 && g <= 400)) delete out.profile.goalWeight; } // Q22 kg
   if (out.settings && typeof out.settings === "object") {
     const st = out.settings;
     if (!["kg", "lb"].includes(st.unit)) delete st.unit;
