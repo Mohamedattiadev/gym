@@ -2,7 +2,7 @@
 import "./log.js"; // FE-6: first, so boot errors are caught too
 import { S, loadStore, flush, degraded } from "./store.js";
 import { $, BP, $$, esc, ic, closeSheet, initSheet, toast, unlockAudio, indicate } from "./ui.js";
-import { EX, loadExercises, buildIndex } from "./data.js";
+import { EX, loadExercises, buildIndex, FAM_LANG } from "./data.js";
 import { bodyMap, leaveBodyMap } from "./bodymap.js";
 import { videos } from "./videos.js";
 import { nextRoute, routeId, live, go, routeParts, onRoute, setTop } from "./nav.js";
@@ -115,9 +115,10 @@ addEventListener("pointerdown", unlockAudio, { once: true });
 (async () => {
   initSheet(); net();
   const exP = loadExercises(); // fetch data in parallel with IndexedDB
-  await loadStore(); applyTheme(); await setLang(S.settings.lang);
+  await loadStore(); applyTheme();
+  const lg = await setLang(S.settings.lang); try { localStorage.setItem("gym-lang", lg); } catch {}
   if (degraded) $(".app").insertAdjacentHTML("afterbegin", `<div class="notice warn storewarn" role="alert">${ic("alert", "sm")}<div class="grow"><b>${t("Storage unavailable")}</b><div class="small">${t("Changes may not be kept. Close the app fully and open it again.")}</div></div></div>`);
-  try { await exP; } catch (e) { view.innerHTML = `<div class="empty">${t("Couldn't load exercises.")}<br><small>${esc(e.message)}</small></div>`; hideSplash(); return; }
+  try { await exP; if (FAM_LANG !== lg) await loadExercises(); } catch (e) { view.innerHTML = `<div class="empty">${t("Couldn't load exercises.")}<br><small>${esc(e.message)}</small></div>`; hideSplash(); return; }
   initMedia(); initTimer();
   // 26b: first open (nothing set up yet, landing on Home) -> onboarding; deep links are never hijacked
   if (!S.profile?.onboarded && !S.settings.onboarded && !S.sessions.length && !S.workouts.length && /^#?\/?$/.test(location.hash)) history.replaceState(null, "", "#/start");

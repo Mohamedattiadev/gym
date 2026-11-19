@@ -221,7 +221,7 @@ async function settingsPanel(host) {
       <div class="card list-sep">
         ${READY.length > 1 ? row("info", t("Language"), segH("sLang", READY.map((l) => [l, LANGS[l]]), curLang())) : ""}
         ${row(document.documentElement.dataset.theme === "light" ? "sun" : "moon", t("Theme"), segH("sTheme", [["light", N("Light")], ["dark", N("Dark")], ["system", N("Auto")]], st.theme || "system"))}
-        <div class="setrow-s wrap">${`<span class="ico">${ic("dumbbell", "sm")}</span><div class="grow"><b>${t("Equipment")}</b><div class="dim tiny">${t("Library, plans and swaps show only what you have")}</div></div>`}${segH("sEquip", [["gym", N("Full gym")], ["dumbbells", N("Dumbbells")], ["home", N("Home")]], st.equip || "gym").replace('class="seg sm"', 'class="seg sm block"')}</div>
+        <div class="setrow-s wrap">${`<span class="ico">${ic("dumbbell", "sm")}</span><div class="grow"><b>${t("Equipment")}</b><div class="dim tiny">${t("Library, plans and swaps show only what you have")}</div></div>`}${segH("sEquip", [["gym", N("Full gym")], ["dumbbells", N("Dumbbells")], ["home", t("Home", null, "equip")]], st.equip || "gym").replace('class="seg sm"', 'class="seg sm block"')}</div>
         ${row("scale", t("Units"), segH("sUnit", [["kg", "kg"], ["lb", "lb"]], st.unit))}
         ${row("calc", t("Bar weight"), segH("sBar", [[20, "20"], [15, "15"], [10, "10"]], st.bar))}
       </div>

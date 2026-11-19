@@ -56,7 +56,7 @@ export async function startView() {
   }
   const equipQ = (od.questions || []).find((q) => q.id === "equip");
   const dots = () => `<div class="obtop"><div class="obdots" role="img" aria-label="${t("Step {n} of 4", { n: ob.i + 1 })}">${[0, 1, 2, 3].map((k) => `<i class="${k < ob.i ? "done" : k === ob.i ? "on" : ""}"></i>`).join("")}</div>${ob.i === 1 || ob.i === 2 ? `<button class="btn ghost sm" id="obSkip">${t("Skip")}</button>` : ""}</div>`;
-  const nav = (ok = true, label = t("Next")) => `<div class="row obnav">${ob.i ? `<button class="btn grow" id="obBack">${ic("back", "sm")} ${t("Back")}</button>` : ""}<button class="btn primary grow" id="obNext" ${ok ? "" : "disabled"}>${label}</button></div>`;
+  const nav = (ok = true, label = t("Next")) => `<div class="row obnav">${ob.i ? `<button class="btn grow" id="obBack">${ic("back", "sm")} ${t("Back", null, "nav")}</button>` : ""}<button class="btn primary grow" id="obNext" ${ok ? "" : "disabled"}>${label}</button></div>`;
   const step = (k) => { ob.i = k; draw(); window.scrollTo(0, 0); };
   const draw = () => {
     if (ob.i >= 3) return result(od);
@@ -92,7 +92,7 @@ export async function startView() {
     const k = ob.ns.i, [q, opts] = NOT_SURE[k];
     view().innerHTML = `${dots()}<div class="dim tiny" style="margin:2px 0 4px">${t("Question {n} of 3", { n: k + 1 })}</div><h2 class="qt">${t(q)}</h2>
       <div class="stack tight mt-14" id="obOpts">${opts.map((o, v) => `<button class="qopt" data-v="${v}"><b>${t(o)}</b></button>`).join("")}</div>
-      <div class="row obnav"><button class="btn grow" id="obBack">${ic("back", "sm")} ${t("Back")}</button></div>`;
+      <div class="row obnav"><button class="btn grow" id="obBack">${ic("back", "sm")} ${t("Back", null, "nav")}</button></div>`;
     $("#obOpts").onclick = (e) => {
       const b = e.target.closest("[data-v]"); if (!b) return; haptic(); ob.ns.s[k] = +b.dataset.v;
       if (k < 2) { ob.ns.i++; return draw(); }
@@ -201,7 +201,7 @@ export async function profileView() {
   view().innerHTML = `<div class="cols"><div class="stack">
       <div class="card pad"><div class="field"><label>${t("Level")}</label>${seg("prLv", LEVELS.map(([v, nm]) => [v, t(nm)]), p.level || "", "block")}</div>
         <div class="field"><label>${t("Days a week")}</label>${seg("prDays", DAYS.map((d) => [d, String(d)]), p.days || 3, "block")}</div>
-        <div class="field" style="margin-bottom:0"><label>${t("Equipment")}</label>${seg("prEq", [["gym", t("Full gym")], ["dumbbells", t("Dumbbells")], ["home", t("Home")]], S.settings.equip || "gym", "block")}</div></div>
+        <div class="field" style="margin-bottom:0"><label>${t("Equipment")}</label>${seg("prEq", [["gym", t("Full gym")], ["dumbbells", t("Dumbbells")], ["home", t("Home", null, "equip")]], S.settings.equip || "gym", "block")}</div></div>
       ${(() => { const cp = T.currentPlan(); return `<a class="card pad row" href="#/plans" style="gap:12px"><span class="grow"><span class="dim small">${t("Your plan")}</span><b style="display:block">${cp ? `${esc(cp.name)} · ${tn(cp.days, "{n} day", "{n} days")}` : t("No plan yet")}</b></span><span class="btn sm">${cp ? t("Change") : t("Pick a plan")}</span></a>`; })()}
       <a class="btn block ghost" href="#/start">${ic("user", "sm")} ${t("Find my plan again")}</a></div>
     <div class="stack"><div class="card pad" id="prBody">${bodyFields(b)}</div>

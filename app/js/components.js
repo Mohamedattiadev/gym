@@ -55,7 +55,7 @@ export function xcard(e, i = 0, sel = false, href = `#/ex/${e.slug}`) {
     <div class="ph"><img data-fade loading="lazy" decoding="async" src="${e.poster}" alt="">${tierBadge(e.tier)}
       ${isFav(e.slug) ? `<span class="fav">${ic("heart")}</span>` : ""}</div>
     <div class="meta"><div class="name">${esc(e.name)}</div><div class="sub">${levelBars(e.level)}</div>
-      <div class="tags">${[e.group, e.equipment[0], e.machine && !e.machine.toLowerCase().includes((e.equipment[0] || "~").toLowerCase()) ? e.machine : ""].filter(Boolean).map((x) => `<span>${esc(x)}</span>`).join("")}</div></div></a>`;
+      <div class="tags">${[e.group, e.equipment[0], e.machine && !e.machine.toLowerCase().includes((e.equipment[0] || "~").toLowerCase()) ? e.machine : ""].filter(Boolean).map((x) => `<span>${esc(t(x))}</span>`).join("")}</div></div></a>`;
 }
 export function onImg(root = document) {
   $$("img[data-fade]", root).forEach((im) => {

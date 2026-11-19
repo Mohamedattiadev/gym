@@ -103,8 +103,11 @@ export function buildIndex() {
 }
 
 export let FAM = { families: {}, notes: {} };
+export let FAM_LANG = "en";
+/** Runs before loadStore (in parallel), so the language comes from the "gym-lang" localStorage mirror main.js writes. */
 export async function loadExercises() {
-  const lang = S.settings.lang || "en";
+  let lang = "en"; try { lang = localStorage.getItem("gym-lang") || "en"; } catch {}
+  FAM_LANG = lang;
   const get = async (u, d) => { try { const r = await fetch(u); return r.ok ? await r.json() : d; } catch { return d; } };
   let fig;
   [EX, FAM, fig, JOINTS] = await Promise.all([fetch("data/exercises.json").then((r) => r.json()), get(`data/families.${lang}.json`, null).then((x) => x || get("data/families.en.json", { families: {}, notes: {} })),

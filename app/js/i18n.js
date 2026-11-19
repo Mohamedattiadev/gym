@@ -7,7 +7,7 @@
    Imports nothing (ui.js and store.js import this). */
 export const LANGS = { en: "English", tr: "Türkçe", ar: "العربية" };
 /** Languages whose table is complete enough to offer in Settings (FE-19: no half-translated switch). */
-export const READY = ["en"];
+export const READY = ["en", "tr"];
 let LANG = "en", TBL = {}, PR = new Intl.PluralRules("en");
 
 export const lang = () => LANG;
@@ -16,8 +16,9 @@ export const rtl = () => LANG === "ar";
 export const loc = () => (LANG === "ar" ? "ar-u-nu-latn" : LANG);
 
 const fill = (s, v) => (v ? s.replace(/\{(\w+)\}/g, (m, k) => (v[k] ?? m)) : s);
-export function t(s, v) {
-  const x = TBL[s];
+/** t(s, vars, ctx): ctx tells apart one English word with two meanings ("Back" body side vs "Back" button): key "s@ctx" first. */
+export function t(s, v, c) {
+  const x = (c && TBL[`${s}@${c}`]) || TBL[s];
   return fill(typeof x === "string" && x ? x : s, v);
 }
 /** Marks English text stored in data for keys.mjs; translate it later with t(x). */

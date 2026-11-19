@@ -19,12 +19,16 @@ for (const f of js) {
   const src = fs.readFileSync(`${root}/${f}`, "utf8");
   if (!/from "\.\/i18n\.js"|^export const N =/m.test(src)) continue; // only modules that use i18n
   for (const m of src.matchAll(one)) add(lit(m, 1), f);
+  for (const m of src.matchAll(/(?<![\w.$])t\(\s*"([^"]+)",\s*(?:null|undefined|\{[^}]*\}),\s*"(\w+)"\)/g)) add(`${m[1]}@${m[2]}`, f); // context keys
   for (const m of src.matchAll(plural)) { add(lit(m, 1), f); add(lit(m, 4), f); }
   for (const m of src.matchAll(bad)) { console.log(`${f}: t() with a \${} template can't be translated: ${m[0]}`); errors++; }
 }
 const html = fs.readFileSync(`${root}/app/index.html`, "utf8");
 for (const m of html.matchAll(/data-ta?="([^"]+)"/g)) add(m[1], "app/index.html");
-const list = [...keys.keys()].sort();
+// data words shown through t(variable): muscle groups + equipment (exercises.json), muscle names + functions (body.js MUSCLES)
+for (const e of JSON.parse(fs.readFileSync(`${root}/app/data/exercises.json`, "utf8"))) { add(e.group, "data"); for (const q of e.equipment || []) add(q, "data"); }
+for (const m of fs.readFileSync(`${root}/app/js/body.js`, "utf8").matchAll(/name: "([^"]+)"[^\n]*?fn: "([^"]+)"/g)) { add(m[1], "data"); add(m[2], "data"); }
+const list = [...keys.keys()].filter(Boolean).sort();
 fs.writeFileSync(`${root}/tools/i18n/en.keys.json`, JSON.stringify(list, null, 1) + "\n");
 const want = process.argv.indexOf("--missing") > 0 ? process.argv[process.argv.indexOf("--missing") + 1] : null;
 console.log(`${list.length} keys from ${new Set(keys.values()).size} files`);

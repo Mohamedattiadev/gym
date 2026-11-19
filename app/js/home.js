@@ -50,7 +50,7 @@ function recoveryCard() {
   if (!ids.length) return "";
   const paint = (svg) => svg.replace(/<path class="m" data-m="([^"]+)"/g, (m0, id) => `<path class="m ${rec[id]?.state || "g"}" data-m="${id}"`);
   const fresh = ids.filter((m) => rec[m].state === "r"), mid = ids.filter((m) => rec[m].state === "y");
-  const names = (l) => l.map((m) => MBY[m]?.name || m).slice(0, 4).join(", ");
+  const names = (l) => l.map((m) => t(MBY[m]?.name || m)).slice(0, 4).join(", ");
   return `<a class="card pad row" href="#/body" style="gap:14px"><div class="mini-body">${paint(bodySVG("front"))}${paint(bodySVG("back"))}</div>
     <div class="grow"><b>${t("Recovery")}</b>
       <div class="small muted" style="margin:4px 0 8px">${fresh.length ? t("Just trained: {m}.", { m: esc(names(fresh)) }) + " " : ""}${mid.length ? t("Recovering: {m}.", { m: esc(names(mid)) }) : ""}${!fresh.length && !mid.length ? t("All muscles ready to train.") : ""}</div>
@@ -67,7 +67,7 @@ export function homeView() {
     <div class="cols stagger">
       <div class="stack">${heroCard()}${S.sessions.length ? recoveryCard() : ""}</div>
       <div class="stack">${S.sessions.length ? weekCard() : ""}
-        ${low.length ? `<a class="notice warn" href="#/body">${ic("alert", "sm")}<div class="grow"><b>${t("Low volume this week")}</b><div class="small muted">${low.slice(0, 4).map(([m, n]) => `${MBY[m]?.name || m} ${n}/10`).join(" · ")} ${t("sets")}</div></div>${ic("chev", "sm")}</a>` : ""}
+        ${low.length ? `<a class="notice warn" href="#/body">${ic("alert", "sm")}<div class="grow"><b>${t("Low volume this week")}</b><div class="small muted">${low.slice(0, 4).map(([m, n]) => `${t(MBY[m]?.name || m)} ${n}/10`).join(" · ")} ${t("sets")}</div></div>${ic("chev", "sm")}</a>` : ""}
         ${S.sessions.length ? "" : recoveryCard()}
         ${S.sessions.length ? "" : `<div class="itiles two"><a class="itile" href="#/body"><span class="ico">${ic("body")}</span><div><b>${t("Body map")}</b><span>${t("Tap a muscle")}</span></div></a>
           <a class="itile" href="#/videos" style="--c:var(--tier-S)"><span class="ico">${ic("yt")}</span><div><b>${t("Jeff's tier lists")}</b><span>${t("Watch rankings")}</span></div></a>

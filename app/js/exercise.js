@@ -283,8 +283,8 @@ const prop3d = (e) => { const q = [].concat(e.equipment || []).join(" "); return
 let v3d = null, v3dView = "front";
 /** Main / Helpers muscle names; doubles as the colour legend of the hero body. */
 const musList = (e) => { const pri = e.primary || [], sec = e.secondary || [];
-  return `<div class="mus-list hl"><div class="eyebrow">${t("Main")}</div>${pri.map((m) => `<div><i style="background:var(--accent)"></i>${esc(MBY[m]?.name || m)}</div>`).join("") || `<div>${esc(t(e.group))}</div>`}
-    ${sec.length ? `<div class="eyebrow">${t("Helpers")}</div>${sec.map((m) => `<div><i style="background:var(--mus-2)"></i>${esc(MBY[m]?.name || m)}</div>`).join("")}` : ""}</div>`; };
+  return `<div class="mus-list hl"><div class="eyebrow">${t("Main")}</div>${pri.map((m) => `<div><i style="background:var(--accent)"></i>${esc(t(MBY[m]?.name || m))}</div>`).join("") || `<div>${esc(t(e.group))}</div>`}
+    ${sec.length ? `<div class="eyebrow">${t("Helpers")}</div>${sec.map((m) => `<div><i style="background:var(--mus-2)"></i>${esc(t(MBY[m]?.name || m))}</div>`).join("")}` : ""}</div>`; };
 const backFirst = (e) => { const f = bodySVG("front"); return (e.primary || []).filter((m) => f.includes(`data-m="${m}"`)).length < (e.primary || []).length / 2; };
 /** 19a-fix: hero height = video aspect at full width (phone); remembered per exercise so Muscles/3D keep the same height. */
 const ASPECT = new Map();
