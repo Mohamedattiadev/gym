@@ -2,6 +2,7 @@
 // The token stays on this device (IndexedDB key "sync") and is NEVER written into the backup file.
 // Talks only to https://api.github.com. No libraries.
 import { S, SCHEMA, save, onSave, flush, exportData, clean as cleanData } from "./store.js";
+import { t, loc } from "./i18n.js";
 
 const API = "https://api.github.com";
 const DEBOUNCE_MS = 20000;
@@ -46,8 +47,8 @@ export function buildBackup(text = exportData()) {
   return j;
 }
 
-const t = (x) => (typeof x === "number" ? x : Date.parse(x) || 0);
-const stamp = (o) => Math.max(t(o?.updatedAt), t(o?.endedAt), t(o?.startedAt), 0);
+const ms = (x) => (typeof x === "number" ? x : Date.parse(x) || 0);
+const stamp = (o) => Math.max(ms(o?.updatedAt), ms(o?.endedAt), ms(o?.startedAt), 0);
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 function mergeById(loc = [], rem = [], pick) {
@@ -99,11 +100,11 @@ function mergeBodyweight(loc = [], rem = []) {
   for (const e of rem || []) m.set(String(bwKey(e)), e);
   for (const e of loc || []) {
     const k = String(bwKey(e)), r = m.get(k);
-    m.set(k, r && t(r.updatedAt) > t(e?.updatedAt) ? r : e); // same date: local wins unless remote is newer
+    m.set(k, r && ms(r.updatedAt) > ms(e?.updatedAt) ? r : e); // same date: local wins unless remote is newer
   }
   const arr = [...m.values()];
   const sortable = arr.every((e) => e && (typeof bwKey(e) === "number" || !isNaN(Date.parse(bwKey(e)))));
-  return sortable ? arr.sort((a, b) => t(bwKey(a)) - t(bwKey(b))) : arr;
+  return sortable ? arr.sort((a, b) => ms(bwKey(a)) - ms(bwKey(b))) : arr;
 }
 
 /**
@@ -119,7 +120,7 @@ export function merge(local = {}, remote = {}, opts = {}) {
 
   out.sessions = mergeById(local.sessions, remote.sessions, (l, r) => (stamp(r) > stamp(l) ? r : l));
   out.workouts = mergeById(local.workouts, remote.workouts, (l, r) => {
-    const lu = t(l.updatedAt), ru = t(r.updatedAt);
+    const lu = ms(l.updatedAt), ru = ms(r.updatedAt);
     if (!lu && !ru) return "both";
     return ru > lu ? r : l;
   });
@@ -137,7 +138,7 @@ export function merge(local = {}, remote = {}, opts = {}) {
   }
   const gone = (kind, id, st) => { const v = out.deleted[kind]?.[id]; return v > 0 && v >= st; };
   out.sessions = out.sessions.filter((x) => !x || x.id == null || !gone("sessions", x.id, stamp(x)));
-  out.workouts = out.workouts.filter((x) => !x || x.id == null || !gone("workouts", String(x.id).replace(/-cloud$/, ""), t(x.updatedAt)));
+  out.workouts = out.workouts.filter((x) => !x || x.id == null || !gone("workouts", String(x.id).replace(/-cloud$/, ""), ms(x.updatedAt)));
   out.favorites = out.favorites.filter((s) => !gone("favorites", s, 0));
   out.notes = mergeNotes(local.notes, remote.notes, local.notesAt, remote.notesAt);
   out.notesAt = { ...(remote.notesAt || {}) };
@@ -152,7 +153,7 @@ export function merge(local = {}, remote = {}, opts = {}) {
   }
   const la = local.adjust || {}, ra = remote.adjust || {};
   out.adjust = { ...ra };
-  for (const k of Object.keys(la)) if (!ra[k] || t(la[k]?.at) >= t(ra[k]?.at)) out.adjust[k] = la[k];
+  for (const k of Object.keys(la)) if (!ra[k] || ms(la[k]?.at) >= ms(ra[k]?.at)) out.adjust[k] = la[k];
 
   const ls = local.settings || {}, rs = remote.settings || {};
   out.settings = opts.preferRemoteSettings ? { ...ls, ...rs } : { ...rs, ...ls };
@@ -177,7 +178,7 @@ const enc = (p) => p.split("/").map(encodeURIComponent).join("/");
 const contentsUrl = (c) => `${API}/repos/${encodeURIComponent(c.owner)}/${encodeURIComponent(c.repo)}/contents/${enc(c.path || DEFAULT_PATH)}`;
 
 async function gh(token, url, { method = "GET", body, accept = "application/vnd.github+json" } = {}) {
-  if (typeof navigator !== "undefined" && navigator.onLine === false) throw new SyncError("You are offline. Backup will retry when you're back online.", "offline");
+  if (typeof navigator !== "undefined" && navigator.onLine === false) throw new SyncError(t("You are offline. Backup will retry when you're back online."), "offline");
   let res;
   try {
     res = await fetch(url, {
@@ -187,23 +188,23 @@ async function gh(token, url, { method = "GET", body, accept = "application/vnd.
       body: body ? JSON.stringify(body) : undefined,
     });
   } catch (e) {
-    throw new SyncError("Can't reach GitHub (offline or network error).", "offline");
+    throw new SyncError(t("Can't reach GitHub (offline or network error)."), "offline");
   }
   if (res.ok) return res;
   let msg = "";
   try { msg = (await res.json()).message || ""; } catch {}
   const h = (k) => res.headers?.get?.(k);
-  if (res.status === 401) throw new SyncError("GitHub rejected the token (expired, revoked or mistyped). Create a new token and connect again.", "auth", 401);
+  if (res.status === 401) throw new SyncError(t("GitHub rejected the token (expired, revoked or mistyped). Create a new token and connect again."), "auth", 401);
   if (res.status === 429 || (res.status === 403 && (h("x-ratelimit-remaining") === "0" || /rate limit/i.test(msg)))) {
     const reset = +h("x-ratelimit-reset") * 1000 || 0, after = +h("retry-after") * 1000 || 0;
     const when = reset ? new Date(reset) : after ? new Date(Date.now() + after) : null;
-    throw new SyncError(`GitHub rate limit reached. Try again${when ? " after " + when.toLocaleTimeString() : " later"}.`, "ratelimit", res.status);
+    throw new SyncError(when ? t("GitHub rate limit reached. Try again after {time}.", { time: when.toLocaleTimeString(loc()) }) : t("GitHub rate limit reached. Try again later."), "ratelimit", res.status);
   }
-  if (res.status === 403) throw new SyncError("The token is not allowed to do this. It needs \"Contents: Read and write\" on this repository.", "forbidden", 403);
+  if (res.status === 403) throw new SyncError(t("The token is not allowed to do this. It needs \"Contents: Read and write\" on this repository."), "forbidden", 403);
   if (res.status === 404) throw new SyncError("Not found", "notfound", 404);
   if (res.status === 409 || res.status === 422) throw new SyncError(msg || "Conflict", "conflict", res.status);
-  if (res.status >= 500) throw new SyncError("GitHub is having trouble right now. Will try again later.", "server", res.status);
-  throw new SyncError(`GitHub error ${res.status}${msg ? ": " + msg : ""}`, "http", res.status);
+  if (res.status >= 500) throw new SyncError(t("GitHub is having trouble right now. Will try again later."), "server", res.status);
+  throw new SyncError(t("GitHub error {code}", { code: res.status }) + (msg ? ": " + msg : ""), "http", res.status);
 }
 
 // -> {sha, text} or null if the file does not exist yet
@@ -215,7 +216,7 @@ async function getRemote(c) {
     throw e;
   }
   const j = await res.json();
-  if (Array.isArray(j) || j.type !== "file") throw new SyncError(`"${c.path}" in the repo is not a file.`, "http");
+  if (Array.isArray(j) || j.type !== "file") throw new SyncError(t("\"{path}\" in the repo is not a file.", { path: c.path }), "http");
   let text;
   if (j.content && j.encoding === "base64") text = b64decode(j.content);
   else { // files > 1 MB: contents API omits the body, fetch the blob instead (up to 100 MB)
@@ -227,10 +228,10 @@ async function getRemote(c) {
 
 function parseBackup(text) {
   let j;
-  try { j = JSON.parse(text); } catch { throw new SyncError("The backup file in the repo is not valid JSON.", "corrupt"); }
+  try { j = JSON.parse(text); } catch { throw new SyncError(t("The backup file in the repo is not valid JSON."), "corrupt"); }
   const d = j && j.app === "gymy" ? j.data : j;
-  if (!d || !Array.isArray(d.sessions) || !Array.isArray(d.workouts)) throw new SyncError("The file in the repo is not a Gym backup.", "corrupt");
-  if (+(d.schema ?? j.schema) > SCHEMA) throw new SyncError("The cloud backup was saved by a newer version of the app. Update this app first (reload the page).", "newer"); // BE-6: never mix shapes
+  if (!d || !Array.isArray(d.sessions) || !Array.isArray(d.workouts)) throw new SyncError(t("The file in the repo is not a Gym backup."), "corrupt");
+  if (+(d.schema ?? j.schema) > SCHEMA) throw new SyncError(t("The cloud backup was saved by a newer version of the app. Update this app first (reload the page)."), "newer"); // BE-6: never mix shapes
   return { exportedAt: j.exportedAt || null, data: d };
 }
 
@@ -278,10 +279,10 @@ export async function connect({ owner, repo, token } = {}) {
     let info;
     try { info = await (await gh(token, `${API}/repos/${pr.owner}/${pr.repo}`)).json(); }
     catch (e) {
-      if (e.code === "notfound") throw new SyncError(`Repository ${pr.owner}/${pr.repo} not found, or the token was not given access to it.`, "notfound", 404);
+      if (e.code === "notfound") throw new SyncError(t("Repository {repo} not found, or the token was not given access to it.", { repo: `${pr.owner}/${pr.repo}` }), "notfound", 404);
       throw e;
     }
-    if (!info.private) throw new SyncError("This repository is PUBLIC. Your workout data would be visible to everyone. Make it private (Settings → Danger Zone → Change visibility) or use a private repo.", "public");
+    if (!info.private) throw new SyncError(t("This repository is PUBLIC. Your workout data would be visible to everyone. Make it private (Settings → Danger Zone → Change visibility) or use a private repo."), "public");
     const c = { owner: info.owner?.login || pr.owner, repo: info.name || pr.repo, branch: info.default_branch || "main",
       path: S.sync?.path || DEFAULT_PATH, token };
     const remote = await getRemote(c);
@@ -300,7 +301,7 @@ export async function connect({ owner, repo, token } = {}) {
 
 export function pull() {
   return exclusive(async () => {
-    const c = cfg(); if (!c) throw fail(new SyncError("Cloud backup is not connected.", "notconnected"));
+    const c = cfg(); if (!c) throw fail(new SyncError(t("Cloud backup is not connected."), "notconnected"));
     try {
       const r = await getRemote(c);
       if (!r) { ok(); emit(); return null; }
@@ -321,7 +322,7 @@ async function pushOnce(c, retried) {
     }
   }
   const payload = JSON.stringify(buildBackup()); // BE-9: compact (indented JSON doubles the size; the downloaded file stays indented)
-  if (c.token && payload.includes(c.token)) throw new SyncError("Refusing to upload: the token was found inside the backup.", "leak");
+  if (c.token && payload.includes(c.token)) throw new SyncError(t("Refusing to upload: the token was found inside the backup."), "leak");
   const body = { message: `backup ${new Date().toISOString()}`, content: b64encode(payload), branch: c.branch || "main", ...(c.sha ? { sha: c.sha } : {}) };
   let res;
   try { res = await gh(c.token, contentsUrl(c), { method: "PUT", body }); }
@@ -330,7 +331,7 @@ async function pushOnce(c, retried) {
     if (e.code === "notfound" && !c.sha) { // brand-new empty repo: let GitHub create the default branch
       delete body.branch;
       try { res = await gh(c.token, contentsUrl(c), { method: "PUT", body }); }
-      catch (e2) { throw e2.code === "notfound" ? new SyncError("Repository not found or empty. On GitHub, add a README file to the repo, then try again.", "notfound", 404) : e2; }
+      catch (e2) { throw e2.code === "notfound" ? new SyncError(t("Repository not found or empty. On GitHub, add a README file to the repo, then try again."), "notfound", 404) : e2; }
     } else throw e;
   }
   c.sha = (await res.json()).content?.sha || null;
@@ -338,7 +339,7 @@ async function pushOnce(c, retried) {
 
 export function push() {
   return exclusive(async () => {
-    const c = cfg(); if (!c) throw fail(new SyncError("Cloud backup is not connected.", "notconnected"));
+    const c = cfg(); if (!c) throw fail(new SyncError(t("Cloud backup is not connected."), "notconnected"));
     try {
       c.dirty = false; // changes made during the upload set it again
       await pushOnce(c, false);
@@ -355,7 +356,7 @@ export function push() {
 
 export async function restore() {
   const r = await pull();
-  if (!r) throw fail(new SyncError("No backup found in the repository yet.", "notfound", 404));
+  if (!r) throw fail(new SyncError(t("No backup found in the repository yet."), "notfound", 404));
   await exclusive(async () => {
     const local = buildBackup().data; // BE-10: snapshot inside the lock, after any queued push
     const fresh = !(local.sessions || []).length && !(local.workouts || []).length;
