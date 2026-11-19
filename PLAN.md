@@ -467,3 +467,6 @@ Dropped (too much): RIR per set, Sunday check-in, exercise of the week on Home
 
 ## Security
 - Owner pasted their Get SWOLE password in chat → change it. `raw/.token` must never be committed.
+
+## Optional account (Sign in with Google + Supabase backup)
+- ⬜ Not built. Everything needed (owner setup reusing Fluent365's Supabase project, SQL, build brief, tests): `docs/SUPABASE.md`.
