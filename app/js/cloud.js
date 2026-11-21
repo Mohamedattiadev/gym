@@ -8,7 +8,7 @@ import { merge, buildBackup, parseBackup, applyData, isApplying, SyncError } fro
 import { t } from "./i18n.js";
 
 const TABLE = "gym_backups";
-const DEBOUNCE_MS = 20000, PULL_GAP = 60000;
+const DEBOUNCE_MS = 20000, PULL_GAP = 10000;
 const OWNER = "gym-data-uid"; // Q20 localStorage: the account this device's data belongs to (kept after "Sign out, keep data")
 const PK = "gym-pkce"; // localStorage: PKCE verifier + the hash to return to (survives the Google redirect)
 
@@ -232,9 +232,15 @@ function waitOnline() {
 function hook() {
   if (hooked) return; hooked = true;
   onSave((keys) => { if (!isApplying() && keys.some((k) => !["active", "sync", "cloud"].includes(k))) autoSync(); });
-  if (typeof document !== "undefined") document.addEventListener("visibilitychange", () => {
-    if (!document.hidden && S.cloud?.refresh && Date.now() - lastSync > PULL_GAP) syncNow().catch(() => {});
-  });
+  if (typeof document === "undefined") return;
+  // Back on screen / window focused (laptop) -> pull what the other device did.
+  const pullNow = () => { if (S.cloud?.refresh && Date.now() - lastSync > PULL_GAP) syncNow().catch(() => {}); };
+  // Leaving -> send a pending change now: phones freeze the 20 s timer in the background, so the other
+  // device would not see the last sets until this phone is opened again (Fluent365 3/6 bug, 2026-11-21).
+  const leave = () => { if (S.cloud?.refresh && S.cloud.dirty) { clearTimeout(debounce); debounce = null; syncNow().catch(() => {}); } };
+  document.addEventListener("visibilitychange", () => (document.hidden ? leave() : pullNow()));
+  addEventListener("focus", pullNow);
+  addEventListener("pagehide", leave);
 }
 
 /** Boot (after loadStore): signed in -> hook saves, pull what other devices added. Costs nothing when signed out. */
